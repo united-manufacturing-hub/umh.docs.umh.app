@@ -26,13 +26,13 @@ jobs:
         id: images_changed
         if: steps.is_bot_commit.outputs.is_bot_commit != 'Convert images to WebP'
         run: |
-          cd static/images
+          cd umh.docs.umh.app/static/images
           git diff --quiet HEAD~1 || echo "::set-output name=images_changed::true"
 
       - name: Convert images to WebP
         if: steps.images_changed.outputs.images_changed == 'true' && steps.is_bot_commit.outputs.is_bot_commit != 'Convert images to WebP'
         run: |
-          cd static/images
+          cd umh.docs.umh.app/static/images
           for file in $(find . -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" \)); do
             cwebp "$file" -o "${file%.*}.webp"
           done
