@@ -1,16 +1,139 @@
 +++
-title = "Documentation"
+title = "The OSS blueprint for the Industrial IoT"
 menuTitle = "Documentation"
-chapter = true
-weight = 5
-pre = "<b> - </b>"
 draft = false
-description = "This is the technical documentation of the Management Console."
+description = "The United Manufacturing Hub is an Open-Source Helm Chart for Kubernetes, which combines state-of -the-art IT / OT tools & technologies and brings them into the hands of the engineer."
+hide_readingtime = true
 +++
 
-{{% notice note %}}
-Please note that the Management Console is still in open alpha version. A lot of features could be still missing and not everything will work as expected. If you find anything, feel free to write us on our [Discord channel](https://discord.gg/F9mqkZnm9d)
-{{% /notice %}}
+<style>
+h1 {text-align: center; margin-left: auto; margin-right: auto}
+h2 {text-align: center; margin-left: auto; margin-right: auto}
+.lead {text-align: center; margin-left: auto; margin-right: auto}
+.center {text-align: center; margin-left: auto; margin-right: auto}
+</style>
+<!-- **Bringing the worlds best IT and OT tools into the hands of the engineer:** Why start from scratch when you can leverage a proven open-source blueprint? -->
+
+<!-- <img src="/images/homepage_architecture.png" style="width: 80%; max-width: 1000px; margin: auto; display: block;"/> -->
+
+## Bringing the worlds best IT and OT tools into the hands of the engineer
+<p class="center">Why start from scratch when you can leverage a proven open-source blueprint? Kafka, MQTT, Node-RED, TimescaleDB and Grafana with the press of a button - tailored for manufacturing and ready-to-go</p>
+<img src="/images/homepage_architecture.png" style="width: 80%; max-width: 1000px; margin: auto; display: block;"/>
+<br>
+<hr>
+
+## What can you do with it?
+<br>
+<section id="features" >
+    <div class="main-section">
+        <div class="feature-box">
+            <div>
+                <h3 class="mb-3">Everything that you need to do to generate value on the shopfloor</h3>
+                <ul>
+                    <li><strong>Extract data from the shopfloor</strong> <a href="https://nodered.org/">via Node-RED</a>, from <a href="">ifm IO-Link gateways</a>, from <a href="">barcode readers</a> or from <a href="">GenICam compatible cameras</a></li>
+                    <li><strong>Contextualize and standardize data</strong> using <a href="https://nodered.org/">Node-RED</a> as a low-code programming tool and the <a href="">ISA95 compatible UMH data model</a></li>
+                    <li><strong>Exchange and store data</strong> using <a href="">HiveMQ</a> for IoT devices, <a href="https://kafka.apache.org/">Apache Kafka</a> as enterprise message broker and <a href="">TimescaleDB</a> as relational and time-series storage</li>
+                    <li><strong>Visualize data</strong> using <a href="https://grafana.com/">Grafana</a> and <a href="">factoryinsight</a> to easily build shopfloor dashboards</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="mb-3">Prevent vendor lock-in and adjust to your needs</h3>
+            <ul>
+                    <li><strong>The only requirement is Kubernetes</strong> - and you can get that in all types of flavors: from k3s, to bare-metal k8s up to Kubernetes-as-a-service offerings like <a href="">AWS EKS</a> or <a href="">Azure AKS</a></li>
+                    <li><strong>All components can be exchanged.</strong> Don't like the drivers in Node-RED? Replace it with <a href="">Kepware</a>. Do not like our choice of MQTT broker? Use a different one!</li>
+                    <li><strong>Leverage whatever you already have</strong> and just add the building blocks that you are still missing</li>
+            </ul>
+            </div>
+        </div>
+        <div class="feature-box">
+            <div>
+                <h3 class="mb-3">Get started immediately</h3>
+            <ul>
+                    <li><strong><a href="">Download & install now</a></strong>, so you can show results instead of drawing nice boxes in PowerPoint </li>
+            </ul>
+            </div>
+            <div>
+                <h3 class="mb-3">Connect with like-minded people</h3>
+            <ul>
+                <li><strong>Ask the community anything.</strong> No need to depend on external consultants or system integrators.</li>
+                <li><strong>Leverage community created content</strong> - from tutorials over Node-RED flows to Grafana dashboards. Not everything might fit perfectly or is enterprise supported, but having a somewhat working starting point often saves a lot of time.</li>
+                <li><strong>Get honest answers</strong> in a world full of companies pumping millions into advertising</li>
+            </ul>
+            </div>
+        </div>
+    </div>
+    <hr>
+</section>
 
 
+## How does it work?
+<br>
+<img src="/images/homepage_howitworks.png" style="width: 80%; max-width: 1000px; margin: auto; display: block;"/>
 
+## FAQ
+<section id="why" class="section-why pt-0">
+    <div class="main-section">
+        <div id="accordion">
+            <div class="card" style="margin: auto;">
+                <div class="card-header">
+                    <a class="card-link"
+                        data-toggle="collapse"
+                        href="#description1">
+                        This looks great, but the technologies mentioned here (Docker, Kubernetes, etc.) look complicated and we as a company are no experts. Can we still use it?
+                    </a>
+                </div>
+                <div id="description1"
+                    class="collapse show"
+                    data-parent="#accordion">
+                    <div class="card-body">
+                        <strong>Yes</strong> - the United Manufacturing Hub is targeting specifically people and companies, who do not have the budget and/or knowledge to work on their own / develop everything from scratch.<br><br>
+                        With our extensive documentation, guides and knowledge sections you can learn everything that you need.<br><br>
+                        The United Manufacturing Hub abstracts these tools and technologies so that you can leverage all advantages, but still focus on what really matters: digitizing your production.<br><br>
+                        With our commercial <strong>Management Console</strong> you can manage your entire IT / OT infrastructure and work with Grafana / Node-RED without the need to ever touch or understand Kubernetes, Docker, Firewalls, Networking or similar. <br><br>
+                        Additionally, you can get <strong>support licenses</strong> providing unlimited support during development and maintenance of the system. Take a look at our <a href="https://www.umh.app">website</a> if you want to get more information on this.
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="margin: auto;">
+                <div class="card-header">
+                    <a class="collapsed card-link"
+                        data-toggle="collapse"
+                        href="#description2">
+                        We just want to buy something off-the-shelf (end-to-end solution or IoT platform). Why should we still consider the United Manufacturing Hub?
+                    </a>
+                </div>
+                <div id="description2" class="collapse"
+                    data-parent="#accordion">
+                    <div class="card-body">
+                        Because very often these solutions do not target the actual pains of an engineer: implementation and maintenance. And then companies struggle in rolling out IIoT as the projects take much longer and cost way more than originally proposed. <br><br>
+                        In the United Manufacturing Hub, <strong>implementation and maintenance of the system are the first priority</strong>. We've had these pains too often ourselves and therefore incorporated and developed tools & technologies to avoid them.  <br><br>
+                        For example, with <a href="/docs/core/sensorconnect/">sensorconnect</a> we can retrofit production machines where it is impossible at the moment to extract data. Or, with our modular architecture we can fit the security needs of all IT departments - 
+                        from integration into a demilitarized zone to on-premise and private cloud. With Apache Kafka <a href="https://www.umh.app/post/tools-techniques-for-scalable-data-processing-in-industrial-iot">we solve the pain of corrupted or missing messages when scaling out the system</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="margin: auto;">
+                <div class="card-header">
+                    <a class="collapsed card-link"
+                        data-toggle="collapse"
+                        href="#description3">
+                        How can I develop with the United Manufacturing Hub?
+                    </a>
+                </div>
+                <div id="description3" class="collapse"
+                    data-parent="#accordion">
+                    <div class="card-body">
+                        There are three approaches:<br><br>
+                        1. (beginner) <strong>use pre-existing services</strong> by just configuring them. 
+                        You can, for example, create OEE dashboards for your entire shopfloor just by changing the central configuration file and "drag-and-dropping" a little bit in Grafana and Node-RED.
+                        The services in the United Manufacturing Hub will take care of the rest.<br><br>
+                        2. (intermediate, recommended for IT only) <strong>write your own microservices and deploy using our Helm Chart</strong>. If you want to create advanced applications, you can deploy your own microservices in the United Manufacturing Hub to interact with the data, e.g., deploy a machine learning algorithm or write your own dashboard. <br><br>
+                        3. (expert, recommended for IT only) <strong>work with Kubernetes and our source code</strong>. If you have a good feeling about the United Manufacturing Hub, you can start adjusting the source code and the data model to incorporate entirely new applications. If you do that (and wish to contribute to the project), contact us before.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+## How to proceed?
