@@ -38,7 +38,13 @@ jobs:
         if: ${{ env.images_changed }} == 'images_changed=true' && ${{ env.is_bot_commit }} != 'is_bot_commit=Convert images to WebP and AVIF'
         run: |
           cd umh.docs.umh.app/static/images
-          find . -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" \) -print0 | xargs -0 -P 4 -I {} sh -c 'cwebp {} -o {}.webp && cavif --overwrite {}'
+          find . -type f \( -iname \*.jpg -o -iname \*.jpeg -o -iname \*.png \) \
+          | xargs -P 4 -I {} sh -c '
+              file="$1"
+              new_file=$(echo $file | sed "s/\.[^.]*$/.webp/")
+              cwebp -quiet -q 80 "$file" -o "$new_file"
+              cavif --overwrite "$file"
+            ' _ {}  
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v4
