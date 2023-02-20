@@ -155,8 +155,8 @@ $feature-box-div-margin-bottom: 40px;
 }
 // Theme
 div.notices {
-    margin: 2rem 0;
-    position: relative;
+  margin: 2rem 0;
+  position: relative;
   min-height: 100px;
 }
 div.notices p {
@@ -205,7 +205,7 @@ div.notices div:first-child:before {
     position: absolute;
     top: 2px;
     color: #fff;
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 6 Free", serif;
     font-weight: 900;
     content: "\f06a";
     left: 10px;
