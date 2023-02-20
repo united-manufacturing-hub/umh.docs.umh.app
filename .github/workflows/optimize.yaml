@@ -1,4 +1,4 @@
-name: Convert images to WebP
+name: Convert images to WebP and AVIF
 
 on:
   push:
@@ -6,12 +6,15 @@ on:
       - "*"
 
 jobs:
-  convert_images_to_webp:
+  convert_images_to_webp_and_avif:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        parallel: [0, 1, 2, 3, 4]
     steps:
       - name: Check if commit is from bot
         id: is_bot_commit
-        run: echo "::set-output name=is_bot_commit::$(git log --pretty=%s -1 | grep 'Convert images to WebP')"
+        run: echo "::set-output name=is_bot_commit::$(git log --pretty=%s -1 | grep 'Convert images to WebP and AVIF')"
 
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -19,29 +22,31 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
 
-      - name: Install cwebp
-        run: sudo apt-get install -y webp
+      - name: Install cwebp and cavif
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y webp
+          curl -sSL https://github.com/kornelski/cavif-rs/releases/latest/download/cavif_1.5.1_amd64.deb -o cavif.deb
+          sudo dpkg -i cavif.deb
 
       - name: Check if images have changed
         id: images_changed
-        if: steps.is_bot_commit.outputs.is_bot_commit != 'Convert images to WebP'
+        if: steps.is_bot_commit.outputs.is_bot_commit != 'Convert images to WebP and AVIF'
         run: |
           cd umh.docs.umh.app/static/images
           git diff --quiet HEAD~1 || echo "::set-output name=images_changed::true"
 
-      - name: Convert images to WebP
-        if: steps.images_changed.outputs.images_changed == 'true' && steps.is_bot_commit.outputs.is_bot_commit != 'Convert images to WebP'
+      - name: Convert images to WebP and AVIF
+        if: steps.images_changed.outputs.images_changed == 'true' && steps.is_bot_commit.outputs.is_bot_commit != 'Convert images to WebP and AVIF'
         run: |
           cd umh.docs.umh.app/static/images
-          for file in $(find . -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" \)); do
-            cwebp "$file" -o "${file%.*}.webp"
-          done
+          find . -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" \) -print0 | xargs -0 -P ${{ matrix.parallel }} -I {} sh -c 'cwebp {} -o {}.webp && cavif --overwrite {}'
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v4
-        if: steps.images_changed.outputs.images_changed == 'true' && steps.is_bot_commit.outputs.is_bot_commit != 'Convert images to WebP'
+        if: steps.images_changed.outputs.images_changed == 'true' && steps.is_bot_commit.outputs.is_bot_commit != 'Convert images to WebP and AVIF'
         with:
-          commit_message: "Convert images to WebP"
+          commit_message: "Convert images to WebP and AVIF"
           commit_options: "--no-verify"
           branch: ${{ github.head_ref }}
           commit_user_name: GitHub Actions
