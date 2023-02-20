@@ -11,7 +11,7 @@ aliases = ["/download"]
 
 If your computer meets these requirements, follow these steps to download and install the Management Console:
 
-<a class="btn btn-primary" href="https://download.mgmt.docs.umh.app/UMH%20Management%20Console_latest_x64_en-US.msi" target="_blank" role="button" aria-label="Download the latest version (Windows x64)">Download the latest version (Windows x64)</a>
+<a class="btn btn-primary" href="https://download.umh.docs.umh.app/UMH%20Management%20Console_latest_x64_en-US.msi" target="_blank" role="button" aria-label="Download the latest version (Windows x64)">Download the latest version (Windows x64)</a>
 
 Now proceed with the installation.
 

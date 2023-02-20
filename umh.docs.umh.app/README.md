@@ -8,6 +8,8 @@
 Initialize the themes submodule
 ```bash
 git submodule update -f --init --recursive
+cd umh.docs.umh.app/themes/docsy
+npm install
 ```
 
 # Serving locally

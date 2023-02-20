@@ -1,5 +1,5 @@
-baseURL = "https://mgmt.docs.umh.app/"
-title = "United Manufacturing Hub - Management Console"
+baseURL = "https://docs.docs.umh.app/"
+title = "United Manufacturing Hub"
 
 enableRobotsTXT = true
 
@@ -53,8 +53,8 @@ anchor = "smart"
 
 [languages]
 [languages.en]
-title = "United Manufacturing Hub - Management Console"
-description = "Documentation for the United Manufacturing Hub Management Console"
+title = "United Manufacturing Hub"
+description = "Documentation for the United Manufacturing Hub"
 languageName ="English"
 # Weight used for sorting.
 weight = 1
@@ -87,7 +87,7 @@ favicon = "favicon.png"
 version_menu = "Version"
 [[params.versions]]
     version = "latest"
-    url = "https://mgmt.docs.umh.app"
+    url = "https://docs.docs.umh.app"
 
 # Flag used in the "version-banner" partial to decide whether to display a 
 # banner on every page indicating that this is an archived version of the docs.
@@ -101,12 +101,12 @@ archived_version = true
 
 # A link to latest version of the docs. Used in the "version-banner" partial to
 # point people to the main doc site.
-url_latest_version = "https://mgmt.docs.umh.app"
+url_latest_version = "https://docs.docs.umh.app"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
-github_repo = "https://github.com/united-manufacturing-hub/mgmt.docs.umh.app"
+github_repo = "https://github.com/united-manufacturing-hub/umh.docs.umh.app"
 # An optional link to a related project repo. For example, the sibling repository where your product code lives.
-github_project_repo = "https://github.com/united-manufacturing-hub/mgmt.docs.umh.app"
+github_project_repo = "https://github.com/united-manufacturing-hub/umh.docs.umh.app"
 
 # Specify a value here if your content directory is not in your repo's root directory
 github_subdir = "docs"

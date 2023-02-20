@@ -1,7 +1,7 @@
 $rootDir = Invoke-Expression "git rev-parse --show-toplevel"
 
 # Goto rootDir\static\images
-$dir = Join-Path $rootDir "\mgmt.docs.umh.app\static\images"
+$dir = Join-Path $rootDir "\umh.docs.umh.app\static\images"
 Set-Location $dir
 
 # For each image in the directory (recursive) (.png, .jpg, .jpeg, .bmp, .tiff, .tif)
