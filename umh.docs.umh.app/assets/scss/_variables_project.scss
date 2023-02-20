@@ -1,0 +1,273 @@
+/*
+
+Add styles or override variables from the theme here.
+
+*/
+// $primary: #000000;
+// $secondary: #FFFFFF;
+
+$ci_black: #000000 !default;
+$ci_white: #FFFFFF !default;
+$ci_blue: #47A0B5 !default;
+$ci_yellow: #FFA62B !default;
+$ci_light_grey: #F4F4F4 !default;
+$ci_grey: #AAAAAA !default;
+
+$primary: $ci_black !default;
+$primary-light: $ci_grey !default;
+$secondary: $ci_blue !default;
+$success: #3772FF !default;
+$info: #C0E0DE !default;
+$warning: #ED6A5A !default;
+$danger: #ED6A5A !default;
+$white: $ci_white !default;
+$light: $ci_light_grey !default;
+
+$dark: $ci_black !default;
+$blue: $ci_blue !default;
+$orange: $ci_yellow !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #eee !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ccc !default;
+$gray-500: #adb5bd !default;
+$gray-600: #797676 !default;
+$gray-700: #495057 !default;
+$gray-800: #333 !default;
+$gray-900: #222 !default;
+$black: $ci_black !default;
+
+$code-color: darken($secondary, 20%) !default;
+$link-color: $blue !default;
+
+// CUSTOM FOR MAIN PAGE
+
+.center {
+    text-align: center;
+}
+
+.main-section {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
+.section-why {
+    margin-top: 0px;
+}
+
+
+// features
+$features-h3-margin-bottom: 20px;
+$feature-box-div-width: 100%;
+$feature-box-margin-bottom: 0;
+$feature-box-div-margin-bottom: 40px;
+
+// Features
+#features {
+    background-color: $white;
+    background-size: 60px;
+}
+
+.feature-box {
+    //padding: 50px 0
+    width: 100%;
+    overflow: hidden;
+    clear: both;
+
+    h4 {
+        line-height: normal;
+        margin-bottom: 15px;
+    }
+
+    & > div:first-child {
+        float: left;
+    }
+
+    & > div:last-child {
+        float: right;
+    }
+}
+
+#features {
+    h3 {
+        margin-bottom: $features-h3-margin-bottom;
+    }
+
+    .feature-box {
+        margin-bottom: $feature-box-margin-bottom;
+
+        & > div {
+            width: $feature-box-div-width;
+            margin-bottom: $feature-box-div-margin-bottom;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    // features
+    $features-h3-margin-bottom: 40px;
+    $feature-box-margin-bottom: 60px;
+    $feature-box-div-margin-bottom: 0;
+    $feature-box-div-width: 45%;
+
+
+    // Features
+    #features {
+        background-color: $white;
+        background-size: 60px;
+    }
+    
+    .feature-box {
+        //padding: 50px 0
+        width: 100%;
+        overflow: hidden;
+        clear: both;
+
+        h4 {
+            line-height: normal;
+            margin-bottom: 15px;
+        }
+
+        & > div:first-child {
+            float: left;
+        }
+
+        & > div:last-child {
+            float: right;
+        }
+    }
+    
+    #features {
+        h3 {
+            margin-bottom: $features-h3-margin-bottom;
+        }
+
+        .feature-box {
+            margin-bottom: $feature-box-margin-bottom;
+
+            & > div {
+                width: $feature-box-div-width;
+                margin-bottom: $feature-box-div-margin-bottom;
+            }
+        }
+    }
+}
+// Theme
+div.notices {
+    margin: 2rem 0;
+    position: relative;
+  min-height: 100px;
+}
+div.notices p {
+    padding: 20px;
+    display: block;
+    font-size: 1rem;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+    color: #666;
+}
+div.notices.tip img {
+  content: url("/images/otto_tip.svg");
+  position: absolute;
+  height: 9pc !important;
+  top: 0pc;
+  left: -2pc;
+}
+div.notices.note img {
+  content: url("/images/otto_note.svg");
+  position: absolute;
+  height: 9pc !important;
+  top: -0pc;
+  left: -2pc;
+}
+div.notices.warning img {
+  content: url("/images/otto_warning.svg");
+  position: absolute;
+  height: 9pc !important;
+  top: 0pc;
+  left: -2pc;
+}
+div.notices.info img {
+  content: url("/images/otto_info.svg");
+  position: absolute;
+  height: 9pc !important;
+  top: 0pc;
+  left: -2pc;
+}
+
+.notices-text {
+  padding-left: 80px;
+  min-height: 8pc;
+}
+
+div.notices div:first-child:before {
+    position: absolute;
+    top: 2px;
+    color: #fff;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f06a";
+    left: 10px;
+}
+div.notices div:first-child:after {
+    position: absolute;
+    top: 2px;
+    color: #fff;
+    left: 2rem;
+}
+div.notices.info div {
+    border-top: 30px solid #F0B37E;
+    background: #FFF2DB;
+}
+div.notices.info div:first-child:after {
+    content: 'Info';
+}
+div.notices.warning div {
+    border-top: 30px solid rgba(217, 83, 79, 0.8);
+    background: #FAE2E2;
+}
+
+div.notices.warning div:first-child:after {
+    content: 'Warning';
+}
+div.notices.note div {
+    border-top: 30px solid #6AB0DE;
+    background: #E7F2FA;
+}
+div.notices.note div:first-child:after {
+    content: 'Note';
+}
+div.notices.tip div {
+    border-top: 30px solid rgba(92, 184, 92, 0.8);
+    background: #E6F9E6;
+}
+div.notices.tip div:first-child:after {
+    content: 'Tip';
+}
+
+// Custom changes by Patrick for layout
+.half-size-image {
+    width: 60%;
+}
+
+.icon-size-image {
+    width: 10%;
+}
+
+@media (max-width: 500px) {
+    .half-size-image {
+        width: 100%;
+    }
+    .icon-size-image {
+        width: 30%;
+    }
+}
+
+// Overwrite docsy theme
+.navbar-bg-onscroll {
+    background: $secondary !important;
+}
+
+// Disable google font usage by docsy theme
+$td-enable-google-fonts: false;

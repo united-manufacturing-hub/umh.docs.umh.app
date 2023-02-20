@@ -1,0 +1,48 @@
+name: Convert images to WebP
+
+on:
+  push:
+    branches:
+      - "*"
+
+jobs:
+  convert_images_to_webp:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if commit is from bot
+        id: is_bot_commit
+        run: echo "::set-output name=is_bot_commit::$(git log --pretty=%s -1 | grep 'Convert images to WebP')"
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: Install cwebp
+        run: sudo apt-get install -y webp
+
+      - name: Check if images have changed
+        id: images_changed
+        if: steps.is_bot_commit.outputs.is_bot_commit != 'Convert images to WebP'
+        run: |
+          cd static/images
+          git diff --quiet HEAD~1 || echo "::set-output name=images_changed::true"
+
+      - name: Convert images to WebP
+        if: steps.images_changed.outputs.images_changed == 'true' && steps.is_bot_commit.outputs.is_bot_commit != 'Convert images to WebP'
+        run: |
+          cd static/images
+          for file in $(find . -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" \)); do
+            cwebp "$file" -o "${file%.*}.webp"
+          done
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        if: steps.images_changed.outputs.images_changed == 'true' && steps.is_bot_commit.outputs.is_bot_commit != 'Convert images to WebP'
+        with:
+          commit_message: "Convert images to WebP"
+          commit_options: "--no-verify"
+          branch: ${{ github.head_ref }}
+          commit_user_name: GitHub Actions
+          commit_user_email: actions@github.com

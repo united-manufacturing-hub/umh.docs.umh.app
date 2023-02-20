@@ -1,0 +1,194 @@
++++
+title = "Home"
+linkTitle = "Home"
++++
+
+{{< blocks/cover title="Management Console" image_anchor="top" height="half" color="primary" >}}
+<div class="mx-auto" style="margin-top: -2rem;">
+	<p class="lead">Manage and Monitor your entire IT / OT infrastructure</p>
+	{{% notice note %}}
+    Please note that the Management Console is in open alpha.
+    <a href="https://discord.gg/F9mqkZnm9d">Join our discord for more information!</a><br>
+    {{% /notice %}}
+	<div class="mx-auto mt-5">
+        {{<blocks/link-down color="light" id="approach">}}
+      </div>
+</div>
+{{< /blocks/cover >}}
+
+<section id="approach">
+    <h2 class="center">Bringing the worlds best IT and OT tools into the hands of the engineer</h2>
+    <div class="mx-auto mb-5" style="max-width: 600px;margin: auto;">
+        <p class="center">Centrally managed, fully automated and continuously monitored</p>
+    </div>
+
+    <picture>
+        <source srcset="/images/homepage_architecture.avif" type="image/webp"  style="width: 80%; max-width: 1000px; margin: auto; display: block;">
+        <source srcset="/images/homepage_architecture.webp" type="image/webp"  style="width: 80%; max-width: 1000px; margin: auto; display: block;">
+        <img src="/images/homepage_architecture.png" alt="UMH Architecture" style="width: 80%; max-width: 1000px; margin: auto; display: block;">
+    </picture>
+</section>
+
+<section id="features">
+    <div class="main-section">
+        <h2 class="center mb-5">What can you do with the Management Console</h2>
+        <div class="mt-5"></div>
+        <div class="feature-box">
+            <div>
+                <h3 class="mb-3">Setup your entire IT/OT infrastructure</h3>
+                <p>
+                With the Management Console and the <a href="https://learn.umh.app/">UMH blueprint</a>, you can quickly and easily set up your entire IT/OT infrastructure, including operating systems, networking, Docker containers, and external systems. This includes:
+                </p>
+                <ul>
+                    <li>Setting up your infrastructure locally on your computer</li>
+                    <li><i>(coming soon) Setting up your infrastructure on an external machine (edge device or VM) </i></li>
+                    <li><i>(coming soon) Setting up your infrastructure in a cloud environment (e.g., AWS, GCP, Azure)</i></li>
+                    <li><i>(coming soon) Setting up your infrastructure in a hybrid environment (edge, on-premise, and cloud combined)</i></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="mb-3">Manage your infrastructure centrally to save time</h3>
+                <p>
+                With the Management Console, you can manage your entire infrastructure centrally, making it easy to make changes and save time. This includes:
+                </p>
+            <ul>
+                    <li><i>(coming soon) Reconfiguring all building blocks, including operating systems, networking, Docker containers, and external systems.</i></li>
+                    <li><i>(coming soon) Getting an overview of your "Unified Namespace" and tracing messages, helping you navigate thousands of different topics.</i></li>
+                    <li><i>(coming soon) Controlling all changes to the system through versioning and approval processes. You can see who changed what and when with audit trails.</i></li>
+                    <li><i>(coming soon) Leveraging enterprise connectors to connect non-UMH components or develop your own.</i></li>
+            </ul>
+            </div>
+
+
+
+        </div>
+
+        <div class="feature-box">
+            <div>
+                <h3 class="mb-3">Monitor your infrastructure beyond metrics and logging</h3>
+                <p>
+                The Management Console provides you with more than just simple metrics and logging, allowing you to better monitor the state of your infrastructure. This includes:
+                </p>
+            <ul>
+                    <li><i>(coming soon) Automatically interpreting and filtering error messages based on our expert knowledge, including automated root-cause analysis.</i></li>
+                    <li><i>(coming soon) Detecting malformed messages, sudden increases/decreases in message volume, and nodes that are reaching their limitations (CPU, RAM, etc.).</i></li>
+                    <li><i>(coming soon) Integrating with third-party alerting systems like <a href="https://www.pagerduty.com/">PagerDuty</a> or <a href="https://grafana.com/oss/oncall/">Grafana OnCall</a>.</i></li>
+            </ul>
+            </div>
+
+            <div>
+                <h3 class="mb-3">Recover quickly with the Management Console</h3>
+                <p>
+                The Management Console makes it easy to recover quickly from issues and errors, minimizing downtime and ensuring that your system is always running smoothly. This includes:
+                </p>
+            <ul>
+                    <li><i>(coming soon) Rolling back quickly to the latest stable version in case of malformed configurations or failed updates.</i></li>
+                    <li><i>(coming soon) Playing in backups quickly if a node gets corrupted.</i></li>
+                    <li><i>(coming soon) Leveraging the monitoring functionalities to quickly understand what is currently happening.</i></li>
+            </ul>
+
+            </div>
+        </div>
+
+    </div>
+    <hr>
+</section>
+
+
+<section id="pricing">
+    <h2 class="center">Suited for small SMEs and Enterprises alike</h2>
+    <div class="mx-auto mb-5" style="max-width: 600px;margin: auto;">
+        <p class="center">Start with the "free forever" Community Edition, and scale it through your company. </p>
+        {{< blocks/pricing >}}
+    </div>
+</section>
+<section id="howitworks">
+    <h2 class="center">How does the Management Console work?</h2>
+    <div class="mx-auto mb-5" style="max-width: 600px;margin: auto;">
+        <p class="center">The IIoT Engineer can install and maintain the entire IT / OT infrastructure using the Management Console.</p>
+    </div>
+
+    <picture>
+        <source srcset="/images/homepage_howitworks.avif" type="image/webp"  style="width: 80%; max-width: 1400px;  margin: auto; display: block;" class="mb-5">
+        <source srcset="/images/homepage_howitworks.webp" type="image/webp"  style="width: 80%; max-width: 1400px;  margin: auto; display: block;" class="mb-5">
+        <img src="/images/homepage_howitworks.png" alt="UMH Architecture" style="width: 80%; max-width: 1400px;  margin: auto; display: block;" class="mb-5">
+    </picture>
+    <hr>
+</section>
+
+
+<section id="why" class="section-why pt-0">
+    <div class="main-section">
+        <h2 class="center mb-5">FAQ</h2>
+
+        <div id="accordion">
+            <div class="card" style="margin: auto;">
+                <div class="card-header">
+                    <a class="card-link"
+                        data-toggle="collapse"
+                        href="#description1">
+                        What if I have my own infrastructure/legacy systems, and I do not want to use UMH?
+                    </a>
+                </div>
+                <div id="description1"
+                    class="collapse show"
+                    data-parent="#accordion">
+                    <div class="card-body">
+                        As long as you use a similar architectural approach as the UMH ("Unified Namespace", MQTT/Kafka), you can use the Management Console. Although it works best with UMH components, we will release more enterprise connectors to include non-UMH components ("enterprise plugins"). You can also develop your own plugins and share them with the community.
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="margin: auto;">
+                <div class="card-header">
+                    <a class="collapsed card-link"
+                        data-toggle="collapse"
+                        href="#description3">
+                        If you run this as SaaS, do I need to trust you with access to my infrastructure?
+                    </a>
+                </div>
+                <div id="description3" class="collapse"
+                    data-parent="#accordion">
+                    <div class="card-body">
+                        No, you do not need to trust us or any cloud provider. We make it technically impossible for us or anyone else to gain access to your infrastructure. We can only see limited metadata, such as the number of connected instances (used for licensing) and the time of your actions in the Management Console. We will never see the type of action you perform.
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin: auto;">
+                <div class="card-header">
+                    <a class="collapsed card-link"
+                        data-toggle="collapse"
+                        href="#description2">
+                        Is the Management Console easy to use for non-technical users?
+                    </a>
+                </div>
+                <div id="description2" class="collapse"
+                    data-parent="#accordion">
+                    <div class="card-body">
+                        Yes, the Management Console is designed to be easy to use for non-technical users. Our user-friendly interface and intuitive design make it simple for anyone to set up and manage their IT/OT infrastructure. We have extensive experience working with industrial customers, IT and OT teams, developers, and operators, and have incorporated this knowledge into the Management Console.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</section>
+
+
+{{< blocks/cover_2 title="How to proceed?" image_anchor="top" height="half" color="primary" >}}
+<div class="mx-auto" style="max-width: 600px;margin: auto;">
+    <p class="lead pb-4">Get started immediately with the Community Edition or learn more about us and our products</p>
+	<a class="btn btn-lg btn-secondary mr-3 mb-4" href="/getstarted">
+		Get Started<i class="fas fa-arrow-alt-circle-right ml-2"></i>
+	</a>
+    <a class="btn btn-lg btn-primary mr-3 mb-4" href="https://www.umh.app">
+		About us<i class="fas fa-arrow-alt-circle-right ml-2"></i>
+	</a>
+</div>
+<div class="mx-auto" style="max-width: 600px;margin: auto;">
+
+</div>
+{{< /blocks/cover_2 >}}
