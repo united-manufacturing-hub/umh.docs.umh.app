@@ -8,9 +8,6 @@ on:
 jobs:
   convert_images_to_webp_and_avif:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        parallel: [0, 1, 2, 3, 4]
     steps:
       - name: Check if commit is from bot
         id: is_bot_commit
@@ -40,7 +37,7 @@ jobs:
         if: steps.images_changed.outputs.images_changed == 'true' && steps.is_bot_commit.outputs.is_bot_commit != 'Convert images to WebP and AVIF'
         run: |
           cd umh.docs.umh.app/static/images
-          find . -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" \) -print0 | xargs -0 -P ${{ matrix.parallel }} -I {} sh -c 'cwebp {} -o {}.webp && cavif --overwrite {}'
+          find . -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" \) -print0 | xargs -0 -P 4 -I {} sh -c 'cwebp {} -o {}.webp && cavif --overwrite {}'
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v4
