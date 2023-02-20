@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Check if commit is from bot
         id: is_bot_commit
-        run: echo "::set-output name=is_bot_commit::$(git log --pretty=%s -1 | grep 'Convert images to WebP and AVIF')"
+        run: echo "is_bot_commit=$(git log --pretty=%s -1 | grep 'Convert images to WebP and AVIF')" >> $GITHUB_ENV
 
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -28,20 +28,20 @@ jobs:
 
       - name: Check if images have changed
         id: images_changed
-        if: steps.is_bot_commit.outputs.is_bot_commit != 'Convert images to WebP and AVIF'
+        if: ${{ env.is_bot_commit }} != 'is_bot_commit=Convert images to WebP and AVIF'
         run: |
           cd umh.docs.umh.app/static/images
-          git diff --quiet HEAD~1 || echo "::set-output name=images_changed::true"
+          git diff --quiet HEAD~1 || echo "images_changed=true" >> $GITHUB_ENV
 
       - name: Convert images to WebP and AVIF
-        if: steps.images_changed.outputs.images_changed == 'true' && steps.is_bot_commit.outputs.is_bot_commit != 'Convert images to WebP and AVIF'
+        if: ${{ env.images_changed }} == 'images_changed=true' && ${{ env.is_bot_commit }} != 'is_bot_commit=Convert images to WebP and AVIF'
         run: |
           cd umh.docs.umh.app/static/images
           find . -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" \) -print0 | xargs -0 -P 4 -I {} sh -c 'cwebp {} -o {}.webp && cavif --overwrite {}'
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v4
-        if: steps.images_changed.outputs.images_changed == 'true' && steps.is_bot_commit.outputs.is_bot_commit != 'Convert images to WebP and AVIF'
+        if: ${{ env.images_changed }} == 'images_changed=true' && ${{ env.is_bot_commit }} != 'is_bot_commit=Convert images to WebP and AVIF'
         with:
           commit_message: "Convert images to WebP and AVIF"
           commit_options: "--no-verify"
