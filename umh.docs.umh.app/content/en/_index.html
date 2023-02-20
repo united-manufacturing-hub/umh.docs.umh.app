@@ -1,11 +1,15 @@
 +++
-title = "Home"
+title = "About"
 linkTitle = "Home"
 +++
 
-{{< blocks/cover title="Management Console" image_anchor="top" height="half" color="primary" >}}
-<div class="mx-auto" style="margin-top: -2rem;">
-	<p class="lead">Manage and Monitor your entire IT / OT infrastructure</p>
+{{< blocks/cover title="Scale the Industrial IoT" image_anchor="top" height="half" color="primary" >}}
+<div class="mx-auto">
+	<p class="lead">The United Manufacturing Hub is an Open-Source Helm Chart for Kubernetes, which combines state-of -the-art IT / OT tools & technologies and brings them into the hands of the engineer.</p>
+	{{% notice note %}}
+    This site is in open beta.
+    <a href="https://discord.gg/F9mqkZnm9d">Join our discord for more information!</a><br>
+    {{% /notice %}}
 	<div class="mx-auto mt-5">
         {{<blocks/link-down color="light" id="approach">}}
       </div>
@@ -17,99 +21,70 @@ linkTitle = "Home"
     <div class="mx-auto mb-5" style="max-width: 600px;margin: auto;">
         <p class="center">Centrally managed, fully automated and continuously monitored</p>
     </div>
-
-    <picture>
-        <source srcset="/images/homepage_architecture.avif" type="image/webp"  style="width: 80%; max-width: 1000px; margin: auto; display: block;">
-        <source srcset="/images/homepage_architecture.webp" type="image/webp"  style="width: 80%; max-width: 1000px; margin: auto; display: block;">
-        <img src="/images/homepage_architecture.png" alt="UMH Architecture" style="width: 80%; max-width: 1000px; margin: auto; display: block;">
-    </picture>
+    <img src="/images/homepage_architecture.png" style="width: 80%; max-width: 1000px; margin: auto; display: block;"/>  
 </section>
 
 <section id="features">
     <div class="main-section">
-        <h2 class="center mb-5">What can you do with the Management Console</h2>
+        <h2 class="center mb-5">What can you do with the United Manufacturing Hub?</h2>
+        <iframe width="636" height="381" src="https://www.youtube.com/embed/yifQJvsghWA" title="Introduction into the United Manufacturing Hub (in 8 minutes)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style=" margin: auto; display: block;"></iframe>
+
         <div class="mt-5"></div>
         <div class="feature-box">
             <div>
-                <h3 class="mb-3">Setup your entire IT/OT infrastructure</h3>
-                <p>
-                With the Management Console and the <a href="https://learn.umh.app/">UMH blueprint</a>, you can quickly and easily set up your entire IT/OT infrastructure, including operating systems, networking, Docker containers, and external systems. This includes:
-                </p>
+                <h3 class="mb-3">Extract data from the shopfloor</h3>
                 <ul>
-                    <li>Setting up your infrastructure locally on your computer</li>
-                    <li><i>(coming soon) Setting up your infrastructure on an external machine (edge device or VM) </i></li>
-                    <li><i>(coming soon) Setting up your infrastructure in a cloud environment (e.g., AWS, GCP, Azure)</i></li>
-                    <li><i>(coming soon) Setting up your infrastructure in a hybrid environment (edge, on-premise, and cloud combined)</i></li>
+                    <li><a href="https://nodered.org/">via Node-RED</a>: S7, OPC-UA, Modbus, EtherNet/IP, REST / HTTP, MQTT and many more</li>
+                    <li>via sensorconnect: ifm IO-Link gateways</li>
+                    <li>via barcodereader: USB barcodereaders (emulating a keyboard)</li>
+                    <li>via cameraconnect: GenICam compatible cameras</li>
                 </ul>
             </div>
 
             <div>
-                <h3 class="mb-3">Manage your infrastructure centrally to save time</h3>
-                <p>
-                With the Management Console, you can manage your entire infrastructure centrally, making it easy to make changes and save time. This includes:
-                </p>
+                <h3 class="mb-3">Contextualize and standardize data</h3>
             <ul>
-                    <li><i>(coming soon) Reconfiguring all building blocks, including operating systems, networking, Docker containers, and external systems.</i></li>
-                    <li><i>(coming soon) Getting an overview of your "Unified Namespace" and tracing messages, helping you navigate thousands of different topics.</i></li>
-                    <li><i>(coming soon) Controlling all changes to the system through versioning and approval processes. You can see who changed what and when with audit trails.</i></li>
-                    <li><i>(coming soon) Leveraging enterprise connectors to connect non-UMH components or develop your own.</i></li>
+                <li>using <a href="https://nodered.org/">Node-RED</a> as a low-code programming tool</li>
+                <li>using the pre-defined UMH data model (which is based on various industry standards like PackML or Weihenstephaner Standards)</li>
             </ul>
             </div>
 
 
-
+            
         </div>
 
         <div class="feature-box">
             <div>
-                <h3 class="mb-3">Monitor your infrastructure beyond metrics and logging</h3>
-                <p>
-                The Management Console provides you with more than just simple metrics and logging, allowing you to better monitor the state of your infrastructure. This includes:
-                </p>
+                <h3 class="mb-3">Exchange and store data</h3>
             <ul>
-                    <li><i>(coming soon) Automatically interpreting and filtering error messages based on our expert knowledge, including automated root-cause analysis.</i></li>
-                    <li><i>(coming soon) Detecting malformed messages, sudden increases/decreases in message volume, and nodes that are reaching their limitations (CPU, RAM, etc.).</i></li>
-                    <li><i>(coming soon) Integrating with third-party alerting systems like <a href="https://www.pagerduty.com/">PagerDuty</a> or <a href="https://grafana.com/oss/oncall/">Grafana OnCall</a>.</i></li>
+                <li>Exchange data between various production machines, microservices and 3rd party vendors using MQTT and <a href="https://kafka.apache.org/">Apache Kafka</a> as central message broker</li>
+                <li>Store relational and time-series data automatically coming from message brokers using <a href="https://www.timescale.com/">TimescaleDB</a> and kafka-to-postgresql</li>
+                <li>Store blob data (e.g., images) automatically coming from message brokers using <a href="http://Min.io">Min.io</a> and kafka-to-blob</li>
             </ul>
             </div>
 
             <div>
-                <h3 class="mb-3">Recover quickly with the Management Console</h3>
-                <p>
-                The Management Console makes it easy to recover quickly from issues and errors, minimizing downtime and ensuring that your system is always running smoothly. This includes:
-                </p>
+                <h3 class="mb-3">Visualize data</h3>
             <ul>
-                    <li><i>(coming soon) Rolling back quickly to the latest stable version in case of malformed configurations or failed updates.</i></li>
-                    <li><i>(coming soon) Playing in backups quickly if a node gets corrupted.</i></li>
-                    <li><i>(coming soon) Leveraging the monitoring functionalities to quickly understand what is currently happening.</i></li>
+                <li>using <a href="https://grafana.com/">Grafana</a> and factoryinsight to easily build shopfloor dashboards including automatically calculated varables like machine states, orders, shifts, product traces and oee losses</li>
+                <li>using just factoryinsight to connect the automatically calculated variables with 3rd party applications using REST</li>
             </ul>
-
+                
             </div>
         </div>
-
+            
     </div>
     <hr>
 </section>
 
 
-<section id="pricing">
-    <h2 class="center">Suited for small SMEs and Enterprises alike</h2>
-    <div class="mx-auto mb-5" style="max-width: 600px;margin: auto;">
-        <p class="center">Start with the "free forever" Community Edition, and scale it through your company. </p>
-        {{< blocks/pricing >}}
-    </div>
-</section>
 <section id="howitworks">
-    <h2 class="center">How does the Management Console work?</h2>
+    <h2 class="center">How does the United Manufacturing Hub work?</h2>
     <div class="mx-auto mb-5" style="max-width: 600px;margin: auto;">
-        <p class="center">The IIoT Engineer can install and maintain the entire IT / OT infrastructure using the Management Console.</p>
+        <p class="center">The IIoT Engineer can install and maintain the entire IT / OT infrastructure using the United Manufacturing Hub.</p>
     </div>
-
-    <picture>
-        <source srcset="/images/homepage_howitworks.avif" type="image/webp"  style="width: 80%; max-width: 1400px;  margin: auto; display: block;" class="mb-5">
-        <source srcset="/images/homepage_howitworks.webp" type="image/webp"  style="width: 80%; max-width: 1400px;  margin: auto; display: block;" class="mb-5">
-        <img src="/images/homepage_howitworks.png" alt="UMH Architecture" style="width: 80%; max-width: 1400px;  margin: auto; display: block;" class="mb-5">
-    </picture>
+    
+    <img src="/images/homepage_howitworks.png" style="width: 80%; max-width: 1400px;  margin: auto; display: block;" class="mb-5"/>  
     <hr>
 </section>
 
@@ -117,21 +92,43 @@ linkTitle = "Home"
 <section id="why" class="section-why pt-0">
     <div class="main-section">
         <h2 class="center mb-5">FAQ</h2>
-
+        
         <div id="accordion">
             <div class="card" style="margin: auto;">
                 <div class="card-header">
                     <a class="card-link"
                         data-toggle="collapse"
                         href="#description1">
-                        What if I have my own infrastructure/legacy systems, and I do not want to use UMH?
+                        This looks great, but the technologies mentioned here (Docker, Kubernetes, etc.) look complicated and we as a company are no experts. Can we still use it?
                     </a>
                 </div>
                 <div id="description1"
                     class="collapse show"
                     data-parent="#accordion">
                     <div class="card-body">
-                        As long as you use a similar architectural approach as the UMH ("Unified Namespace", MQTT/Kafka), you can use the Management Console. Although it works best with UMH components, we will release more enterprise connectors to include non-UMH components ("enterprise plugins"). You can also develop your own plugins and share them with the community.
+                        <strong>Yes</strong> - the United Manufacturing Hub is targeting specifically people and companies, who do not have the budget and/or knowledge to work on their own / develop everything from scratch.<br><br>
+                        With our extensive documentation, guides and knowledge sections you can learn everything that you need.<br><br>
+                        The United Manufacturing Hub abstracts these tools and technologies so that you can leverage all advantages, but still focus on what really matters: digitizing your production.<br><br>
+                        With our commercial <strong>Management Console</strong> you can manage your entire IT / OT infrastructure and work with Grafana / Node-RED without the need to ever touch or understand Kubernetes, Docker, Firewalls, Networking or similar. <br><br>
+                        Additionally, you can get <strong>support licenses</strong> providing unlimited support during development and maintenance of the system. Take a look at our <a href="https://www.umh.app">website</a> if you want to get more information on this.
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="margin: auto;">
+                <div class="card-header">
+                    <a class="collapsed card-link"
+                        data-toggle="collapse"
+                        href="#description2">
+                        We just want to buy something off-the-shelf (end-to-end solution or IoT platform). Why should we still consider the United Manufacturing Hub?
+                    </a>
+                </div>
+                <div id="description2" class="collapse"
+                    data-parent="#accordion">
+                    <div class="card-body">
+                        Because very often these solutions do not target the actual pains of an engineer: implementation and maintenance. And then companies struggle in rolling out IIoT as the projects take much longer and cost way more than originally proposed. <br><br>
+                        In the United Manufacturing Hub, <strong>implementation and maintenance of the system are the first priority</strong>. We've had these pains too often ourselves and therefore incorporated and developed tools & technologies to avoid them.  <br><br>
+                        For example, with <a href="/docs/core/sensorconnect/">sensorconnect</a> we can retrofit production machines where it is impossible at the moment to extract data. Or, with our modular architecture we can fit the security needs of all IT departments - 
+                        from integration into a demilitarized zone to on-premise and private cloud. With Apache Kafka <a href="https://www.umh.app/post/tools-techniques-for-scalable-data-processing-in-industrial-iot">we solve the pain of corrupted or missing messages when scaling out the system</a>
                     </div>
                 </div>
             </div>
@@ -140,29 +137,18 @@ linkTitle = "Home"
                     <a class="collapsed card-link"
                         data-toggle="collapse"
                         href="#description3">
-                        If you run this as SaaS, do I need to trust you with access to my infrastructure?
+                        How can I develop with the United Manufacturing Hub?
                     </a>
                 </div>
                 <div id="description3" class="collapse"
                     data-parent="#accordion">
                     <div class="card-body">
-                        No, you do not need to trust us or any cloud provider. We make it technically impossible for us or anyone else to gain access to your infrastructure. We can only see limited metadata, such as the number of connected instances (used for licensing) and the time of your actions in the Management Console. We will never see the type of action you perform.
-                    </div>
-                </div>
-            </div>
-
-            <div class="card" style="margin: auto;">
-                <div class="card-header">
-                    <a class="collapsed card-link"
-                        data-toggle="collapse"
-                        href="#description2">
-                        Is the Management Console easy to use for non-technical users?
-                    </a>
-                </div>
-                <div id="description2" class="collapse"
-                    data-parent="#accordion">
-                    <div class="card-body">
-                        Yes, the Management Console is designed to be easy to use for non-technical users. Our user-friendly interface and intuitive design make it simple for anyone to set up and manage their IT/OT infrastructure. We have extensive experience working with industrial customers, IT and OT teams, developers, and operators, and have incorporated this knowledge into the Management Console.
+                        There are three approaches:<br><br>
+                        1. (beginner) <strong>use pre-existing services</strong> by just configuring them. 
+                        You can, for example, create OEE dashboards for your entire shopfloor just by changing the central configuration file and "drag-and-dropping" a little bit in Grafana and Node-RED.
+                        The services in the United Manufacturing Hub will take care of the rest.<br><br>
+                        2. (intermediate, recommended for IT only) <strong>write your own microservices and deploy using our Helm Chart</strong>. If you want to create advanced applications, you can deploy your own microservices in the United Manufacturing Hub to interact with the data, e.g., deploy a machine learning algorithm or write your own dashboard. <br><br>
+                        3. (expert, recommended for IT only) <strong>work with Kubernetes and our source code</strong>. If you have a good feeling about the United Manufacturing Hub, you can start adjusting the source code and the data model to incorporate entirely new applications. If you do that (and wish to contribute to the project), contact us before.
                     </div>
                 </div>
             </div>
@@ -170,21 +156,28 @@ linkTitle = "Home"
 
 
     </div>
-
+    
 </section>
 
 
 {{< blocks/cover_2 title="How to proceed?" image_anchor="top" height="half" color="primary" >}}
 <div class="mx-auto" style="max-width: 600px;margin: auto;">
-    <p class="lead pb-4">Get started immediately with the Community Edition or learn more about us and our products</p>
-	<a class="btn btn-lg btn-secondary mr-3 mb-4" href="/getstarted">
-		Get Started<i class="fas fa-arrow-alt-circle-right ml-2"></i>
+    <p class="lead">The <strong>Documentation</strong> section is directed at the developer. It provides an overview over the overall architecture, all configuration variables, the datamodel and what each and every microservice does.</p>
+    <p>The <strong>Guides</strong> section is directed at the integrator. It explains how to setup and use the United Manufacturing Hub and other tools like Node-RED, Kubernetes or Grafana.</p>
+    <p class="mb-5">The <strong>Knowledge</strong> section is directed at beginners. It explains the general concepts of IT, OT and IIoT and why the United Manufacturing Hub does things the way it does and why it is important.</p>
+	<a class="btn btn-lg btn-secondary mr-3 mb-4" href="/docs/">
+		Documentation<i class="fas fa-arrow-alt-circle-right ml-2"></i>
 	</a>
-    <a class="btn btn-lg btn-primary mr-3 mb-4" href="https://www.umh.app">
-		About us<i class="fas fa-arrow-alt-circle-right ml-2"></i>
+	<a class="btn btn-lg btn-secondary mr-3 mb-4" href="/guides/">
+		Guides <i class="fas fa-arrow-alt-circle-right ml-2"></i>
+	</a>
+    <a class="btn btn-lg btn-secondary mr-3 mb-4" href="/know/">
+		Knowledge<i class="fas fa-arrow-alt-circle-right ml-2"></i>
 	</a>
 </div>
 <div class="mx-auto" style="max-width: 600px;margin: auto;">
-
+    <a class="btn btn-lg btn-primary mr-3 mb-4" href="https://www.umh.app">
+		About us<i class="fas fa-arrow-alt-circle-right ml-2"></i>
+	</a>
 </div>
 {{< /blocks/cover_2 >}}
