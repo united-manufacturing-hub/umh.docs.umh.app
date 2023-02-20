@@ -3,7 +3,8 @@ name: Convert images to WebP and AVIF
 on:
   push:
     branches:
-      - "*"
+      - "**"
+      - "!main"
 
 jobs:
   convert_images_to_webp_and_avif:
