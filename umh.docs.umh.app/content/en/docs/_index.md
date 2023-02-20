@@ -67,8 +67,11 @@ h2 {text-align: center; margin-left: auto; margin-right: auto}
 
 
 ## How does it work?
+<p class="center">Only requirement: a Kubernetes cluster (and we'll even help you with that!). You only need to install the United Manufacturing Hub <a href="">Helm Chart</a> on that cluster and configure it.</p>
+<p class="center">The United Manufacturing Hub will then generate all the required files for Kubernetes, including auto-generated secrets, various microservices like bridges between MQTT / Kafka, datamodels and configurations. From there on, Kubernetes will take care of all the container management.</p>
 <br>
-<img src="/images/homepage_howitworks.png" style="width: 80%; max-width: 1000px; margin: auto; display: block;"/>
+<br>
+<img src="/images/homepage_howitworks.png" style="width: 100%; max-width: 1000px; margin: auto; display: block;"/>
 
 ## FAQ
 <section id="why" class="section-why pt-0">
@@ -109,26 +112,6 @@ h2 {text-align: center; margin-left: auto; margin-right: auto}
                         In the United Manufacturing Hub, <strong>implementation and maintenance of the system are the first priority</strong>. We've had these pains too often ourselves and therefore incorporated and developed tools & technologies to avoid them.  <br><br>
                         For example, with <a href="/docs/core/sensorconnect/">sensorconnect</a> we can retrofit production machines where it is impossible at the moment to extract data. Or, with our modular architecture we can fit the security needs of all IT departments - 
                         from integration into a demilitarized zone to on-premise and private cloud. With Apache Kafka <a href="https://www.umh.app/post/tools-techniques-for-scalable-data-processing-in-industrial-iot">we solve the pain of corrupted or missing messages when scaling out the system</a>
-                    </div>
-                </div>
-            </div>
-            <div class="card" style="margin: auto;">
-                <div class="card-header">
-                    <a class="collapsed card-link"
-                        data-toggle="collapse"
-                        href="#description3">
-                        How can I develop with the United Manufacturing Hub?
-                    </a>
-                </div>
-                <div id="description3" class="collapse"
-                    data-parent="#accordion">
-                    <div class="card-body">
-                        There are three approaches:<br><br>
-                        1. (beginner) <strong>use pre-existing services</strong> by just configuring them. 
-                        You can, for example, create OEE dashboards for your entire shopfloor just by changing the central configuration file and "drag-and-dropping" a little bit in Grafana and Node-RED.
-                        The services in the United Manufacturing Hub will take care of the rest.<br><br>
-                        2. (intermediate, recommended for IT only) <strong>write your own microservices and deploy using our Helm Chart</strong>. If you want to create advanced applications, you can deploy your own microservices in the United Manufacturing Hub to interact with the data, e.g., deploy a machine learning algorithm or write your own dashboard. <br><br>
-                        3. (expert, recommended for IT only) <strong>work with Kubernetes and our source code</strong>. If you have a good feeling about the United Manufacturing Hub, you can start adjusting the source code and the data model to incorporate entirely new applications. If you do that (and wish to contribute to the project), contact us before.
                     </div>
                 </div>
             </div>
