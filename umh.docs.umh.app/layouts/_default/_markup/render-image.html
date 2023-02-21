@@ -1,47 +1,85 @@
-<picture>
-    {{ $isJPG := eq (path.Ext .Destination) ".jpg" }}
-    {{ $isPNG := eq (path.Ext .Destination) ".png" }}
+<figure>
+    <a onclick='toggleLightBoxOn("{{ .Destination | md5 }}-lightbox")'>
+        <picture>
+            {{ $isJPG := eq (path.Ext .Destination) ".jpg" }}
+            {{ $isPNG := eq (path.Ext .Destination) ".png" }}
 
-    {{ if ($isJPG) -}}
-    {{ $avifPath:= replace .Destination ".jpg" ".avif" }}
-    {{ $avifPathStatic:= printf "static/%s" $avifPath }}
+            {{ if ($isJPG) -}}
+            {{ $avifPath:= replace .Destination ".jpg" ".avif" }}
+            {{ $avifPathStatic:= printf "static/%s" $avifPath }}
 
-    {{ if (fileExists $avifPathStatic) -}}
-    <source srcset="{{ $avifPath | safeURL }}" type="image/avif" >
-    {{- end }}
+            {{ if (fileExists $avifPathStatic) -}}
+            <source srcset="{{ $avifPath | safeURL }}" type="image/avif" >
+            {{- end }}
 
-    {{ $webpPath:= replace .Destination ".jpg" ".webp" }}
-    {{ $webpPathStatic:= printf "static/%s" $webpPath }}
+            {{ $webpPath:= replace .Destination ".jpg" ".webp" }}
+            {{ $webpPathStatic:= printf "static/%s" $webpPath }}
 
-    {{ if (fileExists $webpPathStatic) -}}
-    <source srcset="{{ $webpPath | safeURL }}" type="image/webp" >
-    {{- end }}
-    {{- end }}
+            {{ if (fileExists $webpPathStatic) -}}
+            <source srcset="{{ $webpPath | safeURL }}" type="image/webp" >
+            {{- end }}
+            {{- end }}
 
-    {{ if ($isPNG) -}}
-    {{ $avifPath:= replace .Destination ".png" ".avif" }}
-    {{ $avifPathStatic:= printf "static/%s" $avifPath }}
+            {{ if ($isPNG) -}}
+            {{ $avifPath:= replace .Destination ".png" ".avif" }}
+            {{ $avifPathStatic:= printf "static/%s" $avifPath }}
 
-    {{ if (fileExists $avifPathStatic) -}}
-    <source srcset="{{ $avifPath | safeURL }}" type="image/avif" >
-    {{- end }}
+            {{ if (fileExists $avifPathStatic) -}}
+            <source srcset="{{ $avifPath | safeURL }}" type="image/avif" >
+            {{- end }}
 
-    {{ $webpPath:= replace .Destination ".png" ".webp" }}
-    {{ $webpPathStatic:= printf "static/%s" $webpPath }}
+            {{ $webpPath:= replace .Destination ".png" ".webp" }}
+            {{ $webpPathStatic:= printf "static/%s" $webpPath }}
 
-    {{ if (fileExists $webpPathStatic) -}}
-    <source srcset="{{ $webpPath | safeURL }}" type="image/webp" >
-    {{- end }}
-    {{- end }}
+            {{ if (fileExists $webpPathStatic) -}}
+            <source srcset="{{ $webpPath | safeURL }}" type="image/webp" >
+            {{- end }}
+            {{- end }}
 
-    {{ $img := imageConfig (add "/static" (.Destination | safeURL)) }}
+            {{ $img := imageConfig (add "/static" (.Destination | safeURL)) }}
 
-    <img
-            src="{{ .Destination | safeURL }}"
-            alt="{{ .Text }}"
-            loading="lazy"
-            decoding="async"
-            width="{{ $img.Width }}"
-            height="{{ $img.Height }}"
-    />
-</picture>
+            <img
+                    src="{{ .Destination | safeURL }}"
+                    alt="{{ .Text }}"
+                    loading="lazy"
+                    decoding="async"
+                    width="{{ $img.Width }}"
+                    height="{{ $img.Height }}"
+            />
+        </picture>
+    </a>
+</figure>
+
+<a href="#_" class="lightbox" id="{{ .Destination | md5 }}-lightbox">
+    <img src="{{ .Destination | safeURL }}" alt="{{ .PlainText }}">
+</a>
+
+<script>
+    function toggleLightBoxOn(a){
+        console.log(a);
+        document.getElementById(a).style.display = "block";
+    }
+
+    // Add event listener to close lightbox
+    document.addEventListener('click', function (event) {
+        if (!event.target.matches('.lightbox')) return;
+        event.preventDefault();
+        document.getElementById(event.target.id).style.display = "none";
+    }, false);
+
+    // Escape key closes lightbox
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+            document.querySelectorAll('.lightbox').forEach(function (el) {
+                el.style.display = 'none';
+            });
+        }
+    });
+
+    // Clicking on the image closes the lightbox
+    document.addEventListener('click', function (event) {
+        if (!event.target.matches('.lightbox img')) return;
+        event.preventDefault();
+        document.getElementById(event.target.parentNode.id).style.display = "none";
+    }, false);
+</script>
