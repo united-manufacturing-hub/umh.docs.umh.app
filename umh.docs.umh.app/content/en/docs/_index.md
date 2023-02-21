@@ -28,36 +28,36 @@ h2 {text-align: center; margin-left: auto; margin-right: auto}
     <div class="main-section">
         <div class="feature-box">
             <div>
-                <h3 class="mb-3">Everything that you need to do to generate value on the shopfloor</h3>
+                <h3 class="mb-3">Everything That You Need To Do To Generate Value On The Shopfloor</h3>
                 <ul>
                     <li><strong>Extract data from the shopfloor</strong> <a href="https://nodered.org/">via Node-RED</a>, from <a href="">ifm IO-Link gateways</a>, from <a href="">barcode readers</a> or from <a href="">GenICam compatible cameras</a></li>
                     <li><strong>Contextualize and standardize data</strong> using <a href="https://nodered.org/">Node-RED</a> as a low-code programming tool and the <a href="">ISA95 compatible UMH data model</a></li>
-                    <li><strong>Exchange and store data</strong> using <a href="">HiveMQ</a> for IoT devices, <a href="https://kafka.apache.org/">Apache Kafka</a> as enterprise message broker and <a href="">TimescaleDB</a> as relational and time-series storage</li>
-                    <li><strong>Visualize data</strong> using <a href="https://grafana.com/">Grafana</a> and <a href="">factoryinsight</a> to easily build shopfloor dashboards</li>
+                    <li><strong>Exchange and store data</strong> using <a href="">HiveMQ</a> for IoT devices, <a href="https://kafka.apache.org/">Apache Kafka</a> as enterprise message broker, and <a href="">TimescaleDB</a> as a reliable relational and time-series storage solution</li>
+                    <li><strong>Visualize data</strong> using <a href="https://grafana.com/">Grafana</a> and <a href="">factoryinsight</a> to build powerful shopfloor dashboards</li>
                 </ul>
             </div>
             <div>
-                <h3 class="mb-3">Prevent vendor lock-in and adjust to your needs</h3>
+                <h3 class="mb-3">Prevent Vendor Lock-In and Customize to Your Needs</h3>
             <ul>
-                    <li><strong>The only requirement is Kubernetes</strong> - and you can get that in all types of flavors: from k3s, to bare-metal k8s up to Kubernetes-as-a-service offerings like <a href="">AWS EKS</a> or <a href="">Azure AKS</a></li>
-                    <li><strong>All components can be exchanged.</strong> Don't like the drivers in Node-RED? Replace it with <a href="">Kepware</a>. Do not like our choice of MQTT broker? Use a different one!</li>
-                    <li><strong>Leverage whatever you already have</strong> and just add the building blocks that you are still missing</li>
+                    <li><strong>The only requirement is Kubernetes</strong>, which is available in various flavors, including k3s, bare-metal k8s, and Kubernetes-as-a-service offerings like <a href="">AWS EKS</a> or <a href="">Azure AKS</a></li>
+                    <li><strong>Swap components with other options at any time.</strong> Not a fan of Node-RED? Replace it with <a href="">Kepware</a>. Prefer a different MQTT broker? Use it!</li>
+                    <li><strong>Leverage existing systems</strong> and add only what you need.</li>
             </ul>
             </div>
         </div>
         <div class="feature-box">
             <div>
-                <h3 class="mb-3">Get started immediately</h3>
+                <h3 class="mb-3">Get Started Immediately</h3>
             <ul>
                     <li><strong><a href="">Download & install now</a></strong>, so you can show results instead of drawing nice boxes in PowerPoint </li>
             </ul>
             </div>
             <div>
-                <h3 class="mb-3">Connect with like-minded people</h3>
+                <h3 class="mb-3">Connect with Like-Minded People</h3>
             <ul>
-                <li><strong>Ask the community anything.</strong> No need to depend on external consultants or system integrators.</li>
-                <li><strong>Leverage community created content</strong> - from tutorials over Node-RED flows to Grafana dashboards. Not everything might fit perfectly or is enterprise supported, but having a somewhat working starting point often saves a lot of time.</li>
-                <li><strong>Get honest answers</strong> in a world full of companies pumping millions into advertising</li>
+                <li><strong>Tap into our community of experts and ask anything.</strong> No need to depend on external consultants or system integrators.</li>
+                <li><strong>Leverage community content</strong>, from tutorials and Node-RED flows to Grafana dashboards. Although not all content is enterprise-supported, starting with a working solution saves you time and resources.</li>
+                <li><strong>Get honest answers</strong> in a world where many companies spend millions on advertising.</li>
             </ul>
             </div>
         </div>
