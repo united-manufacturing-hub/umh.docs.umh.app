@@ -19,6 +19,7 @@ We recommend that you read our [blog post about secure communication first](http
 HiveMQ requires two [Java Key Stores](https://en.wikipedia.org/wiki/Java_KeyStore)
 
 ### Keystore
+
 The keystore stores the HiveMQ certificate and private key.
 
 You should treat this store as **confidential**, since anyone with access to it could generate valid client certificates and read or send messages in your MQTT infrastructure.
@@ -42,6 +43,8 @@ A private key begins with:
 `-----BEGIN PRIVATE KEY-----`
 
 Treat every private key as **confidential**.
+
+
 
 ## Setting up a new PKI
 
