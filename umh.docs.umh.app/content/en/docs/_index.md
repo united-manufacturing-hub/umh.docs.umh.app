@@ -2,8 +2,7 @@
 title = "Documentation"
 menuTitle = "Documentation"
 chapter = true
-weight = 5
-pre = "<b> - </b>"
+weight = 1000
 draft = false
 description = "This is the technical documentation of the Management Console."
 +++
