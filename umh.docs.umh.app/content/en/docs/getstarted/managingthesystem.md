@@ -5,7 +5,7 @@ description = ""
 weight = 2000
 +++
 
-The second chapter teaches you how to use UMHLens to access and manage the microservices. We will also show you how to import a Node-RED and Grafana flow to see how the data flows through the stack, as you can see in the picture below.
+The second chapter teaches you how to use UMHLens to access and manage the microservices. We will also show you how to import a [Node-RED](https://learn.umh.app/guides/troubleshootingcommunity/node-red/nodered-import-export/) and Grafana flow to see how the data flows through the stack, as you can see in the picture below.
 
 ![Untitled](/images/getstarted/managingTheSystem/getStartedUMHSimplifiedpng.png)
 
@@ -29,7 +29,7 @@ The second chapter teaches you how to use UMHLens to access and manage the micro
 1. Access the Node-RED Web UI. To do this, click on the service and forward the port as shown above. When the UI opens in the browser, add `nodered` to the URL as shown in the figure below to avoid the [cannot get error]().
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingCannotGet.png)
-2. Once you are in the web interface, click on the three lines in the upper right corner and select **Import** to [import a flow](https://learn.umh.app/guides/troubleshootingcommunity/node-red/nodered-import-export/).
+2. Once you are in the web interface, click on the three lines in the upper right corner and select **Import**.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingImport.png)
 

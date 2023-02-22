@@ -5,10 +5,14 @@ description = ""
 weight = 5000
 +++
 
-In the last chapter we will explain what it means to move the UMH to a production environment. It covers how to install external devices, use additional tools, and how you should navigate through our documentation.
+## Next steps
 
-The next steps to move the UMH into production would be the deployment on an edge device. You can click here to find out how to do that. 
-If you want to tinker around locally we have some more simulators which are simulating Ot-Protocols like the OPCu-simulator or the PACK-ML simulator.
-If you want to learn  more about our data-model you can visit the documentation of it.
+The next big step would of course be to use the UMH on an Edge device - you can find out how here.
+However, if you want to try around locally, we recommend you try out these topics.
 
-Once you have UMH running on an edge device you could connect some sensors to it
+The OPC/UA-simualtor gives a good overview of how the OPC/UA protocol works and how to connect it to the UMH. You can find detailed instructions [here]().
+
+The PackML Simulator is another simulator for getting started with PackML. Have a look at our [tutorial]().
+
+If you want to create fancy Grafana dashboards, you can try Grafana-Canvas. In our last [blog article]() we discussed why Grafana_Canvas is a great addition to your standard Grafana dashboard. If you want to build one yourself, check out our [tutorial]().
+
