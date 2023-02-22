@@ -54,9 +54,9 @@ We also created a `msg.topic` for the **mqtt-out node**, which will automaticall
 12. We can now see our new converted message under Debug-messages. You can clear the old messages by clicking the trash bin.
     ![Untitled](/images/getStartedDataAcqManDebugWindow)
 13. Congratulations! You have now successfully converted the incoming message and exported it via mqtt. Since we are now only exporting the temperature but not actually working with the data, we want to create a function that counts the critical temperature exceedances.
-14. Drag another function-node into your flow, open it and navigate to On Start.
+14. Drag another **function-node** into your flow, open it and navigate to On Start.
     ![Untitled](/images/getStartedDataAcqManOnStart)
-15. 15. Paste in the following code, which will only run on start:
+15. Paste in the following code, which will only run on start:
 
 ```jsx
 flow.set("count", 0);
