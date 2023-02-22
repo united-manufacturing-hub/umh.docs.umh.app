@@ -40,7 +40,7 @@ Now all MQTT connections require password authentication with the following defa
 4. Copy the generated hash.
 5. Open the `united-manufacturing-hub-hivemqce-extension` ConfigMap.
 
-   ![Untitled](/images/production-guide/security/rbac/rbac-configmap.png)
+   ![RbacConfigMap](/images/production-guide/security/hivemq-rbac/rbac-configmap.png)
 
 6. Replace the password hash with the one generated in step 3.
 7. Save the changes.

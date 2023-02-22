@@ -1,5 +1,5 @@
 +++
-title =  "Setting up the HiveMQ PKI"
+title =  "Setting up HiveMQ PKI"
 description = "Setting up a PKI infrastructure for the MQTT broker HiveMQ"
 minimum_version = "0.9.10"
 +++
