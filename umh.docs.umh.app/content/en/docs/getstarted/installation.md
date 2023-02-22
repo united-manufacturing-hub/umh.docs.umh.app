@@ -13,7 +13,8 @@ If you prefer an open-source approach, we also provide instructions for using [k
 
 ## Local installation using the Management Console (recommended)
 
-We have a very detailed documentation on how to install the management console and how to create your first local instance with it.
+
+We have a very detailed documentation on how to install the UMH locally using the **Management Console**. Click on the button below to get to the documentation!
 
 <a class="btn btn-primary" href="https://mgmt.docs.umh.app/docs/getstarted/download/" target="_blank" role="button" aria-label="Installing the UMH">Installing the UMH</a>
 
@@ -21,4 +22,4 @@ We have a very detailed documentation on how to install the management console a
 
 ## What's next?
 
-After the installation we will teach you how to access the microservicess through UMHLens. Click [here](/docs/getstarted/managingthesystem) to learn how.
+After the installation we will teach you how to access the microservices through UMHLens. Click [here](/docs/getstarted/managingthesystem) to learn how.

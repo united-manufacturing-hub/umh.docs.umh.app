@@ -29,14 +29,14 @@ The second chapter teaches you how to use UMHLens to access and manage the micro
 1. Access the Node-RED Web UI. To do this, click on the service and forward the port as shown above. When the UI opens in the browser, add `nodered` to the URL as shown in the figure below to avoid the [cannot get error]().
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingCannotGet.png)
-2. Once you are in the web interface, click on the three lines in the upper right corner and select **Import**.
+2. Once you are in the web interface, click on the three lines in the upper right corner and select **Import** to [import a flow](https://learn.umh.app/guides/troubleshootingcommunity/node-red/nodered-import-export/).
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingImport.png)
 
 3. Now copy [this json file](/json/getstarted/noderedGetstarted.json) and paste it into the import field. Then press **Import**.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingPasteJson.png)
-4. To activate the imported flow, you need to press deploy at the top right. If everything works, you should see green dots above the input and output. If this is the case, you can now display this data in grafana.
+4. To activate the imported flow, click on the **Deploy** button at the top right. If everything is working properly, you should see green dots above the input and output. If this is the case, you can now display this data in Grafana.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingDeploy.png)
 
@@ -49,7 +49,7 @@ The second chapter teaches you how to use UMHLens to access and manage the micro
 2. Once you are logged in, click on **Dashboards** on the left and select **Import**. Now copy the Grafana json below and paste it into **Import via panel json**. Then click on **Load**. You will then be redirected to **Options** where you need to select the **umh-v2-datasource**. Finally, click on **Import**.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingGrafanaImport.png)
-3. If everything is working properly, you should then see the functioning dashboard with a temperature curve.
+3. If everything is working properly, you should now see a functional dashboard with a temperature curve.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingGrafanaDashboard.png)
 
