@@ -24,3 +24,6 @@ other = "What's next"
 
 [version_check_tocheck]
 other = "To check the version, enter "
+
+[resource_pod_database]
+other = "united-manufacturing-hub-timescaledb-0"

@@ -1,0 +1,4 @@
+{{- $type := .Get "type" -}}
+{{- $name := .Get "name" -}}
+{{- $resource := printf "resource_%s_%s" $type $name -}}
+{{- T $resource | safeHTML -}}
