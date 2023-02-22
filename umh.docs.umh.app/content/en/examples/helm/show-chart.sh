@@ -1,0 +1,1 @@
+helm show chart <chart>
