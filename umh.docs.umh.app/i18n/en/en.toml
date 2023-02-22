@@ -1,0 +1,26 @@
+[discussion_heading]
+other = "Discussion"
+
+[envvars_heading]
+other = "Environment variables"
+
+[examples_heading]
+other = "Examples"
+
+[objectives_heading]
+other = "Objectives"
+
+[options_heading]
+other = "Options"
+
+[prerequisites_heading]
+other = "Before you begin"
+
+[seealso_heading]
+other = "See Also"
+
+[whatsnext_heading]
+other = "What's next"
+
+[version_check_tocheck]
+other = "To check the version, enter "
