@@ -5,10 +5,10 @@ weight: 50
 ---
 
 <!-- overview -->
-This page describes how to access FactoryInsight outside the cluster.
+This page describes how to access Factoryinsight outside the cluster.
 
 The United Manufacturing Hub is not exposed to the internet, therefore you cannot
-use the default Kubernetes Ingress to access FactoryInsight.
+use the default Kubernetes Ingress to access Factoryinsight.
 
 Instead, you can create a LoadBalancer service to expose it from the host.
 
