@@ -33,3 +33,6 @@ other = "To check the version, enter this command and look for the appVersion fi
 
 [resource_pod_database]
 other = "united-manufacturing-hub-timescaledb-0"
+
+[resource_pod_kafka]
+other = "united-manufacturing-hub-kafka-0"
