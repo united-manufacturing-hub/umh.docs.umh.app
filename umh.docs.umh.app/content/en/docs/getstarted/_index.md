@@ -6,14 +6,14 @@ weight = 1000
 +++
 
 We are glad that you want to start setting up right away! This guide is divided into 5 steps: Installation, Managing the System,
-Data Acquisition & Manipulation and Moving it to Production.
+Data Acquisition & Manipulation and Moving to Production.
 
 
 ## 1. Installation using the Management Console
 
 The first chapter explains how to install the United Manufacturing Hub (UMH) on your local machine using the UMH Management console. Currently, the management console only supports local installations, but in the future, it will also support edge device installations. If you prefer an open-source approach, there is also a tutorial for using k3d.
 
-<a class="btn btn-primary" href"/getstarted/installation/" target="_blank" role="button" aria-label="Installing the UMH">Installing the UMH</a>
+<a class="btn btn-primary" href="/docs/getstarted/installation/" target="_blank" role="button" aria-label="Installing the UMH">Installing the UMH</a>
 
 ## 2. Managing the system
 
@@ -42,16 +42,13 @@ The third chapter guides you through the process of creating your own Node-RED f
 In the last chapter you can now visualize the processed data in Grafana. Follow the Guide
 to learn how to log in to Grafana and then set up a simple dashboard.
 
-We hope you managed to install the United Manufacturing Hub, process and visualize your data and will be able to apply that knowledge
-to your specific setup in the future!
-
 <a class="btn btn-primary" href="/content/en/docs/getstarted/DataVisualization/" target="_blank" role="button" aria-label="View Grafana Dashboard Guide">View Grafana Dashboard Guide</a>
 
 ## 5. Moving to production
 
 In the last chapter we will explain what it means to move the UMH to a production environment. It covers how to install external devices, use additional tools, and how you should navigate through our documentation.
 
-<a class="btn btn-primary" href="" target="_blank" role="button" aria-label="Moving to production">Moving to production</a>
+<a class="btn btn-primary" href="/getstarted/MovingToProduction/" target="_blank" role="button" aria-label="Moving to production">Moving to production</a>
 
 ## Contact Us!
 

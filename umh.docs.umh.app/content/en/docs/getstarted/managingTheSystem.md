@@ -1,24 +1,28 @@
 +++
 title = "Managing the System"
 menuTitle = "Managing the System"
-description = "You want to get started right away? Go ahead and jump into the action!"
-weight = 1000
+description = ""
+weight = 2000
 +++
 
-## Managing the System
 
-**Setting up UMHLens**
+
+### Setting up UMHLens
 
 1. Download & install UMHLens [here]().
-2. If you installed the UMH using the management console, you should see a cluster named "k3d-unite-manufacturing-hub" under Browse. Click on it to connect.3. On the right sied of umhlens under workloads-pods you can check the status of all the pods. Depending on your system it may take a while until all pods start. 
+2. If you installed the UMH using the management console, you should see a cluster named "k3d-unite-manufacturing-hub" under Browse. Click on it to connect.
+3. On the right side of UMHLens under **workloads**->**pods** you can check the status of all pods. Depending on your system, it may take a while for all pods to start.
+
    ![Untitled](/images/getStartedManagingPods.png)
-3. To access the web interfaces of the microservices, e.g. node-red or grafana, navigate to network->services on the left-hand side.
+3. To access the web interfaces of the microservices, e.g. node-red or grafana, navigate to **network**->**services** on the left-hand side.
+
    ![Untitled](/images/getStartedManagingservices.png)
-4. Click on the appropriate service you wish to connect to, scroll down to "Connection" and forward the port.
+4. Click on the appropriate service you wish to connect to, scroll down to **Connection** and forward the port.
+
    ![Untitled](/images/getStartedManagingForwarding.png)
 
 
-**Importing Node-RED flows**
+### Importing Node-RED flows
 
 1. Access the Node-RED Web UI. To do this, click on the service and forward the port as shown above. When the UI opens in the browser, add "nodered" to the URL as shown in the figure below to avoid the "cannot get" error.
    ![Untitled](/images/getStartedManagingCannotGet.png)
@@ -30,7 +34,7 @@ weight = 1000
    ![Untitled](/images/getStartedManagingDeploy.png)
 
 
-**Importing Grafana flow**
+### Importing Grafana flow
 
 1. Go into UMhLens and forward the grafana service as you did with node-red. To log in, you need the grafana Secrets, which you can find in UMHLens under Config->Secrets->Grafana-Secret. Click on the eye to display the username and password and enter it in grafana.
    ![Untitled](/images/getStartedManagingGrafanaSecrets.png)

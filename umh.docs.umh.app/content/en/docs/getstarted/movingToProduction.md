@@ -1,12 +1,9 @@
 +++
 title = "Moving to Production"
 menuTitle = "Moving to Production"
-description = "You want to get started right away? Go ahead and jump into the action!"
-weight = 1000
+description = ""
+weight = 5000
 +++
-
-We are glad that you want to start setting up right away! This guide is divided into 5 steps: Installation, Managing the System,
-Data Acquisition & Manipulation and Moving it to Production.
 
 
 ## 1. Installation using the Management Console

@@ -1,7 +1,7 @@
 +++
 title = "Installation"
 menuTitle = "Installation"
-description = "You want to get started right away? Go ahead and jump into the action!"
+description = ""
 weight = 1000
 +++
 
