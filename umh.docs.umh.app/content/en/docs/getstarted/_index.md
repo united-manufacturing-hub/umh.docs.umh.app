@@ -23,7 +23,7 @@ The second chapter teaches you how to use UMHLens to access and manage the micro
 
 In this guide you will learn how to set up UMHLens and access all the microservices.
 
-<a class="btn btn-primary" href="/docs/getstarted/managingTheSystem/" target="_blank" role="button" aria-label="Setting up UMHLens">Setting up UMHLens</a>
+<a class="btn btn-primary" href="/docs/getstarted/managingthesystem/" target="_blank" role="button" aria-label="Setting up UMHLens">Setting up UMHLens</a>
 
 **2.2 Importing Node-RED & Grafana flows**
 
@@ -35,14 +35,14 @@ In this guide we will show you how to import flows into node-RED and grafana. So
 
 The third chapter guides you through the process of creating your own Node-RED flow using simulated data, and fetching it into the UMH data model.
 
-<a class="btn btn-primary" href="/docs/getstarted/dataAcquisitionManipulation/" target="_blank" role="button" aria-label="Creating your first Node-red flow">Creating your first Node-red flow</a>
+<a class="btn btn-primary" href="/docs/getstarted/dataacquisitionmanipulation/" target="_blank" role="button" aria-label="Creating your first Node-red flow">Creating your first Node-red flow</a>
 
 ## 4. Data Visualization
 
 In the last chapter you can now visualize the processed data in Grafana. Follow the Guide
 to learn how to log in to Grafana and then set up a simple dashboard.
 
-<a class="btn btn-primary" href="/content/en/docs/getstarted/DataVisualization/" target="_blank" role="button" aria-label="View Grafana Dashboard Guide">View Grafana Dashboard Guide</a>
+<a class="btn btn-primary" href="/docs/getstarted/datavisualization/" target="_blank" role="button" aria-label="View Grafana Dashboard Guide">View Grafana Dashboard Guide</a>
 
 ## 5. Moving to production
 
