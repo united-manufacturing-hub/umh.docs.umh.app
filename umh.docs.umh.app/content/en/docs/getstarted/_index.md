@@ -21,9 +21,9 @@ The second chapter teaches you how to use UMHLens to access and manage the micro
 
 **2.1 Setting up UMHLens**
 
-In this guide you will learn how to setup UMHLens and access all the microservices.
+In this guide you will learn how to set up UMHLens and access all the microservices.
 
-<a class="btn btn-primary" href"" target="_blank" role="button" aria-label="Setting up UMHLens">Setting up UMHLens</a>
+<a class="btn btn-primary" href="/docs/getstarted/managingTheSystem/" target="_blank" role="button" aria-label="Setting up UMHLens">Setting up UMHLens</a>
 
 **2.2 Importing Node-RED & Grafana flows**
 
@@ -35,7 +35,7 @@ In this guide we will show you how to import flows into node-RED and grafana. So
 
 The third chapter guides you through the process of creating your own Node-RED flow using simulated data, and fetching it into the UMH data model.
 
-<a class="btn btn-primary" href"" target="_blank" role="button" aria-label="Creating your first Node-red flow">Creating your first Node-red flow</a>
+<a class="btn btn-primary" href="/docs/getstarted/dataAcquisitionManipulation/" target="_blank" role="button" aria-label="Creating your first Node-red flow">Creating your first Node-red flow</a>
 
 ## 4. Data Visualization
 
@@ -48,7 +48,7 @@ to learn how to log in to Grafana and then set up a simple dashboard.
 
 In the last chapter we will explain what it means to move the UMH to a production environment. It covers how to install external devices, use additional tools, and how you should navigate through our documentation.
 
-<a class="btn btn-primary" href="/getstarted/MovingToProduction/" target="_blank" role="button" aria-label="Moving to production">Moving to production</a>
+<a class="btn btn-primary" href="/docs/getstarted/movingToProduction/" target="_blank" role="button" aria-label="Moving to production">Moving to production</a>
 
 ## Contact Us!
 
