@@ -13,7 +13,7 @@ Data Acquisition & Manipulation and Moving it to Production.
 
 The first chapter explains how to install the United Manufacturing Hub (UMH) on your local machine using the UMH Management console. Currently, the management console only supports local installations, but in the future, it will also support edge device installations. If you prefer an open-source approach, there is also a tutorial for using k3d.
 
-<a class="btn btn-primary" href"" target="_blank" role="button" aria-label="Installing the UMH">Installing the UMH</a>
+<a class="btn btn-primary" href"/getstarted/installation/" target="_blank" role="button" aria-label="Installing the UMH">Installing the UMH</a>
 
 ## 2. Managing the system
 
@@ -45,7 +45,7 @@ to learn how to log in to Grafana and then set up a simple dashboard.
 We hope you managed to install the United Manufacturing Hub, process and visualize your data and will be able to apply that knowledge
 to your specific setup in the future!
 
-<a class="btn btn-primary" href="/guides/open-source/grafana/tutorial/simple-grafana/" target="_blank" role="button" aria-label="View Grafana Dashboard Guide">View Grafana Dashboard Guide</a>
+<a class="btn btn-primary" href="/content/en/docs/getstarted/DataVisualization/" target="_blank" role="button" aria-label="View Grafana Dashboard Guide">View Grafana Dashboard Guide</a>
 
 ## 5. Moving to production
 
