@@ -1,6 +1,6 @@
 +++
-title = "Data Visualization"
-menuTitle = "Data Visualization"
+title = "4. Data Visualization"
+menuTitle = "4. Data Visualization"
 description = ""
 weight = 4000
 +++
@@ -40,4 +40,4 @@ The next point is the visualisation of the data. In this chapter we will create 
 
 ## What's next?
 
-The next topic is "Moving to Production", where we will explain what it means to move the umh to a manufacturing environment.
+The next topic is "Moving to Production", where we will explain what it means to move the umh to a manufacturing environment. Click [here](/docs/getstarted/movingtoproduction/) to proceed.

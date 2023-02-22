@@ -1,6 +1,6 @@
 +++
-title = "Data Acquisition and Manipulation"
-menuTitle = "Data Acquisition and Manipulation"
+title = "3. Data Acquisition and Manipulation"
+menuTitle = "3. Data Acquisition and Manipulation"
 description = ""
 weight = 3000
 +++
@@ -82,7 +82,9 @@ if (flow.get("current")>47){
 ```
 
 The pasted in code will work as shown in the diagram below.
-    [Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManTemperatureWarning.png)
+
+[Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManTemperatureWarning.png)
+
 16. Finally, connect the function-node like shown below and hit deploy.
 
     ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManNewFunction.png)
@@ -93,4 +95,4 @@ The pasted in code will work as shown in the diagram below.
 
 ## What's next?
 
-Next up is data visualization.
+In the next chapter we will use Grafana to display the formatted data. Click [here](/docs/getstarted/datavisualization/) to proceed.
