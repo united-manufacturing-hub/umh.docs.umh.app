@@ -304,3 +304,14 @@ $td-enable-google-fonts: false;
         max-height: 100%;
     }
 }
+
+
+// Add link icon to external link on sidebar (m-docsexternal_learn)
+#m-docsexternal_learn, #m-docsexternal_connecting3rdparty, #m-docsexternal_managementconsole {
+    &:after {
+        content: "\f08e";
+        font-family: "Font Awesome 6 Free", serif;
+        font-size: 1rem;
+        margin-left: 5px;
+    }
+}
