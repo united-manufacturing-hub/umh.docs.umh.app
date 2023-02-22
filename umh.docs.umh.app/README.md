@@ -12,6 +12,12 @@ cd umh.docs.umh.app/themes/docsy
 npm install
 ```
 
+## Git LFS
+```bash
+git lfs install
+```
+
+
 # Serving locally
 
 ```bash
