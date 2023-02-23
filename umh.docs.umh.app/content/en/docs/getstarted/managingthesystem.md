@@ -5,7 +5,8 @@ description = "Basics of UMHLens and importing Node-RED and Grafana flows"
 weight = 2000
 +++
 
-In this chapter we will connet to our kubernetes cluster using UMHLens. Then we will show you how to import a [Node-RED](https://learn.umh.app/guides/troubleshootingcommunity/node-red/nodered-import-export/) and Grafana flow to see how the data flows through the stack, as you can see in the picture below.
+In this chapter, we'll guide you through connecting to our Kubernetes cluster using UMHLens. Then, we'll walk you through importing a [Node-RED](https://learn.umh.app/guides/troubleshootingcommunity/node-red/nodered-import-export/) and Grafana flow to help you visualize how data flows through the stack. Check out the image below for a sneak peek
+
 
 ![Untitled](/images/getstarted/managingTheSystem/getStartedUMHSimplifiedpng.png)
 
@@ -36,8 +37,7 @@ In this chapter we will connet to our kubernetes cluster using UMHLens. Then we 
 3. Now copy [this json file](/json/getstarted/noderedGetStarted.json) and paste it into the import field. Then press **Import**.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingPasteJson.png)
-4. To activate the imported flow, click on the **Deploy** button at the top right. If everything is working properly, you should see green dots above the input and output. If this is the case, you can now display this data in Grafana.
-
+4. To activate the imported flow, simply click on the **Deploy** button located at the top right of the screen. If everything is working as expected, you should see green dots above the input and output. Once you've confirmed that the data is flowing correctly, you can proceed to display it in Grafana
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingDeploy.png)
 
 

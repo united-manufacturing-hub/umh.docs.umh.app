@@ -13,23 +13,23 @@ The United Manufacturing Hub has several simulators. These simulators simulate d
 ### Creating Node-RED flow with simulated MQTT-Data
 
 1. Access Node-RED with UMHLens.
-2. Drag from the left coulmn a **mqtt-in-** , **mqtt-out-** and a **debug-node** into your flow.
-3. Connect the **mqtt-in** and the **debug-node**.
+2. From the left-hand column, drag a **mqtt-in** node, a **mqtt-out** node, and a **debug** node into your flow.
+3. Connect the **mqtt-in** and to the **debug-node**.
 
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqMan1.png)
-4. Double-click the mqtt-in-node and add a new mqtt broker. Therefore, click on edit and use the service name of hivemq as host (located in UMHLens under services→name). Leave the port as autoconfigured and click on **Add**.
+4. Double-click on the **mqtt-in** node and add a new MQTT broker. To do so, click on **Edit** and use the service name of HiveMQ as the host (located in UMHLens under **services** -> name). Leave the port as autoconfigured and click on **Add** to save your changes.
 
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManServicename.png)
-5. to see all incoming messages from a specific topic type in `ia/#` under **Topic** and click on **Done**. 
+5. To view all incoming messages from a specific topic, type `ia/#` under **Topic** and click on **Done**.
 
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManiaRaw.png)
-6. To make the changes effective we need to click **Deploy** on the top right. Now to see the debug-information, click on the **Debug-messages** under **Deploy**. 
+6. To apply the changes, click on **Deploy** located at the top right of the screen. Once the changes have been deployed, you can view the debug information by clicking on **Debug-Messages** located under **Deploy**. 
 
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManDebugDeploy.png)
-7. In this column, we can see all the incoming messages and their respective topic. The incoming topics have the format `ia/raw/development/ioTSensors/`. For this tutorial, we are only using the temperature topic, but you can choose whatever you want. Now copy the temperature topic (`ia/raw/development/ioTSensors/Temperature`) , open the **mqtt-in node** and paste the copied topic in **Topic**. Click **Done** and press again **Deploy**.
+7. In this column, you can view all incoming messages and their respective topics. The incoming topics follow this format: `ia/raw/development/ioTSensors/`. For the purpose of this tutorial, we will be using only the temperature topic, but feel free to choose any topic you'd like. To proceed, copy the temperature topic (`ia/raw/development/ioTSensors/Temperature`), open the **mqtt-in** node, paste the copied topic in the **Topic** field, click on **Done**, and then press **Deploy** again to apply the changes.
 
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManNewTopic.png)
-8. Next we need to format the message. In order to do that, drag a json node and a function node into your flow. Now connect the following: mqtt in → json→ function → mqtt out.
+8. To format the incoming message, add a **JSONÜÜ node and a **Function** node to your flow. Connect the nodes in the following order: **mqtt-in → JSON → Function → mqtt-out**.
 
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManNewNodes.png)
 9. Open the **function** node and paste in the following:
@@ -51,14 +51,13 @@ We also created a `msg.topic` for the **mqtt-out node**, which will automaticall
 The topic ends with the key **processValue** which is used whenever a custom process value with unique name has been prepared. The value is numerical. You can learn more about our message structure [here](https://learn.umh.app/docs/datamodel/messages/).
 {{% /notice %}}
 
-10. Drag in another mqtt-in node and give it the topic: `ia/factoryinsight/Aachen/testing/processValue` (Topic of the mqtt-out-node configured in the function-node) and don't forget to select the created broker. Next connect a debug node to your new mqtt-in node and click on **deploy**. 
+10. Add another **mqtt-in** node to your flow, and set the topic to `ia/factoryinsight/Aachen/testing/processValue`. Make sure to select the created broker. Connect a **debug** node to the new **mqtt-in** node, and then click on **Deploy** to save the changes.
 
     ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManNewDebug.png)
-11. We can now see our new converted message under Debug-messages. You can clear the old messages by clicking the trash bin.
-
+11. You should now see the converted message under **Debug-messages**. To clear any previous messages, click on the trash bin icon.
     ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManDebugWindow.png)
-12. Congratulations! You have now successfully converted the incoming message and exported it via mqtt. Since we are now only exporting the temperature but not actually working with the data, we want to create a function that counts the critical temperature exceedances.
-13. Drag another **function-node** into your flow, open it and navigate to On Start.
+12. Congratulations, you have successfully converted the incoming message and exported it via MQTT. However, since we are currently only exporting the temperature without actually working with the data, let's create a function that counts the critical temperature exceedances.
+13. Drag another **function-node** into your flow, open it and navigate to **On Start**.
 
     ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManOnStart.png)
 14. Paste in the following code, which will only run on start:
@@ -68,7 +67,7 @@ The topic ends with the key **processValue** which is used whenever a custom pro
     flow.set("current", 0)
     ```
 
-15. Then click on **On-Message** and paste in the following and hit done:
+15. Then click on **On-Message** and paste in the following and click **done**:
 
     ```jsx
     flow.set("current",msg.payload);
@@ -84,7 +83,7 @@ The topic ends with the key **processValue** which is used whenever a custom pro
 
     ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManTemperatureWarning.png)
 
-16. Finally, connect the function-node like shown below and hit deploy.
+16. Finally, connect the function-node like shown below and click on **deploy**.
 
     ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManNewFunction.png)
 17. If the incoming value of temperature is now greater than 47, you will see another message consisting of TemperatureWarning and a timestamp in debug-messages.
