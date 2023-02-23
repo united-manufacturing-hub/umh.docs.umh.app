@@ -22,14 +22,8 @@ other = "See Also"
 [whatsnext_heading]
 other = "What's next"
 
-[version_check_mustbe]
-other = "Your Kubernetes server must be version "
-
-[version_check_mustbeorlater]
-other = "Your Kubernetes server must be at or later than version "
-
 [version_check_tocheck]
-other = "To check the version, enter this command and look for the appVersion field:"
+other = "To check the United Manufacturing Hub version, enter this command and look for the appVersion field:"
 
 [resource_lens_name]
 other = "UMHLens / OpenLens"
