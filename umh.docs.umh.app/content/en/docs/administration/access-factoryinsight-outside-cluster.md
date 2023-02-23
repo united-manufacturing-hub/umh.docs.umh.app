@@ -22,7 +22,7 @@ Instead, you can create a LoadBalancer service to expose it from the host.
 
 ## Create a LoadBalancer service
 
-1. From UMHLens, click on the **+** icon on the bottom bar and select
+1. From {{< resource type="lens" name="name" >}}, click on the **+** icon on the bottom bar and select
    **Create resource**.
 2. Copy and paste the following YAML into the editor:
 

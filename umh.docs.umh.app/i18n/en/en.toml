@@ -31,6 +31,9 @@ other = "Your Kubernetes server must be at or later than version "
 [version_check_tocheck]
 other = "To check the version, enter this command and look for the appVersion field:"
 
+[resource_lens_name]
+other = "UMHLens / OpenLens"
+
 [resource_pod_database]
 other = "united-manufacturing-hub-timescaledb-0"
 

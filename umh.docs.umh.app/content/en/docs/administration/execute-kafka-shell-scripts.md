@@ -19,7 +19,7 @@ administrative tasks. This page describes how to execute Kafka shell scripts.
 
 ## Open a shell in the Kafka container
 
-1. From the Pod section in UMHLens, click on **{{% resource type="pod" name="kafka" %}}**
+1. From the Pod section in {{< resource type="lens" name="name" >}}, click on **{{% resource type="pod" name="kafka" %}}**
    to open the details page.
 2. {{< include "pod-shell.md" >}}
 3. Navigate to the Kafka bin directory:

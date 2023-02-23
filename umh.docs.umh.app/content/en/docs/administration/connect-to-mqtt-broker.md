@@ -41,7 +41,7 @@ broker service name as the hostname. The MQTT broker service name is
 ## Connect to the MQTT broker from outside the Kubernetes cluster
 
 By default, the MQTT broker does not have an external IP address. To enable it,
-open UMHLens and go to the **Services** page. Find the `{{< resource type="service" name="mqtt" >}}`
+open {{< resource type="lens" name="name" >}} and go to the **Services** page. Find the `{{< resource type="service" name="mqtt" >}}`
 Service and click the **Edit** button. Scroll down to the `status.loadBalancer`
 section and change it to the following:
 

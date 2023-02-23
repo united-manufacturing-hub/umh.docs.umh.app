@@ -19,12 +19,12 @@ the installation.
 
 <!-- steps -->
 
-## Customize the United Manufacturing Hub installation via UMHLens
+## Customize the United Manufacturing Hub installation via {{< resource type="lens" name="name" >}}
 
 Independently of the installation method you choose, you can customize the United
 Manufacturing Hub installation by changing the Helm chart values.
 
-To do so after installing the United Manufacturing Hub, you can open UMHLens and
+To do so after installing the United Manufacturing Hub, you can open {{< resource type="lens" name="name" >}} and
 navigate to the **Helm** > **Releases** page. Then, click on the **Upgrade**
 button and edit the values in the `_000_commonConfig_` section.
 

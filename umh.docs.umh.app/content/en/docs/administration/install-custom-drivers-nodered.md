@@ -20,7 +20,7 @@ with proper security measures.
 
 ## Change the security context
 
-1. From the StatefulSets section in UMHLens, click on **{{% resource type="statefulset" name="nodered" %}}**
+1. From the StatefulSets section in {{< resource type="lens" name="name" >}}, click on **{{% resource type="statefulset" name="nodered" %}}**
    to open the details page.
 2. {{< include "statefulset-edit.md" >}}
 3. Press `Ctrl+F` and search for `securityContext`.
@@ -45,7 +45,7 @@ with proper security measures.
 
 ## Install the packages
 
-1. From the Pods section in UMHLens, click on **{{% resource type="pod" name="nodered" %}}**
+1. From the Pods section in {{< resource type="lens" name="name" >}}, click on **{{% resource type="pod" name="nodered" %}}**
    to open the details page.
 2. {{< include "pod-shell.md" >}}
 3. Install the packages with `apk`:
@@ -69,7 +69,7 @@ with proper security measures.
 For security reasons, you should revert the security context after you install
 the packages.
 
-1. From the StatefulSets section in UMHLens, click on **{{% resource type="statefulset" name="nodered" %}}**
+1. From the StatefulSets section in {{< resource type="lens" name="name" >}}, click on **{{% resource type="statefulset" name="nodered" %}}**
    to open the details page.
 2. {{< include "statefulset-edit.md" >}}
 3. Set the values of the `runAsUser` field to 1000, of `fsGroup` to 1000, and of

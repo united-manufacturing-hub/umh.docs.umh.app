@@ -51,7 +51,7 @@ ALTER USER factoryinsight WITH PASSWORD 'changeme';
 ```
 
 You also need to forward the database port to your local machine. To do so, from
-the **Pod** tab in UMHLens, click the **{{< resource type="pod" name="database" >}}**
+the **Pod** tab in {{< resource type="lens" name="name" >}}, click the **{{< resource type="pod" name="database" >}}**
 Service. In the **Pod Details** window, click the **Forward** button next to the
 postgresql:5432/TCP port. You can choose to use a random port or a specific port.
 Click **Start** to forward the port.
