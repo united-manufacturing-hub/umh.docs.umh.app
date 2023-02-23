@@ -40,6 +40,12 @@ other = "united-manufacturing-hub-kafka-0"
 [resource_pod_nodered]
 other = "united-manufacturing-hub-nodered-0"
 
+[resource_service_mqtt]
+other = "united-manufacturing-hub-mqtt"
+
+[resource_service_mqtt-verne]
+other = "united-manufacturing-hub-vernemq"
+
 [resource_secret_db-psw]
 other = "timescale-post-init-pw"
 
