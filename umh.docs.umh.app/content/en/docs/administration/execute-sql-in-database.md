@@ -1,6 +1,9 @@
 ---
 title: Execute SQL commands in the database
 content_type: task
+description: |
+  This page describes how to execute SQL commands directly in the United
+  Manufacturing Hub database.
 weight: 50
 ---
 

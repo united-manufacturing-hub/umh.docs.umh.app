@@ -1,6 +1,9 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
 content_type: task
+description: |
+  TODO
+weight: 50
 ---
 
 <!-- overview -->

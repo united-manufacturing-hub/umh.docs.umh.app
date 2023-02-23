@@ -1,7 +1,9 @@
 ---
 title: "Execute Kafka Shell Scripts"
 content_type: task
-minimum_version: 0.9.10
+description: |
+  This page describes how to execute Kafka shell scripts.
+weight: 50
 ---
 
 <!-- overview -->

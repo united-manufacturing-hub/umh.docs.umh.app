@@ -1,7 +1,9 @@
 ---
 title: "Install Custom Drivers in NodeRed"
 content_type: task
-version: 1.0.0
+description: |
+  This page describes how to install custom drivers in NodeRed.
+weight: 50
 ---
 
 <!-- overview -->

@@ -1,6 +1,9 @@
 ---
 title: "Reduce database size"
 content_type: task
+description: |
+  This page describes how to reduce the size of the United Manufacturing Hub database.
+weight: 50
 ---
 
 <!-- overview -->
