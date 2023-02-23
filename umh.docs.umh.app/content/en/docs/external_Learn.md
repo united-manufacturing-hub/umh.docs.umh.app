@@ -1,6 +1,7 @@
 +++
-title = "\uf08e Learn"
+title = "Learn"
 chapter = false
 weight = 30000
 manualLink = "https://learn.umh.app/"
+manualLinkTarget = "_blank"
 +++
