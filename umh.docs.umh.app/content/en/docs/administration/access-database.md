@@ -96,7 +96,7 @@ directly from the **{{< resource type="pod" name="database" >}}** Pod.
 5. Execute any SQL commands. For example, to create an index on the processValueTable:
 
    ```sql
-   CREATE INDEX ON processValueTable (valuename);
+   CREATE INDEX ON processvaluetable (valuename);
    ```
 
 6. Exit the postgres shell:
