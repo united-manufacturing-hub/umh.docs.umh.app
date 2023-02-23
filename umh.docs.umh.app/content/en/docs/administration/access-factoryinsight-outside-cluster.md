@@ -1,5 +1,5 @@
 ---
-title: Access FactoryInsight outside the cluster
+title: Access Factoryinsight outside the cluster
 content_type: task
 weight: 50
 ---
