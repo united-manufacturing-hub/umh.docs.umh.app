@@ -1,13 +1,13 @@
 +++
 title = "3. Data Acquisition and Manipulation"
 menuTitle = "3. Data Acquisition and Manipulation"
-description = ""
+description = "Formatting raw data into the UMH data model using node-red."
 weight = 3000
 +++
 
 
 
-The United Manufacturing Hub has several simulators. These simulators simulate different data types/protocols such as MQTT, PackML or OPCU/UA. In this chapter we will take the MQTT simulated data and show you how to format it into the UMH data model.
+The United Manufacturing Hub has several simulators. These simulators simulate different data types/protocols such as MQTT, PackML or OPC/UA. In this chapter we will take the MQTT simulated data and show you how to format it into the [UMH data model](https://learn.umh.app/docs/datamodel/).
 
 
 ### Creating Node-RED flow with simulated MQTT-Data
@@ -34,25 +34,24 @@ The United Manufacturing Hub has several simulators. These simulators simulate d
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManNewNodes.png)
 9. Open the **function** node and paste in the following:
 
-```jsx
-msg.payload ={
+   ```jsx
+   msg.payload ={
     
-    "timestamp_ms": Date.now(), 
-    "temperature": parseFloat(msg.payload, 10)
-}
-
-msg.topic = "ia/factoryinsight/Aachen/testing/processValue";
-
-return msg;
-```
-
-Quick explanation: We are creating a new object (array) with two keys`timestamp_ms` and `temperature` and their corresponding value `Date.now()` and `parseFloat(msg.payload,10)`.
-
+       "timestamp_ms": Date.now(), 
+       "temperature": parseFloat(msg.payload, 10)
+   }
+   msg.topic = "ia/factoryinsight/Aachen/testing/processValue";
+   return msg;
+   ```
+   
+{{% notice note %}}
+We are creating a new object (array) with two keys `timestamp_ms` and `temperature` and their corresponding value `Date.now()` and `parseFloat(msg.payload,10)`.
 The `parseFloat` function converts the incoming string into a float with the base 10 and the `Date.now()` creates a timestamp.
+We also created a `msg.topic` for the **mqtt-out node**, which will automatically apply this topic. 
+The topic ends with the key **processValue** which is used whenever a custom process value with unique name has been prepared. The value is numerical. You can learn more about our message structure [here](https://learn.umh.app/docs/datamodel/messages/).
+{{% /notice %}}
 
-We also created a `msg.topic` for the **mqtt-out node**, which will automatically apply this topic, and therefore we don't need to configure the **mqtt-out node,** but we still have to open **our mqtt-out-node** and select the created broker.
-
-10. Drag in another mqtt-in node and give it the topic: `ia/factoryinsight/Aachen/testing/processValue` (Topic of the mqtt-out-node configured in the function-node). Connect a debug node to your new mqtt-in node and hit deploy. 
+10. Drag in another mqtt-in node and give it the topic: `ia/factoryinsight/Aachen/testing/processValue` (Topic of the mqtt-out-node configured in the function-node) and don't forget to select the created broker. Next connect a debug node to your new mqtt-in node and click on **deploy**. 
 
     ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManNewDebug.png)
 11. We can now see our new converted message under Debug-messages. You can clear the old messages by clicking the trash bin.
@@ -64,26 +63,26 @@ We also created a `msg.topic` for the **mqtt-out node**, which will automaticall
     ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManOnStart.png)
 14. Paste in the following code, which will only run on start:
 
-```jsx
-flow.set("count", 0);
-flow.set("current", 0)
-```
+    ```jsx
+    flow.set("count", 0);
+    flow.set("current", 0)
+    ```
 
 15. Then click on **On-Message** and paste in the following and hit done:
 
-```jsx
-flow.set("current",msg.payload);
-if (flow.get("current")>47){
-    flow.set("count", flow.get("count")+1);
-    msg.payload = {"TemperatureWarning":flow.get("count"),"timestamp_ms":Date.now()}
-    msg.topic = "ia/factoryinsight/Aachen/testing/processValue";
-    return msg;
-}
-```
+    ```jsx
+    flow.set("current",msg.payload);
+    if (flow.get("current")>47){
+        flow.set("count", flow.get("count")+1);
+        msg.payload = {"TemperatureWarning":flow.get("count"),"timestamp_ms":Date.now()}
+        msg.topic = "ia/factoryinsight/Aachen/testing/processValue";
+        return msg;
+    }
+    ```
 
-The pasted in code will work as shown in the diagram below.
+    The pasted in code will work as shown in the diagram below.
 
-[Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManTemperatureWarning.png)
+    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManTemperatureWarning.png)
 
 16. Finally, connect the function-node like shown below and hit deploy.
 

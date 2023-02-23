@@ -1,7 +1,7 @@
 +++
 title = "4. Data Visualization"
 menuTitle = "4. Data Visualization"
-description = ""
+description = "Building a simple Grafana dashboard"
 weight = 4000
 +++
 

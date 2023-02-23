@@ -1,11 +1,11 @@
 +++
 title = "2. Managing the System"
 menuTitle = "2. Managing the System"
-description = ""
+description = "Basics of UMHLens and importing Node-RED and Grafana flows"
 weight = 2000
 +++
 
-The second chapter teaches you how to use UMHLens to access and manage the microservices. We will also show you how to import a [Node-RED](https://learn.umh.app/guides/troubleshootingcommunity/node-red/nodered-import-export/) and Grafana flow to see how the data flows through the stack, as you can see in the picture below.
+In this chapter we will connet to our kubernetes cluster using UMHLens. Then we will show you how to import a [Node-RED](https://learn.umh.app/guides/troubleshootingcommunity/node-red/nodered-import-export/) and Grafana flow to see how the data flows through the stack, as you can see in the picture below.
 
 ![Untitled](/images/getstarted/managingTheSystem/getStartedUMHSimplifiedpng.png)
 
@@ -33,7 +33,7 @@ The second chapter teaches you how to use UMHLens to access and manage the micro
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingImport.png)
 
-3. Now copy [this json file](/json/getstarted/noderedGetstarted.json) and paste it into the import field. Then press **Import**.
+3. Now copy [this json file](/json/getstarted/noderedGetStarted.json) and paste it into the import field. Then press **Import**.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingPasteJson.png)
 4. To activate the imported flow, click on the **Deploy** button at the top right. If everything is working properly, you should see green dots above the input and output. If this is the case, you can now display this data in Grafana.
@@ -46,7 +46,7 @@ The second chapter teaches you how to use UMHLens to access and manage the micro
 1. Go into UMHLens and forward the grafana service as you did with node-red. To log in, you need the grafana Secrets, which you can find in UMHLens under **Config** -> **Secrets** -> **Grafana-Secret**. Click on the eye to display the username and password and enter it in grafana.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingGrafanaSecrets.png)
-2. Once you are logged in, click on **Dashboards** on the left and select **Import**. Now copy the Grafana json below and paste it into **Import via panel json**. Then click on **Load**. You will then be redirected to **Options** where you need to select the **umh-v2-datasource**. Finally, click on **Import**.
+2. Once you are logged in, click on **Dashboards** on the left and select **Import**. Now copy [this Grafana json](/json/getstarted/GrafanaGetStarted.json) and paste it into **Import via panel json**. Then click on **Load**. You will then be redirected to **Options** where you need to select the **umh-v2-datasource**. Finally, click on **Import**.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingGrafanaImport.png)
 3. If everything is working properly, you should now see a functional dashboard with a temperature curve.
