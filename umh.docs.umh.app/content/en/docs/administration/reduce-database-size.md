@@ -32,10 +32,9 @@ However, data may be less accurate.
 
 {{< include "task-tutorial-prereqs.md" >}}
 
-Also, you need to access the database shell, in order to
-[Execute SQL commands](/docs/administration/execute-sql-in-database).
-
 <!-- steps -->
+
+{{< include "open-database-shell.md" >}}
 
 ## Enable data compression
 
