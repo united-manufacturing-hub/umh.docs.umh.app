@@ -31,7 +31,7 @@ For those looking to get started with PackML, the PackML Simulator is another he
 
 ### Benthos
 
-Benthos is a highly scalable data manipulation and IT connection tool. If you're interested in learning more about it, check out our [totiral](https://learn.umh.app/guides/troubleshootingcommunity/umh/using-benthos/).
+Benthos is a highly scalable data manipulation and IT connection tool. If you're interested in learning more about it, check out our [tutorial](https://learn.umh.app/guides/troubleshootingcommunity/umh/using-benthos/).
 
 ![Untitled](/images/getstarted/movingToProduction/getStartedMTPBenthos.png)
 

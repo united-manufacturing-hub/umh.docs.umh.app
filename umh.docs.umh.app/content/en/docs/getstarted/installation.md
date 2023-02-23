@@ -17,7 +17,6 @@ We've put together a comprehensive guide on how to install the UMH locally using
 
 <a class="btn btn-primary" href="https://mgmt.docs.umh.app/docs/getstarted/download/" target="_blank" role="button" aria-label="Management Console">Management Console</a>
 
-![Untitled](/images/getstarted/installation/getStartedIntallationMC.png)
 
 ## What's next?
 
