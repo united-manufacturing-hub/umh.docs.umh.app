@@ -52,7 +52,7 @@ Instead, you can create a LoadBalancer service to expose it from the host.
 The service is exposed on port 8081, but you can change it to any other port
 that is not already in use.
 
-## {{% heading "seealso" %}}
+## {{% heading "whatsnext" %}}
 
 - See [Access Kafka outside the cluster](/docs/administration/access-kafka-outside-cluster) to
   learn how to access Kafka outside the cluster.
