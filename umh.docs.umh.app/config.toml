@@ -54,7 +54,7 @@ anchor = "smart"
 [languages]
 [languages.en]
 title = "United Manufacturing Hub"
-description = "Documentation for the United Manufacturing Hub"
+description = "Documentation of the United Manufacturing Hub"
 languageName ="English"
 # Weight used for sorting.
 weight = 1
@@ -101,7 +101,7 @@ archived_version = true
 
 # A link to latest version of the docs. Used in the "version-banner" partial to
 # point people to the main doc site.
-url_latest_version = "https://docs.docs.umh.app"
+url_latest_version = "https://umh.docs.umh.app"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
 github_repo = "https://github.com/united-manufacturing-hub/umh.docs.umh.app"
