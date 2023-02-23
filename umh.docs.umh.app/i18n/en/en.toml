@@ -25,6 +25,9 @@ other = "What's next"
 [version_check_tocheck]
 other = "To check the United Manufacturing Hub version, enter this command and look for the appVersion field:"
 
+[resource_docker_org]
+other = "unitedmanufacturinghub"
+
 [resource_lens_name]
 other = "UMHLens / OpenLens"
 
