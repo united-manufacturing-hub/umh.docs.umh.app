@@ -34,6 +34,8 @@ However, data may be less accurate.
 
 <!-- steps -->
 
+## Open the database shell
+
 {{< include "open-database-shell.md" >}}
 
 ## Enable data compression

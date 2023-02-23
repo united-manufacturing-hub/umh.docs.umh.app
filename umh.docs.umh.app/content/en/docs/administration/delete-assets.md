@@ -23,6 +23,8 @@ see [Backing Up and Restoring the Database](TODO).
 
 <!-- steps -->
 
+## Open the database shell
+
 {{< include "open-database-shell.md" >}}
 
 ## Choose the assets to delete

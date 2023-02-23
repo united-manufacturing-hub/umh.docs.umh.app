@@ -17,6 +17,8 @@ Manufacturing Hub database.
 
 <!-- steps -->
 
+## Open the database shell
+
 {{< include "open-database-shell.md" >}}
 
 5. Execute any SQL commands. For example, to create an index on the processValueTable:
