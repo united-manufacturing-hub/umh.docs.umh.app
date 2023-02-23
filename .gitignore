@@ -145,3 +145,4 @@ fabric.properties
 convertor/old/
 convertor/converted
 venv/
+*.deb

@@ -1,0 +1,18 @@
+{{ if .Params.minimum_version }}
+{{ if .Params.maximum_version }}
+<!-- If both minimum_version and maximum_version are set, then the article is only relevant for that range of versions. -->
+<div class="version-hint">
+    This article is only relevant for v{{ .Params.minimum_version }} to v{{ .Params.maximum_version }}.
+</div>
+{{ else }}
+<!-- If only minimum_version is set, then the article is only relevant for that version and later. -->
+<div class="version-hint">
+    This article is only relevant for v{{ .Params.minimum_version }} and later.
+</div>
+{{ end }}
+{{ else if .Params.maximum_version }}
+<!-- If only maximum_version is set, then the article is only relevant for that version and earlier. -->
+<div class="version-hint">
+    This article is only relevant for v{{ .Params.maximum_version }} and earlier.
+</div>
+{{ end }}
