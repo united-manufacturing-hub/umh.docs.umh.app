@@ -1,5 +1,5 @@
 ---
-title: Access Factoryinsight outside the cluster
+title: Access Factoryinsight Outside the Cluster
 content_type: task
 description: |
   This page describes how to access Factoryinsight from outside the cluster.
