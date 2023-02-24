@@ -1,25 +1,25 @@
-[discussion_heading]
+[heading_discussion]
 other = "Discussion"
 
-[envvars_heading]
+[heading_envvars]
 other = "Environment variables"
 
-[examples_heading]
+[heading_examples]
 other = "Examples"
 
-[objectives_heading]
+[heading_objectives]
 other = "Objectives"
 
-[options_heading]
+[heading_options]
 other = "Options"
 
-[prerequisites_heading]
+[heading_prerequisites]
 other = "Before you begin"
 
-[seealso_heading]
+[heading_seealso]
 other = "See Also"
 
-[whatsnext_heading]
+[heading_whatsnext]
 other = "What's next"
 
 [version_check_tocheck]
