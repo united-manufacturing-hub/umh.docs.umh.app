@@ -3,7 +3,7 @@ title: "Access Kafka Outside the Cluster"
 content_type: task
 description: |
   This page describes how to access Kafka from outside the cluster.
-weight: 50
+weight: 21
 ---
 
 <!-- overview -->
@@ -11,7 +11,7 @@ weight: 50
 By default the Kafka broker is only available from within the cluster, therefore
 you cannot access it from external applications.
 
-You can create a LoadBalancer service to expose it from the host.
+You can enable external access from the Kafka configuration.
 
 ## {{% heading "prerequisites" %}}
 
@@ -51,3 +51,7 @@ the port 9094.
 
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
+
+- See [Access the MQTT Broker Outside the Cluster](/docs/administration/access-mqtt-outside-cluster)
+- See [Access Factoryinsight Outside the Cluster](/docs/administration/access-factoryinsight-outside-cluster)
+- See [Access Services from Within the Cluster](/docs/administration/access-services-from-cluster)

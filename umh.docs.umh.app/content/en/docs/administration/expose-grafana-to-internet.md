@@ -3,7 +3,7 @@ title: "Expose Grafana to the Internet"
 content_type: task
 description: |
   This page describes how to expose Grafana to the Internet.
-weight: 21
+weight: 22
 ---
 
 <!-- overview -->

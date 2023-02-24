@@ -3,7 +3,7 @@ title: Access Factoryinsight Outside the Cluster
 content_type: task
 description: |
   This page describes how to access Factoryinsight from outside the cluster.
-weight: 20
+weight: 21
 ---
 
 <!-- overview -->
@@ -56,5 +56,6 @@ that is not already in use.
 
 ## {{% heading "whatsnext" %}}
 
-- See [Access Kafka outside the cluster](/docs/administration/access-kafka-outside-cluster) to
-  learn how to access Kafka outside the cluster.
+- See [Access Kafka Outside the Cluster](/docs/administration/access-kafka-outside-cluster)
+- See [Access the MQTT Broker Outside the Cluster](/docs/administration/access-mqtt-outside-cluster)
+- See [Access Services from Within the Cluster](/docs/administration/access-services-from-cluster)
