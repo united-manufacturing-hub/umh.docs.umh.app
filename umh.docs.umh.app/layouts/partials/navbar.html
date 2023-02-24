@@ -6,12 +6,12 @@
 	<div class="td-navbar-nav-scroll ml-md-auto" id="main_navbar">
 		<ul class="navbar-nav mt-2 mt-lg-0">
 			{{ $p := . }}
-			{{ $sections := slice "docs/getstarted" "docs"}}
+			{{ $sections := slice "docs"}}
 			{{ range $sections }}
 			{{ with site.GetPage "section" . }}
 			<li class="nav-item mr-2 mb-lg-0">
 				{{ $active := eq .Section $.Section }}
-				<a class="nav-link{{if $active }} active{{end}}" href="{{ .RelPermalink }}" >{{ .Title }}</a>
+				<a class="nav-link{{if $active }} active{{end}}" href="{{ .RelPermalink }}" >{{ .Params.menuTitle }}</a>
 			</li>
 			{{ end }}
 			{{ end }}

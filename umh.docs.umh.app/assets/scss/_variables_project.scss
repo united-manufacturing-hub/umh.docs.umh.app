@@ -40,8 +40,18 @@ $black: $ci_black !default;
 $code-color: darken($secondary, 20%) !default;
 $link-color: $blue !default;
 
-// CUSTOM FOR MAIN PAGE
+$h2-font-size: 1.5rem !default;
+$h3-font-size: 1.25rem !default;
+$h4-font-size: 1.125rem !default;
+$h5-font-size: 1rem !default;
 
+// features
+$features-h3-margin-bottom: 20px;
+$feature-box-div-width: 100%;
+$feature-box-margin-bottom: 0;
+$feature-box-div-margin-bottom: 40px;
+
+// Features
 .center {
     text-align: center;
 }
@@ -51,19 +61,6 @@ $link-color: $blue !default;
     position: relative;
     margin: auto;
 }
-
-.section-why {
-    margin-top: 0px;
-}
-
-
-// features
-$features-h3-margin-bottom: 20px;
-$feature-box-div-width: 100%;
-$feature-box-margin-bottom: 0;
-$feature-box-div-margin-bottom: 40px;
-
-// Features
 #features {
     background-color: $white;
     background-size: 60px;
@@ -271,3 +268,48 @@ div.notices.tip div:first-child:after {
 
 // Disable google font usage by docsy theme
 $td-enable-google-fonts: false;
+
+// CSS for version hint
+.version-hint {
+    background-color: #F4F4F4;
+    border: 1px solid #ffa62b;
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+// Lightbox
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.8);
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        max-width: 100%;
+        max-height: 100%;
+        width: 90%;
+    }
+}
+
+
+// Add link icon to external link on sidebar (m-docsexternal_learn)
+#m-docsexternal_learn, #m-docsexternal_connecting3rdparty, #m-docsexternal_managementconsole {
+    &:after {
+        content: "\f08e";
+        font-family: "Font Awesome 6 Free", serif;
+        font-size: 1rem;
+        margin-left: 5px;
+    }
+}
