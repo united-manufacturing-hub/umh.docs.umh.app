@@ -31,6 +31,9 @@ other = "unitedmanufacturinghub"
 [resource_lens_name]
 other = "UMHLens / OpenLens"
 
+[resource_pod_cache]
+other = "united-manufacturing-hub-redis-node-0"
+
 [resource_pod_database]
 other = "united-manufacturing-hub-timescaledb-0"
 
@@ -45,6 +48,9 @@ other = "united-manufacturing-hub-mqtt"
 
 [resource_service_mqtt-verne]
 other = "united-manufacturing-hub-vernemq"
+
+[resource_secret_cache-psw]
+other = "redis-secret"
 
 [resource_secret_db-psw]
 other = "timescale-post-init-pw"
