@@ -3,7 +3,7 @@ title: "Explore Cached Data"
 content_type: task
 description: |
   This page shows how to explore cached data in the United Manufacturing Hub.
-weight: 50
+weight: 90
 ---
 
 <!-- overview -->

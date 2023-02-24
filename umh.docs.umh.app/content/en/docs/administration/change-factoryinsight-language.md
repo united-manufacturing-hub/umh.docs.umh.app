@@ -4,7 +4,7 @@ content_type: task
 description: |
   This page describes how to change the language in Factoryinsight, in order to
   display the returned text in a different language.
-weight: 50
+weight: 70
 ---
 
 <!-- overview -->

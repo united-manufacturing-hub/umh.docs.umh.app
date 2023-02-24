@@ -4,7 +4,7 @@ content_type: task
 description: |
   This page describes how to access the United Manufacturing Hub database to 
   perform SQL operations using a database client, the CLI or Grafana.
-weight: 50
+weight: 11
 ---
 
 <!-- overview -->

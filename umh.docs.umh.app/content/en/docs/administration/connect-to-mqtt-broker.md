@@ -3,7 +3,7 @@ title: "Connect to Mqtt Broker"
 content_type: task
 description: |
   This page describes how to connect to the United Manufacturing Hub MQTT broker.
-weight: 50
+weight: 12
 version: 0.9.10
 ---
 

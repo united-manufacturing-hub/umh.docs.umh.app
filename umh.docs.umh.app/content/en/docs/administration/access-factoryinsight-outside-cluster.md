@@ -3,7 +3,7 @@ title: Access Factoryinsight outside the cluster
 content_type: task
 description: |
   This page describes how to access Factoryinsight from outside the cluster.
-weight: 50
+weight: 20
 ---
 
 <!-- overview -->

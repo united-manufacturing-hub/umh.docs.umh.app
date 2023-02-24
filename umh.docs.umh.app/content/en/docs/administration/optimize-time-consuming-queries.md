@@ -4,7 +4,7 @@ content_type: task
 description: |
   This page shows how to optimize the database in order to reduce the time needed 
   to execute queries.
-weight: 50
+weight: 100
 minimum_version: 0.9.4
 maximum_version: 0.9.6
 ---

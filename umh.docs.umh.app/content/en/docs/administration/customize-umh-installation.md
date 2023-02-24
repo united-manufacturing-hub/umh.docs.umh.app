@@ -3,7 +3,7 @@ title: "Customize the United Manufacturing Hub Installation"
 content_type: task
 description: |
   This page describes how to customize the United Manufacturing Hub installation.
-weight: 50
+weight: 10
 ---
 
 <!-- overview -->
