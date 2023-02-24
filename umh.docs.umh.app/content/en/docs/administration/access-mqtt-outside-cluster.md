@@ -23,10 +23,10 @@ You can enable external access from the MQTT Broker configuration.
 
 1. From {{< resource type="lens" name="name" >}}, go to **Network** > **Services**.
 2. Find the `{{< resource type="service" name="mqtt" >}}` Service.
-   {{< notice note >}}
+   {{% notice note %}}
    The MQTT service name has changed since version 0.9.10. If you are using an older
-   version, use <code>{{< resource type="service" name="mqtt-verne" >}}</code> instead of
-   <code>{{< resource type="service" name="mqtt" >}}</code>.
+   version, use `{{< resource type="service" name="mqtt-verne" >}}` instead of
+   `{{< resource type="service" name="mqtt" >}}`.
    {{< /notice >}}
 3. Click the **Edit** button.
 4. Scroll down to the `status.loadBalancer` section and change it to the following:
@@ -49,7 +49,22 @@ the external IP address of the node as the hostname. The port is 1883.
 
 ## Security considerations
 
-TODO
+There are some security considerations to keep in mind when exposing the MQTT broker.
+
+By default, the MQTT broker is configured to allow anonymous connections. This
+means that anyone can connect to the broker without providing any credentials.
+This is not recommended for production environments.
+
+To secure the MQTT broker, you can configure it to require authentication. For
+that, you can either [enable RBAC](/docs/production-guide/security/hivemq-rbac/)
+or [set up HiveMQ PKI](/docs/production-guide/security/hivemq-pki/) (recommended
+for production environments).
+
+{{% notice note %}}
+If you are using a version of the United Manufacturing Hub older than 0.9.10,
+then you need to [change the ACL configuration](/docs/production-guide/security/vernemq-acl/)
+to allow your MQTT client to connect to the broker.
+{{< /notice >}}
 
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
