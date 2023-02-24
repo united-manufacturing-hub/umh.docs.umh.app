@@ -40,21 +40,24 @@ broker service name as the hostname. The MQTT broker service name is
 
 ## Connect to the MQTT broker from outside the Kubernetes cluster
 
-By default, the MQTT broker does not have an external IP address. To enable it,
-open {{< resource type="lens" name="name" >}} and go to the **Services** page. Find the `{{< resource type="service" name="mqtt" >}}`
-Service and click the **Edit** button. Scroll down to the `status.loadBalancer`
-section and change it to the following:
+By default, the MQTT broker does not have an external IP address. Follow these
+steps to enable it:
 
-```yaml
-status:
-  loadBalancer:
-    ingress:
-    - ip: <external-ip>
-```
+1. Open {{< resource type="lens" name="name" >}} and go to the **Services** page.
+2. Find the `{{< resource type="service" name="mqtt" >}}` Service
+3. Click the **Edit** button.
+4. Scroll down to the `status.loadBalancer` section and change it to the following:
 
-Replace `<external-ip>` with the external IP address of the node. Then scroll to
-the `spec.type` section and change it from ClusterIp to LoadBalancer. Click
-**Save** to apply the changes.
+   ```yaml
+   status:
+     loadBalancer:
+       ingress:
+       - ip: <external-ip>
+   ```
+
+   Replace `<external-ip>` with the external IP address of the node.
+5. Scroll to the `spec.type` section and change the value from ClusterIp to LoadBalancer.
+6. Click **Save** to apply the changes.
 
 Now you can connect to the MQTT broker from outside the Kubernetes cluster using
 the external IP address of the node as the hostname. The port is 1883.

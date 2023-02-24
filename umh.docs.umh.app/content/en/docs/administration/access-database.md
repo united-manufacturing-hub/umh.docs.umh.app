@@ -73,21 +73,21 @@ You can use [pgAdmin](https://www.pgadmin.org/) to access the database. To do so
 you need to install the pgAdmin client on your machine. For more information, see
 the [pgAdmin documentation](https://www.pgadmin.org/docs/pgadmin4/latest/index.html).
 
-Once you have installed the client, you can add a new server from the main window.
+1. Once you have installed the client, you can add a new server from the main window.
 
-![pgAdmin main window](/images/administration/pgadmin-main-window.png)
+   ![pgAdmin main window](/images/administration/pgadmin-main-window.png)
 
-In the **General** tab, give the server a meaningful name. In the **Connection**
-tab, enter the database credentials:
+2. In the **General** tab, give the server a meaningful name. In the **Connection**
+   tab, enter the database credentials:
 
-- The **Host name/address** is localhost.
-- The **Port** is the port you forwarded.
-- The **Maintenance database** is postgres.
-- The **Username** and **Password** are the ones you found in the Secret.
+   - The **Host name/address** is localhost.
+   - The **Port** is the port you forwarded.
+   - The **Maintenance database** is postgres.
+   - The **Username** and **Password** are the ones you found in the Secret.
 
-Click **Save** to save the server.
+3. Click **Save** to save the server.
 
-![pgAdmin connection window](/images/administration/pgadmin-connection-window.png)
+   ![pgAdmin connection window](/images/administration/pgadmin-connection-window.png)
 
 You can now connect to the database by double-clicking the server.
 

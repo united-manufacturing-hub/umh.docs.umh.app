@@ -49,6 +49,8 @@ and explore the data.
     DBSIZE
     ```
 
+For more information about Redis commands, see the [Redis documentation](https://redis.io/commands).
+
 <!-- discussion -->
 
 <!-- Optional section; add links to information related to this topic. -->

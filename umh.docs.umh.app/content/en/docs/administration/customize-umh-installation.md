@@ -24,11 +24,12 @@ the installation.
 Independently of the installation method you choose, you can customize the United
 Manufacturing Hub installation by changing the Helm chart values.
 
-To do so after installing the United Manufacturing Hub, you can open {{< resource type="lens" name="name" >}} and
-navigate to the **Helm** > **Releases** page. Then, click on the **Upgrade**
-button and edit the values in the `_000_commonConfig_` section.
+1. Open {{< resource type="lens" name="name" >}} and navigate to the **Helm** > **Releases**
+   page.
+2. Click on the **Upgrade** button
+3. Edit the values in the `_000_commonConfig_` section.
 
-You can also edit the values in the following sections, but be aware that you
+You can also edit the values in the subsequent sections, but be aware that you
 should really know what you are doing, as you might break the installation.
 
 To get more information about the values you can change, see the
@@ -38,3 +39,6 @@ To get more information about the values you can change, see the
 
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
+
+- See [Access the Database](/docs/administration/access-database.md)
+- See [Change the Language in Factoryinsight](/docs/administration/change-factoryinsight-language.md)

@@ -23,13 +23,14 @@ menu in the datasource takes a long time to load or does not load at all.
 
 <!-- steps -->
 
-## Create an index
-
-Indexes are used to speed up queries. Follow these steps to create one:
+## Open a shell in the database container
 
 {{< include "open-database-shell.md" >}}
 
-5. Execute this command:
+## Create an index
+
+Indexes are used to speed up queries. Run this query to create an index on the
+`processvaluetable` table:
 
    ```sql
    CREATE INDEX ON processvaluetable(valuename, asset_id) WITH (timescaledb.transaction_per_chunk);
