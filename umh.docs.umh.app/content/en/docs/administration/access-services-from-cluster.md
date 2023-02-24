@@ -38,10 +38,10 @@ To do that, when you create the MQTT node, you can use the service name
 {{< resource type="service" name="mqtt" >}} as the host name and one the ports
 listed in the **Ports** column.
 
-{{< notice note >}}
+{{% notice note %}}
 The MQTT service name has changed since version 0.9.10. If you are using an older
-version, use <code>{{< resource type="service" name="mqtt-verne" >}}</code> instead of
-<code>{{< resource type="service" name="mqtt" >}}</code>.
+version, use `{{< resource type="service" name="mqtt-verne" >}}` instead of
+`{{< resource type="service" name="mqtt" >}}`.
 {{< /notice >}}
 
 <!-- Optional section; add links to information related to this topic. -->
