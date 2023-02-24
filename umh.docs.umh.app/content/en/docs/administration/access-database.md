@@ -3,21 +3,41 @@ title: "Access the Database"
 content_type: task
 description: |
   This page describes how to access the United Manufacturing Hub database to 
-  perform SQL operations.
+  perform SQL operations using a database client, the CLI or Grafana.
 weight: 50
 ---
 
 <!-- overview -->
 
-There are two main ways to access the database. You can use a database client with
-a graphical interface, or you can use the command line interface (recommended
-for experienced users).
+There are multiple ways to access the database. If you want to just visualize data,
+then using Grafana or a database client is the easiest way. If you need to also
+perform SQL commands, then using a database client or the CLI are the best options.
 
-Both are suitable for performing SQL operations.
+Generally, using a database client gives you the most flexibility, since you can
+both visualize the data and manipulate the database. However, it requires you to
+install a database client on your machine.
+
+Using the CLI gives you more control over the database, but it requires you to
+have a good understanding of SQL.
+
+Grafana, on the other hand, is for visualizing data. It is a good option if
+you just want to see the data in a dashboard and don't need to manupulate it.
 
 ## {{% heading "prerequisites" %}}
 
 {{< include "task-tutorial-prereqs.md" >}}
+
+### Get the database credentials
+
+If you are not using the CLI, you need to know the database credentials. You can
+find them in the **{{< resource type="secret" name="db-psw">}}** Secret. By
+default, the username is factoryinsight and the password is changeme.
+
+```bash
+...
+ALTER USER factoryinsight WITH PASSWORD 'changeme';
+...
+```
 
 <!-- steps -->
 
@@ -38,23 +58,14 @@ For the sake of this tutorial, pgAdmin will be used as an example, but other cli
 have similar functionality. Refer to the specific client documentation for more
 information.
 
-### Get the database credentials
+### Forward the database port to your local machine
 
-To access the database using a database client, you need to know the database
-credentials. You can find them in the **{{< resource type="secret" name="db-psw">}}**
-Secret. By default, the username is factoryinsight and the password is changeme.
-
-```bash
-...
-ALTER USER factoryinsight WITH PASSWORD 'changeme';
-...
-```
-
-You also need to forward the database port to your local machine. To do so, from
-the **Pod** tab in {{< resource type="lens" name="name" >}}, click the **{{< resource type="pod" name="database" >}}**
-Service. In the **Pod Details** window, click the **Forward** button next to the
-postgresql:5432/TCP port. You can choose to use a random port or a specific port.
-Click **Start** to forward the port.
+1. From the **Pods** section in {{< resource type="lens" name="name" >}}, find
+   the **{{< resource type="pod" name="database" >}}** Pod.
+2. In the **Pod Details** window, click the **Forward** button next to the
+   postgresql:5432/TCP port.
+3. Enter a port number, such as 5432, and click **Start**. You can disable the
+   **Open in browser** option if you don't want to open the port in your browser.
 
 ### Using pgAdmin
 
@@ -88,28 +99,63 @@ for more information on how to use the client to perform database operations.
 
 ## Access the database using the command line interface
 
-You can also access the database from the command line using the `psql` command
+You can access the database from the command line using the `psql` command
 directly from the **{{< resource type="pod" name="database" >}}** Pod.
+
+You will not need credentials to access the database from the Pod's CLI.
+
+### Open a shell in the database Pod
 
 {{< include "open-database-shell.md" >}}
 
-5. Execute any SQL commands. For example, to create an index on the processValueTable:
+### Perform SQL commands
+
+Once you have a shell in the database, you can perform
+[SQL commands](https://www.postgresql.org/docs/current/sql-commands.html).
+
+1. For example, to create an index on the processValueTable:
 
    ```sql
    CREATE INDEX ON processvaluetable (valuename);
    ```
 
-6. Exit the postgres shell:
+2. When you are done, exit the postgres shell:
 
    ```bash
     exit
     ```
+
+## Access the database using Grafana
+
+You can use Grafana to visualize data from the database.
+
+### Add PostgreSQL as a data source
+
+1. Open the Grafana dashboard in your browser.
+2. From the **Configuration** (gear) icon, select **Data Sources**.
+3. Click **Add data source** and select PostgreSQL.
+4. Configure the connection to the database:
+
+   - The **Host** is {{< resource type="service-cluster" name="database" >}}.
+   - The **Database** is factoryinsight.
+   - The **User** and **Password** are the ones you found in the Secret.
+   - Set **TLS/SSL Mode** to require.
+   - Enable **TimescaleDB**.
+
+   Everything else can be left as the default.
+
+   ![Grafana PostgreSQL data source](/images/administration/grafana-postgresql-data-source.png)
+5. Click **Save & Test** to save the data source.
+6. Now click on **Explore** to start querying the database.
+7. You can also create dashboards using the newly created data source.
 
 <!-- discussion -->
 
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
 
-- See [SQL commands](https://www.postgresql.org/docs/current/sql-commands.html)
+- See a list of [SQL commands](https://www.postgresql.org/docs/current/sql-commands.html)
 - See how to [Delete Assets from the Database](/docs/administration/delete-assets/)
 - See how to [Reduce the Database Size](/docs/administration/reduce-database-size/)
+- See how to [Backup and Restore the Database](TODO)
+- See how to [Expose Grafana to the Internet](/docs/administration/expose-grafana-to-internet/)

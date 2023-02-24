@@ -49,6 +49,9 @@ other = "united-manufacturing-hub-mqtt"
 [resource_service_mqtt-verne]
 other = "united-manufacturing-hub-vernemq"
 
+[resource_service-cluster_database]
+other = "united-manufacturing-hub.united-manufacturing-hub.svc.cluster.local:5432"
+
 [resource_secret_cache-psw]
 other = "redis-secret"
 
