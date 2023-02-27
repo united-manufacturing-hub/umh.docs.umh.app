@@ -16,5 +16,5 @@ of contributing to the United Manufacturing Hub or its documentation.
 
 *UMH Systems welcomes improvements from all contributors, new and experienced!*
 
-The first place to start is the [Getting Started With Contributing](/docs/developer/contribute/getting-started/)
+The first place to start is the [Getting Started With Contributing](/docs/development/contribute/getting-started/)
 page. It provides a high-level overview of the contribution process.
