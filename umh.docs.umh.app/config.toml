@@ -85,9 +85,29 @@ favicon = "favicon.png"
 # Menu title if your navbar has a versions selector to access old versions of your site.
 # This menu appears only if you have at least one [params.versions] set.
 version_menu = "Version"
+
+latest = "v0.9.11"
+
+fullversion = "v0.9.11"
+version = "0.9.11"
+githubbranch = "main"
+docsbranch = "main"
+deprecated = false
+currentUrl = "https://umh.docs.umh.app/docs/"
+
 [[params.versions]]
-    version = "latest"
-    url = "https://docs.docs.umh.app"
+    fullversion = "v0.9.11"
+    version = "0.9.11"
+    githubbranch = "0.9.11"
+    docsbranch = "main"
+    url = "https://umh.docs.umh.app/"
+
+[[params.versions]]
+    fullversion = "v0.9.10"
+    version = "0.9.10"
+    githubbranch = "0.9.10"
+    docsbranch = "feat/9/add-contributing-to-documentation-section"
+    url = "http://localhost:1313/docs/"
 
 # Flag used in the "version-banner" partial to decide whether to display a 
 # banner on every page indicating that this is an archived version of the docs.
