@@ -10,7 +10,7 @@ In this chapter, we'll guide you through connecting to our Kubernetes cluster us
 
 ![Untitled](/images/getstarted/managingTheSystem/getStartedUMHSimplifiedpng.png)
 
-### Setting up UMHLens 
+###  Connect to UMH
 
 1. Download & install UMHLens [here](https://github.com/united-manufacturing-hub/UMHLens/releases).
 2. If you installed the UMH using the management console, you should see a cluster named "k3d-united-manufacturing-hub" under **Browse**. Click on it to connect.
@@ -25,7 +25,7 @@ In this chapter, we'll guide you through connecting to our Kubernetes cluster us
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingForwarding.png?width=75%)
 
 
-### Importing Node-RED flows
+### Import flows to Node-RED
 
 1. Access the Node-RED Web UI. To do this, click on the service and forward the port as shown above. When the UI opens in the browser, add `nodered` to the URL as shown in the figure below to avoid the [cannot get error]().
 
@@ -41,7 +41,7 @@ In this chapter, we'll guide you through connecting to our Kubernetes cluster us
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingDeploy.png?width=75%)
 
 
-### Importing Grafana flow
+### Import flows to Grafana & view dashboard
 
 1. Go into UMHLens and forward the grafana service as you did with node-red. To log in, you need the grafana Secrets, which you can find in UMHLens under **Config** -> **Secrets** -> **Grafana-Secret**. Click on the eye to display the username and password and enter it in grafana.
 
