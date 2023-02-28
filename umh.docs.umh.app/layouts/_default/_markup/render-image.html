@@ -12,40 +12,6 @@
 <figure>
     <a onclick='toggleLightBoxOn("{{ $dst | md5 }}-lightbox")'>
         <picture>
-            {{ $isJPG := eq (path.Ext $dst) ".jpg" }}
-            {{ $isPNG := eq (path.Ext $dst) ".png" }}
-
-            {{ if ($isJPG) -}}
-            {{ $avifPath:= replace $dst ".jpg" ".avif" }}
-            {{ $avifPathStatic:= printf "static/%s" $avifPath }}
-
-            {{ if (fileExists $avifPathStatic) -}}
-            <source srcset="{{ $avifPath | safeURL }}" type="image/avif" >
-            {{- end }}
-
-            {{ $webpPath:= replace $dst ".jpg" ".webp" }}
-            {{ $webpPathStatic:= printf "static/%s" $webpPath }}
-
-            {{ if (fileExists $webpPathStatic) -}}
-            <source srcset="{{ $webpPath | safeURL }}" type="image/webp" >
-            {{- end }}
-            {{- end }}
-
-            {{ if ($isPNG) -}}
-            {{ $avifPath:= replace $dst ".png" ".avif" }}
-            {{ $avifPathStatic:= printf "static/%s" $avifPath }}
-
-            {{ if (fileExists $avifPathStatic) -}}
-            <source srcset="{{ $avifPath | safeURL }}" type="image/avif" >
-            {{- end }}
-
-            {{ $webpPath:= replace $dst ".png" ".webp" }}
-            {{ $webpPathStatic:= printf "static/%s" $webpPath }}
-
-            {{ if (fileExists $webpPathStatic) -}}
-            <source srcset="{{ $webpPath | safeURL }}" type="image/webp" >
-            {{- end }}
-            {{- end }}
 
             {{ $img := imageConfig (add "/static" ($dst | safeURL)) }}
 
@@ -60,6 +26,49 @@
             <!-- Check if $paramsMap contains height -->
             {{ if (isset $paramsMap "height") -}}
             {{ $imgHeight = delimit $paramsMap.height "" }}
+            {{- end }}
+
+            {{ $isJPG := eq (path.Ext $dst) ".jpg" }}
+            {{ $isPNG := eq (path.Ext $dst) ".png" }}
+
+            {{ if ($isJPG) -}}
+            {{ $avifPath:= replace $dst ".jpg" ".avif" }}
+            {{ $avifPathStatic:= printf "static/%s" $avifPath }}
+
+            {{ if (fileExists $avifPathStatic) -}}
+            <source srcset="{{ $avifPath | safeURL }}" type="image/avif"
+                    width="{{ $imgWidth }}"
+                    height="{{ $imgHeight }}">
+            {{- end }}
+
+            {{ $webpPath:= replace $dst ".jpg" ".webp" }}
+            {{ $webpPathStatic:= printf "static/%s" $webpPath }}
+
+            {{ if (fileExists $webpPathStatic) -}}
+            <source srcset="{{ $webpPath | safeURL }}" type="image/webp"
+                    width="{{ $imgWidth }}"
+                    height="{{ $imgHeight }}">
+            {{- end }}
+            {{- end }}
+
+            {{ if ($isPNG) -}}
+            {{ $avifPath:= replace $dst ".png" ".avif" }}
+            {{ $avifPathStatic:= printf "static/%s" $avifPath }}
+
+            {{ if (fileExists $avifPathStatic) -}}
+            <source srcset="{{ $avifPath | safeURL }}" type="image/avif"
+                    width="{{ $imgWidth }}"
+                    height="{{ $imgHeight }}" >
+            {{- end }}
+
+            {{ $webpPath:= replace $dst ".png" ".webp" }}
+            {{ $webpPathStatic:= printf "static/%s" $webpPath }}
+
+            {{ if (fileExists $webpPathStatic) -}}
+            <source srcset="{{ $webpPath | safeURL }}" type="image/webp"
+                    width="{{ $imgWidth }}"
+                    height="{{ $imgHeight }}" >
+            {{- end }}
             {{- end }}
 
             <img
