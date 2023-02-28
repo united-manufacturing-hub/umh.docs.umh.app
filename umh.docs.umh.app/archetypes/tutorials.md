@@ -1,6 +1,9 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
 content_type: tutorial
+description: |
+    TODO
+weight: 10
 ---
 
 <!-- overview -->
