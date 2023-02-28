@@ -1,0 +1,137 @@
+[
+    {
+        "id": "2253f56be25b705f",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "6990704b44cf34db",
+        "type": "mqtt in",
+        "z": "2253f56be25b705f",
+        "name": "",
+        "topic": "ia/raw/development/ioTSensors/Temperature",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "4e10a7a2d04e4e3d",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 230,
+        "y": 160,
+        "wires": [
+            [
+                "9475f577a189f08a"
+            ]
+        ]
+    },
+    {
+        "id": "60adfba8fedcb376",
+        "type": "mqtt out",
+        "z": "2253f56be25b705f",
+        "name": "",
+        "topic": "ia/factoryinsight/getstarted/test/processValue",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "4e10a7a2d04e4e3d",
+        "x": 950,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "0a45bf85af337586",
+        "type": "function",
+        "z": "2253f56be25b705f",
+        "name": "",
+        "func": "msg.payload = {\n    \"timestamp_ms\":Date.now(),\n    \"temperature\":parseFloat(msg.payload)\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 160,
+        "wires": [
+            [
+                "60adfba8fedcb376"
+            ]
+        ]
+    },
+    {
+        "id": "9475f577a189f08a",
+        "type": "json",
+        "z": "2253f56be25b705f",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 510,
+        "y": 160,
+        "wires": [
+            [
+                "0a45bf85af337586"
+            ]
+        ]
+    },
+    {
+        "id": "c6c7268ccd781a49",
+        "type": "comment",
+        "z": "2253f56be25b705f",
+        "name": "Input / Data-Simulator",
+        "info": "",
+        "x": 220,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "7a166f04d93eb05f",
+        "type": "comment",
+        "z": "2253f56be25b705f",
+        "name": "Output",
+        "info": "",
+        "x": 950,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "5db8270f9e2f892f",
+        "type": "comment",
+        "z": "2253f56be25b705f",
+        "name": "formatting to UMH-Datamodel",
+        "info": "",
+        "x": 620,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "4e10a7a2d04e4e3d",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "united-manufacturing-hub-hivemqce-local-service",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    }
+]
