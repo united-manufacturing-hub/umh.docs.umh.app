@@ -10,7 +10,7 @@ weight = 3000
 The United Manufacturing Hub has several simulators. These simulators simulate different data types/protocols such as MQTT, PackML or OPC/UA. In this chapter we will take the MQTT simulated data and show you how to format it into the [UMH data model](https://learn.umh.app/docs/datamodel/).
 
 
-### Creating Node-RED flow with simulated MQTT-Data
+## Creating Node-RED flow with simulated MQTT-Data
 
 1. Access Node-RED with UMHLens.
 2. From the left-hand column, drag a **mqtt-in** node, a **mqtt-out** node, and a **debug** node into your flow.

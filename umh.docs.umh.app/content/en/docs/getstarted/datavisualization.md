@@ -7,6 +7,10 @@ weight = 4000
 
 
 The next step is to visualize the data. In this chapter, we will be creating a Grafana dashboard that is based on the Node-RED flow we created in the previous chapter. The dashboard will display the temperature readings and temperature warnings.
+
+
+## Creating a Grafana dashboard
+
 1. Open Grafana with UMHLens and enter the secrets also found in UMHLens.
 2. Once you are in Grafana navigate to the left and click on **New dashboard**.
 
