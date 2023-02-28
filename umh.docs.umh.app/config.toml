@@ -102,13 +102,6 @@ currentUrl = "https://umh.docs.umh.app/docs/"
     docsbranch = "main"
     url = "https://umh.docs.umh.app/"
 
-[[params.versions]]
-    fullversion = "v0.9.10"
-    version = "0.9.10"
-    githubbranch = "0.9.10"
-    docsbranch = "feat/9/add-contributing-to-documentation-section"
-    url = "http://localhost:1313/docs/"
-
 # Flag used in the "version-banner" partial to decide whether to display a 
 # banner on every page indicating that this is an archived version of the docs.
 # Set this flag to "true" if you want to display the banner.
