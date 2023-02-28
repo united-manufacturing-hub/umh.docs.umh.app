@@ -1,0 +1,4 @@
+<!-- heading -->
+{{- $heading := .Get 0 -}}
+{{- $heading := printf "heading_%s" $heading -}}
+{{- T $heading | safeHTML -}}
