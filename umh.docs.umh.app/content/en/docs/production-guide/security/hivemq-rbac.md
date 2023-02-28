@@ -11,7 +11,7 @@ minimum_version = "0.9.10"
 <!-- steps -->
 ## Enabling RBAC
 
-1. Go to the **Releases** tab in Lens.
+1. Go to the **Releases** tab in {{< resource type="lens" name="name" >}}.
 2. Select the release and click **Upgrade**. This opens the values file.
 3. Find the `mqtt_broker` section.
 4. Locate the `rbacEnabled` parameter and change its value from `false` to `true`.
@@ -26,7 +26,7 @@ Now all MQTT connections require password authentication with the following defa
 
 ## Changing the default credentials
 
-1. Open the shell of the HiveMQ pod in Lens.
+1. Open the shell of the HiveMQ pod in {{< resource type="lens" name="name" >}}.
 2. Navigate to the installation directory of the RBAC extension.
 
    ```bash

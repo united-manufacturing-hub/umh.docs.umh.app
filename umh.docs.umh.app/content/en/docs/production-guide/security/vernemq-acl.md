@@ -12,7 +12,7 @@ maximum_version = "0.9.5"
 
 ## Changing VerneMQ ACL configuration
 
-1. Go to the **Releases** tab in Lens.
+1. Go to the **Releases** tab in {{< resource type="lens" name="name" >}}.
 2. Search for `AclConfig`
 3. There you can adjust it. To allow unrestricted access, add in the first line `pattern #`
 
