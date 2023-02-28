@@ -1,8 +1,14 @@
+[heading_cleanup]
+other = "Cleaning up"
+
 [heading_discussion]
 other = "Discussion"
 
 [heading_envvars]
 other = "Environment variables"
+
+[heading_feedback]
+other = "Feedback"
 
 [heading_examples]
 other = "Examples"
@@ -19,11 +25,20 @@ other = "Before you begin"
 [heading_seealso]
 other = "See Also"
 
+[heading_synopsis]
+other = "Synopsis"
+
 [heading_whatsnext]
 other = "What's next"
 
+[version_check_mustbe]
+other = "Your United Manufacturing Hub must be version "
+
+[version_check_mustbeorlater]
+other = "Your United Manufacturing Hub must be at or later than version "
+
 [version_check_tocheck]
-other = "To check the United Manufacturing Hub version, enter this command and look for the appVersion field:"
+other = "To check the United Manufacturing Hub version, open UMHLens / OpenLens and go to **Helm** > **Releases**. The version is listed in the **Version** column."
 
 [resource_docker_org]
 other = "unitedmanufacturinghub"
