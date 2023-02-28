@@ -1,18 +1,29 @@
+{{$split := split .Destination "?"}}
+{{$dst := delimit (first 1 $split) ""}}
+{{$params := delimit (last 1 $split) ""}}
+
+<!-- Split params into map using merge -->
+{{ $paramsMap := dict }}
+{{ range $key, $value := split $params "&" }}
+    {{ $keyValue := split $value "=" }}
+    {{ $paramsMap = merge $paramsMap (dict (first 1 $keyValue) (last 1 $keyValue)) }}
+{{ end }}
+
 <figure>
-    <a onclick='toggleLightBoxOn("{{ .Destination | md5 }}-lightbox")'>
+    <a onclick='toggleLightBoxOn("{{ $dst | md5 }}-lightbox")'>
         <picture>
-            {{ $isJPG := eq (path.Ext .Destination) ".jpg" }}
-            {{ $isPNG := eq (path.Ext .Destination) ".png" }}
+            {{ $isJPG := eq (path.Ext $dst) ".jpg" }}
+            {{ $isPNG := eq (path.Ext $dst) ".png" }}
 
             {{ if ($isJPG) -}}
-            {{ $avifPath:= replace .Destination ".jpg" ".avif" }}
+            {{ $avifPath:= replace $dst ".jpg" ".avif" }}
             {{ $avifPathStatic:= printf "static/%s" $avifPath }}
 
             {{ if (fileExists $avifPathStatic) -}}
             <source srcset="{{ $avifPath | safeURL }}" type="image/avif" >
             {{- end }}
 
-            {{ $webpPath:= replace .Destination ".jpg" ".webp" }}
+            {{ $webpPath:= replace $dst ".jpg" ".webp" }}
             {{ $webpPathStatic:= printf "static/%s" $webpPath }}
 
             {{ if (fileExists $webpPathStatic) -}}
@@ -21,14 +32,14 @@
             {{- end }}
 
             {{ if ($isPNG) -}}
-            {{ $avifPath:= replace .Destination ".png" ".avif" }}
+            {{ $avifPath:= replace $dst ".png" ".avif" }}
             {{ $avifPathStatic:= printf "static/%s" $avifPath }}
 
             {{ if (fileExists $avifPathStatic) -}}
             <source srcset="{{ $avifPath | safeURL }}" type="image/avif" >
             {{- end }}
 
-            {{ $webpPath:= replace .Destination ".png" ".webp" }}
+            {{ $webpPath:= replace $dst ".png" ".webp" }}
             {{ $webpPathStatic:= printf "static/%s" $webpPath }}
 
             {{ if (fileExists $webpPathStatic) -}}
@@ -36,34 +47,47 @@
             {{- end }}
             {{- end }}
 
-            {{ $img := imageConfig (add "/static" (.Destination | safeURL)) }}
+            {{ $img := imageConfig (add "/static" ($dst | safeURL)) }}
+
+            {{ $imgWidth := $img.Width}}
+            {{ $imgHeight := $img.Height}}
+
+            <!-- Check if $paramsMap contains width -->
+            {{ if (isset $paramsMap "width") -}}
+            {{ $imgWidth = delimit $paramsMap.width "" }}
+            {{- end }}
+
+            <!-- Check if $paramsMap contains height -->
+            {{ if (isset $paramsMap "height") -}}
+            {{ $imgHeight = delimit $paramsMap.height "" }}
+            {{- end }}
 
             <img
-                    src="{{ .Destination | safeURL }}"
+                    src="{{ $dst | safeURL }}"
                     alt="{{ .Text }}"
                     loading="lazy"
                     decoding="async"
-                    width="{{ $img.Width }}"
-                    height="{{ $img.Height }}"
+                    width="{{ $imgWidth }}"
+                    height="{{ $imgHeight }}"
             />
         </picture>
     </a>
 </figure>
 
-<a href="#_" class="lightbox" id="{{ .Destination | md5 }}-lightbox">
+<a href="#_" class="lightbox" id="{{ $dst | md5 }}-lightbox">
     <picture>
-        {{ $isJPG := eq (path.Ext .Destination) ".jpg" }}
-        {{ $isPNG := eq (path.Ext .Destination) ".png" }}
+        {{ $isJPG := eq (path.Ext $dst) ".jpg" }}
+        {{ $isPNG := eq (path.Ext $dst) ".png" }}
 
         {{ if ($isJPG) -}}
-        {{ $avifPath:= replace .Destination ".jpg" ".avif" }}
+        {{ $avifPath:= replace $dst ".jpg" ".avif" }}
         {{ $avifPathStatic:= printf "static/%s" $avifPath }}
 
         {{ if (fileExists $avifPathStatic) -}}
         <source srcset="{{ $avifPath | safeURL }}" type="image/avif" >
         {{- end }}
 
-        {{ $webpPath:= replace .Destination ".jpg" ".webp" }}
+        {{ $webpPath:= replace $dst ".jpg" ".webp" }}
         {{ $webpPathStatic:= printf "static/%s" $webpPath }}
 
         {{ if (fileExists $webpPathStatic) -}}
@@ -72,14 +96,14 @@
         {{- end }}
 
         {{ if ($isPNG) -}}
-        {{ $avifPath:= replace .Destination ".png" ".avif" }}
+        {{ $avifPath:= replace $dst ".png" ".avif" }}
         {{ $avifPathStatic:= printf "static/%s" $avifPath }}
 
         {{ if (fileExists $avifPathStatic) -}}
         <source srcset="{{ $avifPath | safeURL }}" type="image/avif" >
         {{- end }}
 
-        {{ $webpPath:= replace .Destination ".png" ".webp" }}
+        {{ $webpPath:= replace $dst ".png" ".webp" }}
         {{ $webpPathStatic:= printf "static/%s" $webpPath }}
 
         {{ if (fileExists $webpPathStatic) -}}
@@ -87,10 +111,10 @@
         {{- end }}
         {{- end }}
 
-        {{ $img := imageConfig (add "/static" (.Destination | safeURL)) }}
+        {{ $img := imageConfig (add "/static" ($dst | safeURL)) }}
 
         <img
-                src="{{ .Destination | safeURL }}"
+                src="{{ $dst | safeURL }}"
                 alt="{{ .Text }}"
                 loading="lazy"
                 decoding="async"
