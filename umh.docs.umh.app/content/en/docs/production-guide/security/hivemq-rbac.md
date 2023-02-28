@@ -4,6 +4,11 @@ description = "This article explains how to enable [Role-Based Access Control](h
 minimum_version = "0.9.10"
 +++
 
+## {{% heading "prerequisites" %}}
+
+{{< include "task-tutorial-prereqs.md" >}}
+
+<!-- steps -->
 ## Enabling RBAC
 
 1. Go to the **Releases** tab in Lens.
@@ -44,3 +49,8 @@ Now all MQTT connections require password authentication with the following defa
 
 6. Replace the password hash with the one generated in step 3.
 7. Save the changes.
+
+<!-- Optional section; add links to information related to this topic. -->
+## {{% heading "whatsnext" %}}
+
+- [Setting up HiveMQ PKI](/docs/production-guide/security/hivemq-pki/)
