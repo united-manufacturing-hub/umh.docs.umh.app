@@ -1,1 +1,0 @@
-helm show chart <chart>

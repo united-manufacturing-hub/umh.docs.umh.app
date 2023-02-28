@@ -1,0 +1,1 @@
+helm install united-manufacturing-hub united-manufacturing-hub -n united-manufacturing-hub
