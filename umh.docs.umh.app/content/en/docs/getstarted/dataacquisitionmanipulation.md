@@ -19,10 +19,10 @@ The United Manufacturing Hub has several simulators. These simulators simulate d
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqMan1.png)
 4. Double-click on the **mqtt-in** node and add a new MQTT broker. To do so, click on **Edit** and use the service name of HiveMQ as the host (located in UMHLens under **services** -> name). Leave the port as autoconfigured and click on **Add** to save your changes.
 
-   ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManServicename.png)
+   ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManServicename.png?width=75%)
 5. To view all incoming messages from a specific topic, type `ia/#` under **Topic** and click on **Done**.
 
-   ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManiaRaw.png)
+   ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManiaRaw.png?width=75%)
 6. To apply the changes, click on **Deploy** located at the top right of the screen. Once the changes have been deployed, you can view the debug information by clicking on **Debug-Messages** located under **Deploy**. 
 
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManDebugDeploy.png)
