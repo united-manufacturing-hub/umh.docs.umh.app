@@ -12,7 +12,7 @@ However, if you want to try around locally, we recommend you try out the followi
 
 ### Grafana Canvas
 
-If you're interested in creating visually appealing Grafana dashboards, you might want to try Grafana-Canvas. In our previous [blog article](), we explained why Grafana-Canvas is a valuable addition to your standard Grafana dashboard. If you'd like to learn how to build one, check out our [tutorial](https://learn.umh.app/guides/advanced/data-visualization/canvas-grafana/).
+If you're interested in creating visually appealing Grafana dashboards, you might want to try Grafana-Canvas. In our previous [blog article](https://www.umh.app/post/building-shopfloor-dashboards-with-the-united-manufacturing-hub-and-grafana-canvas), we explained why Grafana-Canvas is a valuable addition to your standard Grafana dashboard. If you'd like to learn how to build one, check out our [tutorial](https://learn.umh.app/guides/advanced/data-visualization/canvas-grafana/).
 
 ![Untitled](/images/getstarted/movingToProduction/getStartedMTPCanvas.png)
 
