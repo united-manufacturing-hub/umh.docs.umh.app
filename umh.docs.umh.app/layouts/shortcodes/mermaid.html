@@ -1,0 +1,19 @@
+<script async type="application/javascript" src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js">
+  var config = {
+    startOnLoad:true,
+    theme:'{{ if .Get "theme" }}{{ .Get "theme" }}{{ else }}dark{{ end }}',
+    align:'{{ if .Get "align" }}{{ .Get "align" }}{{ else }}center{{ end }}'
+  };
+  mermaid.initialize(config);
+</script>
+<figure>
+<div class="mermaid">
+    {{.Inner}}
+</div>
+</figure>
+<!-- Hide content and error if JS is disabled. -->
+<noscript>
+  <div class="alert alert-secondary callout" role="alert">
+    <em class="javascript-required">{{ T "javascript_required" | markdownify }}</em>
+  </div>
+</noscript>
