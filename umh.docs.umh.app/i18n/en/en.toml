@@ -1,0 +1,80 @@
+[heading_cleanup]
+other = "Cleaning up"
+
+[heading_discussion]
+other = "Discussion"
+
+[heading_envvars]
+other = "Environment variables"
+
+[heading_feedback]
+other = "Feedback"
+
+[heading_examples]
+other = "Examples"
+
+[heading_objectives]
+other = "Objectives"
+
+[heading_options]
+other = "Options"
+
+[heading_prerequisites]
+other = "Before you begin"
+
+[heading_seealso]
+other = "See Also"
+
+[heading_synopsis]
+other = "Synopsis"
+
+[heading_whatsnext]
+other = "What's next"
+
+[version_check_mustbe]
+other = "Your United Manufacturing Hub must be version "
+
+[version_check_mustbeorlater]
+other = "Your United Manufacturing Hub must be at or later than version "
+
+[version_check_tocheck]
+other = "To check the United Manufacturing Hub version, open UMHLens / OpenLens and go to **Helm** > **Releases**. The version is listed in the **Version** column."
+
+[resource_docker_org]
+other = "unitedmanufacturinghub"
+
+[resource_lens_name]
+other = "UMHLens / OpenLens"
+
+[resource_pod_cache]
+other = "united-manufacturing-hub-redis-node-0"
+
+[resource_pod_database]
+other = "united-manufacturing-hub-timescaledb-0"
+
+[resource_pod_kafka]
+other = "united-manufacturing-hub-kafka-0"
+
+[resource_pod_nodered]
+other = "united-manufacturing-hub-nodered-0"
+
+[resource_service_kafka-ext]
+other = "united-manufacturing-hub-kafka-0-external"
+
+[resource_service_mqtt]
+other = "united-manufacturing-hub-mqtt"
+
+[resource_service_mqtt-verne]
+other = "united-manufacturing-hub-vernemq"
+
+[resource_service-cluster_database]
+other = "united-manufacturing-hub.united-manufacturing-hub.svc.cluster.local:5432"
+
+[resource_secret_cache-psw]
+other = "redis-secret"
+
+[resource_secret_db-psw]
+other = "timescale-post-init-pw"
+
+[resource_statefulset_nodered]
+other = "united-manufacturing-hub-nodered"
