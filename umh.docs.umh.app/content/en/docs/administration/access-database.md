@@ -21,7 +21,7 @@ Using the CLI gives you more control over the database, but it requires you to
 have a good understanding of SQL.
 
 Grafana, on the other hand, is for visualizing data. It is a good option if
-you just want to see the data in a dashboard and don't need to manupulate it.
+you just want to see the data in a dashboard and don't need to manipulate it.
 
 ## {{% heading "prerequisites" %}}
 

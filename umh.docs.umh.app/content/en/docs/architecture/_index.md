@@ -1,9 +1,9 @@
-+++
-title = "Architecture"
-menuTitle = "Architecture"
-description = "TODO"
-weight = 2000
-+++
-
+---
+title: Architecture
+menuTitle: Architecture
+description: |
+    This section includes explains the architecture of the United Manufacturing Hub.
+weight: 2000
+---
 
 

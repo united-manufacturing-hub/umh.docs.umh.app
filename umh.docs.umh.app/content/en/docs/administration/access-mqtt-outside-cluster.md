@@ -8,7 +8,7 @@ weight: 20
 
 <!-- overview -->
 
-By default the MQTT Broker is only available from within the cluster, therefore
+By default, the MQTT Broker is only available from within the cluster, therefore
 you cannot access it from external applications.
 
 You can enable external access from the MQTT Broker configuration.
