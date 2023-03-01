@@ -1,6 +1,6 @@
 +++
-title = "Upgrading"
-menuTitle = "Upgrading"
+title = "Datamodel"
+menuTitle = "Datamodel"
 description = "TODO"
 weight = 3000
 +++
