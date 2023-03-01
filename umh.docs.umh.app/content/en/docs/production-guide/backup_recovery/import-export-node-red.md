@@ -17,6 +17,10 @@ To export Node-RED flows, please follow the steps below:
 
    ![ExportWindow](/images/production-guide/backup_recovery/import-export-node-red/export-nodes.png)
 
+{{< notice info >}}
+This will not export secrets, such as MQTT credentials, certificates, ...
+{{< /notice >}}
+
 
 ## Importing Node-RED Flows
 
