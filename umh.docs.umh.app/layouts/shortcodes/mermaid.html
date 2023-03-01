@@ -1,7 +1,24 @@
-<script async type="application/javascript" src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js">
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
   var config = {
     startOnLoad:true,
     theme:'{{ if .Get "theme" }}{{ .Get "theme" }}{{ else }}dark{{ end }}',
+    {{ if .Get "theme" }}{{ if eq (.Get "theme") "neutral" }}themeVariables: {
+      'fontFamily': 'arial',
+
+      'primaryColor': '#ffffff',
+      'primaryTextColor': '#000000',
+      'primaryBorderColor': '#000000',
+
+      'lineColor': '#000000',
+      'secondaryColor': '#f4f4f4',
+      'tertiaryColor': '#aaaaaa',
+
+      'noteBkgColor': '#ffa62b',
+      'noteTextColor': 'ffffff'
+      
+    },
+    {{ end }}{{ end }}
     align:'{{ if .Get "align" }}{{ .Get "align" }}{{ else }}center{{ end }}'
   };
   mermaid.initialize(config);
