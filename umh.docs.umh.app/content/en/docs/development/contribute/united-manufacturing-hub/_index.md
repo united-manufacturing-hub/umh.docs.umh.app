@@ -5,5 +5,3 @@ description: |
     Learn how to contribute to the United Manufacturing Hub.
 weight: 10
 ---
-
-TODO
