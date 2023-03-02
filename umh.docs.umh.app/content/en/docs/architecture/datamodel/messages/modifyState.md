@@ -13,7 +13,7 @@ For Kafka just switch the `/` character with a `.`
 
 ## Usage
 
-`modifyState` is generated to modify the state from the starting timestamp to the end timestamp. You can find a list of all supported states [here](/docs/datamodel/states).
+`modifyState` is generated to modify the state from the starting timestamp to the end timestamp. You can find a list of all supported states [here](/docs/architecture/datamodel/states).
 
 ## Content
 
@@ -45,7 +45,7 @@ The state of the timeframe between the timestamp is modified to be 150000: Opera
 ```json
 {
     "$schema": "http://json-schema.org/draft/2019-09/schema",
-    "$id": "https://learn.umh.app/content/docs/datamodel/messages/scrapCount.json",
+    "$id": "https://learn.umh.app/content/docs/architecture/datamodel/messages/scrapCount.json",
     "type": "object",
     "default": {},
     "title": "Root Schema",

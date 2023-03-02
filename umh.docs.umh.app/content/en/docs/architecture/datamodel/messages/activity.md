@@ -44,7 +44,7 @@ The asset was active during the timestamp of the message:
 ```json
 {
     "$schema": "http://json-schema.org/draft/2019-09/schema",
-    "$id": "https://learn.umh.app/content/docs/datamodel/messages/addOrder.json",
+    "$id": "https://learn.umh.app/content/docs/architecture/datamodel/messages/addOrder.json",
     "type": "object",
     "default": {},
     "title": "Root Schema",

@@ -46,7 +46,7 @@ The order "test_order" is started at the shown timestamp.
 ```json
 {
     "$schema": "http://json-schema.org/draft/2019-09/schema",
-    "$id": "https://learn.umh.app/content/docs/datamodel/messages/scrapCount.json",
+    "$id": "https://learn.umh.app/content/docs/architecture/datamodel/messages/scrapCount.json",
     "type": "object",
     "default": {},
     "title": "Root Schema",

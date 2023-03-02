@@ -118,7 +118,7 @@ git push -f <your_remote_name> myfeature
 
 1. Visit your fork at `https://github.com/<user>/united-manufacturing-hub`
 2. Click the **Compare & Pull Request** button next to your `myfeature` branch.
-3. Check out the pull request [process](/docs/development/contribute/new-content/pull-requests) for more details and
+3. Check out the pull request [process](/docs/development/contribute/new-content/pull-request) for more details and
    advice.
 
 ### Get a code review

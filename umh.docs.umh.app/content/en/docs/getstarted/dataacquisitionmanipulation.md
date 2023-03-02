@@ -7,7 +7,7 @@ weight = 3000
 
 
 
-The United Manufacturing Hub has several simulators. These simulators simulate different data types/protocols such as MQTT, PackML or OPC/UA. In this chapter we will take the MQTT simulated data and show you how to format it into the [UMH data model](https://learn.umh.app/docs/datamodel/).
+The United Manufacturing Hub has several simulators. These simulators simulate different data types/protocols such as MQTT, PackML or OPC/UA. In this chapter we will take the MQTT simulated data and show you how to format it into the [UMH data model](https://learn.umh.app/docs/architecture/datamodel/).
 
 
 ## Creating Node-RED flow with simulated MQTT-Data
@@ -48,7 +48,7 @@ The United Manufacturing Hub has several simulators. These simulators simulate d
 We are creating a new object (array) with two keys `timestamp_ms` and `temperature` and their corresponding value `Date.now()` and `parseFloat(msg.payload,10)`.
 The `parseFloat` function converts the incoming string into a float with the base 10 and the `Date.now()` creates a timestamp.
 We also created a `msg.topic` for the **mqtt-out node**, which will automatically apply this topic. 
-The topic ends with the key **processValue** which is used whenever a custom process value with unique name has been prepared. The value is numerical. You can learn more about our message structure [here](https://learn.umh.app/docs/datamodel/messages/).
+The topic ends with the key **processValue** which is used whenever a custom process value with unique name has been prepared. The value is numerical. You can learn more about our message structure [here](https://learn.umh.app/docs/architecture/datamodel/messages/).
 {{% /notice %}}
 
 10. Add another **mqtt-in** node to your flow, and set the topic to `ia/factoryinsight/Aachen/testing/processValue`. Make sure to select the created broker. Connect a **debug** node to the new **mqtt-in** node, and then click on **Deploy** to save the changes.

@@ -24,7 +24,7 @@ A message is sent each time a new product is produced.
 
 
 {{% notice warning %}}
-See also notes regarding adding products and orders in [/addOrder](/docs/datamodel/messages/addorder)
+See also notes regarding adding products and orders in [/addOrder](/docs/architecture/datamodel/messages/addorder)
 {{% /notice %}}
 
 ### JSON
@@ -44,7 +44,7 @@ A new product "Beilinger 30x15" with a cycle time of 200ms is added to the asset
 ```json
 {
     "$schema": "http://json-schema.org/draft/2019-09/schema",
-    "$id": "https://learn.umh.app/content/docs/datamodel/messages/scrapCount.json",
+    "$id": "https://learn.umh.app/content/docs/architecture/datamodel/messages/scrapCount.json",
     "type": "object",
     "default": {},
     "title": "Root Schema",
