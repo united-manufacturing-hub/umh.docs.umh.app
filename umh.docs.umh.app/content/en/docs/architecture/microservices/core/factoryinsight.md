@@ -18,7 +18,7 @@ Performance Indicators (KPIs) of the factories.
 Factoryinsight exposes REST APIs to access the data from the database or calculate
 the KPIs. By default, it's only accessible from the internal network of the
 cluster, but it can be configured to be
-[accessible from the external network](/docs/production-guides/administration/access-factoryinsight-outside-cluster/).
+[accessible from the external network](/docs/production-guide/administration/access-factoryinsight-outside-cluster/).
 
 The APIs require authentication, that can be ehither a Basic Auth or a Bearer
 token. Both of these can be found in the Secret `{{< resource type="secret" name="factoryinsight" >}}`.
@@ -35,7 +35,7 @@ token. Both of these can be found in the Secret `{{< resource type="secret" name
 - Service:
   - Internal ClusterIP: `{{< resource type="service" name="factoryinsight" >}}` at
     port 80
-  - External : [Access factoryinsight outside the cluster](/docs/production-guides/administration/access-factoryinsight-outside-cluster/)
+  - External : [Access factoryinsight outside the cluster](/docs/production-guide/administration/access-factoryinsight-outside-cluster/)
 - Secret: `{{< resource type="secret" name="factoryinsight" >}}`
 
 ## {{% heading "configuration" %}}

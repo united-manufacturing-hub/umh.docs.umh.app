@@ -7,11 +7,11 @@ weight: 4000
 ---
 
 {{% notice tip %}}
-If you landed here from Google, you probably might want to check out either the [architecture of the United Manufacturing Hub](/docs/architecture/) (to understand how we store messages efficiently from MQTT / Kafka in our PostgreSQL / TimescaleDB), or [our knowledge section](/know/) for more information on the general topics of IT, OT and IIoT.
+If you landed here from Google, you probably might want to check out either the [architecture of the United Manufacturing Hub](/docs/architecture/) (to understand how we store messages efficiently from MQTT / Kafka in our PostgreSQL / TimescaleDB), or our knowledge section for more information on the general topics of IT, OT and IIoT.
 {{% /notice %}}
 
 {{% notice warning %}}
-This microservice is deprecated and should not be used anymore in production. Please use [kafka-to-postgresql](/docs/core/kafka-to-postgresql/) instead.
+This microservice is deprecated and should not be used anymore in production. Please use kafka-to-postgresql instead.
 {{% /notice %}}
 
 ## How it works

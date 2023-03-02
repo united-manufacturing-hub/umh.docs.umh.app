@@ -39,13 +39,13 @@ custom microservices:
   endpoints for MQTT messages.
 - [factoryinsight](/docs/architecture/microservices/core/factoryinsight/): provides REST
   endpoints to fetch data and calculate KPIs.
-- [grafanaproxy](docs/architecture/microservices/community/grafanaproxy/): provides a
+- [grafanaproxy](docs/architecture/microservices/community/grafana-proxy/): provides a
   proxy to the backend services.
-- [IoTSensorsMQTT](/docs/architecture/microservices/community/IoTSensorsMQTT/): simulates
+- IoTSensorsMQTT: simulates
   sensors and sends the data to the MQTT broker for further processing.
 - [kafka-state-detector](/docs/architecture/microservices/core/kafka-state-detector/):
   detects the state of the Kafka broker.
-- [kafka-bridge](/docs/architecture/microservices/core/kafka-bridge/): connects Kafka brokers
+- kafka-bridge: connects Kafka brokers
   on different Kubernetes clusters.
 - [kafka-init](/docs/architecture/microservices/core/kafka-init/): initializes the Kafka
   broker.
@@ -55,7 +55,7 @@ custom microservices:
   stores the data from the Kafka broker in a PostgreSQL database.
 - [mqtt-kafka-bridge](/docs/architecture/microservices/core/mqtt-kafka-bridge/): connects
   the MQTT broker and the Kafka broker.
-- [mqttbridge](/docs/architecture/microservices/core/mqttbridge/): connects MQTT brokers on
+- mqttbridge: connects MQTT brokers on
   different Kubernetes clusters.
 - [opcuasimulator](/docs/architecture/microservices/community/opcuasimulator/): simulates
   OPC UA servers and sends the data to the MQTT broker for further processing.
