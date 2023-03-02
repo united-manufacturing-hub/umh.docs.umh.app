@@ -43,8 +43,6 @@ custom microservices:
   proxy to the backend services.
 - IoTSensorsMQTT: simulates
   sensors and sends the data to the MQTT broker for further processing.
-- [kafka-state-detector](/docs/architecture/microservices/community/kafka-state-detector/):
-  detects the state of the Kafka broker.
 - kafka-bridge: connects Kafka brokers
   on different Kubernetes clusters.
 - [kafka-init](/docs/architecture/microservices/core/kafka-init/): initializes the Kafka
