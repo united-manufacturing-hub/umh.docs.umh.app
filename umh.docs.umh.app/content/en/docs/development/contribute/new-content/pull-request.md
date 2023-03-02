@@ -198,8 +198,7 @@ In your code, if someone might not understand why you did something (or you won'
 remember why later), comment it. Many code-review comments are about this exact
 issue.
 
-If you think there's something pretty obvious that we could follow up on, add a
-TODO.
+If you think there's something pretty obvious that we could follow up on, add a TODO.
 
 Read up on [GoDoc](https://blog.golang.org/godoc-documenting-go-code) - follow
 those general rules for comments.

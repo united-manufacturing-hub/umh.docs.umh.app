@@ -1,7 +1,7 @@
 +++
 title = "Administration"
 menuTitle = "Administration"
-description = "TODO"
+description = "These pages describe how to manage the stack."
 weight = 5000
 +++
 

@@ -19,7 +19,7 @@ have a backup of the database before you proceed. {{% /notice %}}
 {{< include "task-tutorial-prereqs.md" >}}
 
 Also, make sure to backup the database before you proceed. For more information,
-see [Backing Up and Restoring the Database](TODO).
+see [Backing Up and Restoring the Database](/docs/production-guide/backup_recovery/backup-timescale).
 
 <!-- steps -->
 
@@ -134,5 +134,5 @@ you used the track&trace feature:
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
 
-- See [Backing Up and Restoring the Database](TODO)
+- See [Backing Up and Restoring the Database](/docs/production-guide/backup_recovery/backup-timescale)
 - See [Execute SQL Commands in the Database](/docs/administration/execute-sql-in-database)
