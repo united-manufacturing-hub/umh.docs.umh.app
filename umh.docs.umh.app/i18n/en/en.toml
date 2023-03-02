@@ -58,6 +58,9 @@ other = "united-manufacturing-hub-barcodereader"
 [resource_deployment_cameraconnect]
 other = "united-manufacturing-hub-cameraconnect"
 
+[resource_deployment_kafkabridge]
+other = "united-manufacturing-hub-kafkabridge"
+
 [resource_docker_org]
 other = "unitedmanufacturinghub"
 
@@ -95,7 +98,7 @@ other = "united-manufacturing-hub-vernemq"
 other = "united-manufacturing-hub.united-manufacturing-hub.svc.cluster.local:5432"
 
 [resource_secret_barcodereader]
-other = "nited-manufacturing-hub-barcodereader-secrets"
+other = "united-manufacturing-hub-barcodereader-secrets"
 
 [resource_secret_cache-psw]
 other = "redis-secret"
@@ -105,6 +108,12 @@ other = "timescale-post-init-pw"
 
 [resource_secret_factoryinsight]
 other = "factoryinsight-secret"
+
+[resource_secret_kafkabridge-local]
+other = "united-manufacturing-hub-kafkabridge-secrets-local"
+
+[resource_secret_kafkabridge-remote]
+other = "united-manufacturing-hub-kafkabridge-secrets-remote"
 
 [resource_statefulset_nodered]
 other = "united-manufacturing-hub-nodered"
