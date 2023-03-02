@@ -56,4 +56,4 @@ For more information about Redis commands, see the [Redis documentation](https:/
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
 
-- [Access the database](/docs/production-guides/administration/access-database/)
+- [Access the database](/docs/production-guide/administration/access-database/)

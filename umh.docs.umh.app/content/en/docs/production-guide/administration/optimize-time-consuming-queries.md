@@ -54,5 +54,5 @@ reducing the execution time.
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
 
-- See [Access the Database](/docs/production-guides/administration/access-database/)
-- See [Reduce Database Size](/docs/production-guides/administration/reduce-database-size/)
+- See [Access the Database](/docs/production-guide/administration/access-database/)
+- See [Reduce Database Size](/docs/production-guide/administration/reduce-database-size/)

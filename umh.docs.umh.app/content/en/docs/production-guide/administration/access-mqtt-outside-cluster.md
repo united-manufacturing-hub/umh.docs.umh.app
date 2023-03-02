@@ -69,6 +69,6 @@ to allow your MQTT client to connect to the broker.
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
 
-- See [Access Kafka Outside the Cluster](/docs/production-guides/administration/access-kafka-outside-cluster)
-- See [Access Factoryinsight Outside the Cluster](/docs/production-guides/administration/access-factoryinsight-outside-cluster)
-- See [Access Services from Within the Cluster](/docs/production-guides/administration/access-services-from-cluster)
+- See [Access Kafka Outside the Cluster](/docs/production-guide/administration/access-kafka-outside-cluster)
+- See [Access Factoryinsight Outside the Cluster](/docs/production-guide/administration/access-factoryinsight-outside-cluster)
+- See [Access Services from Within the Cluster](/docs/production-guide/administration/access-services-from-cluster)

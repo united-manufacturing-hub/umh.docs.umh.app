@@ -67,4 +67,4 @@ which will compress data older than 7 days.
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
 
-- See [Execute SQL commands](/docs/production-guides/administration/execute-sql-in-database)
+- See [Execute SQL commands](/docs/production-guide/administration/execute-sql-in-database)

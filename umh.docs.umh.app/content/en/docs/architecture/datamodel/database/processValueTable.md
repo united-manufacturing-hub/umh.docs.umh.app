@@ -6,7 +6,7 @@ description = "processValueTable contains process values."
 ## Usage
 
 This table stores process values, for example toner level of a printer, flow rate of a pump, etc.
-This table, has a closely related table for storing string values, [processValueStringTable](../processValueStringTable).
+This table, has a closely related table for storing string values, [processValueStringTable](/docs/architecture/datamodel/database/processValueStringTable).
 
 ## Structure
 

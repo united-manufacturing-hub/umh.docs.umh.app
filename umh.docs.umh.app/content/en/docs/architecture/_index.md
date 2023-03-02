@@ -5,7 +5,7 @@ description = "A detailed view of the architecture of the UMH stack."
 weight = 2000
 +++
 
-The United Manufacturing Hub at its core is a [Helm Chart for Kubernetes]() consisting of several microservices and open source 3rd party applications, such as Node-RED and Grafana. This Helm Chart can be deployed in various environments, from edge devices and virtual machines to managed Kubernetes offerings. In large-scale deployments, you find typically a combination out of all these deployment options.
+The United Manufacturing Hub at its core is a [Helm Chart for Kubernetes](helm-chart) consisting of several microservices and open source 3rd party applications, such as Node-RED and Grafana. This Helm Chart can be deployed in various environments, from edge devices and virtual machines to managed Kubernetes offerings. In large-scale deployments, you find typically a combination out of all these deployment options.
 
 In this chapter, we'll explore the various microservices and applications that make up the United Manufacturing Hub, and how they work together to help you extract, contextualize, store, and visualize data from your shop floor.
 {{< mermaid theme="neutral" >}}
@@ -136,7 +136,7 @@ The United Manufacturing Hub includes microservices that extract data from the s
 
 ## Node-RED: connectivity & contextualization
 
-Node-RED is not just a tool for connectivity, but also for stream processing and data contextualization. It is often used to extract data from the message broker, reformat the event, and push it back into a different topic, such as the [UMH datamodel](./datamodel/).
+Node-RED is not just a tool for connectivity, but also for stream processing and data contextualization. It is often used to extract data from the message broker, reformat the event, and push it back into a different topic, such as the [UMH datamodel](datamodel).
 
 In addition to the built-in microservices, third-party contextualization solutions can be deployed similarly to [data connectivity microservices](#data-connectivity-microservices). For more information on these solutions, check out our extensive tutorials on our [learning hub]().
 
@@ -147,7 +147,7 @@ In addition to the built-in microservices, third-party contextualization solutio
 
 At the core of the United Manufacturing Hub lies the [Unified Namespace](https://learn.umh.app/lesson/3-1-1-unified-namespace/), which serves as the central source of truth for all events and messages occurring on your shop floor. The Unified Namespace is implemented using two message brokers: HiveMQ for MQTT and Apache Kafka. MQTT is used to receive data from IoT devices on the shop floor because it excels at handling a large number of unreliable connections. On the other hand, Kafka is used to enable communication between the microservices, leveraging its large-scale data processing capabilities.
 
-The data between both brokers is bridged automatically using the [mqtt-to-kafka]() microservice, allowing you to send data to MQTT and process it reliably in Kafka.
+The data between both brokers is bridged automatically using the mqtt-to-kafka microservice, allowing you to send data to MQTT and process it reliably in Kafka.
 
 If you're curious about the benefits of this dual approach to MQTT/Kafka, check out our blog article about [Tools & Techniques for Scalable Dataprocessing in Industrial IoT](https://learn.umh.app/blog/tools-techniques-for-scalable-data-processing-in-industrial-iot/).
 

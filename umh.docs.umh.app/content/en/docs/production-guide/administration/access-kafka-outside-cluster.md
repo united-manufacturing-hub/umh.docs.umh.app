@@ -52,6 +52,6 @@ the port 9094.
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
 
-- See [Access the MQTT Broker Outside the Cluster](/docs/production-guides/administration/access-mqtt-outside-cluster)
-- See [Access Factoryinsight Outside the Cluster](/docs/production-guides/administration/access-factoryinsight-outside-cluster)
-- See [Access Services from Within the Cluster](/docs/production-guides/administration/access-services-from-cluster)
+- See [Access the MQTT Broker Outside the Cluster](/docs/production-guide/administration/access-mqtt-outside-cluster)
+- See [Access Factoryinsight Outside the Cluster](/docs/production-guide/administration/access-factoryinsight-outside-cluster)
+- See [Access Services from Within the Cluster](/docs/production-guide/administration/access-services-from-cluster)
