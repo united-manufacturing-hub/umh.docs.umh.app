@@ -44,7 +44,7 @@ The order "test_order" was finished at the shown timestamp.
 ```json
 {
     "$schema": "http://json-schema.org/draft/2019-09/schema",
-    "$id": "https://learn.umh.app/content/docs/datamodel/messages/endOrder.json",
+    "$id": "https://learn.umh.app/content/docs/architecture/datamodel/messages/endOrder.json",
     "type": "object",
     "default": {},
     "title": "Root Schema",
@@ -83,4 +83,4 @@ The order "test_order" was finished at the shown timestamp.
 
 ## Consumers
 
-- [kafka-to-postgresql](/docs/core/kafka-to-postgresql)
+- [kafka-to-postgresql](/docs/architecture/microservices/core/kafka-to-postgresql)

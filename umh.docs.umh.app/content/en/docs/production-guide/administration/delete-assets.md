@@ -135,4 +135,3 @@ you used the track&trace feature:
 ## {{% heading "whatsnext" %}}
 
 - See [Backing Up and Restoring the Database](/docs/production-guide/backup_recovery/backup-timescale)
-- See [Execute SQL Commands in the Database](/docs/production-guide/administration/execute-sql-in-database)

@@ -62,7 +62,7 @@ All you need to begin working with Mermaid is the following:
 * Using [Hugo shortcodes](/docs/development/contribute/documentation/style/hugo-shortcodes/).
 * Using the [Hugo {{</* figure */>}} shortcode](https://gohugo.io/content-management/shortcodes/#figure).
 * Performing [Hugo local previews](/docs/development/contribute/new-content/add-documentation/#preview-locally).
-* Familiar with the [Contributing new content](/docs/contribute/new-content/) process.
+* Familiar with the [Contributing new content](/docs/development/contribute/new-content/) process.
 
 {{< notice note >}}
 You can click on each diagram in this section to view the code and rendered
@@ -253,7 +253,7 @@ The following lists advantages of the Inline method:
 * No need for separate `.svg` image file handling.
 * Content text, diagram code and diagram caption contained in the same `.md` file.
 
-You should use the [local](/docs/development/contribute/new-content/add-documentation/#preview-locally)
+You should use the [local](/docs/development/contribute/new-content/add-documentation//#preview-locally)
 and Cloudflare previews to verify the diagram is properly rendered.
 
 {{< notice note >}}
@@ -341,7 +341,7 @@ The following lists advantages of the Mermaid+SVG method:
 * Environment doesn't require Mermaid support.
 
 Be sure to check that your diagram renders properly using the
-[local](/docs/contribute/new-content/open-a-pr/#preview-locally)
+[local](/docs/development/contribute/new-content/add-documentation/#preview-locally)
 and Netlify previews.
 
 ### External tool
@@ -401,7 +401,7 @@ If your external drawing tool permits:
 
 * You can incorporate multiple `.svg` or `.png` logos, icons and images into your diagram.
   However, make sure you observe copyright and follow the United Manufacturing Hub documentation
-  [guidelines](/docs/contribute/style/content-guide/) on the use of third party content.
+  [guidelines](/docs/development/contribute/documentation/style/content-guide/) on the use of third party content.
 * You should save the diagram source coordinates for later contributor access.
   For example, your tool may offer a link to the diagram image, or you could
   place the source code file, such as an `.xml` file, somewhere for contributor access.
@@ -412,7 +412,7 @@ The following lists advantages of the External Tool method:
 * Diagrams require more detail than what Mermaid can offer.
 
 Don't forget to check that your diagram renders correctly using the
-[local](/docs/contribute/new-content/open-a-pr/#preview-locally) and Netlify previews.
+[local](/docs/development/contribute/new-content/add-documentation/#preview-locally) and Netlify previews.
 
 ## Examples
 
@@ -533,8 +533,6 @@ graph LR;
 
 Figure 8 depicts a Mermaid sequence diagram showing the system flow between
 umh components to start a container.
-
-{{< figure src="/docs/images/diagram-guide-example-3.svg" alt="umh system flow diagram" class="diagram-large" caption="Figure 8. umh system flow diagram" link="https://mermaid-js.github.io/mermaid-live-editor/edit/#eyJjb2RlIjoiJSV7aW5pdDp7XCJ0aGVtZVwiOlwibmV1dHJhbFwifX0lJVxuc2VxdWVuY2VEaWFncmFtXG4gICAgYWN0b3IgbWVcbiAgICBwYXJ0aWNpcGFudCBhcGlTcnYgYXMgY29udHJvbCBwbGFuZTxicj48YnI-YXBpLXNlcnZlclxuICAgIHBhcnRpY2lwYW50IGV0Y2QgYXMgY29udHJvbCBwbGFuZTxicj48YnI-ZXRjZCBkYXRhc3RvcmVcbiAgICBwYXJ0aWNpcGFudCBjbnRybE1nciBhcyBjb250cm9sIHBsYW5lPGJyPjxicj5jb250cm9sbGVyPGJyPm1hbmFnZXJcbiAgICBwYXJ0aWNpcGFudCBzY2hlZCBhcyBjb250cm9sIHBsYW5lPGJyPjxicj5zY2hlZHVsZXJcbiAgICBwYXJ0aWNpcGFudCBrdWJlbGV0IGFzIG5vZGU8YnI-PGJyPmt1YmVsZXRcbiAgICBwYXJ0aWNpcGFudCBjb250YWluZXIgYXMgbm9kZTxicj48YnI-Y29udGFpbmVyPGJyPnJ1bnRpbWVcbiAgICBtZS0-PmFwaVNydjogMS4ga3ViZWN0bCBjcmVhdGUgLWYgcG9kLnlhbWxcbiAgICBhcGlTcnYtLT4-ZXRjZDogMi4gc2F2ZSBuZXcgc3RhdGVcbiAgICBjbnRybE1nci0-PmFwaVNydjogMy4gY2hlY2sgZm9yIGNoYW5nZXNcbiAgICBzY2hlZC0-PmFwaVNydjogNC4gd2F0Y2ggZm9yIHVuYXNzaWduZWQgcG9kcyhzKVxuICAgIGFwaVNydi0-PnNjaGVkOiA1LiBub3RpZnkgYWJvdXQgcG9kIHcgbm9kZW5hbWU9XCIgXCJcbiAgICBzY2hlZC0-PmFwaVNydjogNi4gYXNzaWduIHBvZCB0byBub2RlXG4gICAgYXBpU3J2LS0-PmV0Y2Q6IDcuIHNhdmUgbmV3IHN0YXRlXG4gICAga3ViZWxldC0-PmFwaVNydjogOC4gbG9vayBmb3IgbmV3bHkgYXNzaWduZWQgcG9kKHMpXG4gICAgYXBpU3J2LT4-a3ViZWxldDogOS4gYmluZCBwb2QgdG8gbm9kZVxuICAgIGt1YmVsZXQtPj5jb250YWluZXI6IDEwLiBzdGFydCBjb250YWluZXJcbiAgICBrdWJlbGV0LT4-YXBpU3J2OiAxMS4gdXBkYXRlIHBvZCBzdGF0dXNcbiAgICBhcGlTcnYtLT4-ZXRjZDogMTIuIHNhdmUgbmV3IHN0YXRlIiwibWVybWFpZCI6IntcbiAgXCJ0aGVtZVwiOiBcImRlZmF1bHRcIlxufSIsInVwZGF0ZUVkaXRvciI6ZmFsc2UsImF1dG9TeW5jIjp0cnVlLCJ1cGRhdGVEaWFncmFtIjp0cnVlfQ" >}}
 
 Code block:
 

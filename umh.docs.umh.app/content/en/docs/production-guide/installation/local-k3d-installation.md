@@ -89,7 +89,7 @@ Here is a step-by-step guide on how to deploy the UMH stack using [k3d](https://
 21. Click on the Release `united-manufacturing-hub`to be able to inspect the values.yaml file, which holds the configurations of all microservices used in the cluster.
 
 <aside>
-{{% notice warning %}}  ️ Accessing the services like Node-RED can only be done using the [port-forwarding feature](/guides/knowledge-base/4d2b03ecbd5f45089d7c06d8c356134d/) from UMHLens.  {{% /notice %}} 
+{{% notice warning %}}  ️ Accessing the services like Node-RED can only be done using the port-forwarding feature from UMHLens.  {{% /notice %}} 
 
 </aside>
 

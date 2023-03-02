@@ -8,7 +8,7 @@ weight: 10
 
 <!-- overview -->
 
-This microservice is responsible for taking kafka messages and inserting the payload into a Postgresql database. It is based on the topic of the kafka message and the data model defined in the [United Manufacturing Hub data model](/docs/datamodel/)
+This microservice is responsible for taking kafka messages and inserting the payload into a Postgresql database. It is based on the topic of the kafka message and the data model defined in the [United Manufacturing Hub data model](/docs/architecture/datamodel/)
 By default, it sets up two Kafka consumers, one for high throughput and one for high integrity.
 
 {{< notice note >}}
@@ -23,7 +23,7 @@ The graphic below shows the program flow of the microservice.
 
 ### High throughput
 
-This Kafka listener is usually configured to listen in on the [processValue](/docs/datamodel/messages/processvalue) topics.
+This Kafka listener is usually configured to listen in on the [processValue](/docs/architecture/datamodel/messages/processvalue) topics.
 
 ### High integrity
 

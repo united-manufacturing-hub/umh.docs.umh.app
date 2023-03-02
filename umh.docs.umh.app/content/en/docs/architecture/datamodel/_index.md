@@ -19,7 +19,7 @@ It will be saved in the database and can act as a key-value store.
 
 In a production environment, you should first declare products using [addProduct](/docs/architecture/datamodel/messages/addproduct).
 This allows you to create an order using [addOrder](/docs/architecture/datamodel/messages/addorder). Once you have created an order, 
-send an [activity](/docs/architecture/datamodel/messages/activity) message to tell the database that the machine is working on the order. You can also add shifts using [addShift](messages/addshift).
+send an [activity](/docs/architecture/datamodel/messages/activity) message to tell the database that the machine is working on the order. You can also add shifts using [addShift](/docs/architecture/datamodel/messages/addshift).
 
 When the machine is ordered to produce a product, send a [startOrder](/docs/architecture/datamodel/messages/startorder) message.
 When the machine has finished producing the product, send an [endOrder](/docs/architecture/datamodel/messages/endorder) message.
@@ -29,7 +29,7 @@ Send [count](/docs/architecture/datamodel/messages/count) messages if the machin
 
 ### Modifying Data
 
-If you have accidentally sent the wrong state or if you want to modify a value, you can use the [modifyState](/docs/architecture/datamodel/messages/modifyState) message.
+If you have accidentally sent the wrong state or if you want to modify a value, you can use the [modifyState](/docs/architecture/datamodel/messages/modifystate) message.
 
 ### Unique Product Tracking
 

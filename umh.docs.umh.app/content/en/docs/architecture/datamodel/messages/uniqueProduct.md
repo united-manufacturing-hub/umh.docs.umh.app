@@ -52,7 +52,7 @@ The processing of product "Beilinger 30x15" with the AID 216381 started and ende
 ```json
 {
     "$schema": "http://json-schema.org/draft/2019-09/schema",
-    "$id": "https://learn.umh.app/content/docs/datamodel/messages/scrapCount.json",
+    "$id": "https://learn.umh.app/content/docs/architecture/datamodel/messages/scrapCount.json",
     "type": "object",
     "default": {},
     "title": "Root Schema",
@@ -93,4 +93,4 @@ The processing of product "Beilinger 30x15" with the AID 216381 started and ende
 
 ## Consumers
 
-- [kafka-to-postgresql](/docs/core/kafka-to-postgresql)
+- [kafka-to-postgresql](/docs/architecture/microservices/core/kafka-to-postgresql)

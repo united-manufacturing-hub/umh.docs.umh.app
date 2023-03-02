@@ -12,9 +12,9 @@ or alternatively: ``ia/<customerID>/<location>/<AssetID>/processValue/<tagName>`
 {{% notice note %}}
 For Kafka just switch the `/` character with a `.`.
 
-If you have a lot of processValues, we'd recommend not using the `/processValue` as topic, but to append the tag name as well, e.g., `/processValue/energyConsumption`. This will structure it better for usage in [MQTT Explorer](/guides/umh/working-with-the-data/tutorial/setup-mqtt-broker-to-see-messages/#option-2-using-mqtt-explorer) or for data processing only certain processValues. 
+If you have a lot of processValues, we'd recommend not using the `/processValue` as topic, but to append the tag name as well, e.g., `/processValue/energyConsumption`. This will structure it better for usage in MQTT Explorer or for data processing only certain processValues. 
 
-For automatic data storage in [kafka-to-postgresql](/docs/core/kafka-to-postgresql/) both will work fine as long as the payload is correct.
+For automatic data storage in [kafka-to-postgresql](/docs/architecture/microservices/core/kafka-to-postgresql/) both will work fine as long as the payload is correct.
 {{% /notice %}}
 
 {{% notice warning %}}
@@ -64,7 +64,7 @@ At the shown timestamp the custom process value "energyConsumption" had a readou
 ```json
 {
     "$schema": "http://json-schema.org/draft/2019-09/schema",
-    "$id": "https://learn.umh.app/content/docs/datamodel/messages/scrapCount.json",
+    "$id": "https://learn.umh.app/content/docs/architecture/datamodel/messages/scrapCount.json",
     "type": "object",
     "default": {},
     "title": "Root Schema",
@@ -105,4 +105,4 @@ At the shown timestamp the custom process value "energyConsumption" had a readou
 
 ## Consumers
 
-- [kafka-to-postgresql](/docs/core/kafka-to-postgresql)
+- [kafka-to-postgresql](/docs/architecture/microservices/core/kafka-to-postgresql)

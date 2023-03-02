@@ -25,7 +25,7 @@ Our database model is designed to represent a physical manufacturing process. It
   - Recommendations for the production
 
 {{% notice note %}}
-Please note that our database does not use a retention policy. This means that your database can grow quite fast if you save a lot of process values. Take a look at our [guide on enabling data compression and retention in TimescaleDB](/docs/production-guides/administration/reduce-database-size) to customize the database to your needs.
+Please note that our database does not use a retention policy. This means that your database can grow quite fast if you save a lot of process values. Take a look at our [guide on enabling data compression and retention in TimescaleDB](/docs/production-guide/administration/reduce-database-size) to customize the database to your needs.
 
 
 A good method to check your db size would be to use the following commands inside postgres shell:

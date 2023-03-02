@@ -13,7 +13,7 @@ For Kafka just switch the `/` character with a `.`
 
 ## Usage
 
-A message is sent here each time the asset changes status. Subsequent changes are not possible. Different statuses can also be process steps, such as “setup”, “post-processing”, etc. You can find a list of all supported states [here](/docs/datamodel/states).
+A message is sent here each time the asset changes status. Subsequent changes are not possible. Different statuses can also be process steps, such as “setup”, “post-processing”, etc. You can find a list of all supported states [here](/docs/architecture/datamodel/states).
 
 ## Content
 
@@ -42,7 +42,7 @@ The asset has a state of 10000, which means it is actively producing.
 ```json
 {
     "$schema": "http://json-schema.org/draft/2019-09/schema",
-    "$id": "https://learn.umh.app/content/docs/datamodel/messages/scrapCount.json",
+    "$id": "https://learn.umh.app/content/docs/architecture/datamodel/messages/scrapCount.json",
     "type": "object",
     "default": {},
     "title": "Root Schema",
@@ -83,4 +83,4 @@ The asset has a state of 10000, which means it is actively producing.
 
 ## Consumers
 
-- [kafka-to-postgresql](/docs/core/kafka-to-postgresql)
+- [kafka-to-postgresql](/docs/architecture/microservices/core/kafka-to-postgresql)

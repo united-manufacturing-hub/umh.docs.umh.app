@@ -4,7 +4,7 @@ description = "activity messages are sent when a new order is added."
 +++
 
 {{% notice warning %}}
-This is part of our recommended workflow to create machine states. The data sent here will not be stored in the database automatically, as it will be required to be converted into a [state](/docs/datamodel/states). In the future, there will be a microservice, which converts these automatically.
+This is part of our recommended workflow to create machine states. The data sent here will not be stored in the database automatically, as it will be required to be converted into a [state](/docs/architecture/datamodel/states). In the future, there will be a microservice, which converts these automatically.
 {{% /notice %}}
 
 ## Topic
@@ -44,7 +44,7 @@ The asset was active during the timestamp of the message:
 ```json
 {
     "$schema": "http://json-schema.org/draft/2019-09/schema",
-    "$id": "https://learn.umh.app/content/docs/datamodel/messages/addOrder.json",
+    "$id": "https://learn.umh.app/content/docs/architecture/datamodel/messages/addOrder.json",
     "type": "object",
     "default": {},
     "title": "Root Schema",
