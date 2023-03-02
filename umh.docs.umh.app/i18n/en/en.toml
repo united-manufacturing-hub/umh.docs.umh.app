@@ -1,17 +1,26 @@
 [heading_cleanup]
 other = "Cleaning up"
 
+[heading_configuration]
+other = "Configuration"
+
 [heading_discussion]
 other = "Discussion"
 
 [heading_envvars]
 other = "Environment variables"
 
+[heading_examples]
+other = "Examples"
+
 [heading_feedback]
 other = "Feedback"
 
-[heading_examples]
-other = "Examples"
+[heading_howitworks]
+other = "How it works"
+
+[heading_kuberesources]
+other = "Kubernetes resources"
 
 [heading_objectives]
 other = "Objectives"
