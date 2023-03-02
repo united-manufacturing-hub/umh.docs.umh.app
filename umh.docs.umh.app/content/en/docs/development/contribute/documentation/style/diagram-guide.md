@@ -321,7 +321,7 @@ For more details on diagram captions, see [How to use captions](#how-to-use-capt
 {{% notice note %}}
 The `{{</* figure */>}}` shortcode is the preferred method for adding `.svg` image files
 to your documentation. You can also use the standard markdown image syntax like so:
-`![my boxnet diagram](static/images/boxnet.svg)`.
+`![my boxnet diagram](/static/images/boxnet.svg)`.
 And you will need to add a caption below the diagram.
 {{% /notice %}}
 
