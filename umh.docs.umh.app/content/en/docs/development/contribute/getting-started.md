@@ -119,8 +119,7 @@ as do the specifics of the environment needed to succesfully run the test:
   ant OS.
 - Integration: These tests cover interactions of package components or interactions
   between UMh components and some external system. An example would be testing
-  whether a piece of code can correctly store data in tha database. Integration
-  tests are stored in [united-manufacturing-hub/golang/test/integration](https://github.com/united-manufacturing-hub/united-manufacturing-hub/tree/main/golang/test/integration).
+  whether a piece of code can correctly store data in tha database.
   Running these tests can require the developer to set up additional functionality
   on their development system.
 - End-to-end ("e2e"): These are broad test of overall system behavior and
