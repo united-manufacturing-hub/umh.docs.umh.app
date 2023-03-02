@@ -1,6 +1,6 @@
 ---
 title: "Development"
 menuTitle: "Development"
-description: "TODO"
+description: "These pages describe advanced topics for developers."
 weight: 4000
 ---

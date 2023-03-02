@@ -185,13 +185,13 @@ start small and expand over time.
 
 At a minimum, all localizations must include:
 
-Description | URLs
------|-----
-Administration | [All heading and subheading URLs](/docs/administration/)
-Architecture | [All heading and subheading URLs](/docs/architecture/)
-Getting started | [All heading and subheading URLs](/docs/getstarted/)
-Produciton guide | [All heading and subheading URLs](/docs/production-guide)
-Site strings | [All site strings](#site-strings-in-i18n) in a new localized TOML file
+| Description      | URLs                                                                   |
+|------------------|------------------------------------------------------------------------|
+| Administration   | [All heading and subheading URLs](/docs/administration/)               |
+| Architecture     | [All heading and subheading URLs](/docs/architecture/)                 |
+| Getting started  | [All heading and subheading URLs](/docs/getstarted/)                   |
+| Produciton guide | [All heading and subheading URLs](/docs/production-guide)              |
+| Site strings     | [All site strings](#site-strings-in-i18n) in a new localized TOML file |
 
 Translated documents must reside in their own `content/**/` subdirectory, but otherwise, follow the
 same URL path as the English source. For example, to prepare the

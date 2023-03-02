@@ -1,7 +1,7 @@
 +++
 title = "Configuration"
 menuTitle = "Configuration"
-description = "TODO"
+description = "These pages describe how to configure the stack."
 weight = 2000
 +++
 
