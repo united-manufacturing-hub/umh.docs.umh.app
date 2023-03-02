@@ -24,7 +24,7 @@ As you prepare to write a new topic, think about the page type that would fit yo
 | Type     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Concept  | A concept page explains some aspect of United Manufacturing Hub. For example, a concept page might describe a specific component of the United Manufacturing Hub and explain the role it plays as an application while it is deployed, scaled, and updated. Typically, concept pages don't include sequences of steps, but instead provide links to tasks or tutorials.                                                                                                                                                                                                                                                                       |
-| Task     | A task page shows how to do a single thing. The idea is to give readers a sequence of steps that they can actually do as they read the page. A task page can be short or long, provided it stays focused on one area. In a task page, it is OK to blend brief explanations with the steps to be performed, but if you need to provide a lengthy explanation, you should do that in a concept topic. Related task and concept topics should link to each other. For an example of a short task page, see [Expose Grafana to the internet](/docs/administration/expose-grafana-to-internet/). For an example of a longer task page, see [Access the database](/docs/administration/access-database/) |
+| Task     | A task page shows how to do a single thing. The idea is to give readers a sequence of steps that they can actually do as they read the page. A task page can be short or long, provided it stays focused on one area. In a task page, it is OK to blend brief explanations with the steps to be performed, but if you need to provide a lengthy explanation, you should do that in a concept topic. Related task and concept topics should link to each other. For an example of a short task page, see [Expose Grafana to the internet](/docs/production-guides/administration/expose-grafana-to-internet/). For an example of a longer task page, see [Access the database](/docs/production-guides/administration/access-database/) |
 | Tutorial | A tutorial page shows how to accomplish a goal that ties together several United Manufacturing Hub features. A tutorial might provide several sequences of steps that readers can actually do as they read the page. Or it might provide explanations of related pieces of code. For example, a tutorial could provide a walkthrough of a code sample. A tutorial can include brief explanations of the United Manufacturing Hub features that are being tied together, but should link to related concept topics for deep explanations of individual features.                                                                                                                                    |
 {{< /table >}}
 
@@ -45,13 +45,13 @@ hugo new docs/administration/my-first-task.md -k tasks
 Choose a title that has the keywords you want search engines to find.
 Create a filename that uses the words in your title separated by hyphens.
 For example, the topic with title
-[Access Factoryinsight Outside the Cluster](/docs/administration/access-factoryinsight-outside-cluster/)
+[Access Factoryinsight Outside the Cluster](/docs/production-guides/administration/access-factoryinsight-outside-cluster/)
 has filename `access-factoryinsight-outside-cluster.md`. You don't need to put
 "united manufacturing hub" in the filename, because "umh" is already in the
 URL for the topic, for example:
 
 ```none
-/docs/administration/access-factoryinsight-outside-cluster/
+/docs/production-guides/administration/access-factoryinsight-outside-cluster/
 ```
 
 ## Adding the topic title to the front matter
@@ -71,7 +71,7 @@ title: Access Factoryinsight Outside the Cluster
 
 Depending on the content of your page, put your new file in a subdirectory of one of these:
 
-- /content/en/docs/administration/
+- /content/en/docs/production-guides/administration/
 - /content/en/docs/architecture/
 - /content/en/docs/development/
 - /content/en/docs/getstarted/

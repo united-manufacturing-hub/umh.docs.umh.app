@@ -139,8 +139,8 @@ Within each section, write your content. Use the following guidelines:
   interested in reading next.
 
 For an example of a short task page,
-see [Expose Grafana to the internet](/docs/administration/expose-grafana-to-internet/).
-For an example of a longer task page, see [Access the database](/docs/administration/access-database/)
+see [Expose Grafana to the internet](/docs/production-guides/administration/expose-grafana-to-internet/).
+For an example of a longer task page, see [Access the database](/docs/production-guides/administration/access-database/)
 
 ### Tutorial
 

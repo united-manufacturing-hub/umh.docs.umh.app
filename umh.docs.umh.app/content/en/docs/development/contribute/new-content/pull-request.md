@@ -57,7 +57,7 @@ While either label is present, your pull request will not be considered for merg
 
 United Manufacturing Hub runs a set of end-to-end tests (e2e tests) on pull
 requests. You can find an overview of the tests in the
-[CI documentation](/docs/development/ci).
+[CI documentation](/docs/development/ci-cd).
 
 ## Why was my pull request closed?
 
