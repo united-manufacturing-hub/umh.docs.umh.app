@@ -20,11 +20,11 @@ flowchart
             kafka-bridge
             mqtt-kafka-bridge["mqtt-kafka-bridge"]
 
-            click kafka "./microservices/kafka"
-            click mqtt "./microservices/hivemq"
-            click console "./microservices/console"
-            click kafka-bridge "./microservices/kafka-bridge"
-            click mqtt-kafka-bridge "./microservices/mqtt-kafka-bridge"
+            click kafka "./microservices/core/kafka"
+            click mqtt "./microservices/core/hivemq"
+            click console "./microservices/core/console"
+            click kafka-bridge "./microservices/core/kafka-bridge"
+            click mqtt-kafka-bridge "./microservices/core/mqtt-kafka-bridge"
 
 
             mqtt <-- MQTT --> mqtt-kafka-bridge <-- Kafka --> kafka
@@ -33,7 +33,7 @@ flowchart
         subgraph custom["Custom Microservices"]
             custom-microservice["A user provied custom microservice in the Helm Chart"]
             custom-application["A user provided custom application deployed as Kubernetes resources or as a Helm Chart"]
-            click custom-microservice "./microservices/custom"
+            click custom-microservice "./microservices/core/custom"
         end
         subgraph Historian
             style Historian fill:#f4f4f4
@@ -44,11 +44,11 @@ flowchart
             grafana["Grafana"]
             redis
 
-            click kafka-to-postgresql "./microservices/kafka-to-postgresql"
-            click timescaledb "./microservices/timescaledb"
-            click factoryinsight "./microservices/factoryinsight"
-            click grafana "./microservices/grafana"
-            click redis "./microservices/redis"
+            click kafka-to-postgresql "./microservices/core/kafka-to-postgresql"
+            click timescaledb "./microservices/core/timescaledb"
+            click factoryinsight "./microservices/core/factoryinsight"
+            click grafana "./microservices/core/grafana"
+            click redis "./microservices/core/redis"
 
             kafka -- Kafka ---> kafka-to-postgresql
             kafka-to-postgresql -- SQL --> timescaledb
@@ -66,9 +66,9 @@ flowchart
             barcodereader
             sensorconnect
 
-            click nodered "./microservices/nodered"
-            click barcodereader "./microservices/barcodereader"
-            click sensorconnect "./microservices/sensorconnect"
+            click nodered "./microservices/core/nodered"
+            click barcodereader "./microservices/core/barcodereader"
+            click sensorconnect "./microservices/core/sensorconnect"
 
             nodered  <-- Kafka --> kafka
             
@@ -82,9 +82,9 @@ flowchart
             packml-simulator["PackML simulator"]
             opcua-simulator["OPC-UA simulator"]
 
-            click mqtt-simulator "./microservices/iotsensorsmqtt"
-            click packml-simulator "./microservices/packml-simulator"
-            click opcua-simulator "./microservices/opcua-simulator"
+            click mqtt-simulator "./microservices/community/mqttsim"
+            click packml-simulator "./microservices/community/packml-simulator"
+            click opcua-simulator "./microservices/community/opcua-simulator"
 
             mqtt-simulator -- MQTT --> mqtt
             packml-simulator -- MQTT --> mqtt
