@@ -49,6 +49,9 @@ other = "Your United Manufacturing Hub must be at or later than version "
 [version_check_tocheck]
 other = "To check the United Manufacturing Hub version, open UMHLens / OpenLens and go to **Helm** > **Releases**. The version is listed in the **Version** column."
 
+[resource_deployment_factoryinsight]
+other = "united-manufacturing-hub-factoryinsight-deployment"
+
 [resource_docker_org]
 other = "unitedmanufacturinghub"
 
@@ -67,6 +70,9 @@ other = "united-manufacturing-hub-kafka-0"
 [resource_pod_nodered]
 other = "united-manufacturing-hub-nodered-0"
 
+[resource_service_factoryinsight]
+other = "united-manufacturing-hub-factoryinsight-service"
+
 [resource_service_kafka-ext]
 other = "united-manufacturing-hub-kafka-0-external"
 
@@ -84,6 +90,9 @@ other = "redis-secret"
 
 [resource_secret_db-psw]
 other = "timescale-post-init-pw"
+
+[resource_secret_factoryinsight]
+other = "factoryinsight-secret"
 
 [resource_statefulset_nodered]
 other = "united-manufacturing-hub-nodered"
