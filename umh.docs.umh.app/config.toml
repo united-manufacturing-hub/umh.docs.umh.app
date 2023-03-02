@@ -1,4 +1,4 @@
-baseURL = "https://docs.docs.umh.app/"
+baseURL = "https://umh.docs.umh.app/"
 title = "United Manufacturing Hub"
 
 enableRobotsTXT = true
@@ -72,8 +72,14 @@ weight = 1
 # Everything below this are Site Params
 
 # Comment out if you don't want the "print entire section" link enabled.
-# [outputs]
-# section = ["HTML", "print"]
+[outputFormats.SearchIndex]
+mediaType = "application/json"
+baseName = "searchindex"
+isPlainText = true
+notAlternative = true
+
+[outputs]
+section = ["HTML", "SearchIndex"]
 
 [params]
 copyright = "UMH Systems GmbH"
@@ -102,13 +108,13 @@ currentUrl = "https://umh.docs.umh.app/docs/"
     docsbranch = "main"
     url = "https://umh.docs.umh.app/"
 
-# Flag used in the "version-banner" partial to decide whether to display a 
+# Flag used in the "version-banner" partial to decide whether to display a
 # banner on every page indicating that this is an archived version of the docs.
 # Set this flag to "true" if you want to display the banner.
 archived_version = true
 
 # The version number for the version of the docs represented in this doc set.
-# Used in the "version-banner" partial to display a version number for the 
+# Used in the "version-banner" partial to display a version number for the
 # current doc set.
 # version = "0.0"
 
@@ -166,7 +172,7 @@ yes = 'Glad to hear it! Please <a href="https://github.com/USERNAME/REPOSITORY/i
 no = 'Sorry to hear that. Please <a href="https://github.com/USERNAME/REPOSITORY/issues/new">tell us how we can improve</a>.'
 
 # Adds a reading time to the top of each doc.
-# If you want this feature, but occasionally need to remove the Reading time from a single page, 
+# If you want this feature, but occasionally need to remove the Reading time from a single page,
 # add "hide_readingtime: true" to the page's front matter
 [params.ui.readingtime]
 enable = true
