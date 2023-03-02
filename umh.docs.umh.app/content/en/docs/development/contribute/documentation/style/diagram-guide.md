@@ -529,7 +529,7 @@ graph LR;
  class cluster cluster;
 ```
 
-### Example 3 - umh system flow TODO
+### Example 3 - umh system flow WIP
 
 Figure 8 depicts a Mermaid sequence diagram showing the system flow between
 umh components to start a container.

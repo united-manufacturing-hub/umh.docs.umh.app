@@ -2,7 +2,7 @@
 title: "{{ replace .Name "-" " " | title }}"
 content_type: microservices
 description: |
-    TODO
+    Add a description of the microservice here.
 weight: 10
 ---
 

@@ -10,7 +10,7 @@ weight: 10
 
 ## {{% heading "howitworks" %}}
 
-TODO
+WIP
 
 <!-- body -->
 

@@ -40,7 +40,7 @@ token. Both of these can be found in the Secret `{{< resource type="secret" name
 
 ## {{% heading "configuration" %}}
 
-TODO: describe how to configure
+WIP: describe how to configure
 
 ### {{% heading "envvars" %}}
 
