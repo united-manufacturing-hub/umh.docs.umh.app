@@ -8,7 +8,7 @@ weight = 1000
 
 The United Manufacturing Hub can be installed locally or on an edge device, depending on your needs. For simple tinkering and development, we recommend installing it locally using our Management Console.
 {{% notice note %}}
-If you prefer an open-source approach, we also provide instructions for using [k3d](https://learn.umh.app/guides/getstarted/installation/local-k3d-installation/).
+If you prefer an open-source approach, we also provide instructions for using [k3d](/docs/installation/local-k3d-installation).
 {{% /notice %}}
 
 ## Local installation using the Management Console (recommended)

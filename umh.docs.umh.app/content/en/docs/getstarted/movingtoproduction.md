@@ -42,4 +42,6 @@ At times, you may need to connect different, older protocols. In such cases, Kep
 
 ## Edge device installation
 
-Follow our step-by-step [tutorial](https://learn.umh.app/guides/getstarted/installation/installation-guide-flatcar/) on how to install the UMH on an edge device using Flatcar. We've also written a blog article explaining why we use Flatcar as the operating system for the industrial IoT, which you can find [here](https://www.umh.app/post/flatcar-as-the-operating-system-of-the-industrial-iot).
+Follow our step-by-step [tutorial](/docs/installation/installation-guide-flatcar) on how to install the UMH on an edge device using Flatcar. We've also written a blog article explaining why we use Flatcar as the operating system for the industrial IoT, which you can find [here](https://www.umh.app/post/flatcar-as-the-operating-system-of-the-industrial-iot).
+
+
