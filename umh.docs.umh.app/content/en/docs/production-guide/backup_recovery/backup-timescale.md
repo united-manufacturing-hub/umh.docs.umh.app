@@ -1,7 +1,6 @@
 +++
 title =  "Backing up the database"
 description = "Learn how to backup the database"
-draft = true
 +++
 
 
