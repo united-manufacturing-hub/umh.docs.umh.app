@@ -12,7 +12,7 @@ weight: 10
 This page contains guidelines for United Manufacturing Hub documentation.
 
 For information on creating new content for the United Manufacturing Hub
-docs, follow the [style guide](/docs/development/contribute/style/style-guide).
+docs, follow the [style guide](/docs/development/contribute/documentation/style/style-guide).
 
 <!-- body -->
 

@@ -86,4 +86,4 @@ The state of the timeframe between the timestamp is modified to be 150000: Opera
 
 ## Consumers
 
-- [kafka-to-postgresql](/docs/core/kafka-to-postgresql)
+- [kafka-to-postgresql](/docs/architecture/microservices/core/kafka-to-postgresql)

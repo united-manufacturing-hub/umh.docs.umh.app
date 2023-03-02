@@ -84,4 +84,4 @@ A new product "Beilinger 30x15" with a cycle time of 200ms is added to the asset
 
 ## Consumers
 
-- [kafka-to-postgresql](/docs/core/kafka-to-postgresql)
+- [kafka-to-postgresql](/docs/architecture/microservices/core/kafka-to-postgresql)

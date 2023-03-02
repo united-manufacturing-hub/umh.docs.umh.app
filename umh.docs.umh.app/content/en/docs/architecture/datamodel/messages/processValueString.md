@@ -86,4 +86,4 @@ At the shown timestamp the custom process value "customer" had a readout of "mil
 
 ## Consumers
 
-- [kafka-to-postgresql](/docs/core/kafka-to-postgresql)
+- [kafka-to-postgresql](/docs/architecture/microservices/core/kafka-to-postgresql)

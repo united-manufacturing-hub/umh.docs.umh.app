@@ -253,7 +253,7 @@ The following lists advantages of the Inline method:
 * No need for separate `.svg` image file handling.
 * Content text, diagram code and diagram caption contained in the same `.md` file.
 
-You should use the [local](/docs/development/contribute/new-content/add-documentation/#preview-locally)
+You should use the [local](/docs/development/contribute/new-content/add-documentation//#preview-locally)
 and Cloudflare previews to verify the diagram is properly rendered.
 
 {{< notice note >}}
@@ -341,7 +341,7 @@ The following lists advantages of the Mermaid+SVG method:
 * Environment doesn't require Mermaid support.
 
 Be sure to check that your diagram renders properly using the
-[local](/docs/development/contribute/new-content/open-a-pr/#preview-locally)
+[local](/docs/development/contribute/new-content/add-documentation/#preview-locally)
 and Netlify previews.
 
 ### External tool
@@ -401,7 +401,7 @@ If your external drawing tool permits:
 
 * You can incorporate multiple `.svg` or `.png` logos, icons and images into your diagram.
   However, make sure you observe copyright and follow the United Manufacturing Hub documentation
-  [guidelines](/docs/development/contribute/style/content-guide/) on the use of third party content.
+  [guidelines](/docs/development/contribute/documentation/style/content-guide/) on the use of third party content.
 * You should save the diagram source coordinates for later contributor access.
   For example, your tool may offer a link to the diagram image, or you could
   place the source code file, such as an `.xml` file, somewhere for contributor access.
@@ -412,7 +412,7 @@ The following lists advantages of the External Tool method:
 * Diagrams require more detail than what Mermaid can offer.
 
 Don't forget to check that your diagram renders correctly using the
-[local](/docs/development/contribute/new-content/open-a-pr/#preview-locally) and Netlify previews.
+[local](/docs/development/contribute/new-content/add-documentation/#preview-locally) and Netlify previews.
 
 ## Examples
 

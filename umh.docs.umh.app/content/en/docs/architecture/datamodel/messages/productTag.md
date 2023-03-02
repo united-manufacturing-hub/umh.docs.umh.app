@@ -87,4 +87,4 @@ At the shown timestamp the product with the shown AID had 5 blemishes recorded.
 
 ## Consumers
 
-- [kafka-to-postgresql](/docs/core/kafka-to-postgresql)
+- [kafka-to-postgresql](/docs/architecture/microservices/core/kafka-to-postgresql)

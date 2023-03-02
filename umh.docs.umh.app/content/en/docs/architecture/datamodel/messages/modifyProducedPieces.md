@@ -85,4 +85,4 @@ The count and scrap are overwritten to be to each at the timestamp.
 
 ## Consumers
 
-- [kafka-to-postgresql](/docs/core/kafka-to-postgresql)
+- [kafka-to-postgresql](/docs/architecture/microservices/core/kafka-to-postgresql)

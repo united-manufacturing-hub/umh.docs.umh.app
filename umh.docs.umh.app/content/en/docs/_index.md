@@ -110,7 +110,7 @@ h2 {text-align: center; margin-left: auto; margin-right: auto}
                     <div class="card-body">
                         Because very often these solutions do not target the actual pains of an engineer: implementation and maintenance. And then companies struggle in rolling out IIoT as the projects take much longer and cost way more than originally proposed. <br><br>
                         In the United Manufacturing Hub, <strong>implementation and maintenance of the system are the first priority</strong>. We've had these pains too often ourselves and therefore incorporated and developed tools & technologies to avoid them.  <br><br>
-                        For example, with <a href="/docs/core/sensorconnect/">sensorconnect</a> we can retrofit production machines where it is impossible at the moment to extract data. Or, with our modular architecture we can fit the security needs of all IT departments - 
+                        For example, with <a href="/docs/architecture/microservices/core/sensorconnect/">sensorconnect</a> we can retrofit production machines where it is impossible at the moment to extract data. Or, with our modular architecture we can fit the security needs of all IT departments - 
                         from integration into a demilitarized zone to on-premise and private cloud. With Apache Kafka <a href="https://www.umh.app/post/tools-techniques-for-scalable-data-processing-in-industrial-iot">we solve the pain of corrupted or missing messages when scaling out the system</a>
                     </div>
                 </div>

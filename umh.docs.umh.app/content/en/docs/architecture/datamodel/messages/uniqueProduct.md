@@ -93,4 +93,4 @@ The processing of product "Beilinger 30x15" with the AID 216381 started and ende
 
 ## Consumers
 
-- [kafka-to-postgresql](/docs/core/kafka-to-postgresql)
+- [kafka-to-postgresql](/docs/architecture/microservices/core/kafka-to-postgresql)
