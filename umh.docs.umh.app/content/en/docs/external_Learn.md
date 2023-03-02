@@ -1,5 +1,5 @@
 +++
-title = "Learn"
+title = "Learning Hub"
 chapter = false
 weight = 30000
 manualLink = "https://learn.umh.app/"
