@@ -1,8 +1,8 @@
 ---
-title: "opcuasimulator"
+title: "Opcua-Simulator"
 content_type: task
 description: |
-    The technical documentation of the microservice opcuasimulator
+    This page has the technical documentation of the microservice opcuasimulator
 weight: 5000
 ---
 
@@ -12,14 +12,14 @@ This microservice is a community contribution and is not part of the main stack 
 
 ## How it works
 
-This microservice simulates data in four different topics by default, make sure to look at our [OPCUA simulator guide](/guides/getstarted/data-manipulation/creating-node-red-flow-with-simulated-opcua-data) to see how to utilize them to generate custom data.
+This microservice simulates data in four different topics by default, make sure to look at our [OPCUA simulator guide](https://learn.umh.app/guides/getstarted/data-manipulation/creating-node-red-flow-with-simulated-opcua-data/) to see how to utilize them to generate custom data.
 You can read the documentation of the standalone application [here](https://github.com/amine-amaach/simulators/tree/main/ioTSensorsOPCUA).
 
 With the standard configuration it simulates four different parameters around a set mean and standard deviation.
 It publishes messages on an OPC UA server, you can look up the address in OpenLens when inspecting the pod logs.
 
 If you want the simulated messaged to be processValues or other message types, just quickly adjust them via a Node-RED flow.
-We have some templates in our [Node-RED repository](/guides/open-source/node-red/tutorial/node-red-flows-repo/).
+We have some templates in our [Node-RED repository](https://learn.umh.app/guides/advanced/data-manipulation/node-red-flows-repo/).
 
 
 

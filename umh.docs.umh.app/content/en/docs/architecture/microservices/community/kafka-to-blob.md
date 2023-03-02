@@ -2,7 +2,7 @@
 title: "Kafka-to-Blob"
 content_type: task
 description: |
-    The technical documentation for the microservice kafka-to-blob, which saves raw images from Kafka to blob storage.
+    This page has the technical documentation for the microservice kafka-to-blob, which saves raw images from Kafka to blob storage.
 weight: 3000
 ---
 

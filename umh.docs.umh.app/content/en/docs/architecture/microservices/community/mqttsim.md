@@ -1,8 +1,8 @@
 ---
-title: "iotsensorsmqtt"
+title: "IoT-Sensors-Mqtt"
 content_type: task
 description: |
-    The technical documentation of the microservice iotsensorsmqtt
+    This page has the technical documentation of the microservice iotsensorsmqtt.
 weight: 2000
 ---
 
@@ -19,7 +19,7 @@ With the standard configuration it simulates three different parameters around a
 It publishes messages on the topic `ia/raw/development/ioTSensors/#` wherein # is the parameter.
 
 If you want the simulated messaged to be processValues or other message types, just quickly adjust them via a Node-RED flow.
-We have some templates in our [Node-RED repository](/guides/open-source/node-red/tutorial/node-red-flows-repo/).
+We have some templates in our [Node-RED repository](https://learn.umh.app/guides/advanced/data-manipulation/node-red-flows-repo/).
 
 ## Configuration
 

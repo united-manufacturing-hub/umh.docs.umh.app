@@ -2,7 +2,7 @@
 title: "Factoryinput-panel"
 content_type: task
 description: |
-    The technical documentation of the microservice factoryinput-panel, which allows for easy execution of MQTT messages inside the UMH stack from a Grafana panel.
+    This page has the technical documentation of the microservice factoryinput-panel, which allows for easy execution of MQTT messages inside the UMH stack from a Grafana panel.
 weight: 9000
 ---
 
@@ -14,7 +14,7 @@ This microservice is still in development and is not considered stable for produ
 ## Requirements
 
 - A United Manufacturing Hub stack
-- External IP or URL to the [grafana-proxy](/docs/plugins/grafana-proxy) server.
+- External IP or URL to the [grafana-proxy](/docs/architecture/microservices/community/grafana-proxy)
     - In most cases it is the same IP address as your Grafana dashboard.
 
 ## Getting started

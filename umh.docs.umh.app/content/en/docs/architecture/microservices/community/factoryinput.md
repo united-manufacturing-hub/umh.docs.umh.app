@@ -2,7 +2,7 @@
 title: "Factoryinput"
 content_type: task
 description: |
-    The technical documentation of the microservice factoryinput, which provides a REST endpoint for MQTT messages via HTTP requests.
+    This page has the technical documentation of the microservice factoryinput, which provides a REST endpoint for MQTT messages via HTTP requests.
 weight: 7000
 ---
 
@@ -14,7 +14,7 @@ This microservice is still in development and is not considered stable for produ
 
 Factoryinput provides a REST endpoint for MQTT messages via HTTP requests.
 
-This microservice is typically accessed via [grafana-proxy](/docs/plugins/grafana-proxy)
+This microservice is typically accessed via [grafana-proxy](/docs/architecture/microservices/community/grafana-proxy)
 
 ## Configuration
 

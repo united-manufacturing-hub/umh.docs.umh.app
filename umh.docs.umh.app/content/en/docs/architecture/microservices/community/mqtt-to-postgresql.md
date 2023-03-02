@@ -2,7 +2,7 @@
 title: "Mqtt-to-Postgresql"
 content_type: task
 description: |
-    The technical documentation of the microservice mqtt-to-postgresql, which subscribes to an MQTT broker and stores messages in a PostgreSQL or timescaleDB database.
+    This page has the technical documentation of the microservice mqtt-to-postgresql, which subscribes to an MQTT broker and stores messages in a PostgreSQL or timescaleDB database.
 weight: 4000
 ---
 

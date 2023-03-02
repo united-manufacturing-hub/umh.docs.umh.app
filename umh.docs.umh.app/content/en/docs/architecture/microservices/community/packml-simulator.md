@@ -1,8 +1,8 @@
 ---
-title: "packmlsimulator"
+title: "Packml-Simulator"
 content_type: task
 description: |
-    The technical documentation of the microservice packmlsimulator
+    This page has the technical documentation of the microservice packmlsimulator
 weight: 6000
 ---
 
@@ -14,12 +14,12 @@ This microservice is a community contribution and is not part of the main stack 
 
 This microservice simulates a PackML machine which sends and receives MQTT messages, make sure to look at our Node-RED flows to see how to utilize them to generate custom data.
 You can read the documentation of the standalone application [here](https://github.com/Spruik/PackML-MQTT-Simulator).
-Make sure to look at our [PACKML simulator guide](/guides/getstarted/data-manipulation/creating-node-red-flow-with-packml-data) to see how to utilize them to generate custom data.
+Make sure to look at our [PACKML simulator guide](https://learn.umh.app/guides/getstarted/data-manipulation/creating-a-node-red-flow-with-packml-data/) to see how to utilize them to generate custom data.
 
 The simulator requires a running MQTT server accessible for the simulator.
 
 If you want the simulated messages to be converted into processValues or other message types, just quickly adjust them via a Node-RED flow.
-We have some templates in our [Node-RED repository](/guides/open-source/node-red/tutorial/node-red-flows-repo/).
+We have some templates in our [Node-RED repository](https://learn.umh.app/guides/advanced/data-manipulation/node-red-flows-repo/).
 
 Using docker you can build a container with the following command:
 ```bash

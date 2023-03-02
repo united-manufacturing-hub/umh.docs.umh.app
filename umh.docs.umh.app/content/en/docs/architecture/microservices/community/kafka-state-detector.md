@@ -3,7 +3,7 @@ title: "Kafka-State-Detector"
 content_type: task
 draft: true
 description: |
-    This page contains the technical information for the kafka-state-detector.
+    This page has the technical information for the kafka-state-detector.
 weight: 11
 ---
 
