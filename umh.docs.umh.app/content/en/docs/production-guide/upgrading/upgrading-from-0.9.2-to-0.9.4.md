@@ -56,4 +56,4 @@ Right now this is
     
 3. Follow the other advices in 
     
-    [**Upgrading the Helm Chart**](./upgrading-helm-chart)
+    [**Upgrading the Helm Chart**](/docs/production-guide/upgrading/upgrading-helm-chart)

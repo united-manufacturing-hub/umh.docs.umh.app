@@ -229,7 +229,7 @@ where the pull request would otherwise be tagged `LGTM`.
 Each commit should have a good title line (<70 characters) and include an
 additional description paragraph describing in more detail the change intended.
 
-For more information, see [squash commits](./github-workflow.md#squash-commits).
+For more information, see [squash commits](/docs/development/contribute/new-content/github-workflow.md#squash-commits).
 
 #### General squashing guidelines
 
