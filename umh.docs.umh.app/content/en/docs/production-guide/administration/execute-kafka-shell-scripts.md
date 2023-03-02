@@ -42,5 +42,5 @@ administrative tasks. This page describes how to execute Kafka shell scripts.
 
 ## {{% heading "whatsnext" %}}
 
-- See [Access Kafka console](/docs/administration/access-kafka-console/).
-- See [Access Kafka outside the cluster](/docs/administration/access-kafka-outside-cluster/).
+- See [Access Kafka console](/docs/production-guides/administration/access-kafka-console/).
+- See [Access Kafka outside the cluster](/docs/production-guides/administration/access-kafka-outside-cluster/).

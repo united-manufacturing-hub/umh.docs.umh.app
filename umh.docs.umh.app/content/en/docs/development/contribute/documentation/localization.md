@@ -187,7 +187,7 @@ At a minimum, all localizations must include:
 
 | Description      | URLs                                                                   |
 |------------------|------------------------------------------------------------------------|
-| Administration   | [All heading and subheading URLs](/docs/administration/)               |
+| Administration   | [All heading and subheading URLs](/docs/production-guides/administration/)               |
 | Architecture     | [All heading and subheading URLs](/docs/architecture/)                 |
 | Getting started  | [All heading and subheading URLs](/docs/getstarted/)                   |
 | Produciton guide | [All heading and subheading URLs](/docs/production-guide)              |

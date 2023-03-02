@@ -34,5 +34,5 @@ If you have accidentally sent the wrong state or if you want to modify a value, 
 ### Unique Product Tracking
 
 You can use [uniqueProduct](messages/uniqueproduct) to tell the database that a new instance of a product has been created.
-If the produced product is scrapped, you can use [messages/addproduct/](messages/addproduct/) to change its state to scrapped.
+If the produced product is scrapped, you can use [messages/addproduct/](messages/addproduct) to change its state to scrapped.
 
