@@ -55,8 +55,8 @@ flowchart
             timescaledb -- SQL --> factoryinsight
             factoryinsight -- HTTP --> umh-datasource
             umh-datasource --Plugin--> grafana
-            factoryinsight <--> redis
-            kafka-to-postgresql <--> redis
+            factoryinsight <--RESP--> redis
+            kafka-to-postgresql <--RESP--> redis
         end 
 
 
