@@ -38,4 +38,4 @@ Kubernetes host on the **Nodes** page in {{< resource type="lens" name="name" >}
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
 
-- See how to [Access Factoryinsight Outside the Cluster](/docs/administration/access-factoryinsight-outside-cluster/)
+- See how to [Access Factoryinsight Outside the Cluster](/docs/production-guide/administration/access-factoryinsight-outside-cluster/)

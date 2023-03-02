@@ -47,6 +47,6 @@ version, use `{{< resource type="service" name="mqtt-verne" >}}` instead of
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
 
-- See [Access the MQTT Broker Outside the Cluster](/docs/administration/access-mqtt-outside-cluster)
-- See [Access Factoryinsight Outside the Cluster](/docs/administration/access-factoryinsight-outside-cluster)
-- See [Access Kafka Outside the Cluster](/docs/administration/access-kafka-outside-cluster)
+- See [Access the MQTT Broker Outside the Cluster](/docs/production-guide/administration/access-mqtt-outside-cluster)
+- See [Access Factoryinsight Outside the Cluster](/docs/production-guide/administration/access-factoryinsight-outside-cluster)
+- See [Access Kafka Outside the Cluster](/docs/production-guide/administration/access-kafka-outside-cluster)

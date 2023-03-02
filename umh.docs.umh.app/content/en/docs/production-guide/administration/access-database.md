@@ -155,7 +155,7 @@ You can use Grafana to visualize data from the database.
 ## {{% heading "whatsnext" %}}
 
 - See a list of [SQL commands](https://www.postgresql.org/docs/current/sql-commands.html)
-- See how to [Delete Assets from the Database](/docs/administration/delete-assets/)
-- See how to [Reduce the Database Size](/docs/administration/reduce-database-size/)
+- See how to [Delete Assets from the Database](/docs/production-guide/administration/delete-assets/)
+- See how to [Reduce the Database Size](/docs/production-guide/administration/reduce-database-size/)
 - See how to [Backup and Restore the Database](/docs/production-guide/backup_recovery/backup-timescale)
-- See how to [Expose Grafana to the Internet](/docs/administration/expose-grafana-to-internet/)
+- See how to [Expose Grafana to the Internet](/docs/production-guide/administration/expose-grafana-to-internet/)

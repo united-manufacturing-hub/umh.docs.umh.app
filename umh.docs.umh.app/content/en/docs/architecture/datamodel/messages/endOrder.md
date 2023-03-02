@@ -24,7 +24,7 @@ A message is sent each time a new product is produced.
 
 
 {{% notice warning %}}
-See also notes regarding adding products and orders in [/addOrder](/docs/datamodel/messages/addorder)
+See also notes regarding adding products and orders in [/addOrder](/docs/architecture/datamodel/messages/addorder)
 {{% /notice %}}
 
 ### JSON

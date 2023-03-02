@@ -359,7 +359,7 @@ The `_000_commonConfig.infrastructure.kafka` section contains the configuration
 of the [Kafka broker](/docs/architecture/microservices/core/kafka-broker)
 and related services, like [mqttkafkabridge](/docs/architecture/microservices/core/mqtt-kafka-bridge/),
 [kafkatopostgresql](/docs/architecture/microservices/core/kafka-to-postgresql/)
-and the [Kafka console](/docs/architecture/microservices/core/kafka-console/).
+and the Kafka console.
 
 The following table lists the configuration options that can be set in the
 `_000_commonConfig.infrastructure.kafka` section:
