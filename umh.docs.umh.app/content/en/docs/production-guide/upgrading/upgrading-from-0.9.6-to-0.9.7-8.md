@@ -9,7 +9,7 @@ maximum_version: 0.9.8
 
 During the Helm chart upgrade from v0.9.6 to 0.9.7/8 the following steps need to executed additionally to the following guide:
 
-[**Upgrading the Helm Chart**](./upgrading-helm-chart)
+[**Upgrading the Helm Chart**](/docs/production-guide/upgrading/upgrading-helm-chart)
 
 # Upgrading (after upgrading the Helm Chart)
 

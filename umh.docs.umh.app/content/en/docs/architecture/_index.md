@@ -5,7 +5,7 @@ description = "A detailed view of the architecture of the UMH stack."
 weight = 2000
 +++
 
-The United Manufacturing Hub at its core is a [Helm Chart for Kubernetes](helm-chart) consisting of several microservices and open source 3rd party applications, such as Node-RED and Grafana. This Helm Chart can be deployed in various environments, from edge devices and virtual machines to managed Kubernetes offerings. In large-scale deployments, you find typically a combination out of all these deployment options.
+The United Manufacturing Hub at its core is a [Helm Chart for Kubernetes](/docs/architecture/helm-chart) consisting of several microservices and open source 3rd party applications, such as Node-RED and Grafana. This Helm Chart can be deployed in various environments, from edge devices and virtual machines to managed Kubernetes offerings. In large-scale deployments, you find typically a combination out of all these deployment options.
 
 In this chapter, we'll explore the various microservices and applications that make up the United Manufacturing Hub, and how they work together to help you extract, contextualize, store, and visualize data from your shop floor.
 {{< mermaid theme="neutral" >}}
