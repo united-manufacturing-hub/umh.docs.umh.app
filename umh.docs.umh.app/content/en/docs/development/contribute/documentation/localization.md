@@ -174,7 +174,7 @@ When a localization meets the requirements for workflow and minimum output, the
 UMH team does the following:
 
 - Enables language selection on the website.
-- Publicizes the localization's availability through the [United Manufacturing Hub blog](TODO: learn blog).
+- Publicizes the localization's availability through the [United Manufacturing Hub blog](https://learn.umh.app).
 
 ## Translating content
 

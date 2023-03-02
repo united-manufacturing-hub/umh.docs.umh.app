@@ -1,5 +1,5 @@
 ---
-title: "Upgrading from v0.9.2 to v0.9.4"
+title: "Upgrading v0.9.2 to v0.9.4"
 description: "During the upgrade some changes need to be done manually"
 minimum_version: 0.9.2
 maximum_version: 0.9.4
