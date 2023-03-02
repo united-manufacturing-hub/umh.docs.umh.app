@@ -1,17 +1,26 @@
 [heading_cleanup]
 other = "Cleaning up"
 
+[heading_configuration]
+other = "Configuration"
+
 [heading_discussion]
 other = "Discussion"
 
 [heading_envvars]
 other = "Environment variables"
 
+[heading_examples]
+other = "Examples"
+
 [heading_feedback]
 other = "Feedback"
 
-[heading_examples]
-other = "Examples"
+[heading_howitworks]
+other = "How it works"
+
+[heading_kuberesources]
+other = "Kubernetes resources"
 
 [heading_objectives]
 other = "Objectives"
@@ -40,6 +49,21 @@ other = "Your United Manufacturing Hub must be at or later than version "
 [version_check_tocheck]
 other = "To check the United Manufacturing Hub version, open UMHLens / OpenLens and go to **Helm** > **Releases**. The version is listed in the **Version** column."
 
+[resource_deployment_factoryinsight]
+other = "united-manufacturing-hub-factoryinsight-deployment"
+
+[resource_deployment_barcodereader]
+other = "united-manufacturing-hub-barcodereader"
+
+[resource_deployment_cameraconnect]
+other = "united-manufacturing-hub-cameraconnect"
+
+[resource_deployment_kafkabridge]
+other = "united-manufacturing-hub-kafkabridge"
+
+[resource_deployment_kafkatopostgresql]
+other = "united-manufacturing-hub-kafkatopostgresql"
+
 [resource_docker_org]
 other = "unitedmanufacturinghub"
 
@@ -58,6 +82,12 @@ other = "united-manufacturing-hub-kafka-0"
 [resource_pod_nodered]
 other = "united-manufacturing-hub-nodered-0"
 
+[resource_service_factoryinsight]
+other = "united-manufacturing-hub-factoryinsight-service"
+
+[resource_service_kafka]
+other = "united-manufacturing-hub-kafka"
+
 [resource_service_kafka-ext]
 other = "united-manufacturing-hub-kafka-0-external"
 
@@ -70,11 +100,26 @@ other = "united-manufacturing-hub-vernemq"
 [resource_service-cluster_database]
 other = "united-manufacturing-hub.united-manufacturing-hub.svc.cluster.local:5432"
 
+[resource_secret_barcodereader]
+other = "united-manufacturing-hub-barcodereader-secrets"
+
 [resource_secret_cache-psw]
 other = "redis-secret"
 
 [resource_secret_db-psw]
 other = "timescale-post-init-pw"
+
+[resource_secret_factoryinsight]
+other = "factoryinsight-secret"
+
+[resource_secret_kafkabridge-local]
+other = "united-manufacturing-hub-kafkabridge-secrets-local"
+
+[resource_secret_kafkabridge-remote]
+other = "united-manufacturing-hub-kafkabridge-secrets-remote"
+
+[resource_secret_kafkatopostgresql]
+other = "united-manufacturing-hub-kafkatopostgresql-certificates"
 
 [resource_statefulset_nodered]
 other = "united-manufacturing-hub-nodered"
