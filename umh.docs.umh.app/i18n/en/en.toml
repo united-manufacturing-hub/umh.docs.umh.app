@@ -55,6 +55,9 @@ other = "united-manufacturing-hub-factoryinsight-deployment"
 [resource_deployment_barcodereader]
 other = "united-manufacturing-hub-barcodereader"
 
+[resource_deployment_cameraconnect]
+other = "united-manufacturing-hub-cameraconnect"
+
 [resource_docker_org]
 other = "unitedmanufacturinghub"
 
