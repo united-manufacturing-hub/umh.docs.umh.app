@@ -145,7 +145,7 @@ In addition to the built-in microservices, third-party contextualization solutio
 
 ## Unified Namespace
 
-At the core of the United Manufacturing Hub lies the [Unified Namespace](https://learn.umh.app/lesson/3-1-1-unified-namespace/), which serves as the central source of truth for all events and messages occurring on your shop floor. The Unified Namespace is implemented using two message brokers: HiveMQ for MQTT and Apache Kafka. MQTT is used to receive data from IoT devices on the shop floor because it excels at handling a large number of unreliable connections. On the other hand, Kafka is used to enable communication between the microservices, leveraging its large-scale data processing capabilities.
+At the core of the United Manufacturing Hub lies the [Unified Namespace](/lesson/introduction-into-it-ot-unified-namespace/), which serves as the central source of truth for all events and messages occurring on your shop floor. The Unified Namespace is implemented using two message brokers: HiveMQ for [MQTT](https://learn.umh.app/lesson/introduction-into-it-ot-mqtt/) and [Apache Kafka](https://learn.umh.app/lesson/introduction-into-it-ot-kafka/). MQTT is used to receive data from IoT devices on the shop floor because it excels at handling a large number of unreliable connections. On the other hand, Kafka is used to enable communication between the microservices, leveraging its large-scale data processing capabilities.
 
 The data between both brokers is bridged automatically using the mqtt-to-kafka microservice, allowing you to send data to MQTT and process it reliably in Kafka.
 
