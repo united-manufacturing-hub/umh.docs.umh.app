@@ -1,7 +1,7 @@
 +++
 title = "Installation"
 menuTitle = "Installation"
-description = "TODO"
+description = "Installation of the UMH stack using FOSS tools"
 weight = 5000
 +++
 
