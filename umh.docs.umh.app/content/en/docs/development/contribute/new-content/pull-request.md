@@ -19,10 +19,10 @@ all contributors, and be useful especially to new and infrequent submitters.
 This guide is for contributors who already have a pull request to submit.
 If you're looking for information on setting up your developer environment and
 creating code to contribute to United Manufacturing Hub,
-see the [development guide](/docs/development/contribute/united-manufacturing-hub/development-guide.md).
+see the [development guide](/docs/development/contribute/united-manufacturing-hub/development-guide).
 
 First-time contributors should head to the
-[Contributor Guide](/docs/development/contribute/getting-started.md) to get started.
+[Contributor Guide](/docs/development/contribute/getting-started) to get started.
 
 **Make sure your pull request adheres to our best practices.
 These include following project conventions, making small pull requests, and
@@ -57,7 +57,7 @@ While either label is present, your pull request will not be considered for merg
 
 United Manufacturing Hub runs a set of end-to-end tests (e2e tests) on pull
 requests. You can find an overview of the tests in the
-[CI documentation](/docs/development/ci.md).
+[CI documentation](/docs/development/ci).
 
 ## Why was my pull request closed?
 
@@ -92,8 +92,8 @@ Let's talk about best practices so your pull request gets reviewed quickly.
 
 ### Familiarize yourself with project conventions
 
-- [Development guide](/docs/development/contribute/united-manufacturing-hub/development-guide.md)
-- [Coding conventions](/docs/development/contribute/united-manufacturing-hub/coding-conventions.md)
+- [Development guide](/docs/development/contribute/united-manufacturing-hub/development-guide)
+- [Coding conventions](/docs/development/contribute/united-manufacturing-hub/coding-conventions)
 
 ### Is the feature wanted? File a United Manufacturing Hub Enhancement Proposal
 
