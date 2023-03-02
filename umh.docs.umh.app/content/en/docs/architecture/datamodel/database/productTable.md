@@ -13,7 +13,7 @@ This table products to be produced at assets
 |----------------------------|-----------|----------------------------------------------------------------|--------------------|
 | `product_id`               | `serial`  | Auto incrementing id                                           | 0                  |
 | `product_name`             | `text`    | Name of the product                                            | Painting-DaVinci-1 |
-| `asset_id`                 | `serial`  | Asset producing this product (see [assetTable](../assettable)) | 1                  |
+| `asset_id`                 | `serial`  | Asset producing this product (see [assetTable](/docs/architecture/datamodel/database/assettable)) | 1                  |
 | `time_per_unit_in_seconds` | `real`    | Time in seconds to produce this product                        | 600                |
 
 

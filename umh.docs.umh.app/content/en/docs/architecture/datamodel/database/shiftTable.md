@@ -15,7 +15,7 @@ This table stores shifts
 | `type`            | `integer`     | Shift type (1 for shift, 0 for no shift)                             | 1       |
 | `begin_timestamp` | `timestamptz` | Begin of the shift                                                   | 3       |
 | `end_timestamp`   | `timestamptz` | End of the shift                                                     | 10      |
-| `asset_id`        | `text`        | Asset ID the shift is performed on (see [assetTable](../assettable)) | 1       |
+| `asset_id`        | `text`        | Asset ID the shift is performed on (see [assetTable](/docs/architecture/datamodel/database/assettable)) | 1       |
 
 ## Relations
 

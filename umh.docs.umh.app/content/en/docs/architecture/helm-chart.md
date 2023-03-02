@@ -33,17 +33,17 @@ custom microservices:
   a barcode reader and sends it to the MQTT broker for further processing.
 - [cameraconnect](/docs/architecture/microservices/core/cameraconnect/): connects to a
   camera and sends the images to the MQTT broker for further processing.
-- [customMicroservice](/docs/architecture/microservices/core/custom-microservice/): a
+- customMicroservice: a
   template for deploying any number of custom microservices.
 - [factoryinput](/docs/architecture/microservices/community/factoryinput/): provides REST
   endpoints for MQTT messages.
 - [factoryinsight](/docs/architecture/microservices/core/factoryinsight/): provides REST
   endpoints to fetch data and calculate KPIs.
-- [grafanaproxy](/docs/architecture/microservices/community/grafanaproxy/): provides a
+- grafanaproxy: provides a
   proxy to the backend services.
 - IoTSensorsMQTT: simulates
   sensors and sends the data to the MQTT broker for further processing.
-- [kafka-state-detector](/docs/architecture/microservices/core/kafka-state-detector/):
+- [kafka-state-detector](/docs/architecture/microservices/community/kafka-state-detector/):
   detects the state of the Kafka broker.
 - kafka-bridge: connects Kafka brokers
   on different Kubernetes clusters.
@@ -53,11 +53,11 @@ custom microservices:
   from the Kafka broker in a blob storage.
 - [kafkatopostgresql](/docs/architecture/microservices/core/kafka-to-postgresql/):
   stores the data from the Kafka broker in a PostgreSQL database.
-- [mqtt-kafka-bridge](/docs/architecture/microservices/core/mqtt-kafka-bridge/): connects
+- [mqtt-kafka-bridge](/docs/architecture/microservices/core/mqtt-to-kafka-bridge/): connects
   the MQTT broker and the Kafka broker.
 - mqttbridge: connects MQTT brokers on
   different Kubernetes clusters.
-- [opcuasimulator](/docs/architecture/microservices/community/opcuasimulator/): simulates
+- [opcuasimulator](/docs/architecture/microservices/community/opcua-simulator/): simulates
   OPC UA servers and sends the data to the MQTT broker for further processing.
 - [packmlmqttsimulator](/docs/architecture/microservices/community/packml-simulator/):
   simulates a PackML state machine and sends the data to the MQTT broker for
@@ -205,7 +205,7 @@ The following table lists the configuration options that can be set in the
 ##### IoT Sensors MQTT
 
 The `_000_commonConfig.datasources.iotsensorsmqtt` section contains the
-configuration of the [IoTSensorsMQTT](/docs/architecture/microservices/community/iotsensorsmqtt)
+configuration of the IoTSensorsMQTT
 microservice.
 
 The following table lists the configuration options that can be set in the
@@ -220,7 +220,7 @@ The following table lists the configuration options that can be set in the
 ##### OPC UA Simulator
 
 The `_000_commonConfig.datasources.opcuasimulator` section contains the
-configuration of the [opcuasimulator](/docs/architecture/microservices/community/opcuasimulator)
+configuration of the [opcuasimulator](/docs/architecture/microservices/community/opcua-simulator)
 microservice.
 
 The following table lists the configuration options that can be set in the
@@ -235,7 +235,7 @@ The following table lists the configuration options that can be set in the
 ##### PackML MQTT Simulator
 
 The `_000_commonConfig.datasources.packmlmqttsimulator` section contains the
-configuration of the [packmlsimulator](/docs/architecture/microservices/community/packmlsimulator)
+configuration of the [packmlsimulator](/docs/architecture/microservices/community/packml-simulator)
 microservice.
 
 The following table lists the configuration options that can be set in the
@@ -268,7 +268,7 @@ The following table lists the configuration options that can be set in the
 #### Data processing
 
 The `_000_commonConfig.dataprocessing` section contains the configuration of the
-microservices used to process data, such as the [nodered](/docs/architecture/microservices/community/node-red)
+microservices used to process data, such as the nodered
 microservice.
 
 The following table lists the configuration options that can be set in the
@@ -283,7 +283,7 @@ The following table lists the configuration options that can be set in the
 ##### Node-RED
 
 The `_000_commonConfig.dataprocessing.nodered` section contains the configuration
-of the [nodered](/docs/architecture/microservices/core/node-red) microservice.
+of the nodered microservice.
 
 The following table lists the configuration options that can be set in the
 `_000_commonConfig.dataprocessing.nodered` section:
@@ -299,8 +299,8 @@ The following table lists the configuration options that can be set in the
 
 The `_000_commonConfig.infrastructure` section contains the configuration of the
 microservices responsible for connecting all the other microservices, such as the
-[MQTT broker](/docs/architecture/microservices/core/mqtt-broker) and the
-[Kafka broker](/docs/architecture/microservices/core/kafka-broker).
+[MQTT broker](/docs/architecture/microservices/core/hivemq) and the
+Kafka broker.
 
 The following table lists the configuration options that can be set in the
 `_000_commonConfig.infrastructure` section:
@@ -315,7 +315,7 @@ The following table lists the configuration options that can be set in the
 ##### MQTT
 
 The `_000_commonConfig.infrastructure.mqtt` section contains the configuration
-of the [MQTT broker](/docs/architecture/microservices/core/mqtt-broker).
+of the [MQTT broker](/docs/architecture/microservices/core/hivemq).
 
 The following table lists the configuration options that can be set in the
 `_000_commonConfig.infrastructure.mqtt` section:
@@ -355,8 +355,8 @@ The following table lists the configuration options that can be set in the
 ##### Kafka
 
 The `_000_commonConfig.infrastructure.kafka` section contains the configuration
-of the [Kafka broker](/docs/architecture/microservices/core/kafka-broker)
-and related services, like [mqttkafkabridge](/docs/architecture/microservices/core/mqtt-kafka-bridge/),
+of the Kafka broker
+and related services, like [mqttkafkabridge](/docs/architecture/microservices/core/mqtt-to-kafka-bridge/),
 [kafkatopostgresql](/docs/architecture/microservices/core/kafka-to-postgresql/)
 and the Kafka console.
 
@@ -417,11 +417,11 @@ The `_000_commonConfig.datastorage` section contains the configuration of the
 microservices used to store data. Specifically, it controls the following
 microservices:
 
-- [timescaledb](/docs/architecture/microservices/core/database)
+- timescaledb
 - [factoryinsight](/docs/architecture/microservices/core/factoryinsight)
 - [kafka-to-postgresql](/docs/architecture/microservices/core/kafka-to-postgresql)
-- [grafana](/docs/architecture/microservices/core/grafana)
-- [mqtt-broker](/docs/architecture/microservices/core/mqtt-broker)
+- grafana
+- [mqtt-broker](/docs/architecture/microservices/core/hivemq)
 
 If you want to specifically configure one of these microservices, you can do so
 in their respective sections in the Danger Zone.
@@ -449,7 +449,7 @@ If you want to specifically configure one of these microservices, you can do so
 in their respective sections in the danger zone.
 
 The following table lists the configurable parameters of the
-`_000_commonConfig.datainput` section.
+`_000_commonConfig.datainput` section./
 
 {{< table caption="datainput section parameters" >}}
 | Parameter | Description                                    | Type | Allowed values  | Default |
@@ -464,7 +464,7 @@ microservices used to store data in blob storage. Specifically, it controls the
 following microservices:
 
 - [kafka-to-blob](/docs/architecture/microservices/community/kafka-to-blob)
-- [minio](/docs/architecture/microservices/community/minio/)
+- minio
 
 If you want to specifically configure one of these microservices, you can do so
 in their respective sections in the danger zone.
@@ -481,7 +481,7 @@ The following table lists the configurable parameters of the
 #### MQTT Bridge
 
 The `_000_commonConfig.mqttBridge` section contains the configuration of the
-[mqtt-bridge](/docs/architecture/microservices/core/mqtt-bridge/) microservice,
+mqtt-bridge microservice,
 responsible for bridging MQTT brokers in different Kubernetes clusters.
 
 The following table lists the configurable parameters of the
@@ -503,7 +503,7 @@ The following table lists the configurable parameters of the
 #### Kafka Bridge
 
 The `_000_commonConfig.kafkaBridge` section contains the configuration of the
-[kafka-bridge](/docs/architecture/microservices/core/kafka-bridge/) microservice,
+kafka-bridge microservice,
 responsible for bridging Kafka brokers in different Kubernetes clusters.
 
 The following table lists the configurable parameters of the
@@ -539,7 +539,7 @@ For more information about the topic maps, see the
 #### Kafka State Detector
 
 The `_000_commonConfig.kafkaStateDetector` section contains the configuration
-of the [kafka-state-detector](/docs/architecture/microservices/core/kafka-state-detector/)
+of the [kafka-state-detector](/docs/architecture/microservices/community/kafka-state-detector/)
 microservice, responsible for detecting the state of the Kafka broker.
 
 The following table lists the configurable parameters of the

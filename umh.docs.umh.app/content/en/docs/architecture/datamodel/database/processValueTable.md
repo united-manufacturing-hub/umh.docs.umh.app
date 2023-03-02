@@ -6,14 +6,14 @@ description = "processValueTable contains process values."
 ## Usage
 
 This table stores process values, for example toner level of a printer, flow rate of a pump, etc.
-This table, has a closely related table for storing string values, [processValueStringTable](/docs/architecture/datamodel/database/processValueStringTable).
+This table, has a closely related table for storing string values, [processValueStringTable](/docs/architecture/datamodel/database/processvaluestringtable).
 
 ## Structure
 
 | key         | data type     | description                                | example     |
 |-------------|---------------|--------------------------------------------|-------------|
 | `timestamp` | `timestamptz` | Entry timestamp                            | 0           |
-| `asset_id`  | `serial`      | Asset id (see [assetTable](../assettable)) | 1           |
+| `asset_id`  | `serial`      | Asset id (see [assetTable](/docs/architecture/datamodel/database/assettable)) | 1           |
 | `valueName` | `text`        | Name of the process value                  | toner-level |
 | `value`     | `double`      | Value of the process value                 | 100         |
 
