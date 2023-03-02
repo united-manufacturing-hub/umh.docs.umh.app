@@ -13,7 +13,7 @@ During the Helm Hart upgrade from v0.9.4 to 0.9.5 the following steps need to ex
 2. [Migrating DB ordertable (< 0.9.5 to ≥ 0.9.5)](/docs/production-guide/upgrading/migrating-ordertable) 
 3. The default language is now English. If you want to keep using German, you need to follow this guide:
     
-    [Changing the language in factoryinsight](/docs/production-guides/administration/change-factoryinsight-language)
+    [Changing the language in factoryinsight](/docs/production-guide/administration/change-factoryinsight-language)
     
 4. The Kafka StatefulSet has now a startupProbe to work with long startup times. For this you need to change the following values in the values.yaml:
     
