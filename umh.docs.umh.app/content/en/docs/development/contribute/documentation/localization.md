@@ -227,16 +227,16 @@ To find source files for your target version:
 
 2. Select a branch for your target version from the following table:
 
-Target version | Branch
------|-----
-Latest version | [`main`](https://github.com/united-manufacturing-hub/umh.docs.umh.app/tree/main)
+| Target version | Branch                                                                           |
+|----------------|----------------------------------------------------------------------------------|
+| Latest version | [`main`](https://github.com/united-manufacturing-hub/umh.docs.umh.app/tree/main) |
 
 The `main` branch holds content for the current release `{{< latest-version >}}`.
 
 ### Site strings in i18n
 
 Localizations must include the contents of
-[`i18n/en.toml`](https://github.com/united-manufacturing-hub/umh.docs.umh.app/main/i18n/en.toml)
+[`i18n/en.toml`](https://github.com/united-manufacturing-hub/umh.docs.umh.app/blob/main/umh.docs.umh.app/i18n/en/en.toml)
 in a new language-specific file. Using German as an example:
 `i18n/de.toml`.
 

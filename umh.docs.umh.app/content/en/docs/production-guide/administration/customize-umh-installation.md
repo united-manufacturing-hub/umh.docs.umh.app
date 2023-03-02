@@ -40,5 +40,5 @@ To get more information about the values you can change, see the
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
 
-- See [Access the Database](/docs/administration/access-database.md)
-- See [Change the Language in Factoryinsight](/docs/administration/change-factoryinsight-language.md)
+- See [Access the Database](/docs/administration/access-database)
+- See [Change the Language in Factoryinsight](/docs/administration/change-factoryinsight-language)
