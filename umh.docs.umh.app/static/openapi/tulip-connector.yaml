@@ -1,0 +1,65 @@
+openapi: 3.0.3
+info:
+  title: Tulip Connector API
+  description: An API to connect a Tulip instance to the UMH stack
+  version: 0.1.0
+tags:
+  - name: "base"
+    description: "Base API utilities"
+  - name: "factoryinsight"
+    description: "FactoryInsight API"
+    externalDocs:
+        description: "FactoryInsight API documentation"
+        url: "https://learn.umh.app/docs/core/factoryinsight/"
+paths:
+  /:
+    get:
+      tags:
+        - "base"
+      summary: Get the status of the connector
+      responses:
+        '200':
+          description: The connector is up and running
+          content:
+            application/text:
+              schema:
+                type: string
+              example: "online"
+        '500':
+          description: The connector is down
+  /api/v1/factoryinsight/forward:
+    get:
+      tags:
+        - "factoryinsight"
+      summary: Forward a message to the UMH stack
+      parameters:
+        - name: uri
+          in: query
+          description: The URI of the request to forward
+          required: true
+          schema:
+            type: string
+          examples:
+            factoryinsightV1:
+              summary: "FactoryInsight v1 request"
+              value: "/api/v1/customerName/locationName/assetName/valueName/state"
+            factoryinsightV2:
+              summary: "FactoryInsight v2 request"
+              value: "/api/v2/enterpriseName/siteName/areaName/lineName/workCellName/tags/standard/jobs"
+        - name: query
+          in: query
+          description: The query parameters of the request to forward
+          required: false
+          schema:
+            type: string
+          examples:
+            factoryinsightV1:
+              summary: "FactoryInsight v1 request"
+              value: "from=2020-01-01T00:00:00Z&to=2020-01-01T00:00:00Z"
+      responses:
+        '200':
+          description: The message was forwarded. The response content is the response from factoryinsight.
+        '204':
+          description: The message was forwarded. The response content is empty.
+        '500':
+          description: The message could not be forwarded
