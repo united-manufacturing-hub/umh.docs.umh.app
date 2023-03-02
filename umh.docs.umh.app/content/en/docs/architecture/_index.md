@@ -5,65 +5,101 @@ description = "A detailed view of the architecture of the UMH stack."
 weight = 2000
 +++
 
-The United Manufacturing Hub at its core is a [Helm Chart for Kubernetes]() consisting of several microservices and open source 3rd party applications, such as Node-RED and Grafana. This Helm Chart can then be deployed either locally on your computer for testing, on edge devices, on virtual machines or in managed Kubernetes offerings. In large-scale deployments, you find typically a combination out of all these deployment options.
+The United Manufacturing Hub at its core is a [Helm Chart for Kubernetes]() consisting of several microservices and open source 3rd party applications, such as Node-RED and Grafana. This Helm Chart can be deployed in various environments, from edge devices and virtual machines to managed Kubernetes offerings. In large-scale deployments, you find typically a combination out of all these deployment options.
 
-Let's start with the core and then work our way from top to bottom.
+In this chapter, we'll explore the various microservices and applications that make up the United Manufacturing Hub, and how they work together to help you extract, contextualize, store, and visualize data from your shop floor.
 {{< mermaid theme="neutral" >}}
 flowchart 
-    subgraph Unified Namespace
-        kafka["Apache Kafka"]
-        mqtt["HiveMQ"]
-        console["Console"]
-        kafka-bridge
+    subgraph UMH["United Manufacturing Hub"]
+        style UMH fill:#47a0b5
+        subgraph UNS["Unified Namespace"]
+            style UNS fill:#f4f4f4
+            kafka["Apache Kafka"]
+            mqtt["HiveMQ"]
+            console["Console"]
+            kafka-bridge
+            mqtt-kafka-bridge["mqtt-kafka-bridge"]
 
-        mqtt-kafka-bridge["mqtt-kafka-bridge"]
-        mqtt <-- MQTT --> mqtt-kafka-bridge <-- Kafka --> kafka
-        kafka -- Kafka --> console
+            click kafka "./microservices/kafka"
+            click mqtt "./microservices/hivemq"
+            click console "./microservices/console"
+            click kafka-bridge "./microservices/kafka-bridge"
+            click mqtt-kafka-bridge "./microservices/mqtt-kafka-bridge"
+
+
+            mqtt <-- MQTT --> mqtt-kafka-bridge <-- Kafka --> kafka
+            kafka -- Kafka --> console
+        end
+        subgraph custom["Custom Microservices"]
+            custom-microservice["A user provied custom microservice in the Helm Chart"]
+            custom-application["A user provided custom application deployed as Kubernetes resources or as a Helm Chart"]
+            click custom-microservice "./microservices/custom"
+        end
+        subgraph Historian
+            style Historian fill:#f4f4f4
+            kafka-to-postgresql
+            timescaledb[("TimescaleDB")]
+            factoryinsight
+            umh-datasource
+            grafana["Grafana"]
+            redis
+
+            click kafka-to-postgresql "./microservices/kafka-to-postgresql"
+            click timescaledb "./microservices/timescaledb"
+            click factoryinsight "./microservices/factoryinsight"
+            click grafana "./microservices/grafana"
+            click redis "./microservices/redis"
+
+            kafka -- Kafka ---> kafka-to-postgresql
+            kafka-to-postgresql -- SQL --> timescaledb
+            timescaledb -- SQL --> factoryinsight
+            factoryinsight -- HTTP --> umh-datasource
+            umh-datasource --Plugin--> grafana
+            factoryinsight <--> redis
+            kafka-to-postgresql <--> redis
+        end 
+
+
+        subgraph Connectivity
+            style Connectivity fill:#f4f4f4
+            nodered["Node-RED"] 
+            barcodereader
+            sensorconnect
+
+            click nodered "./microservices/nodered"
+            click barcodereader "./microservices/barcodereader"
+            click sensorconnect "./microservices/sensorconnect"
+
+            nodered  <-- Kafka --> kafka
+            
+            barcodereader -- Kafka --> kafka
+            sensorconnect -- Kafka --> kafka
+        end
+
+        subgraph Simulators
+            style Simulators fill:#f4f4f4
+            mqtt-simulator["IoT sensors simulator"]
+            packml-simulator["PackML simulator"]
+            opcua-simulator["OPC-UA simulator"]
+
+            click mqtt-simulator "./microservices/iotsensorsmqtt"
+            click packml-simulator "./microservices/packml-simulator"
+            click opcua-simulator "./microservices/opcua-simulator"
+
+            mqtt-simulator -- MQTT --> mqtt
+            packml-simulator -- MQTT --> mqtt
+            opcua-simulator -- OPC-UA --> nodered
+        end
     end
-
-    subgraph Historian
-        kafka-to-postgresql
-        timescaledb[("TimescaleDB")]
-        factoryinsight
-        umh-datasource
-        grafana["Grafana"]
-
-        kafka -- Kafka ---> kafka-to-postgresql
-        kafka-to-postgresql -- SQL --> timescaledb
-        timescaledb -- SQL --> factoryinsight
-        factoryinsight -- HTTP --> umh-datasource
-        umh-datasource --Plugin--> grafana
-    end 
-
-     subgraph Data sinks
-         umh-other["Other UMH instances"]
-         erp["ERP, MES, or other systems"]
-         
-         kafka <-- Kafka --> kafka-bridge
-         kafka-bridge <-- Kafka ----> umh-other
-         factoryinsight <-- HTTP ----> erp
-     end
-
-    subgraph Connectivity
-        nodered["Node-RED"] 
-        barcodereader
-        sensorconnect
-
-        nodered  <-- Kafka --> kafka
-        
-        barcodereader -- Kafka --> kafka
-        sensorconnect -- Kafka --> kafka
-    end
-
     subgraph Datasources
         plc["PLCs"]
-        other["Other equipment on the shopfloor"]
+        other["Other systems on the shopfloor (MES, ERP, etc.)"]
         barcode["USB barcode reader"]
         ifm["IO-link sensor"]
         iot["IoT devices"]
 
         plc -- "Siemens S7, OPC-UA, Modbus, etc." --> nodered
-        other -- " " --> nodered
+        other -- " " ----> nodered
         ifm -- HTTP --> sensorconnect
         barcode -- USB --> barcodereader
         iot <-- MQTT --> mqtt
@@ -72,61 +108,70 @@ flowchart
         nodered <-- MQTT -->  mqtt
     end
 
+     subgraph Data sinks
+         umh-other["Other UMH instances"]
+         other-systems["Other systems (cloud analytics, cold storage, BI tools, etc.)"]
+         
+         kafka <-- Kafka --> kafka-bridge
+         kafka-bridge <-- Kafka ----> umh-other
+         factoryinsight -- HTTP ----> other-systems
+     end
 {{</ mermaid >}}
-<!-- %% %%{ init: { 'theme': 'base', 'themeVariables': { 'fontFamily': 'arial','primaryColor': '#ffffff','primaryTextColor': '#000000','primaryBorderColor': '#000000','lineColor': '#f4f4f4','secondaryColor': '#f4f4f4','tertiaryColor': '#aaaaaa','noteBkgColor': '#ffa62b','noteTextColor': 'ffffff'}}}%%-->
-
-## Unified Namespace
-At the core / in the middle of the United Manufacturing Hub is the [Unified Namespace](), which acts as the central source of truth for all messages  / events happening on your shopfloor.
-It is implemented using two message brokers, HiveMQ for MQTT and Apache Kafka. MQTT is used to receive data from IoT devices on the shop floor because it excels at handling large numbers of unreliable connections, while Kafka is used to communicate between the microservices to utilize its large scale data processing. 
-
-The data between both brokers are bridged automatically using the [mqtt-to-kafka]() microservice, allowing you to send data to MQTT and process them reliably in Kafka.
-
-Want to understand the why for this dual-approach MQTT / Kafka? [Check out our blog article about Tools & Techniques for Scalable Dataprocessing in Industrial IoT]()
-
-Check out [Unified Namespace feature]() to get more information on what it is and how to use it
-
-### Microservices
-- [HiveMQ]()
-- [Apache Kafka]()
-- [mqtt-kafka-bridge](), to bridgeb etween MQTT and Kafka
-- [kafka-bridge](), to bridge to different brokers
-- [console](), to view data ..
 
 ## Simulators
+The United Manufacturing Hub includes several simulators to generate data during development and testing.
 
 ### Microservices
-- [mqtt simulator]()
-- PackML
-- - ...
+- [iotsensorsmqtt]() simulates data in three different MQTT topics, providing a simple way to test and visualize MQTT data streams.
+- [packml-simulator]() simulates a PackML machine which sends and receives MQTT messages
+- [opcua-simulator]() simulates an OPC-UA server, which can then be used to test connectivity of OPC-UA clients and to generate sample data for OPC-UA clients
 
 ## Data connectivity microservices
-
-The United Manufacturing Hub includes microservices to extract data from the shop floor and push it into the Unified Namespace.
-
-3rd party connectivity solutions such as your own microservices, can either be deployed using the [custom microservice feature]() or deployed directly into the Kubernetes cluster. Check out our extensive tutorials for 3rd party solutions on our [learning hub]().
+The United Manufacturing Hub includes microservices that extract data from the shop floor and push it into the Unified Namespace. Additionally, you can deploy your own microservices or third-party solutions directly into the Kubernetes cluster using the [custom microservice feature](). To learn more about third-party solutions, check out our extensive tutorials on our [learning hub]()
 
 ### Microservices
-- [sensorconnect](), which automatically reads out IO-Link Master and their connected sensors, and pushes the data to the message broker
-- [barcodereader](), which connects to USB barcode reader devices and pushes the data to the message broker
+- [sensorconnect]() automatically reads out IO-Link Master and their connected sensors, and pushes the data to the message broker.
+- [barcodereader]() connects to USB barcode reader devices and pushes the data to the message broker.
+- [Node-RED]() is a versatile tool with many community plugins and allows access to machine PLCs or connections with other systems on the shopfloor. It plays an important role and is explained in the next section.
 
 ## Node-RED: connectivity & contextualization
 
-Intro
+Node-RED is not just a tool for connectivity, but also for stream processing and data contextualization. It is often used to extract data from the message broker, reformat the event, and push it back into a different topic, such as the [UMH datamodel](./datamodel/).
 
-3rd party contextualization solutions such as your own microservices can be deployed similarly to [data connectivity microservices](). Check out our extensive tutorials for 3rd party solutions on our [learning hub]().
+In addition to the built-in microservices, third-party contextualization solutions can be deployed similarly to [data connectivity microservices](#data-connectivity-microservices). For more information on these solutions, check out our extensive tutorials on our [learning hub]().
 
 ### Microservices
-- [Node-RED]()
+- [Node-RED]() is a programming tool that can wire together hardware devices, APIs, and online services.
+
+## Unified Namespace
+
+At the core of the United Manufacturing Hub lies the [Unified Namespace](https://learn.umh.app/lesson/3-1-1-unified-namespace/), which serves as the central source of truth for all events and messages occurring on your shop floor. The Unified Namespace is implemented using two message brokers: HiveMQ for MQTT and Apache Kafka. MQTT is used to receive data from IoT devices on the shop floor because it excels at handling a large number of unreliable connections. On the other hand, Kafka is used to enable communication between the microservices, leveraging its large-scale data processing capabilities.
+
+The data between both brokers is bridged automatically using the [mqtt-to-kafka]() microservice, allowing you to send data to MQTT and process it reliably in Kafka.
+
+If you're curious about the benefits of this dual approach to MQTT/Kafka, check out our blog article about [Tools & Techniques for Scalable Dataprocessing in Industrial IoT](https://learn.umh.app/blog/tools-techniques-for-scalable-data-processing-in-industrial-iot/).
+
+<!-- For more information on the Unified Namespace feature and how to use it, check out our documentation. -->
+
+### Microservices
+- [HiveMQ]() is an MQTT broker used for receiving data from IoT devices on the shop floor. It excels at handling large numbers of unreliable connections.
+- [Apache Kafka]() is a distributed streaming platform used for communication between microservices. It offers large-scale data processing capabilities.
+- [mqtt-kafka-bridge]() is a microservice that bridges messages between MQTT and Kafka, allowing you to send data to MQTT and process them reliably in Kafka.
+- [kafka-bridge]() a microservice that bridges messages between multiple Kafka instances.
+- [console]() is a web-based user interface for Kafka, which provides a graphical view of topics and messages.
 
 ## Historian / data storage and visualization
 
-Check out [Historian feature]() to get more information on what it is and how to use it
+The United Manufacturing Hub stores events according to our [datamodel](./datamodel/). These events are automatically stored in TimescaleDB, an open-source time-series SQL database. From there, you can access the stored data using Grafana, a visualization and analytics software. With Grafana, you can perform on-the-fly data analysis by executing simple min, max, and avg on tags, or extended KPI calculations such as OEE. These calculations can be selected in the umh-datasource microservice.
 
 ### Microservices
-- [kafka-to-postgresql]()
-- [TimescaleDB]()
-- [factoryinsight]()
-- [Grafana]()
-- [umh-datasource]()
+- [kafka-to-postgresql]() stores data in selected topics from the Kafka broker in a PostgreSQL compatible database such as TimescaleDB.
+- [TimescaleDB](), which is an open-source time-series SQL database 
+- [factoryinsight]() provides REST endpoints to fetch data and calculate KPIs
+- [Grafana]() is a visualization and analytics software
+- [umh-datasource]() is a plugin providing access factoryinsight
+- [redis]() is an in-memory data structure store, used for cache.
 
+## Custom Microservices
 
+The Helm Chart allows you to add your own microservices or Docker containers to the United Manufacturing Hub. These can be used, for example, to connect with third-party systems or to analyze the data. Additionally, you can deploy any other third-party application as long as it is available as a Helm Chart, Kubernetes resource, or Docker Compose (which can be converted to Kubernetes resources).
