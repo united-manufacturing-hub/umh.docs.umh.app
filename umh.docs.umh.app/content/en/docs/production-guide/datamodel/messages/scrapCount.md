@@ -24,7 +24,7 @@ Here a message is sent every time products should be marked as scrap. It works a
 {{% notice note %}}
 1. You can specify maximum of 24h to be scrapped to avoid accidents
 2. (NOT IMPLEMENTED YET) If counts does not equal scrap, e.g. the count is 5 but only 2 more need to be scrapped, it will scrap exactly 2. Currently, it would ignore these 2. see also #125
-3. (NOT IMPLEMENTED YET) If no counts are available for this asset, but uniqueProducts are available, they can also be marked as scrap. //TODO
+3. (NOT IMPLEMENTED YET) If no counts are available for this asset, but uniqueProducts are available, they can also be marked as scrap.
 {{% /notice %}}
 
 ### JSON

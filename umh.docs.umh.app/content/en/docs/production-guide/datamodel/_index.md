@@ -1,7 +1,7 @@
 +++
 title = "Datamodel"
 menuTitle = "Datamodel"
-description = "TODO"
+description = "These pages describe the datamodel of the stack."
 weight = 3000
 +++
 

@@ -1,7 +1,7 @@
 +++
 title = "Upgrading"
 menuTitle = "Upgrading"
-description = "Upgrade the UMH stack"
+description = "These pages describe how to upgrade the stack."
 weight = 3000
 +++
 

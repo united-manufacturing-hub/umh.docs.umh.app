@@ -41,7 +41,41 @@ The order "test_order" was finished at the shown timestamp.
 ```
 #### Schema
 
-TODO
+```json
+{
+    "$schema": "http://json-schema.org/draft/2019-09/schema",
+    "$id": "https://learn.umh.app/content/docs/datamodel/messages/endOrder.json",
+    "type": "object",
+    "default": {},
+    "title": "Root Schema",
+    "required": [
+        "order_id",
+        "timestamp_ms"
+    ],
+    "properties": {
+        "timestamp_ms": {
+          "type": "integer",
+          "description": "The unix timestamp, of shift start"
+        },
+        "order_id": {
+            "type": "string",
+            "default": "",
+            "title": "The order id of the order",
+            "examples": [
+                "test_order",
+                "HA16/4889"
+            ]
+        }
+    },
+    "examples": [{
+      "order_id": "HA16/4889",
+      "timestamp_ms":1589788888888
+    },{
+      "product_id":"test",
+      "timestamp_ms":1589788888888
+    }]
+}
+```
 
 ## Producers
 
