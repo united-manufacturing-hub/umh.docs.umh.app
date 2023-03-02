@@ -48,5 +48,5 @@ English  | 1
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
 
-- See [Access the Database](/docs/administration/access-database.md)
-- See [Customize United Manufacturing Hub Installation](/docs/administration/customize-umh-installation.md)
+- See [Access the Database](/docs/production-guide/administration/access-database)
+- See [Customize United Manufacturing Hub Installation](/docs/production-guide/administration/customize-umh-installation)

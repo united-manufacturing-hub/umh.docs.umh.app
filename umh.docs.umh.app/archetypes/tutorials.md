@@ -2,7 +2,7 @@
 title: "{{ replace .Name "-" " " | title }}"
 content_type: tutorial
 description: |
-    TODO
+    Add a description of the tutorial here.
 weight: 10
 ---
 

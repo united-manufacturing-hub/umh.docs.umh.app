@@ -1,7 +1,12 @@
-+++
-title = "Administration"
-menuTitle = "Administration"
-description = "These pages describe how to manage the stack."
-weight = 5000
-+++
+---
+title: Administration
+menuTitle: Administration
+description: |
+    This section describes how to manage and configure the United Manufacturing Hub
+    cluster.
+weight: 5000
+---
 
+In this section, you will find information about how to manage and configure the
+United Manufacturing Hub cluster, from customizing the cluster to access the
+different services.

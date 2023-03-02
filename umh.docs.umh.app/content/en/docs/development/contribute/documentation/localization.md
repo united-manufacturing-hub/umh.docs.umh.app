@@ -174,7 +174,7 @@ When a localization meets the requirements for workflow and minimum output, the
 UMH team does the following:
 
 - Enables language selection on the website.
-- Publicizes the localization's availability through the [United Manufacturing Hub blog](TODO: learn blog).
+- Publicizes the localization's availability through the [United Manufacturing Hub blog](https://learn.umh.app).
 
 ## Translating content
 
@@ -187,7 +187,7 @@ At a minimum, all localizations must include:
 
 | Description      | URLs                                                                   |
 |------------------|------------------------------------------------------------------------|
-| Administration   | [All heading and subheading URLs](/docs/administration/)               |
+| Administration   | [All heading and subheading URLs](/docs/production-guides/administration/)               |
 | Architecture     | [All heading and subheading URLs](/docs/architecture/)                 |
 | Getting started  | [All heading and subheading URLs](/docs/getstarted/)                   |
 | Produciton guide | [All heading and subheading URLs](/docs/production-guide)              |
@@ -227,16 +227,16 @@ To find source files for your target version:
 
 2. Select a branch for your target version from the following table:
 
-Target version | Branch
------|-----
-Latest version | [`main`](https://github.com/united-manufacturing-hub/umh.docs.umh.app/tree/main)
+| Target version | Branch                                                                           |
+|----------------|----------------------------------------------------------------------------------|
+| Latest version | [`main`](https://github.com/united-manufacturing-hub/umh.docs.umh.app/tree/main) |
 
 The `main` branch holds content for the current release `{{< latest-version >}}`.
 
 ### Site strings in i18n
 
 Localizations must include the contents of
-[`i18n/en.toml`](https://github.com/united-manufacturing-hub/umh.docs.umh.app/main/i18n/en.toml)
+[`i18n/en.toml`](https://github.com/united-manufacturing-hub/umh.docs.umh.app/blob/main/umh.docs.umh.app/i18n/en/en.toml)
 in a new language-specific file. Using German as an example:
 `i18n/de.toml`.
 

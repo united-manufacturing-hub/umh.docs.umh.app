@@ -12,8 +12,8 @@ This table contains all state changes of the assets.
 | key         | data type     | description                                      | example |
 |-------------|---------------|--------------------------------------------------|---------|
 | `timestamp` | `timestamptz` | Entry timestamp                                  | 0       |
-| `asset_id`  | `serial`      | Asset ID (see [assetTable](../assettable))       | 1       |
-| `state`     | `integer`     | State ID (see [states](/docs/datamodel/states/)) | 40000   |
+| `asset_id`  | `serial`      | Asset ID (see [assetTable](/docs/architecture/datamodel/database/assettable))       | 1       |
+| `state`     | `integer`     | State ID (see [states](/docs/architecture/datamodel/states/)) | 40000   |
 
 
 ## Relations

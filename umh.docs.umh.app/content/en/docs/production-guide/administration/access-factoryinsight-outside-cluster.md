@@ -56,6 +56,6 @@ that is not already in use.
 
 ## {{% heading "whatsnext" %}}
 
-- See [Access Kafka Outside the Cluster](/docs/administration/access-kafka-outside-cluster)
-- See [Access the MQTT Broker Outside the Cluster](/docs/administration/access-mqtt-outside-cluster)
-- See [Access Services from Within the Cluster](/docs/administration/access-services-from-cluster)
+- See [Access Kafka Outside the Cluster](/docs/production-guide/administration/access-kafka-outside-cluster)
+- See [Access the MQTT Broker Outside the Cluster](/docs/production-guide/administration/access-mqtt-outside-cluster)
+- See [Access Services from Within the Cluster](/docs/production-guide/administration/access-services-from-cluster)

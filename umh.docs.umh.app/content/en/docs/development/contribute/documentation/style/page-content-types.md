@@ -80,8 +80,7 @@ A concept page explains some aspect of United Manufacturing Hub. For example, a
 concept page might describe a specific component of the United Manufacturing Hub
 and explain the role it plays as an application while it is deployed, scaled,
 and updated. Typically, concept pages don't include sequences of steps, but
-instead provide links to tasks or tutorials. For an example of a concept topic,
-see [TODO](TODO)
+instead provide links to tasks or tutorials.
 
 To write a new concept page, create a Markdown file with the following characteristics:
 
@@ -140,8 +139,8 @@ Within each section, write your content. Use the following guidelines:
   interested in reading next.
 
 For an example of a short task page,
-see [Expose Grafana to the internet](/docs/administration/expose-grafana-to-internet/).
-For an example of a longer task page, see [Access the database](/docs/administration/access-database/)
+see [Expose Grafana to the internet](/docs/production-guides/administration/expose-grafana-to-internet/).
+For an example of a longer task page, see [Access the database](/docs/production-guides/administration/access-database/)
 
 ### Tutorial
 

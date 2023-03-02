@@ -18,8 +18,7 @@ installed resources in a single YAML file, called `values.yaml`.
 
 The Helm Chart of the United Manufacturing Hub is composed of both custom
 microservices and third-party applications. If you want a more in-depth view of
-the architecture of the United Manufacturing Hub, you can read the [Architecture
-overview](/docs/architecture/) page.
+the architecture of the United Manufacturing Hub, you can read the [Architecture overview](/docs/architecture/) page.
 
 <!-- body -->
 
@@ -40,7 +39,7 @@ custom microservices:
   endpoints for MQTT messages.
 - [factoryinsight](/docs/architecture/microservices/core/factoryinsight/): provides REST
   endpoints to fetch data and calculate KPIs.
-- [grafanaproxy](docs/architecture/microservices/community/grafanaproxy/): provides a
+- [grafanaproxy](/docs/architecture/microservices/community/grafanaproxy/): provides a
   proxy to the backend services.
 - [IoTSensorsMQTT](/docs/architecture/microservices/community/IoTSensorsMQTT/): simulates
   sensors and sends the data to the MQTT broker for further processing.
@@ -50,7 +49,7 @@ custom microservices:
   on different Kubernetes clusters.
 - [kafka-init](/docs/architecture/microservices/core/kafka-init/): initializes the Kafka
   broker.
-- [kafkatoblob](docs/architecture/microservices/community/kafka=to-blob/): stores the data
+- [kafkatoblob](/docs/architecture/microservices/community/kafka-to-blob/): stores the data
   from the Kafka broker in a blob storage.
 - [kafkatopostgresql](/docs/architecture/microservices/core/kafka-to-postgresql/):
   stores the data from the Kafka broker in a PostgreSQL database.
@@ -60,7 +59,7 @@ custom microservices:
   different Kubernetes clusters.
 - [opcuasimulator](/docs/architecture/microservices/community/opcuasimulator/): simulates
   OPC UA servers and sends the data to the MQTT broker for further processing.
-- [packmlmqttsimulator](/docs/architecture/microservices/community/packmlmqttsimulator/):
+- [packmlmqttsimulator](/docs/architecture/microservices/community/packml-simulator/):
   simulates a PackML state machine and sends the data to the MQTT broker for
   further processing.
 - [sensorconnect](/docs/architecture/microservices/core/sensorconnect/): connects to a
@@ -359,7 +358,7 @@ The `_000_commonConfig.infrastructure.kafka` section contains the configuration
 of the [Kafka broker](/docs/architecture/microservices/core/kafka-broker)
 and related services, like [mqttkafkabridge](/docs/architecture/microservices/core/mqtt-kafka-bridge/),
 [kafkatopostgresql](/docs/architecture/microservices/core/kafka-to-postgresql/)
-and the [Kafka console](/docs/architecture/microservices/core/kafka-console/).
+and the Kafka console.
 
 The following table lists the configuration options that can be set in the
 `_000_commonConfig.infrastructure.kafka` section:

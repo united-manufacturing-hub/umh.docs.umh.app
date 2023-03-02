@@ -56,6 +56,6 @@ Keep the following in mind when filing an issue:
 - If the new issue relates to another issue or pull request, refer to it
   either by its full URL or by the issue or pull request number prefixed
   with a `#` character. For example, `Introduced by #987654`.
-- Follow the [Code of Conduct](/community/code-of-conduct/). Respect your
+- Follow the [Code of Conduct](https://github.com/united-manufacturing-hub/united-manufacturing-hub/blob/main/CODE_OF_CONDUCT.md). Respect your
   fellow contributors. For example, "The docs are terrible" is not
   helpful or polite feedback.

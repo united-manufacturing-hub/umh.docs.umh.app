@@ -1,6 +1,8 @@
 +++
 title = "Installation"
 menuTitle = "Installation"
-description = "These pages describe how to install the stack."
+description = "Installation of the UMH stack using FOSS tools"
 weight = 1000
 +++
+
+Installation using FOSS tools
