@@ -29,7 +29,7 @@ Send [count](/docs/architecture/datamodel/messages/count) messages if the machin
 
 ### Modifying Data
 
-If you have accidentally sent the wrong state or if you want to modify a value, you can use the [modifyState](/docs/architecture/datamodel/messages/modifyState) message.
+If you have accidentally sent the wrong state or if you want to modify a value, you can use the [modifyState](/docs/architecture/datamodel/messages/modifystate) message.
 
 ### Unique Product Tracking
 

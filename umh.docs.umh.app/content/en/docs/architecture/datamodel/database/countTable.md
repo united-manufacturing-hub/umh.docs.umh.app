@@ -12,7 +12,7 @@ This table contains all reported counts of the assets.
 | key         | data type     | description                                | example |
 |-------------|---------------|--------------------------------------------|---------|
 | `timestamp` | `timestamptz` | Entry timestamp                            | 0       |
-| `asset_id`  | `serial`      | Asset id (see [assetTable](../assettable)) | 1       |
+| `asset_id`  | `serial`      | Asset id (see [assetTable](/docs/architecture/datamodel/database/assettable)) | 1       |
 | `count`     | `integer`     | A count greater 0                          | 1       |
 
 

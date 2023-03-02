@@ -17,7 +17,7 @@ This table stores orders for product production
 | `begin_timestamp` | `timestamptz` | Begin timestamp of the order                                | 0                              |
 | `end_timestamp`   | `timestamptz` | End timestamp of the order                                  | 10000                          |
 | `target_units`    | `integer`     | How many product to produce                                 | 500                            |
-| `asset_id`        | `serial`      | Which asset to produce on (see [assetTable](../assettable)) | 1                              |
+| `asset_id`        | `serial`      | Which asset to produce on (see [assetTable](/docs/architecture/datamodel/database/assettable)) | 1                              |
 
 
 ## Relations
