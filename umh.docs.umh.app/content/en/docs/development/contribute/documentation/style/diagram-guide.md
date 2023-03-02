@@ -628,10 +628,10 @@ You should always add a caption to each diagram in your documentation.
 The `Mermaid+SVG` and `External Tool` methods generate `.svg` image files.
 
 Here is the `{{</* figure */>}}` shortcode for the diagram defined in an
-`.svg` image file saved to `/images/docs/components-of-kubernetes.svg`:
+`.svg` image file saved to `/images/development/contribute/documentation/components-of-kubernetes.svg`:
 
 ```none
-{{</* figure src="/images/docs/components-of-kubernetes.svg" alt="United Manufacturing Hub pod running inside a cluster" class="diagram-large" caption="Figure 4. United Manufacturing Hub Architecture Components */>}}
+{{</* figure src="/images/development/contribute/documentation/components-of-kubernetes.svg" alt="United Manufacturing Hub pod running inside a cluster" class="diagram-large" caption="Figure 4. United Manufacturing Hub Architecture Components */>}}
 ```
 
 You should pass the `src`, `alt`, `class` and `caption` values into the
@@ -654,7 +654,7 @@ If you define your diagram in an `.svg` image file, then you should use the
 `{{</* figure */>}}` shortcode's `caption` parameter.
 
 ```none
-{{</* figure src="/images/docs/components-of-kubernetes.svg" alt="United Manufacturing Hub pod running inside a cluster" class="diagram-large" caption="Figure 4. United Manufacturing Hub Architecture Components" */>}}
+{{</* figure src="/images/development/contribute/documentation/components-of-kubernetes.svg" alt="United Manufacturing Hub pod running inside a cluster" class="diagram-large" caption="Figure 4. United Manufacturing Hub Architecture Components" */>}}
 ```
 
 If you define your diagram using inline Mermaid code, then you should use Markdown text.
@@ -707,11 +707,10 @@ in this paragraph.
 Here is the `{{</* figure */>}}` shortcode for this diagram:
 
 ```go-html-template
-{{</* figure src="/images/docs/components-of-kubernetes.svg" alt="United Manufacturing Hub pod running inside a cluster" class="diagram-large" caption="Figure 10. United Manufacturing Hub Architecture." link="https://kubernetes.io/docs/concepts/overview/components/" */>}}
+{{</* figure src="/images/development/contribute/documentation/components-of-kubernetes.svg" alt="United Manufacturing Hub pod running inside a cluster" class="diagram-large" caption="Figure 10. United Manufacturing Hub Architecture." link="https://kubernetes.io/docs/concepts/overview/components/" */>}}
 ```
 
-TODO
-{{< figure src="/images/docs/components-of-kubernetes.svg" alt="United Manufacturing Hub pod running inside a cluster" class="diagram-large" caption="Figure 10. United Manufacturing Hub Architecture." link="https://kubernetes.io/docs/concepts/overview/components/" >}}
+{{< figure src="/images/development/contribute/documentation/components-of-kubernetes.svg" alt="United Manufacturing Hub pod running inside a cluster" class="diagram-large" caption="Figure 10. United Manufacturing Hub Architecture." link="https://kubernetes.io/docs/concepts/overview/components/" >}}
 
 ## Tips
 
