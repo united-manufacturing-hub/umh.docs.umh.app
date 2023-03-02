@@ -52,6 +52,9 @@ other = "To check the United Manufacturing Hub version, open UMHLens / OpenLens 
 [resource_deployment_factoryinsight]
 other = "united-manufacturing-hub-factoryinsight-deployment"
 
+[resource_deployment_barcodereader]
+other = "united-manufacturing-hub-barcodereader"
+
 [resource_docker_org]
 other = "unitedmanufacturinghub"
 
@@ -73,6 +76,9 @@ other = "united-manufacturing-hub-nodered-0"
 [resource_service_factoryinsight]
 other = "united-manufacturing-hub-factoryinsight-service"
 
+[resource_service_kafka]
+other = "united-manufacturing-hub-kafka"
+
 [resource_service_kafka-ext]
 other = "united-manufacturing-hub-kafka-0-external"
 
@@ -84,6 +90,9 @@ other = "united-manufacturing-hub-vernemq"
 
 [resource_service-cluster_database]
 other = "united-manufacturing-hub.united-manufacturing-hub.svc.cluster.local:5432"
+
+[resource_secret_barcodereader]
+other = "nited-manufacturing-hub-barcodereader-secrets"
 
 [resource_secret_cache-psw]
 other = "redis-secret"
