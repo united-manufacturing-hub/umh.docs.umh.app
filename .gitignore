@@ -146,3 +146,7 @@ convertor/old/
 convertor/converted
 venv/
 *.deb
+
+umh.docs.umh.app/node_modules
+umh.docs.umh.app/package.json
+umh.docs.umh.app/package-lock.json

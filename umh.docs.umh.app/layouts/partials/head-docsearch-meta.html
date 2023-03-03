@@ -1,0 +1,12 @@
+<meta
+    name="docsearch:description_tag"
+    content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.Description }}{{ end }}"
+/>
+<meta
+        name="docsearch:title_tag"
+        content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}"
+/>
+<meta
+        name="docsearch:language_tag"
+        content="{{ .Site.Language }}"
+/>

@@ -1,0 +1,4 @@
+{{- range $index, $element := (where .Site.Pages "Kind" "page") -}}
+{{- $data := dict "id" $index "title" $element.Title "uri" $element.Permalink "section" $element.Section "content" $element.Plain "summary" $element.Summary "description" $element.Description "path" $element.SectionsPath -}}
+{{- printf "%s\n" (jsonify $data) | safeHTML -}}
+{{- end -}}
