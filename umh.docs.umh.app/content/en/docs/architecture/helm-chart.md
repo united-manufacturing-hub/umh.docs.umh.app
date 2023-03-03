@@ -47,7 +47,7 @@ custom microservices:
   from the Kafka broker in a blob storage.
 - [kafkatopostgresql](/docs/architecture/microservices/core/kafka-to-postgresql/):
   stores the data from the Kafka broker in a PostgreSQL database.
-- [mqtt-kafka-bridge](/docs/architecture/microservices/core/mqtt-to-kafka-bridge/): connects
+- [mqtt-kafka-bridge](/docs/architecture/microservices/core/mqtt-kafka-bridge/): connects
   the MQTT broker and the Kafka broker.
 - mqttbridge: connects MQTT brokers on
   different Kubernetes clusters.
@@ -354,7 +354,7 @@ The following table lists the configuration options that can be set in the
 
 The `_000_commonConfig.infrastructure.kafka` section contains the configuration
 of the Kafka broker
-and related services, like [mqttkafkabridge](/docs/architecture/microservices/core/mqtt-to-kafka-bridge/),
+and related services, like [mqttkafkabridge](/docs/architecture/microservices/core/mqtt-kafka-bridge/),
 [kafkatopostgresql](/docs/architecture/microservices/core/kafka-to-postgresql/)
 and the Kafka console.
 
