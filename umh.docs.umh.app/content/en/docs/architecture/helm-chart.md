@@ -49,7 +49,7 @@ custom microservices:
   stores the data from the Kafka broker in a PostgreSQL database.
 - [mqtt-kafka-bridge](/docs/architecture/microservices/core/mqtt-kafka-bridge/): connects
   the MQTT broker and the Kafka broker.
-- mqttbridge: connects MQTT brokers on
+- [mqttbridge](/docs/architecture/microservices/core/mqtt-bridge/): connects MQTT brokers on
   different Kubernetes clusters.
 - [opcuasimulator](/docs/architecture/microservices/community/opcua-simulator/): simulates
   OPC UA servers and sends the data to the MQTT broker for further processing.
@@ -479,7 +479,7 @@ The following table lists the configurable parameters of the
 #### MQTT Bridge
 
 The `_000_commonConfig.mqttBridge` section contains the configuration of the
-mqtt-bridge microservice,
+[mqtt-bridge](/docs/architecture/microservices/core/mqtt-bridge/) microservice,
 responsible for bridging MQTT brokers in different Kubernetes clusters.
 
 The following table lists the configurable parameters of the

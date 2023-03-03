@@ -85,6 +85,9 @@ other = "united-manufacturing-hub-kafka-0"
 [resource_pod_nodered]
 other = "united-manufacturing-hub-nodered-0"
 
+[resource_pvc_mqttbridge]
+other = "united-manufacturing-hub-mqttbridge-claim"
+
 [resource_service_factoryinsight]
 other = "united-manufacturing-hub-factoryinsight-service"
 
@@ -124,11 +127,17 @@ other = "united-manufacturing-hub-kafkabridge-secrets-remote"
 [resource_secret_kafkatopostgresql]
 other = "united-manufacturing-hub-kafkatopostgresql-certificates"
 
+[resource_secret_mqttbridge]
+other = "united-manufacturing-hub-mqttbridge-mqtt-secrets"
+
 [resource_secret_mqttkafkabridge-kafka]
 other = "united-manufacturing-hub-mqttkafkabridge-kafka-secrets"
 
 [resource_secret_mqttkafkabridge-mqtt]
 other = "united-manufacturing-hub-mqttkafkabridge-mqtt-secrets"
+
+[resource_statefulset_mqttbridge]
+other = "united-manufacturing-hub-mqttbridge"
 
 [resource_statefulset_nodered]
 other = "united-manufacturing-hub-nodered"
