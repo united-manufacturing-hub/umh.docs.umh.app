@@ -100,15 +100,15 @@ The Helm Chart of the United Manufacturing Hub can be configured by setting
 values in the `values.yaml` file. This file has three main sections that can be
 used to configure the applications:
 
-- `customers`: contains the definition of the customers that will be created
+- [`customers`](#customers): contains the definition of the customers that will be created
   during the installation of the Helm Chart. This section is optional, and it's
   used only by factoryinsight and factoryinput.
-- `_000_commonConfig`: contains the basic configuration options to customize the
+- [`_000_commonConfig`](#common-configuration-options): contains the basic configuration options to customize the
   United Manufacturing Hub, and it's divided into sections that group applications
   with similar scope, like the ones that compose the infrastructure or the ones
   responsible for data processing. This is the section that should be mostly used
   to configure the microservices.
-- `_001_customMicroservices`: used to define the configuration of
+- [`_001_customMicroservices`](#custom-microservices-configuration): used to define the configuration of
   custom microservices that are not included in the Helm Chart.
 
 After those two sections, there are the specific sections for each microservice,
