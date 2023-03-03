@@ -19,6 +19,8 @@
      content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.Description }}{{ end }}"
    />
 
+{{ partial "head-docsearch-meta.html" .}}
+
 <link rel="icon" type="image/png" href="/favicon.png"/>
 {{partialCached "favicons.html" . }}
 <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
@@ -43,4 +45,4 @@
 <!-- stylesheet for Prism -->
 <link rel="stylesheet" href="{{ "/css/prism.css" | relURL }}"/>
 {{ end }}
-{{ partial "hooks/head-end.html" . }}
+{{ partial "head-typesense"}}

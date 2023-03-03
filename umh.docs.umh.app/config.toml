@@ -71,15 +71,8 @@ weight = 1
 
 # Everything below this are Site Params
 
-# Comment out if you don't want the "print entire section" link enabled.
-[outputFormats.SearchIndex]
-mediaType = "application/json"
-baseName = "searchindex"
-isPlainText = true
-notAlternative = true
-
 [outputs]
-section = ["HTML", "SearchIndex"]
+section = ["HTML"]
 
 [params]
 copyright = "UMH Systems GmbH"
@@ -141,7 +134,7 @@ github_branch= "main"
 algolia_docsearch = false
 
 # Enable Lunr.js offline search
-offlineSearch = true
+offlineSearch = false
 
 # Enable syntax highlighting and copy buttons on code blocks with Prism
 prism_syntax_highlighting = false

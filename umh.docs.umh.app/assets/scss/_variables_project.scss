@@ -114,7 +114,7 @@ $feature-box-div-margin-bottom: 40px;
         background-color: $white;
         background-size: 60px;
     }
-    
+
     .feature-box {
         //padding: 50px 0
         width: 100%;
@@ -134,7 +134,7 @@ $feature-box-div-margin-bottom: 40px;
             float: right;
         }
     }
-    
+
     #features {
         h3 {
             margin-bottom: $features-h3-margin-bottom;
@@ -312,4 +312,61 @@ $td-enable-google-fonts: false;
         font-size: 1rem;
         margin-left: 5px;
     }
+}
+
+// Docsearch
+
+.algolia-autocomplete .ds-dropdown-menu {
+    width: 500px;
+}
+
+.algolia-autocomplete .algolia-docsearch-suggestion--category-header {
+    color: $ci_grey;
+    border: 1px solid gray;
+}
+
+.algolia-autocomplete .algolia-docsearch-suggestion--subcategory-column {
+    color: $ci_grey;
+}
+
+.algolia-autocomplete .algolia-docsearch-suggestion--title {
+    font-weight: bold;
+    color: $ci_black;
+}
+
+.algolia-autocomplete .algolia-docsearch-suggestion--text {
+    font-size: 0.8rem;
+    color: $ci_grey;
+}
+
+.algolia-autocomplete .algolia-docsearch-suggestion--highlight {
+    color: $ci_yellow;
+}
+
+
+
+.search-box {
+    position: relative;
+    display: inline-block;
+}
+
+.search-box .fa-search {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: $ci_grey;
+}
+
+.search-box-input {
+    border-radius: 10px;
+    padding-left: 30px;
+    color: $ci_black;
+    background-color: $ci_light_grey;
+}
+
+// Make padding ci_yellow on selected .search-box-input
+.search-box-input:focus {
+    border: 2px solid $ci_yellow;
+    outline: none;
 }
