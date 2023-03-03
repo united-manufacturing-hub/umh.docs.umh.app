@@ -81,6 +81,19 @@ third-party applications:
 - [TimescaleDB](https://www.timescale.com/): an open-source time-series SQL
   database.
 
+## Configuration
+
+There are two ways to configure the Helm Chart of the United Manufacturing Hub:
+
+- by editing the `values.yaml` file after the initial installation, which is the
+  recommended way. Take a look at the
+  [Customize the United Manufacturing Hub](/docs/production-guide/administration/customize-umh-installation/#edit-via-lens)
+  page for more information.
+- by creating a custom `values.yaml` file and passing it to the `helm install`
+  command. Take a look at the
+  [Customize the United Manufacturing Hub](/docs/production-guide/administration/customize-umh-installation/#custom-values-yaml)
+  page for more information.
+
 ## Configuration options
 
 The Helm Chart of the United Manufacturing Hub can be configured by setting
