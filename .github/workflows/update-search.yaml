@@ -1,0 +1,25 @@
+name: Update search
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Wait for 10 minutes
+        run: sleep 600
+      - name: Run Docker command
+        env:
+          TYPESENSE_API_KEY: ${{ secrets.TYPESENSE_API_KEY }}
+          TYPESENSE_HOST: docsearch.umh.app
+          TYPESENSE_PORT: 443
+          TYPESENSE_PROTOCOL: https
+        run: |
+          CONFIG=$(cat config-umh.docs.json | jq -r tostring)
+          docker run -it -e "CONFIG=$CONFIG" --network host typesense/docsearch-scraper
