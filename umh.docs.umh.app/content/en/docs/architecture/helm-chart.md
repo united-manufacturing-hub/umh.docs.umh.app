@@ -43,8 +43,6 @@ custom microservices:
   sensors and sends the data to the MQTT broker for further processing.
 - [kafka-bridge](/docs/architecture/microservices/core/kafka-bridge/): connects Kafka brokers
   on different Kubernetes clusters.
-- [kafka-init](/docs/architecture/microservices/core/kafka-init/): initializes the Kafka
-  broker.
 - [kafkatoblob](/docs/architecture/microservices/community/kafka-to-blob/): stores the data
   from the Kafka broker in a blob storage.
 - [kafkatopostgresql](/docs/architecture/microservices/core/kafka-to-postgresql/):
