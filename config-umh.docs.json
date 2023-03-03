@@ -1,0 +1,26 @@
+{
+  "index_name": "umh.docs",
+  "start_urls": [
+    "https://umh.docs.umh.app"
+  ],
+  "stop_urls": [],
+  "selectors": {
+    "lvl0": {
+      "selector": "header a",
+      "default_value": "Documentation"
+    },
+    "lvl1": ".td-content h1",
+    "lvl2": ".td-content h2",
+    "lvl3": ".td-content h3",
+    "lvl4": ".td-content h4",
+    "lvl5": ".td-content h5",
+    "text": ".td-content p, .td-content table, .td-content ul, .td-content ol, .td-content pre, .td-content blockquote, .td-content code, .td-content div"
+  },
+  "selectors_exclude": [
+    "footer",
+    "nav",
+    "categories"
+  ],
+  "min_indexed_level": 1,
+  "scrape_start_urls": true
+}
