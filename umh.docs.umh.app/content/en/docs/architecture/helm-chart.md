@@ -29,7 +29,7 @@ the architecture of the United Manufacturing Hub, you can read the [Architecture
 The Helm Chart of the United Manufacturing Hub is composed of the following
 custom microservices:
 
-- [barcodereader](/docs/architecture/microservices/core/barcodereader/): reads the input from
+- [barcodereader](/docs/architecture/microservices/community/barcodereader/): reads the input from
   a barcode reader and sends it to the MQTT broker for further processing.
 - customMicroservice: a
   template for deploying any number of custom microservices.
@@ -185,7 +185,7 @@ The following table lists the configuration options that can be set in the
 ##### Barcode reader
 
 The `_000_commonConfig.datasources.barcodereader` section contains the
-configuration of the [barcodereader](/docs/architecture/microservices/core/barcodereader)
+configuration of the [barcodereader](/docs/architecture/microservices/community/barcodereader)
 microservice.
 
 The following table lists the configuration options that can be set in the

@@ -68,7 +68,7 @@ flowchart
             sensorconnect
 
             click nodered "./microservices/core/nodered"
-            click barcodereader "./microservices/core/barcodereader"
+            click barcodereader "./microservices/community/barcodereader"
             click sensorconnect "./microservices/core/sensorconnect"
 
             nodered  <-- Kafka --> kafka
