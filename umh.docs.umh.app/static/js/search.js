@@ -3,7 +3,7 @@ docsearch({
     typesenseCollectionName: 'umh.docs',
     typesenseServerConfig: {
         nodes: [{
-            host: 'search.umh.app',
+            host: 'docsearch.umh.app',
             port: '443',
             protocol: 'https'
         }],
