@@ -1,5 +1,4 @@
-{{- $.Scratch.Add "searchindex" slice -}}
 {{- range $index, $element := (where .Site.Pages "Kind" "page") -}}
-{{- $.Scratch.Add "searchindex" (dict "id" $index "title" $element.Title "uri" $element.Permalink "tags" $element.Params.tags "section" $element.Section "content" $element.Plain "summary" $element.Summary) -}}
+{{- $data := dict "id" $index "title" $element.Title "uri" $element.Permalink "section" $element.Section "content" $element.Plain "summary" $element.Summary "description" $element.Description "path" $element.SectionsPath -}}
+{{- printf "%s\n" (jsonify $data) | safeHTML -}}
 {{- end -}}
-{{- $.Scratch.Get "searchindex" | jsonify -}}
