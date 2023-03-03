@@ -119,20 +119,20 @@ The following table lists the configuration options that can be set in the
 `_000_commonConfig` section:
 
 {{< table caption="_000_commonConfig section parameters" >}}
-| Parameter            | Description                                                                     | Type   | Allowed values | Default                          |
-| -------------------- | ------------------------------------------------------------------------------- | ------ | -------------- | -------------------------------- |
-| `serialNumber`       | The hostname of the device. Used by some microservices to identify the device.  | string | Any            | "default"                        |
-| `datasources`        | The configuration of the microservices used to acquire data.                    | object | See below      | [See below](#data-sources)        |
-| `dataprocessing`     | The configuration of the microservices used to process data.                    | object | See below      | [See below](#data-processing)     |
-| `infrastructure`     | The configuration of the microservices used to provide infrastructure services. | object | See below      | [See below](#infrastructure)     |
-| `datastorage`        | The configuration of the microservices used to store data.                      | object | See below      | [See below](#data-storage)        |
-| `datainput`          | The configuration of the microservices used to input data.                      | object | See below      | [See below](#data-input)          |
-| `blobstorage`        | The configuration of the microservices used to store data in a blob storage.    | object | See below      | [See below](#blob-storage)        |
-| `mqttBridge`         | The configuration for the MQTT bridge.                                          | object | See below      | [See below](#mqtt-bridge)         |
-| `kafkaBridge`        | The configuration for the Kafka bridge.                                         | object | See below      | [See below](#kafka-bridge)        |
+| Parameter            | Description                                                                     | Type   | Allowed values | Default                            |
+| -------------------- | ------------------------------------------------------------------------------- | ------ | -------------- | ---------------------------------- |
+| `serialNumber`       | The hostname of the device. Used by some microservices to identify the device.  | string | Any            | default                            |
+| `datasources`        | The configuration of the microservices used to acquire data.                    | object | See below      | [See below](#data-sources)         |
+| `dataprocessing`     | The configuration of the microservices used to process data.                    | object | See below      | [See below](#data-processing)      |
+| `infrastructure`     | The configuration of the microservices used to provide infrastructure services. | object | See below      | [See below](#infrastructure)       |
+| `datastorage`        | The configuration of the microservices used to store data.                      | object | See below      | [See below](#data-storage)         |
+| `datainput`          | The configuration of the microservices used to input data.                      | object | See below      | [See below](#data-input)           |
+| `blobstorage`        | The configuration of the microservices used to store data in a blob storage.    | object | See below      | [See below](#blob-storage)         |
+| `mqttBridge`         | The configuration for the MQTT bridge.                                          | object | See below      | [See below](#mqtt-bridge)          |
+| `kafkaBridge`        | The configuration for the Kafka bridge.                                         | object | See below      | [See below](#kafka-bridge)         |
 | `kafkaStateDetector` | The configuration for the Kafka state detector.                                 | object | See below      | [See below](#kafka-state-detector) |
-| `debug`              | The configuration for the debug mode.                                           | object | See below      | [See below](#debug)              |
-| `tulipconnector`     | The configuration for the Tulip connector.                                      | object | See below      | [See below](#tulip-connector)     |
+| `debug`              | The configuration for the debug mode.                                           | object | See below      | [See below](#debug)                |
+| `tulipconnector`     | The configuration for the Tulip connector.                                      | object | See below      | [See below](#tulip-connector)      |
 {{< /table >}}
 
 #### Data sources
@@ -145,14 +145,14 @@ The following table lists the configuration options that can be set in the
 `_000_commonConfig.datasources` section:
 
 {{< table caption="datasources section parameters" >}}
-| Parameter             | Description                                            | Type   | Allowed values | Default                           |
-| --------------------- | ------------------------------------------------------ | ------ | -------------- | --------------------------------- |
-| `barcodereader`       | The configuration of the barcodereader microservice.   | object | See below      | [See below](#barcode-reader)       |
-| `cameraconnect`       | The configuration of the cameraconnect microservice.   | object | See below      | [See below](#camera-connect)       |
+| Parameter             | Description                                            | Type   | Allowed values | Default                             |
+| --------------------- | ------------------------------------------------------ | ------ | -------------- | ----------------------------------- |
+| `barcodereader`       | The configuration of the barcodereader microservice.   | object | See below      | [See below](#barcode-reader)        |
+| `cameraconnect`       | The configuration of the cameraconnect microservice.   | object | See below      | [See below](#camera-connect)        |
 | `iotsensorsmqtt`      | The configuration of the IoTSensorsMQTT microservice.  | object | See below      | [See below](#iot-sensors-mqtt)      |
 | `opcuasimulator`      | The configuration of the opcuasimulator microservice.  | object | See below      | [See below](#opc-ua-simulator)      |
 | `packmlmqttsimulator` | The configuration of the packmlsimulator microservice. | object | See below      | [See below](#packml-mqtt-simulator) |
-| `sensorconnect`       | The configuration of the sensorconnect microservice.   | object | See below      | [See below](#sensor-connect)       |
+| `sensorconnect`       | The configuration of the sensorconnect microservice.   | object | See below      | [See below](#sensor-connect)        |
 {{< /table >}}
 
 ##### Barcode reader
@@ -165,14 +165,14 @@ The following table lists the configuration options that can be set in the
 `_000_commonConfig.datasources.barcodereader` section:
 
 {{< table caption="barcodereader section parameters" >}}
-| Parameter       | Description                                                                    | Type   | Allowed values         | Default                                        |
-| --------------- | ------------------------------------------------------------------------------ | ------ | ---------------------- | ---------------------------------------------- |
-| `enabled`       | Whether the `barcodereader` microservice is enabled.                           | bool   | `true`, `false`        | `false`                                        |
-| `USBDeviceName` | The name of the USB device to use.                                             | string | Any                    | "Datalogic ADC, Inc. Handheld Barcode Scanner" |
-| `USBDevicePath` | The path of the USB device to use. If empty, `USBDeviceName` gets used instead | string | Valid Unix device path | ""                                             |
-| `customerID`    | The customer ID to use in the topic structure.                                 | string | Any                    | "raw"                                          |
-| `location`      | The location to use in the topic structure.                                    | string | Any                    | "barcodereader"                                |
-| `machineID`     | The asset ID to use in the topic structure.                                    | string | Any                    | "barcodereader"                                |
+| Parameter       | Description                                                                    | Type   | Allowed values         | Default                                      |
+| --------------- | ------------------------------------------------------------------------------ | ------ | ---------------------- | -------------------------------------------- |
+| `enabled`       | Whether the `barcodereader` microservice is enabled.                           | bool   | `true`, `false`        | `false`                                      |
+| `USBDeviceName` | The name of the USB device to use.                                             | string | Any                    | Datalogic ADC, Inc. Handheld Barcode Scanner |
+| `USBDevicePath` | The path of the USB device to use. If empty, `USBDeviceName` gets used instead | string | Valid Unix device path | ""                                           |
+| `customerID`    | The customer ID to use in the topic structure.                                 | string | Any                    | raw                                          |
+| `location`      | The location to use in the topic structure.                                    | string | Any                    | barcodereader                                |
+| `machineID`     | The asset ID to use in the topic structure.                                    | string | Any                    | barcodereader                                |
 {{< /table >}}
 
 ##### Camera connect
@@ -185,19 +185,19 @@ The following table lists the configuration options that can be set in the
 `_000_commonConfig.datasources.cameraconnect` section:
 
 {{< table caption="cameraconnect section parameters" >}}
-| Parameter          | Description                                                                                      | Type   | Allowed values                     | Default          |
-| ------------------ | ------------------------------------------------------------------------------------------------ | ------ | ---------------------------------- | ---------------- |
-| `enabled`          | Whether the `cameraconnect` microservice is enabled.                                             | bool   | `true`, `false`                    | `false`          |
-| `trigger`          | How the camera is triggered, either via MQTT or continuosly.                                     | string | "MQTT", "Continuous"               | "MQTT"           |
-| `acquisitionDelay` | The delay between the trigger and the acquisition of the image.                                  | string | Valid float number                 | "0.0"            |
-| `cycleTime`        | The time between two consecutive acquisitions. Only relevant when `trigger` is set to Continuous | string | Valid integer number               | "4"              |
-| `imageWidth`       | The width of the image in number of pixels.                                                      | string | Valid integer number               | "800"            |
-| `imageHeight`      | The height of the image in number of pixels.                                                     | string | Valid integer number               | "800"            |
-| `imageChannels`    | The number of color channels of the image.                                                       | string | Valid integer number               | "3"              |
-| `macAddress`       | The MAC address of the camera.                                                                   | string | Valid MAC address                  | "02-2625A-09849" |
-| `exposureTime`     | The exposure time of the camera in milliseconds.                                                 | string | Valid integer number               | "1000"           |
-| `exposureAuto`     | Whether the exposure time is automatically adjusted.                                             | string | "Once", "Off", "Continuous"        | "Off"            |
-| `pixelFormat`      | The pixel format used in the image.                                                              | string | "Mono8", "RGB8Packed, "BGR8Packed" | "Mono8"          |
+| Parameter          | Description                                                                                      | Type   | Allowed values                | Default        |
+| ------------------ | ------------------------------------------------------------------------------------------------ | ------ | ----------------------------- | -------------- |
+| `enabled`          | Whether the `cameraconnect` microservice is enabled.                                             | bool   | `true`, `false`               | `false`        |
+| `trigger`          | How the camera is triggered, either via MQTT or continuosly.                                     | string | MQTT, Continuous              | MQTT           |
+| `acquisitionDelay` | The delay between the trigger and the acquisition of the image.                                  | string | Valid float number            | 0.0            |
+| `cycleTime`        | The time between two consecutive acquisitions. Only relevant when `trigger` is set to Continuous | string | Valid integer number          | 4              |
+| `imageWidth`       | The width of the image in number of pixels.                                                      | string | Valid integer number          | 800            |
+| `imageHeight`      | The height of the image in number of pixels.                                                     | string | Valid integer number          | 800            |
+| `imageChannels`    | The number of color channels of the image.                                                       | string | Valid integer number          | 3              |
+| `macAddress`       | The MAC address of the camera.                                                                   | string | Valid MAC address             | 02-2625A-09849 |
+| `exposureTime`     | The exposure time of the camera in milliseconds.                                                 | string | Valid integer number          | 1000           |
+| `exposureAuto`     | Whether the exposure time is automatically adjusted.                                             | string | Once, Off, Continuous         | Off            |
+| `pixelFormat`      | The pixel format used in the image.                                                              | string | Mono8, RGB8Packed, BGR8Packed | Mono8          |
 {{< /table >}}
 
 ##### IoT Sensors MQTT
@@ -255,12 +255,12 @@ The following table lists the configuration options that can be set in the
 `_000_commonConfig.datasources.sensorconnect` section:
 
 {{< table caption="sensorconnect section parameters" >}}
-| Parameter     | Description                                              | Type   | Allowed values  | Default           |
-| ------------- | -------------------------------------------------------- | ------ | --------------- | ----------------- |
-| `enabled`     | Whether the sensorconnect microservice is enabled.       | bool   | `true`, `false` | `false`           |
-| `iprange`     | The IP range of the sensors in CIDR notation.            | string | Valid IP range  | "192.168.10.1/24" |
-| `enableKafka` | Whether the sensorconnect microservice should use Kafka. | bool   | `true`, `false` | `true`            |
-| `enableMQTT`  | Whether the sensorconnect microservice should use MQTT.  | bool   | `true`, `false` | `false`           |
+| Parameter     | Description                                              | Type   | Allowed values  | Default         |
+| ------------- | -------------------------------------------------------- | ------ | --------------- | --------------- |
+| `enabled`     | Whether the sensorconnect microservice is enabled.       | bool   | `true`, `false` | `false`         |
+| `iprange`     | The IP range of the sensors in CIDR notation.            | string | Valid IP range  | 192.168.10.1/24 |
+| `enableKafka` | Whether the sensorconnect microservice should use Kafka. | bool   | `true`, `false` | `true`          |
+| `enableMQTT`  | Whether the sensorconnect microservice should use MQTT.  | bool   | `true`, `false` | `false`         |
 {{< /table >}}
 
 #### Data processing
@@ -273,8 +273,8 @@ The following table lists the configuration options that can be set in the
 `_000_commonConfig.dataprocessing` section:
 
 {{< table caption="dataprocessing section parameters" >}}
-| Parameter | Description                                    | Type   | Allowed values | Default               |
-| --------- | ---------------------------------------------- | ------ | -------------- | --------------------- |
+| Parameter | Description                                    | Type   | Allowed values | Default                |
+| --------- | ---------------------------------------------- | ------ | -------------- | ---------------------- |
 | `nodered` | The configuration of the nodered microservice. | object | See below      | [See below](#node-red) |
 {{< /table >}}
 
@@ -319,35 +319,35 @@ The following table lists the configuration options that can be set in the
 `_000_commonConfig.infrastructure.mqtt` section:
 
 {{< table caption="mqtt section parameters" >}}
-| Parameter                     | Description                                               | Type   | Allowed values   | Default      |
-| ----------------------------- | --------------------------------------------------------- | ------ | ---------------- | ------------ |
-| `enabled`                     | Whether the MQTT broker is enabled                        | bool   | `true`, `false`  | `true`       |
-| `adminUser.enabled`           | Whether the admin user is enabled                         | bool   | `true`, `false`  | `false`      |
-| `adminUser.name`              | The name of the admin user                                | string | Any UTF-8 string | "admin-user" |
-| `adminUser.encryptedPassword` | The encrypted password of the admin user                  | string | Any              | ""           |
-| `tls.useTLS`                  | Whether TLS should be used                                | bool   | `true`, `false`  | `true`       |
-| `tls.insecureSkipVerify`      | Whether the SSL certificate validation should be skipped  | bool   | `true`, `false`  | `true`       |
-| `tls.keystoreBase64`          | The base64 encoded keystore                               | string | Any              | ""           |
-| `tls.keystorePassword`        | The password of the keystore                              | string | Any              | ""           |
-| `tls.truststoreBase64`        | The base64 encoded truststore                             | string | Any              | ""           |
-| `tls.truststorePassword`      | The password of the truststore                            | string | Any              | ""           |
-| `tls.caCert`                  | The CA certificate                                        | string | Any              | ""           |
-| `tls.factoryinput.cert`       | The certificate used for the factoryinput microservice    | string | Any              | ""           |
-| `tls.factoryinput.key`        | The key used for the factoryinput microservice            | string | Any              | ""           |
-| `tls.mqtt_kafka_bridge.cert`  | The certificate used for the mqttkafkabridge              | string | Any              | ""           |
-| `tls.mqtt_kafka_bridge.key`   | The key used for the mqttkafkabridge                      | string | Any              | ""           |
-| `tls.mqtt_bridge.local_cert`  | The certificate used for the local mqttbridge broker      | string | Any              | ""           |
-| `tls.mqtt_bridge.local_key`   | The key used for the local mqttbridge broker              | string | Any              | ""           |
-| `tls.mqtt_bridge.remote_cert` | The certificate used for the remote mqttbridge broker     | string | Any              | ""           |
-| `tls.mqtt_bridge.remote_key`  | The key used for the remote mqttbridge broker             | string | Any              | ""           |
-| `tls.sensorconnect.cert`      | The certificate used for the sensorconnect microservice   | string | Any              | ""           |
-| `tls.sensorconnect.key`       | The key used for the sensorconnect microservice           | string | Any              | ""           |
-| `tls.iotsensorsmqtt.cert`     | The certificate used for the iotsensorsmqtt microservice  | string | Any              | ""           |
-| `tls.iotsensorsmqtt.key`      | The key used for the iotsensorsmqtt microservice          | string | Any              | ""           |
-| `tls.packmlsimulator.cert`    | The certificate used for the packmlsimulator microservice | string | Any              | ""           |
-| `tls.packmlsimulator.key`     | The key used for the packmlsimulator microservice         | string | Any              | ""           |
-| `tls.nodered.cert`            | The certificate used for the nodered microservice         | string | Any              | ""           |
-| `tls.nodered.key`             | The key used for the nodered microservice                 | string | Any              | ""           |
+| Parameter                     | Description                                               | Type   | Allowed values   | Default    |
+| ----------------------------- | --------------------------------------------------------- | ------ | ---------------- | ---------- |
+| `enabled`                     | Whether the MQTT broker is enabled                        | bool   | `true`, `false`  | `true`     |
+| `adminUser.enabled`           | Whether the admin user is enabled                         | bool   | `true`, `false`  | `false`    |
+| `adminUser.name`              | The name of the admin user                                | string | Any UTF-8 string | admin-user |
+| `adminUser.encryptedPassword` | The encrypted password of the admin user                  | string | Any              | ""         |
+| `tls.useTLS`                  | Whether TLS should be used                                | bool   | `true`, `false`  | `true`     |
+| `tls.insecureSkipVerify`      | Whether the SSL certificate validation should be skipped  | bool   | `true`, `false`  | `true`     |
+| `tls.keystoreBase64`          | The base64 encoded keystore                               | string | Any              | ""         |
+| `tls.keystorePassword`        | The password of the keystore                              | string | Any              | ""         |
+| `tls.truststoreBase64`        | The base64 encoded truststore                             | string | Any              | ""         |
+| `tls.truststorePassword`      | The password of the truststore                            | string | Any              | ""         |
+| `tls.caCert`                  | The CA certificate                                        | string | Any              | ""         |
+| `tls.factoryinput.cert`       | The certificate used for the factoryinput microservice    | string | Any              | ""         |
+| `tls.factoryinput.key`        | The key used for the factoryinput microservice            | string | Any              | ""         |
+| `tls.mqtt_kafka_bridge.cert`  | The certificate used for the mqttkafkabridge              | string | Any              | ""         |
+| `tls.mqtt_kafka_bridge.key`   | The key used for the mqttkafkabridge                      | string | Any              | ""         |
+| `tls.mqtt_bridge.local_cert`  | The certificate used for the local mqttbridge broker      | string | Any              | ""         |
+| `tls.mqtt_bridge.local_key`   | The key used for the local mqttbridge broker              | string | Any              | ""         |
+| `tls.mqtt_bridge.remote_cert` | The certificate used for the remote mqttbridge broker     | string | Any              | ""         |
+| `tls.mqtt_bridge.remote_key`  | The key used for the remote mqttbridge broker             | string | Any              | ""         |
+| `tls.sensorconnect.cert`      | The certificate used for the sensorconnect microservice   | string | Any              | ""         |
+| `tls.sensorconnect.key`       | The key used for the sensorconnect microservice           | string | Any              | ""         |
+| `tls.iotsensorsmqtt.cert`     | The certificate used for the iotsensorsmqtt microservice  | string | Any              | ""         |
+| `tls.iotsensorsmqtt.key`      | The key used for the iotsensorsmqtt microservice          | string | Any              | ""         |
+| `tls.packmlsimulator.cert`    | The certificate used for the packmlsimulator microservice | string | Any              | ""         |
+| `tls.packmlsimulator.key`     | The key used for the packmlsimulator microservice         | string | Any              | ""         |
+| `tls.nodered.cert`            | The certificate used for the nodered microservice         | string | Any              | ""         |
+| `tls.nodered.key`             | The key used for the nodered microservice                 | string | Any              | ""         |
 {{< /table >}}
 
 ##### Kafka
@@ -362,51 +362,51 @@ The following table lists the configuration options that can be set in the
 `_000_commonConfig.infrastructure.kafka` section:
 
 {{< table caption="kafka section parameters" >}}
-| Parameter                                  | Description                                                                                                  | Type   | Allowed values                                 | Default                                                                        |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------ | ---------------------------------------------- | ------------------------------------------------------------------------------ |
-| `enabled`                                  | Whether the Kafka broker and related services are enabled                                                    | bool   | `true`, `false`                                | `true`                                                                         |
-| `useSSL`                                   | Whether SSL should be used                                                                                   | bool   | `true`, `false`                                | `true`                                                                         |
-| `defaultTopics`                            | The default topics that should be created                                                                    | string | Semicolon separated list of valid Kafka topics | "ia.test.test.test.processValue;ia.test.test.test.count;umh.v1.kafka.newTopic" |
-| `tls.CACert`                               | The CA certificate                                                                                           | string | Any                                            | "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----"                    |
-| `tls.kafka.cert`                           | The certificate used for the kafka broker                                                                    | string | Any                                            | "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----"                    |
-| `tls.kafka.privkey`                        | The private key of the certificate for the Kafka broker                                                      | string | Any                                            | "-----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----"                    |
-| `tls.barcodereader.sslKeyPassword`         | The encrypted password of the SSL key for the barcodereader microservice. If empty, no password is used      | string | Any                                            | ""                                                                             |
-| `tls.barcodereader.sslKeyPem`              | The private key for the SSL certificate of the barcodereader microservice                                    | string | Any                                            | "-----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----"                    |
-| `tls.barcodereader.sslCertificatePem`      | The private SSL certificate for the barcodereader microservice                                               | string | Any                                            | "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----"                    |
-| `tls.kafkabridge.sslKeyPasswordLocal`      | The encrypted password of the SSL key for the local mqttbridge broker. If empty, no password is used         | string | Any                                            | ""                                                                             |
-| `tls.kafkabridge.sslKeyPemLocal`           | The private key for the SSL certificate of the local mqttbridge broker                                       | string | Any                                            | "-----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----"                    |
-| `tls.kafkabridge.sslCertificatePemLocal`   | The private SSL certificate for the local mqttbridge broker                                                  | string | Any                                            | "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----"                    |
-| `tls.kafkabridge.sslCACertRemote`          | The CA certificate for the remote mqttbridge broker                                                          | string | Any                                            | "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----"                    |
-| `tls.kafkabridge.sslCertificatePemRemote`  | The private SSL certificate for the remote mqttbridge broker                                                 | string | Any                                            | "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----"                    |
-| `tls.kafkabridge.sslKeyPasswordRemote`     | The encrypted password of the SSL key for the remote mqttbridge broker. If empty, no password is used        | string | Any                                            | ""                                                                             |
-| `tls.kafkabridge.sslKeyPemRemote`          | The private key for the SSL certificate of the remote mqttbridge broker                                      | string | Any                                            | "-----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----"                    |
-| `tls.kafkadebug.sslKeyPassword`            | The encrypted password of the SSL key for the kafkadebug microservice. If empty, no password is used         | string | Any                                            | ""                                                                             |
-| `tls.kafkadebug.sslKeyPem`                 | The private key for the SSL certificate of the kafkadebug microservice                                       | string | Any                                            | "-----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----"                    |
-| `tls.kafkadebug.sslCertificatePem`         | The private SSL certificate for the kafkadebug microservice                                                  | string | Any                                            | "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----"                    |
-| `tls.kafkainit.sslKeyPassword`             | The encrypted password of the SSL key for the kafkainit microservice. If empty, no password is used          | string | Any                                            | ""                                                                             |
-| `tls.kafkainit.sslKeyPem`                  | The private key for the SSL certificate of the kafkainit microservice                                        | string | Any                                            | "-----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----"                    |
-| `tls.kafkainit.sslCertificatePem`          | The private SSL certificate for the kafkainit microservice                                                   | string | Any                                            | "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----"                    |
-| `tls.kafkastatedetector.sslKeyPassword`    | The encrypted password of the SSL key for the kafkastatedetector microservice. If empty, no password is used | string | Any                                            | ""                                                                             |
-| `tls.kafkastatedetector.sslKeyPem`         | The private key for the SSL certificate of the kafkastatedetector microservice                               | string | Any                                            | "-----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----"                    |
-| `tls.kafkastatedetector.sslCertificatePem` | The private SSL certificate for the kafkastatedetector microservice                                          | string | Any                                            | "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----"                    |
-| `tls.kafkatoblob.sslKeyPassword`           | The encrypted password of the SSL key for the kafkatoblob microservice. If empty, no password is used        | string | Any                                            | ""                                                                             |
-| `tls.kafkatoblob.sslKeyPem`                | The private key for the SSL certificate of the kafkatoblob microservice                                      | string | Any                                            | "-----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----"                    |
-| `tls.kafkatoblob.sslCertificatePem`        | The private SSL certificate for the kafkatoblob microservice                                                 | string | Any                                            | "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----"                    |
-| `tls.kafkatopostgresql.sslKeyPassword`     | The encrypted password of the SSL key for the kafkatopostgresql microservice. If empty, no password is used  | string | Any                                            | ""                                                                             |
-| `tls.kafkatopostgresql.sslKeyPem`          | The private key for the SSL certificate of the kafkatopostgresql microservice                                | string | Any                                            | "-----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----"                    |
-| `tls.kafkatopostgresql.sslCertificatePem`  | The private SSL certificate for the kafkatopostgresql microservice                                           | string | Any                                            | "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----"                    |
-| `tls.kowl.sslKeyPassword`                  | The encrypted password of the SSL key for the kowl microservice. If empty, no password is used               | string | Any                                            | ""                                                                             |
-| `tls.kowl.sslKeyPem`                       | The private key for the SSL certificate of the kowl microservice                                             | string | Any                                            | "-----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----"                    |
-| `tls.kowl.sslCertificatePem`               | The private SSL certificate for the kowl microservice                                                        | string | Any                                            | "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----"                    |
-| `tls.mqttkafkabridge.sslKeyPassword`       | The encrypted password of the SSL key for the mqttkafkabridge microservice. If empty, no password is used    | string | Any                                            | ""                                                                             |
-| `tls.mqttkafkabridge.sslKeyPem`            | The private key for the SSL certificate of the mqttkafkabridge microservice                                  | string | Any                                            | "-----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----"                    |
-| `tls.mqttkafkabridge.sslCertificatePem`    | The private SSL certificate for the mqttkafkabridge microservice                                             | string | Any                                            | "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----"                    |
-| `tls.nodered.sslKeyPassword`               | The encrypted password of the SSL key for the nodered microservice. If empty, no password is used            | string | Any                                            | ""                                                                             |
-| `tls.nodered.sslKeyPem`                    | The private key for the SSL certificate of the nodered microservice                                          | string | Any                                            | "-----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----"                    |
-| `tls.nodered.sslCertificatePem`            | The private SSL certificate for the nodered microservice                                                     | string | Any                                            | "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----"                    |
-| `tls.sensorconnect.sslKeyPassword`         | The encrypted password of the SSL key for the sensorconnect microservice. If empty, no password is used      | string | Any                                            | ""                                                                             |
-| `tls.sensorconnect.sslKeyPem`              | The private key for the SSL certificate of the sensorconnect microservice                                    | string | Any                                            | "-----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----"                    |
-| `tls.sensorconnect.sslCertificatePem`      | The private SSL certificate for the sensorconnect microservice                                               | string | Any                                            | "-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----"                    |
+| Parameter                                  | Description                                                                                                  | Type   | Allowed values                                 | Default                                                                      |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------ | ---------------------------------------------- | ---------------------------------------------------------------------------- |
+| `enabled`                                  | Whether the Kafka broker and related services are enabled                                                    | bool   | `true`, `false`                                | `true`                                                                       |
+| `useSSL`                                   | Whether SSL should be used                                                                                   | bool   | `true`, `false`                                | `true`                                                                       |
+| `defaultTopics`                            | The default topics that should be created                                                                    | string | Semicolon separated list of valid Kafka topics | ia.test.test.test.processValue;ia.test.test.test.count;umh.v1.kafka.newTopic |
+| `tls.CACert`                               | The CA certificate                                                                                           | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
+| `tls.kafka.cert`                           | The certificate used for the kafka broker                                                                    | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
+| `tls.kafka.privkey`                        | The private key of the certificate for the Kafka broker                                                      | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
+| `tls.barcodereader.sslKeyPassword`         | The encrypted password of the SSL key for the barcodereader microservice. If empty, no password is used      | string | Any                                            | ""                                                                           |
+| `tls.barcodereader.sslKeyPem`              | The private key for the SSL certificate of the barcodereader microservice                                    | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
+| `tls.barcodereader.sslCertificatePem`      | The private SSL certificate for the barcodereader microservice                                               | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
+| `tls.kafkabridge.sslKeyPasswordLocal`      | The encrypted password of the SSL key for the local mqttbridge broker. If empty, no password is used         | string | Any                                            | ""                                                                           |
+| `tls.kafkabridge.sslKeyPemLocal`           | The private key for the SSL certificate of the local mqttbridge broker                                       | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
+| `tls.kafkabridge.sslCertificatePemLocal`   | The private SSL certificate for the local mqttbridge broker                                                  | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
+| `tls.kafkabridge.sslCACertRemote`          | The CA certificate for the remote mqttbridge broker                                                          | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
+| `tls.kafkabridge.sslCertificatePemRemote`  | The private SSL certificate for the remote mqttbridge broker                                                 | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
+| `tls.kafkabridge.sslKeyPasswordRemote`     | The encrypted password of the SSL key for the remote mqttbridge broker. If empty, no password is used        | string | Any                                            | ""                                                                           |
+| `tls.kafkabridge.sslKeyPemRemote`          | The private key for the SSL certificate of the remote mqttbridge broker                                      | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
+| `tls.kafkadebug.sslKeyPassword`            | The encrypted password of the SSL key for the kafkadebug microservice. If empty, no password is used         | string | Any                                            | ""                                                                           |
+| `tls.kafkadebug.sslKeyPem`                 | The private key for the SSL certificate of the kafkadebug microservice                                       | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
+| `tls.kafkadebug.sslCertificatePem`         | The private SSL certificate for the kafkadebug microservice                                                  | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
+| `tls.kafkainit.sslKeyPassword`             | The encrypted password of the SSL key for the kafkainit microservice. If empty, no password is used          | string | Any                                            | ""                                                                           |
+| `tls.kafkainit.sslKeyPem`                  | The private key for the SSL certificate of the kafkainit microservice                                        | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
+| `tls.kafkainit.sslCertificatePem`          | The private SSL certificate for the kafkainit microservice                                                   | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
+| `tls.kafkastatedetector.sslKeyPassword`    | The encrypted password of the SSL key for the kafkastatedetector microservice. If empty, no password is used | string | Any                                            | ""                                                                           |
+| `tls.kafkastatedetector.sslKeyPem`         | The private key for the SSL certificate of the kafkastatedetector microservice                               | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
+| `tls.kafkastatedetector.sslCertificatePem` | The private SSL certificate for the kafkastatedetector microservice                                          | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
+| `tls.kafkatoblob.sslKeyPassword`           | The encrypted password of the SSL key for the kafkatoblob microservice. If empty, no password is used        | string | Any                                            | ""                                                                           |
+| `tls.kafkatoblob.sslKeyPem`                | The private key for the SSL certificate of the kafkatoblob microservice                                      | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
+| `tls.kafkatoblob.sslCertificatePem`        | The private SSL certificate for the kafkatoblob microservice                                                 | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
+| `tls.kafkatopostgresql.sslKeyPassword`     | The encrypted password of the SSL key for the kafkatopostgresql microservice. If empty, no password is used  | string | Any                                            | ""                                                                           |
+| `tls.kafkatopostgresql.sslKeyPem`          | The private key for the SSL certificate of the kafkatopostgresql microservice                                | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
+| `tls.kafkatopostgresql.sslCertificatePem`  | The private SSL certificate for the kafkatopostgresql microservice                                           | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
+| `tls.kowl.sslKeyPassword`                  | The encrypted password of the SSL key for the kowl microservice. If empty, no password is used               | string | Any                                            | ""                                                                           |
+| `tls.kowl.sslKeyPem`                       | The private key for the SSL certificate of the kowl microservice                                             | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
+| `tls.kowl.sslCertificatePem`               | The private SSL certificate for the kowl microservice                                                        | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
+| `tls.mqttkafkabridge.sslKeyPassword`       | The encrypted password of the SSL key for the mqttkafkabridge microservice. If empty, no password is used    | string | Any                                            | ""                                                                           |
+| `tls.mqttkafkabridge.sslKeyPem`            | The private key for the SSL certificate of the mqttkafkabridge microservice                                  | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
+| `tls.mqttkafkabridge.sslCertificatePem`    | The private SSL certificate for the mqttkafkabridge microservice                                             | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
+| `tls.nodered.sslKeyPassword`               | The encrypted password of the SSL key for the nodered microservice. If empty, no password is used            | string | Any                                            | ""                                                                           |
+| `tls.nodered.sslKeyPem`                    | The private key for the SSL certificate of the nodered microservice                                          | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
+| `tls.nodered.sslCertificatePem`            | The private SSL certificate for the nodered microservice                                                     | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
+| `tls.sensorconnect.sslKeyPassword`         | The encrypted password of the SSL key for the sensorconnect microservice. If empty, no password is used      | string | Any                                            | ""                                                                           |
+| `tls.sensorconnect.sslKeyPem`              | The private key for the SSL certificate of the sensorconnect microservice                                    | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
+| `tls.sensorconnect.sslCertificatePem`      | The private SSL certificate for the sensorconnect microservice                                               | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
 {{< /table >}}
 
 #### Data storage
@@ -428,10 +428,10 @@ The following table lists the configurable parameters of the
 `_000_commonConfig.datastorage` section.
 
 {{< table caption="datastorage section parameters" >}}
-| Parameter     | Description                                                                                       | Type   | Allowed values  | Default    |
-| ------------- | ------------------------------------------------------------------------------------------------- | ------ | --------------- | ---------- |
-| `enabled`     | Whether to enable the data storage microservices                                                  | bool   | `true`, `false` | `true`     |
-| `db_password` | The password for the database. Used by all the microservices that need to connect to the database | string | Any             | "changeme" |
+| Parameter     | Description                                                                                       | Type   | Allowed values  | Default  |
+| ------------- | ------------------------------------------------------------------------------------------------- | ------ | --------------- | -------- |
+| `enabled`     | Whether to enable the data storage microservices                                                  | bool   | `true`, `false` | `true`   |
+| `db_password` | The password for the database. Used by all the microservices that need to connect to the database | string | Any             | changeme |
 {{< /table >}}
 
 #### Data input
@@ -486,16 +486,16 @@ The following table lists the configurable parameters of the
 `_000_commonConfig.mqttBridge` section.
 
 {{< table caption="mqttBridge section parameters" >}}
-| Parameter                | Description                                                   | Type   | Allowed values            | Default                                                             |
-| ------------------------ | ------------------------------------------------------------- | ------ | ------------------------- | ------------------------------------------------------------------- |
-| `enabled`                | Whether to enable the mqtt-bridge microservice                | bool   | `true`, `false`           | `false`                                                             |
-| `localSubTopic`          | The topic that the local MQTT broker subscribes to            | string | Any valid MQTT topic      | "ia/factoryinsight"                                                 |
-| `localPubTopic`          | The topic that the local MQTT broker publishes to             | string | Any valid MQTT topic      | "ia/factoryinsight"                                                 |
-| `oneWay`                 | Whether to enable one-way communication, from local to remote | bool   | `true`, `false`           | `true`                                                              |
-| `remoteBrokerUrl`        | The URL of the remote MQTT broker                             | string | Any valid MQTT broker URL | "ssl://united-manufacturing-hub-mqtt.united-manufacturing-hub:8883" |
-| `remoteBrokerSSLEnables` | Whether to enable SSL for the remote MQTT broker              | bool   | `true`, `false`           | `true`                                                              |
-| `remoteSubTopic`         | The topic that the remote MQTT broker subscribes to           | string | Any valid MQTT topic      | "ia"                                                                |
-| `remotePubTopic`         | The topic that the remote MQTT broker publishes to            | string | Any valid MQTT topic      | "ia/factoryinsight"                                                 |
+| Parameter                | Description                                                   | Type   | Allowed values            | Default                                                           |
+| ------------------------ | ------------------------------------------------------------- | ------ | ------------------------- | ----------------------------------------------------------------- |
+| `enabled`                | Whether to enable the mqtt-bridge microservice                | bool   | `true`, `false`           | `false`                                                           |
+| `localSubTopic`          | The topic that the local MQTT broker subscribes to            | string | Any valid MQTT topic      | ia/factoryinsight                                                 |
+| `localPubTopic`          | The topic that the local MQTT broker publishes to             | string | Any valid MQTT topic      | ia/factoryinsight                                                 |
+| `oneWay`                 | Whether to enable one-way communication, from local to remote | bool   | `true`, `false`           | `true`                                                            |
+| `remoteBrokerUrl`        | The URL of the remote MQTT broker                             | string | Any valid MQTT broker URL | ssl://united-manufacturing-hub-mqtt.united-manufacturing-hub:8883 |
+| `remoteBrokerSSLEnables` | Whether to enable SSL for the remote MQTT broker              | bool   | `true`, `false`           | `true`                                                            |
+| `remoteSubTopic`         | The topic that the remote MQTT broker subscribes to           | string | Any valid MQTT topic      | ia                                                                |
+| `remotePubTopic`         | The topic that the remote MQTT broker publishes to            | string | Any valid MQTT topic      | ia/factoryinsight                                                 |
 {{< /table >}}
 
 #### Kafka Bridge
@@ -508,13 +508,13 @@ The following table lists the configurable parameters of the
 `_000_commonConfig.kafkaBridge` section.
 
 {{< table caption="kafkaBridge section parameters" >}}
-| Parameter                 | Description                                     | Type   | Allowed values                                 | Default                                                                        |
-| ------------------------- | ----------------------------------------------- | ------ | ---------------------------------------------- | ------------------------------------------------------------------------------ |
-| `enabled`                 | Whether to enable the kafka-bridge microservice | bool   | `true`, `false`                                | `false`                                                                        |
-| `remotebootstrapServer`   | The URL of the remote Kafka broker              | string | Any                                            | ""                                                                             |
-| `topicCreationLocalList`  | The list of topics to create locally            | string | Semicolon separated list of valid Kafka topics | "ia.test.test.test.processValue;ia.test.test.test.count;umh.v1.kafka.newTopic" |
-| `topicCreationRemoteList` | The list of topics to create remotely           | string | Semicolon separated list of valid Kafka topics | "ia.test.test.test.processValue;ia.test.test.test.count;umh.v1.kafka.newTopic" |
-| `topicmap`                | The list of topic maps of topics to forward     | object | [See below](#topic-map)                                      | _empty_                                                                        |
+| Parameter                 | Description                                     | Type   | Allowed values                                 | Default                                                                      |
+| ------------------------- | ----------------------------------------------- | ------ | ---------------------------------------------- | ---------------------------------------------------------------------------- |
+| `enabled`                 | Whether to enable the kafka-bridge microservice | bool   | `true`, `false`                                | `false`                                                                      |
+| `remotebootstrapServer`   | The URL of the remote Kafka broker              | string | Any                                            | ""                                                                           |
+| `topicCreationLocalList`  | The list of topics to create locally            | string | Semicolon separated list of valid Kafka topics | ia.test.test.test.processValue;ia.test.test.test.count;umh.v1.kafka.newTopic |
+| `topicCreationRemoteList` | The list of topics to create remotely           | string | Semicolon separated list of valid Kafka topics | ia.test.test.test.processValue;ia.test.test.test.count;umh.v1.kafka.newTopic |
+| `topicmap`                | The list of topic maps of topics to forward     | object | [See below](#topic-map)                        | _empty_                                                                      |
 {{< /table >}}
 
 ##### Topic Map
@@ -523,12 +523,12 @@ The `topicmap` parameter is a list of topic maps, each of which contains the
 following parameters:
 
 {{< table caption="topicmap section parameters" >}}
-| Parameter        | Description                                                         | Type   | Allowed values                    |
-| ---------------- | ------------------------------------------------------------------- | ------ | --------------------------------- |
-| `bidirectional`  | Whether to enable bidirectional communication for that topic        | bool   | `true`, `false`                   |
-| `name`           | The name of the map                                                 | string | "HighIntegrity", "HighThroughput" |
-| `send_direction` | The direction of the communication for that topic                   | string | "to_remote", "to_local"           |
-| `topic`          | The topic to forward. A regex can be used to match multiple topics. | string | Any valid Kafka topic             |
+| Parameter        | Description                                                         | Type   | Allowed values                |
+| ---------------- | ------------------------------------------------------------------- | ------ | ----------------------------- |
+| `bidirectional`  | Whether to enable bidirectional communication for that topic        | bool   | `true`, `false`               |
+| `name`           | The name of the map                                                 | string | HighIntegrity, HighThroughput |
+| `send_direction` | The direction of the communication for that topic                   | string | to_remote, to_local           |
+| `topic`          | The topic to forward. A regex can be used to match multiple topics. | string | Any valid Kafka topic         |
 {{< /table >}}
 
 For more information about the topic maps, see the
@@ -574,10 +574,10 @@ The following table lists the configurable parameters of the
 `_000_commonConfig.tulipconnector` section.
 
 {{< table caption="tulipconnector section parameters" >}}
-| Parameter | Description                                        | Type   | Allowed values        | Default                       |
-| --------- | -------------------------------------------------- | ------ | --------------------- | ----------------------------- |
-| `enabled` | Whether to enable the tulip-connector microservice | bool   | `true`, `false`       | `false`                       |
-| `domain`  | The domain name of the Tulip instance              | string | Any valid domain name | "tulip-connector.changme.com" |
+| Parameter | Description                                        | Type   | Allowed values        | Default                     |
+| --------- | -------------------------------------------------- | ------ | --------------------- | --------------------------- |
+| `enabled` | Whether to enable the tulip-connector microservice | bool   | `true`, `false`       | `false`                     |
+| `domain`  | The domain name of the Tulip instance              | string | Any valid domain name | tulip-connector.changme.com |
 {{< /table >}}
 
 ### Custom microservices configuration
@@ -589,8 +589,8 @@ be configured using the following parameters:
 {{< table caption="Custom microservices configuration parameters" >}}
 | Parameter         | Description                                                                 | Type   | Allowed values                    | Default                                    |
 | ----------------- | --------------------------------------------------------------------------- | ------ | --------------------------------- | ------------------------------------------ |
-| `name`            | The name of the microservice                                                | string | Any                               | "example"                                  |
-| `image`           | The image and tag of the microservice                                       | string | Any                               | "hello-world:latest"                       |
+| `name`            | The name of the microservice                                                | string | Any                               | example                                    |
+| `image`           | The image and tag of the microservice                                       | string | Any                               | hello-world:latest                         |
 | `enabled`         | Whether to enable the microservice                                          | bool   | `true`, `false`                   | `false`                                    |
 | `imagePullPolicy` | The image pull policy of the microservice                                   | string | "Always", "IfNotPresent", "Never" | "Always"                                   |
 | `env`             | The list of environment variables to set for the microservice               | object | Any                               | [{name: LOGGING_LEVEL, value: PRODUCTION}] |
