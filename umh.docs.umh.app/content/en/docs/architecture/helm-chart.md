@@ -31,8 +31,6 @@ custom microservices:
 
 - [barcodereader](/docs/architecture/microservices/core/barcodereader/): reads the input from
   a barcode reader and sends it to the MQTT broker for further processing.
-- [cameraconnect](/docs/architecture/microservices/core/cameraconnect/): connects to a
-  camera and sends the images to the MQTT broker for further processing.
 - customMicroservice: a
   template for deploying any number of custom microservices.
 - [factoryinput](/docs/architecture/microservices/community/factoryinput/): provides REST
@@ -148,7 +146,6 @@ The following table lists the configuration options that can be set in the
 | Parameter             | Description                                            | Type   | Allowed values | Default                             |
 | --------------------- | ------------------------------------------------------ | ------ | -------------- | ----------------------------------- |
 | `barcodereader`       | The configuration of the barcodereader microservice.   | object | See below      | [See below](#barcode-reader)        |
-| `cameraconnect`       | The configuration of the cameraconnect microservice.   | object | See below      | [See below](#camera-connect)        |
 | `iotsensorsmqtt`      | The configuration of the IoTSensorsMQTT microservice.  | object | See below      | [See below](#iot-sensors-mqtt)      |
 | `opcuasimulator`      | The configuration of the opcuasimulator microservice.  | object | See below      | [See below](#opc-ua-simulator)      |
 | `packmlmqttsimulator` | The configuration of the packmlsimulator microservice. | object | See below      | [See below](#packml-mqtt-simulator) |
@@ -173,31 +170,6 @@ The following table lists the configuration options that can be set in the
 | `customerID`    | The customer ID to use in the topic structure.                                 | string | Any                    | raw                                          |
 | `location`      | The location to use in the topic structure.                                    | string | Any                    | barcodereader                                |
 | `machineID`     | The asset ID to use in the topic structure.                                    | string | Any                    | barcodereader                                |
-{{< /table >}}
-
-##### Camera connect
-
-The `_000_commonConfig.datasources.cameraconnect` section contains the
-configuration of the [cameraconnect](/docs/architecture/microservices/core/cameraconnect)
-microservice.
-
-The following table lists the configuration options that can be set in the
-`_000_commonConfig.datasources.cameraconnect` section:
-
-{{< table caption="cameraconnect section parameters" >}}
-| Parameter          | Description                                                                                      | Type   | Allowed values                | Default        |
-| ------------------ | ------------------------------------------------------------------------------------------------ | ------ | ----------------------------- | -------------- |
-| `enabled`          | Whether the `cameraconnect` microservice is enabled.                                             | bool   | `true`, `false`               | `false`        |
-| `trigger`          | How the camera is triggered, either via MQTT or continuosly.                                     | string | MQTT, Continuous              | MQTT           |
-| `acquisitionDelay` | The delay between the trigger and the acquisition of the image.                                  | string | Valid float number            | 0.0            |
-| `cycleTime`        | The time between two consecutive acquisitions. Only relevant when `trigger` is set to Continuous | string | Valid integer number          | 4              |
-| `imageWidth`       | The width of the image in number of pixels.                                                      | string | Valid integer number          | 800            |
-| `imageHeight`      | The height of the image in number of pixels.                                                     | string | Valid integer number          | 800            |
-| `imageChannels`    | The number of color channels of the image.                                                       | string | Valid integer number          | 3              |
-| `macAddress`       | The MAC address of the camera.                                                                   | string | Valid MAC address             | 02-2625A-09849 |
-| `exposureTime`     | The exposure time of the camera in milliseconds.                                                 | string | Valid integer number          | 1000           |
-| `exposureAuto`     | Whether the exposure time is automatically adjusted.                                             | string | Once, Off, Continuous         | Off            |
-| `pixelFormat`      | The pixel format used in the image.                                                              | string | Mono8, RGB8Packed, BGR8Packed | Mono8          |
 {{< /table >}}
 
 ##### IoT Sensors MQTT
