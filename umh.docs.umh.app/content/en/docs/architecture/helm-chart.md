@@ -84,9 +84,12 @@ third-party applications:
 ## Configuration options
 
 The Helm Chart of the United Manufacturing Hub can be configured by setting
-values in the `values.yaml` file. This file has two main sections that can be used
-to configure the applications:
+values in the `values.yaml` file. This file has three main sections that can be
+used to configure the applications:
 
+- `customers`: contains the definition of the customers that will be created
+  during the installation of the Helm Chart. This section is optional, and it's
+  used only by factoryinsight and factoryinput.
 - `_000_commonConfig`: contains the basic configuration options to customize the
   United Manufacturing Hub, and it's divided into sections that group applications
   with similar scope, like the ones that compose the infrastructure or the ones
@@ -107,11 +110,25 @@ parameter is nested inside the `tls.factoryinput` section, and the `factoryinput
 section is nested inside the `tls` section.
 {{% /notice %}}
 
+### Customers
+
+The `customers` section contains the definition of the customers that will be
+created during the installation of the Helm Chart. It's a simple dictionary where
+the key is the name of the customer, and the value is the password.
+
+For example, the following snippet creates two customers:
+
+```yaml
+customers:
+  customer1: password1
+  customer2: password2
+```
+
 ### Common configuration options
 
 The `_000_commonConfig` contains the basic configuration options to customize the
-  United Manufacturing Hub, and it's divided into sections that group applications
-  with similar scope.
+United Manufacturing Hub, and it's divided into sections that group applications
+with similar scope.
 
 The following table lists the configuration options that can be set in the
 `_000_commonConfig` section:
