@@ -91,6 +91,9 @@ other = "united-manufacturing-hub-mqttbridge-claim"
 [resource_pvc_sensorconnect]
 other = "united-manufacturing-hub-sensorconnect-claim"
 
+[resource_service_factoryinput]
+other = "united-manufacturing-hub-factoryinput-service"
+
 [resource_service_factoryinsight]
 other = "united-manufacturing-hub-factoryinsight-service"
 
@@ -118,6 +121,9 @@ other = "redis-secret"
 [resource_secret_db-psw]
 other = "timescale-post-init-pw"
 
+[resource_secret_factoryinput]
+other = "factoryinput-secret"
+
 [resource_secret_factoryinsight]
 other = "factoryinsight-secret"
 
@@ -144,6 +150,9 @@ other = "united-manufacturing-hub-sensorconnect-kafka-secrets"
 
 [resource_secret_sensorconnect-mqtt]
 other = "united-manufacturing-hub-sensorconnect-mqtt-secrets"
+
+[resource_statefulset_factoryinput]
+other = "united-manufacturing-hub-factoryinput"
 
 [resource_statefulset_mqttbridge]
 other = "united-manufacturing-hub-mqttbridge"
