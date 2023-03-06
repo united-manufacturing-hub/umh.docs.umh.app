@@ -70,7 +70,7 @@ other = "united-manufacturing-hub-kafkabridge"
 [resource_deployment_kafkastatedetector]
 other = "united-manufacturing-hub-kafkastatedetector"
 
-[resource_deployment-kafkatoblob]
+[resource_deployment_kafkatoblob]
 other = "united-manufacturing-hub-kafkatoblob"
 
 [resource_deployment_kafkatopostgresql]
@@ -91,8 +91,14 @@ other = "united-manufacturing-hub-opcuasimulator-deployment"
 [resource_deployment_packmlsimulator]
 other = "united-manufacturing-hub-packmlmqttsimulator"
 
+[resource_deployment_tulipconnector]
+other = "united-manufacturing-hub-tulip-connector-deployment"
+
 [resource_docker_org]
 other = "unitedmanufacturinghub"
+
+[resource_ingress_tulipconnector]
+other = "united-manufacturing-hub-tulip-connector-ingress"
 
 [resource_lens_name]
 other = "UMHLens / OpenLens"
@@ -138,6 +144,9 @@ other = "united-manufacturing-hub-vernemq"
 
 [resource_service_opcuasimulator]
 other = "united-manufacturing-hub-opcuasimulator-service"
+
+[resource_service_tulipconnector]
+other = "united-manufacturing-hub-tulip-connector-service"
 
 [resource_service-cluster_database]
 other = "united-manufacturing-hub.united-manufacturing-hub.svc.cluster.local:5432"

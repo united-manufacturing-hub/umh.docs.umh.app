@@ -577,7 +577,7 @@ The following table lists the configurable parameters of the
 | Parameter | Description                                        | Type   | Allowed values        | Default                     |
 | --------- | -------------------------------------------------- | ------ | --------------------- | --------------------------- |
 | `enabled` | Whether to enable the tulip-connector microservice | bool   | `true`, `false`       | `false`                     |
-| `domain`  | The domain name of the Tulip instance              | string | Any valid domain name | tulip-connector.changme.com |
+| `domain`  | The domain name pointing to you cluster            | string | Any valid domain name | tulip-connector.changme.com |
 {{< /table >}}
 
 ### Custom microservices configuration
