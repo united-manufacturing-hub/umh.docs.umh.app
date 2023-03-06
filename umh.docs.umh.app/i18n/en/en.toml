@@ -67,6 +67,9 @@ other = "united-manufacturing-hub-kafkatopostgresql"
 [resource_deployment_mqttkafkabridge]
 other = "united-manufacturing-hub-mqttkafkabridge"
 
+[resource_deployment_grafanaproxy]
+other = "united-manufacturing-hub-grafanaproxy"
+
 [resource_docker_org]
 other = "unitedmanufacturinghub"
 
@@ -102,6 +105,9 @@ other = "united-manufacturing-hub-kafka"
 
 [resource_service_kafka-ext]
 other = "united-manufacturing-hub-kafka-0-external"
+
+[resource_service_grafanaproxy]
+other = "united-manufacturing-hub-grafanaproxy-service"
 
 [resource_service_mqtt]
 other = "united-manufacturing-hub-mqtt"
