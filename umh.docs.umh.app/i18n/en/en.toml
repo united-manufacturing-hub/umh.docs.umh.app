@@ -88,6 +88,9 @@ other = "united-manufacturing-hub-grafanaproxy"
 [resource_deployment_opcuasimulator]
 other = "united-manufacturing-hub-opcuasimulator-deployment"
 
+[resource_deployment_packmlsimulator]
+other = "united-manufacturing-hub-packmlmqttsimulator"
+
 [resource_docker_org]
 other = "unitedmanufacturinghub"
 
