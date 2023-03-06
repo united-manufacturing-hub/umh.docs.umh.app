@@ -88,6 +88,9 @@ other = "united-manufacturing-hub-nodered-0"
 [resource_pvc_mqttbridge]
 other = "united-manufacturing-hub-mqttbridge-claim"
 
+[resource_pvc_sensorconnect]
+other = "united-manufacturing-hub-sensorconnect-claim"
+
 [resource_service_factoryinsight]
 other = "united-manufacturing-hub-factoryinsight-service"
 
@@ -136,8 +139,17 @@ other = "united-manufacturing-hub-mqttkafkabridge-kafka-secrets"
 [resource_secret_mqttkafkabridge-mqtt]
 other = "united-manufacturing-hub-mqttkafkabridge-mqtt-secrets"
 
+[resource_secret_sensorconnect-kafka]
+other = "united-manufacturing-hub-sensorconnect-kafka-secrets"
+
+[resource_secret_sensorconnect-mqtt]
+other = "united-manufacturing-hub-sensorconnect-mqtt-secrets"
+
 [resource_statefulset_mqttbridge]
 other = "united-manufacturing-hub-mqttbridge"
 
 [resource_statefulset_nodered]
 other = "united-manufacturing-hub-nodered"
+
+[resource_statefulset_sensorconnect]
+other = "united-manufacturing-hub-sensorconnect"
