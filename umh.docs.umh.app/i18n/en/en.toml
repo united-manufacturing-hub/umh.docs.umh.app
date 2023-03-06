@@ -67,6 +67,9 @@ other = "united-manufacturing-hub-kafkabridge"
 [resource_deployment_kafkastatedetector]
 other = "united-manufacturing-hub-kafkastatedetector"
 
+[resource_deployment-kafkatoblob]
+other = "united-manufacturing-hub-kafkatoblob"
+
 [resource_deployment_kafkatopostgresql]
 other = "united-manufacturing-hub-kafkatopostgresql"
 
@@ -150,6 +153,9 @@ other = "united-manufacturing-hub-kafkabridge-secrets-remote"
 
 [resource_secret_kafkastatedetector]
 other = "united-manufacturing-hub-kafkastatedetector-secrets"
+
+[resource_secret_kafkatoblob]
+other = "united-manufacturing-hub-kafkatoblob-secrets"
 
 [resource_secret_kafkatopostgresql]
 other = "united-manufacturing-hub-kafkatopostgresql-certificates"
