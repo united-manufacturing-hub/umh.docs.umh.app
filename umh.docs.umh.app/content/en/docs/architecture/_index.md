@@ -83,7 +83,7 @@ flowchart
             packml-simulator["PackML simulator"]
             opcua-simulator["OPC-UA simulator"]
 
-            click mqtt-simulator "./microservices/community/mqttsim"
+            click mqtt-simulator "./microservices/community/mqtt-simulator"
             click packml-simulator "./microservices/community/packml-simulator"
             click opcua-simulator "./microservices/community/opcua-simulator"
 
@@ -123,7 +123,7 @@ flowchart
 The United Manufacturing Hub includes several simulators to generate data during development and testing.
 
 ### Microservices
-- [iotsensorsmqtt](/docs/architecture/microservices/community/mqttsim/) simulates data in three different MQTT topics, providing a simple way to test and visualize MQTT data streams.
+- [iotsensorsmqtt](/docs/architecture/microservices/community/mqtt-simulator/) simulates data in three different MQTT topics, providing a simple way to test and visualize MQTT data streams.
 - [packml-simulator](/docs/architecture/microservices/community/packml-simulator/) simulates a PackML machine which sends and receives MQTT messages
 - [opcua-simulator](/docs/architecture/microservices/community/opcua-simulator/) simulates an OPC-UA server, which can then be used to test connectivity of OPC-UA clients and to generate sample data for OPC-UA clients
 

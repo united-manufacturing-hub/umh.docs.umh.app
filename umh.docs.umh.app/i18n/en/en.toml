@@ -49,6 +49,9 @@ other = "Your United Manufacturing Hub must be at or later than version "
 [version_check_tocheck]
 other = "To check the United Manufacturing Hub version, open UMHLens / OpenLens and go to **Helm** > **Releases**. The version is listed in the **Version** column."
 
+[resource_configmap_mqttsimulator]
+other = "united-manufacturing-hub-iotsensors-mqtt"
+
 [resource_deployment_factoryinsight]
 other = "united-manufacturing-hub-factoryinsight-deployment"
 
@@ -66,6 +69,9 @@ other = "united-manufacturing-hub-kafkatopostgresql"
 
 [resource_deployment_mqttkafkabridge]
 other = "united-manufacturing-hub-mqttkafkabridge"
+
+[resource_deployment_mqttsimulator]
+other = "united-manufacturing-hub-iotsensorsmqtt"
 
 [resource_deployment_grafanaproxy]
 other = "united-manufacturing-hub-grafanaproxy"

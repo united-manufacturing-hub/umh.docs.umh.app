@@ -39,7 +39,7 @@ custom microservices:
   endpoints to fetch data and calculate KPIs.
 - grafanaproxy: provides a
   proxy to the backend services.
-- IoTSensorsMQTT: simulates
+- [MQTT Simulator](/docs/architecture/microservices/community/mqtt-simulator): simulates
   sensors and sends the data to the MQTT broker for further processing.
 - [kafka-bridge](/docs/architecture/microservices/core/kafka-bridge/): connects Kafka brokers
   on different Kubernetes clusters.
@@ -203,7 +203,7 @@ The following table lists the configuration options that can be set in the
 ##### IoT Sensors MQTT
 
 The `_000_commonConfig.datasources.iotsensorsmqtt` section contains the
-configuration of the IoTSensorsMQTT
+configuration of the [IoTSensorsMQTT](/docs/architecture/microservices/community/mqtt-simulator)
 microservice.
 
 The following table lists the configuration options that can be set in the
