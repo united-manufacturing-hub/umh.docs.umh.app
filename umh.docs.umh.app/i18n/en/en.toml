@@ -52,6 +52,9 @@ other = "To check the United Manufacturing Hub version, open UMHLens / OpenLens 
 [resource_configmap_mqttsimulator]
 other = "united-manufacturing-hub-iotsensors-mqtt"
 
+[resource_configmap_opcuasimulator]
+other = "united-manufacturing-hub-opcuasimulator-config"
+
 [resource_deployment_factoryinsight]
 other = "united-manufacturing-hub-factoryinsight-deployment"
 
@@ -81,6 +84,9 @@ other = "united-manufacturing-hub-iotsensorsmqtt"
 
 [resource_deployment_grafanaproxy]
 other = "united-manufacturing-hub-grafanaproxy"
+
+[resource_deployment_opcuasimulator]
+other = "united-manufacturing-hub-opcuasimulator-deployment"
 
 [resource_docker_org]
 other = "unitedmanufacturinghub"
@@ -126,6 +132,9 @@ other = "united-manufacturing-hub-mqtt"
 
 [resource_service_mqtt-verne]
 other = "united-manufacturing-hub-vernemq"
+
+[resource_service_opcuasimulator]
+other = "united-manufacturing-hub-opcuasimulator-service"
 
 [resource_service-cluster_database]
 other = "united-manufacturing-hub.united-manufacturing-hub.svc.cluster.local:5432"
