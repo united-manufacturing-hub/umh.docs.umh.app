@@ -66,8 +66,8 @@ and all the raw topics.
 
 You shouldn't need to configure kafka-to-postgresql manually, as it's configured
 automatically when the cluster is deployed. However, if you need to change the
-configuration, you can do it by editing the `kafkatopostgresql` section in the
-`values.yaml` file.
+configuration, you can do it by editing the `kafkatopostgresql` section of the Helm
+chart values file.
 
 ### {{% heading "envvars" %}}
 

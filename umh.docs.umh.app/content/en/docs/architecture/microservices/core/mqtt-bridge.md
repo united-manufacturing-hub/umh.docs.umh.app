@@ -32,7 +32,7 @@ broker and publishing the messages to the local broker.
 You can configure the URL of the remote MQTT broker that MQTT-bridge should
 connect to by setting the value of the `remoteBrokerUrl` parameter in the
 [`_000_commonConfig.mqttBridge`](/docs/architecture/helm-chart/#mqtt-bridge)
-section of the `values.yaml` file.
+section of the Helm chart values file.
 
 ### {{% heading "envvars" %}}
 

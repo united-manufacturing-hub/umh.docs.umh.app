@@ -40,8 +40,8 @@ the proper format and publishes them to the other message broker.
 
 You shouldn't need to configure mqtt-kafka-bridge manually, as it's configured
 automatically when the cluster is deployed. However, if you need to change the
-configuration, you can do it by editing the `mqttkafkabridge` section in the
-`values.yaml` file.
+configuration, you can do it by editing the `mqttkafkabridge` section of the Helm
+chart values file.
 
 ### {{% heading "envvars" %}}
 

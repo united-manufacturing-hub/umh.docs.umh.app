@@ -41,7 +41,7 @@ This microservice has two ways of operation:
 
 You can configure the kafka-bridge microservice by setting the following values
 in the [`_000_commonConfig.kafkaBridge`](/docs/architecture/helm-chart/#kafka-bridge)
-section of the `values.yaml` file.
+section of the Helm chart values file.
 
 ```yaml
   kafkaBridge:
