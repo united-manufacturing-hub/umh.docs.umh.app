@@ -64,6 +64,9 @@ other = "united-manufacturing-hub-cameraconnect"
 [resource_deployment_kafkabridge]
 other = "united-manufacturing-hub-kafkabridge"
 
+[resource_deployment_kafkastatedetector]
+other = "united-manufacturing-hub-kafkastatedetector"
+
 [resource_deployment_kafkatopostgresql]
 other = "united-manufacturing-hub-kafkatopostgresql"
 
@@ -144,6 +147,9 @@ other = "united-manufacturing-hub-kafkabridge-secrets-local"
 
 [resource_secret_kafkabridge-remote]
 other = "united-manufacturing-hub-kafkabridge-secrets-remote"
+
+[resource_secret_kafkastatedetector]
+other = "united-manufacturing-hub-kafkastatedetector-secrets"
 
 [resource_secret_kafkatopostgresql]
 other = "united-manufacturing-hub-kafkatopostgresql-certificates"
