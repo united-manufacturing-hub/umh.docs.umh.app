@@ -49,6 +49,21 @@ other = "Your United Manufacturing Hub must be at or later than version "
 [version_check_tocheck]
 other = "To check the United Manufacturing Hub version, open UMHLens / OpenLens and go to **Helm** > **Releases**. The version is listed in the **Version** column."
 
+[resource_cluster_name]
+other = "united-manufacturing-hub"
+
+[resource_configmap_db-patroni]
+other = "united-manufacturing-hub-timescaledb-patroni"
+
+[resource_configmap_db-postinit]
+other = "timescale-post-init"
+
+[resource_configmap_db-pgbackrest]
+other = "united-manufacturing-hub-timescaledb-pgbackrest"
+
+[resource_configmap_db-scripts]
+other = "united-manufacturing-hub-timescaledb-scripts"
+
 [resource_configmap_mqttsimulator]
 other = "united-manufacturing-hub-iotsensors-mqtt"
 
@@ -103,6 +118,9 @@ other = "united-manufacturing-hub-tulip-connector-ingress"
 [resource_lens_name]
 other = "UMHLens / OpenLens"
 
+[resource_ns_umh]
+other = "united-manufacturing-hub"
+
 [resource_pod_cache]
 other = "united-manufacturing-hub-redis-node-0"
 
@@ -114,6 +132,12 @@ other = "united-manufacturing-hub-kafka-0"
 
 [resource_pod_nodered]
 other = "united-manufacturing-hub-nodered-0"
+
+[resource_pvc_db-data]
+other = "storage-volume-united-manufacturing-hub-timescaledb-0"
+
+[resource_pvc_db-wal]
+other = "wal-volume-united-manufacturing-hub-timescaledb-0"
 
 [resource_pvc_mqttbridge]
 other = "united-manufacturing-hub-mqttbridge-claim"
@@ -148,6 +172,15 @@ other = "united-manufacturing-hub-opcuasimulator-service"
 [resource_service_tulipconnector]
 other = "united-manufacturing-hub-tulip-connector-service"
 
+[resource_service_db-replica]
+other = "united-manufacturing-hub-replica"
+
+[resource_service_db-config]
+other = "united-manufacturing-hub-config"
+
+[resource_service_db-lb]
+other = "united-manufacturing-hub"
+
 [resource_service-cluster_database]
 other = "united-manufacturing-hub.united-manufacturing-hub.svc.cluster.local:5432"
 
@@ -159,6 +192,12 @@ other = "redis-secret"
 
 [resource_secret_db-psw]
 other = "timescale-post-init-pw"
+
+[resource_secret_db-certificate]
+other = "united-manufacturing-hub-certificate"
+
+[resource_secret_db-credentials]
+other = "united-manufacturing-hub-credentials"
 
 [resource_secret_factoryinput]
 other = "factoryinput-secret"
@@ -195,6 +234,9 @@ other = "united-manufacturing-hub-sensorconnect-kafka-secrets"
 
 [resource_secret_sensorconnect-mqtt]
 other = "united-manufacturing-hub-sensorconnect-mqtt-secrets"
+
+[resource_statefulset_db]
+other = "united-manufacturing-hub-timescaledb"
 
 [resource_statefulset_factoryinput]
 other = "united-manufacturing-hub-factoryinput"

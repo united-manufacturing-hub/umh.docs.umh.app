@@ -46,7 +46,7 @@ flowchart
             redis
 
             click kafka-to-postgresql "./microservices/core/kafka-to-postgresql"
-            click timescaledb "./microservices/core/timescaledb"
+            click timescaledb "./microservices/core/database"
             click factoryinsight "./microservices/core/factoryinsight"
             click grafana "./microservices/core/grafana"
             click redis "./microservices/core/redis"
@@ -167,7 +167,7 @@ The United Manufacturing Hub stores events according to our [datamodel](/docs/ar
 
 ### Microservices
 - [kafka-to-postgresql](/docs/architecture/microservices/core/kafka-to-postgresql/) stores data in selected topics from the Kafka broker in a PostgreSQL compatible database such as TimescaleDB.
-- [TimescaleDB](/docs/architecture/microservices/core/timescaledb/), which is an open-source time-series SQL database 
+- [TimescaleDB](/docs/architecture/microservices/core/database/), which is an open-source time-series SQL database 
 - [factoryinsight](https://umh.docs.umh.app/docs/architecture/microservices/core/factoryinsight/) provides REST endpoints to fetch data and calculate KPIs
 - [Grafana](https://umh.docs.umh.app/docs/architecture/microservices/core/grafana/) is a visualization and analytics software
 - [umh-datasource](https://umh.docs.umh.app/docs/architecture/microservices/core/umh-datasource/) is a plugin providing access factoryinsight

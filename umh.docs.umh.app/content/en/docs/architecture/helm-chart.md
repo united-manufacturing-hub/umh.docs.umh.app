@@ -415,7 +415,7 @@ The `_000_commonConfig.datastorage` section contains the configuration of the
 microservices used to store data. Specifically, it controls the following
 microservices:
 
-- timescaledb
+- [database](/docs/architecture/microservices/core/database)
 - [factoryinsight](/docs/architecture/microservices/core/factoryinsight)
 - [kafka-to-postgresql](/docs/architecture/microservices/core/kafka-to-postgresql)
 - grafana
