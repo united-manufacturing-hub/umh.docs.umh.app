@@ -298,7 +298,7 @@ The following table lists the configuration options that can be set in the
 The `_000_commonConfig.infrastructure` section contains the configuration of the
 microservices responsible for connecting all the other microservices, such as the
 [MQTT broker](/docs/architecture/microservices/core/mqtt-broker) and the
-Kafka broker.
+[Kafka broker](/docs/architecture/microservices/core/kafka-broker/).
 
 The following table lists the configuration options that can be set in the
 `_000_commonConfig.infrastructure` section:
@@ -353,7 +353,7 @@ The following table lists the configuration options that can be set in the
 ##### Kafka
 
 The `_000_commonConfig.infrastructure.kafka` section contains the configuration
-of the Kafka broker
+of the [Kafka broker](/docs/architecture/microservices/core/kafka-broker/)
 and related services, like [mqttkafkabridge](/docs/architecture/microservices/core/mqtt-kafka-bridge/),
 [kafkatopostgresql](/docs/architecture/microservices/core/kafka-to-postgresql/)
 and the Kafka console.

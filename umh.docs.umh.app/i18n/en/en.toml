@@ -67,6 +67,9 @@ other = "united-manufacturing-hub-timescaledb-scripts"
 [resource_configmap_grafana]
 other = "united-manufacturing-hub-grafana"
 
+[resource_configmap_kafkabroker-scripts]
+other = "united-manufacturing-hub-kafka-scripts"
+
 [resource_configmap_mqttbroker-credentials]
 other = "united-manufacturing-hub-hivemqce-extension"
 
@@ -154,6 +157,9 @@ other = "wal-volume-united-manufacturing-hub-timescaledb-0"
 [resource_pvc_grafana]
 other = "united-manufacturing-hub-grafana"
 
+[resource_pvc_kafkabroker]
+other = "data-united-manufacturing-hub-kafka-0"
+
 [resource_pvc_mqttbridge]
 other = "united-manufacturing-hub-mqttbridge-claim"
 
@@ -175,11 +181,14 @@ other = "united-manufacturing-hub-factoryinsight-service"
 [resource_service_grafana]
 other = "united-manufacturing-hub-grafana"
 
-[resource_service_kafka]
+[resource_service_kafkabroker]
 other = "united-manufacturing-hub-kafka"
 
-[resource_service_kafka-ext]
+[resource_service_kafkabroker-ext]
 other = "united-manufacturing-hub-kafka-0-external"
+
+[resource_service_kafkabroker-headless]
+other = "united-manufacturing-hub-kafka-headless"
 
 [resource_service_grafanaproxy]
 other = "united-manufacturing-hub-grafanaproxy-service"
@@ -244,6 +253,9 @@ other = "united-manufacturing-hub-kafkabridge-secrets-local"
 [resource_secret_kafkabridge-remote]
 other = "united-manufacturing-hub-kafkabridge-secrets-remote"
 
+[resource_secret_kafkabroker]
+other = "united-manufacturing-hub-kafka-broker-secrets"
+
 [resource_secret_kafkastatedetector]
 other = "united-manufacturing-hub-kafkastatedetector-secrets"
 
@@ -276,6 +288,9 @@ other = "united-manufacturing-hub-timescaledb"
 
 [resource_statefulset_factoryinput]
 other = "united-manufacturing-hub-factoryinput"
+
+[resource_statefulset_kafkabroker]
+other = "united-manufacturing-hub-kafka"
 
 [resource_statefulset_mqttbridge]
 other = "united-manufacturing-hub-mqttbridge"
