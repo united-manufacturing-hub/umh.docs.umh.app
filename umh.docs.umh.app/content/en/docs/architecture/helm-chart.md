@@ -418,7 +418,7 @@ microservices:
 - [database](/docs/architecture/microservices/core/database)
 - [factoryinsight](/docs/architecture/microservices/core/factoryinsight)
 - [kafka-to-postgresql](/docs/architecture/microservices/core/kafka-to-postgresql)
-- grafana
+- [grafana](/docs/architecture/microservices/core/grafana)
 - [mqtt-broker](/docs/architecture/microservices/core/mqtt-broker)
 
 If you want to specifically configure one of these microservices, you can do so

@@ -64,6 +64,9 @@ other = "united-manufacturing-hub-timescaledb-pgbackrest"
 [resource_configmap_db-scripts]
 other = "united-manufacturing-hub-timescaledb-scripts"
 
+[resource_configmap_grafana]
+other = "united-manufacturing-hub-grafana"
+
 [resource_configmap_mqttbroker-credentials]
 other = "united-manufacturing-hub-hivemqce-extension"
 
@@ -84,6 +87,9 @@ other = "united-manufacturing-hub-barcodereader"
 
 [resource_deployment_cameraconnect]
 other = "united-manufacturing-hub-cameraconnect"
+
+[resource_deployment_grafana]
+other = "united-manufacturing-hub-grafana"
 
 [resource_deployment_kafkabridge]
 other = "united-manufacturing-hub-kafkabridge"
@@ -145,6 +151,9 @@ other = "storage-volume-united-manufacturing-hub-timescaledb-0"
 [resource_pvc_db-wal]
 other = "wal-volume-united-manufacturing-hub-timescaledb-0"
 
+[resource_pvc_grafana]
+other = "united-manufacturing-hub-grafana"
+
 [resource_pvc_mqttbridge]
 other = "united-manufacturing-hub-mqttbridge-claim"
 
@@ -162,6 +171,9 @@ other = "united-manufacturing-hub-factoryinput-service"
 
 [resource_service_factoryinsight]
 other = "united-manufacturing-hub-factoryinsight-service"
+
+[resource_service_grafana]
+other = "united-manufacturing-hub-grafana"
 
 [resource_service_kafka]
 other = "united-manufacturing-hub-kafka"
@@ -222,6 +234,9 @@ other = "factoryinput-secret"
 
 [resource_secret_factoryinsight]
 other = "factoryinsight-secret"
+
+[resource_secret_grafana]
+other = "grafana-secret"
 
 [resource_secret_kafkabridge-local]
 other = "united-manufacturing-hub-kafkabridge-secrets-local"
