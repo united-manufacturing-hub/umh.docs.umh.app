@@ -32,7 +32,7 @@ h2 {text-align: center; margin-left: auto; margin-right: auto}
                 <ul>
                     <li><strong>Extract data from the shopfloor</strong> <a href="https://nodered.org/">via Node-RED</a>, from <a href="/docs/architecture/microservices/core/sensorconnect/">ifm IO-Link gateways</a>, from <a href="/docs/architecture/microservices/community/barcodereader/">barcode readers</a> or from <a href="/docs/architecture/microservices/community/cameraconnect/">GenICam compatible cameras</a></li>
                     <li><strong>Contextualize and standardize data</strong> using <a href="https://nodered.org/">Node-RED</a> as a low-code programming tool and the <a href="">ISA95 compatible UMH data model</a></li>
-                    <li><strong>Exchange and store data</strong> using <a href="/docs/architecture/microservices/core/hivemq/">HiveMQ</a> for IoT devices, <a href="/lesson/introduction-into-it-ot-kafka/">Apache Kafka</a> as enterprise message broker, and <a href="https://learn.umh.app/topic/timescaledb/">TimescaleDB</a> as a reliable relational and time-series storage solution</li>
+                    <li><strong>Exchange and store data</strong> using <a href="/docs/architecture/microservices/core/mqtt-broker/">HiveMQ</a> for IoT devices, <a href="/lesson/introduction-into-it-ot-kafka/">Apache Kafka</a> as enterprise message broker, and <a href="https://learn.umh.app/topic/timescaledb/">TimescaleDB</a> as a reliable relational and time-series storage solution</li>
                     <li><strong>Visualize data</strong> using <a href="https://grafana.com/">Grafana</a> and <a href="/docs/architecture/microservices/core/factoryinsight/">factoryinsight</a> to build powerful shopfloor dashboards</li>
                 </ul>
             </div>

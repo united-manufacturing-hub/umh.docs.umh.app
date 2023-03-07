@@ -41,12 +41,12 @@ Helm chart values file.
 ### {{% heading "envvars" %}}
 
 {{< table caption="Environment variables" >}}
-| Variable name   | Description                                                                         | Type   | Allowed values | Default                                                 |
-| --------------- | ----------------------------------------------------------------------------------- | ------ | -------------- | ------------------------------------------------------- |
-| `AREA`          | ISA-95 area name of the line                                                        | string | Any            | DefaultArea                                             |
-| `LINE`          | ISA-95 line name of the line                                                        | string | Any            | DefaultProductionLine                                   |
-| `MQTT_PASSWORD` | Password for the MQTT broker. Leave empty if the server does not manage permissions | string | Any            | INSECURE_INSECURE_INSECURE                              |
-| `MQTT_URL`      | Server URL of the MQTT server                                                       | string | Any            | mqtt://{{< resource type="service" name="mqtt" >}}:1883 |
-| `MQTT_USERNAME` | Name for the MQTT broker. Leave empty if the server does not manage permissions     | string | Any            | PACKMLSIMULATOR                                         |
-| `SITE`          | ISA-95 site name of the line                                                        | string | Any            | testLocation                                            |
+| Variable name   | Description                                                                         | Type   | Allowed values | Default                                                       |
+| --------------- | ----------------------------------------------------------------------------------- | ------ | -------------- | ------------------------------------------------------------- |
+| `AREA`          | ISA-95 area name of the line                                                        | string | Any            | DefaultArea                                                   |
+| `LINE`          | ISA-95 line name of the line                                                        | string | Any            | DefaultProductionLine                                         |
+| `MQTT_PASSWORD` | Password for the MQTT broker. Leave empty if the server does not manage permissions | string | Any            | INSECURE_INSECURE_INSECURE                                    |
+| `MQTT_URL`      | Server URL of the MQTT server                                                       | string | Any            | mqtt://{{< resource type="service" name="mqttbroker" >}}:1883 |
+| `MQTT_USERNAME` | Name for the MQTT broker. Leave empty if the server does not manage permissions     | string | Any            | PACKMLSIMULATOR                                               |
+| `SITE`          | ISA-95 site name of the line                                                        | string | Any            | testLocation                                                  |
 {{< /table >}}

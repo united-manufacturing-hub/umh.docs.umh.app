@@ -297,7 +297,7 @@ The following table lists the configuration options that can be set in the
 
 The `_000_commonConfig.infrastructure` section contains the configuration of the
 microservices responsible for connecting all the other microservices, such as the
-[MQTT broker](/docs/architecture/microservices/core/hivemq) and the
+[MQTT broker](/docs/architecture/microservices/core/mqtt-broker) and the
 Kafka broker.
 
 The following table lists the configuration options that can be set in the
@@ -313,7 +313,7 @@ The following table lists the configuration options that can be set in the
 ##### MQTT
 
 The `_000_commonConfig.infrastructure.mqtt` section contains the configuration
-of the [MQTT broker](/docs/architecture/microservices/core/hivemq).
+of the [MQTT broker](/docs/architecture/microservices/core/mqtt-broker).
 
 The following table lists the configuration options that can be set in the
 `_000_commonConfig.infrastructure.mqtt` section:
@@ -419,7 +419,7 @@ microservices:
 - [factoryinsight](/docs/architecture/microservices/core/factoryinsight)
 - [kafka-to-postgresql](/docs/architecture/microservices/core/kafka-to-postgresql)
 - grafana
-- [mqtt-broker](/docs/architecture/microservices/core/hivemq)
+- [mqtt-broker](/docs/architecture/microservices/core/mqtt-broker)
 
 If you want to specifically configure one of these microservices, you can do so
 in their respective sections in the Danger Zone.

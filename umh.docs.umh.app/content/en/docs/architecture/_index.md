@@ -22,7 +22,7 @@ flowchart
             mqtt-kafka-bridge["mqtt-kafka-bridge"]
 
             click kafka "./microservices/core/kafka"
-            click mqtt "./microservices/core/hivemq"
+            click mqtt "./microservices/core/mqtt-broker"
             click console "./microservices/core/console"
             click kafka-bridge "./microservices/core/kafka-bridge"
             click mqtt-kafka-bridge "./microservices/core/mqtt-kafka-bridge"
@@ -155,7 +155,7 @@ If you're curious about the benefits of this dual approach to MQTT/Kafka, check 
 <!-- For more information on the Unified Namespace feature and how to use it, check out our documentation. -->
 
 ### Microservices
-- [HiveMQ](/docs/architecture/microservices/core/hivemq/) is an MQTT broker used for receiving data from IoT devices on the shop floor. It excels at handling large numbers of unreliable connections.
+- [HiveMQ](/docs/architecture/microservices/core/mqtt-broker/) is an MQTT broker used for receiving data from IoT devices on the shop floor. It excels at handling large numbers of unreliable connections.
 - [Apache Kafka](/docs/architecture/microservices/core/kafka/) is a distributed streaming platform used for communication between microservices. It offers large-scale data processing capabilities.
 - [mqtt-kafka-bridge](/docs/architecture/microservices/core/mqtt-to-kafka-bridge/) is a microservice that bridges messages between MQTT and Kafka, allowing you to send data to MQTT and process them reliably in Kafka.
 - [kafka-bridge](https://umh.docs.umh.app/docs/architecture/microservices/core/kafka-bridge/) a microservice that bridges messages between multiple Kafka instances.

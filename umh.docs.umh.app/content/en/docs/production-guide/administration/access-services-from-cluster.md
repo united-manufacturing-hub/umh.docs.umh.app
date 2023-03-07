@@ -35,13 +35,13 @@ are also available from outside the cluster using the node IP.
 The most common use case is to connect to the MQTT Broker from Node-RED.
 
 To do that, when you create the MQTT node, you can use the service name
-{{< resource type="service" name="mqtt" >}} as the host name and one the ports
+{{< resource type="service" name="mqttbroker" >}} as the host name and one the ports
 listed in the **Ports** column.
 
 {{% notice note %}}
 The MQTT service name has changed since version 0.9.10. If you are using an older
-version, use `{{< resource type="service" name="mqtt-verne" >}}` instead of
-`{{< resource type="service" name="mqtt" >}}`.
+version, use `{{< resource type="service" name="mqttbroker-verne" >}}` instead of
+`{{< resource type="service" name="mqttbroker" >}}`.
 {{< /notice >}}
 
 <!-- Optional section; add links to information related to this topic. -->
