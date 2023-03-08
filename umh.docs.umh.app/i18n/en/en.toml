@@ -40,26 +40,26 @@ other = "Synopsis"
 [heading_whatsnext]
 other = "What's next"
 
-[version_check_mustbe]
-other = "Your United Manufacturing Hub must be version "
-
-[version_check_mustbeorlater]
-other = "Your United Manufacturing Hub must be at or later than version "
-
-[version_check_tocheck]
-other = "To check the United Manufacturing Hub version, open UMHLens / OpenLens and go to **Helm** > **Releases**. The version is listed in the **Version** column."
-
 [resource_cluster_name]
 other = "united-manufacturing-hub"
+
+[resource_configmap_cache-config]
+other = "united-manufacturing-hub-redis-configuration"
+
+[resource_configmap_cache-health]
+other = "united-manufacturing-hub-redis-health"
+
+[resource_configmap_cache-scripts]
+other = "united-manufacturing-hub-redis-scripts"
 
 [resource_configmap_db-patroni]
 other = "united-manufacturing-hub-timescaledb-patroni"
 
-[resource_configmap_db-postinit]
-other = "timescale-post-init"
-
 [resource_configmap_db-pgbackrest]
 other = "united-manufacturing-hub-timescaledb-pgbackrest"
+
+[resource_configmap_db-postinit]
+other = "timescale-post-init"
 
 [resource_configmap_db-scripts]
 other = "united-manufacturing-hub-timescaledb-scripts"
@@ -73,11 +73,11 @@ other = "united-manufacturing-hub-kafka-scripts"
 [resource_configmap_kafkaconsole]
 other = "united-manufacturing-hub-console"
 
-[resource_configmap_mqttbroker-credentials]
-other = "united-manufacturing-hub-hivemqce-extension"
-
 [resource_configmap_mqttbroker-config]
 other = "united-manufacturing-hub-hivemqce-hive"
+
+[resource_configmap_mqttbroker-credentials]
+other = "united-manufacturing-hub-hivemqce-extension"
 
 [resource_configmap_mqttsimulator]
 other = "united-manufacturing-hub-iotsensors-mqtt"
@@ -91,26 +91,20 @@ other = "united-manufacturing-hub-nodered-flows"
 [resource_configmap_opcuasimulator]
 other = "united-manufacturing-hub-opcuasimulator-config"
 
-[resource_configmap_cache-config]
-other = "united-manufacturing-hub-redis-configuration"
-
-[resource_configmap_cache-health]
-other = "united-manufacturing-hub-redis-health"
-
-[resource_configmap_cache-scripts]
-other = "united-manufacturing-hub-redis-scripts"
-
-[resource_deployment_factoryinsight]
-other = "united-manufacturing-hub-factoryinsight-deployment"
-
 [resource_deployment_barcodereader]
 other = "united-manufacturing-hub-barcodereader"
 
 [resource_deployment_cameraconnect]
 other = "united-manufacturing-hub-cameraconnect"
 
+[resource_deployment_factoryinsight]
+other = "united-manufacturing-hub-factoryinsight-deployment"
+
 [resource_deployment_grafana]
 other = "united-manufacturing-hub-grafana"
+
+[resource_deployment_grafanaproxy]
+other = "united-manufacturing-hub-grafanaproxy"
 
 [resource_deployment_kafkabridge]
 other = "united-manufacturing-hub-kafkabridge"
@@ -132,9 +126,6 @@ other = "united-manufacturing-hub-mqttkafkabridge"
 
 [resource_deployment_mqttsimulator]
 other = "united-manufacturing-hub-iotsensorsmqtt"
-
-[resource_deployment_grafanaproxy]
-other = "united-manufacturing-hub-grafanaproxy"
 
 [resource_deployment_opcuasimulator]
 other = "united-manufacturing-hub-opcuasimulator-deployment"
@@ -199,89 +190,20 @@ other = "united-manufacturing-hub-nodered-claim"
 [resource_pvc_sensorconnect]
 other = "united-manufacturing-hub-sensorconnect-claim"
 
-[resource_service_cache]
-other = "united-manufacturing-hub-redis"
-
-[resource_service_cache-headless]
-other = "united-manufacturing-hub-redis-headless"
-
-[resource_service_cache-metrics]
-other = "united-manufacturing-hub-redis-metrics"
-
-[resource_service_factoryinput]
-other = "united-manufacturing-hub-factoryinput-service"
-
-[resource_service_factoryinsight]
-other = "united-manufacturing-hub-factoryinsight-service"
-
-[resource_service_grafana]
-other = "united-manufacturing-hub-grafana"
-
-[resource_service_kafkabroker]
-other = "united-manufacturing-hub-kafka"
-
-[resource_service_kafkabroker-ext]
-other = "united-manufacturing-hub-kafka-0-external"
-
-[resource_service_kafkabroker-headless]
-other = "united-manufacturing-hub-kafka-headless"
-
-[resource_service_kafkaconsole]
-other = "united-manufacturing-hub-console"
-
-[resource_service_grafanaproxy]
-other = "united-manufacturing-hub-grafanaproxy-service"
-
-[resource_service_minio]
-other = "united-manufacturing-hub-minio-service"
-
-[resource_service_mqttbroker]
-other = "united-manufacturing-hub-mqtt"
-
-[resource_service_mqttbroker-hivemq-local]
-other = "united-manufacturing-hub-hivemq-local-service"
-
-[resource_service_mqttbroker-verne]
-other = "united-manufacturing-hub-vernemq"
-
-[resource_service_mqttbroker-verne-local]
-other = "united-manufacturing-hub-vernemq-local-service"
-
-[resource_service_opcuasimulator]
-other = "united-manufacturing-hub-opcuasimulator-service"
-
-[resource_service_nodered]
-other = "united-manufacturing-hub-nodered-service"
-
-[resource_service_tulipconnector]
-other = "united-manufacturing-hub-tulip-connector-service"
-
-[resource_service_db-replica]
-other = "united-manufacturing-hub-replica"
-
-[resource_service_db-config]
-other = "united-manufacturing-hub-config"
-
-[resource_service_db-lb]
-other = "united-manufacturing-hub"
-
-[resource_service-cluster_database]
-other = "united-manufacturing-hub.united-manufacturing-hub.svc.cluster.local:5432"
-
 [resource_secret_barcodereader]
 other = "united-manufacturing-hub-barcodereader-secrets"
 
 [resource_secret_cache]
 other = "redis-secret"
 
-[resource_secret_db-psw]
-other = "timescale-post-init-pw"
-
 [resource_secret_db-certificate]
 other = "united-manufacturing-hub-certificate"
 
 [resource_secret_db-credentials]
 other = "united-manufacturing-hub-credentials"
+
+[resource_secret_db-psw]
+other = "timescale-post-init-pw"
 
 [resource_secret_factoryinput]
 other = "factoryinput-secret"
@@ -334,6 +256,78 @@ other = "united-manufacturing-hub-sensorconnect-kafka-secrets"
 [resource_secret_sensorconnect-mqtt]
 other = "united-manufacturing-hub-sensorconnect-mqtt-secrets"
 
+[resource_service-cluster_database]
+other = "united-manufacturing-hub.united-manufacturing-hub.svc.cluster.local:5432"
+
+[resource_service_cache-headless]
+other = "united-manufacturing-hub-redis-headless"
+
+[resource_service_cache-metrics]
+other = "united-manufacturing-hub-redis-metrics"
+
+[resource_service_cache]
+other = "united-manufacturing-hub-redis"
+
+[resource_service_db-config]
+other = "united-manufacturing-hub-config"
+
+[resource_service_db-lb]
+other = "united-manufacturing-hub"
+
+[resource_service_db-replica]
+other = "united-manufacturing-hub-replica"
+
+[resource_service_factoryinput]
+other = "united-manufacturing-hub-factoryinput-service"
+
+[resource_service_factoryinsight]
+other = "united-manufacturing-hub-factoryinsight-service"
+
+[resource_service_grafana]
+other = "united-manufacturing-hub-grafana"
+
+[resource_service_grafanaproxy]
+other = "united-manufacturing-hub-grafanaproxy-service"
+
+[resource_service_kafkabroker-ext]
+other = "united-manufacturing-hub-kafka-0-external"
+
+[resource_service_kafkabroker-headless]
+other = "united-manufacturing-hub-kafka-headless"
+
+[resource_service_kafkabroker]
+other = "united-manufacturing-hub-kafka"
+
+[resource_service_kafkaconsole]
+other = "united-manufacturing-hub-console"
+
+[resource_service_minio]
+other = "united-manufacturing-hub-minio-service"
+
+[resource_service_mqttbroker-hivemq-local]
+other = "united-manufacturing-hub-hivemq-local-service"
+
+[resource_service_mqttbroker-verne-local]
+other = "united-manufacturing-hub-vernemq-local-service"
+
+[resource_service_mqttbroker-verne]
+other = "united-manufacturing-hub-vernemq"
+
+[resource_service_mqttbroker]
+other = "united-manufacturing-hub-mqtt"
+
+[resource_service_nodered]
+other = "united-manufacturing-hub-nodered-service"
+
+[resource_service_opcuasimulator]
+other = "united-manufacturing-hub-opcuasimulator-service"
+
+[resource_service_tulipconnector]
+other = "united-manufacturing-hub-tulip-connector-service"
+
+[resource_statefulset_cache]
+other = "united-manufacturing-hub-redis-node"
+
 [resource_statefulset_db]
 other = "united-manufacturing-hub-timescaledb"
 
@@ -355,5 +349,11 @@ other = "united-manufacturing-hub-nodered"
 [resource_statefulset_sensorconnect]
 other = "united-manufacturing-hub-sensorconnect"
 
-[resource_statefulset_cache]
-other = "united-manufacturing-hub-redis-node"
+[version_check_mustbe]
+other = "Your United Manufacturing Hub must be version "
+
+[version_check_mustbeorlater]
+other = "Your United Manufacturing Hub must be at or later than version "
+
+[version_check_tocheck]
+other = "To check the United Manufacturing Hub version, open UMHLens / OpenLens and go to **Helm** > **Releases**. The version is listed in the **Version** column."
