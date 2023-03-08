@@ -13,7 +13,7 @@ Here is a step-by-step guide on how to deploy the UMH stack using
 single- and multi-node k3s clusters in docker, e.g. for local development on
 Kubernetes.
 
-## {{< heading "prerequisites" >}}
+## {{% heading "prerequisites" %}}
 
 ### System requirements
 
@@ -130,7 +130,7 @@ Kubernetes.
     Helm values, which holds the configurations of all microservices used in the
     cluster.
 
-## {{< heading "whatsnext" >}}
+## {{% heading "whatsnext" %}}
 
 - You can follow the [Getting Started](https://learn.umh.app/getstarted) guide
   to get familiar with the UMH stack.
