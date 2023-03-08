@@ -281,7 +281,7 @@ The following table lists the configuration options that can be set in the
 ##### Node-RED
 
 The `_000_commonConfig.dataprocessing.nodered` section contains the configuration
-of the nodered microservice.
+of the [nodered](/docs/architecture/microservices/core/node-red/) microservice.
 
 The following table lists the configuration options that can be set in the
 `_000_commonConfig.dataprocessing.nodered` section:

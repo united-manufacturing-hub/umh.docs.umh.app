@@ -82,6 +82,12 @@ other = "united-manufacturing-hub-hivemqce-hive"
 [resource_configmap_mqttsimulator]
 other = "united-manufacturing-hub-iotsensors-mqtt"
 
+[resource_configmap_nodered-config]
+other = "united-manufacturing-hub-nodered-config"
+
+[resource_configmap_nodered-flows]
+other = "united-manufacturing-hub-nodered-flows"
+
 [resource_configmap_opcuasimulator]
 other = "united-manufacturing-hub-opcuasimulator-config"
 
@@ -175,6 +181,9 @@ other = "united-manufacturing-hub-hivemqce-claim-data"
 [resource_pvc_mqttbroker-extensions]
 other = "united-manufacturing-hub-hivemqce-claim-extensions"
 
+[resource_pvc_nodered]
+other = "united-manufacturing-hub-nodered-claim"
+
 [resource_pvc_sensorconnect]
 other = "united-manufacturing-hub-sensorconnect-claim"
 
@@ -216,6 +225,9 @@ other = "united-manufacturing-hub-vernemq-local-service"
 
 [resource_service_opcuasimulator]
 other = "united-manufacturing-hub-opcuasimulator-service"
+
+[resource_service_nodered]
+other = "united-manufacturing-hub-nodered-service"
 
 [resource_service_tulipconnector]
 other = "united-manufacturing-hub-tulip-connector-service"
@@ -288,6 +300,9 @@ other = "united-manufacturing-hub-mqttkafkabridge-kafka-secrets"
 
 [resource_secret_mqttkafkabridge-mqtt]
 other = "united-manufacturing-hub-mqttkafkabridge-mqtt-secrets"
+
+[resource_secret_nodered]
+other = "united-manufacturing-hub-nodered-secrets"
 
 [resource_secret_sensorconnect-kafka]
 other = "united-manufacturing-hub-sensorconnect-kafka-secrets"
