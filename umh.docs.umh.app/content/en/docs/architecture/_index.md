@@ -140,8 +140,10 @@ The United Manufacturing Hub includes microservices that extract data from the s
 Node-RED is not just a tool for connectivity, but also for stream processing and data contextualization. It is often used to extract data from the message broker, reformat the event, and push it back into a different topic, such as the [UMH datamodel](/docs/architecture/datamodel).
 
 In addition to the built-in microservices, third-party contextualization solutions can be deployed similarly to [data connectivity microservices](#data-connectivity-microservices). For more information on these solutions, check out our extensive tutorials on our [learning hub](https://learn.umh.app/).
+In addition to the built-in microservices, third-party contextualization solutions can be deployed similarly to [data connectivity microservices](#data-connectivity-microservices). For more information on these solutions, check out our extensive tutorials on our [learning hub](https://learn.umh.app/).
 
 ### Microservices
+- [Node-RED](/docs/architecture/microservices/core/nodered/) is a programming tool that can wire together hardware devices, APIs, and online services.
 - [Node-RED](/docs/architecture/microservices/core/nodered/) is a programming tool that can wire together hardware devices, APIs, and online services.
 
 ## Unified Namespace
@@ -157,9 +159,9 @@ If you're curious about the benefits of this dual approach to MQTT/Kafka, check 
 ### Microservices
 - [HiveMQ](/docs/architecture/microservices/core/mqtt-broker/) is an MQTT broker used for receiving data from IoT devices on the shop floor. It excels at handling large numbers of unreliable connections.
 - [Apache Kafka](/docs/architecture/microservices/core/kafka/) is a distributed streaming platform used for communication between microservices. It offers large-scale data processing capabilities.
-- [mqtt-kafka-bridge](/docs/architecture/microservices/core/mqtt-to-kafka-bridge/) is a microservice that bridges messages between MQTT and Kafka, allowing you to send data to MQTT and process them reliably in Kafka.
-- [kafka-bridge](https://umh.docs.umh.app/docs/architecture/microservices/core/kafka-bridge/) a microservice that bridges messages between multiple Kafka instances.
-- [console](https://umh.docs.umh.app/docs/architecture/microservices/core/console/) is a web-based user interface for Kafka, which provides a graphical view of topics and messages.
+- [mqtt-kafka-bridge](/docs/architecture/microservices/core/mqtt-kafka-bridge/) is a microservice that bridges messages between MQTT and Kafka, allowing you to send data to MQTT and process them reliably in Kafka.
+- [kafka-bridge](/docs/architecture/microservices/core/kafka-bridge/) a microservice that bridges messages between multiple Kafka instances.
+- [console](/docs/architecture/microservices/core/kafka-console/) is a web-based user interface for Kafka, which provides a graphical view of topics and messages.
 
 ## Historian / data storage and visualization
 
@@ -168,10 +170,10 @@ The United Manufacturing Hub stores events according to our [datamodel](/docs/ar
 ### Microservices
 - [kafka-to-postgresql](/docs/architecture/microservices/core/kafka-to-postgresql/) stores data in selected topics from the Kafka broker in a PostgreSQL compatible database such as TimescaleDB.
 - [TimescaleDB](/docs/architecture/microservices/core/database/), which is an open-source time-series SQL database 
-- [factoryinsight](https://umh.docs.umh.app/docs/architecture/microservices/core/factoryinsight/) provides REST endpoints to fetch data and calculate KPIs
-- [Grafana](https://umh.docs.umh.app/docs/architecture/microservices/core/grafana/) is a visualization and analytics software
-- [umh-datasource](https://umh.docs.umh.app/docs/architecture/microservices/core/umh-datasource/) is a plugin providing access factoryinsight
-- [redis](https://umh.docs.umh.app/docs/architecture/microservices/core/redis/) is an in-memory data structure store, used for cache.
+- [factoryinsight](/docs/architecture/microservices/core/factoryinsight/) provides REST endpoints to fetch data and calculate KPIs
+- [Grafana](/docs/architecture/microservices/core/grafana/) is a visualization and analytics software
+- [umh-datasource](/docs/architecture/microservices/grafana-plugins/umh-datasource/) is a plugin providing access factoryinsight
+- [redis](/docs/architecture/microservices/core/cache/) is an in-memory data structure store, used for cache.
 
 ## Custom Microservices
 
