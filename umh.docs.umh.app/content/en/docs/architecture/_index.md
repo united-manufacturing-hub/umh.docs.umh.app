@@ -151,7 +151,9 @@ The data between both brokers is bridged automatically using the mqtt-to-kafka m
 
 If you're curious about the benefits of this dual approach to MQTT/Kafka, check out our blog article about [Tools & Techniques for Scalable Dataprocessing in Industrial IoT](https://learn.umh.app/blog/tools-techniques-for-scalable-data-processing-in-industrial-iot/).
 
-<!-- For more information on the Unified Namespace feature and how to use it, check out our documentation. -->
+{{% notice tip %}}
+For more information on the Unified Namespace feature and how to use it, check out the detailed description of the [Unified Namespace feature](/docs/features/unified-namespace/).
+{{% /notice %}}
 
 ### Microservices
 - [HiveMQ](/docs/architecture/microservices/core/hivemq/) is an MQTT broker used for receiving data from IoT devices on the shop floor. It excels at handling large numbers of unreliable connections.
@@ -164,6 +166,9 @@ If you're curious about the benefits of this dual approach to MQTT/Kafka, check 
 
 The United Manufacturing Hub stores events according to our [datamodel](/docs/architecture/datamodel/). These events are automatically stored in TimescaleDB, an open-source time-series SQL database. From there, you can access the stored data using Grafana, a visualization and analytics software. With Grafana, you can perform on-the-fly data analysis by executing simple min, max, and avg on tags, or extended KPI calculations such as OEE. These calculations can be selected in the umh-datasource microservice.
 
+{{% notice tip %}}
+For more information on the Historian or Analytics feature and how to use it, check out the detailed description of the [Historian feature](/docs/features/historian/) or the [Analytics features](/docs/features/analytics/).
+{{% /notice %}}
 ### Microservices
 - [kafka-to-postgresql](/docs/architecture/microservices/core/kafka-to-postgresql/) stores data in selected topics from the Kafka broker in a PostgreSQL compatible database such as TimescaleDB.
 - [TimescaleDB](/docs/architecture/microservices/core/timescaledb/), which is an open-source time-series SQL database 
