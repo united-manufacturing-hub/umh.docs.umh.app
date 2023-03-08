@@ -9,9 +9,9 @@ weight: 0
 
 <!-- overview -->
 
-## {{% heading "howitworks" %}}
-
 <!-- body -->
+
+## {{% heading "howitworks" %}}
 
 ## {{% heading "kuberesources" %}}
 
