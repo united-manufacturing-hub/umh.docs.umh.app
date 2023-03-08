@@ -1,0 +1,26 @@
+name: ❓ Question or Support Request
+description: Ask a question or request support
+title: "[Question]: "
+labels: ["type: question"]
+body:
+    - type: markdown
+      attributes:
+          value: |
+              Thanks for taking the time to fill out this question or support request!
+              Before you create the issue:
+              * Search the existing issues first, as yours may be a duplicate.
+              * Search our [documentation](https://learn.umh.app) for any relevant troubleshooting steps.
+              * Check out our [Discord](https://discord.com/invite/F9mqkZnm9d), our community is always open to help eachother.
+              * Have a look at any open discussion
+    - type: textarea
+      id: question
+      attributes:
+          label: What is your question?
+          description: A clear and concise description of what your question is.
+      validations:
+          required: true
+    - type: textarea
+      id: additional-context
+      attributes:
+          label: Additional Context
+          description: Add any other context about the question here.

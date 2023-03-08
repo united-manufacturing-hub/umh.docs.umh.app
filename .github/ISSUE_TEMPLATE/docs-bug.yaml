@@ -1,0 +1,34 @@
+name: 📚 Documentation issue report
+description: File a documentation issue report
+title: "[Docs]: "
+labels: ["type: docs"]
+body:
+    - type: markdown
+      attributes:
+          value: |
+              Thanks for taking the time to fill out this documentation issue report!
+              Before you create the issue:
+              * Search the existing issues first, as yours may be a duplicate.
+              * Search our [documentation](https://learn.umh.app) for any relevant troubleshooting steps.
+    - type: textarea
+      id: describe-issue
+      attributes:
+          label: Describe the issue
+          description: A clear and concise description of what the issue is.
+      validations:
+          required: true
+    - type: textarea
+      id: screenshots
+      attributes:
+          label: Screenshots
+          description: If applicable, add screenshots to help explain your problem.
+    - type: textarea
+      id: solution
+      attributes:
+          label: Solution
+          description: If you have a solution, please describe it here.
+    - type: textarea
+      id: additional-context
+      attributes:
+          label: Additional Context
+          description: Add any other context about the problem here.

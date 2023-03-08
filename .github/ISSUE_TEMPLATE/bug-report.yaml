@@ -1,0 +1,75 @@
+name: 🐞 Bug Report
+description: File a bug report
+title: "[Bug]: "
+labels: ["type: bug"]
+body:
+    - type: markdown
+      attributes:
+          value: |
+              Thanks for taking the time to fill out this bug report!
+              Before you create the issue:
+              * Search the existing issues first, as yours may be a duplicate.
+              * Search our [documentation](https://learn.umh.app) for any relevant troubleshooting steps.
+    - type: textarea
+      id: what-happened
+      attributes:
+          label: What happened?
+          description: A clear and concise description of what the bug is.
+      validations:
+          required: true
+    - type: textarea
+      id: what-expected
+      attributes:
+          label: What did you expect to happen?
+          description: A clear and concise description of what you expected to happen.
+      validations:
+          required: true
+    - type: textarea
+      id: reproduction
+      attributes:
+          label: How can we reproduce this issue?
+          description: |
+              1. Go to '...'
+              2. Click on '....'
+              3. Scroll down to '....'
+              4. See error
+          placeholder: |
+              Steps to reproduce the behavior:
+              1. Go to '...'
+              2. Click on '....'
+              3. Scroll down to '....'
+              4. See error
+      validations:
+          required: true
+    - type: textarea
+      id: logs
+      attributes:
+          label: Logs
+          description: Please provide any relevant log output.
+          render: bash
+    - type: textarea
+      id: screenshots
+      attributes:
+          label: Screenshots
+          description: If applicable, add screenshots to help explain your problem.
+    - type: input
+      id: app-version
+      attributes:
+          label: App Version
+          description: What version of the app are you running?
+          placeholder: 1.0.0
+      validations:
+          required: true
+    - type: input
+      id: environment
+      attributes:
+          label: Environment
+          description: What environment are you running in?
+          placeholder: k3os virtual machine, minikube, k3d, etc.
+      validations:
+          required: true
+    - type: textarea
+      id: additional-context
+      attributes:
+          label: Additional Context
+          description: Add any other context about the problem here.
