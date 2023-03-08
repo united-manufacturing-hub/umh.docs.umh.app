@@ -139,6 +139,12 @@ other = "united-manufacturing-hub-tulip-connector-deployment"
 [resource_docker_org]
 other = "unitedmanufacturinghub"
 
+[resource_helm_repo]
+other = "united-manufacturing-hub"
+
+[resource_helm_release]
+other = "united-manufacturing-hub"
+
 [resource_ingress_tulipconnector]
 other = "united-manufacturing-hub-tulip-connector-ingress"
 
