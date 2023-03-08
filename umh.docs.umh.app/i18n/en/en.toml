@@ -91,6 +91,15 @@ other = "united-manufacturing-hub-nodered-flows"
 [resource_configmap_opcuasimulator]
 other = "united-manufacturing-hub-opcuasimulator-config"
 
+[resource_configmap_cache-config]
+other = "united-manufacturing-hub-redis-configuration"
+
+[resource_configmap_cache-health]
+other = "united-manufacturing-hub-redis-health"
+
+[resource_configmap_cache-scripts]
+other = "united-manufacturing-hub-redis-scripts"
+
 [resource_deployment_factoryinsight]
 other = "united-manufacturing-hub-factoryinsight-deployment"
 
@@ -160,6 +169,9 @@ other = "united-manufacturing-hub-kafka-0"
 [resource_pod_nodered]
 other = "united-manufacturing-hub-nodered-0"
 
+[resource_pvc_cache]
+other = "redis-data-united-manufacturing-hub-redis-node-0"
+
 [resource_pvc_db-data]
 other = "storage-volume-united-manufacturing-hub-timescaledb-0"
 
@@ -186,6 +198,15 @@ other = "united-manufacturing-hub-nodered-claim"
 
 [resource_pvc_sensorconnect]
 other = "united-manufacturing-hub-sensorconnect-claim"
+
+[resource_service_cache]
+other = "united-manufacturing-hub-redis"
+
+[resource_service_cache-headless]
+other = "united-manufacturing-hub-redis-headless"
+
+[resource_service_cache-metrics]
+other = "united-manufacturing-hub-redis-metrics"
 
 [resource_service_factoryinput]
 other = "united-manufacturing-hub-factoryinput-service"
@@ -247,7 +268,7 @@ other = "united-manufacturing-hub.united-manufacturing-hub.svc.cluster.local:543
 [resource_secret_barcodereader]
 other = "united-manufacturing-hub-barcodereader-secrets"
 
-[resource_secret_cache-psw]
+[resource_secret_cache]
 other = "redis-secret"
 
 [resource_secret_db-psw]
@@ -330,3 +351,6 @@ other = "united-manufacturing-hub-nodered"
 
 [resource_statefulset_sensorconnect]
 other = "united-manufacturing-hub-sensorconnect"
+
+[resource_statefulset_cache]
+other = "united-manufacturing-hub-redis-node"

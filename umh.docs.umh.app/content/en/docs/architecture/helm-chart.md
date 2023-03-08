@@ -415,10 +415,11 @@ The `_000_commonConfig.datastorage` section contains the configuration of the
 microservices used to store data. Specifically, it controls the following
 microservices:
 
+- [cache](/docs/architecture/microservices/core/cache)
 - [database](/docs/architecture/microservices/core/database)
 - [factoryinsight](/docs/architecture/microservices/core/factoryinsight)
-- [kafka-to-postgresql](/docs/architecture/microservices/core/kafka-to-postgresql)
 - [grafana](/docs/architecture/microservices/core/grafana)
+- [kafka-to-postgresql](/docs/architecture/microservices/core/kafka-to-postgresql)
 - [mqtt-broker](/docs/architecture/microservices/core/mqtt-broker)
 
 If you want to specifically configure one of these microservices, you can do so
