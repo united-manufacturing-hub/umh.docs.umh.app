@@ -67,7 +67,7 @@ flowchart
             barcodereader
             sensorconnect
 
-            click nodered "./microservices/core/nodered"
+            click nodered "./microservices/core/node-red"
             click barcodereader "./microservices/community/barcodereader"
             click sensorconnect "./microservices/core/sensorconnect"
 
@@ -128,12 +128,12 @@ The United Manufacturing Hub includes several simulators to generate data during
 - [opcua-simulator](/docs/architecture/microservices/community/opcua-simulator/) simulates an OPC-UA server, which can then be used to test connectivity of OPC-UA clients and to generate sample data for OPC-UA clients
 
 ## Data connectivity microservices
-The United Manufacturing Hub includes microservices that extract data from the shop floor and push it into the Unified Namespace. Additionally, you can deploy your own microservices or third-party solutions directly into the Kubernetes cluster using the [custom microservice feature](). To learn more about third-party solutions, check out our extensive tutorials on our [learning hub](https://learn.umh.app)
+The United Manufacturing Hub includes microservices that extract data from the shop floor and push it into the Unified Namespace. Additionally, you can deploy your own microservices or third-party solutions directly into the Kubernetes cluster using the [custom microservice feature](/docs/architecture/helm-chart/#custom-microservices-configuration). To learn more about third-party solutions, check out our extensive tutorials on our [learning hub](https://learn.umh.app)
 
 ### Microservices
 - [sensorconnect](/docs/architecture/microservices/core/sensorconnect/) automatically reads out IO-Link Master and their connected sensors, and pushes the data to the message broker.
 - [barcodereader](/docs/architecture/microservices/core/barcodereader/) connects to USB barcode reader devices and pushes the data to the message broker.
-- [Node-RED](/docs/architecture/microservices/core/nodered/) is a versatile tool with many community plugins and allows access to machine PLCs or connections with other systems on the shopfloor. It plays an important role and is explained in the next section.
+- [Node-RED](/docs/architecture/microservices/core/node-red/) is a versatile tool with many community plugins and allows access to machine PLCs or connections with other systems on the shopfloor. It plays an important role and is explained in the next section.
 
 ## Node-RED: connectivity & contextualization
 
@@ -143,8 +143,7 @@ In addition to the built-in microservices, third-party contextualization solutio
 In addition to the built-in microservices, third-party contextualization solutions can be deployed similarly to [data connectivity microservices](#data-connectivity-microservices). For more information on these solutions, check out our extensive tutorials on our [learning hub](https://learn.umh.app/).
 
 ### Microservices
-- [Node-RED](/docs/architecture/microservices/core/nodered/) is a programming tool that can wire together hardware devices, APIs, and online services.
-- [Node-RED](/docs/architecture/microservices/core/nodered/) is a programming tool that can wire together hardware devices, APIs, and online services.
+- [Node-RED](/docs/architecture/microservices/core/node-red/) is a programming tool that can wire together hardware devices, APIs, and online services.
 
 ## Unified Namespace
 
@@ -158,7 +157,7 @@ If you're curious about the benefits of this dual approach to MQTT/Kafka, check 
 
 ### Microservices
 - [HiveMQ](/docs/architecture/microservices/core/mqtt-broker/) is an MQTT broker used for receiving data from IoT devices on the shop floor. It excels at handling large numbers of unreliable connections.
-- [Apache Kafka](/docs/architecture/microservices/core/kafka/) is a distributed streaming platform used for communication between microservices. It offers large-scale data processing capabilities.
+- [Apache Kafka](/docs/architecture/microservices/core/kafka-broker/) is a distributed streaming platform used for communication between microservices. It offers large-scale data processing capabilities.
 - [mqtt-kafka-bridge](/docs/architecture/microservices/core/mqtt-kafka-bridge/) is a microservice that bridges messages between MQTT and Kafka, allowing you to send data to MQTT and process them reliably in Kafka.
 - [kafka-bridge](/docs/architecture/microservices/core/kafka-bridge/) a microservice that bridges messages between multiple Kafka instances.
 - [console](/docs/architecture/microservices/core/kafka-console/) is a web-based user interface for Kafka, which provides a graphical view of topics and messages.
