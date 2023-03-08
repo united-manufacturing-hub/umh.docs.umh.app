@@ -600,7 +600,7 @@ be configured using the following parameters:
 | `probePort`       | The port to use for the liveness and startup probes                         | int    | Any                               | 9091                                       |
 | `startupProbe`    | The interval in seconds for the startup probe                               | int    | Any                               | 200                                        |
 | `livenessProbe`   | The interval in seconds for the liveness probe                              | int    | Any                               | 500                                        |
-| `statefulEnabled  | Create a PersistentVolumeClaim for the microservice and mount it in `/data` | bool   | `true`, `false`                   | `false`                                    |
+| `statefulEnabled` | Create a PersistentVolumeClaim for the microservice and mount it in `/data` | bool   | `true`, `false`                   | `false`                                    |
 {{< /table >}}
 
 ## Danger zone
