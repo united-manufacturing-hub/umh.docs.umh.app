@@ -232,6 +232,9 @@ other = "united-manufacturing-hub-console"
 [resource_service_grafanaproxy]
 other = "united-manufacturing-hub-grafanaproxy-service"
 
+[resource_service_minio]
+other = "united-manufacturing-hub-minio-service"
+
 [resource_service_mqttbroker]
 other = "united-manufacturing-hub-mqtt"
 

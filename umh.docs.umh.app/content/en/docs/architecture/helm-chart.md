@@ -37,7 +37,7 @@ custom microservices:
   endpoints for MQTT messages.
 - [factoryinsight](/docs/architecture/microservices/core/factoryinsight/): provides REST
   endpoints to fetch data and calculate KPIs.
-- grafanaproxy: provides a
+- [grafanaproxy](/docs/architecture/microservices/community/grafana-proxy): provides a
   proxy to the backend services.
 - [MQTT Simulator](/docs/architecture/microservices/community/mqtt-simulator): simulates
   sensors and sends the data to the MQTT broker for further processing.
@@ -463,7 +463,7 @@ microservices used to store data in blob storage. Specifically, it controls the
 following microservices:
 
 - [kafka-to-blob](/docs/architecture/microservices/community/kafka-to-blob)
-- minio
+- [minio](/docs/architecture/microservices/community/minio)
 
 If you want to specifically configure one of these microservices, you can do so
 in their respective sections in the danger zone.
