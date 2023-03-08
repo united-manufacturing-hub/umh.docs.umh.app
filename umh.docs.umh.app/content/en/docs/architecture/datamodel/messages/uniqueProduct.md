@@ -5,11 +5,14 @@ description = "UniqueProduct messages are sent whenever a unique product was pro
 
 ## Topic
 
-MQTT: ``ia/<customerID>/<location>/<AssetID>/uniqueProduct``
-
-{{% notice note %}}
-For Kafka just switch the `/` character with a `.`
-{{% /notice %}}
+{{< tabs name="topic_structure" >}}
+{{< tab name="MQTT" codelang="go" >}}
+ia/<customerID>/<location>/<AssetID>/uniqueProduct
+{{< /tab >}}
+{{< tab name="Kafka" codelang="go" >}}
+ia.<customerID>.<location>.<AssetID>.uniqueProduct
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Usage
 

@@ -6,11 +6,14 @@ description = "ScrapUniqueProduct messages are sent whenever a unique product sh
 
 ## Topic
 
-MQTT: ``ia/<customerID>/<location>/<AssetID>/scrapUniqueProduct``
-
-{{% notice note %}}
-For Kafka just switch the `/` character with a `.`
-{{% /notice %}}
+{{< tabs name="topic_structure" >}}
+{{< tab name="MQTT" codelang="go" >}}
+ia/<customerID>/<location>/<AssetID>/scrapUniqueProduct
+{{< /tab >}}
+{{< tab name="Kafka" codelang="go" >}}
+ia.<customerID>.<location>.<AssetID>.scrapUniqueProduct
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Usage
 

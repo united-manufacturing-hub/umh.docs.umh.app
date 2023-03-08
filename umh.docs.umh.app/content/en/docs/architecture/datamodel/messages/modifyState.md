@@ -5,11 +5,14 @@ description = "ModifyState messages are generated when a state of an asset durin
 
 ## Topic
 
-MQTT: ``ia/<customerID>/<location>/<AssetID>/modifyState``
-
-{{% notice note %}}
-For Kafka just switch the `/` character with a `.`
-{{% /notice %}}
+{{< tabs name="topic_structure" >}}
+{{< tab name="MQTT" codelang="go" >}}
+ia/<customerID>/<location>/<AssetID>/modifyState
+{{< /tab >}}
+{{< tab name="Kafka" codelang="go" >}}
+ia.<customerID>.<location>.<AssetID>.modifyState
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Usage
 

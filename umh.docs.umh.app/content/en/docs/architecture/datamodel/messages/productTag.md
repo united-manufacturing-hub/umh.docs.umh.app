@@ -5,11 +5,14 @@ description = "ProductTag messages are sent to contextualize processValue messag
 
 ## Topic
 
-MQTT: ``ia/<customerID>/<location>/<AssetID>/productTag``
-
-{{% notice note %}}
-For Kafka just switch the `/` character with a `.`
-{{% /notice %}}
+{{< tabs name="topic_structure" >}}
+{{< tab name="MQTT" codelang="go" >}}
+ia/<customerID>/<location>/<AssetID>/productTag
+{{< /tab >}}
+{{< tab name="Kafka" codelang="go" >}}
+ia.<customerID>.<location>.<AssetID>.productTag
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Usage
 

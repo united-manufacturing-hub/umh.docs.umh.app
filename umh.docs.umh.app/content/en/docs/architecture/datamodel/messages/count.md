@@ -5,11 +5,14 @@ description = "Count Messages are sent everytime an asset has counted a new item
 
 ## Topic
 
-MQTT: ``ia/<customerID>/<location>/<AssetID>/count``
-
-{{% notice note %}}
-For Kafka just switch the `/` character with a `.`
-{{% /notice %}}
+{{< tabs name="topic_structure" >}}
+{{< tab name="MQTT" codelang="go" >}}
+ia/<customerID>/<location>/<AssetID>/count
+{{< /tab >}}
+{{< tab name="Kafka" codelang="go" >}}
+ia.<customerID>.<location>.<AssetID>.count
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Usage
 

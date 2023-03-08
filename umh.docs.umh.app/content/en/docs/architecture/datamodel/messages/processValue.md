@@ -5,12 +5,18 @@ description = "ProcessValue messages are sent whenever a custom process value wi
 
 ## Topic
 
-MQTT: ``ia/<customerID>/<location>/<AssetID>/processValue``
-
-or alternatively: ``ia/<customerID>/<location>/<AssetID>/processValue/<tagName>``
+{{< tabs name="topic_structure" >}}
+{{< tab name="MQTT" codelang="go" >}}
+ia/<customerID>/<location>/<AssetID>/processValue 
+or: ia/<customerID>/<location>/<AssetID>/processValue/<tagName>
+{{< /tab >}}
+{{< tab name="Kafka" codelang="go" >}}
+ia.<customerID>.<location>.<AssetID>.processValue
+or: ia.<customerID>.<location>.<AssetID>.processValue.<tagName>
+{{< /tab >}}
+{{< /tabs >}}
 
 {{% notice note %}}
-For Kafka just switch the `/` character with a `.`.
 
 If you have a lot of processValues, we'd recommend not using the `/processValue` as topic, but to append the tag name as well, e.g., `/processValue/energyConsumption`. This will structure it better for usage in MQTT Explorer or for data processing only certain processValues. 
 

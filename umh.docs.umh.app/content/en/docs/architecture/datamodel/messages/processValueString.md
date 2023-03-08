@@ -10,11 +10,14 @@ This message type is not functional as of 0.9.5!
 {{% /notice %}}
 ## Topic
 
-MQTT: ``ia/<customerID>/<location>/<AssetID>/processValueString``
-
-{{% notice note %}}
-For Kafka just switch the `/` character with a `.`
-{{% /notice %}}
+{{< tabs name="topic_structure" >}}
+{{< tab name="MQTT" codelang="go" >}}
+ia/<customerID>/<location>/<AssetID>/processValueString
+{{< /tab >}}
+{{< tab name="Kafka" codelang="go" >}}
+ia.<customerID>.<location>.<AssetID>.processValueString
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Usage
 

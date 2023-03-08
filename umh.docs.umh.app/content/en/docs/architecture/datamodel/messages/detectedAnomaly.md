@@ -9,11 +9,14 @@ This is part of our recommended workflow to create machine states. The data sent
 
 ## Topic
 
-MQTT: ``ia/<customerID>/<location>/<AssetID>/detectAnomaly``
-
-{{% notice note %}}
-For Kafka just switch the `/` character with a `.`
-{{% /notice %}}
+{{< tabs name="topic_structure" >}}
+{{< tab name="MQTT" codelang="go" >}}
+ia/<customerID>/<location>/<AssetID>/detectedAnomaly
+{{< /tab >}}
+{{< tab name="Kafka" codelang="go" >}}
+ia.<customerID>.<location>.<AssetID>.detectedAnomaly
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Usage
 
