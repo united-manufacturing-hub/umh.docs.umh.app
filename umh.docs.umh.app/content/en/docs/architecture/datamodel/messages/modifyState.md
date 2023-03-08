@@ -6,10 +6,10 @@ description = "ModifyState messages are generated when a state of an asset durin
 ## Topic
 
 {{< tabs name="topic_structure" >}}
-{{< tab name="MQTT" codelang="go" >}}
+{{< tab name="MQTT" codelang="none" >}}
 ia/<customerID>/<location>/<AssetID>/modifyState
 {{< /tab >}}
-{{< tab name="Kafka" codelang="go" >}}
+{{< tab name="Kafka" codelang="none" >}}
 ia.<customerID>.<location>.<AssetID>.modifyState
 {{< /tab >}}
 {{< /tabs >}}

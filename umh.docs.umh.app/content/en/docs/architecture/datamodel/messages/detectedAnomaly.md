@@ -10,10 +10,10 @@ This is part of our recommended workflow to create machine states. The data sent
 ## Topic
 
 {{< tabs name="topic_structure" >}}
-{{< tab name="MQTT" codelang="go" >}}
+{{< tab name="MQTT" codelang="none" >}}
 ia/<customerID>/<location>/<AssetID>/detectedAnomaly
 {{< /tab >}}
-{{< tab name="Kafka" codelang="go" >}}
+{{< tab name="Kafka" codelang="none" >}}
 ia.<customerID>.<location>.<AssetID>.detectedAnomaly
 {{< /tab >}}
 {{< /tabs >}}

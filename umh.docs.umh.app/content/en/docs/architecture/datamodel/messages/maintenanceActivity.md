@@ -8,10 +8,10 @@ This prefix is highly undocumented and unused, keep this as draft and decide lat
 ## Topic
 
 {{< tabs name="topic_structure" >}}
-{{< tab name="MQTT" codelang="go" >}}
+{{< tab name="MQTT" codelang="none" >}}
 ia/<customerID>/<location>/<AssetID>/maintenanceActivity
 {{< /tab >}}
-{{< tab name="Kafka" codelang="go" >}}
+{{< tab name="Kafka" codelang="none" >}}
 ia.<customerID>.<location>.<AssetID>.maintenanceActivity
 {{< /tab >}}
 {{< /tabs >}}

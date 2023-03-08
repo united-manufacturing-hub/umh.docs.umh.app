@@ -6,10 +6,10 @@ description = "Recommendation messages are sent whenever rapid actions would qui
 ## Topic
 
 {{< tabs name="topic_structure" >}}
-{{< tab name="MQTT" codelang="go" >}}
+{{< tab name="MQTT" codelang="none" >}}
 ia/<customerID>/<location>/<AssetID>/recommendation
 {{< /tab >}}
-{{< tab name="Kafka" codelang="go" >}}
+{{< tab name="Kafka" codelang="none" >}}
 ia.<customerID>.<location>.<AssetID>.recommendation
 {{< /tab >}}
 {{< /tabs >}}

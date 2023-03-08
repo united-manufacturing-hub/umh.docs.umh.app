@@ -6,10 +6,10 @@ description = "StartOrder messages are sent whenever a new order is started."
 ## Topic
 
 {{< tabs name="topic_structure" >}}
-{{< tab name="MQTT" codelang="go" >}}
+{{< tab name="MQTT" codelang="none" >}}
 ia/<customerID>/<location>/<AssetID>/startOrder
 {{< /tab >}}
-{{< tab name="Kafka" codelang="go" >}}
+{{< tab name="Kafka" codelang="none" >}}
 ia.<customerID>.<location>.<AssetID>.startOrder
 {{< /tab >}}
 {{< /tabs >}}

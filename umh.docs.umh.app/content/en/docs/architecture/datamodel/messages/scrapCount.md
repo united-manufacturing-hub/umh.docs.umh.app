@@ -6,10 +6,10 @@ description = "ScrapCount messages are sent whenever a product is to be marked a
 ## Topic
 
 {{< tabs name="topic_structure" >}}
-{{< tab name="MQTT" codelang="go" >}}
+{{< tab name="MQTT" codelang="none" >}}
 ia/<customerID>/<location>/<AssetID>/scrapCount
 {{< /tab >}}
-{{< tab name="Kafka" codelang="go" >}}
+{{< tab name="Kafka" codelang="none" >}}
 ia.<customerID>.<location>.<AssetID>.scrapCount
 {{< /tab >}}
 {{< /tabs >}}
