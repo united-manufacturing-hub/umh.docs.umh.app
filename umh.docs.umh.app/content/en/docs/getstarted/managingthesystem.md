@@ -5,7 +5,7 @@ description = "Basics of UMHLens and importing Node-RED and Grafana flows"
 weight = 2000
 +++
 
-In this chapter, we'll guide you through connecting to our Kubernetes cluster using UMHLens. Then, we'll walk you through importing a [Node-RED](https://learn.umh.app/guides/troubleshootingcommunity/node-red/nodered-import-export/) and Grafana flow to help you visualize how data flows through the stack. Check out the image below for a sneak peek
+In this chapter, we'll guide you through connecting to our Kubernetes cluster using UMHLens. Then, we'll walk you through importing a [Node-RED](/docs/production-guide/backup_recovery/import-export-node-red) and Grafana flow to help you visualize how data flows through the stack. Check out the image below for a sneak peek
 
 
 ![Untitled](/images/getstarted/managingTheSystem/getStartedUMHSimplifiedpng.png)
@@ -27,7 +27,7 @@ In this chapter, we'll guide you through connecting to our Kubernetes cluster us
 
 ## 2. Import flows to Node-RED
 
-1. Access the Node-RED Web UI. To do this, click on the service and forward the port as shown above. When the UI opens in the browser, add `nodered` to the URL as shown in the figure below to avoid the [cannot get error]().
+1. Access the Node-RED Web UI. To do this, click on the service and forward the port as shown above. When the UI opens in the browser, add `nodered` to the URL as shown in the figure below to avoid the [cannot get error](https://learn.umh.app/course/how-to-fix-cannot-get-error-in-node-red/).
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingCannotGet.png?width=75%)
 2. Once you are in the web interface, click on the three lines in the upper right corner and select **Import**.

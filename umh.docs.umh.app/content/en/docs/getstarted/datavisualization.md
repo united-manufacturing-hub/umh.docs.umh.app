@@ -18,7 +18,7 @@ The next step is to visualize the data. In this chapter, we will be creating a G
 3. Click on **Add a new panel**.
 
    ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisNewPanel.png?width=75%)
-4. Next we will configure the [datasource-v2](https://learn.umh.app/guides/advanced/data-visualization/grafana-datasource-v2-tutorial/), to retrieve the data we earlier transformed in Node-red. Click on **umh-v2-datasource**.
+4. Next we will configure the **datasource-v2**, to retrieve the data we earlier transformed in Node-red. Click on **umh-v2-datasource**.
 
    ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisDatasourceV2.png?width=75%)
 5. Go to **Work cell to query** and select under **Select new work cell**: factoryinsight->Aachen->DefaultArea->DefaultProductionLine->testing
