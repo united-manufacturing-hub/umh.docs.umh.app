@@ -38,5 +38,5 @@ hugo server -D
 If you want to contribute, take a look at our [contribution guidelines](https://umh.docs.umh.app/docs/development/contribute/getting-started/).
 
 <!-- definitions -->
-[badge-website]: https://img.shields.io/website?up_message=online&url=https%3A%2F%2Fhttps://umh.docs.umh.app/docs/
+[badge-website]: https://img.shields.io/website?up_message=online&url=https%3A%2F%2Fumh.docs.umh.app%2Fdocs%2F
 [badge-commit-activity]: https://img.shields.io/github/commit-activity/m/united-manufacturing-hub/umh.docs.umh.app
