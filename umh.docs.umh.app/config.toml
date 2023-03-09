@@ -94,6 +94,13 @@ docsbranch = "main"
 deprecated = false
 currentUrl = "https://umh.docs.umh.app/docs/"
 
+[[params.versions]]
+    fullversion = "v0.9.11"
+    version = "0.9.11"
+    githubbranch = "0.9.11"
+    docsbranch = "main"
+    url = "https://umh.docs.umh.app/"
+
 # Flag used in the "version-banner" partial to decide whether to display a
 # banner on every page indicating that this is an archived version of the docs.
 # Set this flag to "true" if you want to display the banner.
@@ -111,10 +118,10 @@ url_latest_version = "https://umh.docs.umh.app"
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
 github_repo = "https://github.com/united-manufacturing-hub/umh.docs.umh.app"
 # An optional link to a related project repo. For example, the sibling repository where your product code lives.
-github_project_repo = "https://github.com/united-manufacturing-hub/united-manufacturing-hub"
+github_project_repo = "https://github.com/united-manufacturing-hub/umh.docs.umh.app"
 
 # Specify a value here if your content directory is not in your repo's root directory
-github_subdir = "umh.docs.umh.app"
+github_subdir = "docs"
 
 # Uncomment this if you have a newer GitHub repo with "main" as the default branch,
 # or specify a new value if you want to reference another branch in your GitHub links
@@ -131,13 +138,6 @@ offlineSearch = false
 
 # Enable syntax highlighting and copy buttons on code blocks with Prism
 prism_syntax_highlighting = false
-
-[[params.versions]]
-    fullversion = "v0.9.11"
-    version = "0.9.11"
-    githubbranch = "0.9.11"
-    docsbranch = "main"
-    url = "https://umh.docs.umh.app/"
 
 # User interface configuration
 [params.ui]
