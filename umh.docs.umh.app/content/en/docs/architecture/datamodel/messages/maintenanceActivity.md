@@ -5,9 +5,16 @@ draft = true
 <!---
 This prefix is highly undocumented and unused, keep this as draft and decide later what to do with it, both keys component and activity are not used elsewhere
  --->
-## Structure
+## Topic
 
-``ia/<customerID>/<location>/<AssetID>/maintenanceActivity``
+{{< tabs name="topic_structure" >}}
+{{< tab name="MQTT" codelang="none" >}}
+ia/<customerID>/<location>/<AssetID>/maintenanceActivity
+{{< /tab >}}
+{{< tab name="Kafka" codelang="none" >}}
+ia.<customerID>.<location>.<AssetID>.maintenanceActivity
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Usage
 

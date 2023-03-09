@@ -5,11 +5,15 @@ description = "StartOrder messages are sent whenever a new order is started."
 
 ## Topic
 
-MQTT: ``ia/<customerID>/<location>/<AssetID>/startOrder``
+{{< tabs name="topic_structure" >}}
+{{< tab name="MQTT" codelang="none" >}}
+ia/<customerID>/<location>/<AssetID>/startOrder
+{{< /tab >}}
+{{< tab name="Kafka" codelang="none" >}}
+ia.<customerID>.<location>.<AssetID>.startOrder
+{{< /tab >}}
+{{< /tabs >}}
 
-{{% notice note %}}
-For Kafka just switch the `/` character with a `.`
-{{% /notice %}}
 
 ## Usage
 
