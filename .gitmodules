@@ -1,3 +1,3 @@
 [submodule "umh.docs.umh.app/themes/docsy"]
-	path = umh.docs.umh.app/themes/docsy
+	path = themes/docsy
 	url = https://github.com/google/docsy

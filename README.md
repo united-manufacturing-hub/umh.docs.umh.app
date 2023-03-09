@@ -1,3 +1,25 @@
-# docs.docs.umh.app
+# Requirements
 
-The documentation of the UMH stack. See also README inside the docs.docs.umh.app folder.
+ - Recent version of [Hugo](https://gohugo.io/getting-started/installing/)
+ - [Git](https://git-scm.com/)
+
+# Preparation
+
+Initialize the themes submodule
+```bash
+git submodule update -f --init --recursive
+cd umh.docs.umh.app/themes/docsy
+npm install
+```
+
+## Git LFS
+```bash
+git lfs install
+```
+
+
+# Serving locally
+
+```bash
+hugo server -D
+```
