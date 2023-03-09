@@ -3,6 +3,7 @@ title = "Architecture"
 menuTitle = "Architecture"
 description = "A detailed view of the architecture of the UMH stack."
 weight = 2000
+no_list = true
 +++
 
 The United Manufacturing Hub at its core is a [Helm Chart for Kubernetes](/docs/architecture/helm-chart) consisting of several microservices and open source 3rd party applications, such as Node-RED and Grafana. This Helm Chart can be deployed in various environments, from edge devices and virtual machines to managed Kubernetes offerings. In large-scale deployments, you find typically a combination out of all these deployment options.
@@ -21,7 +22,7 @@ flowchart
             mqtt-kafka-bridge["mqtt-kafka-bridge"]
 
             click kafka "./microservices/core/kafka"
-            click mqtt "./microservices/core/hivemq"
+            click mqtt "./microservices/core/mqtt-broker"
             click console "./microservices/core/console"
             click kafka-bridge "./microservices/core/kafka-bridge"
             click mqtt-kafka-bridge "./microservices/core/mqtt-kafka-bridge"
@@ -45,7 +46,7 @@ flowchart
             redis
 
             click kafka-to-postgresql "./microservices/core/kafka-to-postgresql"
-            click timescaledb "./microservices/core/timescaledb"
+            click timescaledb "./microservices/core/database"
             click factoryinsight "./microservices/core/factoryinsight"
             click grafana "./microservices/core/grafana"
             click redis "./microservices/core/redis"
@@ -66,8 +67,8 @@ flowchart
             barcodereader
             sensorconnect
 
-            click nodered "./microservices/core/nodered"
-            click barcodereader "./microservices/core/barcodereader"
+            click nodered "./microservices/core/node-red"
+            click barcodereader "./microservices/community/barcodereader"
             click sensorconnect "./microservices/core/sensorconnect"
 
             nodered  <-- Kafka --> kafka
@@ -82,7 +83,7 @@ flowchart
             packml-simulator["PackML simulator"]
             opcua-simulator["OPC-UA simulator"]
 
-            click mqtt-simulator "./microservices/community/mqttsim"
+            click mqtt-simulator "./microservices/community/mqtt-simulator"
             click packml-simulator "./microservices/community/packml-simulator"
             click opcua-simulator "./microservices/community/opcua-simulator"
 
@@ -122,26 +123,27 @@ flowchart
 The United Manufacturing Hub includes several simulators to generate data during development and testing.
 
 ### Microservices
-- [iotsensorsmqtt](/docs/architecture/microservices/community/mqttsim/) simulates data in three different MQTT topics, providing a simple way to test and visualize MQTT data streams.
+- [iotsensorsmqtt](/docs/architecture/microservices/community/mqtt-simulator/) simulates data in three different MQTT topics, providing a simple way to test and visualize MQTT data streams.
 - [packml-simulator](/docs/architecture/microservices/community/packml-simulator/) simulates a PackML machine which sends and receives MQTT messages
 - [opcua-simulator](/docs/architecture/microservices/community/opcua-simulator/) simulates an OPC-UA server, which can then be used to test connectivity of OPC-UA clients and to generate sample data for OPC-UA clients
 
 ## Data connectivity microservices
-The United Manufacturing Hub includes microservices that extract data from the shop floor and push it into the Unified Namespace. Additionally, you can deploy your own microservices or third-party solutions directly into the Kubernetes cluster using the [custom microservice feature](). To learn more about third-party solutions, check out our extensive tutorials on our [learning hub](https://learn.umh.app)
+The United Manufacturing Hub includes microservices that extract data from the shop floor and push it into the Unified Namespace. Additionally, you can deploy your own microservices or third-party solutions directly into the Kubernetes cluster using the [custom microservice feature](/docs/architecture/helm-chart/#custom-microservices-configuration). To learn more about third-party solutions, check out our extensive tutorials on our [learning hub](https://learn.umh.app)
 
 ### Microservices
 - [sensorconnect](/docs/architecture/microservices/core/sensorconnect/) automatically reads out IO-Link Master and their connected sensors, and pushes the data to the message broker.
 - [barcodereader](/docs/architecture/microservices/core/barcodereader/) connects to USB barcode reader devices and pushes the data to the message broker.
-- [Node-RED](/docs/architecture/microservices/core/nodered/) is a versatile tool with many community plugins and allows access to machine PLCs or connections with other systems on the shopfloor. It plays an important role and is explained in the next section.
+- [Node-RED](/docs/architecture/microservices/core/node-red/) is a versatile tool with many community plugins and allows access to machine PLCs or connections with other systems on the shopfloor. It plays an important role and is explained in the next section.
 
 ## Node-RED: connectivity & contextualization
 
 Node-RED is not just a tool for connectivity, but also for stream processing and data contextualization. It is often used to extract data from the message broker, reformat the event, and push it back into a different topic, such as the [UMH datamodel](/docs/architecture/datamodel).
 
 In addition to the built-in microservices, third-party contextualization solutions can be deployed similarly to [data connectivity microservices](#data-connectivity-microservices). For more information on these solutions, check out our extensive tutorials on our [learning hub](https://learn.umh.app/).
+In addition to the built-in microservices, third-party contextualization solutions can be deployed similarly to [data connectivity microservices](#data-connectivity-microservices). For more information on these solutions, check out our extensive tutorials on our [learning hub](https://learn.umh.app/).
 
 ### Microservices
-- [Node-RED](/docs/architecture/microservices/core/nodered/) is a programming tool that can wire together hardware devices, APIs, and online services.
+- [Node-RED](/docs/architecture/microservices/core/node-red/) is a programming tool that can wire together hardware devices, APIs, and online services.
 
 ## Unified Namespace
 
@@ -154,11 +156,11 @@ If you're curious about the benefits of this dual approach to MQTT/Kafka, check 
 <!-- For more information on the Unified Namespace feature and how to use it, check out our documentation. -->
 
 ### Microservices
-- [HiveMQ](/docs/architecture/microservices/core/hivemq/) is an MQTT broker used for receiving data from IoT devices on the shop floor. It excels at handling large numbers of unreliable connections.
-- [Apache Kafka](/docs/architecture/microservices/core/kafka/) is a distributed streaming platform used for communication between microservices. It offers large-scale data processing capabilities.
-- [mqtt-kafka-bridge](/docs/architecture/microservices/core/mqtt-to-kafka-bridge/) is a microservice that bridges messages between MQTT and Kafka, allowing you to send data to MQTT and process them reliably in Kafka.
-- [kafka-bridge](https://umh.docs.umh.app/docs/architecture/microservices/core/kafka-bridge/) a microservice that bridges messages between multiple Kafka instances.
-- [console](https://umh.docs.umh.app/docs/architecture/microservices/core/console/) is a web-based user interface for Kafka, which provides a graphical view of topics and messages.
+- [HiveMQ](/docs/architecture/microservices/core/mqtt-broker/) is an MQTT broker used for receiving data from IoT devices on the shop floor. It excels at handling large numbers of unreliable connections.
+- [Apache Kafka](/docs/architecture/microservices/core/kafka-broker/) is a distributed streaming platform used for communication between microservices. It offers large-scale data processing capabilities.
+- [mqtt-kafka-bridge](/docs/architecture/microservices/core/mqtt-kafka-bridge/) is a microservice that bridges messages between MQTT and Kafka, allowing you to send data to MQTT and process them reliably in Kafka.
+- [kafka-bridge](/docs/architecture/microservices/core/kafka-bridge/) a microservice that bridges messages between multiple Kafka instances.
+- [console](/docs/architecture/microservices/core/kafka-console/) is a web-based user interface for Kafka, which provides a graphical view of topics and messages.
 
 ## Historian / data storage and visualization
 
@@ -166,11 +168,11 @@ The United Manufacturing Hub stores events according to our [datamodel](/docs/ar
 
 ### Microservices
 - [kafka-to-postgresql](/docs/architecture/microservices/core/kafka-to-postgresql/) stores data in selected topics from the Kafka broker in a PostgreSQL compatible database such as TimescaleDB.
-- [TimescaleDB](/docs/architecture/microservices/core/timescaledb/), which is an open-source time-series SQL database 
-- [factoryinsight](https://umh.docs.umh.app/docs/architecture/microservices/core/factoryinsight/) provides REST endpoints to fetch data and calculate KPIs
-- [Grafana](https://umh.docs.umh.app/docs/architecture/microservices/core/grafana/) is a visualization and analytics software
-- [umh-datasource](https://umh.docs.umh.app/docs/architecture/microservices/core/umh-datasource/) is a plugin providing access factoryinsight
-- [redis](https://umh.docs.umh.app/docs/architecture/microservices/core/redis/) is an in-memory data structure store, used for cache.
+- [TimescaleDB](/docs/architecture/microservices/core/database/), which is an open-source time-series SQL database 
+- [factoryinsight](/docs/architecture/microservices/core/factoryinsight/) provides REST endpoints to fetch data and calculate KPIs
+- [Grafana](/docs/architecture/microservices/core/grafana/) is a visualization and analytics software
+- [umh-datasource](/docs/architecture/microservices/grafana-plugins/umh-datasource/) is a plugin providing access factoryinsight
+- [redis](/docs/architecture/microservices/core/cache/) is an in-memory data structure store, used for cache.
 
 ## Custom Microservices
 
