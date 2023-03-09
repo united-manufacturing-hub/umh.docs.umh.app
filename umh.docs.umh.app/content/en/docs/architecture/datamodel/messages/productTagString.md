@@ -3,9 +3,16 @@ title = "productTagString"
 description = "ProductTagString messages are sent to contextualize processValueString messages."
 +++
 
-## Structure
+## Topic
 
-``ia/<customerID>/<location>/<AssetID>/productTagString``
+{{< tabs name="topic_structure" >}}
+{{< tab name="MQTT" codelang="none" >}}
+ia/<customerID>/<location>/<AssetID>/productTagString
+{{< /tab >}}
+{{< tab name="Kafka" codelang="none" >}}
+ia.<customerID>.<location>.<AssetID>.productTagString
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Usage
 
