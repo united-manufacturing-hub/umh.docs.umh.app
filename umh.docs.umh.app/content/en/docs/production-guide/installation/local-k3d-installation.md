@@ -102,6 +102,13 @@ Kubernetes.
     helm install {{% resource type="helm" name="release" %}} {{% resource type="helm" name="repo" %}}/united-manufacturing-hub -n {{% resource type="ns" name="umh" %}}
     ```
 
+    {{% notice tip %}}
+  If you don't want to use the default configuration, you can customize it
+  before installing the stack. For more information, refer to the
+  [Configuration](/docs/production-guide/administration/customize-umh-installation/#customize-values)
+  guide.
+    {{% /notice %}}
+
 11. Open {{< resource type="lens" name="name" >}} on your device. You can get
     [UMHLens](https://github.com/united-manufacturing-hub/UMHLens) or
     [OpenLens](https://github.com/MuhammedKalkan/OpenLens) from GitHub.
