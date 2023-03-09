@@ -15,7 +15,7 @@ the installation.
 
 ## {{% heading "prerequisites" %}}
 
-{{< include "task-tutorial-prereqs.md" >}}
+{{< include "task-aftinst-prereqs.md" >}}
 
 <!-- steps -->
 

@@ -6,7 +6,7 @@ maximum_version = "0.9.5"
 
 ## {{% heading "prerequisites" %}}
 
-{{< include "task-tutorial-prereqs.md" >}}
+{{< include "task-aftinst-prereqs.md" >}}
 
 <!-- steps -->
 

@@ -15,7 +15,7 @@ You can enable external access from the MQTT Broker configuration.
 
 ## {{% heading "prerequisites" %}}
 
-{{< include "task-tutorial-prereqs.md" >}}
+{{< include "task-aftinst-prereqs.md" >}}
 
 <!-- steps -->
 

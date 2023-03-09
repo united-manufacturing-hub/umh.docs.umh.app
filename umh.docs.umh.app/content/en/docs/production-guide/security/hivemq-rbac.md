@@ -6,7 +6,7 @@ minimum_version = "0.9.10"
 
 ## {{% heading "prerequisites" %}}
 
-{{< include "task-tutorial-prereqs.md" >}}
+{{< include "task-aftinst-prereqs.md" >}}
 
 <!-- steps -->
 ## Enabling RBAC
