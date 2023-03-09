@@ -1,0 +1,14 @@
+# By default, Jeremy is codeowner for everything
+*       @JeremyTheocharis
+
+# Remaining files are owned by Jeremy
+AUTHORS @JeremyTheocharis
+CODE_OF_CONDUCT.md @JeremyTheocharis
+CODEOWNERS @JeremyTheocharis
+CONTRIBUTING.md @JeremyTheocharis
+CONTRIBUTOR_LICENSE_AGREEMENT_ENTITY.md @JeremyTheocharis
+CONTRIBUTOR_LICENSE_AGREEMENT_INDIVIDUAL.md @JeremyTheocharis
+LICENSE @JeremyTheocharis
+README.md @JeremyTheocharis
+SECURITY.md @JeremyTheocharis
+SUPPORT.md @JeremyTheocharis
