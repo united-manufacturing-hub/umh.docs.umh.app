@@ -9,7 +9,7 @@ body:
               Thanks for taking the time to fill out this documentation issue report!
               Before you create the issue:
               * Search the existing issues first, as yours may be a duplicate.
-              * Search our [documentation](https://learn.umh.app) for any relevant troubleshooting steps.
+              * Search our [documentation](https://umh.docs.umh.app/docs/) for any relevant troubleshooting steps.
     - type: textarea
       id: describe-issue
       attributes:

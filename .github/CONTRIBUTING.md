@@ -103,4 +103,4 @@ Congratulations! The United Manufacturing Hub team thanks you for your contribut
 
 [discord]: https://discord.com/invite/F9mqkZnm9d
 
-[documentation]: https://learn.umh.app/
+[documentation]: https://umh.docs.umh.app/docs/
