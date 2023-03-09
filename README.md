@@ -1,13 +1,10 @@
-# docs.docs.umh.app
+# United Manufacturing Hub documentation website
 
 ![Website][badge-website]
 ![GitHub commit activity][badge-commit-activity]
 
 This repository contains the technical documentation for the United Manufacturing Hub.
 
-## Table of contents
-
-The documentation of the UMH stack.
 
 ## Requirements
 
@@ -38,8 +35,8 @@ hugo server -D
 
 ## Contributing
 
-If you want to contribute, take a look at our contribution guidelines in `umh.docs.umh.app/content/en/docs/development/contribute/getting-started.md`
+If you want to contribute, take a look at our [contribution guidelines](https://umh.docs.umh.app/docs/development/contribute/getting-started/).
 
 <!-- definitions -->
-[badge-website]: https://img.shields.io/website?up_message=online&url=https%3A%2F%2Fwww.umh.app
+[badge-website]: https://img.shields.io/website?up_message=online&url=https%3A%2F%2Fhttps://umh.docs.umh.app/docs/
 [badge-commit-activity]: https://img.shields.io/github/commit-activity/m/united-manufacturing-hub/umh.docs.umh.app
