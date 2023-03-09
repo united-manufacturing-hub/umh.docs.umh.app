@@ -93,13 +93,13 @@ Congratulations! The United Manufacturing Hub team thanks you for your contribut
 
 <!-- definitions -->
 
-[discussions]: https://github.com/united-manufacturing-hub/<repository-name>/discussions
+[discussions]: https://github.com/united-manufacturing-hub/umh.docs.umh.app/discussions
 
-[issues]: https://github.com/united-manufacturing-hub/<repository-name>/issues
+[issues]: https://github.com/united-manufacturing-hub/umh.docs.umh.app/issues
 
-[fork]: https://github.com/united-manufacturing-hub/<repository-name>/fork
+[fork]: https://github.com/united-manufacturing-hub/umh.docs.umh.app/fork
 
-[contributors]: https://github.com/united-manufacturing-hub/<repository-name>/graphs/contributors
+[contributors]: https://github.com/united-manufacturing-hub/umh.docs.umh.app/graphs/contributors
 
 [discord]: https://discord.com/invite/F9mqkZnm9d
 
