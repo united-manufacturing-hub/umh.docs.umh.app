@@ -48,12 +48,6 @@ labels:
     - name: "type: ci"
       color: "AB4301"
       description: CI/CD related
-    - name: "type: dependency"
-      color: "EDB9B9"
-      description: Pull requests that update a dependency file
-    - name: "type: documentation"
-      color: "0075ca"
-      description: Improvements or additions to documentation
     - name: "type: enhancement"
       color: "A2EEEF"
       description: New feature or request
@@ -63,9 +57,6 @@ labels:
     - name: "type: refactor"
       color: "FBCA04"
       description: Code refactor
-    - name: "type: security"
-      color: "8F2323"
-      description: Security related
     - name: "type: test"
       color: "C2E0C6"
       description: Test related
