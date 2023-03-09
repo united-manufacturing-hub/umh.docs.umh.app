@@ -5,11 +5,14 @@ description = "AddProduct messages are sent when a new product is produced."
 
 ## Topic
 
-MQTT: ``ia/<customerID>/<location>/<AssetID>/addProduct``
-
-{{% notice note %}}
-For Kafka just switch the `/` character with a `.`
-{{% /notice %}}
+{{< tabs name="topic_structure" >}}
+{{< tab name="MQTT" codelang="none" >}}
+ia/<customerID>/<location>/<AssetID>/addProduct
+{{< /tab >}}
+{{< tab name="Kafka" codelang="none" >}}
+ia.<customerID>.<location>.<AssetID>.addProduct
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Usage
 

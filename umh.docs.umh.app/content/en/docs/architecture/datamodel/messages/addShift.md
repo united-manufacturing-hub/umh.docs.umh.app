@@ -5,11 +5,14 @@ description = "AddShift messages are sent to add a shift with start and end time
 
 ## Topic
 
-MQTT: ``ia/<customerID>/<location>/<AssetID>/addShift``
-
-{{% notice note %}}
-For Kafka just switch the `/` character with a `.`
-{{% /notice %}}
+{{< tabs name="topic_structure" >}}
+{{< tab name="MQTT" codelang="none" >}}
+ia/<customerID>/<location>/<AssetID>/addShift
+{{< /tab >}}
+{{< tab name="Kafka" codelang="none" >}}
+ia.<customerID>.<location>.<AssetID>.addShift
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Usage
 

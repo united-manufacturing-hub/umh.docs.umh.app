@@ -5,11 +5,14 @@ description = "DeleteShift messages are sent to delete a shift that starts at th
 
 ## Topic
 
-MQTT: ``ia/<customerID>/<location>/<AssetID>/deleteShift``
-
-{{% notice note %}}
-For Kafka just switch the `/` character with a `.`
-{{% /notice %}}
+{{< tabs name="topic_structure" >}}
+{{< tab name="MQTT" codelang="none" >}}
+ia/<customerID>/<location>/<AssetID>/deleteShift
+{{< /tab >}}
+{{< tab name="Kafka" codelang="none" >}}
+ia.<customerID>.<location>.<AssetID>.deleteShift
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Usage
 

@@ -5,11 +5,15 @@ description = "EndOrder messages are sent whenever a new product is produced."
 
 ## Topic
 
-MQTT: ``ia/<customerID>/<location>/<AssetID>/endOrder``
+{{< tabs name="topic_structure" >}}
+{{< tab name="MQTT" codelang="none" >}}
+ia/<customerID>/<location>/<AssetID>/endOrder
+{{< /tab >}}
+{{< tab name="Kafka" codelang="none" >}}
+ia.<customerID>.<location>.<AssetID>.endOrder
+{{< /tab >}}
+{{< /tabs >}}
 
-{{% notice note %}}
-For Kafka just switch the `/` character with a `.`
-{{% /notice %}}
 
 ## Usage
 

@@ -5,11 +5,14 @@ description = "ScrapCount messages are sent whenever a product is to be marked a
 
 ## Topic
 
-MQTT: ``ia/<customerID>/<location>/<AssetID>/scrapCount``
-
-{{% notice note %}}
-For Kafka just switch the `/` character with a `.`
-{{% /notice %}}
+{{< tabs name="topic_structure" >}}
+{{< tab name="MQTT" codelang="none" >}}
+ia/<customerID>/<location>/<AssetID>/scrapCount
+{{< /tab >}}
+{{< tab name="Kafka" codelang="none" >}}
+ia.<customerID>.<location>.<AssetID>.scrapCount
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Usage
 
