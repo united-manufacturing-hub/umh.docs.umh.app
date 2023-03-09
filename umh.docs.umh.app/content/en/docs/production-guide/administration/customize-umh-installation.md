@@ -19,7 +19,7 @@ the installation.
 
 <!-- steps -->
 
-## Customize the United Manufacturing Hub installation via {{< resource type="lens" name="name" >}}
+## Customize the United Manufacturing Hub installation via {{% resource type="lens" name="name" %}}
 
 Independently of the installation method you choose, you can customize the United
 Manufacturing Hub installation by changing the Helm chart values.
