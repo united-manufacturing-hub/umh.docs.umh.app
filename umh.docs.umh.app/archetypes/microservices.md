@@ -2,15 +2,16 @@
 title: "{{ replace .Name "-" " " | title }}"
 content_type: microservices
 description: |
-    Add a description of the microservice here.
-weight: 10
+    The technical documentation of the {{ .Name }} microservice,
+    which
+weight: 0
 ---
 
 <!-- overview -->
 
-## {{% heading "howitworks" %}}
-
 <!-- body -->
+
+## {{% heading "howitworks" %}}
 
 ## {{% heading "kuberesources" %}}
 

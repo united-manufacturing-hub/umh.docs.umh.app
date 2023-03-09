@@ -2,13 +2,20 @@
 title: "Cameraconnect"
 content_type: microservices
 description: |
-    This page contains information about the cameraconnect microservice
-weight: 10
+    The technical documentation of the cameraconnect microservice,
+    which caputers images from a camera and sends them to the MQTT broker.
+weight: 0
 ---
 
 <!-- overview -->
 
-Cameraconnect is a microservice that connects to the camera and saves pictures.
+{{% notice warning %}}
+This microservice is no longer developed by UMH. Contact [Anticipate](https://www.anticipate.ml/)
+for further information.
+{{% /notice %}}
+
+The cameraconnect microservice is responsible for capturing images from a camera
+and sending them to the MQTT broker.
 
 ## {{% heading "howitworks" %}}
 
