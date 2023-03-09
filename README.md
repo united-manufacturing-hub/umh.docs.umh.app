@@ -1,6 +1,6 @@
 # United Manufacturing Hub documentation website
 
-![Website][badge-website]
+[![Website][badge-website]](https://umh.docs.umh.app)
 ![GitHub commit activity][badge-commit-activity]
 
 This repository contains the technical documentation for the United Manufacturing Hub.
