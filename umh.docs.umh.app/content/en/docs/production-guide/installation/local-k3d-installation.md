@@ -75,19 +75,19 @@ Kubernetes.
 6. Create the cluster
 
    ```powershell
-   k3d cluster create {{< resource type="cluster" name="name" >}} --api-port 127.0.0.1:6443
+   k3d cluster create {{% resource type="cluster" name="name" %}} --api-port 127.0.0.1:6443
    ```
 
 7. Create a namespace in Kubernetes
 
    ```powershell
-   kubectl create namespace {{< resource type="ns" name="name" >}}
+   kubectl create namespace {{% resource type="ns" name="name" %}}
    ```
 
 8. Add the UMH repo
 
    ```powershell
-   helm repo add {{< resource type="helm" name="repo" >}} https://repo.umh.app/
+   helm repo add {{% resource type="helm" name="repo" %}} https://repo.umh.app/
    ```
 
 9. Ensure it is up-to-date with
@@ -99,7 +99,7 @@ Kubernetes.
 10. Install the stack
 
     ```powershell
-    helm install {{< resource type="helm" name="release" >}} {{< resource type="helm" name="repo" >}}/united-manufacturing-hub -n {{< resource type="ns" name="name" >}}
+    helm install {{% resource type="helm" name="release" %}} {{% resource type="helm" name="repo" %}}/united-manufacturing-hub -n {{% resource type="ns" name="umh" %}}
     ```
 
 11. Open {{< resource type="lens" name="name" >}} on your device. You can get
@@ -113,7 +113,7 @@ Kubernetes.
     1. From the terminal, get the kubeconfig for the cluster
 
        ```powershell
-       k3d kubeconfig get united-manufacturing-hub
+       k3d kubeconfig get {{% resource type="cluster" name="name" %}}
        ```
 
     2. Copy the output of the command
