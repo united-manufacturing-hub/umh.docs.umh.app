@@ -22,11 +22,11 @@ You can enable external access from the MQTT Broker configuration.
 ## Enable external access from MQTT Broker configuration
 
 1. From {{< resource type="lens" name="name" >}}, go to **Network** > **Services**.
-2. Find the `{{< resource type="service" name="mqtt" >}}` Service.
+2. Find the `{{< resource type="service" name="mqttbroker" >}}` Service.
    {{% notice note %}}
    The MQTT service name has changed since version 0.9.10. If you are using an older
-   version, use `{{< resource type="service" name="mqtt-verne" >}}` instead of
-   `{{< resource type="service" name="mqtt" >}}`.
+   version, use `{{< resource type="service" name="mqttbroker-verne" >}}` instead of
+   `{{< resource type="service" name="mqttbroker" >}}`.
    {{< /notice >}}
 3. Click the **Edit** button.
 4. Scroll down to the `status.loadBalancer` section and change it to the following:

@@ -43,7 +43,7 @@ You can enable external access from the Kafka configuration.
 4. Click **Upgrade**.
 
 To verify that the LoadBalancer service is created, go to **Network** > **Services**
-and search for {{< resource type="service" name="kafka-ext" >}}.
+and search for {{< resource type="service" name="kafkabroker-ext" >}}.
 
 Now you can connect to Kafka from external applications using the node IP and
 the port 9094.

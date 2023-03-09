@@ -22,7 +22,7 @@ and explore the data.
 
 1. Open {{< resource type="lens" name="name" >}} and navigate to the **Config** >
    **Secrets** page.
-2. Get the cache password from the Secret **{{< resource type="secret" name="cache-psw" >}}**.
+2. Get the cache password from the Secret **{{< resource type="secret" name="cache" >}}**.
 3. From the **Pods** section click on **{{% resource type="pod" name="cache" %}}**
    to open the details page.
 
