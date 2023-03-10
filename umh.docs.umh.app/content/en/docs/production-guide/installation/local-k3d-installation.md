@@ -216,3 +216,4 @@ might have to add the cluster manually. To do so, follow these steps:
 - If you already know your way around the United Manufacturing Hub, you can
   follow the [Administration guides](/docs/production-guide/administration/) to
   configure the stack for production.
+
