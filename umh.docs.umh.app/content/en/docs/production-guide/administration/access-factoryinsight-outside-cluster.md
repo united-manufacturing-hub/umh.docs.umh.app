@@ -16,7 +16,7 @@ Instead, you can create a LoadBalancer service to expose it from the host.
 
 ## {{% heading "prerequisites" %}}
 
-{{< include "task-tutorial-prereqs.md" >}}
+{{< include "task-aftinst-prereqs.md" >}}
 
 <!-- steps -->
 

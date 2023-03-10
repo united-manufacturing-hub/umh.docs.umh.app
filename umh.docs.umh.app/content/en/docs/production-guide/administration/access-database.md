@@ -25,7 +25,7 @@ you just want to see the data in a dashboard and don't need to manupulate it.
 
 ## {{% heading "prerequisites" %}}
 
-{{< include "task-tutorial-prereqs.md" >}}
+{{< include "task-aftinst-prereqs.md" >}}
 
 ### Get the database credentials
 

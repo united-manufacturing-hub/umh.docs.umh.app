@@ -17,7 +17,7 @@ menu in the datasource takes a long time to load or does not load at all.
 
 ## {{% heading "prerequisites" %}}
 
-{{< include "task-tutorial-prereqs.md" >}}
+{{< include "task-aftinst-prereqs.md" >}}
 
 {{< version-check >}}
 

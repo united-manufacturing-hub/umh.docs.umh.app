@@ -37,6 +37,9 @@ other = "See Also"
 [heading_synopsis]
 other = "Synopsis"
 
+[heading_troubleshooting]
+other = "Troubleshooting"
+
 [heading_whatsnext]
 other = "What's next"
 

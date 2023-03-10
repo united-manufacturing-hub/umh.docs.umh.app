@@ -16,7 +16,7 @@ have a backup of the database before you proceed. {{% /notice %}}
 
 ## {{% heading "prerequisites" %}}
 
-{{< include "task-tutorial-prereqs.md" >}}
+{{< include "task-aftinst-prereqs.md" >}}
 
 Also, make sure to backup the database before you proceed. For more information,
 see [Backing Up and Restoring the Database](/docs/production-guide/backup_recovery/backup-timescale).
