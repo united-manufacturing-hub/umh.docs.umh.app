@@ -29,7 +29,9 @@ You can also add shifts using [addShift](/docs/architecture/datamodel/messages/a
 
 All messages land up in different tables in the [database](/docs/architecture/datamodel/database/) and will be accessible from [factorysinsight](/docs/architecture/microservices/core/factoryinsight/) or the [umh-datasource](/docs/architecture/microservices/grafana-plugins/umh-datasource/) Grafana plugin.
 
-**Recommendation: Start with *addShift* and *state* and continue from there on**
+{{% notice tip %}}
+**Recommendation:** Start with *addShift* and *state* and continue from there on
+{{% /notice %}}
 
 ### Modifying Data
 
