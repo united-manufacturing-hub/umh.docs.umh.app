@@ -1,23 +1,49 @@
 ---
 title: "Grafana Proxy"
-content_type: task
+content_type: microservices
 description: |
-    This page has the technical documentation of the microservice grafana-proxy, which as the name suggests proxies request to backend services.
-weight: 11
+    The technical documentation of the grafana-proxy microservice,
+    which proxies request from Grafana to the backend services.
+weight: 0
 ---
+
+<!-- overview -->
 
 {{% notice warning %}}
 This microservice is still in development and is not considered stable for production use
 {{% /notice %}}
 
-## How it works
+## {{% heading "howitworks" %}}
 
-## Configuration
+The grafana-proxy microservice serves an HTTP REST endpoint located at
+`/api/v1/{service}/{data}`. The `service` parameter specifies the backend
+service to which the request should be proxied, like factoryinput or
+factoryinsight. The `data` parameter specifies the API endpoint to forward to
+the backend service. The body of the HTTP request is used as the payload for
+the proxied request.
 
-| Variable name             | Description                                                                                                                              | Type     | Possible values               | Example value                                          |
-|---------------------------|------------------------------------------------------------------------------------------------------------------------------------------|----------|-------------------------------|--------------------------------------------------------|
-| `FACTORYINPUT_BASE_URL`   | Specifies the DNS name /IP address to connect to factoryinput                                                                            | `string` | all DNS names or IP addresses | `http://united-manufacturing-hub-factory-service`      |
-| `FACTORYINPUT_KEY`        | ?                                                                                                                                        | ``       |||
-| `FACTORYINPUT_USER`       | Specifies the user of the REST API                                                                                                       | `string` | all                           | jeremy                                                 |
-| `FACTORYINSIGHT_BASE_URL` | Specifies the DNA name / IP address to connect to factoryinsight                                                                         | `string` | all DNS names or IP addresses | http://united-manufacturing-hub-factoryinsight-service |
-| `LOGGING_LEVEL`           | Defines which logging level is used, mostly relevant for developers. If logging level is not `DEVELOPMENT`, default logging will be used | `string` | any                           | `DEVELOPMENT`                                          |
+<!-- body -->
+
+## {{% heading "kuberesources" %}}
+
+- Deployment: `{{< resource type="deployment" name="grafanaproxy" >}}`
+- Service:
+  - External LoadBalancer: `{{< resource type="service" name="grafanaproxy" >}}` at
+    port 2096
+
+## {{% heading "configuration" %}}
+
+### {{% heading "envvars" %}}
+
+{{< table caption="Environment variables" >}}
+| Variable name             | Description                                                                                                  | Type   | Allowed values          | Default                                                      |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------ | ------ | ----------------------- | ------------------------------------------------------------ |
+| `DEBUG_ENABLE_FGTRACE`    | Enables the use of the [fgtrace](https://github.com/felixge/fgtrace) library. Not reccomended for production | string | `true`, `false`         | `false`                                                      |
+| `FACTORYINPUT_BASE_URL`   | URL of factoryinput                                                                                          | string | Any                     | http://{{< resource type="service" name="factoryinput" >}}   |
+| `FACTORYINPUT_KEY`        | Specifies the password for the admin user for factoryinput                                                   | string | Any                     | _Random UUID_                                                |
+| `FACTORYINPUT_USER`       | Specifies the admin user for factoryinput                                                                    | string | Any                     | factoryinput                                                 |
+| `FACTORYINSIGHT_BASE_URL` | URL of factoryinsight                                                                                        | string | Any                     | http://{{< resource type="service" name="factoryinsight" >}} |
+| `MICROSERVICE_NAME`       | Name of the microservice. Used for tracing                                                                   | string | Any                     | united-manufacturing-hub-factoryinput                        |
+| `SERIAL_NUMBER`           | Serial number of the cluster. Used for tracing                                                               | string | Any                     | default                                                      |
+| `VERSION`                 | The version of the API used. Each version also enables all the previous ones                                 | int    | Any                     | 1                                                            |
+{{< /table >}}
