@@ -38,9 +38,9 @@ and build queries for your dashboard.
 
    ![selectingConfiguration](/images/grafana-plugins/grafanaPluginsSelectingConfiguration.png/?width=85%)
 3. Configurations:
-    - Base URL: the URL for the factoryinsight backend. Defaults to `http://united-manufacturing-hub-factoryinsight-service/`.
+    - Base URL: the URL for the factoryinsight backend. Defaults to `http://{{< resource type="service" name="factoryinsight" >}}/`.
     - Enterprise name: previously **customerID** for the old datasource plugin. Defaults to **factoryinsight**.
     - API Key: authenticates the API calls to factoryinsight.
-      Can be found with UMHLens by going to Secrets → factoryinsight-secret → apiKey. It should follow the format `Basic xxxxxxxx`.
+      Can be found with UMHLens by going to Secrets → {{< resource type="secret" name="factoryinsight" >}} → apiKey. It should follow the format `Basic xxxxxxxx`.
 
    ![selectingConfiguration](/images/grafana-plugins/grafanaPluginsConfiguringDatasourceV1.png/?width=85%)
