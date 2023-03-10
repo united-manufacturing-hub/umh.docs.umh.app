@@ -26,7 +26,8 @@ Kubernetes.
 {{< include "task-befinst-prereqs.md" >}}
 
 You also need to have [Docker](https://docs.docker.com/get-docker/) up and
-running.
+running and either [UMHLens](https://github.com/united-manufacturing-hub/UMHLens)
+or [OpenLens](https://github.com/MuhammedKalkan/OpenLens) installed.
 
 <!-- If you set the minimum_version or maximum_version parameter in the page's
      front matter, add the version check shortcode {{< version-check >}}.
@@ -174,20 +175,7 @@ running.
   guide.
     {{% /notice %}}
 
-## Access the UMH stack
-
-1. Open {{< resource type="lens" name="name" >}} on your device. You can get
-   [UMHLens](https://github.com/united-manufacturing-hub/UMHLens) or
-   [OpenLens](https://github.com/MuhammedKalkan/OpenLens) from GitHub.
-2. From the homepage, click on **Browse Clusters in Catalog**. The cluster should
-   be listed there.
-3. Click on the cluster to connect to it.
-4. Navigate to **Helm** > **Releases** and change the namespace from default to
-   {{< resource type="ns" name="umh" >}} in the upper right corner.
-
-   ![lens-namespaces](/images/installation/local-k3d-installation/lens-namespaces.png)
-5. Select the {{< resource type="helm" name="release" >}} Release to inspect the
-   release details, the installed resources, and the Helm values.
+{{< include "access-umh-via-lens" >}}
 
 <!-- Optional section, but recommended; write the problem/question in H3 -->
 ## {{% heading "troubleshooting" %}}
@@ -216,4 +204,3 @@ might have to add the cluster manually. To do so, follow these steps:
 - If you already know your way around the United Manufacturing Hub, you can
   follow the [Administration guides](/docs/production-guide/administration/) to
   configure the stack for production.
-
