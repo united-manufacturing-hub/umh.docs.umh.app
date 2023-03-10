@@ -69,7 +69,7 @@ Here is a step-by-step guide on how to deploy the UMH stack using [k3d](https://
     
     `helm install united-manufacturing-hub united-manufacturing-hub/united-manufacturing-hub -n united-manufacturing-hub`
     
-11. Open UMHLens on your device. You can get UMHLens for free from this [GitHub Repository](https://github.com/MuhammedKalkan/OpenLens).
+11. Open UMHLens on your device. You can get UMHLens for free from this [GitHub Repository](https://github.com/united-manufacturing-hub/UMHLens).
 12. Sometimes UMHLens automatically creates a k3d-Cluster. Click on Browse-Clusters to check. If there is no cluster you have to create it manually (follow step 13-18) otherwise continue with step 18.
 13. Get the Helm config to import into UMHLens
     
@@ -97,8 +97,4 @@ Here is a step-by-step guide on how to deploy the UMH stack using [k3d](https://
 
 You have successfully deployed the UMH stack using k3d.
 
-The next step will be to gather some kind of data, and since you did a local installation you probably want to simulate it. We have a guide to generate data with an [MQTT Simulator](https://learn.umh.app/guides/umh/working-with-the-data/tutorial/mqtt-sim).
-
-You could also directly connect NodeRED without having data. Follow [this guide](https://learn.umh.app/guides/getstarted/data-manipulation/node-red-basic/) to see how.
-
-If you are not sure on what to do you can get back to the [Getting Started](https://learn.umh.app/getstarted) page.
+Let's continue with Node-RED! Follow [this guide](https://learn.umh.app/guides/getstarted/data-manipulation/node-red-basic/) to see how.
