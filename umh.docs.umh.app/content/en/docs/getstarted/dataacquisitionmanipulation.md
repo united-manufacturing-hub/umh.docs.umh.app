@@ -12,7 +12,10 @@ The United Manufacturing Hub has several simulators. These simulators simulate d
 
 ## Creating Node-RED flow with simulated MQTT-Data
 
-1. Access Node-RED with UMHLens.
+1. Access the Node-RED Web UI. To do this, click on the service and forward the port as shown below. Once the UI opens 
+   in the browser, add `nodered` to the URL to avoid the [cannot get error](https://learn.umh.app/course/how-to-fix-cannot-get-error-in-node-red/).
+
+   ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingForwarding.png?width=75%)
 2. From the left-hand column, drag a **mqtt-in** node, a **mqtt-out** node, and a **debug** node into your flow.
 3. Connect the **mqtt-in** and to the **debug-node**.
 
