@@ -23,6 +23,14 @@ The Historian / Data Storage feature of the United Manufacturing Hub allows you 
 - Query data in an ISA95 model, from enterprise to site, area, production line, and work cell.
 - Visualize your data in Grafana to easily monitor and troubleshoot your production processes.
 
+
+{{% notice tip %}}
+More information about the exact analytics functionalities can be found in the [umh-datasource-v2 documentation](/docs/architecture/microservices/grafana-plugins/umh-datasource-v2/). Further below some screenshots of said datasource.
+{{% /notice %}}
+
+![](/images/grafana-plugins/grafanaPluginsSelectingWorkCell.png?width=50%)
+![](/images/grafana-plugins/grafanaPluginsSelectingValue.png?width=50%)
+![](/images/grafana-plugins/grafanaPluginsSelectingOptions.png?width=50%)
 ### Efficiently manage data
 - Compress and retain data to reduce database size using various techniques.
 
