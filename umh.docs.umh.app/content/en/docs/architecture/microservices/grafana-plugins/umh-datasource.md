@@ -9,7 +9,7 @@ weight: 2000
 <!-- overview -->
 
 {{% notice warning %}}
-We are no longer maintaining this microservice. Use instead our new microservice datasource-v2 for data extraction from factoryinsight.
+We are no longer maintaining this plugin. Instead, use our new plugin datasource-v2 for data extraction from factoryinsight.
 {{% /notice %}}
 
 The **umh datasource** is a Grafana 8.X compatible plugin, that allows you to fetch resources from a database

@@ -7,7 +7,7 @@ weight: 3000
 ---
 
 {{% notice warning %}}
-This microservice is still in development and is not considered stable for production use
+This plugin is still in development and is not considered stable for production use
 {{% /notice %}}
 
 
