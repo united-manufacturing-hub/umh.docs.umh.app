@@ -109,7 +109,7 @@ used to configure the applications:
 - [`_001_customMicroservices`](#custom-microservices-configuration): used to define the configuration of
   custom microservices that are not included in the Helm Chart.
 
-After those two sections, there are the specific sections for each microservice,
+After those three sections, there are the specific sections for each microservice,
 which contain their advanced configuration. This is the so called [Danger Zone](#danger-zone),
 because the values in those sections should not be changed, unlsess you absolutely
 know what you are doing.
