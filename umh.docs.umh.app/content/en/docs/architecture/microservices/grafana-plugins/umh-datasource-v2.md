@@ -58,4 +58,4 @@ resources from a database and build queries for your dashboard.
     - API Key: authenticates the API calls to factoryinsight.
       Can be found with UMHLens by going to Secrets → {{< resource type="secret" name="factoryinsight" >}} → apiKey. It should follow the format `Basic xxxxxxxx`.
 
-   ![selectingConfiguration](/images/grafana-plugins/grafanaPluginsConfuguringDatasourceV2.png/)
+   ![selectingConfiguration](/images/grafana-plugins/grafanaPluginsConfuguringDatasourceV2.png?width=80%)
