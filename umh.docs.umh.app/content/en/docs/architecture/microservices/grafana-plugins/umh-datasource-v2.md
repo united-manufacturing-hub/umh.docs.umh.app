@@ -50,7 +50,7 @@ resources from a database and build queries for your dashboard.
 
 2. Select **umh-v2-datasource** to configure it.
 
-   ![selectingConfiguration](/images/grafana-plugins/grafanaPluginsSelectingConfiguration.png/?width=80%)
+   ![selectingConfiguration](/images/grafana-plugins/grafanaPluginsSelectingConfiguration.png/)
 
 3. Configurations:
     - Base URL: the URL for the factoryinsight backend. Defaults to `http://{{< resource type="service" name="factoryinsight" >}}/`.
@@ -58,4 +58,4 @@ resources from a database and build queries for your dashboard.
     - API Key: authenticates the API calls to factoryinsight.
       Can be found with UMHLens by going to Secrets → {{< resource type="secret" name="factoryinsight" >}} → apiKey. It should follow the format `Basic xxxxxxxx`.
 
-   ![selectingConfiguration](/images/grafana-plugins/grafanaPluginsConfuguringDatasourceV2.png/?width=80%)
+   ![selectingConfiguration](/images/grafana-plugins/grafanaPluginsConfuguringDatasourceV2.png/)
