@@ -34,7 +34,7 @@ Sensorconnect offers:
 
 To use ifm IO-link gateways and [Sensorconnect](/docs/architecture/microservices/core/sensorconnect/), you need to first
 retrofit the machine with the desired sensors and connect them with ifm IO-link gateways. Then, you can use 
-Sensorconnect to detect the IO-link master in the network, poll data from the connected sensors. Finally, you can send
+Sensorconnect to detect the IO-link master in the network and poll data from the connected sensors. Finally, you can send
 the data in JSON format to MQTT and Kafka for further processing with your preferred software solutions.
 
 ## What are the limitations?
