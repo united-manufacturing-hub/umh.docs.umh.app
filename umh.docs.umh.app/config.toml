@@ -78,6 +78,7 @@ section = ["HTML"]
 copyright = "UMH Systems GmbH"
 privacy_policy = "https://www.umh.app/data-security"
 favicon = "favicon.png"
+custom_css = ["css/copy-button.css"]
 # First one is picked as the Twitter card image if not set on page.
 # images = ["images/project-illustration.png"]
 
@@ -107,6 +108,9 @@ archived_version = false
 # A link to latest version of the docs. Used in the "version-banner" partial to
 # point people to the main doc site.
 url_latest_version = "https://umh.docs.umh.app"
+
+# See codenew shortcode
+githubWebsiteRaw = "raw.githubusercontent.com/united-manufacturing-hub/umh.docs.umh.app"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
 github_repo = "https://github.com/united-manufacturing-hub/umh.docs.umh.app"
