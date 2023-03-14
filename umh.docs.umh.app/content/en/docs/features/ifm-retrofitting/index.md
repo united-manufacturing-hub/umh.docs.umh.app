@@ -6,8 +6,6 @@ weight = 4
 draft = false
 +++
 
-## Introduction
-
 Retrofitting older machines with sensors is sometimes the only-way to capture process-relevant information.
 In this article, we will focus on retrofitting with ifm IO-link gateways and Sensorconnect, a microservice of the 
 united manufacturing hub, that finds and reads out ifm IO-link masters in the network and pushes sensor data to 
