@@ -33,12 +33,14 @@ resources from a database and build queries for your dashboard.
 4. Next you can specify how to transform the data, depending on what value you selected.
    Below you can find the options to transform the queried data:
 
-   - **Time bucket**: lets you group data in a time bucket
-   - **Aggregates**: common statistical aggregations (maximum, minimum, sum or count)
-   - **Handling missing values**: lets you choose how missing data should be handled
-   - **Keep state integer**. lets you keep the state as an integer instead of converting it into its corresponding string
-   - **Include running processes**: includes the running processes
-   - **Keep states**: keeps the state as an integer or string
+   - **Time bucket**
+   - **Aggregates**
+   - **Handling missing values**
+   - **Keep state integer**
+   - **Include running processes**
+   - **Keep states**
+
+   For more information on a specific option take a look at [the timescale documentation](https://docs.timescale.com/timescaledb/latest/how-to-guides/continuous-aggregates/).
 
    ![selectingDatasource](/images/grafana-plugins/grafanaPluginsSelectingOptions.png?width=80%)
 
