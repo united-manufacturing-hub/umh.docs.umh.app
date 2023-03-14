@@ -44,6 +44,6 @@ the data in JSON format to MQTT and Kafka for further processing with your prefe
 
 ## Where to get more information?
 
+- [introduction into retrofitting](https://learn.umh.app/lesson/introduction-into-it-ot-retrofitting/)
 - [retrofitting the shopfloor with plug play sensors](https://learn.umh.app/blog/connectivity-retrofitting-the-shopfloor-with-plug-play-sensors/)
-- [retrofitting](https://learn.umh.app/lesson/introduction-into-it-ot-retrofitting/)
 - [documentation of sensorconnet](/docs/architecture/microservices/core/sensorconnect/)
