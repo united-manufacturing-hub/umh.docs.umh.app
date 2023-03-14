@@ -33,12 +33,12 @@ resources from a database and build queries for your dashboard.
 4. Next you can specify how to transform the data, depending on what value you selected.
    Below you can find the options to transform the queried data:
 
-   - **Time bucket**
-   - **Aggregates**
-   - **Handling missing values**
-   - **Keep state integer**
-   - **Include running processes**
-   - **Keep states**
+   - **Time bucket** [timescale documentation](https://docs.timescale.com/api/latest/hyperfunctions/time_bucket/)
+   - **Aggregates** [timescale documentation](https://docs.timescale.com/timescaledb/latest/overview/core-concepts/continuous-aggregates/)
+   - **Handling missing values** [timescale documentation](https://docs.timescale.com/timescaledb/latest/tutorials/grafana/visualize-missing-data/)
+   - **Keep state integer** 
+   - **Include running processes** 
+   - **Keep states** 
 
    For more information on a specific option take a look at [the timescale documentation](https://docs.timescale.com/timescaledb/latest/how-to-guides/continuous-aggregates/).
 
