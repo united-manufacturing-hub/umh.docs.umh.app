@@ -26,7 +26,7 @@ The Unified Namespace / Message Broker in the United Manufacturing Hub provides 
 - Easy integration with legacy equipment: Using tools like [Node-RED](/docs/architecture/microservices/core/node-red/), data can be easily extracted from various protocols such as Siemens S7, OPC-UA, or Modbus
 - Get notified in real-time via MQTT: The Unified Namespace allows you to receive real-time notifications via MQTT when new messages are published. This can be useful for applications that require near real-time processing of data, such as an AGV waiting for new commands.
 - Retrieve past messages from Kafka logs: By looking into the Kafka logs, you can always be aware of the last messages that have been sent to a topic. This allows you to replay certain scenarios for troubleshooting or testing purposes.
-- Efficiently process messages from millions of devices: The Unified Namespace is designed to handle messages from millions of devices in your factory, even over unreliable connections. By using Kafka, you can efficiently at-least-once process each message, ensuring that no data is lost or duplicated.
+- Efficiently process messages from millions of devices: The Unified Namespace is designed to handle messages from millions of devices in your factory, even over unreliable connections. By using Kafka, you can efficiently at-least-once process each message, ensuring that each message arrives at-least-once (1 or more times).
 - Trace messages through the system: The Unified Namespace provides tracing capabilities, allowing you to understand where messages are coming from and where they go. This can be useful for debugging and troubleshooting purposes. You can use the [Management Console](https://mgmt.docs.umh.app/docs/) to visualize the flow of messages through the system.to visualize the flow of messages through the system.
 
 ## How can I use it?
@@ -46,6 +46,9 @@ If you send the messages into other topics, some features might not work correct
 - Messages are only bridged between MQTT and Kafka if they fulfill the following requirements:
   - payload is a valid JSON OR message is sent to the `ia/raw` topic
   - only sent to topics matching the [allowed topics in the UMH datamodel](/docs/architecture/datamodel/messages/), independent of what is configured in the environment variables (will be changed soon)
+  - The topic lengths can be maximum 249 characters as this is a Kafka limitation
+  - Only the following characters are allowed in the topic: `a-z`, `A-Z`, `_` and `-`
+  - Max. messages size for the mqtt-kafka-bridge is 0.95MB (1000000 bytes). If you have more, we recommend using Kafka directly and not bridging it via MQTT.
 - Messages from MQTT to Kafka will be published under a different topic:
   - Spaces will be removed
   - `/` characters will be replaced with a `.`
