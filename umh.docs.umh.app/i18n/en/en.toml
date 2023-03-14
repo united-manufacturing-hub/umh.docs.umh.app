@@ -245,7 +245,7 @@ other = "united-manufacturing-hub-kafkatoblob-secrets"
 other = "united-manufacturing-hub-kafkatopostgresql-certificates"
 
 [resource_secret_mqttbridge]
-other = "united-manufacturing-hub-mqttbridge-mqtt-secrets"
+other = "united-manufacturing-hub-mqttbridge-secrets"
 
 [resource_secret_mqttbroker-keystore]
 other = "united-manufacturing-hub-hivemqce-secret-keystore"
