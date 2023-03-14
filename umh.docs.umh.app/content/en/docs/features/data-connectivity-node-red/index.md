@@ -9,9 +9,11 @@ draft = false
 Node-red has a large library of nodes, which lets you connect various protocols. It also has a user-friendly UI 
 with little code, making it easy to configure the desired nodes. 
 
+![](/images/features/ifm-retrofitting/noderedDifferentProtocols.png?width=60%)
+
 ## When should I use it?
 
-If you need to connect a lot of different protocols (e.g Siemens-S7, OPC-UA, Serial, ...), node-red can be a maintainable
+Sometimes it is necessary to connect a lot of different protocols (e.g Siemens-S7, OPC-UA, Serial, ...) and node-red can be a maintainable
 solution to connect all these protocols without the need for other data connectivity tools. Node-RED is largely known in 
 the IT/OT-Community making it a familiar tool for a lot of users.
 
@@ -26,6 +28,9 @@ By installing additional packages, you can:
 - connect to kafka (node-red-contrib-kafkajs)
 - connect to Siemens-S7 (node-red-contrib-s7)
 - connect to serial (node-red-node-serialport)
+
+You can additionally contextualize the data, using function or other different nodes do manipulate the 
+received data.
 
 ## How can I use it?
 

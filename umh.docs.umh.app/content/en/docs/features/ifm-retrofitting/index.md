@@ -11,6 +11,8 @@ In this article, we will focus on retrofitting with ifm IO-link gateways and Sen
 united manufacturing hub, that finds and reads out ifm IO-link masters in the network and pushes sensor data to 
 MQTT/Kafka for further processing.
 
+![](/images/features/ifm-retrofitting/ifm_sensors.jpg?width=40%)
+
 ## When should I use it?
 
 Retrofitting with ifm IO-link gateways and using Sensorconnect is ideal when dealing with older machines that are not
@@ -46,4 +48,4 @@ the data in JSON format to MQTT and Kafka for further processing with your prefe
 
 - [introduction into retrofitting](https://learn.umh.app/lesson/introduction-into-it-ot-retrofitting/)
 - [retrofitting the shopfloor with plug play sensors](https://learn.umh.app/blog/connectivity-retrofitting-the-shopfloor-with-plug-play-sensors/)
-- [documentation of sensorconnet](/docs/architecture/microservices/core/sensorconnect/)
+- [documentation of sensorconnect](/docs/architecture/microservices/core/sensorconnect/)
