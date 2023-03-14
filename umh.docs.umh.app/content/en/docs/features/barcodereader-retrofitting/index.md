@@ -6,17 +6,17 @@ weight = 4
 draft = false
 +++
 
-The microservice barcode reader can be used to read barcodes from USB-connected barcode scanner
+The microservice barcodereader can be used to read barcodes from USB-connected barcode scanner
 devices and publish the scanned data to a Kafka topic.
 
 ## When should I use it?
 
-The microservice barcode reader can be used when there is a need to integrate barcode scanning into a larger software 
+The microservice barcodereader can be used when there is a need to integrate barcode scanning into a larger software 
 system, such as a warehouse management system or an e-commerce platform.
 
 ## What can I do with it?
 
-With the microservice barcode reader, you can integrate barcode scanning into a larger software system using Kafka as a 
+With the microservice barcodereader, you can integrate barcode scanning into a larger software system using Kafka as a 
 message broker. This can allow for seamless data collection and integration.
 
 ## How can I use it?
@@ -28,7 +28,7 @@ the data to the Kafka topic.
 
 ## What are the limitations?
 
-- microservice is limited by the capabilities of the USB-connected barcode scanner device
+- limited by the capabilities of the USB-connected barcode scanner device
 
 ## Where to get more information?
 
