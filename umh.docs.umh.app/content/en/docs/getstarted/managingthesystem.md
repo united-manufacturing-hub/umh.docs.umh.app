@@ -27,7 +27,8 @@ In this chapter, we'll guide you through connecting to our Kubernetes cluster us
 
 ## 2. Import flows to Node-RED
 
-1. Access the Node-RED Web UI. To do this, click on the service and forward the port as shown above. When the UI opens in the browser, add `nodered` to the URL as shown in the figure below to avoid the [cannot get error](https://learn.umh.app/course/how-to-fix-cannot-get-error-in-node-red/).
+1. Access the Node-RED Web UI. To do this, click on the service and forward the port as shown above. When the UI opens 
+   in the browser, add `nodered` to the URL as shown in the figure below to avoid the [cannot get error](https://learn.umh.app/course/how-to-fix-cannot-get-error-in-node-red/).
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingCannotGet.png?width=75%)
 2. Once you are in the web interface, click on the three lines in the upper right corner and select **Import**.
