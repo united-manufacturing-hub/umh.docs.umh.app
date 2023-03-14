@@ -8,7 +8,7 @@ draft = false
 
 ## Introduction
 
-Retrofitting older machines with sensors is sometimes the only-way to capture process-relevant information for valuable insights.
+Retrofitting older machines with sensors is sometimes the only-way to capture process-relevant information.
 In this article, we will focus on retrofitting with ifm IO-link gateways and Sensorconnect, a microservice of the 
 united manufacturing hub, that finds and reads out ifm IO-link masters in the network and pushes sensor data to 
 MQTT/Kafka for further processing.
@@ -33,10 +33,11 @@ Sensorconnect offers:
 
 
 ## How can I use it?
+
 To use ifm IO-link gateways and [Sensorconnect](/docs/architecture/microservices/core/sensorconnect/), you need to first
 retrofit the machine with the desired sensors and connect them with ifm IO-link gateways. Then, you can use 
-Sensorconnect to detect the IO-link master in the network, poll data from the connected sensors, and interpret the data based on a sensor database. Finally, you can send the data
-in JSON format to MQTT and Kafka for further processing with your preferred software solutions.
+Sensorconnect to detect the IO-link master in the network, poll data from the connected sensors. Finally, you can send
+the data in JSON format to MQTT and Kafka for further processing with your preferred software solutions.
 
 ## What are the limitations?
 
