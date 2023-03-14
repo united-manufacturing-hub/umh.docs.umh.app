@@ -232,6 +232,9 @@ other = "united-manufacturing-hub-kafka-broker-secrets"
 [resource_secret_kafkaconsole]
 other = "united-manufacturing-hub-console"
 
+[resource_secret_kafkaconsole-tls]
+other = "united-manufacturing-hub-kowl-secrets"
+
 [resource_secret_kafkastatedetector]
 other = "united-manufacturing-hub-kafkastatedetector-secrets"
 
