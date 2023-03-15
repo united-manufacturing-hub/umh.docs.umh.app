@@ -6,14 +6,15 @@ weight = 4
 draft = false
 +++
 
-Node-red has a large library of nodes, which lets you connect various protocols. It also has a user-friendly UI 
-with little code, making it easy to configure the desired nodes. 
+One feature of the UMH is to connect devices on the shopfloor such as PLCs, Quality Stations or MES / ERP systems with the Unified Namespace using Node-RED. 
+Node-RED has a large library of nodes, which lets you connect various protocols. It also has a user-friendly UI
+with little code, making it easy to configure the desired nodes.
 
 ![](/images/features/ifm-retrofitting/noderedDifferentProtocols.png?width=60%)
 
 ## When should I use it?
 
-Sometimes it is necessary to connect a lot of different protocols (e.g Siemens-S7, OPC-UA, Serial, ...) and node-red can be a maintainable
+Sometimes it is necessary to connect a lot of different protocols (e.g Siemens-S7, OPC-UA, Serial, ...) and node-RED can be a maintainable
 solution to connect all these protocols without the need for other data connectivity tools. Node-RED is largely known in 
 the IT/OT-Community making it a familiar tool for a lot of users.
 
@@ -22,20 +23,28 @@ the IT/OT-Community making it a familiar tool for a lot of users.
 By default, you can
 - connect to MQTT using the MQTT node
 - connect to HTTP using the HTTP node
+- connect to TCP using the TCP node
+- connect to IP using the UDP node
 
 By installing additional packages, you can:
 - connect to OPC-UA (node-red-contrib-opcua)
 - connect to kafka (node-red-contrib-kafkajs)
 - connect to Siemens-S7 (node-red-contrib-s7)
 - connect to serial (node-red-node-serialport)
+- connect to modbus (node-red-contrib-modbus had)
+- connect to MC-protocol (node-red-contrib-mcprotocol)
+- connect to OMRON FINS Ethernet protocol (node-red-contrib-omron-fins)
+- connect to EtherNet/IP Protocol (node-red-contrib-cip-ethernet-ip)
+- connect to PostgreSQL (node-red-contrib-postgresql)
+- connect to SAP SQL Anywhere
 
 You can additionally contextualize the data, using function or other different nodes do manipulate the 
 received data.
 
 ## How can I use it?
 
-Node-red comes preinstalled as a microservice with the umh. Follow our [get started](/docs/getstarted/) guide, 
-to connect with node-red and create your first flow. We also have many [best practises & guides for Node-RED](https://learn.umh.app/topic/node-red/).
+Node-RED comes preinstalled as a microservice with the United Manufacturing Hub. Follow our [get started](/docs/getstarted/) guide, 
+to connect with Node-RED and create your first flow. We also have many [best practises & guides for Node-RED](https://learn.umh.app/topic/node-red/).
 
 ## What are the limitations?
 
@@ -46,5 +55,7 @@ to connect with node-red and create your first flow. We also have many [best pra
 
 ## Where to get more information?
 
-- [get started with the umh](/docs/getstarted/)
-- [Best-practices & guides for Node-RED](https://learn.umh.app/topic/node-red/)
+- Learn more about Node-RED and the United Manufacturing Hub by following our [Get started guide](/docs/getstarted/) .
+- Learn more about [Best-practices & guides for Node-RED](https://learn.umh.app/topic/node-red/).
+- Learn how to connect [Node-RED to SAP SQL Anywhere](https://learn.umh.app/course/connecting-to-sap-sql-anywhere-using-a-custom-node-red-instance/) with a custom docker instance.
+- Checkout the [industrial forum](https://discourse.nodered.org/c/industrial/18) for Node-RED
