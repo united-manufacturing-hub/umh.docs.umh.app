@@ -6,4 +6,4 @@
     {{ if strings.HasSuffix .Destination ".json" }}
     target="_blank"
     {{ end }}
->{{ .Text | safeHTML }}</a>
+>{{ .PlainText | safeHTML }}</a>{{- "" -}}
