@@ -11,8 +11,8 @@ devices and publish the scanned data to a Kafka topic.
 
 ## When should I use it?
 
-The microservice barcodereader can be used when there is a need to integrate barcode scanning into a larger software 
-system, such as a warehouse management system or an e-commerce platform.
+If you need to connect a barcodereader or any other USB devices acting as a keyboard. These cases could be to scan an order
+at the production machine from the accompanying order sheet. Or To scan material for inventory and track and trace.
 
 ## What can I do with it?
 
@@ -28,7 +28,7 @@ the data to the Kafka topic.
 
 ## What are the limitations?
 
-- limited by the capabilities of the USB-connected barcode scanner device
+- sometimes special characters are not parsed correctly. They need to be adjusted afterwards in th Unified Namespace
 
 ## Where to get more information?
 

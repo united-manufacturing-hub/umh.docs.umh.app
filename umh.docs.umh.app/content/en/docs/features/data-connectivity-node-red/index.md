@@ -43,15 +43,36 @@ received data.
 
 ## How can I use it?
 
-Node-RED comes preinstalled as a microservice with the United Manufacturing Hub. Follow our [get started](/docs/getstarted/) guide, 
-to connect with Node-RED and create your first flow. We also have many [best practises & guides for Node-RED](https://learn.umh.app/topic/node-red/).
+Node-RED comes preinstalled as a microservice with the United Manufacturing Hub.
+
+1. To access Node-RED navigate to **network**->**services** on the left-hand side in UMHLens. You can download UMHLens [here](https://github.com/united-manufacturing-hub/UMHLens/releases).
+2. Change the namespace to **Namespace: united-manufacturing-hub** at the top right.
+
+   ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingServices.png?width=75%)
+
+3. Click on **united-manufacturing-hub-nodered-service** and scroll down to **Connection** and forward the port.
+
+   ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingForwarding.png?width=75%)
+4. Once Node-RED opens in the browser, add `nodered` to the URL to avoid the [cannot get error](https://learn.umh.app/course/how-to-fix-cannot-get-error-in-node-red/).
+5. To install custom nodes, Click on the **Menu** button in the upper right-hand corner of the screen and select **Manage palette** from the drop-down menu.
+
+   ![](/images/features/data-connectivity-node-red/nodered_dropdownMenu.png)
+6. In the **Manage palette** menu, select the **Install** tab.
+
+   ![](/images/features/data-connectivity-node-red/noderedManagePalette.png?width=70%)
+7. Use the search bar to find the plugin/node that you want to install.
+8. Click on the **Install** button next to the plugin/node to install it and wait for the installation to complete.
+9. Now you can configure your
+TODO: link to tutorial on how to Process the data and align it with the UMH datamodel (learn)
+
+
 
 ## What are the limitations?
 
 - most packages have no enterprise support. If you encounter any errors, you need to ask the community. 
   However, we found that these packages are often more stable than the commercial ones out there, 
   as they have been battle tested by way more users than commercial software.
-- having many flows without following a strict structure, leads to confusion for other users
+- having many flows without following a strict structure, leads in general to confusion.
 
 ## Where to get more information?
 
