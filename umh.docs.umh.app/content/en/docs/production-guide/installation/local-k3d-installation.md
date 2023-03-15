@@ -126,8 +126,15 @@ or [OpenLens](https://github.com/MuhammedKalkan/OpenLens) installed.
 1. Create a cluster.
 
    ```bash
-   k3d cluster create {{% resource type="cluster" name="name" %}} --api-port 127.0.0.1:6443
+   k3d cluster create {{% resource type="cluster" name="name" %}} --api-port 127.0.0.1:6443 --port 8080:8080@server:0 --port 8090:8090@server:0 --port 1880:1880@server:0 --port 5432:5432@server:0 --port 1883:1883@server:0 --port 8883:8883@server:0 --port 9092:9092@server:0 --port 46010:46010@server:0
    ```
+
+   The `--api-port` flag is used to expose the Kubernetes API server on the
+   host machine. If the `6443` port is already in use, you can use any other
+   port.
+   The `--port` flag is used to expose the ports of the services
+   running in the cluster on the host machine. If any of the ports on the left
+   side of the `:` is already in use, you can use any other port.
 
 2. Verify that the cluster is up and running.
 
