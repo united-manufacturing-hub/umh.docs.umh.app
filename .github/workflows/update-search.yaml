@@ -21,5 +21,9 @@ jobs:
           TYPESENSE_PORT: 443
           TYPESENSE_PROTOCOL: https
         run: |
+          COLLECTION=$(cat config-umh.docs.json | jq -r '.index_name')
+          curl -H "X-TYPESENSE-API-KEY: ${TYPESENSE_API_KEY}" \
+          -X DELETE \
+          "${TYPESENSE_PROTOCOL}://${TYPESENSE_HOST}/collections/${COLLECTION}"
           CONFIG=$(cat config-umh.docs.json | jq -r tostring)
           docker run -it -e "CONFIG=$CONFIG" --network host typesense/docsearch-scraper
