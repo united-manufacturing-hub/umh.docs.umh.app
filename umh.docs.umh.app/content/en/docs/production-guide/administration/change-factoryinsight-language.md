@@ -43,6 +43,7 @@ Factoryinsight supports the following languages:
 | :------- | :--- |
 | German   | 0    |
 | English  | 1    |
+| Turkish  | 2    |
 {{< /table >}}
 
 <!-- Optional section; add links to information related to this topic. -->
