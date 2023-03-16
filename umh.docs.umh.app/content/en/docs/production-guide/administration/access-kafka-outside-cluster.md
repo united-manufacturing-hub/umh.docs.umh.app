@@ -3,7 +3,7 @@ title: "Access Kafka Outside the Cluster"
 content_type: task
 description: |
   This page describes how to access Kafka from outside the cluster.
-weight: 21
+weight: 22
 ---
 
 <!-- overview -->
