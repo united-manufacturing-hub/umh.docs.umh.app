@@ -73,6 +73,8 @@ TODO: link to tutorial on how to Process the data and align it with the UMH data
   However, we found that these packages are often more stable than the commercial ones out there, 
   as they have been battle tested by way more users than commercial software.
 - having many flows without following a strict structure, leads in general to confusion.
+- one additional limitation is "the speed of development of Node-RED". After a big Node-RED and JavaScript update
+  dependencies most likely break, and those single community maintained nodes need to be updated.
 
 ## Where to get more information?
 

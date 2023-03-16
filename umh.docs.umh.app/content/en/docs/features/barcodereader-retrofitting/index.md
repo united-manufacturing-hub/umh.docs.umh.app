@@ -7,7 +7,7 @@ draft = false
 +++
 
 The microservice barcodereader can be used to read barcodes from USB-connected barcode scanner
-devices and publish the scanned data to a Kafka topic.
+devices and publish the scanned data to the [Unified Namespace](https://learn.umh.app/lesson/introduction-into-it-ot-unified-namespace/).
 
 ## When should I use it?
 
@@ -16,8 +16,9 @@ at the production machine from the accompanying order sheet. Or To scan material
 
 ## What can I do with it?
 
-With the microservice barcodereader, you can integrate barcode scanning into a larger software system using Kafka as a 
-message broker. This can allow for seamless data collection and integration.
+You can connect USB devices acting as a keyboard to the Unified Namespace. It will record all inputs and send it out once
+a return / emter character has been detected. A lof of barcodescanners work that way. Additionally, you can also connect
+something like a quality testing station (we once connected a mitutoyu quality testing station).
 
 ## How can I use it?
 
