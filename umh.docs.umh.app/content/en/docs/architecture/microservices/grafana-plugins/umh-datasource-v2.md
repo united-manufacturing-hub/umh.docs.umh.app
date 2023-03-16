@@ -31,16 +31,24 @@ resources from a database and build queries for your dashboard.
    ![selectingDatasource](/images/grafana-plugins/grafanaPluginsSelectingValue.png?width=80%)
 
 4. Next you can specify how to transform the data, depending on what value you selected.
-   Below you can find the options to transform the queried data:
 
-   - **Time bucket** 
-   - **Aggregates**
-   - **Handling missing values** 
-   - **Keep state integer**
-   - **Include running processes**
-   - **Keep states**
+   For **processValue**:
 
-   For more information on a specific option take a look at [the timescale documentation](https://docs.timescale.com/api/latest/hyperfunctions/gapfilling/time_bucket_gapfill/).
+      - **Time bucket** [timescale documentation](https://docs.timescale.com/api/latest/hyperfunctions/time_bucket/)
+      - **Aggregates** [timescale documentation](https://docs.timescale.com/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-one-variable/)
+      - **Handling missing values** [timescale documentation](https://docs.timescale.com/api/latest/hyperfunctions/gapfilling/time_bucket_gapfill/)
+      - **Include last datapoint before time interval**
+      - **Include next datapoint after time interval**
+   
+   For **state**:
+
+      - **Keep state integer** If enabled, instead of showing the string representation of the state, it shows its integer value. e.g. instead of "No shifts", returns 160000.
+
+   For **tables**:
+
+      - **Include running processes**
+      - **Keep states** works the same way as **Keep state integer**, but only for availability tables, like availabilityHistogram and availabilityTotal.
+
 
    ![selectingDatasource](/images/grafana-plugins/grafanaPluginsSelectingOptions.png?width=80%)
 
