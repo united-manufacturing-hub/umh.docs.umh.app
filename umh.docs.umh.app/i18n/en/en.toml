@@ -145,6 +145,9 @@ other = "unitedmanufacturinghub"
 [resource_helm_repo]
 other = "united-manufacturing-hub"
 
+[resource_helm_repo-url]
+other = "https://repo.umh.app"
+
 [resource_helm_release]
 other = "united-manufacturing-hub"
 
