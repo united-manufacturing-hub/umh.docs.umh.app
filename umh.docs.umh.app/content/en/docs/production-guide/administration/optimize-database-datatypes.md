@@ -1,28 +1,34 @@
 ---
-title: "Migrate DB from varchar to text"
-description: "This migration optimizes the database, by changing the data type of some columns from varchar to text"
+title: "Optimize Database Datatypes"
+content_type: task
+description: |
+    This page describes how to change the datatype of some columns in the database
+    in order to optimize the performance.
+weight: 110
 maximum_version: 0.9.5
 ---
 
-## Instructions
+<!-- overview -->
 
-1. Open OpenLens
-2. Open a Shell inside the timescale pod
+In version 0.9.5 and prior, some tables in the database were created with the
+`varchar` data type. This data type is not optimal for storing large amounts of
+data. In version 0.9.6, the data type of some columns was changed from `varchar`
+to `text`. This migration optimizes the database, by changing the data type of
+some columns from varchar to text.
 
-![Untitled](/images/production-guide/upgrading/migrate-db-varchar-to-text/timescaleShell.png)
+## {{% heading "prerequisites" %}}
 
-1. Execute 
+{{< include "task-aftinst-prereqs.md" >}}
 
-```bash
-psql
-```
+<!-- steps -->
 
-![Untitled](/images/production-guide/upgrading/migrate-db-varchar-to-text/psql.png)
+{{< include "open-database-shell" >}}
 
-1. Execute these SQL statements
+## Alter the tables
+
+Execute the following SQL statements:
 
 ```sql
-\c factoryinsight
 ALTER TABLE assettable ALTER COLUMN assetid TYPE text;
 ALTER TABLE assettable ALTER COLUMN location TYPE text;
 ALTER TABLE assettable ALTER COLUMN customer TYPE text;
@@ -32,9 +38,7 @@ ALTER TABLE configurationtable ALTER COLUMN customer TYPE text;
 ALTER TABLE componenttable ALTER COLUMN componentname TYPE text;
 ```
 
-![Untitled](/images/production-guide/upgrading/migrate-db-varchar-to-text/alter_table.png)
-
-1. Confirm the changes by using
+Then confirm the changes by using the following SQL statements:
 
 ```sql
 SELECT COLUMN_NAME, DATA_TYPE FROM information_schema.columns WHERE TABLE_NAME = 'assettable';
@@ -43,5 +47,3 @@ SELECT COLUMN_NAME, DATA_TYPE FROM information_schema.columns WHERE TABLE_NAME =
 SELECT COLUMN_NAME, DATA_TYPE FROM information_schema.columns WHERE TABLE_NAME = 'configurationtable';
 SELECT COLUMN_NAME, DATA_TYPE FROM information_schema.columns WHERE TABLE_NAME = 'componenttable';
 ```
-
-![Untitled](/images/production-guide/upgrading/migrate-db-varchar-to-text/select.png)
