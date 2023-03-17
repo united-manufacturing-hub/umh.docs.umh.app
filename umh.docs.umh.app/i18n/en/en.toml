@@ -169,6 +169,9 @@ other = "united-manufacturing-hub-timescaledb-0"
 [resource_pod_kafka]
 other = "united-manufacturing-hub-kafka-0"
 
+[resource_pod_mqttbroker]
+other = "united-manufacturing-hub-hivemqce-0"
+
 [resource_pod_nodered]
 other = "united-manufacturing-hub-nodered-0"
 
