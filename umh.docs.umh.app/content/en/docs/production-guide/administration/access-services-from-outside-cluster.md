@@ -57,6 +57,8 @@ a ClusterIP service. That means that they are only accessible from within the
 cluster itself. To access them from outside the cluster, you need to create a
 LoadBalancer service.
 
+### Create a LoadBalancer service
+
 If you are looking to expose th Kafka broker, follow the instructions in the
 [Access Kafka outside the cluster](/docs/production-guide/administration/access-kafka-outside-cluster/)
 page.
@@ -91,6 +93,26 @@ k3d cluster edit {{< resource type="cluster" name="name" >}} --port-add "<local-
 
 Replace `<local-port>` with a free port number on your local machine, and
 `<cluster-port>` with the port number of the service.
+
+### Port forwarding in {{% resource type="lens" name="name" %}}
+
+If you don't want to create a LoadBalancer service, effectively exposing the
+microservice to anyone that has access to the host IP address, you can use
+{{% resource type="lens" name="name" %}} to forward the port to your local
+machine.
+
+1. Open {{< resource type="lens" name="name" >}} and navigate to **Network** >
+    **Services**.
+2. Select the service that you want to access.
+3. Scroll down to the **Connection** section and click the **Forward...** button.
+4. From the dialog, you can choose a port on your local machine to forward the
+   port from, or you can leave it empty to use a random port.
+5. Click **Forward** to apply the changes.
+6. If you left the checkbox **Open in browser** checked, then the service will
+   open in your default browser.
+
+You can see and manage the forwarded ports of your cluster in the **Network** >
+**Port Forwarding** section.
 
 <!-- discussion -->
 
