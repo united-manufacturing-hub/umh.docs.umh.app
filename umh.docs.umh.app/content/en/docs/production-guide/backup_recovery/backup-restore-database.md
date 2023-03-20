@@ -4,6 +4,8 @@ content_type: task
 description: |
     This page describes how to backup and restore the database.
 weight: 50
+aliases:
+   - /docs/production-guide/backup_recovery/backup-timescale/
 ---
 
 <!-- overview -->

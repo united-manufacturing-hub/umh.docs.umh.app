@@ -6,6 +6,8 @@ description: |
     in order to optimize the performance.
 weight: 110
 maximum_version: 0.9.5
+aliases:
+    - /docs/production-guide/upgrading/migrate-db-varchar-to-text/
 ---
 
 <!-- overview -->

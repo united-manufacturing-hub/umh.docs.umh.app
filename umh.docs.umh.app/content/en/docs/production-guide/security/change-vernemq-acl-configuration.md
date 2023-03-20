@@ -6,6 +6,8 @@ description: |
     to publish to the MQTT broker
 weight: 50
 maximum_version: 0.9.5
+alsos:
+    - /docs/production-guide/security/vernemq-acl/
 ---
 
 <!-- overview -->

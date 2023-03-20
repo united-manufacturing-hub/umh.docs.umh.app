@@ -5,6 +5,8 @@ description: |
     This page describes how to deploy the United Manufacturing Hub on Flatcar
     Linux in a virtual machine.
 weight: 50
+aliases:
+   - /docs/production-guide/installation/installation-guide-flatcar/
 ---
 
 <!-- overview -->

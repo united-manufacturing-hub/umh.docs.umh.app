@@ -5,6 +5,8 @@ description: |
     This page describes how to deploy the United Manufacturing Hub on Flatcar
     Linux on bare metal.
 weight: 50
+aliases:
+   - /docs/production-guide/installation/installation-guide-flatcar/
 ---
 
 <!-- overview -->

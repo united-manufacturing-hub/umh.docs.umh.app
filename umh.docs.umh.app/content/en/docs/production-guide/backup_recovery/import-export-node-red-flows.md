@@ -4,6 +4,8 @@ content_type: task
 description: |
     This page describes how to import and export Node-RED flows.
 weight: 50
+aliases:
+    - /docs/production-guide/backup_recovery/import-export-node-red/
 ---
 
 <!-- overview -->

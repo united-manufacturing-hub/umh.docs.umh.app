@@ -4,6 +4,9 @@ content_type: task
 description: |
     This page describe how to access services from outside the cluster.
 weight: 21
+aliases:
+   - /docs/production-guide/administration/access-factoryinsight-outside-cluster/
+   - /docs/production-guide/administration/access-mqtt-outside-cluster/
 ---
 
 <!-- overview -->

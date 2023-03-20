@@ -6,6 +6,8 @@ description: |
     MQTT broker.
 weight: 50
 minimum_version: 0.9.10
+aliase:
+    - /docs/production-guide/security/hivemq-pki/
 ---
 
 <!-- overview -->
