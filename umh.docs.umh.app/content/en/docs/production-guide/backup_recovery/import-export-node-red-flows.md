@@ -24,7 +24,7 @@ To export Node-RED flows, please follow the steps below:
 
    ![ExportWindow](/images/production-guide/backup_recovery/import-export-node-red/export-nodes.png)
 
-{{< notice note >}}
+{{< notice warning >}}
 The credentials of the connector nodes are not exported. You will need to
 re-enter them after importing the flows.
 {{< /notice >}}
