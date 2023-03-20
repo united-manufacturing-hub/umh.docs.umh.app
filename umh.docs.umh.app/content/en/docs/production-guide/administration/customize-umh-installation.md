@@ -58,6 +58,14 @@ configuration file and use it during the installation.
     helm upgrade {{% resource type="helm" name="release" %}} {{% resource type="helm" name="repo" %}}/united-manufacturing-hub -n {{% resource type="ns" name="umh" %}} --values values.yaml
     ```
 
+{{% notice info %}}
+Be sure to use the correct kube context (meaning the correct cluster) when you
+run the `helm` commands. You can use a different context by adding the
+`--kube-context=<kube-context-name>` flag to the `helm` command. Check the
+[kubectl config](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#config)
+documentation for more information.
+{{% /notice %}}
+
 Here is an example for a configuration that enables sensorconnect, disables
 the simulators and sets the number of replicas of factoryinsight to 1:
 
