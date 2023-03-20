@@ -59,11 +59,21 @@ machine:
      Use `localhost` if you installed the United Manufacturing Hub using k3d.
    - `<BACKUP_NAME>` is the name of the backup file.
 
+### Grafana database
+
+If you want to backup the Grafana database, you can follow the same steps as
+above, but you need to replace any occurence of `factoryinsight` with
+`grafana`.
+
+Additionally, you also need to write down the credentials in the
+{{< resource type="secret" name="grafana" >}} Secret, as they will be needed
+to access the dashboard after restoring the database.
+
 ## Restoring the database
 
-{{ notice warning }}
+{{< notice warning >}}
 This section is untested. Please report any issues you encounter.
-{{ /notice }}
+{{< /notice >}}
 
 For this section, we assume that you are restoring the data to a fresh United
 Manufacturing Hub installation with an empty database.
