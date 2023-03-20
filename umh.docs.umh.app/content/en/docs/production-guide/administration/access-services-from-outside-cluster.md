@@ -106,13 +106,19 @@ machine.
 2. Select the service that you want to access.
 3. Scroll down to the **Connection** section and click the **Forward...** button.
 4. From the dialog, you can choose a port on your local machine to forward the
-   port from, or you can leave it empty to use a random port.
+   cluster port from, or you can leave it empty to use a random port.
 5. Click **Forward** to apply the changes.
 6. If you left the checkbox **Open in browser** checked, then the service will
    open in your default browser.
 
 You can see and manage the forwarded ports of your cluster in the **Network** >
 **Port Forwarding** section.
+
+{{< notice warning >}}
+Port forwarding can be unstable, especially if the connection to the cluster is
+slow. If you are experiencing issues, try to create a LoadBalancer service
+instead.
+{{< /notice >}}
 
 <!-- discussion -->
 
