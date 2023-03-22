@@ -1,15 +1,14 @@
-name: 📚 Documentation issue report
-description: File a documentation issue report
-title: "[Docs]: "
-labels: ["type: docs"]
+name: 🐞 Bug report
+description: Report a bug encountered with UMH Docs
+labels: ["type: bug"]
 body:
     - type: markdown
       attributes:
           value: |
-              Thanks for taking the time to fill out this documentation issue report!
+              Thanks for taking the time to fill out this bug report!
               Before you create the issue:
-              * Search the existing issues first, as yours may be a duplicate.
-              * Search our [documentation](https://umh.docs.umh.app/docs/) for any relevant troubleshooting steps.
+              - Search the existing issues first, as yours may be a duplicate.
+              - Search our [documentation](https://umh.docs.umh.app/docs/) for any relevant troubleshooting steps.
     - type: textarea
       id: describe-issue
       attributes:
@@ -17,6 +16,19 @@ body:
           description: A clear and concise description of what the issue is.
       validations:
           required: true
+    - type: textarea
+      id: what-expected
+      attributes:
+          label: What did you expect to happen?
+          description: A clear and concise description of what you expected to happen.
+      validations:
+          required: true
+    - type: input
+      id: location
+      attributes:
+          label: Location
+          description: Where did you encounter this bug?
+          placeholder: URL or path to the page
     - type: textarea
       id: screenshots
       attributes:
