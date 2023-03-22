@@ -4,7 +4,7 @@
 {{ $fileDir := path.Split $file }}
 {{ $bundlePath := path.Join .Page.File.Dir $fileDir.Dir }}
 {{ $filename := printf "/content/%s/examples/%s" .Page.Lang $file | safeURL }}
-{{ $ghlink := printf "https://%s/%s%s" site.Params.githubwebsiteraw (default "main" site.Params.docsbranch) $filename | safeURL }}
+{{ $ghlink := printf "https://%s/%s/umh.docs.umh.app%s" site.Params.githubwebsiteraw (default "main" site.Params.docsbranch) $filename | safeURL }}
 {{/* First assume this is a bundle and the file is inside it. */}}
 {{ $resource := $p.Resources.GetMatch (printf "%s*" $file ) }}
 {{ with $resource }}
@@ -18,15 +18,24 @@
 {{ errorf "[%s] %q not found in %q" site.Language.Lang $fileDir.File $bundlePath }}
 {{ end }}
 {{ with $.Scratch.Get "content" }}
-<div class="highlight">
-    <div class="copy-code-icon" style="text-align:right">
-    {{ with $ghlink }}<a href="{{ . }}" download="{{ $file }}">{{ end }}<code>{{ $file }}</code>
-    {{ if $ghlink }}</a>{{ end }}
-    <img src="{{ "images/copycode.svg" | relURL }}" style="max-height:24px; cursor: pointer" onclick="copyCode('{{ $file | anchorize }}')" title="Copy {{ $file }} to clipboard">
-    </img>
-    </div>
-    <div class="includecode" id="{{ $file | anchorize }}">
+<div class="td-content includecode" id="{{ $file | anchorize }}">
     {{ highlight . $codelang "" }}
-    </div>
+    <script type="text/javascript">
+        document.querySelectorAll('pre > code').forEach(function (codeBlock) {
+            var link = document.createElement('a');
+            link.target = '_blank';
+            link.download = '{{ $file }}';
+            link.href = '{{ $ghlink }}';
+            link.innerHTML = '<code>{{ $file }}</code>';
+            link.classList = 'include-ref'
+
+            var pre = codeBlock.parentNode;
+            var includecode = pre.parentNode;
+            if (pre.parentNode.classList.contains('highlight') && includecode.parentNode.classList.contains('includecode')) {
+                var highlight = pre.parentNode;
+                pre.parentNode.insertBefore(link, highlight.children[0]);
+            }
+        });
+    </script>
 </div>
 {{ end }}

@@ -21,6 +21,9 @@ After you add a new file with a code snippet in the `examples` directory, you ca
 reference it in your documentation using the `codenew` shortcode with the `file`
 parameter set to the path to the file, relative to the `examples` directory.
 
+A *Copy* button is automatically added to the code snippet. When the user clicks
+the button, the code is copied to the clipboard.
+
 Here's an example:
 
 ```go-html-template

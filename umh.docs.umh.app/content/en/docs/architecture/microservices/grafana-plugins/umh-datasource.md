@@ -1,44 +1,46 @@
-+++
-title = "umh-datasource"
-menuTitle = "umh-datasource"
-chapter = false
-weight = 5
-draft = false
-description = "The technical documentation of the microservice umh-datasource, which allows for easy data extraction from factoryinsight."
-+++
+---
+title: "Umh Datasource"
+content_type: grafana-plugin
+description: |
+    This page contains the technical documentation of the plugin umh-datasource, which allows for easy data extraction from factoryinsight.
+weight: 2000
+---
 
-UMH Datasource provides a Grafana 8.X compatible plugin, allowing easy data extraction from the UMH factoryinsight microservice.
+<!-- overview -->
 
-## Get started
+{{% notice warning %}}
+We are no longer maintaining this microservice. Use instead our new microservice datasource-v2 for data extraction from factoryinsight.
+{{% /notice %}}
 
-For development, the steps to build the plugin from source are described here. 
+The **umh datasource** is a Grafana 8.X compatible plugin, that allows you to fetch resources from a database
+and build queries for your dashboard.
 
-1. Clone the datasource repository `git@github.com:united-manufacturing-hub/united-manufacturing-hub-datasource.git`
+<!-- body -->
 
-2. Install dependencies
+## {{% heading "howitworks" %}}
 
-```bash
-yarn install
-```
+1. When creating a new panel, select **umh-datasource** from the Data source drop-down menu. It will then fetch the resources
+   from the database. The loading time may depend on your internet speed.
 
-3. Build plugin in development mode or run in watch mode
+   ![selectingDatasource](/images/grafana-plugins/grafanaPluginsSelectingV1.png/?width=85%)
 
-```bash
-yarn dev
-```
+2. Select your query parameters **Location**, **Asset** and **Value** to build your query.
 
-4. Build plugin in production mode (not recommended due to [Issue 32336](https://github.com/grafana/grafana/issues/32336)).
-```bash
-yarn build
-```
-5. Move the resulting dis folder in your Grafana plugins directory.
+   ![selectingDatasource](/images/grafana-plugins/grafanaPluginsSelectingValuesV1.png/?width=85%)
 
-- Windows: `C:\Program Files\GrafanaLabs\grafana\data\plugins`
-- Linux: `/var/lib/grafana/plugins`
+## {{% heading "configuration" %}}
 
-6. Rename the folder to umh-datasource.
+1. In Grafana, navigate to the Data sources configuration panel.
 
-7. Enable the [enable development mode](https://grafana.com/docs/grafana/latest/administration/configuration/) to load unsigned plugins.
+   ![selectingConfiguration](/images/grafana-plugins/grafanaPluginsConfigurationPanel.png/?width=15%)
 
-8. restart your Grafana service.
+2. Select **umh-datasource** to configure it.
 
+   ![selectingConfiguration](/images/grafana-plugins/grafanaPluginsSelectingConfiguration.png/?width=85%)
+3. Configurations:
+    - Base URL: the URL for the factoryinsight backend. Defaults to `http://{{< resource type="service" name="factoryinsight" >}}/`.
+    - Enterprise name: previously **customerID** for the old datasource plugin. Defaults to **factoryinsight**.
+    - API Key: authenticates the API calls to factoryinsight.
+      Can be found with UMHLens by going to Secrets → {{< resource type="secret" name="factoryinsight" >}} → apiKey. It should follow the format `Basic xxxxxxxx`.
+
+   ![selectingConfiguration](/images/grafana-plugins/grafanaPluginsConfiguringDatasourceV1.png/?width=85%)
