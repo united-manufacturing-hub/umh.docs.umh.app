@@ -701,7 +701,6 @@ for more information.
 | `kafka.tls.certFilepath` | The path to the certificate file            | string | Any             | `/SSL_certs/kafka/tls.crt`                              |
 | `kafka.tls.enabled`      | Whether to enable TLS for the Kafka brokers | bool   | `true`, `false` | `false`                                                 |
 | `kafka.tls.keyFilepath`  | The path to the key file                    | string | Any             | `/SSL_certs/kafka/tls.key`                              |
-| `kafka.tls.passphrase`   | The passphrase for the key file             | string | Any             | ""                                                      |
 {{< /table >}}
 
 ##### extraVolumeMounts {#dz-kafka-console-extravolumemounts}
