@@ -47,11 +47,17 @@ use the following settings:
 - **Memory size**: 4 GB
 - **Hard disk size**: 10 GB
 
+Also, the network settings of the virtual machine must allow communication with
+the internet and the host machine. If you are using VirtualBox, you can check
+the network settings by clicking on the virtual machine in the VirtualBox
+manager and then on **Settings**. In the **Network** tab, make sure that the
+**Adapter 1** is set to **Bridged Adapter**.
+
 ## Install Flatcar Linux
 
 1. Start the virtual machine.
 2. Accept the License.
-3. Select DHCP as the network configuration.
+3. Set a static IP address.
 4. Select `sda` as the disk.
 5. Select Confirm.
 

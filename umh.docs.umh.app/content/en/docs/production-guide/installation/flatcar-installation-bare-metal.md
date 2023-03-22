@@ -50,6 +50,15 @@ flowchart LR
     end
 {{< /mermaid >}}
 
+{{< notice info >}}
+For optimal functionality, we recommend assigning a static IP address to your
+edge device. This can be accomplished through a static lease in the DHCP server
+or by setting the IP address during installation. Changing the IP address of the
+edge device after installation may result in certificate issues, so we strongly
+advise against doing so. By assigning a static IP address, you can ensure a more
+stable and reliable connection for your edge device.
+{{< /notice >}}
+
 <!-- steps -->
 
 ## Install Flatcar Linux on the edge device
@@ -58,7 +67,8 @@ flowchart LR
    different way of booting from USB, so you need to consult the documentation
    of your device.
 2. Accept the License.
-3. Select the correct network settings. If you are unsure, select DHCP.
+3. Select the correct network settings. If you are unsure, select DHCP, but
+   keep in mind that a static IP address is strongly recommended.
 4. Select the correct drive to install Flatcar Linux on. If you are unsure, check
    the [troubleshooting section](#drive).
 5. Check that the installation settings are correct and press `Confirm` to start
