@@ -255,12 +255,13 @@ The following table lists the configuration options that can be set in the
 `_000_commonConfig.datasources.sensorconnect` section:
 
 {{< table caption="sensorconnect section parameters" >}}
-| Parameter     | Description                                              | Type   | Allowed values  | Default         |
-| ------------- | -------------------------------------------------------- | ------ | --------------- | --------------- |
-| `enabled`     | Whether the sensorconnect microservice is enabled.       | bool   | `true`, `false` | `false`         |
-| `iprange`     | The IP range of the sensors in CIDR notation.            | string | Valid IP range  | 192.168.10.1/24 |
-| `enableKafka` | Whether the sensorconnect microservice should use Kafka. | bool   | `true`, `false` | `true`          |
-| `enableMQTT`  | Whether the sensorconnect microservice should use MQTT.  | bool   | `true`, `false` | `false`         |
+| Parameter     | Description                                               | Type   | Allowed values  | Default         |
+| ------------- | --------------------------------------------------------- | ------ | --------------- | --------------- |
+| `enabled`     | Whether the sensorconnect microservice is enabled.        | bool   | `true`, `false` | `false`         |
+| `iprange`     | The IP range of the sensors in CIDR notation.             | string | Valid IP range  | 192.168.10.1/24 |
+| `enableKafka` | Whether the sensorconnect microservice should use Kafka.  | bool   | `true`, `false` | `true`          |
+| `enableMQTT`  | Whether the sensorconnect microservice should use MQTT.   | bool   | `true`, `false` | `false`         |
+| `testMode`    | Whether to enable test mode. Only useful for development. | bool   | `true`, `false` | `false`         |
 {{< /table >}}
 
 #### Data processing
@@ -617,7 +618,7 @@ Everything below this point  should not be changed, unless you know what you are
 {{< table caption="Danger zone advanced configuration" >}}
 | Section                                            | Description                                                     |
 | -------------------------------------------------- | --------------------------------------------------------------- |
-| [`barcodereader`](#dz-barcodereader)              | Configuration for barcodereader                                 |
+| [`barcodereader`](#dz-barcodereader)               | Configuration for barcodereader                                 |
 | [`console`](#dz-kafka-console)                     | Configuration for the Kafka console                             |
 | [`factoryinput`](#dz-factoryinput)                 | Configuration for factoryinput                                  |
 | [`factoryinsight`](#dz-factoryinsight)             | Configuration for factoryinsight                                |
@@ -637,7 +638,7 @@ Everything below this point  should not be changed, unless you know what you are
 | [`operator`](#dz-operator)                         | Configuration for the MinIo operator                            |
 | [`packmlmqttsimulator`](#dz-packml-mqtt-simulator) | Configuration for the PackML MQTT simulator                     |
 | [`redis`](#dz-redis)                               | Configuration for Redis                                         |
-| [`sensorconnect`](#dz-sensorconnect)              | Configuration for sensorconnect                                 |
+| [`sensorconnect`](#dz-sensorconnect)               | Configuration for sensorconnect                                 |
 | [`serviceAccount`](#service-account)               | Configuration for the service account used by the microservices |
 | [`tenant`](#dz-tenant)                             | Configuration for the MinIo tenant                              |
 | [`timescaledb-single`](#dz-timescaledb-single)     | Configuration for TimescaleDB                                   |
@@ -679,12 +680,12 @@ For more information about the parameters, see the
 Here are only the values different from the default ones.
 
 {{< table caption="console advanced section parameters" >}}
-| Parameter               | Description                                     | Type   | Allowed values  | Default                                                                |
-| ----------------------- | ----------------------------------------------- | ------ | --------------- | ---------------------------------------------------------------------- |
-| `console.config`        | The configuration of the Kafka console          | object | Any             | See [console.config](#dz-kafka-console-config) section                 |
+| Parameter               | Description                                     | Type   | Allowed values  | Default                                                              |
+| ----------------------- | ----------------------------------------------- | ------ | --------------- | -------------------------------------------------------------------- |
+| `console.config`        | The configuration of the Kafka console          | object | Any             | See [console.config](#dz-kafka-console-config) section               |
 | `extraVolumeMounts`     | Extra volume mounts to add to the Kafka console | array  | Any             | See [extraVolumeMounts](#dz-kafka-console-extravolumemounts) section |
-| `extraVolumes`          | Extra volumes to add to the Kafka console       | array  | Any             | See [extraVolumes](#dz-kafka-console-extravolumes) section            |
-| `serviceAccount.create` | Whether to create a service account             | bool   | `true`, `false` | `false`                                                                |
+| `extraVolumes`          | Extra volumes to add to the Kafka console       | array  | Any             | See [extraVolumes](#dz-kafka-console-extravolumes) section           |
+| `serviceAccount.create` | Whether to create a service account             | bool   | `true`, `false` | `false`                                                              |
 {{< /table >}}
 
 ##### console.config {#dz-kafka-console-config}
@@ -1203,20 +1204,20 @@ The `nodered` section contains the configuration of the
 [Node-RED](/docs/architecture/microservices/core/node-red) microservice.
 
 {{< table caption="nodered section parameters" >}}
-| Parameter                      | Description                                                | Type   | Allowed values          | Default                                                                               |
-| ------------------------------ | ---------------------------------------------------------- | ------ | ----------------------- | ------------------------------------------------------------------------------------- |
-| `env`                          | Environment variables to add to the Pod                    | object | Any                     | See [env](#dz-node-red-env) section                                                   |
+| Parameter                      | Description                                                | Type   | Allowed values          | Default                                                                                |
+| ------------------------------ | ---------------------------------------------------------- | ------ | ----------------------- | -------------------------------------------------------------------------------------- |
+| `env`                          | Environment variables to add to the Pod                    | object | Any                     | See [env](#dz-node-red-env) section                                                    |
 | `flows`                        | A JSON string containing the flows to import into Node-RED | string | Any                     | See the [documentation](/docs/architecture/microservices/core/node-red/#how-it-works)  |
-| `ingress.enabled`              | Whether to enable the ingress                              | bool   | `true`, `false`         | `false`                                                                               |
-| `ingress.publicHostSecretName` | The secret name of the public host of the Ingress          | string | Any                     | ""                                                                                    |
-| `ingress.publicHost`           | The public host of the Ingress                             | string | Any                     | ""                                                                                    |
-| `mqtt.encryptedPassword`       | The encrypted password of the MQTT broker                  | string | Any                     | _Base 64 encrypted password_                                                          |
-| `port`                         | The port of the Node-RED service                           | int    | Any                     | 1880                                                                                  |
-| `serviceType`                  | The type of the service                                    | string | ClusterIP, LoadBalancer | LoadBalancer                                                                          |
+| `ingress.enabled`              | Whether to enable the ingress                              | bool   | `true`, `false`         | `false`                                                                                |
+| `ingress.publicHostSecretName` | The secret name of the public host of the Ingress          | string | Any                     | ""                                                                                     |
+| `ingress.publicHost`           | The public host of the Ingress                             | string | Any                     | ""                                                                                     |
+| `mqtt.encryptedPassword`       | The encrypted password of the MQTT broker                  | string | Any                     | _Base 64 encrypted password_                                                           |
+| `port`                         | The port of the Node-RED service                           | int    | Any                     | 1880                                                                                   |
+| `serviceType`                  | The type of the service                                    | string | ClusterIP, LoadBalancer | LoadBalancer                                                                           |
 | `settings`                     | A JSON string containing the settings of Node-RED          | string | Any                     | See the [documentation](/docs/architecture/microservices/core/node-red/#configuration) |
-| `storageRequest`               | The amount of storage for the PersistentVolumeClaim        | string | Any                     | 1Gi                                                                                   |
-| `tag`                          | The Node-RED version                                       | string | Any                     | 2.0.6                                                                                 |
-| `timezone`                     | The timezone                                               | string | Any                     | Berlin/Europe                                                                         |
+| `storageRequest`               | The amount of storage for the PersistentVolumeClaim        | string | Any                     | 1Gi                                                                                    |
+| `tag`                          | The Node-RED version                                       | string | Any                     | 2.0.6                                                                                  |
+| `timezone`                     | The timezone                                               | string | Any                     | Berlin/Europe                                                                          |
 {{< /table >}}
 
 ##### env {#dz-node-red-env}
