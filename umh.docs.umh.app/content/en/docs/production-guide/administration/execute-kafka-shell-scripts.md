@@ -13,7 +13,7 @@ administrative tasks. This page describes how to execute Kafka shell scripts.
 
 ## {{% heading "prerequisites" %}}
 
-{{< include "task-tutorial-prereqs.md" >}}
+{{< include "task-aftinst-prereqs.md" >}}
 
 <!-- steps -->
 
