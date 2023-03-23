@@ -680,12 +680,15 @@ For more information about the parameters, see the
 Here are only the values different from the default ones.
 
 {{< table caption="console advanced section parameters" >}}
-| Parameter               | Description                                     | Type   | Allowed values  | Default                                                              |
-| ----------------------- | ----------------------------------------------- | ------ | --------------- | -------------------------------------------------------------------- |
-| `console.config`        | The configuration of the Kafka console          | object | Any             | See [console.config](#dz-kafka-console-config) section               |
-| `extraVolumeMounts`     | Extra volume mounts to add to the Kafka console | array  | Any             | See [extraVolumeMounts](#dz-kafka-console-extravolumemounts) section |
-| `extraVolumes`          | Extra volumes to add to the Kafka console       | array  | Any             | See [extraVolumes](#dz-kafka-console-extravolumes) section           |
-| `serviceAccount.create` | Whether to create a service account             | bool   | `true`, `false` | `false`                                                              |
+| Parameter               | Description                                     | Type   | Allowed values          | Default                                                              |
+| ----------------------- | ----------------------------------------------- | ------ | ----------------------- | -------------------------------------------------------------------- |
+| `console.config`        | The configuration of the Kafka console          | object | Any                     | See [console.config](#dz-kafka-console-config) section               |
+| `extraVolumeMounts`     | Extra volume mounts to add to the Kafka console | array  | Any                     | See [extraVolumeMounts](#dz-kafka-console-extravolumemounts) section |
+| `extraVolumes`          | Extra volumes to add to the Kafka console       | array  | Any                     | See [extraVolumes](#dz-kafka-console-extravolumes) section           |
+| `service.port`          | The port of the Service to expose               | int    | Any                     | 8090                                                                 |
+| `service.targetPort`    | The Pod port targeteb by the Service            | int    | Any                     | 8080                                                                 |
+| `service.type`          | The type of Service to expose                   | string | ClusterIP, LoadBalancer | LoadBalancer                                                         |
+| `serviceAccount.create` | Whether to create a service account             | bool   | `true`, `false`         | `false`                                                              |
 {{< /table >}}
 
 ##### console.config {#dz-kafka-console-config}
@@ -1006,26 +1009,29 @@ For more information about the parameters, see the
 Here are only the values different from the default ones.
 
 {{< table caption="kafka section parameters" >}}
-| Parameter                        | Description                                                                       | Type         | Allowed values  | Default                                           |
-| -------------------------------- | --------------------------------------------------------------------------------- | ------------ | --------------- | ------------------------------------------------- |
-| `auth.tls.existingSecrets`       | The existing secrets to use for TLS authentication                                | string array | Any             | {{< resource type="secret" name="kafkabroker" >}} |
-| `auth.tls.type`                  | The type of TLS authentication                                                    | string       | jks, pem        | pem                                               |
-| `heapOpts`                       | The heap options of the Kafka container                                           | string       | Any             | -Xmx2048m -Xms2048m                               |
-| `livenessProbe.failureThreshold` | The number of times the liveness probe can fail before the container is restarted | int          | Any             | 10                                                |
-| `livenessProbe.timeoutSeconds`   | The number of seconds after which the liveness probe times out                    | int          | Any             | 10                                                |
-| `logRetentionBytes`              | The log retention size                                                            | int          | Any             | 26214400                                          |
-| `logSegmentBytes`                | The log segment size                                                              | int          | Any             | 10485760                                          |
-| `numPartitions`                  | The number of partitions                                                          | int          | Any             | 6                                                 |
-| `resources.limits.cpu`           | The CPU limit                                                                     | string       | Any             | 1000m                                             |
-| `resources.limits.memory`        | The memory limit                                                                  | string       | Any             | 4Gi                                               |
-| `resources.requests.cpu`         | The CPU request                                                                   | string       | Any             | 100m                                              |
-| `resources.requests.memory`      | The memory request                                                                | string       | Any             | 2560Mi                                            |
-| `serviceAccount.create`          | Whether to create a service account                                               | bool         | `true`, `false` | `false`                                           |
-| `startupProbe.enabled`           | Whether to enable the startup probe                                               | bool         | `true`, `false` | `true`                                            |
-| `startupProbe.failureThreshold`  | The number of times the startup probe can fail before the container is restarted  | int          | Any             | 600                                               |
-| `startupProbe.periodSeconds`     | The number of seconds between the startup probe checks                            | int          | Any             | 10                                                |
-| `startupProbe.timeoutSeconds`    | The number of seconds after which the startup probe times out                     | int          | Any             | 10                                                |
-| `zookeeper.heapSize`             | The heap size of the Zookeeper container                                          | int          | Any             | 128                                               |
+| Parameter                              | Description                                                                       | Type         | Allowed values  | Default                                           |
+| -------------------------------------- | --------------------------------------------------------------------------------- | ------------ | --------------- | ------------------------------------------------- |
+| `auth.tls.existingSecrets`             | The existing secrets to use for TLS authentication                                | string array | Any             | {{< resource type="secret" name="kafkabroker" >}} |
+| `auth.tls.type`                        | The type of TLS authentication                                                    | string       | jks, pem        | pem                                               |
+| `externalAccess.autoDiscovery.enabled` | Whether to enable auto discovery of external IPs/ports                            | bool         | `true`, `false` | `true`                                            |
+| `externalAccess.enabled`               | Whether to enable external access                                                 | bool         | `true`, `false` | `true`                                            |
+| `heapOpts`                             | The heap options of the Kafka container                                           | string       | Any             | -Xmx2048m -Xms2048m                               |
+| `livenessProbe.failureThreshold`       | The number of times the liveness probe can fail before the container is restarted | int          | Any             | 10                                                |
+| `livenessProbe.timeoutSeconds`         | The number of seconds after which the liveness probe times out                    | int          | Any             | 10                                                |
+| `logRetentionBytes`                    | The log retention size                                                            | int          | Any             | 26214400                                          |
+| `logSegmentBytes`                      | The log segment size                                                              | int          | Any             | 10485760                                          |
+| `numPartitions`                        | The number of partitions                                                          | int          | Any             | 6                                                 |
+| `rbac.create`                          | Whether to create RBAC resources                                                  | bool         | `true`, `false` | `true`                                            |
+| `resources.limits.cpu`                 | The CPU limit                                                                     | string       | Any             | 1000m                                             |
+| `resources.limits.memory`              | The memory limit                                                                  | string       | Any             | 4Gi                                               |
+| `resources.requests.cpu`               | The CPU request                                                                   | string       | Any             | 100m                                              |
+| `resources.requests.memory`            | The memory request                                                                | string       | Any             | 2560Mi                                            |
+| `serviceAccount.create`                | Whether to create a service account                                               | bool         | `true`, `false` | `false`                                           |
+| `startupProbe.enabled`                 | Whether to enable the startup probe                                               | bool         | `true`, `false` | `true`                                            |
+| `startupProbe.failureThreshold`        | The number of times the startup probe can fail before the container is restarted  | int          | Any             | 600                                               |
+| `startupProbe.periodSeconds`           | The number of seconds between the startup probe checks                            | int          | Any             | 10                                                |
+| `startupProbe.timeoutSeconds`          | The number of seconds after which the startup probe times out                     | int          | Any             | 10                                                |
+| `zookeeper.heapSize`                   | The heap size of the Zookeeper container                                          | int          | Any             | 128                                               |
 {{< /table >}}
 
 #### kafkabridge {#dz-kafka-bridge}
@@ -1124,7 +1130,6 @@ The `mqtt_broker` section contains the configuration of the
 | `service.mqtts.enabled`       | Whether to enable the MQTT over TLS service                            | bool         | `true`, `false`             | `true`                                                                                                                                                                                                                                                                                       |
 | `service.mqtts.port`          | The port of the MQTT over TLS service                                  | int          | Any                         | 8883                                                                                                                                                                                                                                                                                         |
 | `service.mqtts.tls_versions`  | The TLS versions to enable                                             | string array | Any                         | TLSv1.3, TLSv1.2                                                                                                                                                                                                                                                                             |
-| `service.type`                | The type of the service                                                | string       | ClusterIP, LoadBalancer     | LoadBalancer                                                                                                                                                                                                                                                                                 |
 | `service.ws.enabled`          | Whether to enable the WebSocket service                                | bool         | `true`, `false`             | `false`                                                                                                                                                                                                                                                                                      |
 | `service.ws.port`             | The port of the WebSocket service                                      | int          | Any                         | 8080                                                                                                                                                                                                                                                                                         |
 | `service.wss.cipher_suites`   | The ciphersuites to enable                                             | string array | Any                         | TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA, TLS_RSA_WITH_AES_128_GCM_SHA256, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_256_CBC_SHA |
