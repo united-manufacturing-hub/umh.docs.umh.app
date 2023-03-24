@@ -1,8 +1,17 @@
+[heading_breaking]
+other = "Breaking changes"
+
 [heading_cleanup]
 other = "Cleaning up"
 
 [heading_configuration]
 other = "Configuration"
+
+[heading_dependencies]
+other = "Dependencies"
+
+[heading_deprecations]
+other = "Deprecations"
 
 [heading_discussion]
 other = "Discussion"
@@ -13,8 +22,14 @@ other = "Environment variables"
 [heading_examples]
 other = "Examples"
 
+[heading_features]
+other = "Features and enhancements"
+
 [heading_feedback]
 other = "Feedback"
+
+[heading_fixes]
+other = "Bug fixes"
 
 [heading_howitworks]
 other = "How it works"
