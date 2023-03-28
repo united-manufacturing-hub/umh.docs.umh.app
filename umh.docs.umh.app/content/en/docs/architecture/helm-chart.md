@@ -770,42 +770,31 @@ The `factoryinsight` section contains the advanced configuration of the
 microservice.
 
 {{< table caption="factoryinsight advanced section parameters" >}}
-| Parameter                      | Description                                                                      | Type   | Allowed values              | Default                                                  |
-| ------------------------------ | -------------------------------------------------------------------------------- | ------ | --------------------------- | -------------------------------------------------------- |
-| `db_database`                  | The database name                                                                | string | Any                         | factoryinsight                                           |
-| `db_host`                      | The host of the database                                                         | string | Any                         | {{< resource type="service" name="database" >}}          |
-| `db_user`                      | The database user                                                                | string | Any                         | factoryinsight                                           |
-| `enabled`                      | Whether to enable the factoryinsight microservice                                | bool   | `true`, `false`             | `false`                                                  |
-| `hpa.enabled`                  | Whether to enable a HorizontalPodAutoscaler                                      | bool   | `true`, `false`             | `false`                                                  |
-| `image.pullPolicy`             | The image pull policy                                                            | string | Always, IfNotPresent, Never | IfNotPresent                                             |
-| `image.repository`             | The image of the factoryinsight microservice                                     | string | Any                         | {{< resource type="docker" name="org" >}}/factoryinsight |
-| `image.tag`                    | The tag of the factoryinsight microservice. Defaults to Chart version if not set | string | Any                         | {{< latest-semver >}}                                    |
-| `ingress.enabled`              | Whether to enable an Ingress                                                     | bool   | `true`, `false`             | `false`                                                  |
-| `ingress.publicHostSecretName` | The secret name of the public host of the Ingress                                | string | Any                         | ""                                                       |
-| `ingress.publicHost`           | The public host of the Ingress                                                   | string | Any                         | ""                                                       |
-| `insecure_no_auth`             | Whether to enable the insecure_no_auth mode                                      | bool   | `true`, `false`             | `false`                                                  |
-| `pdb.enabled`                  | Whether to enable a PodDisruptionBudget                                          | bool   | `true`, `false`             | `false`                                                  |
-| `redis`                        | The Redis configuration                                                          | object | Any                         | See [redis](#dz-factoryinsight-redis) section            |
-| `replicas`                     | The number of Pod replicas                                                       | int    | Any                         | 2                                                        |
-| `resources.limits.cpu`         | The CPU limit                                                                    | string | Any                         | 200m                                                     |
-| `resources.limits.memory`      | The memory limit                                                                 | string | Any                         | 200Mi                                                    |
-| `resources.requests.cpu`       | The CPU request                                                                  | string | Any                         | 50m                                                      |
-| `resources.requests.memory`    | The memory request                                                               | string | Any                         | 50Mi                                                     |
-| `service.annotations`          | Annotations to add to the factoryinsight Service                                 | object | Any                         | {}                                                       |
-| `user`                         | The user of factoryinsight                                                       | string | Any                         | factoryinsight                                           |
-| `version`                      | The version of the API used. Each version also enables all the previous ones     | int    | Any                         | 2                                                        |
+| Parameter                      | Description                                                                      | Type   | Allowed values              | Default                                                    |
+| ------------------------------ | -------------------------------------------------------------------------------- | ------ | --------------------------- | ---------------------------------------------------------- |
+| `db_database`                  | The database name                                                                | string | Any                         | factoryinsight                                             |
+| `db_host`                      | The host of the database                                                         | string | Any                         | {{< resource type="service" name="database" >}}            |
+| `db_user`                      | The database user                                                                | string | Any                         | factoryinsight                                             |
+| `enabled`                      | Whether to enable the factoryinsight microservice                                | bool   | `true`, `false`             | `false`                                                    |
+| `hpa.enabled`                  | Whether to enable a HorizontalPodAutoscaler                                      | bool   | `true`, `false`             | `false`                                                    |
+| `image.pullPolicy`             | The image pull policy                                                            | string | Always, IfNotPresent, Never | IfNotPresent                                               |
+| `image.repository`             | The image of the factoryinsight microservice                                     | string | Any                         | {{< resource type="docker" name="org" >}}/factoryinsight   |
+| `image.tag`                    | The tag of the factoryinsight microservice. Defaults to Chart version if not set | string | Any                         | {{< latest-semver >}}                                      |
+| `ingress.enabled`              | Whether to enable an Ingress                                                     | bool   | `true`, `false`             | `false`                                                    |
+| `ingress.publicHostSecretName` | The secret name of the public host of the Ingress                                | string | Any                         | ""                                                         |
+| `ingress.publicHost`           | The public host of the Ingress                                                   | string | Any                         | ""                                                         |
+| `insecure_no_auth`             | Whether to enable the insecure_no_auth mode                                      | bool   | `true`, `false`             | `false`                                                    |
+| `pdb.enabled`                  | Whether to enable a PodDisruptionBudget                                          | bool   | `true`, `false`             | `false`                                                    |
+| `redis.URI`                    | The URI of the Redis instance                                                    | string | Any                         | {{< resource type="service" name="cache-headless" >}}:6379 |
+| `replicas`                     | The number of Pod replicas                                                       | int    | Any                         | 2                                                          |
+| `resources.limits.cpu`         | The CPU limit                                                                    | string | Any                         | 200m                                                       |
+| `resources.limits.memory`      | The memory limit                                                                 | string | Any                         | 200Mi                                                      |
+| `resources.requests.cpu`       | The CPU request                                                                  | string | Any                         | 50m                                                        |
+| `resources.requests.memory`    | The memory request                                                               | string | Any                         | 50Mi                                                       |
+| `service.annotations`          | Annotations to add to the factoryinsight Service                                 | object | Any                         | {}                                                         |
+| `user`                         | The user of factoryinsight                                                       | string | Any                         | factoryinsight                                             |
+| `version`                      | The version of the API used. Each version also enables all the previous ones     | int    | Any                         | 2                                                          |
 {{< /table >}}
-
-##### redis {#dz-factoryinsight-redis}
-
-The `redis` section contains the configuration of the Redis instance used by
-factoryinsight.
-
-```yaml
-URI1: {{< resource type="pod" name="cache" >}}.{{< resource type="service" name="cache-headless" >}}:26379
-```
-
-It is possible to add more Redis instances by adding a new `URI` key.
 
 #### grafana {#dz-grafana}
 
@@ -1303,23 +1292,23 @@ For more information about the parameters, see the
 Here are only the values different from the default ones.
 
 {{< table caption="redis section parameters" >}}
-| Parameter                                     | Description                                                        | Type         | Allowed values          | Default                                                           |
-| --------------------------------------------- | ------------------------------------------------------------------ | ------------ | ----------------------- | ----------------------------------------------------------------- |
-| `architecture`                                | Redis architecture                                                 | string       | standalone, replication | standalone                                                        |
-| `auth.existingSecretPasswordKey`              | Password key to be retrieved from existing secret                  | string       | Any                     | redispassword                                                     |
-| `auth.existingSecret`                         | The name of the existing secret with Redis credentials             | string       | Any                     | {{< resource type="secret" name="cache" >}}                       |
-| `commonConfiguration`                         | Common configuration to be added into the ConfigMap                | string       | Any                     | See [commonConfiguration](#dz-redis-common-configuration) section |
-| `master.extraFlags`                           | Array with additional command line flags for Redis master          | string array | Any                     | --maxmemory 200mb                                                 |
-| `master.livenessProbe.initialDelaySeconds`    | The initial delay before the liveness probe starts                 | int          | Any                     | 5                                                                 |
-| `master.readinessProbe.initialDelaySeconds`   | The initial delay before the readiness probe starts                | int          | Any                     | 120                                                               |
-| `master.resources.limits.cpu`                 | The CPU limit                                                      | string       | Any                     | 200m                                                              |
-| `master.resources.limits.memory`              | The memory limit                                                   | string       | Any                     | 200Mi                                                             |
-| `master.resources.requests.cpu`               | The CPU request                                                    | string       | Any                     | 100m                                                              |
-| `master.resources.requests.memory`            | The memory request                                                 | string       | Any                     | 100Mi                                                             |
-| `metrics.enabled`                             | Start a sidecar prometheus exporter to expose Redis metrics        | bool         | `true`, `false`         | `true`                                                            |
-| `pdb.create`                                  | Whether to create a Pod Disruption Budget                          | bool         | `true`, `false`         | `true`                                                            |
-| `pdb.minAvailable`                            | Min number of pods that must still be available after the eviction | int          | Any                     | 2                                                                 |
-| `serviceAccount.create`                       | Whether to create a service account                                | bool         | `true`, `false`         | `false`                                                           |
+| Parameter                                   | Description                                                        | Type         | Allowed values          | Default                                                           |
+| ------------------------------------------- | ------------------------------------------------------------------ | ------------ | ----------------------- | ----------------------------------------------------------------- |
+| `architecture`                              | Redis architecture                                                 | string       | standalone, replication | standalone                                                        |
+| `auth.existingSecretPasswordKey`            | Password key to be retrieved from existing secret                  | string       | Any                     | redispassword                                                     |
+| `auth.existingSecret`                       | The name of the existing secret with Redis credentials             | string       | Any                     | {{< resource type="secret" name="cache" >}}                       |
+| `commonConfiguration`                       | Common configuration to be added into the ConfigMap                | string       | Any                     | See [commonConfiguration](#dz-redis-common-configuration) section |
+| `master.extraFlags`                         | Array with additional command line flags for Redis master          | string array | Any                     | --maxmemory 200mb                                                 |
+| `master.livenessProbe.initialDelaySeconds`  | The initial delay before the liveness probe starts                 | int          | Any                     | 5                                                                 |
+| `master.readinessProbe.initialDelaySeconds` | The initial delay before the readiness probe starts                | int          | Any                     | 120                                                               |
+| `master.resources.limits.cpu`               | The CPU limit                                                      | string       | Any                     | 200m                                                              |
+| `master.resources.limits.memory`            | The memory limit                                                   | string       | Any                     | 200Mi                                                             |
+| `master.resources.requests.cpu`             | The CPU request                                                    | string       | Any                     | 100m                                                              |
+| `master.resources.requests.memory`          | The memory request                                                 | string       | Any                     | 100Mi                                                             |
+| `metrics.enabled`                           | Start a sidecar prometheus exporter to expose Redis metrics        | bool         | `true`, `false`         | `true`                                                            |
+| `pdb.create`                                | Whether to create a Pod Disruption Budget                          | bool         | `true`, `false`         | `true`                                                            |
+| `pdb.minAvailable`                          | Min number of pods that must still be available after the eviction | int          | Any                     | 2                                                                 |
+| `serviceAccount.create`                     | Whether to create a service account                                | bool         | `true`, `false`         | `false`                                                           |
 {{< /table >}}
 
 ##### commonConfiguration {#dz-redis-common-configuration}
