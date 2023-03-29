@@ -43,8 +43,6 @@ custom microservices:
   sensors and sends the data to the MQTT broker for further processing.
 - [kafka-bridge](/docs/architecture/microservices/core/kafka-bridge/): connects Kafka brokers
   on different Kubernetes clusters.
-- [kafkatoblob](/docs/architecture/microservices/community/kafka-to-blob/): stores the data
-  from the Kafka broker in a blob storage.
 - [kafkatopostgresql](/docs/architecture/microservices/core/kafka-to-postgresql/):
   stores the data from the Kafka broker in a PostgreSQL database.
 - [mqtt-kafka-bridge](/docs/architecture/microservices/core/mqtt-kafka-bridge/): connects
@@ -69,8 +67,6 @@ third-party applications:
 - [Grafana](https://grafana.com/): a visualization and analytics software.
 - [HiveMQ](https://www.hivemq.com/): an MQTT broker.
 - [Kafka](https://kafka.apache.org/): a distributed streaming platform.
-- [MinIo Operator](https://operator.min.io/): a Kubernetes operator for
-  deploying and managing MinIO clusters.
 - [Node-RED](https://nodered.org/): a programming tool for wiring together
   hardware devices, APIs and online services.
 - [Red Panda Console](https://redpanda.com/redpanda-console-kafka-ui/): a
@@ -153,7 +149,6 @@ The following table lists the configuration options that can be set in the
 | `infrastructure`     | The configuration of the microservices used to provide infrastructure services. | object | See below      | [See below](#infrastructure)       |
 | `datastorage`        | The configuration of the microservices used to store data.                      | object | See below      | [See below](#data-storage)         |
 | `datainput`          | The configuration of the microservices used to input data.                      | object | See below      | [See below](#data-input)           |
-| `blobstorage`        | The configuration of the microservices used to store data in a blob storage.    | object | See below      | [See below](#blob-storage)         |
 | `mqttBridge`         | The configuration for the MQTT bridge.                                          | object | See below      | [See below](#mqtt-bridge)          |
 | `kafkaBridge`        | The configuration for the Kafka bridge.                                         | object | See below      | [See below](#kafka-bridge)         |
 | `kafkaStateDetector` | The configuration for the Kafka state detector.                                 | object | See below      | [See below](#kafka-state-detector) |
@@ -457,27 +452,6 @@ The following table lists the configurable parameters of the
 | `enabled` | Whether to enable the data input microservices | bool | `true`, `false` | `false` |
 {{< /table >}}
 
-#### Blob storage
-
-The `_000_commonConfig.blobstorage` section contains the configuration of the
-microservices used to store data in blob storage. Specifically, it controls the
-following microservices:
-
-- [kafka-to-blob](/docs/architecture/microservices/community/kafka-to-blob)
-- [minio](/docs/architecture/microservices/community/minio)
-
-If you want to specifically configure one of these microservices, you can do so
-in their respective sections in the danger zone.
-
-The following table lists the configurable parameters of the
-`_000_commonConfig.blobstorage` section.
-
-{{< table caption="blobstorage section parameters" >}}
-| Parameter | Description                                      | Type | Allowed values  | Default |
-| --------- | ------------------------------------------------ | ---- | --------------- | ------- |
-| `enabled` | Whether to enable the blob storage microservices | bool | `true`, `false` | `false` |
-{{< /table >}}
-
 #### MQTT Bridge
 
 The `_000_commonConfig.mqttBridge` section contains the configuration of the
@@ -628,19 +602,16 @@ Everything below this point  should not be changed, unless you know what you are
 | [`kafka`](#dz-kafka-broker)                        | Configuration for the Kafka broker                              |
 | [`kafkabridge`](#dz-kafka-bridge)                  | Configuration for kafka-bridge                                  |
 | [`kafkastatedetector`](#dz-kafka-state-detector)   | Configuration for kafka-state-detector                          |
-| [`kafkatoblob`](#dz-kafka-to-blob)                 | Configuration for kafka-to-blob                                 |
 | [`kafkatopostgresql`](#dz-kafka-to-postgresql)     | Configuration for kafka-to-postgresql                           |
 | [`mqtt_broker`](#dz-mqtt-broker)                   | Configuration for the MQTT broker                               |
 | [`mqttbridge`](#dz-mqtt-bridge)                    | Configuration for mqtt-bridge                                   |
 | [`mqttkafkabridge`](#dz-mqtt-kafka-bridge)         | Configuration for mqtt-kafka-bridge                             |
 | [`nodered`](#dz-node-red)                          | Configuration for Node-RED                                      |
 | [`opcuasimulator`](#dz-opcua-simulator)            | Configuration for the OPC UA simulator                          |
-| [`operator`](#dz-operator)                         | Configuration for the MinIo operator                            |
 | [`packmlmqttsimulator`](#dz-packml-mqtt-simulator) | Configuration for the PackML MQTT simulator                     |
 | [`redis`](#dz-redis)                               | Configuration for Redis                                         |
 | [`sensorconnect`](#dz-sensorconnect)               | Configuration for sensorconnect                                 |
 | [`serviceAccount`](#service-account)               | Configuration for the service account used by the microservices |
-| [`tenant`](#dz-tenant)                             | Configuration for the MinIo tenant                              |
 | [`timescaledb-single`](#dz-timescaledb-single)     | Configuration for TimescaleDB                                   |
 | [`tulipconnector`](#dz-tulip-connector)            | Configuration for tulip-connector                               |
 {{< /table >}}
@@ -1060,23 +1031,6 @@ The `kafkastatedetector` section contains the configuration of the
 | `image.tag`        | The tag of the kafkastatedetector microservice. Defaults to Chart version if not set | string | Any                         | {{< latest-semver >}}                                          |
 {{< /table >}}
 
-#### kafkatoblob {#dz-kafka-to-blob}
-
-The `kafkatoblob` section contains the configuration of the
-[Kafka to Blob](/docs/architecture/microservices/community/kafka-to-blob) microservice.
-
-{{< table caption="kafkatoblob section parameters" >}}
-| Parameter          | Description                                                                    | Type   | Allowed values              | Default                                                 |
-| ------------------ | ------------------------------------------------------------------------------ | ------ | --------------------------- | ------------------------------------------------------- |
-| `enabled`          | Whether to enable the Kafka to Blob microservice                               | bool   | `true`, `false`             | `true`                                                  |
-| `image.pullPolicy` | The image pull policy                                                          | string | Always, IfNotPresent, Never | IfNotPresent                                            |
-| `image.repository` | The image of the kafkatoblob microservice                                      | string | Any                         | {{< resource type="docker" name="org" >}}/kafka-to-blob |
-| `image.tag`        | The tag of the kafkatoblob microservice. Defaults to Chart version if not set  | string | Any                         | {{< latest-semver >}}                                   |
-| `pdb.enabled`      | Whether to enable a Pod disruption budget                                      | bool   | `true`, `false`             | `true`                                                  |
-| `pdb.minAvailable` | The minimum number of pods that must be available for the PDB to be considered | int    | Any                         | 1                                                       |
-| `replicas`         | The number of Pod replicas                                                     | int    | Any                         | 1                                                       |
-{{< /table >}}
-
 #### kafkatopostgresql {#dz-kafka-to-postgresql}
 
 The `kafkatopostgresql` section contains the configuration of the
@@ -1248,16 +1202,6 @@ The `opcuasimulator` section contains the configuration of the
 | `tag`                       | The tag of the OPC UA Simulator microservice. Defaults to latest if not set | string | Any            | 0.1.0                                                    |
 {{< /table >}}
 
-#### operator {#dz-operator}
-
-The `operator` section contains the configuration of the
-[MinIo Operator](/docs/architecture/microservices/community/minio). This is
-based on the [official MinIo Operator Helm chart](https://github.com/minio/operator/tree/master/helm/operator).
-For more information about the parameters, see the
-[official documentation](https://github.com/minio/operator/blob/master/helm/operator/values.yaml).
-
-We currently use all the default values of the Helm chart.
-
 #### packmlmqttsimulator {#dz-packml-mqtt-simulator}
 
 The `packmlmqttsimulator` section contains the configuration of the
@@ -1396,25 +1340,6 @@ for more information.
 | Parameter | Description                         | Type | Allowed values  | Default |
 | --------- | ----------------------------------- | ---- | --------------- | ------- |
 | `create`  | Whether to create a service account | bool | `true`, `false` | `true`  |
-{{< /table >}}
-
-#### tenant {#dz-tenant}
-
-The `tenant` section contains the configuration of the
-[MinIo Tenant](/docs/architecture/microservices/community/minio). This is
-based on the [official MinIo Operator Helm chart](https://github.com/minio/operator/tree/master/helm/tenant).
-For more information about the parameters, see the
-[official documentation](https://github.com/minio/operator/blob/master/helm/tenant/values.yaml).
-
-Here are only the values different from the default ones.
-
-{{< table caption="tenant section parameters" >}}
-| Parameter                          | Description                         | Type   | Allowed values | Default  |
-| ---------------------------------- | ----------------------------------- | ------ | -------------- | -------- |
-| `tenant.name`                      | The name of the MinIo tenant        | string | Any            | umhminio |
-| `tenant.pools[0].servers`          | The number of MinIo servers         | int    | Any            | 1        |
-| `tenant.pools[0].size`             | The size of the MinIo pool          | string | Any            | 1Gi      |
-| `tenant.pools[0].storageClassName` | The storage class of the MinIo pool | string | Any            | ""       |
 {{< /table >}}
 
 #### timescaledb-single {#dz-timescaledb-single}
