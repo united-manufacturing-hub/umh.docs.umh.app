@@ -13,6 +13,6 @@ Welcome to United Manufacturing Hub version {{ .Name }}!
 <!-- insert a one-liner about the release here -->
 
 For a complete list of changes, refer to the
-[release notes](/docs/releases/notes/{{ .Name }}/).
+[release notes](https://github.com/united-manufacturing-hub/united-manufacturing-hub/releases/tag/v{{ .Name }}/).
 
 <!-- body -->
