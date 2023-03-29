@@ -1,5 +1,0 @@
-{{/* this will find an issue or pr on the main repo and link to it, adding the autor */}}
-{{- $prnum := .Get 0 -}}
-{{- $url := printf "https://api.github.com/repos/united-manufacturing-hub/united-manufacturing-hub/pulls/%s" $prnum -}}
-{{- $data := getJSON $url (dict "headers" (dict "Accept" "application/vnd.github+json")) -}}
-<a href="{{ $data.html_url }}" target="_blank" rel="noopener noreferrer">#{{ $data.number }}</a>, <a href="{{ $data.user.html_url }}" target="_blank" rel="noopener noreferrer">@{{ $data.user.login }}</a>
