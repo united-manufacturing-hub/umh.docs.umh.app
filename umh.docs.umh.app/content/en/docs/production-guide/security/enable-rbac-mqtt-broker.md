@@ -62,6 +62,8 @@ Now all MQTT connections require password authentication with the following defa
 11. In the `data.credentials.xml` section, replace the strings inbetween the
     `<password>` tags with the password hash generated in step 7.
 12. Click **Save** to apply the changes.
+13. Go back to **Workloads** > **Pods** and select the {{< resource type="pod" name="mqttbroker" >}} Pod.
+14. {{< include "pod-delete" >}}
 
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
