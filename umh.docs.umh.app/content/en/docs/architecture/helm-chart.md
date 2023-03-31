@@ -1433,15 +1433,16 @@ For more information about the parameters, see the
 Here are only the values different from the default ones.
 
 {{< table caption="timescaledb-single section parameters" >}}
-| Parameter                                   | Description                                      | Type         | Allowed values              | Default                                               |
-| ------------------------------------------- | ------------------------------------------------ | ------------ | --------------------------- | ----------------------------------------------------- |
-| `replicaCount`                              | The number of replicas                           | int          | Any                         | 1                                                     |
-| `image.repository`                          | The image of the TimescaleDB microservice        | string       | Any                         | {{< resource type="docker" name="org" >}}/timescaledb |
-| `image.tag`                                 | The Timescaledb-ha version                       | string       | Any                         | pg13.8-ts2.8.0-p1                                     |
-| `image.pullPolicy`                          | The image pull policy                            | string       | Always, IfNotPresent, Never | IfNotPresent                                          |
-| `patroni.postgresql.create_replica_methods` | The replica creation method                      | string array | Any                         | basebackup                                            |
-| `postInit`                                  | A list of sources that contain post init scripts | object array | Any                         | See [postInit](#dz-timescaledb-single-postinit)       |
-| `serviceAccount.create`                     | Whether to create a service account              | bool         | `true`, `false`             | `false`                                               |
+| Parameter                                   | Description                                      | Type         | Allowed values                    | Default                                               |
+| ------------------------------------------- | ------------------------------------------------ | ------------ | --------------------------------- | ----------------------------------------------------- |
+| `replicaCount`                              | The number of replicas                           | int          | Any                               | 1                                                     |
+| `image.repository`                          | The image of the TimescaleDB microservice        | string       | Any                               | {{< resource type="docker" name="org" >}}/timescaledb |
+| `image.tag`                                 | The Timescaledb-ha version                       | string       | Any                               | pg13.8-ts2.8.0-p1                                     |
+| `image.pullPolicy`                          | The image pull policy                            | string       | Always, IfNotPresent, Never       | IfNotPresent                                          |
+| `patroni.postgresql.create_replica_methods` | The replica creation method                      | string array | Any                               | basebackup                                            |
+| `postInit`                                  | A list of sources that contain post init scripts | object array | Any                               | See [postInit](#dz-timescaledb-single-postinit)       |
+| `service.primary.type`                      | The type of the primary service                  | string       | ClusterIP, NodePort, LoadBalancer | LoadBalancer                                          |
+| `serviceAccount.create`                     | Whether to create a service account              | bool         | `true`, `false`                   | `false`                                               |
 {{< /table >}}
 
 ##### postInit {#dz-timescaledb-single-postinit}
