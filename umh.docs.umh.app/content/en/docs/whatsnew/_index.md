@@ -18,3 +18,5 @@ issues, refer to the [release notes](https://github.com/united-manufacturing-hub
 - [What's new 0.9.12](/docs/whatsnew/0.9.12/)
 - [What's new 0.9.11](/docs/whatsnew/0.9.11/)
 - [What's new 0.9.10](/docs/whatsnew/0.9.10/)
+- [What's new 0.9.9](/docs/whatsnew/0.9.9/)
+- [What's new 0.9.8](/docs/whatsnew/0.9.8/)
