@@ -43,7 +43,13 @@ The following services are exposed outside the cluster with a LoadBalancer
 service by default:
 
 - [Database](/docs/architecture/microservices/core/database/) at port 5432
+- [Kafka Console](/docs/architecture/microservices/core/kafka-console/) at port
+  8090
+- [Kafka Broker](/docs/architecture/microservices/core/kafka-broker/) at port
+  9094
 - [Grafana](/docs/architecture/microservices/core/grafana/) at port 8080
+- [MQTT Broker](/docs/architecture/microservices/core/mqtt-broker/) at port
+  1883
 - [Node-RED](/docs/architecture/microservices/core/node-red/) at port 1880
 - [OPCUA Simulator](/docs/architecture/microservices/community/opcua-simulator/)
   at port 46010
