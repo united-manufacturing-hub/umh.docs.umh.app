@@ -1,8 +1,10 @@
-+++
-title = "Installation"
-menuTitle = "Installation"
-description = "Installation of the UMH stack using FOSS tools"
-weight = 1000
-+++
+---
+title: Installation
+menuTitle: Installation
+description: |
+    This section contains guides on how to install the United Manufacturing Hub.
+weight: 1000
+---
 
-Installation using FOSS tools
+Learn how to install the United Manufacturing Hub using completely Free and Open
+Source Software.
