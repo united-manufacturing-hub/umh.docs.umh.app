@@ -3,7 +3,7 @@ title: "Upgrade to v{{ .Name }}"
 content_type: upgrading
 description: "This page describes how to upgrade the United Manufacturing Hub
 to version {{ .Name }}"
-weight: 1000
+weight: -1
 ---
 
 This page describes how to upgrade the United Manufacturing Hub to version
