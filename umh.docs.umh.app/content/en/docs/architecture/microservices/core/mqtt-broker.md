@@ -26,14 +26,14 @@ different microservices and forwarding them to the
 - StatefulSet: `{{< resource type="statefulset" name="mqttbroker" >}}`
 - Service:
   - Internal ClusterIP:
-    - Generic: `{{< resource type="service" name="mqttbroker" >}}` at
-      port 1883 (MQTT) and 8883 (MQTT over TLS)
     - HiveMQ local: `{{< resource type="service" name="mqttbroker-hivemq-local" >}}` at
       port 1883 (MQTT) and 8883 (MQTT over TLS)
     - VerneMQ (for backwards compatibility): `{{< resource type="service" name="mqttbroker-verne" >}}` at
       port 1883 (MQTT) and 8883 (MQTT over TLS)
     - VerneMQ local (for backwards compatibility): `{{< resource type="service" name="mqttbroker-verne-local" >}}` at
       port 1883 (MQTT) and 8883 (MQTT over TLS)
+  - External LoadBalancer: `{{< resource type="service" name="mqttbroker" >}}` at
+    port 1883 (MQTT) and 8883 (MQTT over TLS)
 - ConfigMap:
   - Configuration: `{{< resource type="configmap" name="mqttbroker-config" >}}`
   - Credentials: `{{< resource type="configmap" name="mqttbroker-credentials" >}}`

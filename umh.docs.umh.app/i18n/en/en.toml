@@ -176,7 +176,7 @@ other = "UMHLens / OpenLens"
 other = "united-manufacturing-hub"
 
 [resource_pod_cache]
-other = "united-manufacturing-hub-redis-node-0"
+other = "united-manufacturing-hub-redis-master-0"
 
 [resource_pod_database]
 other = "united-manufacturing-hub-timescaledb-0"
@@ -191,7 +191,7 @@ other = "united-manufacturing-hub-hivemqce-0"
 other = "united-manufacturing-hub-nodered-0"
 
 [resource_pvc_cache]
-other = "redis-data-united-manufacturing-hub-redis-node-0"
+other = "redis-data-united-manufacturing-hub-redis-master-0"
 
 [resource_pvc_db-data]
 other = "storage-volume-united-manufacturing-hub-timescaledb-0"
@@ -299,7 +299,7 @@ other = "united-manufacturing-hub-redis-headless"
 other = "united-manufacturing-hub-redis-metrics"
 
 [resource_service_cache]
-other = "united-manufacturing-hub-redis"
+other = "united-manufacturing-hub-redis-master"
 
 [resource_service_db-config]
 other = "united-manufacturing-hub-config"
@@ -359,7 +359,7 @@ other = "united-manufacturing-hub-opcuasimulator-service"
 other = "united-manufacturing-hub-tulip-connector-service"
 
 [resource_statefulset_cache]
-other = "united-manufacturing-hub-redis-node"
+other = "united-manufacturing-hub-redis-master"
 
 [resource_statefulset_db]
 other = "united-manufacturing-hub-timescaledb"
