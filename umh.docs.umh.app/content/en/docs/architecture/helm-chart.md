@@ -141,19 +141,20 @@ The following table lists the configuration options that can be set in the
 `_000_commonConfig` section:
 
 {{< table caption="_000_commonConfig section parameters" >}}
-| Parameter            | Description                                                                     | Type   | Allowed values | Default                            |
-| -------------------- | ------------------------------------------------------------------------------- | ------ | -------------- | ---------------------------------- |
-| `serialNumber`       | The hostname of the device. Used by some microservices to identify the device.  | string | Any            | default                            |
-| `datasources`        | The configuration of the microservices used to acquire data.                    | object | See below      | [See below](#data-sources)         |
-| `dataprocessing`     | The configuration of the microservices used to process data.                    | object | See below      | [See below](#data-processing)      |
-| `infrastructure`     | The configuration of the microservices used to provide infrastructure services. | object | See below      | [See below](#infrastructure)       |
-| `datastorage`        | The configuration of the microservices used to store data.                      | object | See below      | [See below](#data-storage)         |
-| `datainput`          | The configuration of the microservices used to input data.                      | object | See below      | [See below](#data-input)           |
-| `mqttBridge`         | The configuration for the MQTT bridge.                                          | object | See below      | [See below](#mqtt-bridge)          |
-| `kafkaBridge`        | The configuration for the Kafka bridge.                                         | object | See below      | [See below](#kafka-bridge)         |
-| `kafkaStateDetector` | The configuration for the Kafka state detector.                                 | object | See below      | [See below](#kafka-state-detector) |
-| `debug`              | The configuration for the debug mode.                                           | object | See below      | [See below](#debug)                |
-| `tulipconnector`     | The configuration for the Tulip connector.                                      | object | See below      | [See below](#tulip-connector)      |
+| Parameter            | Description                                                                     | Type   | Allowed values    | Default                            |
+| -------------------- | ------------------------------------------------------------------------------- | ------ | ----------------- | ---------------------------------- |
+| `datainput`          | The configuration of the microservices used to input data.                      | object | See below         | [See below](#data-input)           |
+| `dataprocessing`     | The configuration of the microservices used to process data.                    | object | See below         | [See below](#data-processing)      |
+| `datasources`        | The configuration of the microservices used to acquire data.                    | object | See below         | [See below](#data-sources)         |
+| `datastorage`        | The configuration of the microservices used to store data.                      | object | See below         | [See below](#data-storage)         |
+| `debug`              | The configuration for the debug mode.                                           | object | See below         | [See below](#debug)                |
+| `infrastructure`     | The configuration of the microservices used to provide infrastructure services. | object | See below         | [See below](#infrastructure)       |
+| `kafkaBridge`        | The configuration for the Kafka bridge.                                         | object | See below         | [See below](#kafka-bridge)         |
+| `kafkaStateDetector` | The configuration for the Kafka state detector.                                 | object | See below         | [See below](#kafka-state-detector) |
+| `metrics.enabled`    | Whether to enable the anonymous metrics service or not.                         | bool   | `true` or `false` | `true`                             |
+| `mqttBridge`         | The configuration for the MQTT bridge.                                          | object | See below         | [See below](#mqtt-bridge)          |
+| `serialNumber`       | The hostname of the device. Used by some microservices to identify the device.  | string | Any               | default                            |
+| `tulipconnector`     | The configuration for the Tulip connector.                                      | object | See below         | [See below](#tulip-connector)      |
 {{< /table >}}
 
 #### Data sources
@@ -385,9 +386,6 @@ The following table lists the configuration options that can be set in the
 | `tls.kafkastatedetector.sslKeyPassword`    | The encrypted password of the SSL key for the kafkastatedetector microservice. If empty, no password is used | string | Any                                            | ""                                                                           |
 | `tls.kafkastatedetector.sslKeyPem`         | The private key for the SSL certificate of the kafkastatedetector microservice                               | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
 | `tls.kafkastatedetector.sslCertificatePem` | The private SSL certificate for the kafkastatedetector microservice                                          | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
-| `tls.kafkatoblob.sslKeyPassword`           | The encrypted password of the SSL key for the kafkatoblob microservice. If empty, no password is used        | string | Any                                            | ""                                                                           |
-| `tls.kafkatoblob.sslKeyPem`                | The private key for the SSL certificate of the kafkatoblob microservice                                      | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
-| `tls.kafkatoblob.sslCertificatePem`        | The private SSL certificate for the kafkatoblob microservice                                                 | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
 | `tls.kafkatopostgresql.sslKeyPassword`     | The encrypted password of the SSL key for the kafkatopostgresql microservice. If empty, no password is used  | string | Any                                            | ""                                                                           |
 | `tls.kafkatopostgresql.sslKeyPem`          | The private key for the SSL certificate of the kafkatopostgresql microservice                                | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
 | `tls.kafkatopostgresql.sslCertificatePem`  | The private SSL certificate for the kafkatopostgresql microservice                                           | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
