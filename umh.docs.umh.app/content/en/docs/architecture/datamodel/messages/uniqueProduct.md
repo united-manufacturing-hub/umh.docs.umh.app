@@ -45,7 +45,7 @@ The processing of product "Beilinger 30x15" with the AID 216381 started and ende
   "begin_timestamp_ms":1589788888888,
   "end_timestamp_ms":1589788893729,
   "product_id":"Beilinger 30x15",
-  "isScrap":"true",
+  "isScrap":true,
   "uniqueProductAlternativeID":"216381"
 }
 ```
