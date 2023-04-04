@@ -52,6 +52,9 @@ other = "See Also"
 [heading_synopsis]
 other = "Synopsis"
 
+[heading_troubleshooting]
+other = "Troubleshooting"
+
 [heading_whatsnext]
 other = "What's next"
 
@@ -157,6 +160,9 @@ other = "unitedmanufacturinghub"
 [resource_helm_repo]
 other = "united-manufacturing-hub"
 
+[resource_helm_repo-url]
+other = "https://repo.umh.app"
+
 [resource_helm_release]
 other = "united-manufacturing-hub"
 
@@ -177,6 +183,9 @@ other = "united-manufacturing-hub-timescaledb-0"
 
 [resource_pod_kafka]
 other = "united-manufacturing-hub-kafka-0"
+
+[resource_pod_mqttbroker]
+other = "united-manufacturing-hub-hivemqce-0"
 
 [resource_pod_nodered]
 other = "united-manufacturing-hub-nodered-0"
