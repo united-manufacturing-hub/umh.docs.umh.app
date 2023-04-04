@@ -3,7 +3,7 @@ title: "Upgrade to v{{ .Name }}"
 content_type: upgrading
 description: "This page describes how to upgrade the United Manufacturing Hub
 to version {{ .Name }}"
-weight: 1000
+weight: -1
 ---
 
 This page describes how to upgrade the United Manufacturing Hub to version
@@ -31,9 +31,9 @@ Then click **Add**.
 
 ## Clear Workloads
 
-Some workloads need to be deleted before upgrading. This process _do not_ delete
-any data. If a workload is missing, it means that it was not enabled in your
-cluster, therefore you can skip it.
+Some workloads need to be deleted before upgrading. This process _does not_ delete
+any data, but it will cause downtime. If a workload is missing, it means that it
+was not enabled in your cluster, therefore you can skip it.
 
 To delete a resource, you can select it using the box on the left of the
 resource name and click the **-** button on the bottom right corner.

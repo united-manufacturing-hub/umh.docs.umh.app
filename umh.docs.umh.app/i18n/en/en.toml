@@ -1,8 +1,17 @@
+[heading_breaking]
+other = "Breaking changes"
+
 [heading_cleanup]
 other = "Cleaning up"
 
 [heading_configuration]
 other = "Configuration"
+
+[heading_dependencies]
+other = "Dependencies"
+
+[heading_deprecations]
+other = "Deprecations"
 
 [heading_discussion]
 other = "Discussion"
@@ -13,8 +22,14 @@ other = "Environment variables"
 [heading_examples]
 other = "Examples"
 
+[heading_features]
+other = "Features and enhancements"
+
 [heading_feedback]
 other = "Feedback"
+
+[heading_fixes]
+other = "Bug fixes"
 
 [heading_howitworks]
 other = "How it works"
@@ -161,7 +176,7 @@ other = "UMHLens / OpenLens"
 other = "united-manufacturing-hub"
 
 [resource_pod_cache]
-other = "united-manufacturing-hub-redis-node-0"
+other = "united-manufacturing-hub-redis-master-0"
 
 [resource_pod_database]
 other = "united-manufacturing-hub-timescaledb-0"
@@ -176,7 +191,7 @@ other = "united-manufacturing-hub-hivemqce-0"
 other = "united-manufacturing-hub-nodered-0"
 
 [resource_pvc_cache]
-other = "redis-data-united-manufacturing-hub-redis-node-0"
+other = "redis-data-united-manufacturing-hub-redis-master-0"
 
 [resource_pvc_db-data]
 other = "storage-volume-united-manufacturing-hub-timescaledb-0"
@@ -254,7 +269,7 @@ other = "united-manufacturing-hub-kafkatoblob-secrets"
 other = "united-manufacturing-hub-kafkatopostgresql-certificates"
 
 [resource_secret_mqttbridge]
-other = "united-manufacturing-hub-mqttbridge-mqtt-secrets"
+other = "united-manufacturing-hub-mqttbridge-secrets"
 
 [resource_secret_mqttbroker-keystore]
 other = "united-manufacturing-hub-hivemqce-secret-keystore"
@@ -284,7 +299,7 @@ other = "united-manufacturing-hub-redis-headless"
 other = "united-manufacturing-hub-redis-metrics"
 
 [resource_service_cache]
-other = "united-manufacturing-hub-redis"
+other = "united-manufacturing-hub-redis-master"
 
 [resource_service_db-config]
 other = "united-manufacturing-hub-config"
@@ -344,7 +359,7 @@ other = "united-manufacturing-hub-opcuasimulator-service"
 other = "united-manufacturing-hub-tulip-connector-service"
 
 [resource_statefulset_cache]
-other = "united-manufacturing-hub-redis-node"
+other = "united-manufacturing-hub-redis-master"
 
 [resource_statefulset_db]
 other = "united-manufacturing-hub-timescaledb"
