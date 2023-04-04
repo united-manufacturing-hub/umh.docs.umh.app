@@ -43,8 +43,6 @@ custom microservices:
   sensors and sends the data to the MQTT broker for further processing.
 - [kafka-bridge](/docs/architecture/microservices/core/kafka-bridge/): connects Kafka brokers
   on different Kubernetes clusters.
-- [kafkatoblob](/docs/architecture/microservices/community/kafka-to-blob/): stores the data
-  from the Kafka broker in a blob storage.
 - [kafkatopostgresql](/docs/architecture/microservices/core/kafka-to-postgresql/):
   stores the data from the Kafka broker in a PostgreSQL database.
 - [mqtt-kafka-bridge](/docs/architecture/microservices/core/mqtt-kafka-bridge/): connects
@@ -69,8 +67,6 @@ third-party applications:
 - [Grafana](https://grafana.com/): a visualization and analytics software.
 - [HiveMQ](https://www.hivemq.com/): an MQTT broker.
 - [Kafka](https://kafka.apache.org/): a distributed streaming platform.
-- [MinIo Operator](https://operator.min.io/): a Kubernetes operator for
-  deploying and managing MinIO clusters.
 - [Node-RED](https://nodered.org/): a programming tool for wiring together
   hardware devices, APIs and online services.
 - [Red Panda Console](https://redpanda.com/redpanda-console-kafka-ui/): a
@@ -147,7 +143,6 @@ The following table lists the configuration options that can be set in the
 {{< table caption="_000_commonConfig section parameters" >}}
 | Parameter            | Description                                                                     | Type   | Allowed values    | Default                            |
 | -------------------- | ------------------------------------------------------------------------------- | ------ | ----------------- | ---------------------------------- |
-| `blobstorage`        | The configuration of the microservices used to store data in a blob storage.    | object | See below         | [See below](#blob-storage)         |
 | `datainput`          | The configuration of the microservices used to input data.                      | object | See below         | [See below](#data-input)           |
 | `dataprocessing`     | The configuration of the microservices used to process data.                    | object | See below         | [See below](#data-processing)      |
 | `datasources`        | The configuration of the microservices used to acquire data.                    | object | See below         | [See below](#data-sources)         |
@@ -391,9 +386,6 @@ The following table lists the configuration options that can be set in the
 | `tls.kafkastatedetector.sslKeyPassword`    | The encrypted password of the SSL key for the kafkastatedetector microservice. If empty, no password is used | string | Any                                            | ""                                                                           |
 | `tls.kafkastatedetector.sslKeyPem`         | The private key for the SSL certificate of the kafkastatedetector microservice                               | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
 | `tls.kafkastatedetector.sslCertificatePem` | The private SSL certificate for the kafkastatedetector microservice                                          | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
-| `tls.kafkatoblob.sslKeyPassword`           | The encrypted password of the SSL key for the kafkatoblob microservice. If empty, no password is used        | string | Any                                            | ""                                                                           |
-| `tls.kafkatoblob.sslKeyPem`                | The private key for the SSL certificate of the kafkatoblob microservice                                      | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
-| `tls.kafkatoblob.sslCertificatePem`        | The private SSL certificate for the kafkatoblob microservice                                                 | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
 | `tls.kafkatopostgresql.sslKeyPassword`     | The encrypted password of the SSL key for the kafkatopostgresql microservice. If empty, no password is used  | string | Any                                            | ""                                                                           |
 | `tls.kafkatopostgresql.sslKeyPem`          | The private key for the SSL certificate of the kafkatopostgresql microservice                                | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
 | `tls.kafkatopostgresql.sslCertificatePem`  | The private SSL certificate for the kafkatopostgresql microservice                                           | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
@@ -456,27 +448,6 @@ The following table lists the configurable parameters of the
 | Parameter | Description                                    | Type | Allowed values  | Default |
 | --------- | ---------------------------------------------- | ---- | --------------- | ------- |
 | `enabled` | Whether to enable the data input microservices | bool | `true`, `false` | `false` |
-{{< /table >}}
-
-#### Blob storage
-
-The `_000_commonConfig.blobstorage` section contains the configuration of the
-microservices used to store data in blob storage. Specifically, it controls the
-following microservices:
-
-- [kafka-to-blob](/docs/architecture/microservices/community/kafka-to-blob)
-- [minio](/docs/architecture/microservices/community/minio)
-
-If you want to specifically configure one of these microservices, you can do so
-in their respective sections in the danger zone.
-
-The following table lists the configurable parameters of the
-`_000_commonConfig.blobstorage` section.
-
-{{< table caption="blobstorage section parameters" >}}
-| Parameter | Description                                      | Type | Allowed values  | Default |
-| --------- | ------------------------------------------------ | ---- | --------------- | ------- |
-| `enabled` | Whether to enable the blob storage microservices | bool | `true`, `false` | `false` |
 {{< /table >}}
 
 #### MQTT Bridge
@@ -629,19 +600,16 @@ Everything below this point  should not be changed, unless you know what you are
 | [`kafka`](#dz-kafka-broker)                        | Configuration for the Kafka broker                              |
 | [`kafkabridge`](#dz-kafka-bridge)                  | Configuration for kafka-bridge                                  |
 | [`kafkastatedetector`](#dz-kafka-state-detector)   | Configuration for kafka-state-detector                          |
-| [`kafkatoblob`](#dz-kafka-to-blob)                 | Configuration for kafka-to-blob                                 |
 | [`kafkatopostgresql`](#dz-kafka-to-postgresql)     | Configuration for kafka-to-postgresql                           |
 | [`mqtt_broker`](#dz-mqtt-broker)                   | Configuration for the MQTT broker                               |
 | [`mqttbridge`](#dz-mqtt-bridge)                    | Configuration for mqtt-bridge                                   |
 | [`mqttkafkabridge`](#dz-mqtt-kafka-bridge)         | Configuration for mqtt-kafka-bridge                             |
 | [`nodered`](#dz-node-red)                          | Configuration for Node-RED                                      |
 | [`opcuasimulator`](#dz-opcua-simulator)            | Configuration for the OPC UA simulator                          |
-| [`operator`](#dz-operator)                         | Configuration for the MinIo operator                            |
 | [`packmlmqttsimulator`](#dz-packml-mqtt-simulator) | Configuration for the PackML MQTT simulator                     |
 | [`redis`](#dz-redis)                               | Configuration for Redis                                         |
 | [`sensorconnect`](#dz-sensorconnect)               | Configuration for sensorconnect                                 |
 | [`serviceAccount`](#service-account)               | Configuration for the service account used by the microservices |
-| [`tenant`](#dz-tenant)                             | Configuration for the MinIo tenant                              |
 | [`timescaledb-single`](#dz-timescaledb-single)     | Configuration for TimescaleDB                                   |
 | [`tulipconnector`](#dz-tulip-connector)            | Configuration for tulip-connector                               |
 {{< /table >}}
@@ -681,12 +649,15 @@ For more information about the parameters, see the
 Here are only the values different from the default ones.
 
 {{< table caption="console advanced section parameters" >}}
-| Parameter               | Description                                     | Type   | Allowed values  | Default                                                              |
-| ----------------------- | ----------------------------------------------- | ------ | --------------- | -------------------------------------------------------------------- |
-| `console.config`        | The configuration of the Kafka console          | object | Any             | See [console.config](#dz-kafka-console-config) section               |
-| `extraVolumeMounts`     | Extra volume mounts to add to the Kafka console | array  | Any             | See [extraVolumeMounts](#dz-kafka-console-extravolumemounts) section |
-| `extraVolumes`          | Extra volumes to add to the Kafka console       | array  | Any             | See [extraVolumes](#dz-kafka-console-extravolumes) section           |
-| `serviceAccount.create` | Whether to create a service account             | bool   | `true`, `false` | `false`                                                              |
+| Parameter               | Description                                     | Type   | Allowed values          | Default                                                              |
+| ----------------------- | ----------------------------------------------- | ------ | ----------------------- | -------------------------------------------------------------------- |
+| `console.config`        | The configuration of the Kafka console          | object | Any                     | See [console.config](#dz-kafka-console-config) section               |
+| `extraVolumeMounts`     | Extra volume mounts to add to the Kafka console | array  | Any                     | See [extraVolumeMounts](#dz-kafka-console-extravolumemounts) section |
+| `extraVolumes`          | Extra volumes to add to the Kafka console       | array  | Any                     | See [extraVolumes](#dz-kafka-console-extravolumes) section           |
+| `service.port`          | The port of the Service to expose               | int    | Any                     | 8090                                                                 |
+| `service.targetPort`    | The Pod port targeteb by the Service            | int    | Any                     | 8080                                                                 |
+| `service.type`          | The type of Service to expose                   | string | ClusterIP, LoadBalancer | LoadBalancer                                                         |
+| `serviceAccount.create` | Whether to create a service account             | bool   | `true`, `false`         | `false`                                                              |
 {{< /table >}}
 
 ##### console.config {#dz-kafka-console-config}
@@ -1007,26 +978,29 @@ For more information about the parameters, see the
 Here are only the values different from the default ones.
 
 {{< table caption="kafka section parameters" >}}
-| Parameter                        | Description                                                                       | Type         | Allowed values  | Default                                           |
-| -------------------------------- | --------------------------------------------------------------------------------- | ------------ | --------------- | ------------------------------------------------- |
-| `auth.tls.existingSecrets`       | The existing secrets to use for TLS authentication                                | string array | Any             | {{< resource type="secret" name="kafkabroker" >}} |
-| `auth.tls.type`                  | The type of TLS authentication                                                    | string       | jks, pem        | pem                                               |
-| `heapOpts`                       | The heap options of the Kafka container                                           | string       | Any             | -Xmx2048m -Xms2048m                               |
-| `livenessProbe.failureThreshold` | The number of times the liveness probe can fail before the container is restarted | int          | Any             | 10                                                |
-| `livenessProbe.timeoutSeconds`   | The number of seconds after which the liveness probe times out                    | int          | Any             | 10                                                |
-| `logRetentionBytes`              | The log retention size                                                            | int          | Any             | 26214400                                          |
-| `logSegmentBytes`                | The log segment size                                                              | int          | Any             | 10485760                                          |
-| `numPartitions`                  | The number of partitions                                                          | int          | Any             | 6                                                 |
-| `resources.limits.cpu`           | The CPU limit                                                                     | string       | Any             | 1000m                                             |
-| `resources.limits.memory`        | The memory limit                                                                  | string       | Any             | 4Gi                                               |
-| `resources.requests.cpu`         | The CPU request                                                                   | string       | Any             | 100m                                              |
-| `resources.requests.memory`      | The memory request                                                                | string       | Any             | 2560Mi                                            |
-| `serviceAccount.create`          | Whether to create a service account                                               | bool         | `true`, `false` | `false`                                           |
-| `startupProbe.enabled`           | Whether to enable the startup probe                                               | bool         | `true`, `false` | `true`                                            |
-| `startupProbe.failureThreshold`  | The number of times the startup probe can fail before the container is restarted  | int          | Any             | 600                                               |
-| `startupProbe.periodSeconds`     | The number of seconds between the startup probe checks                            | int          | Any             | 10                                                |
-| `startupProbe.timeoutSeconds`    | The number of seconds after which the startup probe times out                     | int          | Any             | 10                                                |
-| `zookeeper.heapSize`             | The heap size of the Zookeeper container                                          | int          | Any             | 128                                               |
+| Parameter                              | Description                                                                       | Type         | Allowed values  | Default                                           |
+| -------------------------------------- | --------------------------------------------------------------------------------- | ------------ | --------------- | ------------------------------------------------- |
+| `auth.tls.existingSecrets`             | The existing secrets to use for TLS authentication                                | string array | Any             | {{< resource type="secret" name="kafkabroker" >}} |
+| `auth.tls.type`                        | The type of TLS authentication                                                    | string       | jks, pem        | pem                                               |
+| `externalAccess.autoDiscovery.enabled` | Whether to enable auto discovery of external IPs/ports                            | bool         | `true`, `false` | `true`                                            |
+| `externalAccess.enabled`               | Whether to enable external access                                                 | bool         | `true`, `false` | `true`                                            |
+| `heapOpts`                             | The heap options of the Kafka container                                           | string       | Any             | -Xmx2048m -Xms2048m                               |
+| `livenessProbe.failureThreshold`       | The number of times the liveness probe can fail before the container is restarted | int          | Any             | 10                                                |
+| `livenessProbe.timeoutSeconds`         | The number of seconds after which the liveness probe times out                    | int          | Any             | 10                                                |
+| `logRetentionBytes`                    | The log retention size                                                            | int          | Any             | 26214400                                          |
+| `logSegmentBytes`                      | The log segment size                                                              | int          | Any             | 10485760                                          |
+| `numPartitions`                        | The number of partitions                                                          | int          | Any             | 6                                                 |
+| `rbac.create`                          | Whether to create RBAC resources                                                  | bool         | `true`, `false` | `true`                                            |
+| `resources.limits.cpu`                 | The CPU limit                                                                     | string       | Any             | 1000m                                             |
+| `resources.limits.memory`              | The memory limit                                                                  | string       | Any             | 4Gi                                               |
+| `resources.requests.cpu`               | The CPU request                                                                   | string       | Any             | 100m                                              |
+| `resources.requests.memory`            | The memory request                                                                | string       | Any             | 2560Mi                                            |
+| `serviceAccount.create`                | Whether to create a service account                                               | bool         | `true`, `false` | `false`                                           |
+| `startupProbe.enabled`                 | Whether to enable the startup probe                                               | bool         | `true`, `false` | `true`                                            |
+| `startupProbe.failureThreshold`        | The number of times the startup probe can fail before the container is restarted  | int          | Any             | 600                                               |
+| `startupProbe.periodSeconds`           | The number of seconds between the startup probe checks                            | int          | Any             | 10                                                |
+| `startupProbe.timeoutSeconds`          | The number of seconds after which the startup probe times out                     | int          | Any             | 10                                                |
+| `zookeeper.heapSize`                   | The heap size of the Zookeeper container                                          | int          | Any             | 128                                               |
 {{< /table >}}
 
 #### kafkabridge {#dz-kafka-bridge}
@@ -1059,23 +1033,6 @@ The `kafkastatedetector` section contains the configuration of the
 | `image.pullPolicy` | The image pull policy                                                                | string | Always, IfNotPresent, Never | IfNotPresent                                                   |
 | `image.repository` | The image of the kafkastatedetector microservice                                     | string | Any                         | {{< resource type="docker" name="org" >}}/kafka-state-detector |
 | `image.tag`        | The tag of the kafkastatedetector microservice. Defaults to Chart version if not set | string | Any                         | {{< latest-semver >}}                                          |
-{{< /table >}}
-
-#### kafkatoblob {#dz-kafka-to-blob}
-
-The `kafkatoblob` section contains the configuration of the
-[Kafka to Blob](/docs/architecture/microservices/community/kafka-to-blob) microservice.
-
-{{< table caption="kafkatoblob section parameters" >}}
-| Parameter          | Description                                                                    | Type   | Allowed values              | Default                                                 |
-| ------------------ | ------------------------------------------------------------------------------ | ------ | --------------------------- | ------------------------------------------------------- |
-| `enabled`          | Whether to enable the Kafka to Blob microservice                               | bool   | `true`, `false`             | `true`                                                  |
-| `image.pullPolicy` | The image pull policy                                                          | string | Always, IfNotPresent, Never | IfNotPresent                                            |
-| `image.repository` | The image of the kafkatoblob microservice                                      | string | Any                         | {{< resource type="docker" name="org" >}}/kafka-to-blob |
-| `image.tag`        | The tag of the kafkatoblob microservice. Defaults to Chart version if not set  | string | Any                         | {{< latest-semver >}}                                   |
-| `pdb.enabled`      | Whether to enable a Pod disruption budget                                      | bool   | `true`, `false`             | `true`                                                  |
-| `pdb.minAvailable` | The minimum number of pods that must be available for the PDB to be considered | int    | Any                         | 1                                                       |
-| `replicas`         | The number of Pod replicas                                                     | int    | Any                         | 1                                                       |
 {{< /table >}}
 
 #### kafkatopostgresql {#dz-kafka-to-postgresql}
@@ -1125,7 +1082,6 @@ The `mqtt_broker` section contains the configuration of the
 | `service.mqtts.enabled`       | Whether to enable the MQTT over TLS service                            | bool         | `true`, `false`             | `true`                                                                                                                                                                                                                                                                                       |
 | `service.mqtts.port`          | The port of the MQTT over TLS service                                  | int          | Any                         | 8883                                                                                                                                                                                                                                                                                         |
 | `service.mqtts.tls_versions`  | The TLS versions to enable                                             | string array | Any                         | TLSv1.3, TLSv1.2                                                                                                                                                                                                                                                                             |
-| `service.type`                | The type of the service                                                | string       | ClusterIP, LoadBalancer     | LoadBalancer                                                                                                                                                                                                                                                                                 |
 | `service.ws.enabled`          | Whether to enable the WebSocket service                                | bool         | `true`, `false`             | `false`                                                                                                                                                                                                                                                                                      |
 | `service.ws.port`             | The port of the WebSocket service                                      | int          | Any                         | 8080                                                                                                                                                                                                                                                                                         |
 | `service.wss.cipher_suites`   | The ciphersuites to enable                                             | string array | Any                         | TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA, TLS_RSA_WITH_AES_128_GCM_SHA256, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_256_CBC_SHA |
@@ -1248,16 +1204,6 @@ The `opcuasimulator` section contains the configuration of the
 | `service.annotations`       | The annotations of the service                                              | object | Any            | {}                                                       |
 | `tag`                       | The tag of the OPC UA Simulator microservice. Defaults to latest if not set | string | Any            | 0.1.0                                                    |
 {{< /table >}}
-
-#### operator {#dz-operator}
-
-The `operator` section contains the configuration of the
-[MinIo Operator](/docs/architecture/microservices/community/minio). This is
-based on the [official MinIo Operator Helm chart](https://github.com/minio/operator/tree/master/helm/operator).
-For more information about the parameters, see the
-[official documentation](https://github.com/minio/operator/blob/master/helm/operator/values.yaml).
-
-We currently use all the default values of the Helm chart.
 
 #### packmlmqttsimulator {#dz-packml-mqtt-simulator}
 
@@ -1399,25 +1345,6 @@ for more information.
 | `create`  | Whether to create a service account | bool | `true`, `false` | `true`  |
 {{< /table >}}
 
-#### tenant {#dz-tenant}
-
-The `tenant` section contains the configuration of the
-[MinIo Tenant](/docs/architecture/microservices/community/minio). This is
-based on the [official MinIo Operator Helm chart](https://github.com/minio/operator/tree/master/helm/tenant).
-For more information about the parameters, see the
-[official documentation](https://github.com/minio/operator/blob/master/helm/tenant/values.yaml).
-
-Here are only the values different from the default ones.
-
-{{< table caption="tenant section parameters" >}}
-| Parameter                          | Description                         | Type   | Allowed values | Default  |
-| ---------------------------------- | ----------------------------------- | ------ | -------------- | -------- |
-| `tenant.name`                      | The name of the MinIo tenant        | string | Any            | umhminio |
-| `tenant.pools[0].servers`          | The number of MinIo servers         | int    | Any            | 1        |
-| `tenant.pools[0].size`             | The size of the MinIo pool          | string | Any            | 1Gi      |
-| `tenant.pools[0].storageClassName` | The storage class of the MinIo pool | string | Any            | ""       |
-{{< /table >}}
-
 #### timescaledb-single {#dz-timescaledb-single}
 
 The `timescaledb-single` section contains the configuration of the
@@ -1429,15 +1356,16 @@ For more information about the parameters, see the
 Here are only the values different from the default ones.
 
 {{< table caption="timescaledb-single section parameters" >}}
-| Parameter                                   | Description                                      | Type         | Allowed values              | Default                                               |
-| ------------------------------------------- | ------------------------------------------------ | ------------ | --------------------------- | ----------------------------------------------------- |
-| `replicaCount`                              | The number of replicas                           | int          | Any                         | 1                                                     |
-| `image.repository`                          | The image of the TimescaleDB microservice        | string       | Any                         | {{< resource type="docker" name="org" >}}/timescaledb |
-| `image.tag`                                 | The Timescaledb-ha version                       | string       | Any                         | pg13.8-ts2.8.0-p1                                     |
-| `image.pullPolicy`                          | The image pull policy                            | string       | Always, IfNotPresent, Never | IfNotPresent                                          |
-| `patroni.postgresql.create_replica_methods` | The replica creation method                      | string array | Any                         | basebackup                                            |
-| `postInit`                                  | A list of sources that contain post init scripts | object array | Any                         | See [postInit](#dz-timescaledb-single-postinit)       |
-| `serviceAccount.create`                     | Whether to create a service account              | bool         | `true`, `false`             | `false`                                               |
+| Parameter                                   | Description                                      | Type         | Allowed values                    | Default                                               |
+| ------------------------------------------- | ------------------------------------------------ | ------------ | --------------------------------- | ----------------------------------------------------- |
+| `replicaCount`                              | The number of replicas                           | int          | Any                               | 1                                                     |
+| `image.repository`                          | The image of the TimescaleDB microservice        | string       | Any                               | {{< resource type="docker" name="org" >}}/timescaledb |
+| `image.tag`                                 | The Timescaledb-ha version                       | string       | Any                               | pg13.8-ts2.8.0-p1                                     |
+| `image.pullPolicy`                          | The image pull policy                            | string       | Always, IfNotPresent, Never       | IfNotPresent                                          |
+| `patroni.postgresql.create_replica_methods` | The replica creation method                      | string array | Any                               | basebackup                                            |
+| `postInit`                                  | A list of sources that contain post init scripts | object array | Any                               | See [postInit](#dz-timescaledb-single-postinit)       |
+| `service.primary.type`                      | The type of the primary service                  | string       | ClusterIP, NodePort, LoadBalancer | LoadBalancer                                          |
+| `serviceAccount.create`                     | Whether to create a service account              | bool         | `true`, `false`                   | `false`                                               |
 {{< /table >}}
 
 ##### postInit {#dz-timescaledb-single-postinit}
