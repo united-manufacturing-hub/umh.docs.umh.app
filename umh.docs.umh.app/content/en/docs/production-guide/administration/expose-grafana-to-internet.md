@@ -13,7 +13,7 @@ it from outside the Kubernetes cluster.
 
 ## {{% heading "prerequisites" %}}
 
-{{< include "task-tutorial-prereqs.md" >}}
+{{< include "task-aftinst-prereqs.md" >}}
 
 <!-- steps -->
 
