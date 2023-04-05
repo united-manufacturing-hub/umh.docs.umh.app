@@ -50,4 +50,3 @@ Factoryinsight supports the following languages:
 ## {{% heading "whatsnext" %}}
 
 - See [Access the Database](/docs/production-guide/administration/access-database)
-- See [Customize United Manufacturing Hub Installation](/docs/production-guide/administration/customize-umh-installation)
