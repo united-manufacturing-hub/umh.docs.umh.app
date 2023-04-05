@@ -174,14 +174,7 @@ or [OpenLens](https://github.com/MuhammedKalkan/OpenLens) installed.
    ```bash
    helm install {{% resource type="helm" name="release" %}} {{% resource type="helm" name="repo" %}}/united-manufacturing-hub -n {{% resource type="ns" name="umh" %}}
    ```
-
-    {{% notice tip %}}
-  If you don't want to use the default configuration, you can customize it
-  before installing the stack. For more information, refer to the
-  [Configuration](/docs/production-guide/administration/customize-umh-installation/#customize-values)
-  guide.
-    {{% /notice %}}
-
+   
 {{< include "access-umh-via-lens" >}}
 
 <!-- Optional section, but recommended; write the problem/question in H3 -->
