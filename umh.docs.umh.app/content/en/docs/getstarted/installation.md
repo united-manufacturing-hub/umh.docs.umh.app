@@ -21,7 +21,7 @@ To access the documentation, simply click on the button below.
 
 
 {{% notice note %}}
-Please note that the Management Console is only available under Windows and only allows setting up test instances on the same device. If you are using Linux or Mac, please look into the [production guides for OS specific installation tutorials](/docs/production-guide/installation/).
+Please note that the Management Console is available at the moment **under Windows only** and only allows setting up test instances on the same device. **If you are using Linux or Mac**, please look into the [production guides for OS specific installation tutorials](/docs/production-guide/installation/).
 {{% /notice %}}
 
 ## What's next?
