@@ -588,6 +588,7 @@ Everything below this point  should not be changed, unless you know what you are
 | [`kafkabridge`](#dz-kafka-bridge)                  | Configuration for kafka-bridge                                  |
 | [`kafkastatedetector`](#dz-kafka-state-detector)   | Configuration for kafka-state-detector                          |
 | [`kafkatopostgresql`](#dz-kafka-to-postgresql)     | Configuration for kafka-to-postgresql                           |
+| [`metrics`](#dz-metrics)                           | Configuration for the metrics                                   |
 | [`mqtt_broker`](#dz-mqtt-broker)                   | Configuration for the MQTT broker                               |
 | [`mqttbridge`](#dz-mqtt-bridge)                    | Configuration for mqtt-bridge                                   |
 | [`mqttkafkabridge`](#dz-mqtt-kafka-bridge)         | Configuration for mqtt-kafka-bridge                             |
@@ -1031,6 +1032,19 @@ The `kafkatopostgresql` section contains the configuration of the
 | `resources.limits.memory`   | The memory limit                                                                    | string | Any                         | 200Mi                                                         |
 | `resources.requests.cpu`    | The CPU request                                                                     | string | Any                         | 50m                                                           |
 | `resources.requests.memory` | The memory request                                                                  | string | Any                         | 50Mi                                                          |
+{{< /table >}}
+
+#### metrics {#dz-metrics}
+
+The `metrics` section contains the configuration of the metrics CronJob that
+sends anonymous usage data.
+
+{{< table caption="metrics section parameters" >}}
+| Parameter          | Description                           | Type   | Allowed values              | Default                                            |
+| ------------------ | ------------------------------------- | ------ | --------------------------- | -------------------------------------------------- |
+| `image.pullPolicy` | The image pull policy                 | string | Always, IfNotPresent, Never | IfNotPresent                                       |
+| `image.repository` | The image of the metrics microservice | string | Any                         | {{< resource type="docker" name="repo" >}}/metrics |
+| `cronJob.schedule` | The schedule of the CronJob           | string | Any                         | 0 \*/4 \* \* \* (every 4 hours)                    |
 {{< /table >}}
 
 #### mqtt_broker {#dz-mqtt-broker}
