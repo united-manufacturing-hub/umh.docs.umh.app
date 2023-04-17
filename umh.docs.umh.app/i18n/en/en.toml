@@ -157,6 +157,9 @@ other = "united-manufacturing-hub-tulip-connector-deployment"
 [resource_docker_org]
 other = "unitedmanufacturinghub"
 
+[resource_docker_repo]
+other = "ghcr.io/united-manufacturing-hub"
+
 [resource_helm_repo]
 other = "united-manufacturing-hub"
 
