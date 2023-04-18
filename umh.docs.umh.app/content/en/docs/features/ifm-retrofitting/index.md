@@ -6,46 +6,48 @@ weight = 4
 draft = false
 +++
 
-Retrofitting older machines with sensors is sometimes the only-way to capture process-relevant information.
-In this article, we will focus on retrofitting with ifm IO-link gateways and Sensorconnect, a microservice of the 
-United Manufacturing Hub, that finds and reads out ifm IO-link masters in the network and pushes sensor data to 
+[Retrofitting](https://learn.umh.app/blog/connectivity-retrofitting-the-shopfloor-with-plug-play-sensors/) older machines with sensors is sometimes the only-way to capture process-relevant information.
+In this article, we will focus on retrofitting with [ifm IO-Link gateways](https://www.ifm.com/de/de/category/245) and Sensorconnect, a microservice of the 
+United Manufacturing Hub, that finds and reads out ifm IO-Link masters in the network and pushes sensor data to 
 MQTT/Kafka for further processing.
 
 ![](/images/features/ifm-retrofitting/ifm_sensors.jpg?width=40%)
 
 ## When should I use it?
 
-Retrofitting with ifm IO-link gateways and using Sensorconnect is ideal when dealing with older machines that are not
+Retrofitting with ifm IO-Link gateways and using Sensorconnect is ideal when dealing with older machines that are not
 equipped with any connectable hardware to read relevant information out of the machine itself. By placing sensors on 
-the machine and connecting them with ifm IO-link gateways, required information can be gathered for valuable
-insights. Sensorconnect helps to easily connect to all sensors to correctly and properly capture the large 
+the machine and connecting them with IO-Link gateways, required information can be gathered for valuable
+insights. Sensorconnect helps to easily connect to all sensors correctly and properly capture the large 
 amount of sensor data provided.
 
 ## What can I do with it?
 
-With ifm IO-link gateways and Sensorconnect, you can collect data from sensors and make it accessible for further use. 
+With ifm IO-Link gateways and Sensorconnect, you can collect data from sensors and make it accessible for further use. 
 Sensorconnect offers: 
-- automatic detection of ifm IO-link master in the network
-- identification of IO-Link or other digital sensors connected to the gateways
-- constant polling of data from the detected sensors
-- interpreting the received data based on a sensor database containing thousands of entries
-- sending data in JSON format to MQTT and Kafka for further data processing
+- Automatic detection of ifm IO-Link masters in the network.
+- Identification of [IO-Link](https://www.ifm.com/de/de/category/200) and alternative digital or analog sensors connected to gateways. 
+Digital Sensors employ a voltage range from 10 to 30V DC, producing binary outputs of true or false. In contrast, analog sensors operate at 24V DC, with a current range spanning from 4 to 20 mA. Utilizing the appropriate converter, analog outputs can be effectively transformed into digital signals.
+- Constant polling of data from the detected sensors.
+- Interpreting the received data based on a [sensor database](https://io-link.com/en/IODDfinder/IODDfinder.php?thisID=137) containing thousands of entries.
+- Sending data in JSON format to MQTT and Kafka for further data processing.
 
 
 ## How can I use it?
 
-To use ifm IO-link gateways and [Sensorconnect](/docs/architecture/microservices/core/sensorconnect/), you need to first
-retrofit the machine with the desired sensors and connect them with ifm IO-link gateways. Then, you can use 
-Sensorconnect to detect the IO-link master in the network and poll data from the connected sensors. Finally, you can send
-the data in JSON format to MQTT and Kafka for further processing with your preferred software solutions.
+To use ifm IO-link gateways and [Sensorconnect](/docs/architecture/microservices/core/sensorconnect/) please follow these instructions:
+  1. Ensure all IO-Link gateways are connected to the same network. 
+  2. Retrofit the machines by integrating the desired sensors and establish a connection with ifm IO-Link gateways.
+  3. Configure the Sensorconnect IP-range to either match the IP address using subnet notation /32, or, in cases involving multiple masters, configure it to scan an entire range, for example /24.
+  4. Once completed, the data should be available in your Unified Namespace.
 
 ## What are the limitations?
 
-- the current ifm firmware has a software bug, that will cause the IO-link master to crash if it receives to many requests.
-  An experimental firmware is available upon request
+- The current ifm firmware has a software bug, that will cause the IO-Link master to crash if it receives to many requests.
+  To resolve this issue, you can either request an experimental firmware, which is available exclusively from ifm, or re-connect the power to the IO-Link.
 
 ## Where to get more information?
 
-- [introduction into retrofitting](https://learn.umh.app/lesson/introduction-into-it-ot-retrofitting/)
-- [retrofitting the shopfloor with plug play sensors](https://learn.umh.app/blog/connectivity-retrofitting-the-shopfloor-with-plug-play-sensors/)
-- [documentation of sensorconnect](/docs/architecture/microservices/core/sensorconnect/)
+- [Introduction into retrofitting](https://learn.umh.app/lesson/introduction-into-it-ot-retrofitting/)
+- [Retrofitting the shopfloor with plug play sensors](https://learn.umh.app/blog/connectivity-retrofitting-the-shopfloor-with-plug-play-sensors/)
+- [Documentation of Sensorconnect](/docs/architecture/microservices/core/sensorconnect/)
