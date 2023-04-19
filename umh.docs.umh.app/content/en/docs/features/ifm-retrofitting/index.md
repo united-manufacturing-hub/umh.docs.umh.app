@@ -36,7 +36,7 @@ Digital Sensors employ a voltage range from 10 to 30V DC, producing binary outpu
 ## How can I use it?
 
 To use ifm IO-link gateways and [Sensorconnect](/docs/architecture/microservices/core/sensorconnect/) please follow these instructions:
-  1. Ensure all IO-Link gateways are connected to the same network. 
+  1. Ensure all IO-Link gateways are connected to the same network as your United Manufacturing Hub. 
   2. Retrofit the machines by integrating the desired sensors and establish a connection with ifm IO-Link gateways.
   3. Configure the Sensorconnect IP-range to either match the IP address using subnet notation /32, or, in cases involving multiple masters, configure it to scan an entire range, for example /24.
   4. Once completed, the data should be available in your Unified Namespace.
@@ -44,10 +44,11 @@ To use ifm IO-link gateways and [Sensorconnect](/docs/architecture/microservices
 ## What are the limitations?
 
 - The current ifm firmware has a software bug, that will cause the IO-Link master to crash if it receives to many requests.
-  To resolve this issue, you can either request an experimental firmware, which is available exclusively from ifm, or re-connect the power to the IO-Link.
+  To resolve this issue, you can either request an experimental firmware, which is available exclusively from ifm, or dis- and then re-connect the power to the IO-Link.
 
 ## Where to get more information?
 
+- [GitHub UMH Community Repository](https://github.com/united-manufacturing-hub/community-repo)
 - [Introduction into retrofitting](https://learn.umh.app/lesson/introduction-into-it-ot-retrofitting/)
 - [Retrofitting the shopfloor with plug play sensors](https://learn.umh.app/blog/connectivity-retrofitting-the-shopfloor-with-plug-play-sensors/)
 - [Documentation of Sensorconnect](/docs/architecture/microservices/core/sensorconnect/)
