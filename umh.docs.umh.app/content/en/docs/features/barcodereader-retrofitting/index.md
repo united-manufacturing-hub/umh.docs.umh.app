@@ -6,7 +6,7 @@ weight = 4
 draft = false
 +++
 
-The barcode reader microservice enables the processing of barcodes from USB-linked scanner devices, subsequently publishing the acquired 
+The barcodereader microservice enables the processing of barcodes from USB-linked scanner devices, subsequently publishing the acquired 
 data to the [Unified Namespace](https://learn.umh.app/lesson/introduction-into-it-ot-unified-namespace/).
 ## When should I use it?
 
