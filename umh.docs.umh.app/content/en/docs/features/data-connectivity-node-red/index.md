@@ -54,16 +54,12 @@ Node-RED comes preinstalled as a microservice with the United Manufacturing Hub.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingForwarding.png?width=75%)
 4. Once Node-RED opens in the browser, add `nodered` to the URL to avoid the [cannot get error](https://learn.umh.app/course/how-to-fix-cannot-get-error-in-node-red/).
-5. To install custom nodes, Click on the **Menu** button in the upper right-hand corner of the screen and select **Manage palette** from the drop-down menu.
+5. Begin exploring right away! If you require inspiration on where to start, we provide a variety of guides to help you
+      become familiar with various node-red workflows, including how to process data and align it with the UMH datamodel:
 
-   ![](/images/features/data-connectivity-node-red/nodered_dropdownMenu.png)
-6. In the **Manage palette** menu, select the **Install** tab.
-
-   ![](/images/features/data-connectivity-node-red/noderedManagePalette.png?width=70%)
-7. Use the search bar to find the plugin/node that you want to install.
-8. Click on the **Install** button next to the plugin/node to install it and wait for the installation to complete.
-9. Now you can configure your
-TODO: link to tutorial on how to Process the data and align it with the UMH datamodel (learn)
+    - [Create a Node-RED Flow with Simulated OPC-UA Data](https://learn.umh.app/course/creating-a-node-red-flow-with-simulated-opc-ua-data/)
+    - [Create a Node-RED flow with simulated PackML data](https://learn.umh.app/course/creating-a-node-red-flow-with-packml/)
+    - Alternatively, visit [learning page](https://learn.umh.app/topic/node-red/) where you can find multiple best practices for using Node-RED
 
 
 
