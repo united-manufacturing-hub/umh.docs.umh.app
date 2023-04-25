@@ -1,12 +1,16 @@
 ---
 title: Custom Hugo Shortcodes
+description: |
+    This page explains the custom Hugo shortcodes used in United Manufacturing
+    Hub documentation.
 content_type: concept
 weight: 60
 ---
 
 <!-- overview -->
-This page explains the custom Hugo shortcodes that can be used in United Manufacturing
-Hub Markdown documentation.
+One of the powerful features of Hugo is the ability to create custom shortcodes.
+Shortcodes are simple snippets of code that you can use to add complex content
+to your documentation.
 
 Read more about shortcodes in the [Hugo documentation](https://gohugo.io/content-management/shortcodes).
 
