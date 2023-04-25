@@ -1,44 +1,34 @@
 ---
-title: Writing a new topic
-content_type: task
+title: Write a new topic
 description: |
   This page shows how to create a new topic for the United Manufacturing Hub docs.
 weight: 40
 ---
 
-<!-- overview -->
-This page shows how to create a new topic for the United Manufacturing Hub docs.
-
-## {{% heading "prerequisites" %}}
-
-Create a fork of the United Manufacturing Hub documentation repository as described in
-[Adding documentation](/docs/development/contribute/new-content/add-documentation/).
-
-<!-- steps -->
-
 ## Choosing a page type
 
-As you prepare to write a new topic, think about the page type that would fit your content the best:
+As you prepare to write a new topic, think about the page type that would fit
+your content the best. We have many archetypes to choose from, and you can
+create a new one if none of the existing ones fit your needs.
 
-{{< table caption = "Guidelines for choosing a page type" >}}
-| Type     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Concept  | A concept page explains some aspect of United Manufacturing Hub. For example, a concept page might describe a specific component of the United Manufacturing Hub and explain the role it plays as an application while it is deployed, scaled, and updated. Typically, concept pages don't include sequences of steps, but instead provide links to tasks or tutorials.                                                                                                                                                                                                                                                                       |
-| Task     | A task page shows how to do a single thing. The idea is to give readers a sequence of steps that they can actually do as they read the page. A task page can be short or long, provided it stays focused on one area. In a task page, it is OK to blend brief explanations with the steps to be performed, but if you need to provide a lengthy explanation, you should do that in a concept topic. Related task and concept topics should link to each other. For an example of a short task page, see [Expose Grafana to the internet](/docs/production-guide/administration/expose-grafana-to-internet/). For an example of a longer task page, see [Access the database](/docs/production-guide/administration/access-database/) |
-| Tutorial | A tutorial page shows how to accomplish a goal that ties together several United Manufacturing Hub features. A tutorial might provide several sequences of steps that readers can actually do as they read the page. Or it might provide explanations of related pieces of code. For example, a tutorial could provide a walkthrough of a code sample. A tutorial can include brief explanations of the United Manufacturing Hub features that are being tied together, but should link to related concept topics for deep explanations of individual features.                                                                                                                                    |
-{{< /table >}}
+Generally, each archetype is specific to a particular type of content. For
+example, the `upgrading` archetype is used for pages that describe how to
+upgrade to a new version of United Manufacturing Hub, and most of the content
+in the Production Guide section of the docs uses the `tasks` archetype.
 
-### Creating a new page
+In the [content guide](/docs/development/contribute/documentation/style/content-guide/#content-types)
+you can find a description of the most used archetypes. If you need to create
+a new archetype, you can find more information in the
+[Hugo documentation](https://gohugo.io/content-management/archetypes/).
 
-Use a [content type](/docs/development/contribute/documentation/style/page-content-types/) for each new page
-that you write. The docs site provides templates or
-[Hugo archetypes](https://gohugo.io/content-management/archetypes/) to create
-new content pages. To create a new type of page, run `hugo new` with the path to the file
-you want to create. For example:
+## Choosing a directory
 
-```bash
-hugo new docs/administration/my-first-task.md -k tasks
-```
+The directory in which you put your file is mostly determined by the page type
+you choose.
+
+If you think that your topic doesn't belong to any of the existing sections,
+you should first discuss with the United Manufacturing Hub team where your
+topic should go. They will coordinate the creation of a new section if needed.
 
 ## Choosing a title and filename
 
@@ -51,7 +41,7 @@ has filename `access-factoryinsight-outside-cluster.md`. You don't need to put
 URL for the topic, for example:
 
 ```none
-/docs/production-guide/administration/access-factoryinsight-outside-cluster/
+https://umh.docs.umh.app/docs/production-guide/administration/access-factoryinsight-outside-cluster/
 ```
 
 ## Adding the topic title to the front matter
@@ -67,18 +57,18 @@ title: Access Factoryinsight Outside the Cluster
 ---
 ```
 
-## Choosing a directory
+Most of the archetypes automatically create the page title using the filename,
+but always check that the title makes sense.
 
-Depending on the content of your page, put your new file in a subdirectory of one of these:
+## Creating a new page
 
-- /content/en/docs/production-guide/administration/
-- /content/en/docs/architecture/
-- /content/en/docs/development/
-- /content/en/docs/getstarted/
-- /content/en/docs/production-guide/
+Once you have chosen the archetype, the location, and the file name, you can
+create a new page using the `hugo new` command. For example, to create a new page
+using the `tasks` archetype, run the following command:
 
-You can put your file in an existing subdirectory, or you can create a new
-subdirectory.
+```bash
+hugo new docs/production-guide/my-first-task.md -k tasks
+```
 
 ## Placing your topic in the table of contents
 
@@ -96,6 +86,10 @@ never the best order. To control the relative sorting of topics in a
 subdirectory, set the `weight:` front-matter key to an integer. Typically, we
 use multiples of 10, to account for adding topics later. For instance, a topic
 with weight `10` will come before one with weight `20`.
+
+You can hide a topic from the table of contents by setting `toc_hide: true`, and
+you can hide the list of child pages at the botton of an `_index.md` file by
+setting `no_list: true`.
 
 ## Embedding code in your topic
 
@@ -133,18 +127,18 @@ file located at `/content/en/examples/pods/storage/gce-volume.yaml`.
 {{</* codenew file="pods/storage/gce-volume.yaml" */>}}
 ```
 
-{{< notice note >}}
-To show raw Hugo shortcodes as in the above example and prevent Hugo
-from interpreting them, use C-style comments directly after the `<` and before
-the `>` characters. View the code for this page for an example.
-{{< /notice >}}
-
 ## Adding images to a topic
 
-Put image files in the `/images` directory. The preferred
-image format is SVG.
+Put image files in the `/static/images` directory. The preferred image format is
+SVG. Organize images in subdirectories under `/static/images` as needed.
+
+Add images to the page using markdown image syntax:
+
+```md
+![Alt text](/images/my-image.svg)
+```
 
 ## {{% heading "whatsnext" %}}
 
-- Learn about [using page content types](/docs/development/contribute/documentation/style/page-content-types/).
-- Learn about [creating a pull request](/docs/development/contribute/new-content/add-documentation/#open-a-pr).
+- Read the [content guidelines](/docs/development/contribute/documentation/style/content-guide/).
+- Learn about [content styling](/docs/development/contribute/documentation/style/style-guide/).
