@@ -360,7 +360,6 @@ Renders to:
 
 ## {{% heading "whatsnext" %}}
 
-- Learn about [Hugo](https://gohugo.io/).
-- Learn about [writing a new topic](/docs/development/contribute/documentation/style/write-new-topic/).
-- Learn about [page content types](/docs/development/contribute/documentation/style/page-content-types/).
-- Learn about [opening a pull request](/docs/development/contribute/new-content/pull-request/).
+- Read the [Hugo documentation](https://gohugo.io/documentation/).
+- Learn how to [write a new topic](/docs/development/contribute/documentation/write-new-topic/).
+- Read the [Content guide](/docs/development/contribute/documentation/style/content-guide/).

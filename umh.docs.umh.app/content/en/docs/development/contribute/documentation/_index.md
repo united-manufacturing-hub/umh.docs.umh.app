@@ -62,7 +62,8 @@ class first,second white
 - [Open a pull request using GitHub](/docs/development/contribute/new-content/pull-request/)
   to existing documentation and learn more about filing issues in GitHub.
 - Get an insight on how to [setup your local environment](/docs/development/contribute/documentation/setup-environment/).
-- Read the UMH
-  [style guides](/docs/development/contribute/documentation/style/)
+- Read how to [write a new topic](/docs/development/contribute/documentation/write-new-topic/)
+  and the UMH
+  [style overview](/docs/development/contribute/documentation/style/)
   to learn about writing documentation.
 - Discover how to [localize the documentation](/docs/development/contribute/documentation/localization/).

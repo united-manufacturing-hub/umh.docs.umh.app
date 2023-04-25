@@ -12,7 +12,7 @@ organize it.
 For information about the styling, follow the
 [style guide](/docs/development/contribute/documentation/style/style-guide), and
 for a quick guide to writing a new page, follow the
-[quick start guide](/docs/development/contribute/documentation/style/write-new-topic).
+[quick start guide](/docs/development/contribute/documentation/write-new-topic).
 
 ## What's allowed
 
