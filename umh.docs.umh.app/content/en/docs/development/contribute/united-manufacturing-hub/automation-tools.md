@@ -1,6 +1,8 @@
 ---
-title: CI/CD
-description: This section contains the description of the Continuous Integration and Continuous Deployment pipelines of the United Manufacturing Hub.
+title: Automation Tools
+description:  | 
+    This section contains the description of the automation tools used in the
+    United Manufacturing Hub project.
 weight: 10
 ---
 

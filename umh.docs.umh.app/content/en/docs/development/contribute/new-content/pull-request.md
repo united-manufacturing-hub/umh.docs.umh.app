@@ -57,7 +57,7 @@ label.
 
 United Manufacturing Hub runs a set of end-to-end tests (e2e tests) on pull
 requests. You can find an overview of the tests in the
-[CI documentation](/docs/development/ci-cd).
+[CI documentation](/docs/development/contribute/united-manufacturing-hub/automation-tools/).
 
 ## Why was my pull request closed?
 
