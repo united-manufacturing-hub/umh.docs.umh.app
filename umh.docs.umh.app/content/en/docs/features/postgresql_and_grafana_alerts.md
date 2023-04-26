@@ -6,68 +6,76 @@ weight = 50
 draft = false
 +++
 
-Introduction sentence
+The United Manufacturing Hub utilizes a TimeScaleDB database which is based on
+PostgreSQL. Therefore, you can use the PostgreSQL plugin in Grafana to implement 
+alerts.
 
-## When should I use it?
+
+## Why should I use alerts?
 
   Alerts in Grafana offer real-time monitoring and proactive problem detection, 
   enabling users to swiftly identify and address performance issues or system 
-  anomalies. 
-
-## What can I do with it?
-
-  By leveraging custom threshold-based notifications, teams can
+  anomalies. By leveraging custom threshold-based notifications, teams can
   enhance operational efficiency, reduce downtime, and maintain optimal system
   health.
 
-## How can I use it?
+## How can I implement alerts in Grafana?
 
+  As an example, this tutorial will use the simulated OPC-UA data from this
+  [tutorial](https://learn.umh.app/course/creating-a-node-red-flow-with-simulated-opc-ua-data/).
+  You need a running instance United Manufacturing Hub Stack with data (like in 
+  the tutorial above) to create an alert.
 
 ### Important Expressions
 
-- **Alert rule:** Define the event and it´s duration that should trigger the alert.
-- **Contact point:** Define the contacts and the contact methode (Slack, Discord, …).
+- **Alert rule:** Define the event and it´s duration that should trigger the 
+    alert.
+- **Contact point:** Define all the contacts and the used services (for this 
+    example Discord).
 - **Notification policies:** Link the contact points to the alert rules.
 - **Label:** Labels are tags for the alerts. For example different teams, 
   factories, production lines or a priority.
-- **Silences and mute time:** You can mute an alert for a specific amount of time
+- **Silences and mute time:** You can mute an alert for a regular amount of time
   or a planed time frame (for example maintenance).
 
-### Installation
+### Installation and SetUp
 
 1. **Install the PostgreSQL plugin in Grafana**
+
+   Before you can formulate alerts, you need to install the PostgreSQL plugin, 
+   which is already integrated into Grafana.
    - Hover over the "Configuration" button in the bottom left corner and 
-        click on "Data sources".
+     click on "Data sources".
    - Click on "Plugins" and search for PostgreSQL, then install the plugin.
   
 2. **Add an alert rule**
 
-   The first thing to do is create the alert rule itself, which specifies when
-   Grafana should trigger an alert. To add a new rule, hover over the bell 
-   symbol on the far left and click on "Alert Rules". Then click on the blue
-   "+ Create alert rule" button.
+   The first thing to do is create the alert rule itself, which specifies the 
+   event after which Grafana should trigger an alert. To add a new rule, hover
+   over the bell symbol on the left and click on "Alert Rules". Then click
+   on the blue "+ Create alert rule" button.
    
-     1. First, choose a name for your rule.
+     1. First, you must choose a name for your rule.
      2. In the second section, you need to select and manipulate the value that 
-       triggers your alert and set the rule itself.
+       triggers your alert and declare the function itself.
         - Subsection A is by default the selection of your values: You can use
-          the Grafana builder for this, but it is not very useful, as it cannot  
+          the Grafana builder for this, but it is not useful, as it cannot 
           select a time interval even though there is a selector for it. If you
-          choose, for example, now-20s to now, your query will select values from
-          hours ago. Therefore, it is necessary to use SQL directly. To add code
-          manually, switch to "Code" in the right corner of the section.
+          choose, for example, the last 20 seconds, your query will select
+          values from hours ago. Therefore, it is necessary to use SQL directly.
+          To add command manually, switch to "Code" in the right corner of 
+          the section.
           - First, you must select the value you want to create an alert for. In 
             the UMH data structure, a process value is stored in the table
-            ['processvaluetable']
-            (https://umh.docs.umh.app/docs/architecture/datamodel/database/processvaluetable/)
+            ['processvaluetable'](https://umh.docs.umh.app/docs/architecture/datamodel/database/processvaluetable/)
             under the column 'value'. Unfortunately Grafana cannot differentiate 
             between different values; if you select the "ConcentrationNH3" value 
             from the example and more than one of the selected values violates
             your rule in the selected time interval, it will trigger multiple
-            alerts but Grafana will not be able to differentiate them. This results
-            in errors. Therefore, you must filter the values. To do this, you
-            need the "timestamp" value. So the first part of the SQL command is:
-            "**SELECT value, "timestamp"**".
+            alerts. Unfortunately Grafana is not able to differentiate them, 
+            and it results in errors. To solve this, you need to add the value 
+            "timestamp" to the **Select** part. So the first part of 
+            the SQL command is: "**SELECT value, "timestamp"**".
           - The source is 'processvaluetable', so add "**FROM processvaluetable**"
             at the end.
           - The different values are distinguished by the variable
