@@ -24,7 +24,7 @@ a GitHub user account.
 ### Sign the Contributor License Agreement
 
 Before you can contribute to United Manufacturing Hub, you will need to sign the
-[Contributor License Agreement](https://github.com/united-manufacturing-hub/united-manufacturing-hub/blob/main/CONTRIBUTOR_LICENSE_AGREEMENT_ENTITY.md).
+[Contributor License Agreement](https://github.com/united-manufacturing-hub/united-manufacturing-hub/blob/main/CONTRIBUTOR_LICENSE_AGREEMENT_INDIVIDUAL.md).
 
 ### Code of Conduct
 
@@ -32,11 +32,16 @@ Please make sure to read and observe the [Code of Conduct](https://github.com/un
 
 ### Setting up your development environment
 
-It is not required to set up a developer environment in order to contribute to
-Kubernetes.
+The development environment changes depending on the type of contribution you
+want to make.
+
+If you plan to contribute documentation changes, you can use the GitHub UI to
+edit the files. Otherwise, you can follow the instructions in the
+[documentation](/docs/development/contribute/documentation/setup-environment/)
+to set up your environment.
 
 If you plan to contribute code changes, review the
-[developer resources](/docs/development/contribute/united-manufacturing-hub/)
+[developer resources](/docs/development/contribute/united-manufacturing-hub/setup-environment/)
 page for how to set up your environment.
 
 ## Find something to work on
@@ -61,7 +66,7 @@ When you find something you want to work on, you can assign the issue to yoursel
 ## Make your changes
 
 Once you have found something to work on, you can start making your changes.
-Follow the [contributing guidelines](https://github.com/united-manufacturing-hub/united-manufacturing-hub/blob/main/CONTRIBUTING.md)
+Follow the [contributing guidelines](/docs/development/contribute/new-content/).
 
 ## Open a pull request
 
@@ -87,7 +92,7 @@ in your PRs.
 
 - Write clear and meaningful git commit messages.
 - If the PR will completely fix a specific issue, include fixes #123 in the PR
-  body (where 123 is the specific issue number the PR will fix. This will
+  body (where 123 is the specific issue number the PR will fix). This will
   automatically close the issue when the PR is merged.
 - Make sure you don’t include @mentions or fixes keywords in your git commit
   messages. These should be included in the PR body instead.
@@ -112,21 +117,21 @@ stable and reliable.
 There are multiple type of tests. The location of the test code vaires with type,
 as do the specifics of the environment needed to succesfully run the test:
 
-- Unit: These confirm that a particular function behaves as intended. Golang
-  includes a native ability for unit testing via te [testing](https://golang.org/pkg/testing/)
+- Unit: these confirm that a particular function behaves as intended. Golang
+  includes a native ability for unit testing via the [testing](https://golang.org/pkg/testing/)
   package. Unit test source code can be found adjacent tot the corresponding
   source code within a given package. These are easily run by any developer on
-  ant OS.
-- Integration: These tests cover interactions of package components or interactions
-  between UMh components and some external system. An example would be testing
+  any OS.
+- Integration: these tests cover interactions of package components or interactions
+  between UMH components and some external system. An example would be testing
   whether a piece of code can correctly store data in tha database.
   Running these tests can require the developer to set up additional functionality
   on their development system.
-- End-to-end ("e2e"): These are broad test of overall system behavior and
+- End-to-end ("e2e"): these are broad test of overall system behavior and
   coherence. These are more complicated as they require a functional Kubernetes
   cluster. There are some e2e tests running in pipelines, and if your changes
   require e2e tests, you will need to add them to the pipeline. You can find
-  more information about the CI pipelines in the [CI documentation](/docs/development/ci-cd/).
+  more information about the CI pipelines in the [CI documentation](/docs/development/contribute/united-manufacturing-hub/automation-tools/).
 
 ## Documentation
 

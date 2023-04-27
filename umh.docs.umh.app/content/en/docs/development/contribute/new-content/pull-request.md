@@ -6,7 +6,7 @@ description: |
     United Manufacturing Hub project and its associated sub-repositories. It should serve as a
     reference for all contributors, and be useful especially to new or infrequent
     submitters.
-weight: 1
+weight: 2
 ---
 
 This doc explains the process and best practices for submitting a pull request
@@ -18,10 +18,8 @@ all contributors, and be useful especially to new and infrequent submitters.
 
 This guide is for contributors who already have a pull request to submit.
 If you're looking for information on setting up your developer environment and
-creating code to contribute to United Manufacturing Hub,
-see the [development guide](/docs/development/contribute/united-manufacturing-hub/development-guide).
-
-First-time contributors should head to the
+creating code to contribute to United Manufacturing Hub, or you are a first-time
+contributor, see the
 [Contributor Guide](/docs/development/contribute/getting-started) to get started.
 
 **Make sure your pull request adheres to our best practices.
@@ -43,21 +41,23 @@ pull request will be merged.
 ## Marking Unfinished Pull Requests
 
 If you want to solicit reviews before the implementation of your pull request is
-complete, you should hold your pull request to ensure that Tide does not pick it
-up and attempt to merge it.
+complete, you should hold your pull request to ensure that a maintainer does not
+merge it prematurely.
 
-There are two methods to achieve this:
+There are three methods to achieve this:
 
 1. You may add the `status: in-progress` or `status: on-hold` labels
 2. You may add or remove a `WIP` or `[WIP]` prefix to your pull request title
+3. You may open your pull request in a draft state
 
-While either label is present, your pull request will not be considered for merging.
+While either method is acceptable, we recommend using the `status: in-progress`
+label.
 
 ## How the e2e Tests Work
 
 United Manufacturing Hub runs a set of end-to-end tests (e2e tests) on pull
 requests. You can find an overview of the tests in the
-[CI documentation](/docs/development/ci-cd).
+[CI documentation](/docs/development/contribute/united-manufacturing-hub/automation-tools/).
 
 ## Why was my pull request closed?
 
