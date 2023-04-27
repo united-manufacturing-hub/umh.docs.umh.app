@@ -1,6 +1,6 @@
 +++
-title = "Alerts in Grafana using PostgreSQL"
-menuTitle = "Alerts in Grafana using PostgreSQL"
+title = "Alerting"
+menuTitle = "Alerting"
 description = ""
 weight = 50
 draft = false
@@ -13,15 +13,36 @@ the PostgreSQL plugin, the creation of an alert rule, and its connection to the
 desired contacts and services.
 
 
-## Why should I use alerts?
+## Why should I use it?
 
-  Alerts in Grafana offer real-time monitoring and proactive problem detection, 
-  enabling users to swiftly identify and address performance issues or system 
-  anomalies. By leveraging custom threshold-based notifications, teams can
-  enhance operational efficiency, reduce downtime, and maintain optimal system
-  health.
+  Alerts based on real-time data enable proactive problem detection, 
+  for example, a notification if the temperature of machine oil or an electrical 
+  component of a production line is exceeding limitations.
+  By utilizing such alerts, you can schedule maintenance, enhance efficiency and 
+  reduce downtime in your factories.
 
-## How can I implement alerts in Grafana?
+## What can I do with it?
+
+  Grafana alerts help you keep an eye on your production and manufacturing 
+  processes. By setting up alerts, you can quickly identify and fix problems,
+  ensuring smooth operations and high-quality products. It does not work with
+  the machine status; these values only exist in a raw form in TimeScaleDB and
+  are not processed through an API like process values.
+
+  An example of using alerts is the tracking of the temperature 
+  of an industrial oven. If the temperature goes too high or too low, you 
+  will get an alert, and your team can take action before any damage occurs.
+  Alerts can be configured in many different ways, for example,
+  to set of an alarm if a maximum is reached once or if it exceeds a limit when
+  averaged over a time period.
+  It is also possible to include several values to create 
+  an alert, for example if a temperature surpasses a limit and/ or the 
+  concentration of a component is too low.
+
+  Notifications can be sent simultaneously across many services like Discord,
+  Mail, Slack or other services.
+
+## How can I use it?
 
   As an example, this tutorial will use the simulated OPC-UA data from this
   [tutorial](https://learn.umh.app/course/creating-a-node-red-flow-with-simulated-opc-ua-data/).
@@ -45,7 +66,9 @@ desired contacts and services.
 1. **Install the PostgreSQL plugin in Grafana**
 
    Before you can formulate alerts, you need to install the PostgreSQL plugin, 
-   which is already integrated into Grafana.
+   which is already integrated into Grafana. Here is a short summary of how 
+   to to it, for a more detailed tutorial, take a look at our tutorial on how to
+   [access the database](https://umh.docs.umh.app/docs/production-guide/administration/access-database/#access-the-database-using-grafana)
    - Hover over the **Configuration** button in the bottom left corner and 
      click on **Data sources**.
    - Click on **Plugins**, search for PostgreSQL and then install the plugin.
@@ -196,7 +219,8 @@ desired contacts and services.
 
    To avoid receiving alerts during specific, recurring time periods, create a
    mute timing that allows you to designate the exact time span when alerts 
-   will be muted. To set up a mute timing, remain in the 
+   will be muted. This could be times without shifts like on a weekend or 
+   mantenance. To set up a mute timing, remain in the 
    **Notification policies** section.
    - Select **+ Add mute timing** below the notification policies.
    - Choose a name for the mute timing.
