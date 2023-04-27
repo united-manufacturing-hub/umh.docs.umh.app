@@ -61,7 +61,9 @@ class first,second white
   for issues that make good entry points.
 - [Open a pull request using GitHub](/docs/development/contribute/new-content/pull-request/)
   to existing documentation and learn more about filing issues in GitHub.
-- Read the UMH [content](/docs/development/contribute/documentation/style/content-guide/) and
-  [style guides](/docs/development/contribute/documentation/style/style-guide/) so you can leave informed comments.
-- Learn about [page content types](/docs/development/contribute/documentation/style/page-content-types/)
-  and [Hugo shortcodes](/docs/development/contribute/documentation/style/hugo-shortcodes/).
+- Get an insight on how to [setup your local environment](/docs/development/contribute/documentation/setup-environment/).
+- Read how to [write a new topic](/docs/development/contribute/documentation/write-new-topic/)
+  and the UMH
+  [style overview](/docs/development/contribute/documentation/style/)
+  to learn about writing documentation.
+- Discover how to [localize the documentation](/docs/development/contribute/documentation/localization/).

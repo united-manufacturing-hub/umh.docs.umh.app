@@ -1,6 +1,5 @@
 ---
-title: Documentation Style Guide
-linktitle: Style guide
+title: Style Guide
 description: |
     This page gives writing style guidelines for the United Manufacturing Hub documentation.
 content_type: concept
@@ -427,6 +426,5 @@ Avoid words such as "just", "simply", "easy", "easily", or "simple". These words
 
 ## {{% heading "whatsnext" %}}
 
-- Learn about [writing a new topic](/docs/development/contribute/documentation/style/write-new-topic/).
-- Learn about [using page templates](/docs/development/contribute/documentation/style/page-content-types/).
-- Learn about [creating a pull request](/docs/development/contribute/new-content/add-documentation/#open-a-pr).
+- Learn how to [write a new topic](/docs/development/contribute/documentation/write-new-topic/).
+- Read the [Content guide](/docs/development/contribute/documentation/style/content-guide/).
