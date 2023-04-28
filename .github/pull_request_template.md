@@ -1,19 +1,11 @@
 # Description
 
-Describe the big picture of your changes here to communicate to the maintainers why we should accept this pull request.
+<!-- Describe the big picture of your changes here to communicate to the maintainers why we should accept this pull request. 
+     Remember to also add relevant labels. -->
 
-List any dependencies that are required for this change.
+## Related issues
 
-### Related issues
-
-Enter here any relevant issue.
-
-## Type of change
-
-What types of changes does your code introduce to this project?
-
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
+<!-- Link to the issues that are related to this pull request. -->
 
 ## Checklist
 
@@ -24,4 +16,4 @@ What types of changes does your code introduce to this project?
 
 ## Additional information
 
-Enter here any additional information.
+<!-- Enter here any additional information that might be useful -->

@@ -14,7 +14,7 @@ text, like stop codes, to a different language.
 
 ## {{% heading "prerequisites" %}}
 
-{{< include "task-tutorial-prereqs.md" >}}
+{{< include "task-aftinst-prereqs.md" >}}
 
 <!-- steps -->
 
@@ -39,14 +39,14 @@ INSERT INTO configurationtable (customer, languagecode) VALUES ('factoryinsight'
 Factoryinsight supports the following languages:
 
 {{< table caption="Supported languages" >}}
-Language | Code
-:------- | :---
-German   | 0
-English  | 1
+| Language | Code |
+| :------- | :--- |
+| German   | 0    |
+| English  | 1    |
+| Turkish  | 2    |
 {{< /table >}}
 
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
 
 - See [Access the Database](/docs/production-guide/administration/access-database)
-- See [Customize United Manufacturing Hub Installation](/docs/production-guide/administration/customize-umh-installation)

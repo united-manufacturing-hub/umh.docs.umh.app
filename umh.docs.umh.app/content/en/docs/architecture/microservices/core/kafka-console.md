@@ -30,8 +30,8 @@ topics in the Topics tab.
 
 - Deployment: `{{< resource type="deployment" name="kafkaconsole" >}}`
 - Service:
-  - Internal ClusterIP: `{{< resource type="service" name="kafkaconsole" >}}` at
-    port 8080
+  - External LoadBalancer: `{{< resource type="service" name="kafkaconsole" >}}` at
+    port 8090
 - ConfigMap: `{{< resource type="configmap" name="kafkaconsole" >}}`
 - Secret: `{{< resource type="secret" name="kafkaconsole" >}}`
 

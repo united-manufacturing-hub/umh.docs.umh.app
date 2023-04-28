@@ -19,6 +19,9 @@ All the microservices that need to access the database will first check if the
 data is available in the cache. If it is, it will be used, otherwise the
 microservice will query the database and store the result in the cache.
 
+By default, Redis is configured to run in standalone mode, which means that it
+will only have one master node.
+
 <!-- body -->
 
 ## {{% heading "kuberesources" %}}
@@ -46,17 +49,18 @@ automatically when the cluster is deployed. However, if you need to change the
 configuration, you can do it by editing the `redis` section of the Helm
 chart values file.
 
+You can consult the [Bitnami Redis chart](https://github.com/bitnami/charts/tree/main/bitnami/redis#configuration-and-installation-details)
+for more information about the available configuration options.
+
 ### {{% heading "envvars" %}}
 
 {{< table caption="Environment variables" >}}
-| Variable name              | Description                           | Type   | Allowed values  | Default       |
-| -------------------------- | ------------------------------------- | ------ | --------------- | ------------- |
-| `ALLOW_EMPTY_PASSWORD`     | Allow empty password                  | `bool` | `true`, `false` | `false`       |
-| `BITNAMI_DEBUG`            | Specify if debug values should be set | `bool` | `true`, `false` | `false`       |
-| `REDIS_DATA_DIR`           | Redis data directory                  | string | Any             | /data         |
-| `REDIS_MASTER_PASSWORD`    | Redis master password                 | string | Any             | _Random UUID_ |
-| `REDIS_MASTER_PORT_NUMBER` | Redis master port number              | int    | Any             | 6379          |
-| `REDIS_PASSWORD`           | Redis password                        | string | Any             | _Random UUID_ |
-| `REDIS_PORT_NUMBER`        | Redis port number                     | int    | Any             | 6379          |
-| `REDIS_TLS_ENABLED`        | Enable TLS                            | `bool` | `true`, `false` | `false`       |
+| Variable name            | Description                           | Type   | Allowed values    | Default       |
+| ------------------------ | ------------------------------------- | ------ | ----------------- | ------------- |
+| `ALLOW_EMPTY_PASSWORD`   | Allow empty password                  | `bool` | `true`, `false`   | `false`       |
+| `BITNAMI_DEBUG`          | Specify if debug values should be set | `bool` | `true`, `false`   | `false`       |
+| `REDIS_PASSWORD`         | Redis password                        | string | Any               | _Random UUID_ |
+| `REDIS_PORT`             | Redis port number                     | int    | Any               | 6379          |
+| `REDIS_REPLICATION_MODE` | Redis replication mode                | string | `master`, `slave` | `master`      |
+| `REDIS_TLS_ENABLED`      | Enable TLS                            | `bool` | `true`, `false`   | `false`       |
 {{< /table >}}
