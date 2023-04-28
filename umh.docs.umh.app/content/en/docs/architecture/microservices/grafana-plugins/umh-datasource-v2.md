@@ -2,14 +2,14 @@
 title: "Umh Datasource V2"
 content_type: grafana-plugin
 description: |
-    This page contains the technical documentation of the  Grafana umh-datasource-v2 plugin,
+    This page contains the technical documentation of the Grafana umh-datasource-v2 plugin,
     which allows for easy data extraction from factoryinsight.
 weight: 1000
 ---
 
 <!-- overview -->
 
-The plugin, **umh-datasource-v2**, is a Grafana data source plugin that allows you to fetch
+The umh-datasource-v2 plugin is a Grafana data source plugin that allows you to fetch
 resources from a database and build queries for your dashboard.
 
 <!-- body -->
