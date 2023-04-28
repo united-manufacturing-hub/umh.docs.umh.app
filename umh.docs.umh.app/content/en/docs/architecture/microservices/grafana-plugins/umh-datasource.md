@@ -12,7 +12,7 @@ weight: 2000
 We are no longer maintaining this plugin. Instead, use our new plugin datasource-v2 for data extraction from factoryinsight.
 {{% /notice %}}
 
-The **umh datasource** is a Grafana 8.X compatible plugin, that allows you to fetch resources from a database
+The umh-datasource is a Grafana 8.X compatible plugin, that allows you to fetch resources from a database
 and build queries for your dashboard.
 
 <!-- body -->
