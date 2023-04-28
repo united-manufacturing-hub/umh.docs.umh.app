@@ -6,7 +6,8 @@ weight = 4
 draft = false
 +++
 
-One feature of the UMH is to connect devices on the shopfloor such as PLCs, Quality Stations or MES / ERP systems with the Unified Namespace using Node-RED. 
+One feature of the United Manufacturing Hub is to connect devices on the shopfloor such as PLCs, Quality Stations or
+MES / ERP systems with the Unified Namespace using Node-RED. 
 Node-RED has a large library of nodes, which lets you connect various protocols. It also has a user-friendly UI
 with little code, making it easy to configure the desired nodes.
 
@@ -20,23 +21,25 @@ the IT/OT-Community making it a familiar tool for a lot of users.
 
 ## What can I do with it?
 
-By default, you can
-- connect to MQTT using the MQTT node
-- connect to HTTP using the HTTP node
-- connect to TCP using the TCP node
-- connect to IP using the UDP node
+By default, there are connector nodes for common protocols:
 
-By installing additional packages, you can:
-- connect to OPC-UA (node-red-contrib-opcua)
-- connect to kafka (node-red-contrib-kafkajs)
-- connect to Siemens-S7 (node-red-contrib-s7)
-- connect to serial (node-red-node-serialport)
-- connect to modbus (node-red-contrib-modbus had)
-- connect to MC-protocol (node-red-contrib-mcprotocol)
-- connect to OMRON FINS Ethernet protocol (node-red-contrib-omron-fins)
-- connect to EtherNet/IP Protocol (node-red-contrib-cip-ethernet-ip)
-- connect to PostgreSQL (node-red-contrib-postgresql)
-- connect to SAP SQL Anywhere
+   - connect to MQTT using the MQTT node
+   - connect to HTTP using the HTTP node
+   - connect to TCP using the TCP node
+   - connect to IP using the UDP node
+
+Furthermore, you can install packages to support more connection protocols. For example:
+
+   - connect to OPC-UA (node-red-contrib-opcua)
+   - connect to kafka (node-red-contrib-kafkajs)
+   - connect to Siemens-S7 (node-red-contrib-s7)
+   - connect to serial (node-red-node-serialport)
+   - connect to modbus (node-red-contrib-modbus had)
+   - connect to MC-protocol (node-red-contrib-mcprotocol)
+   - connect to OMRON FINS Ethernet protocol (node-red-contrib-omron-fins)
+   - connect to EtherNet/IP Protocol (node-red-contrib-cip-ethernet-ip)
+   - connect to PostgreSQL (node-red-contrib-postgresql)
+   - connect to SAP SQL Anywhere
 
 You can additionally contextualize the data, using function or other different nodes do manipulate the 
 received data.
@@ -45,12 +48,12 @@ received data.
 
 Node-RED comes preinstalled as a microservice with the United Manufacturing Hub.
 
-1. To access Node-RED navigate to **network**->**services** on the left-hand side in UMHLens. You can download UMHLens [here](https://github.com/united-manufacturing-hub/UMHLens/releases).
-2. Change the namespace to **Namespace: united-manufacturing-hub** at the top right.
+1. To access Node-RED navigate to **Network** -> **Services** on the left-hand side in UMHLens. You can download {{< resource type="lens" name="name" >}} [here](https://github.com/united-manufacturing-hub/UMHLens/releases).
+2. On the top right, change the Namespace from default to {{< resource type="ns" name="umh" >}}.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingServices.png?width=75%)
 
-3. Click on **united-manufacturing-hub-nodered-service** and scroll down to **Connection** and forward the port.
+3. Click on {{< resource type="service" name="nodered" >}}, scroll down to **Connection** and forward the port.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingForwarding.png?width=75%)
 4. Once Node-RED opens in the browser, add `nodered` to the URL to avoid the [cannot get error](https://learn.umh.app/course/how-to-fix-cannot-get-error-in-node-red/).
@@ -65,11 +68,11 @@ Node-RED comes preinstalled as a microservice with the United Manufacturing Hub.
 
 ## What are the limitations?
 
-- most packages have no enterprise support. If you encounter any errors, you need to ask the community. 
+- Most packages have no enterprise support. If you encounter any errors, you need to ask the community. 
   However, we found that these packages are often more stable than the commercial ones out there, 
   as they have been battle tested by way more users than commercial software.
-- having many flows without following a strict structure, leads in general to confusion.
-- one additional limitation is "the speed of development of Node-RED". After a big Node-RED and JavaScript update
+- Having many flows without following a strict structure, leads in general to confusion.
+- One additional limitation is "the speed of development of Node-RED". After a big Node-RED and JavaScript update
   dependencies most likely break, and those single community maintained nodes need to be updated.
 
 ## Where to get more information?

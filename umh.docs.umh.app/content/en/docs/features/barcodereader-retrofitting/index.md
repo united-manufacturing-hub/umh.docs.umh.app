@@ -10,7 +10,7 @@ The barcodereader microservice enables the processing of barcodes from USB-linke
 data to the [Unified Namespace](https://learn.umh.app/lesson/introduction-into-it-ot-unified-namespace/).
 ## When should I use it?
 
-If you need to connect a barcode reader or any other USB devices acting as a keyboard. These cases could be to scan an order
+When you need to connect a barcode reader or any other USB devices acting as a keyboard. These cases could be to scan an order
 at the production machine from the accompanying order sheet. Or To scan material for inventory and track and trace.
 
 ## What can I do with it?
