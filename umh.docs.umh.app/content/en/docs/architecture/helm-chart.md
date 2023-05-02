@@ -174,14 +174,14 @@ The following table lists the configuration options that can be set in the
 `_000_commonConfig.datasources.barcodereader` section:
 
 {{< table caption="barcodereader section parameters" >}}
-| Parameter       | Description                                                                    | Type   | Allowed values         | Default                                      |
-| --------------- | ------------------------------------------------------------------------------ | ------ | ---------------------- | -------------------------------------------- |
-| `enabled`       | Whether the `barcodereader` microservice is enabled.                           | bool   | `true`, `false`        | `false`                                      |
-| `USBDeviceName` | The name of the USB device to use.                                             | string | Any                    | Datalogic ADC, Inc. Handheld Barcode Scanner |
-| `USBDevicePath` | The path of the USB device to use. If empty, `USBDeviceName` gets used instead | string | Valid Unix device path | ""                                           |
-| `customerID`    | The customer ID to use in the topic structure.                                 | string | Any                    | raw                                          |
-| `location`      | The location to use in the topic structure.                                    | string | Any                    | barcodereader                                |
-| `machineID`     | The asset ID to use in the topic structure.                                    | string | Any                    | barcodereader                                |
+| Parameter       | Description                                                                                                              | Type   | Allowed values         | Default                                      |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------ | ------ | ---------------------- | -------------------------------------------- |
+| `enabled`       | Whether the `barcodereader` microservice is enabled.                                                                     | bool   | `true`, `false`        | `false`                                      |
+| `USBDeviceName` | The name of the USB device to use.                                                                                       | string | Any                    | Datalogic ADC, Inc. Handheld Barcode Scanner |
+| `USBDevicePath` | The path of the USB device to use. It is recommended to use a wildcard (for example, `/dev/input/event*`) or leave empty | string | Valid Unix device path | ""                                           |
+| `customerID`    | The customer ID to use in the topic structure.                                                                           | string | Any                    | raw                                          |
+| `location`      | The location to use in the topic structure.                                                                              | string | Any                    | barcodereader                                |
+| `machineID`     | The asset ID to use in the topic structure.                                                                              | string | Any                    | barcodereader                                |
 {{< /table >}}
 
 ##### IoT Sensors MQTT
