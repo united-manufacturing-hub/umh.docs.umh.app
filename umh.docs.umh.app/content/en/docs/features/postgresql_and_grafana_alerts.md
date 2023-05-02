@@ -26,14 +26,17 @@ draft = false
   ensuring smooth operations and high-quality products. 
   An example of using alerts is the tracking of the temperature 
   of an industrial oven. If the temperature goes too high or too low, you 
-  will get an alert, and the responsible team can take action before any damage occurs.
-  Alerts can be configured in many different ways, for example,
+  will get an alert, and the responsible team can take action before any damage 
+  occurs. Alerts can be configured in many different ways, for example,
   to set off an alarm if a maximum is reached once or if it exceeds a limit when
   averaged over a time period. It is also possible to include several values
   to create an alert, for example if a temperature surpasses a limit and/or the 
-  concentration of a component is too low.
-  Notifications can be sent simultaneously across many services like Discord,
-  Mail, or Slack.
+  concentration of a component is too low. Notifications can be sent
+  simultaneously across many services like Discord, Mail, Slack, Webhook,
+  Telegram, or Microsoft Teams. It is also possible to forward the alert with
+  SMS over a personal Webhook. A complete list can be found on the
+  [Grafana page](https://grafana.com/docs/grafana/latest/alerting/manage-notifications/manage-contact-points/configure-integrations/)
+  about alerting.
 
 ## How can I use it?
 
@@ -97,5 +100,6 @@ draft = false
   an API like process values.
 
 ## Where to get more information?
-  - [Detailed step-by-step Tutorial](https://learn.umh.app/) (tba)
-  - [The Grafana Page about Alerting](https://grafana.com/docs/grafana/latest/alerting/)
+  - [Detailed step-by-step tutorial](https://learn.umh.app/) (tba)
+  - [The Grafana page about alerting](https://grafana.com/docs/grafana/latest/alerting/)
+  - [How to add Grafana to Teams](https://learn.umh.app/blog/how-to-install-grafana-alerts-in-microsoft-teams/)
