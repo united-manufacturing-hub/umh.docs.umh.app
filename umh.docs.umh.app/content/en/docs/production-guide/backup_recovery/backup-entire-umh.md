@@ -43,23 +43,23 @@ It does **not** back up:
 1. Open a Terminal inside the repository folder.
 2. In this folder, there are multiple powershell scripts. To create a full backup use the **backup.ps1** script. 
    The following parameters are available for this script:
-   -IP <String> :IP of the cluster
-   -GrafanaPort <String> :External port of the Grafana service
-   -GrafanaToken <String> :Grafana API token
-   -DatabasePassword <String> :Password of the database user. If default user (factoryinsight) is used, the default password is changeme
-   -DatabasePort <Int32> :External port of the database
-   -DatabaseUser <String> :Database user
-   -DatabaseDatabase <String> :Database name
-   -KubeconfigPath <String> :Path to the kubeconfig file
-   -SkipDiskSpaceCheck <Boolean> :Skip disk space check
-   -OutputPath <String> :Output path
-   -ParallelJobs <Int32> :Parallel jobs
-   -DaysPerJob <Int32> :Days per job
-   -EnableGpgSigning <Boolean> :Enable GPG signing
-   -GpgSigningKeyId <String> :GPG signing key ID
-   -EnableGpgEncryption <Boolean> :Enable GPG encryption
-   -GpgEncryptionKeyId <String> :GPG encryption key ID
-   -SkipGpgQuestions <Boolean> :Skip GPG questions
+   - IP <String> :IP of the cluster
+   - GrafanaPort <String> :External port of the Grafana service
+   - GrafanaToken <String> :Grafana API token
+   - DatabasePassword <String> :Password of the database user. If default user (factoryinsight) is used, the default password is changeme
+   - DatabasePort <Int32> :External port of the database
+   - DatabaseUser <String> :Database user
+   - DatabaseDatabase <String> :Database name
+   - KubeconfigPath <String> :Path to the kubeconfig file
+   - SkipDiskSpaceCheck <Boolean> :Skip disk space check
+   - OutputPath <String> :Output path
+   - ParallelJobs <Int32> :Parallel jobs
+   - DaysPerJob <Int32> :Days per job
+   - EnableGpgSigning <Boolean> :Enable GPG signing
+   - GpgSigningKeyId <String> :GPG signing key ID
+   - EnableGpgEncryption <Boolean> :Enable GPG encryption
+   - GpgEncryptionKeyId <String> :GPG encryption key ID
+   - SkipGpgQuestions <Boolean> :Skip GPG questions
 3. Execute the script with your desired parameters.
 
    ```
