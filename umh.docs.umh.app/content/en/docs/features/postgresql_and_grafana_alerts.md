@@ -33,7 +33,7 @@ draft = false
   to create an alert, for example if a temperature surpasses a limit and/or the 
   concentration of a component is too low. Notifications can be sent
   simultaneously across many services like Discord, Mail, Slack, Webhook,
-  Telegram, or Microsoft Teams. It is also possible to forward the alert with
+  Telegram, or [Microsoft Teams](https://learn.umh.app/blog/how-to-install-grafana-alerts-in-microsoft-teams/). It is also possible to forward the alert with
   SMS over a personal Webhook. A complete list can be found on the
   [Grafana page](https://grafana.com/docs/grafana/latest/alerting/manage-notifications/manage-contact-points/configure-integrations/)
   about alerting.
