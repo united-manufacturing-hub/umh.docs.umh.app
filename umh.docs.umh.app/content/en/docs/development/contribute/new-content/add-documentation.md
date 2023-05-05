@@ -9,8 +9,9 @@ weight: 3
 <!-- overview -->
 
 To contribute new content pages or improve existing content pages, open a pull request (PR).
-Make sure you follow all the guidelines in the
-[Getting started](/docs/development/contribute/getting-started/) section.
+Make sure you follow all the general contributing guidelines in the
+[Getting started](/docs/development/contribute/getting-started/) section, as
+well as the [documentation specific guidelines](/docs/development/contribute/documentation/).
 
 If your change is small, or you're unfamiliar with git, read
 [Changes using GitHub](#changes-using-github) to learn how to edit a page.
@@ -133,8 +134,8 @@ a few minutes later.
 If you're more experienced with git, or if your changes are larger than a few lines,
 work from a local fork.
 
-Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed
-on your computer. You can also use a git UI application.
+Make sure you [setup your local environment](/docs/development/contribute/documentation/setup-local-environment/)
+before you start.
 
 Figure 2 shows the steps to follow when you work from a local fork. The details for each step follow.
 
@@ -146,7 +147,7 @@ flowchart LR
 subgraph changes[Your changes]
 direction TB
 S[ ] -.-
-3[Create a branch<br>example: my_new_branch] --> 3a[Make changes using<br>text editor] --> 4["Preview your changes<br>locally using Hugo<br>(localhost:1313)<br>or build container image"]
+3[Create a branch<br>example: my_new_branch] --> 3a[Make changes using<br>text editor] --> 4["Preview your changes<br>locally using Hugo<br>(localhost:1313)"]
 end
 subgraph changes2[Commit / Push]
 direction TB

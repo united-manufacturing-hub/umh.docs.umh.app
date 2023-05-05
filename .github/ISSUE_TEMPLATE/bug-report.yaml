@@ -1,0 +1,46 @@
+name: 🐞 Bug report
+description: Report a bug encountered with UMH Docs
+labels: ["type: bug"]
+body:
+    - type: markdown
+      attributes:
+          value: |
+              Thanks for taking the time to fill out this bug report!
+              Before you create the issue:
+              - Search the existing issues first, as yours may be a duplicate.
+              - Search our [documentation](https://umh.docs.umh.app/docs/) for any relevant troubleshooting steps.
+    - type: textarea
+      id: describe-issue
+      attributes:
+          label: Describe the issue
+          description: A clear and concise description of what the issue is.
+      validations:
+          required: true
+    - type: textarea
+      id: what-expected
+      attributes:
+          label: What did you expect to happen?
+          description: A clear and concise description of what you expected to happen.
+      validations:
+          required: true
+    - type: input
+      id: location
+      attributes:
+          label: Location
+          description: Where did you encounter this bug?
+          placeholder: URL or path to the page
+    - type: textarea
+      id: screenshots
+      attributes:
+          label: Screenshots
+          description: If applicable, add screenshots to help explain your problem.
+    - type: textarea
+      id: solution
+      attributes:
+          label: Solution
+          description: If you have a solution, please describe it here.
+    - type: textarea
+      id: additional-context
+      attributes:
+          label: Additional Context
+          description: Add any other context about the problem here.

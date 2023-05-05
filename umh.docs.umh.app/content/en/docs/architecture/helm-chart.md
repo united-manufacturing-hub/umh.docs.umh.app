@@ -43,8 +43,6 @@ custom microservices:
   sensors and sends the data to the MQTT broker for further processing.
 - [kafka-bridge](/docs/architecture/microservices/core/kafka-bridge/): connects Kafka brokers
   on different Kubernetes clusters.
-- [kafkatoblob](/docs/architecture/microservices/community/kafka-to-blob/): stores the data
-  from the Kafka broker in a blob storage.
 - [kafkatopostgresql](/docs/architecture/microservices/core/kafka-to-postgresql/):
   stores the data from the Kafka broker in a PostgreSQL database.
 - [mqtt-kafka-bridge](/docs/architecture/microservices/core/mqtt-kafka-bridge/): connects
@@ -69,8 +67,6 @@ third-party applications:
 - [Grafana](https://grafana.com/): a visualization and analytics software.
 - [HiveMQ](https://www.hivemq.com/): an MQTT broker.
 - [Kafka](https://kafka.apache.org/): a distributed streaming platform.
-- [MinIo Operator](https://operator.min.io/): a Kubernetes operator for
-  deploying and managing MinIO clusters.
 - [Node-RED](https://nodered.org/): a programming tool for wiring together
   hardware devices, APIs and online services.
 - [Red Panda Console](https://redpanda.com/redpanda-console-kafka-ui/): a
@@ -78,19 +74,6 @@ third-party applications:
 - [Redis](https://redis.io/): an in-memory data structure store, used for cache.
 - [TimescaleDB](https://www.timescale.com/): an open-source time-series SQL
   database.
-
-## Configuration
-
-There are two ways to configure the Helm Chart of the United Manufacturing Hub:
-
-- by editing the `values.yaml` file after the initial installation, which is the
-  recommended way. Take a look at the
-  [Customize the United Manufacturing Hub](/docs/production-guide/administration/customize-umh-installation/#edit-via-lens)
-  page for more information.
-- by creating a custom `values.yaml` file and passing it to the `helm install`
-  command. Take a look at the
-  [Customize the United Manufacturing Hub](/docs/production-guide/administration/customize-umh-installation/#custom-values-yaml)
-  page for more information.
 
 ## Configuration options
 
@@ -145,20 +128,20 @@ The following table lists the configuration options that can be set in the
 `_000_commonConfig` section:
 
 {{< table caption="_000_commonConfig section parameters" >}}
-| Parameter            | Description                                                                     | Type   | Allowed values | Default                            |
-| -------------------- | ------------------------------------------------------------------------------- | ------ | -------------- | ---------------------------------- |
-| `serialNumber`       | The hostname of the device. Used by some microservices to identify the device.  | string | Any            | default                            |
-| `datasources`        | The configuration of the microservices used to acquire data.                    | object | See below      | [See below](#data-sources)         |
-| `dataprocessing`     | The configuration of the microservices used to process data.                    | object | See below      | [See below](#data-processing)      |
-| `infrastructure`     | The configuration of the microservices used to provide infrastructure services. | object | See below      | [See below](#infrastructure)       |
-| `datastorage`        | The configuration of the microservices used to store data.                      | object | See below      | [See below](#data-storage)         |
-| `datainput`          | The configuration of the microservices used to input data.                      | object | See below      | [See below](#data-input)           |
-| `blobstorage`        | The configuration of the microservices used to store data in a blob storage.    | object | See below      | [See below](#blob-storage)         |
-| `mqttBridge`         | The configuration for the MQTT bridge.                                          | object | See below      | [See below](#mqtt-bridge)          |
-| `kafkaBridge`        | The configuration for the Kafka bridge.                                         | object | See below      | [See below](#kafka-bridge)         |
-| `kafkaStateDetector` | The configuration for the Kafka state detector.                                 | object | See below      | [See below](#kafka-state-detector) |
-| `debug`              | The configuration for the debug mode.                                           | object | See below      | [See below](#debug)                |
-| `tulipconnector`     | The configuration for the Tulip connector.                                      | object | See below      | [See below](#tulip-connector)      |
+| Parameter            | Description                                                                     | Type   | Allowed values    | Default                            |
+| -------------------- | ------------------------------------------------------------------------------- | ------ | ----------------- | ---------------------------------- |
+| `datainput`          | The configuration of the microservices used to input data.                      | object | See below         | [See below](#data-input)           |
+| `dataprocessing`     | The configuration of the microservices used to process data.                    | object | See below         | [See below](#data-processing)      |
+| `datasources`        | The configuration of the microservices used to acquire data.                    | object | See below         | [See below](#data-sources)         |
+| `datastorage`        | The configuration of the microservices used to store data.                      | object | See below         | [See below](#data-storage)         |
+| `debug`              | The configuration for the debug mode.                                           | object | See below         | [See below](#debug)                |
+| `infrastructure`     | The configuration of the microservices used to provide infrastructure services. | object | See below         | [See below](#infrastructure)       |
+| `kafkaBridge`        | The configuration for the Kafka bridge.                                         | object | See below         | [See below](#kafka-bridge)         |
+| `kafkaStateDetector` | The configuration for the Kafka state detector.                                 | object | See below         | [See below](#kafka-state-detector) |
+| `metrics.enabled`    | Whether to enable the anonymous metrics service or not.                         | bool   | `true` or `false` | `true`                             |
+| `mqttBridge`         | The configuration for the MQTT bridge.                                          | object | See below         | [See below](#mqtt-bridge)          |
+| `serialNumber`       | The hostname of the device. Used by some microservices to identify the device.  | string | Any               | default                            |
+| `tulipconnector`     | The configuration for the Tulip connector.                                      | object | See below         | [See below](#tulip-connector)      |
 {{< /table >}}
 
 #### Data sources
@@ -255,12 +238,13 @@ The following table lists the configuration options that can be set in the
 `_000_commonConfig.datasources.sensorconnect` section:
 
 {{< table caption="sensorconnect section parameters" >}}
-| Parameter     | Description                                              | Type   | Allowed values  | Default         |
-| ------------- | -------------------------------------------------------- | ------ | --------------- | --------------- |
-| `enabled`     | Whether the sensorconnect microservice is enabled.       | bool   | `true`, `false` | `false`         |
-| `iprange`     | The IP range of the sensors in CIDR notation.            | string | Valid IP range  | 192.168.10.1/24 |
-| `enableKafka` | Whether the sensorconnect microservice should use Kafka. | bool   | `true`, `false` | `true`          |
-| `enableMQTT`  | Whether the sensorconnect microservice should use MQTT.  | bool   | `true`, `false` | `false`         |
+| Parameter     | Description                                               | Type   | Allowed values  | Default         |
+| ------------- | --------------------------------------------------------- | ------ | --------------- | --------------- |
+| `enabled`     | Whether the sensorconnect microservice is enabled.        | bool   | `true`, `false` | `false`         |
+| `iprange`     | The IP range of the sensors in CIDR notation.             | string | Valid IP range  | 192.168.10.1/24 |
+| `enableKafka` | Whether the sensorconnect microservice should use Kafka.  | bool   | `true`, `false` | `true`          |
+| `enableMQTT`  | Whether the sensorconnect microservice should use MQTT.   | bool   | `true`, `false` | `false`         |
+| `testMode`    | Whether to enable test mode. Only useful for development. | bool   | `true`, `false` | `false`         |
 {{< /table >}}
 
 #### Data processing
@@ -389,9 +373,6 @@ The following table lists the configuration options that can be set in the
 | `tls.kafkastatedetector.sslKeyPassword`    | The encrypted password of the SSL key for the kafkastatedetector microservice. If empty, no password is used | string | Any                                            | ""                                                                           |
 | `tls.kafkastatedetector.sslKeyPem`         | The private key for the SSL certificate of the kafkastatedetector microservice                               | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
 | `tls.kafkastatedetector.sslCertificatePem` | The private SSL certificate for the kafkastatedetector microservice                                          | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
-| `tls.kafkatoblob.sslKeyPassword`           | The encrypted password of the SSL key for the kafkatoblob microservice. If empty, no password is used        | string | Any                                            | ""                                                                           |
-| `tls.kafkatoblob.sslKeyPem`                | The private key for the SSL certificate of the kafkatoblob microservice                                      | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
-| `tls.kafkatoblob.sslCertificatePem`        | The private SSL certificate for the kafkatoblob microservice                                                 | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
 | `tls.kafkatopostgresql.sslKeyPassword`     | The encrypted password of the SSL key for the kafkatopostgresql microservice. If empty, no password is used  | string | Any                                            | ""                                                                           |
 | `tls.kafkatopostgresql.sslKeyPem`          | The private key for the SSL certificate of the kafkatopostgresql microservice                                | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
 | `tls.kafkatopostgresql.sslCertificatePem`  | The private SSL certificate for the kafkatopostgresql microservice                                           | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
@@ -454,27 +435,6 @@ The following table lists the configurable parameters of the
 | Parameter | Description                                    | Type | Allowed values  | Default |
 | --------- | ---------------------------------------------- | ---- | --------------- | ------- |
 | `enabled` | Whether to enable the data input microservices | bool | `true`, `false` | `false` |
-{{< /table >}}
-
-#### Blob storage
-
-The `_000_commonConfig.blobstorage` section contains the configuration of the
-microservices used to store data in blob storage. Specifically, it controls the
-following microservices:
-
-- [kafka-to-blob](/docs/architecture/microservices/community/kafka-to-blob)
-- [minio](/docs/architecture/microservices/community/minio)
-
-If you want to specifically configure one of these microservices, you can do so
-in their respective sections in the danger zone.
-
-The following table lists the configurable parameters of the
-`_000_commonConfig.blobstorage` section.
-
-{{< table caption="blobstorage section parameters" >}}
-| Parameter | Description                                      | Type | Allowed values  | Default |
-| --------- | ------------------------------------------------ | ---- | --------------- | ------- |
-| `enabled` | Whether to enable the blob storage microservices | bool | `true`, `false` | `false` |
 {{< /table >}}
 
 #### MQTT Bridge
@@ -617,7 +577,7 @@ Everything below this point  should not be changed, unless you know what you are
 {{< table caption="Danger zone advanced configuration" >}}
 | Section                                            | Description                                                     |
 | -------------------------------------------------- | --------------------------------------------------------------- |
-| [`barcodereader`](#dz-barcodereader)              | Configuration for barcodereader                                 |
+| [`barcodereader`](#dz-barcodereader)               | Configuration for barcodereader                                 |
 | [`console`](#dz-kafka-console)                     | Configuration for the Kafka console                             |
 | [`factoryinput`](#dz-factoryinput)                 | Configuration for factoryinput                                  |
 | [`factoryinsight`](#dz-factoryinsight)             | Configuration for factoryinsight                                |
@@ -627,19 +587,17 @@ Everything below this point  should not be changed, unless you know what you are
 | [`kafka`](#dz-kafka-broker)                        | Configuration for the Kafka broker                              |
 | [`kafkabridge`](#dz-kafka-bridge)                  | Configuration for kafka-bridge                                  |
 | [`kafkastatedetector`](#dz-kafka-state-detector)   | Configuration for kafka-state-detector                          |
-| [`kafkatoblob`](#dz-kafka-to-blob)                 | Configuration for kafka-to-blob                                 |
 | [`kafkatopostgresql`](#dz-kafka-to-postgresql)     | Configuration for kafka-to-postgresql                           |
+| [`metrics`](#dz-metrics)                           | Configuration for the metrics                                   |
 | [`mqtt_broker`](#dz-mqtt-broker)                   | Configuration for the MQTT broker                               |
 | [`mqttbridge`](#dz-mqtt-bridge)                    | Configuration for mqtt-bridge                                   |
 | [`mqttkafkabridge`](#dz-mqtt-kafka-bridge)         | Configuration for mqtt-kafka-bridge                             |
 | [`nodered`](#dz-node-red)                          | Configuration for Node-RED                                      |
 | [`opcuasimulator`](#dz-opcua-simulator)            | Configuration for the OPC UA simulator                          |
-| [`operator`](#dz-operator)                         | Configuration for the MinIo operator                            |
 | [`packmlmqttsimulator`](#dz-packml-mqtt-simulator) | Configuration for the PackML MQTT simulator                     |
 | [`redis`](#dz-redis)                               | Configuration for Redis                                         |
-| [`sensorconnect`](#dz-sensorconnect)              | Configuration for sensorconnect                                 |
+| [`sensorconnect`](#dz-sensorconnect)               | Configuration for sensorconnect                                 |
 | [`serviceAccount`](#service-account)               | Configuration for the service account used by the microservices |
-| [`tenant`](#dz-tenant)                             | Configuration for the MinIo tenant                              |
 | [`timescaledb-single`](#dz-timescaledb-single)     | Configuration for TimescaleDB                                   |
 | [`tulipconnector`](#dz-tulip-connector)            | Configuration for tulip-connector                               |
 {{< /table >}}
@@ -653,18 +611,18 @@ The `barcodereader` section contains the advanced configuration of the
 microservice.
 
 {{< table caption="barcodereader advanced section parameters" >}}
-| Parameter                   | Description                                                                     | Type   | Allowed values              | Default                                                 |
-| --------------------------- | ------------------------------------------------------------------------------- | ------ | --------------------------- | ------------------------------------------------------- |
-| `annotations`               | Annotations to add to the Kubernetes resources                                  | object | Any                         | {}                                                      |
-| `enabled`                   | Whether to enable the barcodereader microservice                                | bool   | `true`, `false`             | `false`                                                 |
-| `image.pullPolicy`          | The image pull policy                                                           | string | Always, IfNotPresent, Never | IfNotPresent                                            |
-| `image.repository`          | The image of the barcodereader microservice                                     | string | Any                         | {{< resource type="docker" name="org" >}}/barcodereader |
-| `image.tag`                 | The tag of the barcodereader microservice. Defaults to Chart version if not set | string | Any                         | {{< latest-semver >}}                                   |
-| `resources.limits.cpu`      | The CPU limit                                                                   | string | Any                         | 10m                                                     |
-| `resources.limits.memory`   | The memory limit                                                                | string | Any                         | 60Mi                                                    |
-| `resources.requests.cpu`    | The CPU request                                                                 | string | Any                         | 2m                                                      |
-| `resources.requests.memory` | The memory request                                                              | string | Any                         | 30Mi                                                    |
-| `scanOnly`                  | Whether to only scan without sending the data to the Kafka broker               | bool   | `true`, `false`             | `false`                                                 |
+| Parameter                   | Description                                                                     | Type   | Allowed values              | Default                                                  |
+| --------------------------- | ------------------------------------------------------------------------------- | ------ | --------------------------- | -------------------------------------------------------- |
+| `annotations`               | Annotations to add to the Kubernetes resources                                  | object | Any                         | {}                                                       |
+| `enabled`                   | Whether to enable the barcodereader microservice                                | bool   | `true`, `false`             | `false`                                                  |
+| `image.pullPolicy`          | The image pull policy                                                           | string | Always, IfNotPresent, Never | IfNotPresent                                             |
+| `image.repository`          | The image of the barcodereader microservice                                     | string | Any                         | {{< resource type="docker" name="repo" >}}/barcodereader |
+| `image.tag`                 | The tag of the barcodereader microservice. Defaults to Chart version if not set | string | Any                         | {{< latest-semver >}}                                    |
+| `resources.limits.cpu`      | The CPU limit                                                                   | string | Any                         | 10m                                                      |
+| `resources.limits.memory`   | The memory limit                                                                | string | Any                         | 60Mi                                                     |
+| `resources.requests.cpu`    | The CPU request                                                                 | string | Any                         | 2m                                                       |
+| `resources.requests.memory` | The memory request                                                              | string | Any                         | 30Mi                                                     |
+| `scanOnly`                  | Whether to only scan without sending the data to the Kafka broker               | bool   | `true`, `false`             | `false`                                                  |
 {{< /table >}}
 
 #### console {#dz-kafka-console}
@@ -679,12 +637,15 @@ For more information about the parameters, see the
 Here are only the values different from the default ones.
 
 {{< table caption="console advanced section parameters" >}}
-| Parameter               | Description                                     | Type   | Allowed values  | Default                                                                |
-| ----------------------- | ----------------------------------------------- | ------ | --------------- | ---------------------------------------------------------------------- |
-| `console.config`        | The configuration of the Kafka console          | object | Any             | See [console.config](#dz-kafka-console-config) section                 |
-| `extraVolumeMounts`     | Extra volume mounts to add to the Kafka console | array  | Any             | See [extraVolumeMounts](#dz-kafka-console-extravolumemounts) section |
-| `extraVolumes`          | Extra volumes to add to the Kafka console       | array  | Any             | See [extraVolumes](#dz-kafka-console-extravolumes) section            |
-| `serviceAccount.create` | Whether to create a service account             | bool   | `true`, `false` | `false`                                                                |
+| Parameter               | Description                                     | Type   | Allowed values          | Default                                                              |
+| ----------------------- | ----------------------------------------------- | ------ | ----------------------- | -------------------------------------------------------------------- |
+| `console.config`        | The configuration of the Kafka console          | object | Any                     | See [console.config](#dz-kafka-console-config) section               |
+| `extraVolumeMounts`     | Extra volume mounts to add to the Kafka console | array  | Any                     | See [extraVolumeMounts](#dz-kafka-console-extravolumemounts) section |
+| `extraVolumes`          | Extra volumes to add to the Kafka console       | array  | Any                     | See [extraVolumes](#dz-kafka-console-extravolumes) section           |
+| `service.port`          | The port of the Service to expose               | int    | Any                     | 8090                                                                 |
+| `service.targetPort`    | The Pod port targeteb by the Service            | int    | Any                     | 8080                                                                 |
+| `service.type`          | The type of Service to expose                   | string | ClusterIP, LoadBalancer | LoadBalancer                                                         |
+| `serviceAccount.create` | Whether to create a service account             | bool   | `true`, `false`         | `false`                                                              |
 {{< /table >}}
 
 ##### console.config {#dz-kafka-console-config}
@@ -701,7 +662,6 @@ for more information.
 | `kafka.tls.certFilepath` | The path to the certificate file            | string | Any             | `/SSL_certs/kafka/tls.crt`                              |
 | `kafka.tls.enabled`      | Whether to enable TLS for the Kafka brokers | bool   | `true`, `false` | `false`                                                 |
 | `kafka.tls.keyFilepath`  | The path to the key file                    | string | Any             | `/SSL_certs/kafka/tls.key`                              |
-| `kafka.tls.passphrase`   | The passphrase for the key file             | string | Any             | ""                                                      |
 {{< /table >}}
 
 ##### extraVolumeMounts {#dz-kafka-console-extravolumemounts}
@@ -733,21 +693,21 @@ The `factoryinput` section contains the advanced configuration of the
 microservice.
 
 {{< table caption="factoryinput advanced section parameters" >}}
-| Parameter                | Description                                                                    | Type   | Allowed values              | Default                                                |
-| ------------------------ | ------------------------------------------------------------------------------ | ------ | --------------------------- | ------------------------------------------------------ |
-| `enabled`                | Whether to enable the factoryinput microservice                                | bool   | `true`, `false`             | `false`                                                |
-| `env`                    | The environment variables                                                      | object | Any                         | See [env](#dz-factoryinput-env) section                |
-| `image.pullPolicy`       | The image pull policy                                                          | string | Always, IfNotPresent, Never | IfNotPresent                                           |
-| `image.repository`       | The image of the factoryinput microservice                                     | string | Any                         | {{< resource type="docker" name="org" >}}/factoryinput |
-| `image.tag`              | The tag of the factoryinput microservice. Defaults to Chart version if not set | string | Any                         | {{< latest-semver >}}                                  |
-| `mqtt.encryptedPassword` | The encrypted password of the MQTT broker                                      | string | Any                         | _Base 64 encrypted password_                           |
-| `mqtt.password`          | The password of the MQTT broker                                                | string | Any                         | INSECURE_INSECURE_INSECURE                             |
-| `pdb.enabled`            | Whether to enable a PodDisruptionBudget                                        | bool   | `true`, `false`             | `true`                                                 |
-| `pdb.minAvailable`       | The minimum number of available pods                                           | int    | Any                         | 1                                                      |
-| `replicas`               | The number of Pod replicas                                                     | int    | Any                         | 1                                                      |
-| `service.annotations`    | Annotations to add to the factoryinput Service                                 | object | Any                         | {}                                                     |
-| `storageRequest`         | The amount of storage for the PersistentVolumeClaim                            | string | Any                         | 1Gi                                                    |
-| `user`                   | The user of factoryinput                                                       | string | Any                         | factoryinsight                                         |
+| Parameter                | Description                                                                    | Type   | Allowed values              | Default                                                 |
+| ------------------------ | ------------------------------------------------------------------------------ | ------ | --------------------------- | ------------------------------------------------------- |
+| `enabled`                | Whether to enable the factoryinput microservice                                | bool   | `true`, `false`             | `false`                                                 |
+| `env`                    | The environment variables                                                      | object | Any                         | See [env](#dz-factoryinput-env) section                 |
+| `image.pullPolicy`       | The image pull policy                                                          | string | Always, IfNotPresent, Never | IfNotPresent                                            |
+| `image.repository`       | The image of the factoryinput microservice                                     | string | Any                         | {{< resource type="docker" name="repo" >}}/factoryinput |
+| `image.tag`              | The tag of the factoryinput microservice. Defaults to Chart version if not set | string | Any                         | {{< latest-semver >}}                                   |
+| `mqtt.encryptedPassword` | The encrypted password of the MQTT broker                                      | string | Any                         | _Base 64 encrypted password_                            |
+| `mqtt.password`          | The password of the MQTT broker                                                | string | Any                         | INSECURE_INSECURE_INSECURE                              |
+| `pdb.enabled`            | Whether to enable a PodDisruptionBudget                                        | bool   | `true`, `false`             | `true`                                                  |
+| `pdb.minAvailable`       | The minimum number of available pods                                           | int    | Any                         | 1                                                       |
+| `replicas`               | The number of Pod replicas                                                     | int    | Any                         | 1                                                       |
+| `service.annotations`    | Annotations to add to the factoryinput Service                                 | object | Any                         | {}                                                      |
+| `storageRequest`         | The amount of storage for the PersistentVolumeClaim                            | string | Any                         | 1Gi                                                     |
+| `user`                   | The user of factoryinput                                                       | string | Any                         | factoryinsight                                          |
 {{< /table >}}
 
 ##### env {#dz-factoryinput-env}
@@ -770,42 +730,31 @@ The `factoryinsight` section contains the advanced configuration of the
 microservice.
 
 {{< table caption="factoryinsight advanced section parameters" >}}
-| Parameter                      | Description                                                                      | Type   | Allowed values              | Default                                                  |
-| ------------------------------ | -------------------------------------------------------------------------------- | ------ | --------------------------- | -------------------------------------------------------- |
-| `db_database`                  | The database name                                                                | string | Any                         | factoryinsight                                           |
-| `db_host`                      | The host of the database                                                         | string | Any                         | {{< resource type="service" name="database" >}}          |
-| `db_user`                      | The database user                                                                | string | Any                         | factoryinsight                                           |
-| `enabled`                      | Whether to enable the factoryinsight microservice                                | bool   | `true`, `false`             | `false`                                                  |
-| `hpa.enabled`                  | Whether to enable a HorizontalPodAutoscaler                                      | bool   | `true`, `false`             | `false`                                                  |
-| `image.pullPolicy`             | The image pull policy                                                            | string | Always, IfNotPresent, Never | IfNotPresent                                             |
-| `image.repository`             | The image of the factoryinsight microservice                                     | string | Any                         | {{< resource type="docker" name="org" >}}/factoryinsight |
-| `image.tag`                    | The tag of the factoryinsight microservice. Defaults to Chart version if not set | string | Any                         | {{< latest-semver >}}                                    |
-| `ingress.enabled`              | Whether to enable an Ingress                                                     | bool   | `true`, `false`             | `false`                                                  |
-| `ingress.publicHostSecretName` | The secret name of the public host of the Ingress                                | string | Any                         | ""                                                       |
-| `ingress.publicHost`           | The public host of the Ingress                                                   | string | Any                         | ""                                                       |
-| `insecure_no_auth`             | Whether to enable the insecure_no_auth mode                                      | bool   | `true`, `false`             | `false`                                                  |
-| `pdb.enabled`                  | Whether to enable a PodDisruptionBudget                                          | bool   | `true`, `false`             | `false`                                                  |
-| `redis`                        | The Redis configuration                                                          | object | Any                         | See [redis](#dz-factoryinsight-redis) section            |
-| `replicas`                     | The number of Pod replicas                                                       | int    | Any                         | 2                                                        |
-| `resources.limits.cpu`         | The CPU limit                                                                    | string | Any                         | 200m                                                     |
-| `resources.limits.memory`      | The memory limit                                                                 | string | Any                         | 200Mi                                                    |
-| `resources.requests.cpu`       | The CPU request                                                                  | string | Any                         | 50m                                                      |
-| `resources.requests.memory`    | The memory request                                                               | string | Any                         | 50Mi                                                     |
-| `service.annotations`          | Annotations to add to the factoryinsight Service                                 | object | Any                         | {}                                                       |
-| `user`                         | The user of factoryinsight                                                       | string | Any                         | factoryinsight                                           |
-| `version`                      | The version of the API used. Each version also enables all the previous ones     | int    | Any                         | 2                                                        |
+| Parameter                      | Description                                                                      | Type   | Allowed values              | Default                                                    |
+| ------------------------------ | -------------------------------------------------------------------------------- | ------ | --------------------------- | ---------------------------------------------------------- |
+| `db_database`                  | The database name                                                                | string | Any                         | factoryinsight                                             |
+| `db_host`                      | The host of the database                                                         | string | Any                         | {{< resource type="service" name="database" >}}            |
+| `db_user`                      | The database user                                                                | string | Any                         | factoryinsight                                             |
+| `enabled`                      | Whether to enable the factoryinsight microservice                                | bool   | `true`, `false`             | `false`                                                    |
+| `hpa.enabled`                  | Whether to enable a HorizontalPodAutoscaler                                      | bool   | `true`, `false`             | `false`                                                    |
+| `image.pullPolicy`             | The image pull policy                                                            | string | Always, IfNotPresent, Never | IfNotPresent                                               |
+| `image.repository`             | The image of the factoryinsight microservice                                     | string | Any                         | {{< resource type="docker" name="repo" >}}/factoryinsight  |
+| `image.tag`                    | The tag of the factoryinsight microservice. Defaults to Chart version if not set | string | Any                         | {{< latest-semver >}}                                      |
+| `ingress.enabled`              | Whether to enable an Ingress                                                     | bool   | `true`, `false`             | `false`                                                    |
+| `ingress.publicHostSecretName` | The secret name of the public host of the Ingress                                | string | Any                         | ""                                                         |
+| `ingress.publicHost`           | The public host of the Ingress                                                   | string | Any                         | ""                                                         |
+| `insecure_no_auth`             | Whether to enable the insecure_no_auth mode                                      | bool   | `true`, `false`             | `false`                                                    |
+| `pdb.enabled`                  | Whether to enable a PodDisruptionBudget                                          | bool   | `true`, `false`             | `false`                                                    |
+| `redis.URI`                    | The URI of the Redis instance                                                    | string | Any                         | {{< resource type="service" name="cache-headless" >}}:6379 |
+| `replicas`                     | The number of Pod replicas                                                       | int    | Any                         | 2                                                          |
+| `resources.limits.cpu`         | The CPU limit                                                                    | string | Any                         | 200m                                                       |
+| `resources.limits.memory`      | The memory limit                                                                 | string | Any                         | 200Mi                                                      |
+| `resources.requests.cpu`       | The CPU request                                                                  | string | Any                         | 50m                                                        |
+| `resources.requests.memory`    | The memory request                                                               | string | Any                         | 50Mi                                                       |
+| `service.annotations`          | Annotations to add to the factoryinsight Service                                 | object | Any                         | {}                                                         |
+| `user`                         | The user of factoryinsight                                                       | string | Any                         | factoryinsight                                             |
+| `version`                      | The version of the API used. Each version also enables all the previous ones     | int    | Any                         | 2                                                          |
 {{< /table >}}
-
-##### redis {#dz-factoryinsight-redis}
-
-The `redis` section contains the configuration of the Redis instance used by
-factoryinsight.
-
-```yaml
-URI1: {{< resource type="pod" name="cache" >}}.{{< resource type="service" name="cache-headless" >}}:26379
-```
-
-It is possible to add more Redis instances by adding a new `URI` key.
 
 #### grafana {#dz-grafana}
 
@@ -960,21 +909,21 @@ The `grafanaproxy` section contains the configuration of the
 microservice.
 
 {{< table caption="grafanaproxy section parameters" >}}
-| Parameter                | Description                                                                     | Type   | Allowed values              | Default                                                 |
-| ------------------------ | ------------------------------------------------------------------------------- | ------ | --------------------------- | ------------------------------------------------------- |
-| `enabled`                | Whether to enable the Grafana proxy microservice                                | bool   | `true`, `false`             | `true`                                                  |
-| `image.pullPolicy`       | The image pull policy                                                           | string | Always, IfNotPresent, Never | IfNotPresent                                            |
-| `image.repository`       | The image of the grafana-proxy microservice                                     | string | Any                         | {{< resource type="docker" name="org" >}}/barcodereader |
-| `image.tag`              | The tag of the grafana-proxy microservice. Defaults to Chart version if not set | string | Any                         | {{< latest-semver >}}                                   |
-| `replicas`               | The number of Pod replicas                                                      | int    | Any                         | 1                                                       |
-| `service.annotations`    | Annotations to add to the service                                               | object | Any                         | {}                                                      |
-| `service.port`           | The port of the service                                                         | int    | Any                         | 2096                                                    |
-| `service.type`           | The type of the service                                                         | string | ClusterIP, LoadBalancer     | LoadBalancer                                            |
-| `service.targetPort`     | The target port of the service                                                  | int    | Any                         | 80                                                      |
-| `service.protocol`       | The protocol of the service                                                     | string | TCP, UDP                    | TCP                                                     |
-| `service.name`           | The name of the port of the service                                             | string | Any                         | service                                                 |
-| `resources.limits.cpu`   | The CPU limit                                                                   | string | Any                         | 1000m                                                   |
-| `resources.requests.cpu` | The CPU request                                                                 | string | Any                         | 200m                                                    |
+| Parameter                | Description                                                                     | Type   | Allowed values              | Default                                                  |
+| ------------------------ | ------------------------------------------------------------------------------- | ------ | --------------------------- | -------------------------------------------------------- |
+| `enabled`                | Whether to enable the Grafana proxy microservice                                | bool   | `true`, `false`             | `true`                                                   |
+| `image.pullPolicy`       | The image pull policy                                                           | string | Always, IfNotPresent, Never | IfNotPresent                                             |
+| `image.repository`       | The image of the grafana-proxy microservice                                     | string | Any                         | {{< resource type="docker" name="repo" >}}/barcodereader |
+| `image.tag`              | The tag of the grafana-proxy microservice. Defaults to Chart version if not set | string | Any                         | {{< latest-semver >}}                                    |
+| `replicas`               | The number of Pod replicas                                                      | int    | Any                         | 1                                                        |
+| `service.annotations`    | Annotations to add to the service                                               | object | Any                         | {}                                                       |
+| `service.port`           | The port of the service                                                         | int    | Any                         | 2096                                                     |
+| `service.type`           | The type of the service                                                         | string | ClusterIP, LoadBalancer     | LoadBalancer                                             |
+| `service.targetPort`     | The target port of the service                                                  | int    | Any                         | 80                                                       |
+| `service.protocol`       | The protocol of the service                                                     | string | TCP, UDP                    | TCP                                                      |
+| `service.name`           | The name of the port of the service                                             | string | Any                         | service                                                  |
+| `resources.limits.cpu`   | The CPU limit                                                                   | string | Any                         | 1000m                                                    |
+| `resources.requests.cpu` | The CPU request                                                                 | string | Any                         | 200m                                                     |
 {{< /table >}}
 
 #### iotsensorsmqtt {#dz-iotsensorsmqtt}
@@ -1006,26 +955,29 @@ For more information about the parameters, see the
 Here are only the values different from the default ones.
 
 {{< table caption="kafka section parameters" >}}
-| Parameter                        | Description                                                                       | Type         | Allowed values  | Default                                           |
-| -------------------------------- | --------------------------------------------------------------------------------- | ------------ | --------------- | ------------------------------------------------- |
-| `auth.tls.existingSecrets`       | The existing secrets to use for TLS authentication                                | string array | Any             | {{< resource type="secret" name="kafkabroker" >}} |
-| `auth.tls.type`                  | The type of TLS authentication                                                    | string       | jks, pem        | pem                                               |
-| `heapOpts`                       | The heap options of the Kafka container                                           | string       | Any             | -Xmx2048m -Xms2048m                               |
-| `livenessProbe.failureThreshold` | The number of times the liveness probe can fail before the container is restarted | int          | Any             | 10                                                |
-| `livenessProbe.timeoutSeconds`   | The number of seconds after which the liveness probe times out                    | int          | Any             | 10                                                |
-| `logRetentionBytes`              | The log retention size                                                            | int          | Any             | 26214400                                          |
-| `logSegmentBytes`                | The log segment size                                                              | int          | Any             | 10485760                                          |
-| `numPartitions`                  | The number of partitions                                                          | int          | Any             | 6                                                 |
-| `resources.limits.cpu`           | The CPU limit                                                                     | string       | Any             | 1000m                                             |
-| `resources.limits.memory`        | The memory limit                                                                  | string       | Any             | 4Gi                                               |
-| `resources.requests.cpu`         | The CPU request                                                                   | string       | Any             | 100m                                              |
-| `resources.requests.memory`      | The memory request                                                                | string       | Any             | 2560Mi                                            |
-| `serviceAccount.create`          | Whether to create a service account                                               | bool         | `true`, `false` | `false`                                           |
-| `startupProbe.enabled`           | Whether to enable the startup probe                                               | bool         | `true`, `false` | `true`                                            |
-| `startupProbe.failureThreshold`  | The number of times the startup probe can fail before the container is restarted  | int          | Any             | 600                                               |
-| `startupProbe.periodSeconds`     | The number of seconds between the startup probe checks                            | int          | Any             | 10                                                |
-| `startupProbe.timeoutSeconds`    | The number of seconds after which the startup probe times out                     | int          | Any             | 10                                                |
-| `zookeeper.heapSize`             | The heap size of the Zookeeper container                                          | int          | Any             | 128                                               |
+| Parameter                              | Description                                                                       | Type         | Allowed values  | Default                                           |
+| -------------------------------------- | --------------------------------------------------------------------------------- | ------------ | --------------- | ------------------------------------------------- |
+| `auth.tls.existingSecrets`             | The existing secrets to use for TLS authentication                                | string array | Any             | {{< resource type="secret" name="kafkabroker" >}} |
+| `auth.tls.type`                        | The type of TLS authentication                                                    | string       | jks, pem        | pem                                               |
+| `externalAccess.autoDiscovery.enabled` | Whether to enable auto discovery of external IPs/ports                            | bool         | `true`, `false` | `true`                                            |
+| `externalAccess.enabled`               | Whether to enable external access                                                 | bool         | `true`, `false` | `true`                                            |
+| `heapOpts`                             | The heap options of the Kafka container                                           | string       | Any             | -Xmx2048m -Xms2048m                               |
+| `livenessProbe.failureThreshold`       | The number of times the liveness probe can fail before the container is restarted | int          | Any             | 10                                                |
+| `livenessProbe.timeoutSeconds`         | The number of seconds after which the liveness probe times out                    | int          | Any             | 10                                                |
+| `logRetentionBytes`                    | The log retention size                                                            | int          | Any             | 26214400                                          |
+| `logSegmentBytes`                      | The log segment size                                                              | int          | Any             | 10485760                                          |
+| `numPartitions`                        | The number of partitions                                                          | int          | Any             | 6                                                 |
+| `rbac.create`                          | Whether to create RBAC resources                                                  | bool         | `true`, `false` | `true`                                            |
+| `resources.limits.cpu`                 | The CPU limit                                                                     | string       | Any             | 1000m                                             |
+| `resources.limits.memory`              | The memory limit                                                                  | string       | Any             | 4Gi                                               |
+| `resources.requests.cpu`               | The CPU request                                                                   | string       | Any             | 100m                                              |
+| `resources.requests.memory`            | The memory request                                                                | string       | Any             | 2560Mi                                            |
+| `serviceAccount.create`                | Whether to create a service account                                               | bool         | `true`, `false` | `false`                                           |
+| `startupProbe.enabled`                 | Whether to enable the startup probe                                               | bool         | `true`, `false` | `true`                                            |
+| `startupProbe.failureThreshold`        | The number of times the startup probe can fail before the container is restarted  | int          | Any             | 600                                               |
+| `startupProbe.periodSeconds`           | The number of seconds between the startup probe checks                            | int          | Any             | 10                                                |
+| `startupProbe.timeoutSeconds`          | The number of seconds after which the startup probe times out                     | int          | Any             | 10                                                |
+| `zookeeper.heapSize`                   | The heap size of the Zookeeper container                                          | int          | Any             | 128                                               |
 {{< /table >}}
 
 #### kafkabridge {#dz-kafka-bridge}
@@ -1034,14 +986,14 @@ The `kafkabridge` section contains the configuration of the
 [Kafka bridge](/docs/architecture/microservices/core/kafka-bridge).
 
 {{< table caption="kafkabridge section parameters" >}}
-| Parameter                  | Description                                                                    | Type   | Allowed values              | Default                                                |
-| -------------------------- | ------------------------------------------------------------------------------ | ------ | --------------------------- | ------------------------------------------------------ |
-| `image.pullPolicy`         | The image pull policy                                                          | string | Always, IfNotPresent, Never | IfNotPresent                                           |
-| `image.repository`         | The image of the kafka-bridge microservice                                     | string | Any                         | {{< resource type="docker" name="org" >}}/kafka-bridge |
-| `image.tag`                | The tag of the kafka-bridge microservice. Defaults to Chart version if not set | string | Any                         | {{< latest-semver >}}                                  |
-| `initContainer.pullPolicy` | The image pull policy of the init container                                    | string | Always, IfNotPresent, Never | IfNotPresent                                           |
-| `initContainer.repository` | The image of the init container                                                | string | Any                         | {{< resource type="docker" name="org" >}}/kafka-init   |
-| `initContainer.tag`        | The tag of the init container. Defaults to Chart version if not set            | string | Any                         | {{< latest-semver >}}                                  |
+| Parameter                  | Description                                                                    | Type   | Allowed values              | Default                                                 |
+| -------------------------- | ------------------------------------------------------------------------------ | ------ | --------------------------- | ------------------------------------------------------- |
+| `image.pullPolicy`         | The image pull policy                                                          | string | Always, IfNotPresent, Never | IfNotPresent                                            |
+| `image.repository`         | The image of the kafka-bridge microservice                                     | string | Any                         | {{< resource type="docker" name="repo" >}}/kafka-bridge |
+| `image.tag`                | The tag of the kafka-bridge microservice. Defaults to Chart version if not set | string | Any                         | {{< latest-semver >}}                                   |
+| `initContainer.pullPolicy` | The image pull policy of the init container                                    | string | Always, IfNotPresent, Never | IfNotPresent                                            |
+| `initContainer.repository` | The image of the init container                                                | string | Any                         | {{< resource type="docker" name="repo" >}}/kafka-init   |
+| `initContainer.tag`        | The tag of the init container. Defaults to Chart version if not set            | string | Any                         | {{< latest-semver >}}                                   |
 {{< /table >}}
 
 #### kafkastatedetector {#dz-kafka-state-detector}
@@ -1050,31 +1002,14 @@ The `kafkastatedetector` section contains the configuration of the
 [Kafka state detector](/docs/architecture/microservices/community/kafka-state-detector).
 
 {{< table caption="kafkastatedetector section parameters" >}}
-| Parameter          | Description                                                                          | Type   | Allowed values              | Default                                                        |
-| ------------------ | ------------------------------------------------------------------------------------ | ------ | --------------------------- | -------------------------------------------------------------- |
-| `activityEnabled`  | Controls wheter to check the activity of the Kafka broker                            | bool   | `true`, `false`             | `true`                                                         |
-| `anomalyEnabled`   | Controls wheter to check for anomalies in the Kafka broker                           | bool   | `true`, `false`             | `true`                                                         |
-| `enabled`          | Whether to enable the Kafka state detector                                           | bool   | `true`, `false`             | `true`                                                         |
-| `image.pullPolicy` | The image pull policy                                                                | string | Always, IfNotPresent, Never | IfNotPresent                                                   |
-| `image.repository` | The image of the kafkastatedetector microservice                                     | string | Any                         | {{< resource type="docker" name="org" >}}/kafka-state-detector |
-| `image.tag`        | The tag of the kafkastatedetector microservice. Defaults to Chart version if not set | string | Any                         | {{< latest-semver >}}                                          |
-{{< /table >}}
-
-#### kafkatoblob {#dz-kafka-to-blob}
-
-The `kafkatoblob` section contains the configuration of the
-[Kafka to Blob](/docs/architecture/microservices/community/kafka-to-blob) microservice.
-
-{{< table caption="kafkatoblob section parameters" >}}
-| Parameter          | Description                                                                    | Type   | Allowed values              | Default                                                 |
-| ------------------ | ------------------------------------------------------------------------------ | ------ | --------------------------- | ------------------------------------------------------- |
-| `enabled`          | Whether to enable the Kafka to Blob microservice                               | bool   | `true`, `false`             | `true`                                                  |
-| `image.pullPolicy` | The image pull policy                                                          | string | Always, IfNotPresent, Never | IfNotPresent                                            |
-| `image.repository` | The image of the kafkatoblob microservice                                      | string | Any                         | {{< resource type="docker" name="org" >}}/kafka-to-blob |
-| `image.tag`        | The tag of the kafkatoblob microservice. Defaults to Chart version if not set  | string | Any                         | {{< latest-semver >}}                                   |
-| `pdb.enabled`      | Whether to enable a Pod disruption budget                                      | bool   | `true`, `false`             | `true`                                                  |
-| `pdb.minAvailable` | The minimum number of pods that must be available for the PDB to be considered | int    | Any                         | 1                                                       |
-| `replicas`         | The number of Pod replicas                                                     | int    | Any                         | 1                                                       |
+| Parameter          | Description                                                                          | Type   | Allowed values              | Default                                                         |
+| ------------------ | ------------------------------------------------------------------------------------ | ------ | --------------------------- | --------------------------------------------------------------- |
+| `activityEnabled`  | Controls wheter to check the activity of the Kafka broker                            | bool   | `true`, `false`             | `true`                                                          |
+| `anomalyEnabled`   | Controls wheter to check for anomalies in the Kafka broker                           | bool   | `true`, `false`             | `true`                                                          |
+| `enabled`          | Whether to enable the Kafka state detector                                           | bool   | `true`, `false`             | `true`                                                          |
+| `image.pullPolicy` | The image pull policy                                                                | string | Always, IfNotPresent, Never | IfNotPresent                                                    |
+| `image.repository` | The image of the kafkastatedetector microservice                                     | string | Any                         | {{< resource type="docker" name="repo" >}}/kafka-state-detector |
+| `image.tag`        | The tag of the kafkastatedetector microservice. Defaults to Chart version if not set | string | Any                         | {{< latest-semver >}}                                           |
 {{< /table >}}
 
 #### kafkatopostgresql {#dz-kafka-to-postgresql}
@@ -1083,20 +1018,33 @@ The `kafkatopostgresql` section contains the configuration of the
 [Kafka to PostgreSQL](/docs/architecture/microservices/core/kafka-to-postgresql) microservice.
 
 {{< table caption="kafkatopostgresql section parameters" >}}
-| Parameter                   | Description                                                                         | Type   | Allowed values              | Default                                                       |
-| --------------------------- | ----------------------------------------------------------------------------------- | ------ | --------------------------- | ------------------------------------------------------------- |
-| `enabled`                   | Whether to enable the Kafka to PostgreSQL microservice                              | bool   | `true`, `false`             | `true`                                                        |
-| `image.pullPolicy`          | The image pull policy                                                               | string | Always, IfNotPresent, Never | IfNotPresent                                                  |
-| `image.repository`          | The image of the kafkatopostgresql microservice                                     | string | Any                         | {{< resource type="docker" name="org" >}}/kafka-to-postgresql |
-| `image.tag`                 | The tag of the kafkatopostgresql microservice. Defaults to Chart version if not set | string | Any                         | {{< latest-semver >}}                                         |
-| `initContainer.pullPolicy`  | The image pull policy of the init container                                         | string | Always, IfNotPresent, Never | IfNotPresent                                                  |
-| `initContainer.repository`  | The image of the init container                                                     | string | Any                         | {{< resource type="docker" name="org" >}}/kafka-init          |
-| `initContainer.tag`         | The tag of the init container. Defaults to Chart version if not set                 | string | Any                         | {{< latest-semver >}}                                         |
-| `replicas`                  | The number of Pod replicas                                                          | int    | Any                         | 1                                                             |
-| `resources.limits.cpu`      | The CPU limit                                                                       | string | Any                         | 200m                                                          |
-| `resources.limits.memory`   | The memory limit                                                                    | string | Any                         | 200Mi                                                         |
-| `resources.requests.cpu`    | The CPU request                                                                     | string | Any                         | 50m                                                           |
-| `resources.requests.memory` | The memory request                                                                  | string | Any                         | 50Mi                                                          |
+| Parameter                   | Description                                                                         | Type   | Allowed values              | Default                                                        |
+| --------------------------- | ----------------------------------------------------------------------------------- | ------ | --------------------------- | -------------------------------------------------------------- |
+| `enabled`                   | Whether to enable the Kafka to PostgreSQL microservice                              | bool   | `true`, `false`             | `true`                                                         |
+| `image.pullPolicy`          | The image pull policy                                                               | string | Always, IfNotPresent, Never | IfNotPresent                                                   |
+| `image.repository`          | The image of the kafkatopostgresql microservice                                     | string | Any                         | {{< resource type="docker" name="repo" >}}/kafka-to-postgresql |
+| `image.tag`                 | The tag of the kafkatopostgresql microservice. Defaults to Chart version if not set | string | Any                         | {{< latest-semver >}}                                          |
+| `initContainer.pullPolicy`  | The image pull policy of the init container                                         | string | Always, IfNotPresent, Never | IfNotPresent                                                   |
+| `initContainer.repository`  | The image of the init container                                                     | string | Any                         | {{< resource type="docker" name="repo" >}}/kafka-init          |
+| `initContainer.tag`         | The tag of the init container. Defaults to Chart version if not set                 | string | Any                         | {{< latest-semver >}}                                          |
+| `replicas`                  | The number of Pod replicas                                                          | int    | Any                         | 1                                                              |
+| `resources.limits.cpu`      | The CPU limit                                                                       | string | Any                         | 200m                                                           |
+| `resources.limits.memory`   | The memory limit                                                                    | string | Any                         | 200Mi                                                          |
+| `resources.requests.cpu`    | The CPU request                                                                     | string | Any                         | 50m                                                            |
+| `resources.requests.memory` | The memory request                                                                  | string | Any                         | 50Mi                                                           |
+{{< /table >}}
+
+#### metrics {#dz-metrics}
+
+The `metrics` section contains the configuration of the metrics CronJob that
+sends anonymous usage data.
+
+{{< table caption="metrics section parameters" >}}
+| Parameter          | Description                           | Type   | Allowed values              | Default                                            |
+| ------------------ | ------------------------------------- | ------ | --------------------------- | -------------------------------------------------- |
+| `image.pullPolicy` | The image pull policy                 | string | Always, IfNotPresent, Never | IfNotPresent                                       |
+| `image.repository` | The image of the metrics microservice | string | Any                         | {{< resource type="docker" name="repo" >}}/metrics |
+| `cronJob.schedule` | The schedule of the CronJob           | string | Any                         | 0 \*/4 \* \* \* (every 4 hours)                    |
 {{< /table >}}
 
 #### mqtt_broker {#dz-mqtt-broker}
@@ -1124,7 +1072,6 @@ The `mqtt_broker` section contains the configuration of the
 | `service.mqtts.enabled`       | Whether to enable the MQTT over TLS service                            | bool         | `true`, `false`             | `true`                                                                                                                                                                                                                                                                                       |
 | `service.mqtts.port`          | The port of the MQTT over TLS service                                  | int          | Any                         | 8883                                                                                                                                                                                                                                                                                         |
 | `service.mqtts.tls_versions`  | The TLS versions to enable                                             | string array | Any                         | TLSv1.3, TLSv1.2                                                                                                                                                                                                                                                                             |
-| `service.type`                | The type of the service                                                | string       | ClusterIP, LoadBalancer     | LoadBalancer                                                                                                                                                                                                                                                                                 |
 | `service.ws.enabled`          | Whether to enable the WebSocket service                                | bool         | `true`, `false`             | `false`                                                                                                                                                                                                                                                                                      |
 | `service.ws.port`             | The port of the WebSocket service                                      | int          | Any                         | 8080                                                                                                                                                                                                                                                                                         |
 | `service.wss.cipher_suites`   | The ciphersuites to enable                                             | string array | Any                         | TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA, TLS_RSA_WITH_AES_128_GCM_SHA256, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_256_CBC_SHA |
@@ -1154,17 +1101,17 @@ The `mqttbridge` section contains the configuration of the
 [MQTT bridge](/docs/architecture/microservices/core/mqtt-bridge).
 
 {{< table caption="mqttbridge section parameters" >}}
-| Parameter                   | Description                                                                   | Type   | Allowed values | Default                                               |
-| --------------------------- | ----------------------------------------------------------------------------- | ------ | -------------- | ----------------------------------------------------- |
-| `image`                     | The image of the mqtt-bridge microservice                                     | string | Any            | {{< resource type="docker" name="org" >}}/mqtt-bridge |
-| `mqtt.encryptedPassword`    | The encrypted password of the MQTT broker                                     | string | Any            | _Base 64 encrypted password_                          |
-| `mqtt.password`             | The password of the MQTT broker                                               | string | Any            | INSECURE_INSECURE_INSECURE                            |
-| `resources.limits.cpu`      | The CPU limit                                                                 | string | Any            | 200m                                                  |
-| `resources.limits.memory`   | The memory limit                                                              | string | Any            | 100Mi                                                 |
-| `resources.requests.cpu`    | The CPU request                                                               | string | Any            | 100m                                                  |
-| `resources.requests.memory` | The memory request                                                            | string | Any            | 20Mi                                                  |
-| `storageRequest`            | The amount of storage for the PersistentVolumeClaim                           | string | Any            | 1Gi                                                   |
-| `tag`                       | The tag of the mqtt-bridge microservice. Defaults to Chart version if not set | string | Any            | {{< latest-semver >}}                                 |
+| Parameter                   | Description                                                                   | Type   | Allowed values | Default                                                |
+| --------------------------- | ----------------------------------------------------------------------------- | ------ | -------------- | ------------------------------------------------------ |
+| `image`                     | The image of the mqtt-bridge microservice                                     | string | Any            | {{< resource type="docker" name="repo" >}}/mqtt-bridge |
+| `mqtt.encryptedPassword`    | The encrypted password of the MQTT broker                                     | string | Any            | _Base 64 encrypted password_                           |
+| `mqtt.password`             | The password of the MQTT broker                                               | string | Any            | INSECURE_INSECURE_INSECURE                             |
+| `resources.limits.cpu`      | The CPU limit                                                                 | string | Any            | 200m                                                   |
+| `resources.limits.memory`   | The memory limit                                                              | string | Any            | 100Mi                                                  |
+| `resources.requests.cpu`    | The CPU request                                                               | string | Any            | 100m                                                   |
+| `resources.requests.memory` | The memory request                                                            | string | Any            | 20Mi                                                   |
+| `storageRequest`            | The amount of storage for the PersistentVolumeClaim                           | string | Any            | 1Gi                                                    |
+| `tag`                       | The tag of the mqtt-bridge microservice. Defaults to Chart version if not set | string | Any            | {{< latest-semver >}}                                  |
 {{< /table >}}
 
 #### mqttkafkabridge {#dz-mqtt-kafka-bridge}
@@ -1173,28 +1120,28 @@ The `mqttkafkabridge` section contains the configuration of the
 [MQTT-Kafka bridge](/docs/architecture/microservices/core/mqtt-kafka-bridge).
 
 {{< table caption="mqttkafkabridge section parameters" >}}
-| Parameter                   | Description                                                                         | Type   | Allowed values  | Default                                                     |
-| --------------------------- | ----------------------------------------------------------------------------------- | ------ | --------------- | ----------------------------------------------------------- |
-| `enabled`                   | Whether to enable the MQTT-Kafka bridge                                             | bool   | `true`, `false` | `false`                                                     |
-| `image.pullPolicy`          | The pull policy of the mqtt-kafka-bridge microservice                               | string | Any             | IfNotPresent                                                |
-| `image.repository`          | The image of the mqtt-kafka-bridge microservice                                     | string | Any             | {{< resource type="docker" name="org" >}}/mqtt-kafka-bridge |
-| `image.tag`                 | The tag of the mqtt-kafka-bridge microservice. Defaults to Chart version if not set | string | Any             | {{< latest-semver >}}                                       |
-| `initContainer.pullPolicy`  | The pull policy of the init container                                               | string | Any             | IfNotPresent                                                |
-| `initContainer.repository`  | The image of the init container                                                     | string | Any             | {{< resource type="docker" name="org" >}}/kafka-init        |
-| `initContainer.tag`         | The tag of the init container. Defaults to Chart version if not set                 | string | Any             | {{< latest-semver >}}                                       |
-| `kafkaAcceptNoOrigin`       | Allow access to the Kafka broker without a valid x-trace                            | bool   | `true`, `false` | `false`                                                     |
-| `kafkaSenderThreads`        | The number of threads for sending messages to the Kafka broker                      | int    | Any             | 1                                                           |
-| `messageLRUSize`            | The size of the LRU cache for messages                                              | int    | Any             | 100000                                                      |
-| `mqtt.encryptedPassword`    | The encrypted password of the MQTT broker                                           | string | Any             | _Base 64 encrypted password_                                |
-| `mqtt.password`             | The password of the MQTT broker                                                     | string | Any             | INSECURE_INSECURE_INSECURE                                  |
-| `mqttSenderThreads`         | The number of threads for sending messages to the MQTT broker                       | int    | Any             | 1                                                           |
-| `pdb.enabled`               | Whether to enable the pod disruption budget                                         | bool   | `true`, `false` | `true`                                                      |
-| `pdb.minAvailable`          | The minimum number of pods that must be available                                   | int    | Any             | 1                                                           |
-| `rawMessageLRUSize`         | The size of the LRU cache for raw messages                                          | int    | Any             | 100000                                                      |
-| `resources.limits.cpu`      | The CPU limit                                                                       | string | Any             | 500m                                                        |
-| `resources.limits.memory`   | The memory limit                                                                    | string | Any             | 750Mi                                                       |
-| `resources.requests.cpu`    | The CPU request                                                                     | string | Any             | 100m                                                        |
-| `resources.requests.memory` | The memory request                                                                  | string | Any             | 500Mi                                                       |
+| Parameter                   | Description                                                                         | Type   | Allowed values  | Default                                                      |
+| --------------------------- | ----------------------------------------------------------------------------------- | ------ | --------------- | ------------------------------------------------------------ |
+| `enabled`                   | Whether to enable the MQTT-Kafka bridge                                             | bool   | `true`, `false` | `false`                                                      |
+| `image.pullPolicy`          | The pull policy of the mqtt-kafka-bridge microservice                               | string | Any             | IfNotPresent                                                 |
+| `image.repository`          | The image of the mqtt-kafka-bridge microservice                                     | string | Any             | {{< resource type="docker" name="repo" >}}/mqtt-kafka-bridge |
+| `image.tag`                 | The tag of the mqtt-kafka-bridge microservice. Defaults to Chart version if not set | string | Any             | {{< latest-semver >}}                                        |
+| `initContainer.pullPolicy`  | The pull policy of the init container                                               | string | Any             | IfNotPresent                                                 |
+| `initContainer.repository`  | The image of the init container                                                     | string | Any             | {{< resource type="docker" name="repo" >}}/kafka-init        |
+| `initContainer.tag`         | The tag of the init container. Defaults to Chart version if not set                 | string | Any             | {{< latest-semver >}}                                        |
+| `kafkaAcceptNoOrigin`       | Allow access to the Kafka broker without a valid x-trace                            | bool   | `true`, `false` | `false`                                                      |
+| `kafkaSenderThreads`        | The number of threads for sending messages to the Kafka broker                      | int    | Any             | 1                                                            |
+| `messageLRUSize`            | The size of the LRU cache for messages                                              | int    | Any             | 100000                                                       |
+| `mqtt.encryptedPassword`    | The encrypted password of the MQTT broker                                           | string | Any             | _Base 64 encrypted password_                                 |
+| `mqtt.password`             | The password of the MQTT broker                                                     | string | Any             | INSECURE_INSECURE_INSECURE                                   |
+| `mqttSenderThreads`         | The number of threads for sending messages to the MQTT broker                       | int    | Any             | 1                                                            |
+| `pdb.enabled`               | Whether to enable the pod disruption budget                                         | bool   | `true`, `false` | `true`                                                       |
+| `pdb.minAvailable`          | The minimum number of pods that must be available                                   | int    | Any             | 1                                                            |
+| `rawMessageLRUSize`         | The size of the LRU cache for raw messages                                          | int    | Any             | 100000                                                       |
+| `resources.limits.cpu`      | The CPU limit                                                                       | string | Any             | 500m                                                         |
+| `resources.limits.memory`   | The memory limit                                                                    | string | Any             | 750Mi                                                        |
+| `resources.requests.cpu`    | The CPU request                                                                     | string | Any             | 100m                                                         |
+| `resources.requests.memory` | The memory request                                                                  | string | Any             | 500Mi                                                        |
 {{< /table >}}
 
 #### nodered {#dz-node-red}
@@ -1203,20 +1150,20 @@ The `nodered` section contains the configuration of the
 [Node-RED](/docs/architecture/microservices/core/node-red) microservice.
 
 {{< table caption="nodered section parameters" >}}
-| Parameter                      | Description                                                | Type   | Allowed values          | Default                                                                               |
-| ------------------------------ | ---------------------------------------------------------- | ------ | ----------------------- | ------------------------------------------------------------------------------------- |
-| `env`                          | Environment variables to add to the Pod                    | object | Any                     | See [env](#dz-node-red-env) section                                                   |
+| Parameter                      | Description                                                | Type   | Allowed values          | Default                                                                                |
+| ------------------------------ | ---------------------------------------------------------- | ------ | ----------------------- | -------------------------------------------------------------------------------------- |
+| `env`                          | Environment variables to add to the Pod                    | object | Any                     | See [env](#dz-node-red-env) section                                                    |
 | `flows`                        | A JSON string containing the flows to import into Node-RED | string | Any                     | See the [documentation](/docs/architecture/microservices/core/node-red/#how-it-works)  |
-| `ingress.enabled`              | Whether to enable the ingress                              | bool   | `true`, `false`         | `false`                                                                               |
-| `ingress.publicHostSecretName` | The secret name of the public host of the Ingress          | string | Any                     | ""                                                                                    |
-| `ingress.publicHost`           | The public host of the Ingress                             | string | Any                     | ""                                                                                    |
-| `mqtt.encryptedPassword`       | The encrypted password of the MQTT broker                  | string | Any                     | _Base 64 encrypted password_                                                          |
-| `port`                         | The port of the Node-RED service                           | int    | Any                     | 1880                                                                                  |
-| `serviceType`                  | The type of the service                                    | string | ClusterIP, LoadBalancer | LoadBalancer                                                                          |
+| `ingress.enabled`              | Whether to enable the ingress                              | bool   | `true`, `false`         | `false`                                                                                |
+| `ingress.publicHostSecretName` | The secret name of the public host of the Ingress          | string | Any                     | ""                                                                                     |
+| `ingress.publicHost`           | The public host of the Ingress                             | string | Any                     | ""                                                                                     |
+| `mqtt.encryptedPassword`       | The encrypted password of the MQTT broker                  | string | Any                     | _Base 64 encrypted password_                                                           |
+| `port`                         | The port of the Node-RED service                           | int    | Any                     | 1880                                                                                   |
+| `serviceType`                  | The type of the service                                    | string | ClusterIP, LoadBalancer | LoadBalancer                                                                           |
 | `settings`                     | A JSON string containing the settings of Node-RED          | string | Any                     | See the [documentation](/docs/architecture/microservices/core/node-red/#configuration) |
-| `storageRequest`               | The amount of storage for the PersistentVolumeClaim        | string | Any                     | 1Gi                                                                                   |
-| `tag`                          | The Node-RED version                                       | string | Any                     | 2.0.6                                                                                 |
-| `timezone`                     | The timezone                                               | string | Any                     | Berlin/Europe                                                                         |
+| `storageRequest`               | The amount of storage for the PersistentVolumeClaim        | string | Any                     | 1Gi                                                                                    |
+| `tag`                          | The Node-RED version                                       | string | Any                     | 2.0.6                                                                                  |
+| `timezone`                     | The timezone                                               | string | Any                     | Berlin/Europe                                                                          |
 {{< /table >}}
 
 ##### env {#dz-node-red-env}
@@ -1235,28 +1182,18 @@ The `opcuasimulator` section contains the configuration of the
 [OPC UA Simulator](/docs/architecture/microservices/community/opcua-simulator) microservice.
 
 {{< table caption="opcuasimulator section parameters" >}}
-| Parameter                   | Description                                                                 | Type   | Allowed values | Default                                                  |
-| --------------------------- | --------------------------------------------------------------------------- | ------ | -------------- | -------------------------------------------------------- |
-| `certadds.hosts`            | Hosts to add to the certificate                                             | string | Any            | {{< resource type="service" name="opcuasimulator" >}}    |
-| `certadds.ips`              | IPs to add to the certificate                                               | string | Any            | ""                                                       |
-| `image`                     | The image of the OPC UA Simulator microservice                              | string | Any            | {{< resource type="docker" name="org" >}}/opcuasimulator |
-| `resources.limits.cpu`      | The CPU limit                                                               | string | Any            | 100m                                                     |
-| `resources.limits.memory`   | The memory limit                                                            | string | Any            | 100Mi                                                    |
-| `resources.requests.cpu`    | The CPU request                                                             | string | Any            | 10m                                                      |
-| `resources.requests.memory` | The memory request                                                          | string | Any            | 20Mi                                                     |
-| `service.annotations`       | The annotations of the service                                              | object | Any            | {}                                                       |
-| `tag`                       | The tag of the OPC UA Simulator microservice. Defaults to latest if not set | string | Any            | 0.1.0                                                    |
+| Parameter                   | Description                                                                 | Type   | Allowed values | Default                                                   |
+| --------------------------- | --------------------------------------------------------------------------- | ------ | -------------- | --------------------------------------------------------- |
+| `certadds.hosts`            | Hosts to add to the certificate                                             | string | Any            | {{< resource type="service" name="opcuasimulator" >}}     |
+| `certadds.ips`              | IPs to add to the certificate                                               | string | Any            | ""                                                        |
+| `image`                     | The image of the OPC UA Simulator microservice                              | string | Any            | {{< resource type="docker" name="repo" >}}/opcuasimulator |
+| `resources.limits.cpu`      | The CPU limit                                                               | string | Any            | 100m                                                      |
+| `resources.limits.memory`   | The memory limit                                                            | string | Any            | 100Mi                                                     |
+| `resources.requests.cpu`    | The CPU request                                                             | string | Any            | 10m                                                       |
+| `resources.requests.memory` | The memory request                                                          | string | Any            | 20Mi                                                      |
+| `service.annotations`       | The annotations of the service                                              | object | Any            | {}                                                        |
+| `tag`                       | The tag of the OPC UA Simulator microservice. Defaults to latest if not set | string | Any            | 0.1.0                                                     |
 {{< /table >}}
-
-#### operator {#dz-operator}
-
-The `operator` section contains the configuration of the
-[MinIo Operator](/docs/architecture/microservices/community/minio). This is
-based on the [official MinIo Operator Helm chart](https://github.com/minio/operator/tree/master/helm/operator).
-For more information about the parameters, see the
-[official documentation](https://github.com/minio/operator/blob/master/helm/operator/values.yaml).
-
-We currently use all the default values of the Helm chart.
 
 #### packmlmqttsimulator {#dz-packml-mqtt-simulator}
 
@@ -1303,42 +1240,23 @@ For more information about the parameters, see the
 Here are only the values different from the default ones.
 
 {{< table caption="redis section parameters" >}}
-| Parameter                                     | Description                                         | Type         | Allowed values  | Default                                                           |
-| --------------------------------------------- | --------------------------------------------------- | ------------ | --------------- | ----------------------------------------------------------------- |
-| `auth.existingSecretPasswordKey`              | The key of the password in the secret               | string       | Any             | redispassword                                                     |
-| `auth.existingSecret`                         | The name of the existing secret                     | string       | Any             | {{< resource type="secret" name="cache" >}}                       |
-| `commonConfiguration`                         | The common configuration of the Redis microservice  | string       | Any             | See [commonConfiguration](#dz-redis-common-configuration) section |
-| `master.command`                              | The command to run when the container starts        | string       | Any             | /run.sh                                                           |
-| `master.extraFlags`                           | The extra flags to pass to Redis server             | string array | Any             | --maxmemory 200mb                                                 |
-| `master.livenessProbe.initialDelaySeconds`    | The initial delay before the liveness probe starts  | int          | Any             | 5                                                                 |
-| `master.readinessProbe.initialDelaySeconds`   | The initial delay before the readiness probe starts | int          | Any             | 120                                                               |
-| `master.resources.limits.cpu`                 | The CPU limit                                       | string       | Any             | 200m                                                              |
-| `master.resources.limits.memory`              | The memory limit                                    | string       | Any             | 200Mi                                                             |
-| `master.resources.requests.cpu`               | The CPU request                                     | string       | Any             | 100m                                                              |
-| `master.resources.requests.memory`            | The memory request                                  | string       | Any             | 100Mi                                                             |
-| `metrics.enabled`                             | Whether to enable the metrics exporter              | bool         | `true`, `false` | `true`                                                            |
-| `pdb.create`                                  | Whether to create a Pod Disruption Budget           | bool         | `true`, `false` | `true`                                                            |
-| `pdb.minAvailable`                            | The minimum number of pods that must be available   | int          | Any             | 2                                                                 |
-| `replica.livenessProbe.initialDelaySeconds`   | The initial delay before the liveness probe starts  | int          | Any             | 30                                                                |
-| `replica.livenessProbe.periodSeconds`         | The period of the liveness probe                    | int          | Any             | 10                                                                |
-| `replica.readinessProbe.initialDelaySeconds`  | The initial delay before the readiness probe starts | int          | Any             | 120                                                               |
-| `replica.readinessProbe.periodSeconds`        | The period of the readiness probe                   | int          | Any             | 10                                                                |
-| `replica.readinessProbe.timeoutSeconds`       | The timeout of the readiness probe                  | int          | Any             | 10                                                                |
-| `replica.replicaCount`                        | The number of replicas                              | int          | Any             | 1                                                                 |
-| `replica.resources.limits.cpu`                | The CPU limit                                       | string       | Any             | 200m                                                              |
-| `replica.resources.limits.memory`             | The memory limit                                    | string       | Any             | 200Mi                                                             |
-| `replica.resources.requests.cpu`              | The CPU request                                     | string       | Any             | 100m                                                              |
-| `replica.resources.requests.memory`           | The memory request                                  | string       | Any             | 100Mi                                                             |
-| `sentinel.downAfterMilliseconds`              | The time after which a sentinel is considered down  | int          | Any             | 1000                                                              |
-| `sentinel.enabled`                            | Whether to enable the sentinel                      | bool         | `true`, `false` | `true`                                                            |
-| `sentinel.failoverTimeout`                    | The sentinel failover timeout                       | int          | Any             | 18000                                                             |
-| `sentinel.livenessProbe.initialDelaySeconds`  | The initial delay before the liveness probe starts  | int          | Any             | 5                                                                 |
-| `sentinel.quorum`                             | The number of sentinels that must agree             | int          | Any             | 1                                                                 |
-| `sentinel.readinessProbe.initialDelaySeconds` | The initial delay before the readiness probe starts | int          | Any             | 120                                                               |
-| `sentinel.resources.requests.cpu`             | The CPU request                                     | string       | Any             | 100m                                                              |
-| `sentinel.resources.requests.memory`          | The memory request                                  | string       | Any             | 256Mi                                                             |
-| `sentinel.startupProbe.enabled`               | Whether to enable the startup probe                 | bool         | `true`, `false` | `false`                                                           |
-| `serviceAccount.create`                       | Whether to create a service account                 | bool         | `true`, `false` | `false`                                                           |
+| Parameter                                   | Description                                                        | Type         | Allowed values          | Default                                                           |
+| ------------------------------------------- | ------------------------------------------------------------------ | ------------ | ----------------------- | ----------------------------------------------------------------- |
+| `architecture`                              | Redis architecture                                                 | string       | standalone, replication | standalone                                                        |
+| `auth.existingSecretPasswordKey`            | Password key to be retrieved from existing secret                  | string       | Any                     | redispassword                                                     |
+| `auth.existingSecret`                       | The name of the existing secret with Redis credentials             | string       | Any                     | {{< resource type="secret" name="cache" >}}                       |
+| `commonConfiguration`                       | Common configuration to be added into the ConfigMap                | string       | Any                     | See [commonConfiguration](#dz-redis-common-configuration) section |
+| `master.extraFlags`                         | Array with additional command line flags for Redis master          | string array | Any                     | --maxmemory 200mb                                                 |
+| `master.livenessProbe.initialDelaySeconds`  | The initial delay before the liveness probe starts                 | int          | Any                     | 5                                                                 |
+| `master.readinessProbe.initialDelaySeconds` | The initial delay before the readiness probe starts                | int          | Any                     | 120                                                               |
+| `master.resources.limits.cpu`               | The CPU limit                                                      | string       | Any                     | 200m                                                              |
+| `master.resources.limits.memory`            | The memory limit                                                   | string       | Any                     | 200Mi                                                             |
+| `master.resources.requests.cpu`             | The CPU request                                                    | string       | Any                     | 100m                                                              |
+| `master.resources.requests.memory`          | The memory request                                                 | string       | Any                     | 100Mi                                                             |
+| `metrics.enabled`                           | Start a sidecar prometheus exporter to expose Redis metrics        | bool         | `true`, `false`         | `true`                                                            |
+| `pdb.create`                                | Whether to create a Pod Disruption Budget                          | bool         | `true`, `false`         | `true`                                                            |
+| `pdb.minAvailable`                          | Min number of pods that must still be available after the eviction | int          | Any                     | 2                                                                 |
+| `serviceAccount.create`                     | Whether to create a service account                                | bool         | `true`, `false`         | `false`                                                           |
 {{< /table >}}
 
 ##### commonConfiguration {#dz-redis-common-configuration}
@@ -1362,28 +1280,28 @@ The `sensorconnect` section contains the configuration of the
 [Sensorconnect](/docs/architecture/microservices/core/sensorconnect) microservice.
 
 {{< table caption="sensorconnect section parameters" >}}
-| Parameter                            | Description                                                                               | Type   | Allowed values | Default                                                 |
-| ------------------------------------ | ----------------------------------------------------------------------------------------- | ------ | -------------- | ------------------------------------------------------- |
-| `additionalSleepTimePerActivePortMs` | Additional sleep time between pollings for each active port in milliseconds               | float  | Any            | 0.0                                                     |
-| `additionalSlowDownMap`              | JSON map of values, allows to slow down and speed up the polling time of specific sensors | JSON   | Any            | {}                                                      |
-| `allowSubTwentyMs`                   | Whether to allow sub 20ms polling time. Set to 1 to enable. Not recommended               | int    | 0, 1           | 0                                                       |
-| `deviceFinderTimeSec`                | Time interval in second between new device discovery                                      | int    | Any            | 20                                                      |
-| `deviceFinderTimeoutSec`             | Timeout in second for device discovery. Never set lower than `deviceFinderTimeSec`        | int    | Any            | 1                                                       |
-| `image`                              | The image of the sensorconnect microservice                                               | string | Any            | {{< resource type="docker" name="org" >}}/sensorconnect |
-| `ioddfilepath`                       | The path to the IODD files                                                                | string | Any            | /ioddfiles                                              |
-| `lowerPollingTime`                   | The lower polling time in milliseconds                                                    | int    | Any            | 20                                                      |
-| `maxSensorErrorCount`                | The maximum number of sensor errors before the sensor is marked as not responding         | int    | Any            | 50                                                      |
-| `mqtt.encryptedPassword`             | The encrypted password of the MQTT broker                                                 | string | Any            | _Base 64 encrypted password_                            |
-| `mqtt.password`                      | The password of the MQTT broker                                                           | string | Any            | INSECURE_INSECURE_INSECURE                              |
-| `pollingSpeedStepDownMs`             | The time to subtract from the polling time in milliseconds when a sensor is responding    | int    | Any            | 1                                                       |
-| `pollingSpeedStepUpMs`               | The time to add to the polling time in milliseconds when a sensor is not responding       | int    | Any            | 20                                                      |
-| `resources.limits.cpu`               | The CPU limit                                                                             | string | Any            | 100m                                                    |
-| `resources.limits.memory`            | The memory limit                                                                          | string | Any            | 200Mi                                                   |
-| `resources.requests.cpu`             | The CPU request                                                                           | string | Any            | 10m                                                     |
-| `resources.requests.memory`          | The memory request                                                                        | string | Any            | 75Mi                                                    |
-| `storageRequest`                     | The amount of storage for the PersistentVolumeClaim                                       | string | Any            | 1Gi                                                     |
-| `tag`                                | The tag of the sensorconnect microservice. Defaults to Chart version if not set           | string | Any            | {{< latest-semver >}}                                   |
-| `upperPollingTime`                   | The upper polling time in milliseconds                                                    | int    | Any            | 1000                                                    |
+| Parameter                            | Description                                                                               | Type   | Allowed values | Default                                                  |
+| ------------------------------------ | ----------------------------------------------------------------------------------------- | ------ | -------------- | -------------------------------------------------------- |
+| `additionalSleepTimePerActivePortMs` | Additional sleep time between pollings for each active port in milliseconds               | float  | Any            | 0.0                                                      |
+| `additionalSlowDownMap`              | JSON map of values, allows to slow down and speed up the polling time of specific sensors | JSON   | Any            | {}                                                       |
+| `allowSubTwentyMs`                   | Whether to allow sub 20ms polling time. Set to 1 to enable. Not recommended               | int    | 0, 1           | 0                                                        |
+| `deviceFinderTimeSec`                | Time interval in second between new device discovery                                      | int    | Any            | 20                                                       |
+| `deviceFinderTimeoutSec`             | Timeout in second for device discovery. Never set lower than `deviceFinderTimeSec`        | int    | Any            | 1                                                        |
+| `image`                              | The image of the sensorconnect microservice                                               | string | Any            | {{< resource type="docker" name="repo" >}}/sensorconnect |
+| `ioddfilepath`                       | The path to the IODD files                                                                | string | Any            | /ioddfiles                                               |
+| `lowerPollingTime`                   | The lower polling time in milliseconds                                                    | int    | Any            | 20                                                       |
+| `maxSensorErrorCount`                | The maximum number of sensor errors before the sensor is marked as not responding         | int    | Any            | 50                                                       |
+| `mqtt.encryptedPassword`             | The encrypted password of the MQTT broker                                                 | string | Any            | _Base 64 encrypted password_                             |
+| `mqtt.password`                      | The password of the MQTT broker                                                           | string | Any            | INSECURE_INSECURE_INSECURE                               |
+| `pollingSpeedStepDownMs`             | The time to subtract from the polling time in milliseconds when a sensor is responding    | int    | Any            | 1                                                        |
+| `pollingSpeedStepUpMs`               | The time to add to the polling time in milliseconds when a sensor is not responding       | int    | Any            | 20                                                       |
+| `resources.limits.cpu`               | The CPU limit                                                                             | string | Any            | 100m                                                     |
+| `resources.limits.memory`            | The memory limit                                                                          | string | Any            | 200Mi                                                    |
+| `resources.requests.cpu`             | The CPU request                                                                           | string | Any            | 10m                                                      |
+| `resources.requests.memory`          | The memory request                                                                        | string | Any            | 75Mi                                                     |
+| `storageRequest`                     | The amount of storage for the PersistentVolumeClaim                                       | string | Any            | 1Gi                                                      |
+| `tag`                                | The tag of the sensorconnect microservice. Defaults to Chart version if not set           | string | Any            | {{< latest-semver >}}                                    |
+| `upperPollingTime`                   | The upper polling time in milliseconds                                                    | int    | Any            | 1000                                                     |
 {{< /table >}}
 
 #### serviceAccount {#service-account}
@@ -1398,25 +1316,6 @@ for more information.
 | `create`  | Whether to create a service account | bool | `true`, `false` | `true`  |
 {{< /table >}}
 
-#### tenant {#dz-tenant}
-
-The `tenant` section contains the configuration of the
-[MinIo Tenant](/docs/architecture/microservices/community/minio). This is
-based on the [official MinIo Operator Helm chart](https://github.com/minio/operator/tree/master/helm/tenant).
-For more information about the parameters, see the
-[official documentation](https://github.com/minio/operator/blob/master/helm/tenant/values.yaml).
-
-Here are only the values different from the default ones.
-
-{{< table caption="tenant section parameters" >}}
-| Parameter                          | Description                         | Type   | Allowed values | Default  |
-| ---------------------------------- | ----------------------------------- | ------ | -------------- | -------- |
-| `tenant.name`                      | The name of the MinIo tenant        | string | Any            | umhminio |
-| `tenant.pools[0].servers`          | The number of MinIo servers         | int    | Any            | 1        |
-| `tenant.pools[0].size`             | The size of the MinIo pool          | string | Any            | 1Gi      |
-| `tenant.pools[0].storageClassName` | The storage class of the MinIo pool | string | Any            | ""       |
-{{< /table >}}
-
 #### timescaledb-single {#dz-timescaledb-single}
 
 The `timescaledb-single` section contains the configuration of the
@@ -1428,15 +1327,16 @@ For more information about the parameters, see the
 Here are only the values different from the default ones.
 
 {{< table caption="timescaledb-single section parameters" >}}
-| Parameter                                   | Description                                      | Type         | Allowed values              | Default                                               |
-| ------------------------------------------- | ------------------------------------------------ | ------------ | --------------------------- | ----------------------------------------------------- |
-| `replicaCount`                              | The number of replicas                           | int          | Any                         | 1                                                     |
-| `image.repository`                          | The image of the TimescaleDB microservice        | string       | Any                         | {{< resource type="docker" name="org" >}}/timescaledb |
-| `image.tag`                                 | The Timescaledb-ha version                       | string       | Any                         | pg13.8-ts2.8.0-p1                                     |
-| `image.pullPolicy`                          | The image pull policy                            | string       | Always, IfNotPresent, Never | IfNotPresent                                          |
-| `patroni.postgresql.create_replica_methods` | The replica creation method                      | string array | Any                         | basebackup                                            |
-| `postInit`                                  | A list of sources that contain post init scripts | object array | Any                         | See [postInit](#dz-timescaledb-single-postinit)       |
-| `serviceAccount.create`                     | Whether to create a service account              | bool         | `true`, `false`             | `false`                                               |
+| Parameter                                   | Description                                      | Type         | Allowed values                    | Default                                                |
+| ------------------------------------------- | ------------------------------------------------ | ------------ | --------------------------------- | ------------------------------------------------------ |
+| `replicaCount`                              | The number of replicas                           | int          | Any                               | 1                                                      |
+| `image.repository`                          | The image of the TimescaleDB microservice        | string       | Any                               | {{< resource type="docker" name="repo" >}}/timescaledb |
+| `image.tag`                                 | The Timescaledb-ha version                       | string       | Any                               | pg13.8-ts2.8.0-p1                                      |
+| `image.pullPolicy`                          | The image pull policy                            | string       | Always, IfNotPresent, Never       | IfNotPresent                                           |
+| `patroni.postgresql.create_replica_methods` | The replica creation method                      | string array | Any                               | basebackup                                             |
+| `postInit`                                  | A list of sources that contain post init scripts | object array | Any                               | See [postInit](#dz-timescaledb-single-postinit)        |
+| `service.primary.type`                      | The type of the primary service                  | string       | ClusterIP, NodePort, LoadBalancer | LoadBalancer                                           |
+| `serviceAccount.create`                     | Whether to create a service account              | bool         | `true`, `false`                   | `false`                                                |
 {{< /table >}}
 
 ##### postInit {#dz-timescaledb-single-postinit}
@@ -1461,17 +1361,17 @@ The `tulipconnector` section contains the configuration of the
 microservice.
 
 {{< table caption="tulipconnector section parameters" >}}
-| Parameter                   | Description                                                                | Type   | Allowed values              | Default                                                   |
-| --------------------------- | -------------------------------------------------------------------------- | ------ | --------------------------- | --------------------------------------------------------- |
-| `image.repository`          | The image of the Tulip Connector microservice                              | string | Any                         | {{< resource type="docker" name="org" >}}/tulip-connector |
-| `image.tag`                 | The tag of the Tulip Connector microservice. Defaults to latest if not set | string | Any                         | 0.1.0                                                     |
-| `image.pullPolicy`          | The image pull policy                                                      | string | Always, IfNotPresent, Never | IfNotPresent                                              |
-| `replicas`                  | The number of Pod replicas                                                 | int    | Any                         | 1                                                         |
-| `env`                       | The environment variables                                                  | object | Any                         | See [env](#dz-tulip-connector-env)                        |
-| `resources.limits.cpu`      | The CPU limit                                                              | string | Any                         | 200m                                                      |
-| `resources.limits.memory`   | The memory limit                                                           | string | Any                         | 100Mi                                                     |
-| `resources.requests.cpu`    | The CPU request                                                            | string | Any                         | 100m                                                      |
-| `resources.requests.memory` | The memory request                                                         | string | Any                         | 20Mi                                                      |
+| Parameter                   | Description                                                                | Type   | Allowed values              | Default                                                    |
+| --------------------------- | -------------------------------------------------------------------------- | ------ | --------------------------- | ---------------------------------------------------------- |
+| `image.repository`          | The image of the Tulip Connector microservice                              | string | Any                         | {{< resource type="docker" name="repo" >}}/tulip-connector |
+| `image.tag`                 | The tag of the Tulip Connector microservice. Defaults to latest if not set | string | Any                         | 0.1.0                                                      |
+| `image.pullPolicy`          | The image pull policy                                                      | string | Always, IfNotPresent, Never | IfNotPresent                                               |
+| `replicas`                  | The number of Pod replicas                                                 | int    | Any                         | 1                                                          |
+| `env`                       | The environment variables                                                  | object | Any                         | See [env](#dz-tulip-connector-env)                         |
+| `resources.limits.cpu`      | The CPU limit                                                              | string | Any                         | 200m                                                       |
+| `resources.limits.memory`   | The memory limit                                                           | string | Any                         | 100Mi                                                      |
+| `resources.requests.cpu`    | The CPU request                                                            | string | Any                         | 100m                                                       |
+| `resources.requests.memory` | The memory request                                                         | string | Any                         | 20Mi                                                       |
 {{< /table >}}
 
 ##### env {#dz-tulip-connector-env}

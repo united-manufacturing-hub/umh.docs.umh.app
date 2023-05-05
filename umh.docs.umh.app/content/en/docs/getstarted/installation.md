@@ -11,12 +11,18 @@ The United Manufacturing Hub can be installed locally or on an edge device, depe
 If you prefer an open-source approach, we also provide instructions for using [k3d](/docs/production-guide/installation/local-k3d-installation/).
 {{% /notice %}}
 
-## Local installation using the Management Console (recommended)
+## Local installation using the Management Console (recommended, Windows only)
 
-We've put together a comprehensive guide on how to install the UMH locally using our **Management Console**. To access the documentation, simply click on the button below.
+We've put together a comprehensive guide on how to install the UMH locally on your computer using our **Management Console**. The Management Console is a desktop application allowing you to setup, configure and maintain your IT / OT infrastructure - independent whether it is deployed as a test instance on the same device as the Management Console, or on an edge-device, on-premise server or in the cloud.
+
+To access the documentation, simply click on the button below.
 
 <a class="btn btn-primary" href="https://mgmt.docs.umh.app/docs/getstarted/download/" target="_blank" role="button" aria-label="Management Console">Management Console</a>
 
+
+{{% notice note %}}
+Please note that the Management Console is available at the moment **under Windows only** and only allows setting up test instances on the same device. **If you are using Linux or Mac**, please look into the [production guides for OS specific installation tutorials](/docs/production-guide/installation/).
+{{% /notice %}}
 
 ## What's next?
 
