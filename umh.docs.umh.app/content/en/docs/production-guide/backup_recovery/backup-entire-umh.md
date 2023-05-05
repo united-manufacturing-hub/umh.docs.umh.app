@@ -75,9 +75,9 @@ It does **not** back up:
    -OutputPath <PATH_TO_LOTS_OF_SPACE>
    ```
 4. Wait until the backup is created. This can take a while and your PC needs to stay awake and connected to the server.
-   {{% warning note %}}
+   {{% notice warn %}}
    If the connection is interrupted, there is currently no script to continue from the last checkpoint.
-   {{% /warning %}}
+   {{% /notice %}}
 
 ## Restore
 
