@@ -1,7 +1,7 @@
 +++
 title = "Data connectivity with Node-RED"
 menuTitle = "Data connectivity with Node-RED"
-description = ""
+description = "Connect devices on the shop floor using Node-RED with United Manufacturing Hub's Unified Namespace. Simplify data integration across PLCs, Quality Stations, and MES/ERP systems with a user-friendly UI."
 weight = 4
 draft = false
 +++
