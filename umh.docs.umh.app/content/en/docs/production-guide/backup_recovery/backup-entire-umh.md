@@ -62,11 +62,6 @@ It does **not** back up:
    -SkipGpgQuestions <Boolean> :Skip GPG questions
 3. Execute the script with your desired parameters.
 
-   {{% notice note %}}
-   The minimal required parameters are the Ip of the server, grafana API token and the kubeconfig path. 
-   If the **OutputPath** is not set, the backup will be stored in the current folder.
-   {{% /notice %}}
-
    ```
    .\backup.ps1 `
    -IP <IP_OF_THE_SERVER_TO_BACK_UP> `
@@ -74,8 +69,13 @@ It does **not** back up:
    -KubeconfigPath <PATH_TO_KUBECONFIG> `
    -OutputPath <PATH_TO_LOTS_OF_SPACE>
    ```
+   {{% notice note %}}
+   The minimal required parameters are the Ip of the server, grafana API token and the kubeconfig path.
+   If the **OutputPath** is not set, the backup will be stored in the current folder.
+   {{% /notice %}}
+
 4. Wait until the backup is created. This can take a while and your PC needs to stay awake and connected to the server.
-   {{% notice warn %}}
+   {{% notice warning %}}
    If the connection is interrupted, there is currently no script to continue from the last checkpoint.
    {{% /notice %}}
 
