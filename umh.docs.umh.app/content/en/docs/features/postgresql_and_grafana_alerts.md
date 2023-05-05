@@ -41,7 +41,7 @@ draft = false
 ## How can I use it?
 
   For a detailed tutorial on how to set up an alert, please visit our learn page 
-  with the detailed [step-by-step tutorial](https://learn.umh.app/). Here you
+  with the detailed [step-by-step tutorial](https://learn.umh.app/alerts-in-grafana/). Here you
   can find an overview of the process. 
 
 1. **Install the PostgreSQL plugin in Grafana:**
@@ -100,6 +100,6 @@ draft = false
   an API like process values.
 
 ## Where to get more information?
-  - [Detailed step-by-step tutorial](https://learn.umh.app/) (tba)
+  - [Detailed step-by-step tutorial](https://learn.umh.app/https://learn.umh.app/alerts-in-grafana/)
   - [The Grafana page about alerting](https://grafana.com/docs/grafana/latest/alerting/)
   - [How to add Grafana to Teams](https://learn.umh.app/blog/how-to-install-grafana-alerts-in-microsoft-teams/)
