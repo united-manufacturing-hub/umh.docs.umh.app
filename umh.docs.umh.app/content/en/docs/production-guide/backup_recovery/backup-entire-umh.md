@@ -40,7 +40,7 @@ It does **not** back up:
 
 ## Backup
 
-1. Open a Terminal inside the repository folde.
+1. Open a Terminal inside the repository folder.
 2. In this folder, there are multiple powershell scripts. To create a full backup use the **backup.ps1** script. 
    The following parameters are available for this script:
    -IP <String> :IP of the cluster
@@ -82,7 +82,7 @@ It does **not** back up:
 ## Restore
 
 1. Open a terminal inside the backup repository folder.
-2. To restore **Helm** execute the **.\restore-helm.ps1** script with the follwoing parameters:
+2. To restore **Helm** execute the **.\restore-helm.ps1** script with the following parameters:
 
    ```powershell
    .\restore-helm.ps1 `
