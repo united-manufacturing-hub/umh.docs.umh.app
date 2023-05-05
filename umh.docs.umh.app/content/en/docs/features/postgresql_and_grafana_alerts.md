@@ -1,7 +1,7 @@
 +++
 title = "Alerting"
 menuTitle = "Alerting"
-description = ""
+description = "Monitor and maintain your manufacturing processes with real-time Grafana alerts from the United Manufacturing Hub. Get notified of potential issues and reduce downtime by proactively addressing problems."
 weight = 50
 draft = false
 +++
