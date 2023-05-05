@@ -32,7 +32,7 @@ The United Manufacturing Hub has several simulators. These simulators simulate d
 7. In this column, you can view all incoming messages and their respective topics. The incoming topics follow this format: `ia/raw/development/ioTSensors/`. For the purpose of this tutorial, we will be using only the temperature topic, but feel free to choose any topic you'd like. To proceed, copy the temperature topic (`ia/raw/development/ioTSensors/Temperature`), open the **mqtt-in** node, paste the copied topic in the **Topic** field, click on **Done**, and then press **Deploy** again to apply the changes.
 
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManNewTopic.png)
-8. To format the incoming message, add a **JSONÜÜ node and a **Function** node to your flow. Connect the nodes in the following order: **mqtt-in → JSON → Function → mqtt-out**.
+8. To format the incoming message, add a **JSON** node and a **Function** node to your flow. Connect the nodes in the following order: **mqtt-in → JSON → Function → mqtt-out**.
 
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManNewNodes.png)
 9. Open the **function** node and paste in the following:

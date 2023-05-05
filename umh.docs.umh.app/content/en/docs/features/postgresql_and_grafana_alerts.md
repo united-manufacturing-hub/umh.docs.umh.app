@@ -1,7 +1,7 @@
 +++
 title = "Alerting"
 menuTitle = "Alerting"
-description = ""
+description = "Monitor and maintain your manufacturing processes with real-time Grafana alerts from the United Manufacturing Hub. Get notified of potential issues and reduce downtime by proactively addressing problems."
 weight = 50
 draft = false
 +++
@@ -100,6 +100,7 @@ draft = false
   an API like process values.
 
 ## Where to get more information?
+
   - [Detailed step-by-step tutorial](https://learn.umh.app/course/alerts-in-grafana/)
   - [The Grafana page about alerting](https://grafana.com/docs/grafana/latest/alerting/)
   - [How to add Grafana to Teams](https://learn.umh.app/blog/how-to-install-grafana-alerts-in-microsoft-teams/)
