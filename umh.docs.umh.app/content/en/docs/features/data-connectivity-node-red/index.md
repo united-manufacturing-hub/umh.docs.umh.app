@@ -30,16 +30,16 @@ By default, there are connector nodes for common protocols:
 
 Furthermore, you can install packages to support more connection protocols. For example:
 
-   - connect to OPC-UA (node-red-contrib-opcua)
-   - connect to kafka (node-red-contrib-kafkajs)
-   - connect to Siemens-S7 (node-red-contrib-s7)
-   - connect to serial (node-red-node-serialport)
-   - connect to modbus (node-red-contrib-modbus had)
-   - connect to MC-protocol (node-red-contrib-mcprotocol)
-   - connect to OMRON FINS Ethernet protocol (node-red-contrib-omron-fins)
-   - connect to EtherNet/IP Protocol (node-red-contrib-cip-ethernet-ip)
-   - connect to PostgreSQL (node-red-contrib-postgresql)
-   - connect to SAP SQL Anywhere
+   - connect to OPC-UA ([node-red-contrib-opcua](https://flows.nodered.org/node/node-red-contrib-opcua))
+   - connect to kafka ([node-red-contrib-kafkajs](https://flows.nodered.org/node/node-red-contrib-kafkajs))
+   - connect to Siemens-S7 ([node-red-contrib-s7](https://flows.nodered.org/node/node-red-contrib-s7))
+   - connect to serial ([node-red-node-serialport]((https://flows.nodered.org/node/node-red-node-serialport))
+   - connect to modbus ([node-red-contrib-modbus](https://flows.nodered.org/node/node-red-contrib-modbus))
+   - connect to MC-protocol ([node-red-contrib-mcprotocol](https://flows.nodered.org/node/node-red-contrib-mcprotocol))
+   - connect to OMRON FINS Ethernet protocol ([node-red-contrib-omron-fins](https://flows.nodered.org/node/node-red-contrib-omron-fins))
+   - connect to EtherNet/IP Protocol ([node-red-contrib-cip-ethernet-ip](https://flows.nodered.org/node/node-red-contrib-cip-ethernet-ip))
+   - connect to PostgreSQL ([node-red-contrib-postgresql](https://flows.nodered.org/node/node-red-contrib-postgresql))
+   - connect to [SAP SQL Anywhere](https://learn.umh.app/course/connecting-to-sap-sql-anywhere-using-a-custom-node-red-instance/) 
 
 You can additionally contextualize the data, using function or other different nodes do manipulate the 
 received data.
