@@ -15,7 +15,7 @@ This page describes how to back up the following:
 - All the contents of the United Manufacturing Hub database
 
 It does **not** back up:
-- Additional databases other the the United Manufacturing Hub default database
+- Additional databases other than the United Manufacturing Hub default database
 - TimescaleDB continuous aggregates: Follow the [official documentation](https://docs.timescale.com/self-hosted/latest/migration/schema-then-data/#recreate-continuous-aggregates) to learn how.
 - TimescaleDB policies: Follow the [official documentation](https://docs.timescale.com/self-hosted/latest/migration/schema-then-data/#recreate-policies) to learn how.
 - Everything else not included in the previous list
