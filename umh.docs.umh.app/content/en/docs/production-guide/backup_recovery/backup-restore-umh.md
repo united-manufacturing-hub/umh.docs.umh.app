@@ -45,16 +45,6 @@ the size of the database, follow the steps below:
 <!-- steps -->
 ## Backup
 
-### Stop workloads
-
-To prevent data inconsistencies, you need to temporarily stop the MQTT and Kafka Brokers.
-
-1. In {{< resource type="lens" name="name" >}} go to the **Workloads** > **StatefulSets** tab.
-2. Select the {{< resource type="statefulset" name="kafkabroker" >}} StatefulSet
-3. {{< include "statefulset-scale.md" >}}
-4. Set the number of replicas to 0 and click **Scale**.
-5. Repeat the process for the {{< resource type="statefulset" name="mqttbroker" >}} StatefulSet.
-
 ### Generate Grafana API Key
 
 Create a Grafana API Token for an admin user by following these steps:
@@ -64,6 +54,16 @@ Create a Grafana API Token for an admin user by following these steps:
 4. Optionally set an expiration date.
 5. Click **Add**.
 6. Copy the generated API key and save it for later.
+
+### Stop workloads
+
+To prevent data inconsistencies, you need to temporarily stop the MQTT and Kafka Brokers.
+
+1. In {{< resource type="lens" name="name" >}} go to the **Workloads** > **StatefulSets** tab.
+2. Select the {{< resource type="statefulset" name="kafkabroker" >}} StatefulSet
+3. {{< include "statefulset-scale.md" >}}
+4. Set the number of replicas to 0 and click **Scale**.
+5. Repeat the process for the {{< resource type="statefulset" name="mqttbroker" >}} StatefulSet.
 
 ### Backup using the script
 
