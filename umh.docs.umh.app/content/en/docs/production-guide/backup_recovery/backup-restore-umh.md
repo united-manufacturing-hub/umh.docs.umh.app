@@ -174,6 +174,7 @@ following parameters:
 
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
-- [UMH-Backup repository](https://github.com/united-manufacturing-hub/backup)
-- [backup and restore database](/docs/production-guide/backup_recovery/backup-restore-database/)
-- [import and export Node-RED flows](/docs/production-guide/backup_recovery/import-export-node-red-flows/)
+
+- Take a look at the [UMH-Backup repository](https://github.com/united-manufacturing-hub/backup)
+- Learn how to manually [backup and restore the database](/docs/production-guide/backup_recovery/backup-restore-database/)
+- Read how to [import and export Node-RED flows](/docs/production-guide/backup_recovery/import-export-node-red-flows/) via the UI
