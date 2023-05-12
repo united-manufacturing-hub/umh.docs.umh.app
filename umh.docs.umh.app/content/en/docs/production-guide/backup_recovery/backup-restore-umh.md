@@ -67,51 +67,55 @@ Create a Grafana API Token for an admin user by following these steps:
 
 ### Backup using the script
 
-
-
 The backup script is located inside the folder you downloaded earlier.
+
 1. Open a terminal and navigate inside the folder.
-    ````powershell
-    cd <FOLDER_PATH>
-    ````
+
+   ```powershell
+   cd <FOLDER_PATH>
+   ```
+
 2. Run the script:
 
    ```powershell
-   .\backup.ps1 -IP <IP_OF_THE_SERVER_TO_BACK_UP> -GrafanaToken <YOUR_GRAFANA_API_ADMIN_TOKEN> -KubeconfigPath <PATH_TO_KUBECONFIG> -OutputPath <PATH_TO_LOTS_OF_SPACE>
+   .\backup.ps1 -IP <IP_OF_THE_SERVER> -GrafanaToken <GRAFANA_API_KEY> -KubeconfigPath <PATH_TO_KUBECONFIG>
    ```
-   {{% notice note %}}
-   If the **OutputPath** is not set, the backup will be stored in the current folder.
+
+   You can find a list of all available parameters down below.
+
+   {{% notice info %}}
+   If `OutputPath` is not set, the backup will be stored in the current folder.
    {{% /notice %}}
 
 This script might take a while to finish, depending on the size of your database
 and your connection speed.
 
-   {{% notice warning %}}
-   If the connection is interrupted, there is currently no option to resume the process, therefore you will need to start again.
-   {{% /notice %}}
+{{% notice warning %}}
+If the connection is interrupted, there is currently no option to resume the process, therefore you will need to start again.
+{{% /notice %}}
 
 Here is a list of all available parameters:
 
 {{< table caption="Available parameters" >}}
-| Parameter            | Description                                | Required| type    |    
-| -------------------- | ------------------------------------------ | ------- | ------- |
-| `IP`                 | IP of the cluster                          | Yes     | String  |
-| `GrafanaPort`        | External port of the Grafana service       | No      | String  |
-| `GrafanaToken`       | Grafana API token                          | Yes     | String  |
-| `DatabasePassword`   | Password of the database user.             | No      | String  |
-| `DatabasePort`       | External port of the database              | No      | Int32   |
-| `DatabaseUser`       | Database user                              | No      | String  |
-| `DatabaseDatabase`   | Database name                              | No      | String  |
-| `KubeconfigPath`     | Path to the kubeconfig file                | Yes     | String  |
-| `SkipDiskSpaceCheck` | Skip disk space check                      | No      | Boolean |
-| `OutputPath`         | Output path                                | No      | String  |
-| `ParallelJobs`       | Parallel jobs                              | No      | Int32   |
-| `DaysPerJob`         | Days per job                               | No      | Int32   |
-| `EnableGpgSigning`   | Enable GPG signing                         | No      | Boolean |
-| `GpgSigningKeyId`    | GPG encryption key ID                      | No      | String  |
-| `EnableGpgEncryption`| Enable GPG encryption                      | No      | Boolean |
-| `GpgEncryptionKeyId` | GPG encryption key ID                      | No      | String  |
-| `SkipGpgQuestions`   | Skip GPG questions                         | No      | Boolean |
+| Parameter             | Description                                                 | Required | Default value    |
+| --------------------- | ----------------------------------------------------------- | -------- | ---------------- |
+| `GrafanaToken`        | Grafana API key                                             | Yes      |                  |
+| `IP`                  | IP of the cluster to backup                                 | Yes      |                  |
+| `KubeconfigPath`      | Path to the kubeconfig file                                 | Yes      |                  |
+| `DatabaseDatabase`    | Name of the databse to backup                               | No       | factoryinsight   |
+| `DatabasePassword`    | Password of the database user                               | No       | changeme         |
+| `DatabasePort`        | Port of the database                                        | No       | 5432             |
+| `DatabaseUser`        | Database user                                               | No       | factoryinsight   |
+| `DaysPerJob`          | Number of days worth of data to backup in each parallel job | No       | 31               |
+| `EnableGpgEncryption` | Set to `true` if you want to encrypt the backup             | No       | `false`          |
+| `EnableGpgSigning`    | Set to `true` if you want to sign the backup                | No       | `false`          |
+| `GpgEncryptionKeyId`  | ID of the GPG key used for encryption                       | No       |                  |
+| `GpgSigningKeyId`     | ID of the GPG key used for signing                          | No       |                  |
+| `GrafanaPort`         | External port of the Grafana service                        | No       | 8080             |
+| `OutputPath`          | Path to the folder where the backup will be stored          | No       | _Current folder_ |
+| `ParallelJobs`        | Number of parallel job backups to run                       | No       | 4                |
+| `SkipDiskSpaceCheck`  | Skip checking available disk space                          | No       | `false`          |
+| `SkipGpgQuestions`    | Set to `true` if you want to sign or encrypt the backup     | No       | `false`          |
 {{< /table >}}
 
 ## Restore
