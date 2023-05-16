@@ -85,7 +85,8 @@ the IP address of the device.
 
 Now you can leave the edge device and connect to it from your computer via SSH.
 
-If you are on Windows 11, we recommend using the default [Windows terminal](https://learn.microsoft.com/en-us/windows/terminal/install), by typing in the searchbar **terminal**. Next, 
+If you are on Windows 11, we recommend using the default [Windows terminal](https://learn.microsoft.com/en-us/windows/terminal/install),
+that you can find by typing terminal in the Windows search bar or Start menu. Next,
 connect to the edge device via SSH, using the IP address you saw on the login prompt:
 
 ```bash
