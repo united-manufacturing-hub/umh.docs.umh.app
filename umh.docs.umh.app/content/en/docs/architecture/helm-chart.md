@@ -938,10 +938,10 @@ microservice.
 | `image`                     | The image of the iotsensorsmqtt microservice                              | string | Any            | amineamaach/sensors-mqtt     |
 | `mqtt.encryptedPassword`    | The encrypted password of the MQTT broker                                 | string | Any            | _Base 64 encrypted password_ |
 | `mqtt.password`             | The password of the MQTT broker                                           | string | Any            | INSECURE_INSECURE_INSECURE   |
-| `resources.limits.cpu`      | The CPU limit                                                             | string | Any            | 10m                          |
-| `resources.limits.memory`   | The memory limit                                                          | string | Any            | 20Mi                         |
-| `resources.requests.cpu`    | The CPU request                                                           | string | Any            | 100m                         |
-| `resources.requests.memory` | The memory request                                                        | string | Any            | 100Mi                        |
+| `resources.limits.cpu`      | The CPU limit                                                             | string | Any            | 30m                          |
+| `resources.limits.memory`   | The memory limit                                                          | string | Any            | 50Mi                         |
+| `resources.requests.cpu`    | The CPU request                                                           | string | Any            | 10m                          |
+| `resources.requests.memory` | The memory request                                                        | string | Any            | 20Mi                         |
 | `tag`                       | The tag of the iotsensorsmqtt microservice. Defaults to latest if not set | string | Any            | v1.0.0                       |
 {{< /table >}}
 
@@ -1028,7 +1028,7 @@ The `mqtt_broker` section contains the configuration of the
 | `persistence.storage.size`    | The size of the persistence volume for the storage                     | string       | Any                         | 2Gi                                                                                                                                                                                                                                                                                          |
 | `rbacEnabled`                 | Whether to enable RBAC                                                 | bool         | `true`, `false`             | `false`                                                                                                                                                                                                                                                                                      |
 | `resources.limits.cpu`        | The CPU limit                                                          | string       | Any                         | 500m                                                                                                                                                                                                                                                                                         |
-| `resources.limits.memory`     | The memory limit                                                       | string       | Any                         | 500Mi                                                                                                                                                                                                                                                                                        |
+| `resources.limits.memory`     | The memory limit                                                       | string       | Any                         | 1700Mi                                                                                                                                                                                                                                                                                       |
 | `resources.requests.cpu`      | The CPU request                                                        | string       | Any                         | 100m                                                                                                                                                                                                                                                                                         |
 | `resources.requests.memory`   | The memory request                                                     | string       | Any                         | 100Mi                                                                                                                                                                                                                                                                                        |
 | `service.mqtt.enabled`        | Whether to enable the MQTT service                                     | bool         | `true`, `false`             | `true`                                                                                                                                                                                                                                                                                       |
@@ -1103,10 +1103,10 @@ The `mqttkafkabridge` section contains the configuration of the
 | `pdb.enabled`               | Whether to enable the pod disruption budget                                         | bool   | `true`, `false` | `true`                                                       |
 | `pdb.minAvailable`          | The minimum number of pods that must be available                                   | int    | Any             | 1                                                            |
 | `rawMessageLRUSize`         | The size of the LRU cache for raw messages                                          | int    | Any             | 100000                                                       |
-| `resources.limits.cpu`      | The CPU limit                                                                       | string | Any             | 500m                                                         |
-| `resources.limits.memory`   | The memory limit                                                                    | string | Any             | 750Mi                                                        |
-| `resources.requests.cpu`    | The CPU request                                                                     | string | Any             | 100m                                                         |
-| `resources.requests.memory` | The memory request                                                                  | string | Any             | 500Mi                                                        |
+| `resources.limits.cpu`      | The CPU limit                                                                       | string | Any             | 100m                                                         |
+| `resources.limits.memory`   | The memory limit                                                                    | string | Any             | 100Mi                                                        |
+| `resources.requests.cpu`    | The CPU request                                                                     | string | Any             | 50m                                                          |
+| `resources.requests.memory` | The memory request                                                                  | string | Any             | 50Mi                                                         |
 {{< /table >}}
 
 #### nodered {#dz-node-red}
@@ -1152,8 +1152,8 @@ The `opcuasimulator` section contains the configuration of the
 | `certadds.hosts`            | Hosts to add to the certificate                                             | string | Any            | {{< resource type="service" name="opcuasimulator" >}}     |
 | `certadds.ips`              | IPs to add to the certificate                                               | string | Any            | ""                                                        |
 | `image`                     | The image of the OPC UA Simulator microservice                              | string | Any            | {{< resource type="docker" name="repo" >}}/opcuasimulator |
-| `resources.limits.cpu`      | The CPU limit                                                               | string | Any            | 100m                                                      |
-| `resources.limits.memory`   | The memory limit                                                            | string | Any            | 100Mi                                                     |
+| `resources.limits.cpu`      | The CPU limit                                                               | string | Any            | 30m                                                       |
+| `resources.limits.memory`   | The memory limit                                                            | string | Any            | 50Mi                                                      |
 | `resources.requests.cpu`    | The CPU request                                                             | string | Any            | 10m                                                       |
 | `resources.requests.memory` | The memory request                                                          | string | Any            | 20Mi                                                      |
 | `service.annotations`       | The annotations of the service                                              | object | Any            | {}                                                        |
@@ -1173,8 +1173,8 @@ microservice.
 | `image.hash`                | The hash of the image of the PackML MQTT Simulator microservice | string | Any                         | 01e2f0da3542f1b4e0de830a8d24135de03fd9174dce184ed329bed3ee688e19 |
 | `image.pullPolicy`          | The image pull policy                                           | string | Always, IfNotPresent, Never | IfNotPresent                                                     |
 | `replicas`                  | The number of replicas                                          | int    | Any                         | 1                                                                |
-| `resources.limits.cpu`      | The CPU limit                                                   | string | Any                         | 100m                                                             |
-| `resources.limits.memory`   | The memory limit                                                | string | Any                         | 100Mi                                                            |
+| `resources.limits.cpu`      | The CPU limit                                                   | string | Any                         | 30m                                                              |
+| `resources.limits.memory`   | The memory limit                                                | string | Any                         | 50Mi                                                             |
 | `resources.requests.cpu`    | The CPU request                                                 | string | Any                         | 10m                                                              |
 | `resources.requests.memory` | The memory request                                              | string | Any                         | 20Mi                                                             |
 | `env`                       | Environment variables to add to the Pod                         | object | Any                         | See [env](#dz-packml-mqtt-simulator-env) section                 |
@@ -1379,9 +1379,9 @@ microservice.
 | `image.pullPolicy`          | The image pull policy                                                      | string | Always, IfNotPresent, Never | IfNotPresent                                               |
 | `replicas`                  | The number of Pod replicas                                                 | int    | Any                         | 1                                                          |
 | `env`                       | The environment variables                                                  | object | Any                         | See [env](#dz-tulip-connector-env)                         |
-| `resources.limits.cpu`      | The CPU limit                                                              | string | Any                         | 200m                                                       |
-| `resources.limits.memory`   | The memory limit                                                           | string | Any                         | 100Mi                                                      |
-| `resources.requests.cpu`    | The CPU request                                                            | string | Any                         | 100m                                                       |
+| `resources.limits.cpu`      | The CPU limit                                                              | string | Any                         | 30m                                                        |
+| `resources.limits.memory`   | The memory limit                                                           | string | Any                         | 50Mi                                                       |
+| `resources.requests.cpu`    | The CPU request                                                            | string | Any                         | 10m                                                        |
 | `resources.requests.memory` | The memory request                                                         | string | Any                         | 20Mi                                                       |
 {{< /table >}}
 
