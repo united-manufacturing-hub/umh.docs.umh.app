@@ -81,6 +81,11 @@ network, the installation will finish and the system will reboot. Now you should
 see a login prompt that says `flatcar-1-umh-<device-serial-number>`, as well as
 the IP address of the device.
 
+{{% notice note %}}
+Please note that the installation may take some time. This largely depends on the available resources
+including network speed and system performance.
+{{% /notice %}}
+
 ## Connect to the edge device
 
 Now you can leave the edge device and connect to it from your computer via SSH.
