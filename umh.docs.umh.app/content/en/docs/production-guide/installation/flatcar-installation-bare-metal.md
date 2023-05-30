@@ -81,18 +81,24 @@ network, the installation will finish and the system will reboot. Now you should
 see a login prompt that says `flatcar-1-umh-<device-serial-number>`, as well as
 the IP address of the device.
 
+{{% notice note %}}
+Please note that the installation may take some time. This largely depends on the available resources
+including network speed and system performance.
+{{% /notice %}}
+
 ## Connect to the edge device
 
 Now you can leave the edge device and connect to it from your computer via SSH.
 
-Open a terminal on your computer and connect to the edge device via SSH, using
-the IP address you saw on the login prompt:
+If you are on Windows 11, we recommend using the default [Windows terminal](https://learn.microsoft.com/en-us/windows/terminal/install),
+that you can find by typing terminal in the Windows search bar or Start menu. Next,
+connect to the edge device via SSH, using the IP address you saw on the login prompt:
 
 ```bash
 ssh core@<ip-address>
 ```
 
-If you are on Windows, you can use [MobaXTerm](https://mobaxterm.mobatek.net/)
+If you are not on Windows 11, you can use [MobaXTerm](https://mobaxterm.mobatek.net/)
 to connect to the edge device via SSH. Open MobaXTerm and click on **Session**
 in the top left corner. Then click on **SSH** and enter the IP address of the
 edge device in the **Remote host** field. Click on **Advanced SSH settings** and

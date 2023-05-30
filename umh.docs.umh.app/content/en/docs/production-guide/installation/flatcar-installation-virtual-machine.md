@@ -72,6 +72,11 @@ virtual machine again. This way, the installation process will continue, at the
 end of which you will a login prompt that says `flatcar-1-umh-0`, as well as
 the IP address of the device.
 
+{{% notice note %}}
+Please note that the installation may take some time. This largely depends on the available resources
+including network speed and system performance.
+{{% /notice %}}
+
 ## Connect to the virtual machine
 
 You can leave the virtual machine running and connect to it using SSH, so that
