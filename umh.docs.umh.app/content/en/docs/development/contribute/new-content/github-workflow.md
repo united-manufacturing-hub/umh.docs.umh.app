@@ -1,6 +1,6 @@
 ---
 title: "GitHub Workflow"
-weight: 2
+weight: 1
 description: |
   This document is an overview of the GitHub workflow used by the
   United Manufacturing Hub project. It includes tips and suggestions on keeping
@@ -10,7 +10,7 @@ description: |
 
 ## 1. Fork in the cloud
 
-1. Visit [https://github.com/united-manufacturing-hub/united-manufacturing-hub](https://github.com/united-manufacturing-hub/united-manufacturing-hub)
+1. Go to the [repository page](https://github.com/united-manufacturing-hub/united-manufacturing-hub).
 2. Click `Fork` button (top right) to establish a cloud-based fork.
 
 ## 2. Clone fork to local storage
@@ -22,6 +22,11 @@ In your shell, define a local working directory as `working_dir`. If your `GOPAT
 has multiple paths, pick just one and use it instead of `$GOPATH`. You must follow
 exactly this pattern, neither `$GOPATH/src/github.com/${your github profile name}/`
 nor any other pattern will work.
+
+{{< notice note >}}
+The following instructions assume you are using a bash shell. If you are using a
+different shell, you will need to adjust the commands accordingly.
+{{< /notice >}}
 
 ```sh
 export working_dir="$(go env GOPATH)/src/github.com/"
@@ -44,8 +49,8 @@ git clone https://github.com/$user/united-manufacturing-hub.git
 # or: git clone git@github.com:$user/united-manufacturing-hub.git
 
 cd $working_dir/united-manufacturing-hub
-git remote add origin https://github.com/united-manufacturing-hub/kubernetes.git
-# or: git remote add upstream git@github.com:united-manufacturing-hub/kubernetes.git
+git remote add origin https://github.com/united-manufacturing-hub/united-manufacturing-hub.git
+# or: git remote add upstream git@github.com:united-manufacturing-hub/united-manufacturing-hub.git
 
 # Never push to upstream master
 git remote set-url --push origin no_push
