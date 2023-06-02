@@ -579,7 +579,6 @@ Everything below this point  should not be changed, unless you know what you are
 | Section                                            | Description                                                     |
 | -------------------------------------------------- | --------------------------------------------------------------- |
 | [`barcodereader`](#dz-barcodereader)               | Configuration for barcodereader                                 |
-| [`console`](#dz-kafka-console)                     | Configuration for the Kafka console                             |
 | [`factoryinput`](#dz-factoryinput)                 | Configuration for factoryinput                                  |
 | [`factoryinsight`](#dz-factoryinsight)             | Configuration for factoryinsight                                |
 | [`grafana`](#dz-grafana)                           | Configuration for Grafana                                       |
@@ -625,67 +624,6 @@ microservice.
 | `resources.requests.memory` | The memory request                                                              | string | Any                         | 30Mi                                                     |
 | `scanOnly`                  | Whether to only scan without sending the data to the Kafka broker               | bool   | `true`, `false`             | `false`                                                  |
 {{< /table >}}
-
-#### console {#dz-kafka-console}
-
-The `console` section contains the advanced configuration of the
-[Kafka console](/docs/architecture/microservices/core/kafka-console/)
-microservice. This is based on the
-[official RedPanda Console Helm chart](https://github.com/redpanda-data/helm-charts).
-For more information about the parameters, see the
-[official documentation](https://github.com/redpanda-data/helm-charts/blob/main/charts/redpanda/values.yaml).
-
-Here are only the values different from the default ones.
-
-{{< table caption="console advanced section parameters" >}}
-| Parameter               | Description                                     | Type   | Allowed values          | Default                                                              |
-| ----------------------- | ----------------------------------------------- | ------ | ----------------------- | -------------------------------------------------------------------- |
-| `console.config`        | The configuration of the Kafka console          | object | Any                     | See [console.config](#dz-kafka-console-config) section               |
-| `extraVolumeMounts`     | Extra volume mounts to add to the Kafka console | array  | Any                     | See [extraVolumeMounts](#dz-kafka-console-extravolumemounts) section |
-| `extraVolumes`          | Extra volumes to add to the Kafka console       | array  | Any                     | See [extraVolumes](#dz-kafka-console-extravolumes) section           |
-| `service.port`          | The port of the Service to expose               | int    | Any                     | 8090                                                                 |
-| `service.targetPort`    | The Pod port targeteb by the Service            | int    | Any                     | 8080                                                                 |
-| `service.type`          | The type of Service to expose                   | string | ClusterIP, LoadBalancer | LoadBalancer                                                         |
-| `serviceAccount.create` | Whether to create a service account             | bool   | `true`, `false`         | `false`                                                              |
-{{< /table >}}
-
-##### console.config {#dz-kafka-console-config}
-
-The `console.config` section contains the configuration of the Kafka console.
-See the [reference config](https://github.com/redpanda-data/console/blob/master/docs/config/console.yaml)
-for more information.
-
-{{< table caption="console config parameters" >}}
-| Parameter                | Description                                 | Type   | Allowed values  | Default                                                 |
-| ------------------------ | ------------------------------------------- | ------ | --------------- | ------------------------------------------------------- |
-| `kafka.brokers`          | The list of Kafka brokers                   | array  | Any             | {{< resource type="service" name="kafkabroker" >}}:9092 |
-| `kafka.tls.caFilepath`   | The path to the CA certificate file         | string | Any             | `/SSL_certs/kafka/ca.crt`                               |
-| `kafka.tls.certFilepath` | The path to the certificate file            | string | Any             | `/SSL_certs/kafka/tls.crt`                              |
-| `kafka.tls.enabled`      | Whether to enable TLS for the Kafka brokers | bool   | `true`, `false` | `false`                                                 |
-| `kafka.tls.keyFilepath`  | The path to the key file                    | string | Any             | `/SSL_certs/kafka/tls.key`                              |
-{{< /table >}}
-
-##### extraVolumeMounts {#dz-kafka-console-extravolumemounts}
-
-Here you can find the default values for the `extraVolumeMounts` parameter.
-
-```yaml
-extraVolumeMounts: |-
-  - name: united-manfacturing-hub-kowl-certificates
-    mountPath: /SSL_certs/kafka
-    readOnly: true
-```
-
-##### extraVolumes {#dz-kafka-console-extravolumes}
-
-Here you can find the default values for the `extraVolumes` parameter.
-
-```yaml
-extraVolumes: |-
-  - name: united-manfacturing-hub-kowl-certificates
-    secret:
-      secretName: {{< resource type="secret" name="kafkaconsole-tls" >}}
-```
 
 #### factoryinput {#dz-factoryinput}
 
