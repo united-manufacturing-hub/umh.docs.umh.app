@@ -180,7 +180,7 @@ or [OpenLens](https://github.com/MuhammedKalkan/OpenLens) installed.
 <!-- Optional section, but recommended; write the problem/question in H3 -->
 ## {{% heading "troubleshooting" %}}
 
-### I don't see the cluster in {{< resource type="lens" name="name" >}}
+### I don't see the cluster in {{% resource type="lens" name="name" %}}
 
 If you don't see the cluster in {{< resource type="lens" name="name" >}}, you
 might have to add the cluster manually. To do so, follow these steps:
