@@ -16,7 +16,7 @@ Additional points:
   Using MQTT makes especially sense when handling a large amount of unreliable connections (AGVs, Wi-Fi, devices being 
   turned on and off repeatedly, smaller devices sensing very few data-points like a scale sending every minute a value, etc.).
 - Full-scale / plant-overarching architecture: to allow plant-overarching analysis / benchmarking, multi-plant kpis,
-  connections to enterprise-IT, etc.. We typically recommend sending only data processed by our API [factoryinsight]().
+  connections to enterprise-IT, etc.. We typically recommend sending only data processed by our API [factoryinsight](/docs/architecture/microservices/core/factoryinsight).
   One could also connect to the kafka broker and use a kafka-bridge to send data from the on-premise instances to a 
   central cloud instance, but typically only the "processed data" such as OEE, information on an order level 
   (how many products were produced, etc.) are relevant to higher level systems.
@@ -52,9 +52,9 @@ With Layered Scaling in the United Manufacturing Hub, you can:
 
 - Deploy minimized versions of the Helm Chart on edge devices, focusing on specific features required for that 
   environment (e.g., without the Historian and Analytics features enabled, but with the IFM retrofitting feature using 
-  [sensorconnect](), with the barcodereader retrofit feature using [barcodereader](), or with the data connectivity via
-  [Node-RED]() feature enabled).
-- Seamlessly communicate between edge devices, on-premise servers, and cloud instances using the [kafka-bridge]() 
+  [sensorconnect](/docs/architecture/microservices/core/sensorconnect/), with the barcodereader retrofit feature using 
+  [barcodereader](/docs/architecture/microservices/community/barcodereader/), or with the data connectivity via [Node-RED](/docs/architecture/microservices/core/node-red) feature enabled).
+- Seamlessly communicate between edge devices, on-premise servers, and cloud instances using the [kafka-bridge](/docs/architecture/microservices/core/kafka-bridge) 
   microservice, allowing data to be buffered in between in case the internet or network connection drops.
 
 ## How can I use it?
