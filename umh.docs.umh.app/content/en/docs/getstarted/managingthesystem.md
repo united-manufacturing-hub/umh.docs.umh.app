@@ -15,7 +15,7 @@ In this chapter, we'll guide you through connecting to our Kubernetes cluster us
 1. Download & install UMHLens [here](https://github.com/united-manufacturing-hub/UMHLens/releases).
 2. If you installed the UMH using the management console, you should see a cluster named "k3d-united-manufacturing-hub"
    under **Browse**. Click on it to connect.
-3. You can check the status of all pods by navigating to **Workloads** -> **Wods** and selecting
+3. You can check the status of all pods by navigating to **Workloads** -> **Pods** and selecting
    {{< resource type="ns" name="umh" >}} as the namespace on the top right. Depending on your system, it may take a while for all pods to start.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingPods.png?width=75%)

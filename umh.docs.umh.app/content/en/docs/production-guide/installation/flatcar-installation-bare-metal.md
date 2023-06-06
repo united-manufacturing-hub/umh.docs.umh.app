@@ -74,12 +74,12 @@ stable and reliable connection for your edge device.
 5. Check that the installation settings are correct and press `Confirm` to start
    the installation.
 
-Now the installation will start. You should see a green login prompt soon after,
-that says `core@flatcar-0-install-<device-serial-number>`. At this point the
-system is still installing. After a few minutes, depending on the speed of your
-network, the installation will finish and the system will reboot. Now you should
-see a login prompt that says `flatcar-1-umh-<device-serial-number>`, as well as
-the IP address of the device.
+Now the installation will start. You should see a green command line soon after,
+that says `core@flatcar-0-install ~$~`. Now remove the USB stick from the
+device. At this point the system is still installing. After a few minutes,
+depending on the speed of your network, the installation will finish and the
+system will reboot. Now you should see a grey login prompt that says
+`flatcar-1-umh login:`, as well as the IP address of the device.
 
 {{% notice note %}}
 Please note that the installation may take some time. This largely depends on the available resources
