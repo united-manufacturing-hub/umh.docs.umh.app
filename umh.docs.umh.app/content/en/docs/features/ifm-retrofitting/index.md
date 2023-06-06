@@ -8,7 +8,7 @@ draft = false
 
 [Retrofitting](https://learn.umh.app/blog/connectivity-retrofitting-the-shopfloor-with-plug-play-sensors/) older machines with sensors is sometimes the only-way to capture process-relevant information.
 In this article, we will focus on retrofitting with [ifm IO-Link master](https://www.ifm.com/de/de/category/245) and 
-[Sensorconnect]((/docs/architecture/microservices/core/sensorconnect/)), a microservice of the United Manufacturing Hub, that finds and reads out ifm IO-Link masters in the 
+[Sensorconnect](/docs/architecture/microservices/core/sensorconnect/), a microservice of the United Manufacturing Hub, that finds and reads out ifm IO-Link masters in the 
 network and pushes sensor data to MQTT/Kafka for further processing.
 
 ![](/images/features/ifm-retrofitting/ifm_sensors.jpg?width=40%)
