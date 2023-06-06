@@ -43,9 +43,9 @@ use the following settings:
 
 - **Operating System**: Linux
 - **Version**: Other Linux (64-bit)
-- **CPU cores**: 2
-- **Memory size**: 4 GB
-- **Hard disk size**: 10 GB
+- **CPU cores**: 4
+- **Memory size**: 8 GB
+- **Hard disk size**: 32 GB
 
 Also, the network settings of the virtual machine must allow communication with
 the internet and the host machine. If you are using VirtualBox, you can check
