@@ -43,9 +43,9 @@ use the following settings:
 
 - **Operating System**: Linux
 - **Version**: Other Linux (64-bit)
-- **CPU cores**: 2
-- **Memory size**: 4 GB
-- **Hard disk size**: 10 GB
+- **CPU cores**: 4
+- **Memory size**: 8 GB
+- **Hard disk size**: 32 GB
 
 Also, the network settings of the virtual machine must allow communication with
 the internet and the host machine. If you are using VirtualBox, you can check
@@ -61,16 +61,16 @@ manager and then on **Settings**. In the **Network** tab, make sure that the
 4. Select `sda` as the disk.
 5. Select Confirm.
 
-Now the installation will start. You should see a green login prompt soon after,
-that says `core@flatcar-0-install-0`. At this point the system is still
-installing. After a few minutes, depending on the speed of your network, the
-installation will finish and the system will reboot.
+Now the installation will start. You should see a green command line
+soon after, that says `core@flatcar-0-install ~$~`. At this point the system 
+is still installing. After a few minutes, depending on the speed of your
+network, the installation will finish and the system will reboot.
 
 By default, it will reboot into the installation environment. Just shut down the
 virtual machine and remove the ISO image from the CD drive, then boot the
 virtual machine again. This way, the installation process will continue, at the
-end of which you will a login prompt that says `flatcar-1-umh-0`, as well as
-the IP address of the device.
+end of which you will a grey login prompt that says `flatcar-1-umh login:`, as 
+well as the IP address of the device.
 
 {{% notice note %}}
 Please note that the installation may take some time. This largely depends on the available resources
