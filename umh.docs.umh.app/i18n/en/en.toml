@@ -88,6 +88,9 @@ other = "united-manufacturing-hub-grafana"
 [resource_configmap_kafkabroker-scripts]
 other = "united-manufacturing-hub-kafka-scripts"
 
+[resource_configmap_kafkabroker]
+other = "united-manufacturing-hub-kafka"
+
 [resource_configmap_kafkaconsole]
 other = "united-manufacturing-hub-console"
 
@@ -206,7 +209,7 @@ other = "wal-volume-united-manufacturing-hub-timescaledb-0"
 other = "united-manufacturing-hub-grafana"
 
 [resource_pvc_kafkabroker]
-other = "data-united-manufacturing-hub-kafka-0"
+other = "datadir-united-manufacturing-hub-kafka-0"
 
 [resource_pvc_mqttbridge]
 other = "united-manufacturing-hub-mqttbridge-claim"
@@ -254,7 +257,7 @@ other = "united-manufacturing-hub-kafkabridge-secrets-local"
 other = "united-manufacturing-hub-kafkabridge-secrets-remote"
 
 [resource_secret_kafkabroker]
-other = "united-manufacturing-hub-kafka-broker-secrets"
+other = "united-manufacturing-hub-kafka-sts-lifecycle"
 
 [resource_secret_kafkaconsole]
 other = "united-manufacturing-hub-console"
@@ -326,10 +329,10 @@ other = "united-manufacturing-hub-grafana"
 other = "united-manufacturing-hub-grafanaproxy-service"
 
 [resource_service_kafkabroker-ext]
-other = "united-manufacturing-hub-kafka-0-external"
+other = "united-manufacturing-hub-kafka-external"
 
 [resource_service_kafkabroker-headless]
-other = "united-manufacturing-hub-kafka-headless"
+other = "united-manufacturing-hub-kafka"
 
 [resource_service_kafkabroker]
 other = "united-manufacturing-hub-kafka"

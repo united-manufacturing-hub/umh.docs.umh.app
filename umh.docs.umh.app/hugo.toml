@@ -55,9 +55,9 @@ offlineSearch = false
 # Enable syntax highlighting and copy buttons on code blocks with Prism
 prism_syntax_highlighting = false
 
-latest       = "v0.9.13"
-fullversion  = "v0.9.13"
-version      = "0.9.13"
+latest       = "v0.9.14"
+fullversion  = "v0.9.14"
+version      = "0.9.14"
 githubbranch = "main"
 docsbranch   = "main"
 deprecated   = false
@@ -84,11 +84,18 @@ github_subdir = "umh.docs.umh.app"
 github_branch = "main"
 
 [[params.versions]]
+fullversion  = "v0.9.14"
+version      = "0.9.14"
+githubbranch = "main"
+docsbranch   = "main"
+url          = "https://umh.docs.umh.app/"
+
+[[params.versions]]
 fullversion  = "v0.9.13"
 version      = "0.9.13"
 githubbranch = "main"
 docsbranch   = "main"
-url          = "https://umh.docs.umh.app/"
+url          = "https://0-9-13.umh-docs-umh-app.pages.dev/docs/"
 
 [[params.versions]]
 fullversion  = "v0.9.12"
