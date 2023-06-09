@@ -5,28 +5,17 @@ description = "Efficiently scale your United Manufacturing Hub deployment across
 weight = 3
 +++
 
-Additional points:
-- Explain plant-centric infrastructure and how it relates to the UMH design architecture. See also https://learn.umh.app/blog/tools-techniques-for-scalable-data-processing-in-industrial-iot/
-- Minimal architecture: just one Helm Chart on an on-premise server. Advantage: easy maintenance. 
-  Disadvantage (see also further below): latency, network dependency, message throughput, server can be hard to reach 
-  from outside (e.g., viewing the dashboards from HQ)
-- Standard architecture: one on-premise server and then edge devices in the factory running a minimized instance 
-  (e.g., with ifm retrofitting feature enabled, but historian and analytics disabled)
-- IoT architecture: standard architecture, but additionally a lot of IoT devices are connected via MQTT. 
-  Using MQTT makes especially sense when handling a large amount of unreliable connections (AGVs, Wi-Fi, devices being 
-  turned on and off repeatedly, smaller devices sensing very few data-points like a scale sending every minute a value, etc.).
-- Full-scale / plant-overarching architecture: to allow plant-overarching analysis / benchmarking, multi-plant kpis,
-  connections to enterprise-IT, etc.. We typically recommend sending only data processed by our API [factoryinsight](/docs/architecture/microservices/core/factoryinsight).
-  One could also connect to the kafka broker and use a kafka-bridge to send data from the on-premise instances to a 
-  central cloud instance, but typically only the "processed data" such as OEE, information on an order level 
-  (how many products were produced, etc.) are relevant to higher level systems.
-- the UMH has already been used in all of these architectures in production - from small scale to using it to benchmarks
-  factories with each other.
 
-Layered Scaling is an architectural approach in the United Manufacturing Hub that enables efficient scaling of your 
-deployment across edge devices and servers. By dividing the processing workload across multiple layers or tiers, each
-with a specific set of responsibilities, Layered Scaling allows for better management of resources, 
+Layered Scaling is an architectural approach in the United Manufacturing Hub that enables efficient scaling of your
+deployment across edge devices and servers. It is part of the [**Plant centric infrastructure**](https://learn.umh.app/blog/why-designing-your-own-it-ot-infrastructure-is-harder-than-you-might-think-typical-challenges-and-how-to-solve-them/) 
+, by dividing the processing workload across multiple layers or tiers, each
+with a specific set of responsibilities, Layered Scaling allows for better management of resources,
 improved performance, and easier deployment of software components.
+Layered Scaling follows the standard IoT infrastructure, by additionally connection a lot of IoT-devices typically via MQTT.
+
+![](/images/features/layered-scaling/layeredScaling02.png)
+
+
 
 ## When should I use it?
 
@@ -56,6 +45,8 @@ With Layered Scaling in the United Manufacturing Hub, you can:
   [barcodereader](/docs/architecture/microservices/community/barcodereader/), or with the data connectivity via [Node-RED](/docs/architecture/microservices/core/node-red) feature enabled).
 - Seamlessly communicate between edge devices, on-premise servers, and cloud instances using the [kafka-bridge](/docs/architecture/microservices/core/kafka-bridge) 
   microservice, allowing data to be buffered in between in case the internet or network connection drops.
+- Allow plant-overarching analysis / benchmarking, multi-plant kpis, connections to enterprise-IT, etc..
+  We typically recommend sending only data processed by our API [factoryinsight](/docs/architecture/microservices/core/factoryinsight).
 
 ## How can I use it?
 
@@ -82,8 +73,8 @@ or Node-RED that regularly fetches data from factoryinsight and pushes it into y
   [Management Console](https://mgmt.docs.umh.app/docs/) to manage them centrally.
 
 Because Kafka is used to reliably transmit messages from the edge devices to the server, and it struggles with devices 
-repeatedly going offline and online again, ethernet connections should be used. also the total amount of edge devices
-should not "escalate". if you have a lot of edge devices (e.g., you want to connect each PLC), we recommend connecting
+repeatedly going offline and online again, ethernet connections should be used. Also, the total amount of edge devices
+should not "escalate". If you have a lot of edge devices (e.g., you want to connect each PLC), we recommend connecting
 them via MQTT to an instance of the UMH instead.
 
 ## Where to get more information?
