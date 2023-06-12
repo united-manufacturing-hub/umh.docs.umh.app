@@ -67,8 +67,6 @@ or Node-RED that regularly fetches data from factoryinsight and pushes it into y
 
 ## What are the limitations?
 
-- At the moment only sending data upwards is supported in the kafka bridge @Ferdinand to check. If you want to send data
-  downwards as well, feel free to contact us by opening a GitHub issue or contacting us in the Discord
 - Be aware that each device increases the complexity over the entire system. We recommend using the 
   [Management Console](https://mgmt.docs.umh.app/docs/) to manage them centrally.
 
