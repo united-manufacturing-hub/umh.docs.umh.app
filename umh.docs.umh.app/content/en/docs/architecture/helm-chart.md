@@ -66,12 +66,13 @@ third-party applications:
 
 - [Grafana](https://grafana.com/): a visualization and analytics software.
 - [HiveMQ](https://www.hivemq.com/): an MQTT broker.
-- [Kafka](https://kafka.apache.org/): a distributed streaming platform.
 - [Node-RED](https://nodered.org/): a programming tool for wiring together
   hardware devices, APIs and online services.
-- [Red Panda Console](https://redpanda.com/redpanda-console-kafka-ui/): a
-  web-based user interface for Kafka.
 - [Redis](https://redis.io/): an in-memory data structure store, used for cache.
+- [RedPanda](https://redpanda.com): a Kafka-compatible distributed event streaming
+  platform.
+- [RedPanda Console](https://redpanda.com/redpanda-console-kafka-ui/): a
+  web-based user interface for RedPanda.
 - [TimescaleDB](https://www.timescale.com/): an open-source time-series SQL
   database.
 
@@ -173,14 +174,14 @@ The following table lists the configuration options that can be set in the
 `_000_commonConfig.datasources.barcodereader` section:
 
 {{< table caption="barcodereader section parameters" >}}
-| Parameter       | Description                                                                    | Type   | Allowed values         | Default                                      |
-| --------------- | ------------------------------------------------------------------------------ | ------ | ---------------------- | -------------------------------------------- |
-| `enabled`       | Whether the `barcodereader` microservice is enabled.                           | bool   | `true`, `false`        | `false`                                      |
-| `USBDeviceName` | The name of the USB device to use.                                             | string | Any                    | Datalogic ADC, Inc. Handheld Barcode Scanner |
-| `USBDevicePath` | The path of the USB device to use. If empty, `USBDeviceName` gets used instead | string | Valid Unix device path | ""                                           |
-| `customerID`    | The customer ID to use in the topic structure.                                 | string | Any                    | raw                                          |
-| `location`      | The location to use in the topic structure.                                    | string | Any                    | barcodereader                                |
-| `machineID`     | The asset ID to use in the topic structure.                                    | string | Any                    | barcodereader                                |
+| Parameter       | Description                                                                                                              | Type   | Allowed values         | Default                                      |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------ | ------ | ---------------------- | -------------------------------------------- |
+| `enabled`       | Whether the `barcodereader` microservice is enabled.                                                                     | bool   | `true`, `false`        | `false`                                      |
+| `USBDeviceName` | The name of the USB device to use.                                                                                       | string | Any                    | Datalogic ADC, Inc. Handheld Barcode Scanner |
+| `USBDevicePath` | The path of the USB device to use. It is recommended to use a wildcard (for example, `/dev/input/event*`) or leave empty | string | Valid Unix device path | ""                                           |
+| `customerID`    | The customer ID to use in the topic structure.                                                                           | string | Any                    | raw                                          |
+| `location`      | The location to use in the topic structure.                                                                              | string | Any                    | barcodereader                                |
+| `machineID`     | The asset ID to use in the topic structure.                                                                              | string | Any                    | barcodereader                                |
 {{< /table >}}
 
 ##### IoT Sensors MQTT
@@ -578,13 +579,11 @@ Everything below this point  should not be changed, unless you know what you are
 | Section                                            | Description                                                     |
 | -------------------------------------------------- | --------------------------------------------------------------- |
 | [`barcodereader`](#dz-barcodereader)               | Configuration for barcodereader                                 |
-| [`console`](#dz-kafka-console)                     | Configuration for the Kafka console                             |
 | [`factoryinput`](#dz-factoryinput)                 | Configuration for factoryinput                                  |
 | [`factoryinsight`](#dz-factoryinsight)             | Configuration for factoryinsight                                |
 | [`grafana`](#dz-grafana)                           | Configuration for Grafana                                       |
 | [`grafanaproxy`](#dz-grafana-proxy)                | Configuration for the Grafana proxy                             |
 | [`iotsensorsmqtt`](#dz-iotsensorsmqtt)             | Configuration for the IoTSensorsMQTT simulator                  |
-| [`kafka`](#dz-kafka-broker)                        | Configuration for the Kafka broker                              |
 | [`kafkabridge`](#dz-kafka-bridge)                  | Configuration for kafka-bridge                                  |
 | [`kafkastatedetector`](#dz-kafka-state-detector)   | Configuration for kafka-state-detector                          |
 | [`kafkatopostgresql`](#dz-kafka-to-postgresql)     | Configuration for kafka-to-postgresql                           |
@@ -596,6 +595,7 @@ Everything below this point  should not be changed, unless you know what you are
 | [`opcuasimulator`](#dz-opcua-simulator)            | Configuration for the OPC UA simulator                          |
 | [`packmlmqttsimulator`](#dz-packml-mqtt-simulator) | Configuration for the PackML MQTT simulator                     |
 | [`redis`](#dz-redis)                               | Configuration for Redis                                         |
+| [`redpanda`](#dz-kafka-broker)                     | Configuration for the Kafka broker                              |
 | [`sensorconnect`](#dz-sensorconnect)               | Configuration for sensorconnect                                 |
 | [`serviceAccount`](#service-account)               | Configuration for the service account used by the microservices |
 | [`timescaledb-single`](#dz-timescaledb-single)     | Configuration for TimescaleDB                                   |
@@ -624,67 +624,6 @@ microservice.
 | `resources.requests.memory` | The memory request                                                              | string | Any                         | 30Mi                                                     |
 | `scanOnly`                  | Whether to only scan without sending the data to the Kafka broker               | bool   | `true`, `false`             | `false`                                                  |
 {{< /table >}}
-
-#### console {#dz-kafka-console}
-
-The `console` section contains the advanced configuration of the
-[Kafka console](/docs/architecture/microservices/core/kafka-console/)
-microservice. This is based on the
-[official RedPanda Console Helm chart](https://github.com/redpanda-data/helm-charts).
-For more information about the parameters, see the
-[official documentation](https://github.com/redpanda-data/helm-charts/blob/main/charts/redpanda/values.yaml).
-
-Here are only the values different from the default ones.
-
-{{< table caption="console advanced section parameters" >}}
-| Parameter               | Description                                     | Type   | Allowed values          | Default                                                              |
-| ----------------------- | ----------------------------------------------- | ------ | ----------------------- | -------------------------------------------------------------------- |
-| `console.config`        | The configuration of the Kafka console          | object | Any                     | See [console.config](#dz-kafka-console-config) section               |
-| `extraVolumeMounts`     | Extra volume mounts to add to the Kafka console | array  | Any                     | See [extraVolumeMounts](#dz-kafka-console-extravolumemounts) section |
-| `extraVolumes`          | Extra volumes to add to the Kafka console       | array  | Any                     | See [extraVolumes](#dz-kafka-console-extravolumes) section           |
-| `service.port`          | The port of the Service to expose               | int    | Any                     | 8090                                                                 |
-| `service.targetPort`    | The Pod port targeteb by the Service            | int    | Any                     | 8080                                                                 |
-| `service.type`          | The type of Service to expose                   | string | ClusterIP, LoadBalancer | LoadBalancer                                                         |
-| `serviceAccount.create` | Whether to create a service account             | bool   | `true`, `false`         | `false`                                                              |
-{{< /table >}}
-
-##### console.config {#dz-kafka-console-config}
-
-The `console.config` section contains the configuration of the Kafka console.
-See the [reference config](https://github.com/redpanda-data/console/blob/master/docs/config/console.yaml)
-for more information.
-
-{{< table caption="console config parameters" >}}
-| Parameter                | Description                                 | Type   | Allowed values  | Default                                                 |
-| ------------------------ | ------------------------------------------- | ------ | --------------- | ------------------------------------------------------- |
-| `kafka.brokers`          | The list of Kafka brokers                   | array  | Any             | {{< resource type="service" name="kafkabroker" >}}:9092 |
-| `kafka.tls.caFilepath`   | The path to the CA certificate file         | string | Any             | `/SSL_certs/kafka/ca.crt`                               |
-| `kafka.tls.certFilepath` | The path to the certificate file            | string | Any             | `/SSL_certs/kafka/tls.crt`                              |
-| `kafka.tls.enabled`      | Whether to enable TLS for the Kafka brokers | bool   | `true`, `false` | `false`                                                 |
-| `kafka.tls.keyFilepath`  | The path to the key file                    | string | Any             | `/SSL_certs/kafka/tls.key`                              |
-{{< /table >}}
-
-##### extraVolumeMounts {#dz-kafka-console-extravolumemounts}
-
-Here you can find the default values for the `extraVolumeMounts` parameter.
-
-```yaml
-extraVolumeMounts: |-
-  - name: united-manfacturing-hub-kowl-certificates
-    mountPath: /SSL_certs/kafka
-    readOnly: true
-```
-
-##### extraVolumes {#dz-kafka-console-extravolumes}
-
-Here you can find the default values for the `extraVolumes` parameter.
-
-```yaml
-extraVolumes: |-
-  - name: united-manfacturing-hub-kowl-certificates
-    secret:
-      secretName: {{< resource type="secret" name="kafkaconsole-tls" >}}
-```
 
 #### factoryinput {#dz-factoryinput}
 
@@ -922,8 +861,8 @@ microservice.
 | `service.targetPort`     | The target port of the service                                                  | int    | Any                         | 80                                                       |
 | `service.protocol`       | The protocol of the service                                                     | string | TCP, UDP                    | TCP                                                      |
 | `service.name`           | The name of the port of the service                                             | string | Any                         | service                                                  |
-| `resources.limits.cpu`   | The CPU limit                                                                   | string | Any                         | 1000m                                                    |
-| `resources.requests.cpu` | The CPU request                                                                 | string | Any                         | 200m                                                     |
+| `resources.limits.cpu`   | The CPU limit                                                                   | string | Any                         | 300m                                                     |
+| `resources.requests.cpu` | The CPU request                                                                 | string | Any                         | 100m                                                     |
 {{< /table >}}
 
 #### iotsensorsmqtt {#dz-iotsensorsmqtt}
@@ -937,47 +876,11 @@ microservice.
 | `image`                     | The image of the iotsensorsmqtt microservice                              | string | Any            | amineamaach/sensors-mqtt     |
 | `mqtt.encryptedPassword`    | The encrypted password of the MQTT broker                                 | string | Any            | _Base 64 encrypted password_ |
 | `mqtt.password`             | The password of the MQTT broker                                           | string | Any            | INSECURE_INSECURE_INSECURE   |
-| `resources.limits.cpu`      | The CPU limit                                                             | string | Any            | 10m                          |
-| `resources.limits.memory`   | The memory limit                                                          | string | Any            | 20Mi                         |
-| `resources.requests.cpu`    | The CPU request                                                           | string | Any            | 100m                         |
-| `resources.requests.memory` | The memory request                                                        | string | Any            | 100Mi                        |
+| `resources.limits.cpu`      | The CPU limit                                                             | string | Any            | 30m                          |
+| `resources.limits.memory`   | The memory limit                                                          | string | Any            | 50Mi                         |
+| `resources.requests.cpu`    | The CPU request                                                           | string | Any            | 10m                          |
+| `resources.requests.memory` | The memory request                                                        | string | Any            | 20Mi                         |
 | `tag`                       | The tag of the iotsensorsmqtt microservice. Defaults to latest if not set | string | Any            | v1.0.0                       |
-{{< /table >}}
-
-#### kafka {#dz-kafka-broker}
-
-The `kafka` section contains the configuration of the
-[Kafka broker](/docs/architecture/microservices/core/kafka-broker). This is
-based on the [Bitnami Kafka chart](https://github.com/bitnami/charts/tree/main/bitnami/kafka/).
-For more information about the parameters, see the
-[official documentation](https://github.com/bitnami/charts/tree/main/bitnami/kafka/#parameters).
-
-Here are only the values different from the default ones.
-
-{{< table caption="kafka section parameters" >}}
-| Parameter                              | Description                                                                       | Type         | Allowed values  | Default                                           |
-| -------------------------------------- | --------------------------------------------------------------------------------- | ------------ | --------------- | ------------------------------------------------- |
-| `auth.tls.existingSecrets`             | The existing secrets to use for TLS authentication                                | string array | Any             | {{< resource type="secret" name="kafkabroker" >}} |
-| `auth.tls.type`                        | The type of TLS authentication                                                    | string       | jks, pem        | pem                                               |
-| `externalAccess.autoDiscovery.enabled` | Whether to enable auto discovery of external IPs/ports                            | bool         | `true`, `false` | `true`                                            |
-| `externalAccess.enabled`               | Whether to enable external access                                                 | bool         | `true`, `false` | `true`                                            |
-| `heapOpts`                             | The heap options of the Kafka container                                           | string       | Any             | -Xmx2048m -Xms2048m                               |
-| `livenessProbe.failureThreshold`       | The number of times the liveness probe can fail before the container is restarted | int          | Any             | 10                                                |
-| `livenessProbe.timeoutSeconds`         | The number of seconds after which the liveness probe times out                    | int          | Any             | 10                                                |
-| `logRetentionBytes`                    | The log retention size                                                            | int          | Any             | 26214400                                          |
-| `logSegmentBytes`                      | The log segment size                                                              | int          | Any             | 10485760                                          |
-| `numPartitions`                        | The number of partitions                                                          | int          | Any             | 6                                                 |
-| `rbac.create`                          | Whether to create RBAC resources                                                  | bool         | `true`, `false` | `true`                                            |
-| `resources.limits.cpu`                 | The CPU limit                                                                     | string       | Any             | 1000m                                             |
-| `resources.limits.memory`              | The memory limit                                                                  | string       | Any             | 4Gi                                               |
-| `resources.requests.cpu`               | The CPU request                                                                   | string       | Any             | 100m                                              |
-| `resources.requests.memory`            | The memory request                                                                | string       | Any             | 2560Mi                                            |
-| `serviceAccount.create`                | Whether to create a service account                                               | bool         | `true`, `false` | `false`                                           |
-| `startupProbe.enabled`                 | Whether to enable the startup probe                                               | bool         | `true`, `false` | `true`                                            |
-| `startupProbe.failureThreshold`        | The number of times the startup probe can fail before the container is restarted  | int          | Any             | 600                                               |
-| `startupProbe.periodSeconds`           | The number of seconds between the startup probe checks                            | int          | Any             | 10                                                |
-| `startupProbe.timeoutSeconds`          | The number of seconds after which the startup probe times out                     | int          | Any             | 10                                                |
-| `zookeeper.heapSize`                   | The heap size of the Zookeeper container                                          | int          | Any             | 128                                               |
 {{< /table >}}
 
 #### kafkabridge {#dz-kafka-bridge}
@@ -1029,9 +932,9 @@ The `kafkatopostgresql` section contains the configuration of the
 | `initContainer.tag`         | The tag of the init container. Defaults to Chart version if not set                 | string | Any                         | {{< latest-semver >}}                                          |
 | `replicas`                  | The number of Pod replicas                                                          | int    | Any                         | 1                                                              |
 | `resources.limits.cpu`      | The CPU limit                                                                       | string | Any                         | 200m                                                           |
-| `resources.limits.memory`   | The memory limit                                                                    | string | Any                         | 200Mi                                                          |
+| `resources.limits.memory`   | The memory limit                                                                    | string | Any                         | 300Mi                                                          |
 | `resources.requests.cpu`    | The CPU request                                                                     | string | Any                         | 50m                                                            |
-| `resources.requests.memory` | The memory request                                                                  | string | Any                         | 50Mi                                                           |
+| `resources.requests.memory` | The memory request                                                                  | string | Any                         | 150Mi                                                          |
 {{< /table >}}
 
 #### metrics {#dz-metrics}
@@ -1062,10 +965,10 @@ The `mqtt_broker` section contains the configuration of the
 | `persistence.extension.size`  | The size of the persistence volume for the extensions                  | string       | Any                         | 100Mi                                                                                                                                                                                                                                                                                        |
 | `persistence.storage.size`    | The size of the persistence volume for the storage                     | string       | Any                         | 2Gi                                                                                                                                                                                                                                                                                          |
 | `rbacEnabled`                 | Whether to enable RBAC                                                 | bool         | `true`, `false`             | `false`                                                                                                                                                                                                                                                                                      |
-| `resources.limits.cpu`        | The CPU limit                                                          | string       | Any                         | 500m                                                                                                                                                                                                                                                                                         |
-| `resources.limits.memory`     | The memory limit                                                       | string       | Any                         | 500Mi                                                                                                                                                                                                                                                                                        |
-| `resources.requests.cpu`      | The CPU request                                                        | string       | Any                         | 100m                                                                                                                                                                                                                                                                                         |
-| `resources.requests.memory`   | The memory request                                                     | string       | Any                         | 100Mi                                                                                                                                                                                                                                                                                        |
+| `resources.limits.cpu`        | The CPU limit                                                          | string       | Any                         | 700m                                                                                                                                                                                                                                                                                         |
+| `resources.limits.memory`     | The memory limit                                                       | string       | Any                         | 1700Mi                                                                                                                                                                                                                                                                                       |
+| `resources.requests.cpu`      | The CPU request                                                        | string       | Any                         | 300m                                                                                                                                                                                                                                                                                         |
+| `resources.requests.memory`   | The memory request                                                     | string       | Any                         | 1000Mi                                                                                                                                                                                                                                                                                       |
 | `service.mqtt.enabled`        | Whether to enable the MQTT service                                     | bool         | `true`, `false`             | `true`                                                                                                                                                                                                                                                                                       |
 | `service.mqtt.port`           | The port of the MQTT service                                           | int          | Any                         | 1883                                                                                                                                                                                                                                                                                         |
 | `service.mqtts.cipher_suites` | The ciphersuites to enable                                             | string array | Any                         | TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA, TLS_RSA_WITH_AES_128_GCM_SHA256, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_256_CBC_SHA |
@@ -1139,9 +1042,9 @@ The `mqttkafkabridge` section contains the configuration of the
 | `pdb.minAvailable`          | The minimum number of pods that must be available                                   | int    | Any             | 1                                                            |
 | `rawMessageLRUSize`         | The size of the LRU cache for raw messages                                          | int    | Any             | 100000                                                       |
 | `resources.limits.cpu`      | The CPU limit                                                                       | string | Any             | 500m                                                         |
-| `resources.limits.memory`   | The memory limit                                                                    | string | Any             | 750Mi                                                        |
-| `resources.requests.cpu`    | The CPU request                                                                     | string | Any             | 100m                                                         |
-| `resources.requests.memory` | The memory request                                                                  | string | Any             | 500Mi                                                        |
+| `resources.limits.memory`   | The memory limit                                                                    | string | Any             | 450Mi                                                        |
+| `resources.requests.cpu`    | The CPU request                                                                     | string | Any             | 400m                                                         |
+| `resources.requests.memory` | The memory request                                                                  | string | Any             | 300Mi                                                        |
 {{< /table >}}
 
 #### nodered {#dz-node-red}
@@ -1187,8 +1090,8 @@ The `opcuasimulator` section contains the configuration of the
 | `certadds.hosts`            | Hosts to add to the certificate                                             | string | Any            | {{< resource type="service" name="opcuasimulator" >}}     |
 | `certadds.ips`              | IPs to add to the certificate                                               | string | Any            | ""                                                        |
 | `image`                     | The image of the OPC UA Simulator microservice                              | string | Any            | {{< resource type="docker" name="repo" >}}/opcuasimulator |
-| `resources.limits.cpu`      | The CPU limit                                                               | string | Any            | 100m                                                      |
-| `resources.limits.memory`   | The memory limit                                                            | string | Any            | 100Mi                                                     |
+| `resources.limits.cpu`      | The CPU limit                                                               | string | Any            | 30m                                                       |
+| `resources.limits.memory`   | The memory limit                                                            | string | Any            | 50Mi                                                      |
 | `resources.requests.cpu`    | The CPU request                                                             | string | Any            | 10m                                                       |
 | `resources.requests.memory` | The memory request                                                          | string | Any            | 20Mi                                                      |
 | `service.annotations`       | The annotations of the service                                              | object | Any            | {}                                                        |
@@ -1208,8 +1111,8 @@ microservice.
 | `image.hash`                | The hash of the image of the PackML MQTT Simulator microservice | string | Any                         | 01e2f0da3542f1b4e0de830a8d24135de03fd9174dce184ed329bed3ee688e19 |
 | `image.pullPolicy`          | The image pull policy                                           | string | Always, IfNotPresent, Never | IfNotPresent                                                     |
 | `replicas`                  | The number of replicas                                          | int    | Any                         | 1                                                                |
-| `resources.limits.cpu`      | The CPU limit                                                   | string | Any                         | 100m                                                             |
-| `resources.limits.memory`   | The memory limit                                                | string | Any                         | 100Mi                                                            |
+| `resources.limits.cpu`      | The CPU limit                                                   | string | Any                         | 30m                                                              |
+| `resources.limits.memory`   | The memory limit                                                | string | Any                         | 50Mi                                                             |
 | `resources.requests.cpu`    | The CPU request                                                 | string | Any                         | 10m                                                              |
 | `resources.requests.memory` | The memory request                                              | string | Any                         | 20Mi                                                             |
 | `env`                       | Environment variables to add to the Pod                         | object | Any                         | See [env](#dz-packml-mqtt-simulator-env) section                 |
@@ -1249,10 +1152,10 @@ Here are only the values different from the default ones.
 | `master.extraFlags`                         | Array with additional command line flags for Redis master          | string array | Any                     | --maxmemory 200mb                                                 |
 | `master.livenessProbe.initialDelaySeconds`  | The initial delay before the liveness probe starts                 | int          | Any                     | 5                                                                 |
 | `master.readinessProbe.initialDelaySeconds` | The initial delay before the readiness probe starts                | int          | Any                     | 120                                                               |
-| `master.resources.limits.cpu`               | The CPU limit                                                      | string       | Any                     | 200m                                                              |
-| `master.resources.limits.memory`            | The memory limit                                                   | string       | Any                     | 200Mi                                                             |
-| `master.resources.requests.cpu`             | The CPU request                                                    | string       | Any                     | 100m                                                              |
-| `master.resources.requests.memory`          | The memory request                                                 | string       | Any                     | 100Mi                                                             |
+| `master.resources.limits.cpu`               | The CPU limit                                                      | string       | Any                     | 100m                                                              |
+| `master.resources.limits.memory`            | The memory limit                                                   | string       | Any                     | 100Mi                                                             |
+| `master.resources.requests.cpu`             | The CPU request                                                    | string       | Any                     | 50m                                                               |
+| `master.resources.requests.memory`          | The memory request                                                 | string       | Any                     | 50Mi                                                              |
 | `metrics.enabled`                           | Start a sidecar prometheus exporter to expose Redis metrics        | bool         | `true`, `false`         | `true`                                                            |
 | `pdb.create`                                | Whether to create a Pod Disruption Budget                          | bool         | `true`, `false`         | `true`                                                            |
 | `pdb.minAvailable`                          | Min number of pods that must still be available after the eviction | int          | Any                     | 2                                                                 |
@@ -1273,6 +1176,52 @@ save ""
 # Backwards compatability with Redis version 6.*
 replica-ignore-disk-write-errors yes
 ```
+
+#### redpanda {#dz-kafka-broker}
+
+The `redpanda` section contains the configuration of the
+[Kafka broker](/docs/architecture/microservices/core/kafka-broker). This is
+based on the [RedPanda chart](https://github.com/redpanda-data/helm-charts).
+For more information about the parameters, see the
+[official documentation](https://github.com/redpanda-data/helm-charts/blob/main/charts/redpanda/values.yaml).
+
+Here are only the values different from the default ones.
+
+{{< table caption="kafka section parameters" >}}
+| Parameter                                   | Description                                             | Type   | Allowed values         | Default                                                |
+| ------------------------------------------- | ------------------------------------------------------- | ------ | ---------------------- | ------------------------------------------------------ |
+| `config.cluster.auto_create_topics_enabled` | Whether to enable auto creation of topics               | bool   | `true`, `false`        | `true`                                                 |
+| `console`                                   | The configuration for RedPanda Console                  | object | Any                    | See [console](#dz-kafka-broker-console) section        |
+| `external.type`                             | The type of Service for external access                 | string | NodePort, LoadBalancer | LoadBalancer                                           |
+| `fullnameOverride`                          | The full name override                                  | string | Any                    | {{< resource type="statefulset" name="kafkabroker" >}} |
+| `listeners.kafka.port`                      | The port of the Kafka listener                          | int    | Any                    | 9092                                                   |
+| `rbac.enable`                               | Whether to enable RBAC                                  | bool   | `true`, `false`        | `true`                                                 |
+| `resources.cpu.cores`                       | The number of CPU cores to allocate to the Kafka broker | int    | Any                    | 1                                                      |
+| `resources.memory.container.max`            | Maximum memory count for each broker                    | string | Any                    | 2Gi                                                    |
+| `resources.memory.enable_memory_locking`    | Whether to enable memory locking                        | bool   | `true`, `false`        | `true`                                                 |
+| `serviceAccount.create`                     | Whether to create a service account                     | bool   | `true`, `false`        | `false`                                                |
+| `statefulset.replicas`                      | The number of brokers                                   | int    | Any                    | 1                                                      |
+| `storage.persistentVolume.size`             | The size of the persistent volume                       | string | Any                    | 10Gi                                                   |
+| `tls.enabled`                               | Whether to enable TLS                                   | bool   | `true`, `false`        | `false`                                                |
+{{< /table >}}
+
+##### console {#dz-kafka-broker-console}
+
+The `console` section contains the configuration of the
+[RedPanda Console](https://redpanda.com/redpanda-console-kafka-ui).
+
+For more information about the parameters, see the
+[official documentation](https://github.com/redpanda-data/helm-charts/blob/main/charts/console/values.yaml).
+
+{{< table caption="console section parameters" >}}
+| Parameter                      | Description                              | Type   | Allowed values                    | Default                                                     |
+| ------------------------------ | ---------------------------------------- | ------ | --------------------------------- | ----------------------------------------------------------- |
+| `console.config.kafka.brokers` | The list of Kafka brokers                | list   | Any                               | {{< resource type="statefulset" name="kafkabroker" >}}:9092 |
+| `service.port`                 | The port of the Service to expose        | int    | Any                               | 8090                                                        |
+| `service.targetPort`           | The target port of the Service to expose | int    | Any                               | 8080                                                        |
+| `service.type`                 | The type of Service to expose            | string | ClusterIp, NodePort, LoadBalancer | LoadBalancer                                                |
+| `serviceAccount.create`        | Whether to create a service account      | bool   | `true`, `false`                   | `false`                                                     |
+{{< /table >}}
 
 #### sensorconnect {#dz-sensorconnect}
 
@@ -1368,9 +1317,9 @@ microservice.
 | `image.pullPolicy`          | The image pull policy                                                      | string | Always, IfNotPresent, Never | IfNotPresent                                               |
 | `replicas`                  | The number of Pod replicas                                                 | int    | Any                         | 1                                                          |
 | `env`                       | The environment variables                                                  | object | Any                         | See [env](#dz-tulip-connector-env)                         |
-| `resources.limits.cpu`      | The CPU limit                                                              | string | Any                         | 200m                                                       |
-| `resources.limits.memory`   | The memory limit                                                           | string | Any                         | 100Mi                                                      |
-| `resources.requests.cpu`    | The CPU request                                                            | string | Any                         | 100m                                                       |
+| `resources.limits.cpu`      | The CPU limit                                                              | string | Any                         | 30m                                                        |
+| `resources.limits.memory`   | The memory limit                                                           | string | Any                         | 50Mi                                                       |
+| `resources.requests.cpu`    | The CPU request                                                            | string | Any                         | 10m                                                        |
 | `resources.requests.memory` | The memory request                                                         | string | Any                         | 20Mi                                                       |
 {{< /table >}}
 

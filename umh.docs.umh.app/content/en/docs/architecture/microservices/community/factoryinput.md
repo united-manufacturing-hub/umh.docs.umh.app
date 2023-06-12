@@ -53,6 +53,7 @@ payload.
 | `LOGGING_LEVEL`              | Defines which logging level is used, mostly relevant for developers                                          | string | PRODUCTION, DEVELOPMENT | PRODUCTION                                                   |
 | `MQTT_QUEUE_HANDLER`         | Number of queue workers to spawn                                                                             | int    | 0-65535                 | 10                                                           |
 | `MQTT_PASSWORD`              | Password for the MQTT broker                                                                                 | string | Any                     | INSECURE_INSECURE_INSECURE                                   |
+| `POD_NAME`                   | Name of the pod. Used for tracing                                                                            | string | Any                     | {{< resource type="statefulset" name="factoryinput" >}}-0    |
 | `SERIAL_NUMBER`              | Serial number of the cluster. Used for tracing                                                               | string | Any                     | defalut                                                      |
 | `VERSION`                    | The version of the API used. Each version also enables all the previous ones                                 | int    | Any                     | 1                                                            |
 {{< /table >}}
