@@ -18,7 +18,7 @@ The United Manufacturing Hub has several simulators. These simulators simulate d
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqMan1.png)
 3. Double-click on the **mqtt-in** node and add a new MQTT broker. To do so, click on **Edit** and use the service name **united-manufacturing-hub-mqtt** as the host (alternatively you can use the service name of the MQTT broker, located in the Management Console **Useful Information**-tab ). Leave the port as autoconfigured and click on **Add** to save your changes.
 
-   ![Untitled](/images/getstarted/dataAcquisitionManipulation/usefulInfoMgmt.png?width=75%)
+   ![Untitled](/images/getstarted/dataAcquisitionManipulation/usefulInfoMgmt.png?width=50%)
 4. To view all incoming messages from a specific topic, type `ia/#` under **Topic** and click on **Done**.
 
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManiaRaw.png?width=75%)
