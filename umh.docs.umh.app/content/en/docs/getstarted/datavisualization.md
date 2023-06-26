@@ -11,7 +11,7 @@ The next step is to visualize the data. In this chapter, we will be creating a G
 
 ## Creating a Grafana dashboard
 
-1. Open Grafana with UMHLens and enter the secrets also found in UMHLens.
+1. Open Grafana using the Management Console and enter the secrets found in the Grafana popup.
 2. Once you are in Grafana navigate to the left and click on **New dashboard**.
 
    ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisNewDashboard.png?width=75%)

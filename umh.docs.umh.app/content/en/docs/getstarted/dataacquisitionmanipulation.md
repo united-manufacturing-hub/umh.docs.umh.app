@@ -12,36 +12,32 @@ The United Manufacturing Hub has several simulators. These simulators simulate d
 
 ## Creating Node-RED flow with simulated MQTT-Data
 
-1. Access the Node-RED Web UI. To do this, click on the service and forward the port as shown below. Once the UI opens 
-   in the browser, add `nodered` to the URL to avoid the [cannot get error](https://learn.umh.app/course/how-to-fix-cannot-get-error-in-node-red/).
-
-   ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingForwarding.png?width=75%)
-2. From the left-hand column, drag a **mqtt-in** node, a **mqtt-out** node, and a **debug** node into your flow.
-3. Connect the **mqtt-in** and to the **debug-node**.
+1. From the left-hand column, drag a **mqtt-in** node, a **mqtt-out** node, and a **debug** node into your flow.
+2. Connect the **mqtt-in** and to the **debug-node**.
 
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqMan1.png)
-4. Double-click on the **mqtt-in** node and add a new MQTT broker. To do so, click on **Edit** and use the service name of HiveMQ as the host (located in UMHLens under **services** -> name). Leave the port as autoconfigured and click on **Add** to save your changes.
+3. Double-click on the **mqtt-in** node and add a new MQTT broker. To do so, click on **Edit** and use the service name **united-manufacturing-hub-mqtt** as the host (alternatively you can use the service name of the MQTT broker, located in the Management Console **Useful Information**-tab ). Leave the port as autoconfigured and click on **Add** to save your changes.
 
-   ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManServicename.png?width=75%)
-5. To view all incoming messages from a specific topic, type `ia/#` under **Topic** and click on **Done**.
+   ![Untitled](/images/getstarted/dataAcquisitionManipulation/usefulInfoMgmt.png?width=50%)
+4. To view all incoming messages from a specific topic, type `ia/#` under **Topic** and click on **Done**.
 
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManiaRaw.png?width=75%)
-6. To apply the changes, click on **Deploy** located at the top right of the screen. Once the changes have been deployed, you can view the debug information by clicking on **Debug-Messages** located under **Deploy**. 
+5. To apply the changes, click on **Deploy** located at the top right of the screen. Once the changes have been deployed, you can view the debug information by clicking on **Debug-Messages** located under **Deploy**. 
 
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManDebugDeploy.png)
-7. In this column, you can view all incoming messages and their respective topics. The incoming topics follow this format: `ia/raw/development/ioTSensors/`. For the purpose of this tutorial, we will be using only the temperature topic, but feel free to choose any topic you'd like. To proceed, copy the temperature topic (`ia/raw/development/ioTSensors/Temperature`), open the **mqtt-in** node, paste the copied topic in the **Topic** field, click on **Done**, and then press **Deploy** again to apply the changes.
+6. In this column, you can view all incoming messages and their respective topics. The incoming topics follow this format: `ia/raw/development/ioTSensors/`. For the purpose of this tutorial, we will be using only the temperature topic, but feel free to choose any topic you'd like. To proceed, copy the temperature topic (`ia/raw/development/ioTSensors/Temperature`), open the **mqtt-in** node, paste the copied topic in the **Topic** field, click on **Done**, and then press **Deploy** again to apply the changes.
 
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManNewTopic.png)
-8. To format the incoming message, add a **JSON** node and a **Function** node to your flow. Connect the nodes in the following order: **mqtt-in → JSON → Function → mqtt-out**.
+7. To format the incoming message, add a **JSON** node and a **Function** node to your flow. Connect the nodes in the following order: **mqtt-in → JSON → Function → mqtt-out**.
 
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManNewNodes.png)
-9. Open the **function** node and paste in the following:
+8. Open the **function** node and paste in the following:
 
    ```jsx
    msg.payload ={
     
        "timestamp_ms": Date.now(), 
-       "temperature": parseFloat(msg.payload, 10)
+       "temperature": parseFloat(msg.payload)
    }
    msg.topic = "ia/factoryinsight/Aachen/testing/processValue";
    return msg;
