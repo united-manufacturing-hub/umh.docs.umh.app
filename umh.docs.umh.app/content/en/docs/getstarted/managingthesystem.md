@@ -5,11 +5,12 @@ description = "Basics of UMHLens and importing Node-RED and Grafana flows"
 weight = 2000
 +++
 
-In this chapter, we will guide you through connecting to our Kubernetes cluster
-using UMHLens and our Management Console. Then, we'll walk you through creating 
-a [Node-RED](https://nodered.org/) 
-flow and a Grafana dashboard to show you, how data flows through the stack of 
-the United Manufacturing Hub. Check out the image below for a sneak peek:
+In this chapter, we will guide you through connecting to our [Kubernetes](https://learn.umh.app/lesson/introduction-into-it-ot-docker-kubernetes-and-helm/)
+cluster using UMHLens and our Management Console. Then, we'll walk you through 
+creating a [Node-RED](https://nodered.org/) 
+flow and a [Grafana](https://grafana.com/) dashboard to show you, how data
+flows through the stack of the United Manufacturing Hub.
+Check out the image below for a sneak peek:
 
 
 ![Untitled](/images/getstarted/managingTheSystem/getStartedUMHSimplifiedpng.png)
@@ -25,7 +26,7 @@ the United Manufacturing Hub. Check out the image below for a sneak peek:
   on the top right. Depending on your system, it may take up to 15 minutes for 
   all pods to start. A pod in Kubernetes is like a group of related workers who 
   share the same  office space and resources to complete a task together.
-  It represents a single instance of a running process or micro service in a 
+  It represents a single instance of a running process or microservice in a 
   cluster and can contain one or multiple containers, which are like the
   individual workers, sharing storage and network connection. 
 
