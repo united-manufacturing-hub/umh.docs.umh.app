@@ -15,32 +15,25 @@ Check out the image below for a sneak peek:
 
 ![Untitled](/images/getstarted/managingTheSystem/getStartedUMHSimplifiedpng.png)
 
-##  1. Connect to UMH
+##  1. Install the UMH
 
-1. Download & install UMHLens [here](https://github.com/united-manufacturing-hub/UMHLens/releases).
-2. If you installed the UMH using the management console, you should see a
-  cluster named "k3d-united-manufacturing-hub" under **Browse**. Click on it to
-  connect.
-3. You can check the status of all pods by navigating to **Workloads** -> 
-  **Pods** and selecting **{{< resource type="ns" name="umh" >}}** as the **namespace** 
-  on the top right. Depending on your system, it may take up to 15 minutes for 
-  all pods to start. A pod in Kubernetes is like a group of related workers who 
-  share the same  office space and resources to complete a task together.
-  It represents a single instance of a running process or microservice in a 
-  cluster and can contain one or multiple containers, which are like the
-  individual workers, sharing storage and network connection. 
+1. Download & install the Management Console from [here](https://mgmt.docs.umh.app/docs/getstarted/download/)
+   and follow the instructions.
+2. Once you have created an account, you will be guided by a tutorial which helps
+   you to install the UMH on your local machine.
+3. After creating your instance of the UMH, you will be able to access the local 
+   installation by clicking on the tile.
+   You will open the device overview, where you can see every microservice of
+   the stack and access and configure them.
+   While the components of the UMH stack are installed and starting, the icons
+   of the services will be red or white. Once the services are running, the icons 
+   will turn green. 
+   Continue to follow the tutorial, to
+   learn how to create Node-RED flows and Grafana Dashboards.
 
-   ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingPods.png?width=75%)
-   ![Untitled](/images/getstarted/managingTheSystem/LensSelectNamespace.png)
-4. To access the web interfaces of the microservices, e.g. node-red or grafana, navigate to **Network** -> **Services** on
-   the left-hand side. Again make sure to change the namespace to {{< resource type="ns" name="umh" >}} at the top right.
-
-   ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingServices.png?width=75%)
-   ![Untitled](/images/getstarted/managingTheSystem/LensSelectNamespace.png)
-5. You can click on a service, to access more information about it and Connect 
-  to it. You can also use the Management Console to connect to the services.
-
-   ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingForwarding.png?width=75%)
+4. To access the web interfaces of the microservices, e.g. node-red or grafana, 
+   click on the microservice in the device overview and click on the **open** 
+   button.
 
 
 ## 2. Import flows to Node-RED

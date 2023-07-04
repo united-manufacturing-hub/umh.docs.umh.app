@@ -18,8 +18,7 @@ using [k3d](/docs/production-guide/installation/local-k3d-installation/).
 
 ## Local installation using the Management Console (recommended)
 
-**The Management Console itself ist currently only running on Windows, the 
-UMH instances created by it can be deployed on any platform.**
+**The Management Console itself ist currently only running on Windows.**
 We've put together a comprehensive guide on how to install the UMH locally on
 your computer using our **Management Console**. The Management Console is a
 desktop application allowing you to setup, configure and maintain your IT / OT 
@@ -38,7 +37,8 @@ Please note that the Management Console is currently available
 Linux or Mac**, please look into the
 [production guides for OS specific installation tutorials](/docs/production-guide/installation/).
 
-External Instances are running on Flatcar, a Linux version, by default.
+External instances, like an edge device or a VM, are running on Flatcar,
+a Linux version, by default.
 {{% /notice %}}
 
 ## Do you need more technical background information?
