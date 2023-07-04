@@ -5,37 +5,46 @@ description = "Basics of UMHLens and importing Node-RED and Grafana flows"
 weight = 2000
 +++
 
-In this chapter, we will guide you through connecting to our [Kubernetes](https://learn.umh.app/lesson/introduction-into-it-ot-docker-kubernetes-and-helm/)
-cluster using UMHLens and our Management Console. Then, we'll walk you through 
-creating a [Node-RED](https://nodered.org/) 
-flow and a [Grafana](https://grafana.com/) dashboard to show you, how data
-flows through the stack of the United Manufacturing Hub.
-Check out the image below for a sneak peek:
-
+  In this chapter, we will guide you through the installation of your first local 
+  instance of the UMH using the Management Console. We will also explain how the
+  basic components work together. Check out the image below for a general overview:
 
 ![Untitled](/images/getstarted/managingTheSystem/getStartedUMHSimplifiedpng.png)
 
-##  1. Install the UMH
+  The United Manufacturing Hub is a collection of microservices, which work
+  together, to provide a complete solution for your manufacturing needs. From 
+  data collection to contextualization and visualization, or data storage:
+  the UMH provides every tool you need. In the rare case, that you need a special 
+  feature, you can add it to the UMH by creating your own custom microservice.
 
-1. Download & install the Management Console from [here](https://mgmt.docs.umh.app/docs/getstarted/download/)
+##  Install the UMH
+
+1. In case you have not done it on the previous page, download and install
+   the Management Console from [here](https://mgmt.docs.umh.app/docs/getstarted/download/)
    and follow the instructions.
-2. Once you have created an account, you will be guided by a tutorial which helps
-   you to install the UMH on your local machine.
+2. First, create an account. Since this is your first installation, you will be
+   guided by a tutorial which helps you to install the UMH on your local machine.
+
+   {{% notice note %}}
+   A local installation is the similar to an installation on an external device,
+   like an edge device or a VM. The benefit is, that you can easily set it up
+   without any additional hardware and learn how to use it.
+   {{% /notice %}}
+
 3. After creating your instance of the UMH, you will be able to access the local 
    installation by clicking on the tile.
    You will open the device overview, where you can see every microservice of
-   the stack and access and configure them.
-   While the components of the UMH stack are installed and starting, the icons
+   the stack and access and configure them. While the components of the UMH 
+   stack are installed and starting, the icons
    of the services will be red or white. Once the services are running, the icons 
-   will turn green. 
-   Continue to follow the tutorial, to
+   will turn green. Continue to follow the tutorial, to
    learn how to create Node-RED flows and Grafana Dashboards.
 
 4. To access the web interfaces of the microservices, e.g. node-red or grafana, 
    click on the microservice in the device overview and click on the **open** 
    button.
 
-
+<!---
 ## 2. Import flows to Node-RED
 
 1. Access the Node-RED Web UI. To do this, click on the service in the 
@@ -69,7 +78,7 @@ Check out the image below for a sneak peek:
 3. If everything is working properly, you should now see a functional dashboard with a temperature curve.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingGrafanaDashboard.png?width=75%)
-
+-->
 
 ## What's next?
 
