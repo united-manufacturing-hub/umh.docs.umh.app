@@ -5,7 +5,11 @@ description = "Basics of UMHLens and importing Node-RED and Grafana flows"
 weight = 2000
 +++
 
-In this chapter, we'll guide you through connecting to our Kubernetes cluster using UMHLens. Then, we'll walk you through importing a [Node-RED](https://learn.umh.app/course/importing-and-exporting-in-node-red/) and Grafana flow to help you visualize how data flows through the stack. Check out the image below for a sneak peek
+In this chapter, we will guide you through connecting to our Kubernetes cluster
+using UMHLens and our Management Console. Then, we'll walk you through creating 
+a [Node-RED](https://nodered.org/) 
+flow and a Grafana dashboard to show you, how data flows through the stack of 
+the United Manufacturing Hub. Check out the image below for a sneak peek:
 
 
 ![Untitled](/images/getstarted/managingTheSystem/getStartedUMHSimplifiedpng.png)
@@ -13,10 +17,17 @@ In this chapter, we'll guide you through connecting to our Kubernetes cluster us
 ##  1. Connect to UMH
 
 1. Download & install UMHLens [here](https://github.com/united-manufacturing-hub/UMHLens/releases).
-2. If you installed the UMH using the management console, you should see a cluster named "k3d-united-manufacturing-hub"
-   under **Browse**. Click on it to connect.
-3. You can check the status of all pods by navigating to **Workloads** -> **Pods** and selecting
-   {{< resource type="ns" name="umh" >}} as the namespace on the top right. Depending on your system, it may take a while for all pods to start.
+2. If you installed the UMH using the management console, you should see a
+  cluster named "k3d-united-manufacturing-hub" under **Browse**. Click on it to
+  connect.
+3. You can check the status of all pods by navigating to **Workloads** -> 
+  **Pods** and selecting **{{< resource type="ns" name="umh" >}}** as the **namespace** 
+  on the top right. Depending on your system, it may take up to 15 minutes for 
+  all pods to start. A pod in Kubernetes is like a group of related workers who 
+  share the same  office space and resources to complete a task together.
+  It represents a single instance of a running process or micro service in a 
+  cluster and can contain one or multiple containers, which are like the
+  individual workers, sharing storage and network connection. 
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingPods.png?width=75%)
    ![Untitled](/images/getstarted/managingTheSystem/LensSelectNamespace.png)
@@ -25,14 +36,17 @@ In this chapter, we'll guide you through connecting to our Kubernetes cluster us
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingServices.png?width=75%)
    ![Untitled](/images/getstarted/managingTheSystem/LensSelectNamespace.png)
-5. Click on the appropriate service you wish to connect to, scroll down to **Connection** and forward the port.
+5. You can click on a service, to access more information about it and Connect 
+  to it. You can also use the Management Console to connect to the services.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingForwarding.png?width=75%)
 
 
 ## 2. Import flows to Node-RED
 
-1. Access the Node-RED Web UI. To do this, click on the service and forward the port as shown above. When the UI opens 
+1. Access the Node-RED Web UI. To do this, click on the service in the 
+  Management Console
+ above. When the UI opens 
    in the browser, add `nodered` to the URL as shown in the figure below to avoid the [cannot get error](https://learn.umh.app/course/how-to-fix-cannot-get-error-in-node-red/).
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingCannotGet.png?width=75%)
