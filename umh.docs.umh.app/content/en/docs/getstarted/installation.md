@@ -6,20 +6,20 @@ weight = 1000
 +++
 
 
-The United Manufacturing Hub can be installed locally or on an edge device,
-depending on your needs. For simple tinkering and development, we recommend 
-installing it locally using our Management Console.
+The United Manufacturing Hub can be installed locally or on an external device, 
+as an edge device or a VM, depending on your needs.
+For simple tinkering and development, we recommend installing it locally using
+our Management Console.
 {{% notice note %}}
 If you prefer an open-source approach, we also provide instructions for
 using [k3d](/docs/production-guide/installation/local-k3d-installation/).
 {{% /notice %}}
 
 
-## Local installation using the Management Console
+## Local installation using the Management Console (recommended)
 
-We recommend installing the UMH locally using our Management Console. 
-The Management Console itself ist currently only running on Windows, the 
-UMH instances created by it can be deployed on any platform.
+**The Management Console itself ist currently only running on Windows, the 
+UMH instances created by it can be deployed on any platform.**
 We've put together a comprehensive guide on how to install the UMH locally on
 your computer using our **Management Console**. The Management Console is a
 desktop application allowing you to setup, configure and maintain your IT / OT 
@@ -33,10 +33,12 @@ To access the documentation, simply click on the button below.
 
 
 {{% notice note %}}
-Please note that the Management Console is available at the moment 
-**under Windows only** and only allows setting up test instances on the same 
-device. **If you are using Linux or Mac**, please look into the
+Please note that the Management Console is currently available 
+**under Windows only**. **If you want to use the Management Console on 
+Linux or Mac**, please look into the
 [production guides for OS specific installation tutorials](/docs/production-guide/installation/).
+
+External Instances are running on Flatcar, a Linux version, by default.
 {{% /notice %}}
 
 ## Do you need more technical background information?
