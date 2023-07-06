@@ -7,31 +7,37 @@ weight = 3000
 
 
 
-The United Manufacturing Hub has several simulators. These simulators simulate different data types/protocols such as MQTT, PackML or OPC/UA. In this chapter we will take the MQTT simulated data and show you how to format it into the [UMH data model](/docs/architecture/datamodel/).
+The United Manufacturing Hub has several simulators. These simulators simulate 
+different data types/protocols such as MQTT, PackML or OPC/UA. In this chapter 
+we will take the MQTT simulated data and show you how to format it into the
+**[UMH data model](/docs/architecture/datamodel/)**.
 
 
 ## Creating Node-RED flow with simulated MQTT-Data
 
-1. From the left-hand column, drag a **mqtt-in** node, a **mqtt-out** node, and a **debug** node into your flow.
-2. Connect the **mqtt-in** and to the **debug-node**.
+1. Open the Node-RED web interface by clicking on the Node-RED tile in the device 
+   overview. 
+
+2. From the left-hand column, drag a **mqtt-in** node, a **mqtt-out** node, and a **debug** node into your flow.
+3. Connect the **mqtt-in** and to the **debug-node**.
 
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqMan1.png)
-3. Double-click on the **mqtt-in** node and add a new MQTT broker. To do so, click on **Edit** and use the service name **united-manufacturing-hub-mqtt** as the host (alternatively you can use the service name of the MQTT broker, located in the Management Console **Useful Information**-tab ). Leave the port as autoconfigured and click on **Add** to save your changes.
+4. Double-click on the **mqtt-in** node and add a new MQTT broker. To do so, click on **Edit** and use the service name **united-manufacturing-hub-mqtt** as the host (alternatively you can use the service name of the MQTT broker, located in the Management Console **Useful Information**-tab ). Leave the port as autoconfigured and click on **Add** to save your changes.
 
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/usefulInfoMgmt.png?width=50%)
-4. To view all incoming messages from a specific topic, type `ia/#` under **Topic** and click on **Done**.
+5. To view all incoming messages from a specific topic, type `ia/#` under **Topic** and click on **Done**.
 
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManiaRaw.png?width=75%)
-5. To apply the changes, click on **Deploy** located at the top right of the screen. Once the changes have been deployed, you can view the debug information by clicking on **Debug-Messages** located under **Deploy**. 
+6. To apply the changes, click on **Deploy** located at the top right of the screen. Once the changes have been deployed, you can view the debug information by clicking on **Debug-Messages** located under **Deploy**. 
 
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManDebugDeploy.png)
-6. In this column, you can view all incoming messages and their respective topics. The incoming topics follow this format: `ia/raw/development/ioTSensors/`. For the purpose of this tutorial, we will be using only the temperature topic, but feel free to choose any topic you'd like. To proceed, copy the temperature topic (`ia/raw/development/ioTSensors/Temperature`), open the **mqtt-in** node, paste the copied topic in the **Topic** field, click on **Done**, and then press **Deploy** again to apply the changes.
+7. In this column, you can view all incoming messages and their respective topics. The incoming topics follow this format: `ia/raw/development/ioTSensors/`. For the purpose of this tutorial, we will be using only the temperature topic, but feel free to choose any topic you'd like. To proceed, copy the temperature topic (`ia/raw/development/ioTSensors/Temperature`), open the **mqtt-in** node, paste the copied topic in the **Topic** field, click on **Done**, and then press **Deploy** again to apply the changes.
 
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManNewTopic.png)
-7. To format the incoming message, add a **JSON** node and a **Function** node to your flow. Connect the nodes in the following order: **mqtt-in → JSON → Function → mqtt-out**.
+8. To format the incoming message, add a **JSON** node and a **Function** node to your flow. Connect the nodes in the following order: **mqtt-in → JSON → Function → mqtt-out**.
 
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManNewNodes.png)
-8. Open the **function** node and paste in the following:
+9. Open the **function** node and paste in the following:
 
    ```jsx
    msg.payload ={

@@ -7,7 +7,7 @@ weight = 2000
 
   In this chapter, we will guide you through the installation of your first local 
   instance of the UMH using the Management Console. We will also explain how the
-  basic components work together. Check out the image below for a general overview:
+  basic components work together. Check out the image below for an overview:
 
 ![Untitled](/images/getstarted/managingTheSystem/getStartedUMHSimplifiedpng.png)
 
@@ -26,9 +26,9 @@ weight = 2000
    guided by a tutorial which helps you to install the UMH on your local machine.
 
    {{% notice note %}}
-   A local installation is the similar to an installation on an external device,
+   A local installation functions similar to an installation on an external device,
    like an edge device or a VM. The benefit is, that you can easily set it up
-   without any additional hardware and learn how to use it.
+   without any additional hardware and learn how to use it with simulated data.
    {{% /notice %}}
 
 3. After creating your instance of the UMH, you will be able to access the local 
@@ -82,4 +82,7 @@ weight = 2000
 
 ## What's next?
 
-Next, you can create a node-red flow for yourself and then learn how to create a dashboard in Grafana. Click [here](/docs/getstarted/dataacquisitionmanipulation) to proceed.
+  Next, you can create a node-red flow and learn how to create a dashboard
+  in Grafana. Click [here](/docs/getstarted/dataacquisitionmanipulation) 
+  to proceed. This guide is also linked in the tutorial in the Management 
+  Console.
