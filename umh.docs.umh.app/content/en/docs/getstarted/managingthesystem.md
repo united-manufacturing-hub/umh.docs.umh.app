@@ -17,7 +17,7 @@ weight = 2000
   the UMH provides every tool you need. In the rare case, that you need a special 
   feature, you can add it to the UMH by creating your own custom microservice.
 
-##  Install the UMH
+## 1. Install the UMH
 
 1. In case you have not done it on the previous page, download and install
    the Management Console from [here](https://mgmt.docs.umh.app/docs/getstarted/download/)
@@ -37,48 +37,63 @@ weight = 2000
    the stack and access and configure them. While the components of the UMH 
    stack are installed and starting, the icons
    of the services will be red or white. Once the services are running, the icons 
-   will turn green. Continue to follow the tutorial, to
-   learn how to create Node-RED flows and Grafana Dashboards.
+   will turn green. If you have a decent device, you should not be
+   waiting longer then 5 minutes, until the services in the center have turned
+   green. Depending on your computer, the start of your stack can take up to
+   15 minutes. When the center of the stack is running, you can continue to
+   follow the tutorial tutorial below, to make your first steps with Node-RED 
+   and Grafana. On the next pages, you will learn how to create Node-RED flows 
+   and Grafana Dashboards by yourself and how to use the UMH data-source.
 
 4. To access the web interfaces of the microservices, e.g. node-red or grafana, 
    click on the microservice in the device overview and click on the **open** 
    button.
 
-<!---
+
 ## 2. Import flows to Node-RED
  
 1. Access the Node-RED Web UI. To do this, click on the service in the 
-  Management Console
- above. When the UI opens 
-   in the browser, add `nodered` to the URL as shown in the figure below to avoid the [cannot get error](https://learn.umh.app/course/how-to-fix-cannot-get-error-in-node-red/).
+   Management Console
+   above. When the UI opens 
+   in the browser, add `nodered` to the URL as shown in the figure below to
+   avoid the [cannot get error](https://learn.umh.app/course/how-to-fix-cannot-get-error-in-node-red/).
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingCannotGet.png?width=75%)
-2. Once you are in the web interface, click on the three lines in the upper right corner and select **Import**.
+
+2. Once you are in the web interface, click on the three lines in the upper 
+   right corner and select **Import**.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingImport.png?width=75%)
 
-3. Now copy [this json file](/json/getstarted/noderedGetStarted.json) and paste it into the import field. Then press **Import**.
+3. Now copy [this json file](/json/getstarted/noderedGetStarted.json) and paste
+   it into the import field. Then press **Import**.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingPasteJson.png?width=75%)
-4. To activate the imported flow, simply click on the **Deploy** button located at the top right of the screen. 
-   If everything is working as expected, you should see green dots above the input and output. Once you've confirmed 
+
+4. To activate the imported flow, simply click on the **Deploy** button located
+   at the top right of the screen. If everything is working as expected,
+   you should see green dots above the input and output. Once you've confirmed 
    that the data is flowing correctly, you can proceed to display it in Grafana
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingDeploy.png?width=75%)
 
 
 ## 3. Import flows to Grafana & view dashboard
 
-1. Go into UMHLens and forward the grafana service as you did with node-red. To log in, you need the grafana Secrets, 
-   which you can find in UMHLens under **Config** -> **Secrets** -> **Grafana-Secret**. Click on the eye to display the username and password and enter it in grafana.
+1. Go into UMHLens and forward the grafana service as you did with node-red.
+   To log in, you need the grafana Secrets, which you can find in UMHLens
+   under **Config** -> **Secrets** -> **Grafana-Secret**. Click on the eye to
+   display the username and password and enter it in grafana.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingGrafanaSecrets.png?width=75%)
-2. Once you are logged in, click on **Dashboards** on the left and select **Import**. Now copy [this Grafana json](/json/getstarted/GrafanaGetStarted.json) and paste it into **Import via panel json**. Then click on **Load**. You will then be redirected to **Options** where you need to select the **umh-v2-datasource**. Finally, click on **Import**.
+2. Once you are logged in, click on **Dashboards** on the left and select
+   **Import**. Now copy [this Grafana json](/json/getstarted/GrafanaGetStarted.json) and paste it into **Import via panel json**. Then click on **Load**. You will then be redirected to **Options** where you need to select the **umh-v2-datasource**. Finally, click on **Import**.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingGrafanaImport.png?width=75%)
-3. If everything is working properly, you should now see a functional dashboard with a temperature curve.
+3. If everything is working properly, you should now see a functional dashboard
+   with a temperature curve.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingGrafanaDashboard.png?width=75%)
--->
+
 
 ## What's next?
 

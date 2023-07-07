@@ -194,5 +194,6 @@ weight = 3000
 
 ## What's next?
 
-  In the next chapter we will use Grafana to display the formatted data.
-  Click [here](/docs/getstarted/datavisualization/) to proceed.
+  Continue with the Tutorial in the Management Console. The next chapter will
+  be about the use of Grafana to display the formatted data.
+  You can also click [here](/docs/getstarted/datavisualization/) to proceed.
