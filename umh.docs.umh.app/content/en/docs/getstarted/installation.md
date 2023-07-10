@@ -1,7 +1,7 @@
 +++
 title = "1. Installation"
 menuTitle = "1. Installation"
-description = "Installing the United Manufacturing Hub using the Management Console"
+description = "Install the United Manufacturing Hub using the Management Console."
 weight = 1000
 +++
 
@@ -23,13 +23,13 @@ weight = 1000
   the installation, configuration, and maintenance of the United Manufacturing
   Hub (UMH) locally, on edge devices, virtual machines, on-premises servers, or
   in the cloud. Although the Management Console currently operates exclusively
-  on Windows, it can facilitate the installation of UMH on a wide array of
-  platforms, using Flatcar (a very basic and stable Linux version).
+  on Windows, it can facilitate the installation of UMH instances on a wide
+  array of platforms, using Flatcar (a very basic and stable Linux version).
   To avoid any confusion, it's essential to understand that the 
   United Manufacturing Hub does not mandate Windows; this requirement
   only pertains to the Management Console, not the UMH itself.
 
-  To access the documentation and download the Management Console,
+  To access the documentation of the Management Console and download it,
   simply click on the button below.
 
 <a class="btn btn-primary" href="https://mgmt.docs.umh.app/docs/getstarted/download/" target="_blank" role="button" aria-label="Management Console">Management Console</a>
@@ -48,5 +48,6 @@ weight = 1000
 ## What's next?
 
   Once you've completed the installation process of the Management Console,
-  you can follow this [tutorial](/docs/getstarted/managingthesystem) to install
+  you can continue with the [next page](/docs/getstarted/managingthesystem) of this
+  tutorial to install
   the United Manufacturing Hub locally and learn how to access the microservices.

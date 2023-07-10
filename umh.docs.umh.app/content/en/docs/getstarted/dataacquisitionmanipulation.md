@@ -1,7 +1,7 @@
 +++
 title = "3. Data Acquisition and Manipulation"
 menuTitle = "3. Data Acquisition and Manipulation"
-description = "Formatting raw data into the UMH data model using node-red."
+description = "Format raw data into the UMH data model using node-red."
 weight = 3000
 +++
 

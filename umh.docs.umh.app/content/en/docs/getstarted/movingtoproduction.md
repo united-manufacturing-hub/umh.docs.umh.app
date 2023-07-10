@@ -1,7 +1,7 @@
 +++
 title = "5. Moving to Production"
 menuTitle = "5. Moving to Production"
-description = "Moving the United Manufacturing Hub to production"
+description = "Move the United Manufacturing Hub to production."
 weight = 5000
 +++
 
