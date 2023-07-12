@@ -14,21 +14,21 @@ weight = 3000
   It is highly recommended to read through the documentation of the UMH data
   model before continuing with this chapter.
 
-{{% notice info %}}
+{{% notice note %}}
   For a deep dive into industry 4.0 data models, check out this
-  [article](https://learn.umh.app/lesson/navigating-data-flow-understanding-data-models)
+  **[article](https://learn.umh.app/lesson/navigating-data-flow-understanding-data-models)**
   on our learn page.
 {{% /notice %}}
 
 
 ## Creating Node-RED flow with simulated MQTT-Data
 
-1. Open the Node-RED web interface by clicking on the **open** button of the
-   Node-RED popup in the device overview of your local installation. You can
-   access the popup of a microservice by clicking on the respective tile.
+1. Access the Node-RED web interface through your local installation's device
+   overview by selecting the **open** button on the Node-RED popup. You can
+   access popups by clicking on the corresponding microservice tile.
 
-2. To access the simulated raw data via MQTT, one needs to add an MQTT broker.
-   From the left-hand column, drag a **mqtt-in** node, a **mqtt-out** node, and
+2. To access the simulated raw data via MQTT, you need to add an MQTT broker.
+   From the left-hand column, drag an **mqtt-in** node, an **mqtt-out** node, and
    a **debug** node into your flow and connect the **mqtt-in** and to the
    **debug** node.
 
@@ -87,20 +87,24 @@ weight = 3000
 
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManNewTopic.png)
 
-  {{% notice info %}}
-  Incoming messages are not following the UMH data-model. To contextualize and
-  format them correctly, you can use the different message types.
-  In the documentation, you can find the complete
-  [list](https://umh.docs.umh.app/docs/architecture/datamodel/messages/)
-  of all available message types and the respective topics.
-  {{% /notice %}}
-
 7. To format the incoming message according to the UMH data-model, add a
-   **function** node, a **mqtt-out** and a **mqtt-in** to your flow. 
+   **function** node, an **mqtt-out** and an **mqtt-in** to your flow. 
    Connect the nodes in the following order:
    **mqtt-in → function → mqtt-out** and the second flow: **mqtt-in → debug**.
 
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManNewNodes.png)
+
+{{% notice info %}}
+Incoming messages are not following the UMH data-model. To contextualize and
+format them correctly, you can use the different message types. This is needed,
+to ensure that the data is correctly processed by the UMH stack and other 
+consumers.
+
+In the documentation, you can find the complete
+[list](https://umh.docs.umh.app/docs/architecture/datamodel/messages/)
+of all available message types and the respective topics.
+{{% /notice %}}
+
 
 8. Open the **function** node and paste in the following:
 
@@ -144,7 +148,7 @@ weight = 3000
 ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManNodeCompl.png)
 
 10. You should now see the converted message under **Debug-messages**. To clear
-   any previous messages, click on the trash bin icon.
+   any previous messages, click on the **trash bin** icon.
     ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManDebugWindow.png)
 
 11. Congratulations, you have successfully converted the incoming message and
@@ -154,7 +158,9 @@ weight = 3000
 
 12. Drag another **function-node** into your page, open it and navigate to
    **On Start**.
-    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManOnStart.png)
+
+![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManOnStartNew.png)
+
 
 13. Paste in the following code, which will only run on start:
 
@@ -179,14 +185,14 @@ weight = 3000
     }
     ```
 
-    The pasted in code will work as shown in the diagram below.
+    The pasted in code will work for each new message as shown in the diagram below.
     ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManTemperatureWarning.png)
 
 15. Finally, connect the function-node like shown below and click on **deploy**.
     ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManNewFunction2.png)
 
 16. If the incoming value of temperature is now greater than 47, you will see
-   another message consisting of TemperatureWarning and a timestamp in 
+   another message consisting of **TemperatureWarning** and a **timestamp** in 
    debug-messages.
 
     ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManGreaterThan.png)
@@ -194,6 +200,5 @@ weight = 3000
 
 ## What's next?
 
-  Continue with the Tutorial in the Management Console. The next chapter will
-  be about the use of Grafana to display the formatted data.
-  You can also click [here](/docs/getstarted/datavisualization/) to proceed.
+  Continue with the tutorial in the Management Console. The next chapter will
+  be about the use of Grafana to [display the formatted data](https://umh.docs.umh.app/docs/getstarted/datavisualization/) to proceed.
