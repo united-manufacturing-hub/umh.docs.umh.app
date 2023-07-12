@@ -48,18 +48,19 @@ weight = 3000
    ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManiaRaw.png?width=75%)
   
   {{% notice info %}}
-  In brokers like MQTT or Kafka, data is structured hierarchically in **topics**.
-  These topics categorize data into specific groups for efficient management.
-  In the UMH data-model, the topics are defined in this format:
+In brokers like MQTT or Kafka, data is structured hierarchically in **topics**.
+These topics categorize data into specific groups for efficient management.
+If you subscribe to a topic, you receive every message that is published to it.
+In the UMH data-model, the topics are defined in this format:
 
-  - **MQTT:** `ia/<customerID>/<location>/<AssetID>/<message>`
-  - **Kafka:** `ia.<customerID>.<location>.<AssetID>.<message>`
+- **MQTT:** `ia/<customerID>/<location>/<AssetID>/<message>`
+- **Kafka:** `ia.<customerID>.<location>.<AssetID>.<message>`
 
-  `customerID` represents the enterprise, `location` signifies the
-  factory from which the data originates, `AssetID` denotes the specific machine
-  generating the data, and the final segment `message` is the name of the
-  message or data.
-  {{% /notice %}}
+`customerID` represents the enterprise, `location` signifies the
+factory from which the data originates, `AssetID` denotes the specific machine
+generating the data, and the final segment `message` is the name of the
+message or data.
+{{% /notice %}}
 
 
 5. To apply the changes, click on **Deploy** located at the top right of the 
