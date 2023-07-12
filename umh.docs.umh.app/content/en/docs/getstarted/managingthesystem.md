@@ -5,9 +5,10 @@ description = "Learn the basics of the Management Console and how to import Node
 weight = 2000
 +++
 
-  In this chapter, we will guide you through the installation of your first 
-  local instance of the UMH using the Management Console. We will also explain
-  how the basic components work together. Check out the image below for an 
+  In this chapter, we will guide you through the installation of the Management 
+  Console and your first local instance of the UMH. We will also explain
+  how the basic components work together, by creating a first Node-RED flow and 
+  a Grafana dashboard. Check out the image below for an 
   overview:
 
 ![Untitled](/images/getstarted/managingTheSystem/getStartedUMHSimplifiedpng.png)
@@ -20,41 +21,46 @@ weight = 2000
 
 ## 1. Install the UMH
 
-1. In case you have not done it on the previous page, download and install
-   the Management Console from [here](https://mgmt.docs.umh.app/docs/getstarted/download/)
-   and follow the instructions. When you are finished with the creation of the 
-   account, continue on this site.
-
-2. Since this is your first installation, you will be guided by a tutorial in 
-   the Management Console, which helps you to install the UMH on your local 
-   machine.
+1. Follow the tutorial in the Management Console to create your first local 
+   instance of the United Manufacturing Hub. Once the installation is finished,
+   press the blue **Finish** button the right bottom corner of the Console. 
 
 
-   {{% notice note %}}
-   A local installation functions similar to an installation on an external device,
-   like an edge device or a VM. The benefit is, that you can easily set it up
-   without any additional hardware and learn how to use it with simulated data.
-   {{% /notice %}}
+{{% notice info %}}
+A local installation functions similar to an installation on an external device,
+like an edge device or a VM. The benefit is, that you can easily set it up
+without any additional hardware and learn how to use it with simulated data.
+{{% /notice %}}
 
-3. After creating your instance of the UMH, you will be able to access the local 
-   installation by clicking on the tile.
-   You will open the device overview, where you can see every microservice of
+2. After creating your local instance of the UMH, you will be able to access the
+   local installation by clicking on the tile.
+   Open the device overview, where you can see every microservice of
    the stack and access and configure them. While the components of the UMH 
    stack are installed and starting, the icons
-   of the services will be red or white. Once the services are running, the icons 
-   will turn green. If you have a decent device, you should not be
-   waiting longer then 5 minutes. On a slower computer, the start of your stack
-   can take up to 15 minutes.
+   of the services will be red or white. Once the microservices look like in the 
+   picture, you can continue.
 
-4. If you have no experience with Node-RED or Grafana, we recommend
+![Untitled](/images/getstarted/managingTheSystem/getStartedManagingMicServFinished.png)
+
+{{% notice note %}}
+If you have a decent device, you should not be
+waiting longer then 5 minutes. On a slower computer, the start of your stack
+can take up to 15 minutes.
+
+If the icons are still not green after 15 minutes, the installation might have
+failed. Go back to the overview by clicking on the arrow in the top left corner
+and click on the **+ Add Device** button in the top right corner. Then you 
+can follow the same steps as you did before to create a new local instance.
+You will overwrite the old local installation on your device.
+{{% /notice %}}
+
+3. If you have no experience with Node-RED or Grafana, we recommend
    to follow the tutorial below.
    If you are already familiar with Node-RED and Grafana, you can skip the
-   tutorial below and continue with the [next page](https://umh.docs.umh.app/docs/getstarted/dataacquisitionmanipulation/)
-   of this guide, to learn about the UMH data model.
+   tutorial below and continue with the next part of this guide,
+   [Data Acquisition and Manipulation](https://umh.docs.umh.app/docs/getstarted/dataacquisitionmanipulation/),
+   to learn about the UMH data model.
 
-5. To access the web interfaces of the microservices, e.g. node-red or grafana, 
-   click on the microservice in the device overview and click on the **open** 
-   button.
 
 
 ## 2. Import flows to Node-RED
@@ -78,13 +84,13 @@ weight = 2000
 Node-RED is a tool, to manage and connect data flows. Simply said, you can 
 specify what data is processed how and then send where. 
 
-Each flow starts with an input node, where you can specify the data source.
-In this case, the data source is a simulated temperature sensor. After the json 
-node, which is used to parse the data, it is then passed to a function node, 
-where you can manipulate the data, for example add a timestamp or format it to
-the correct unit.
-After the manipulation or contextualization, the data is always passed on to
-an output node, where you can specify the destination of the data.
+Each flow starts with an **input node**, where you can specify the data source.
+In this case, the data source is a simulated temperature sensor, the data 
+is conveyed via the MQTT microservice. After the **json node**, which is used to
+parse the data, it is then passed to a **function node**, where you can manipulate
+the data, for example add a timestamp or format it to the correct unit.
+After the manipulation or contextualization, the data is passed on to
+an **output node**, where you can specify the destination of the data.
 {{% /notice %}}
 
 4. To activate the imported flow, simply click on the **Deploy** button located
@@ -99,17 +105,28 @@ an output node, where you can specify the destination of the data.
 1. Go back to the Management Console, close the Node-RED popup and open the
    Grafana popup. Again, click on the **open** button, to access the Grafana 
    web interface. To log in, you need the Grafana log in credentials, which you
-   can find in the Grafana popup. Click on the eye to display the username and 
-   password and enter it in grafana.
+   can also find in the Grafana popup.
 
 2. Once you are logged in, click on **Dashboards** on the left and select
-   **Import**. Now copy [this Grafana json](/json/getstarted/GrafanaGetStarted.json) and paste it into **Import via panel json**. Then click on **Load**. You will then be redirected to **Options** where you need to select the **umh-v2-datasource**. Finally, click on **Import**.
+   **Import**. Now copy [this Grafana json](/json/getstarted/GrafanaGetStarted.json) 
+   and paste it into **Import via panel json**. Then click on **Load**. You 
+   will then be redirected to **Options** where you need to select the
+   **umh-v2-datasource**. Finally, click on **Import**.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingGrafanaImport.png?width=75%)
 3. If everything is working properly, you should now see a functional dashboard
    with a temperature curve.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingGrafanaDashboard.png?width=75%)
+
+{{% notice info %}}
+Grafana is a tool, to visualize data. You can create dashboards, which can 
+display a wide range of different graphs and charts.
+
+Grafana is connected to the message broker of the UMH stack and can therefore 
+access all the stored data. Here, the imported dashboard is preset to display 
+the temperature, that was sent by the previously imported Node-RED flow.
+{{% /notice %}}
 
 ## What's next?
 

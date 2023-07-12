@@ -16,6 +16,26 @@ weight = 1000
   {{% /notice %}}
 
 
+## Hardware Requirements
+
+  If you want to install the United Manufacturing Hub locally, on your own 
+  device, you will need a device that fits the following requirements:
+  - CPU cores: 4
+  - Memory size: 16 GB
+  - available disk space: 32 GB
+
+  If you only want to install the Management Console to manage external devices,
+  you will need a
+  device that fits the following requirements:
+  - CPU cores: 4
+  - Memory size: 8 GB
+  - available disk space: 32 GB
+
+  If you are at the limits of these requirements, the installation might take 
+  longer. It is also advised, to close other unused programs during the
+  installation.
+
+
 ## Local installation using the Management Console (recommended)
 
 
@@ -25,15 +45,17 @@ weight = 1000
   in the cloud. Although the Management Console currently operates exclusively
   on Windows, it can facilitate the installation of UMH instances on a wide
   array of platforms, using Flatcar (a very basic and stable Linux version).
-  To avoid any confusion, it's essential to understand that the 
+  **To avoid any confusion, it's essential to understand that the 
   United Manufacturing Hub does not mandate Windows; this requirement
-  only pertains to the Management Console, not the UMH itself.
-
-  To access the documentation of the Management Console and download it,
-  simply click on the button below.
+  only pertains to the Management Console, not the UMH itself.**
+  
+1. Download the Management Console and follow the instructions in the 
+   documentation to install it.
 
 <a class="btn btn-primary" href="https://mgmt.docs.umh.app/docs/getstarted/download/" target="_blank" role="button" aria-label="Management Console">Management Console</a>
 
+2. When you are finished with the creation of your account, continue with the
+   [next page](https://umh.docs.umh.app/docs/getstarted/managingthesystem/).
 
 ## Do you need more technical background information?
 
@@ -47,7 +69,7 @@ weight = 1000
 
 ## What's next?
 
-  Once you've completed the installation process of the Management Console,
-  you can continue with the [next page](/docs/getstarted/managingthesystem) of this
-  tutorial to install
-  the United Manufacturing Hub locally and learn how to access the microservices.
+  Once you have downloaded the Management Console, you can continue with the
+  [next page](/docs/getstarted/managingthesystem) of this tutorial to install
+  the Management Console and a local United Manufacturing Hub instance, and
+  learn how to access the microservices.
