@@ -21,7 +21,13 @@ weight = 2000
 
 ## 1. Install the UMH
 
-1. Follow the tutorial in the Management Console to create your first local 
+
+1. Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop)
+   for your operating system. This is only 
+   necessary for local installations.
+   
+
+2. Follow the tutorial in the Management Console to create your first local 
    instance of the United Manufacturing Hub. Once the installation is finished,
    press the blue **Finish** button the right bottom corner of the Console. 
 
@@ -32,7 +38,7 @@ like an edge device or a VM. The benefit is, that you can easily set it up
 without any additional hardware and learn how to use it with simulated data.
 {{% /notice %}}
 
-2. After creating your local instance of the UMH, you will be able to access the
+3. After creating your local instance of the UMH, you will be able to access the
    local installation by clicking on the tile.
    Open the device overview, where you can see every microservice of
    the stack and access and configure them. While the components of the UMH 
@@ -54,7 +60,7 @@ can follow the same steps as you did before to create a new local instance.
 You will overwrite the old local installation on your device.
 {{% /notice %}}
 
-3. If you have no experience with Node-RED or Grafana, we recommend
+4. If you have no experience with Node-RED or Grafana, we recommend
    to follow the tutorial below.
    If you are already familiar with Node-RED and Grafana, you can skip the
    tutorial below and continue with the next part of this guide,
