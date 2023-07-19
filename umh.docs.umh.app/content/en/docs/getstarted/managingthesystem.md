@@ -1,68 +1,142 @@
 +++
 title = "2. Managing the System"
 menuTitle = "2. Managing the System"
-description = "Basics of UMHLens and importing Node-RED and Grafana flows"
+description = "Learn the basics of the Management Console and how to import Node-RED and Grafana flows."
 weight = 2000
 +++
 
-In this chapter, we'll guide you through connecting to our Kubernetes cluster using UMHLens. Then, we'll walk you through importing a [Node-RED](https://learn.umh.app/course/importing-and-exporting-in-node-red/) and Grafana flow to help you visualize how data flows through the stack. Check out the image below for a sneak peek
-
+  In this chapter, we will guide you through the installation of the Management 
+  Console and your first local instance of the UMH. We will also explain
+  how the basic components work together, by creating a first Node-RED flow and 
+  a Grafana dashboard. Check out the image below for an 
+  overview:
 
 ![Untitled](/images/getstarted/managingTheSystem/getStartedUMHSimplifiedpng.png)
 
-##  1. Connect to UMH
+  The United Manufacturing Hub is a collection of microservices, which work
+  together, to provide a complete solution for your manufacturing needs. From 
+  data collection to contextualization and visualization, or data storage. 
+  For rare cases that require a special feature, you can add it to your UMH
+  stack by creating your own custom microservice.
 
-1. Download & install UMHLens [here](https://github.com/united-manufacturing-hub/UMHLens/releases).
-2. If you installed the UMH using the management console, you should see a cluster named "k3d-united-manufacturing-hub"
-   under **Browse**. Click on it to connect.
-3. You can check the status of all pods by navigating to **Workloads** -> **Pods** and selecting
-   {{< resource type="ns" name="umh" >}} as the namespace on the top right. Depending on your system, it may take a while for all pods to start.
+## 1. Install the UMH
 
-   ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingPods.png?width=75%)
-   ![Untitled](/images/getstarted/managingTheSystem/LensSelectNamespace.png)
-4. To access the web interfaces of the microservices, e.g. node-red or grafana, navigate to **Network** -> **Services** on
-   the left-hand side. Again make sure to change the namespace to {{< resource type="ns" name="umh" >}} at the top right.
 
-   ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingServices.png?width=75%)
-   ![Untitled](/images/getstarted/managingTheSystem/LensSelectNamespace.png)
-5. Click on the appropriate service you wish to connect to, scroll down to **Connection** and forward the port.
+1. Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop)
+   for your operating system. This is only 
+   necessary for local installations.
+   
 
-   ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingForwarding.png?width=75%)
+2. Follow the tutorial in the Management Console to create your first local 
+   instance of the United Manufacturing Hub. Once the installation is finished,
+   press the blue **Finish** button the right bottom corner of the Console. 
+
+
+{{% notice info %}}
+A local installation functions similar to an installation on an external device,
+like an edge device or a VM. The benefit is, that you can easily set it up
+without any additional hardware and learn how to use it with simulated data.
+{{% /notice %}}
+
+3. After creating your local instance of the UMH, you will be able to access the
+   local installation by clicking on the tile.
+   Open the device overview, where you can see every microservice of
+   the stack and access and configure them. While the components of the UMH 
+   stack are installed and starting, the icons
+   of the services will be red or white. Once the microservices look like in the 
+   picture, you can continue.
+
+![Untitled](/images/getstarted/managingTheSystem/getStartedManagingMicServFinished.png)
+
+{{% notice note %}}
+If you have a decent device, you should not be
+waiting longer then 5 minutes. On a slower computer, the start of your stack
+can take up to 15 minutes.
+
+If the icons are still not green after 15 minutes, the installation might have
+failed. Go back to the overview by clicking on the arrow in the top left corner
+and click on the **+ Add Device** button in the top right corner. Then you 
+can follow the same steps as you did before to create a new local instance.
+You will overwrite the old local installation on your device.
+{{% /notice %}}
+
+4. If you have no experience with Node-RED or Grafana, we recommend
+   to follow the tutorial below.
+   If you are already familiar with Node-RED and Grafana, you can skip the
+   tutorial below and continue with the next part of this guide,
+   [Data Acquisition and Manipulation](https://umh.docs.umh.app/docs/getstarted/dataacquisitionmanipulation/),
+   to learn about the UMH data model.
+
 
 
 ## 2. Import flows to Node-RED
-
-1. Access the Node-RED Web UI. To do this, click on the service and forward the port as shown above. When the UI opens 
-   in the browser, add `nodered` to the URL as shown in the figure below to avoid the [cannot get error](https://learn.umh.app/course/how-to-fix-cannot-get-error-in-node-red/).
-
-   ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingCannotGet.png?width=75%)
-2. Once you are in the web interface, click on the three lines in the upper right corner and select **Import**.
+ 
+1. Open Node-RED by click on the tile in the device overview, then click on the
+   **open** button. You will be redirected to the web interface of Node-RED.
+<!--
+  ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingCannotGet.png?width=75%)
+-->
+2. Once you are in the web interface, click on the three lines in the upper 
+   right corner and select **Import**.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingImport.png?width=75%)
 
-3. Now copy [this json file](/json/getstarted/noderedGetStarted.json) and paste it into the import field. Then press **Import**.
+3. Now copy [this json file](/json/getstarted/noderedGetStarted.json) and paste
+   it into the import field. Then press **Import**.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingPasteJson.png?width=75%)
-4. To activate the imported flow, simply click on the **Deploy** button located at the top right of the screen. 
-   If everything is working as expected, you should see green dots above the input and output. Once you've confirmed 
-   that the data is flowing correctly, you can proceed to display it in Grafana
+
+{{% notice info %}}
+Node-RED is a tool, to manage and connect data flows. Simply said, you can 
+specify what data is processed how and then send where. 
+
+Each flow starts with an **input node**, where you can specify the data source.
+In this case, the data source is a simulated temperature sensor, the data 
+is conveyed via the MQTT microservice. After the **json node**, which is used to
+parse the data, it is then passed to a **function node**, where you can manipulate
+the data, for example add a timestamp or format it to the correct unit.
+After the manipulation or contextualization, the data is passed on to
+an **output node**, where you can specify the destination of the data.
+{{% /notice %}}
+
+4. To activate the imported flow, simply click on the **Deploy** button located
+   at the top right of the screen. If everything is working as expected,
+   you should see green dots above the input and output. Once you have confirmed 
+   that the data is flowing correctly, you can proceed to display it in Grafana.
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingDeploy.png?width=75%)
 
 
 ## 3. Import flows to Grafana & view dashboard
 
-1. Go into UMHLens and forward the grafana service as you did with node-red. To log in, you need the grafana Secrets, 
-   which you can find in UMHLens under **Config** -> **Secrets** -> **Grafana-Secret**. Click on the eye to display the username and password and enter it in grafana.
+1. Go back to the Management Console, close the Node-RED popup and open the
+   Grafana popup. Again, click on the **open** button, to access the Grafana 
+   web interface. To log in, you need the Grafana log in credentials, which you
+   can also find in the Grafana popup.
 
-   ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingGrafanaSecrets.png?width=75%)
-2. Once you are logged in, click on **Dashboards** on the left and select **Import**. Now copy [this Grafana json](/json/getstarted/GrafanaGetStarted.json) and paste it into **Import via panel json**. Then click on **Load**. You will then be redirected to **Options** where you need to select the **umh-v2-datasource**. Finally, click on **Import**.
+2. Once you are logged in, click on **Dashboards** on the left and select
+   **Import**. Now copy [this Grafana json](/json/getstarted/GrafanaGetStarted.json) 
+   and paste it into **Import via panel json**. Then click on **Load**. You 
+   will then be redirected to **Options** where you need to select the
+   **umh-v2-datasource**. Finally, click on **Import**.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingGrafanaImport.png?width=75%)
-3. If everything is working properly, you should now see a functional dashboard with a temperature curve.
+3. If everything is working properly, you should now see a functional dashboard
+   with a temperature curve.
 
    ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingGrafanaDashboard.png?width=75%)
 
+{{% notice info %}}
+Grafana is a tool, to visualize data. You can create dashboards, which can 
+display a wide range of different graphs and charts.
+
+Grafana is connected to the message broker of the UMH stack and can therefore 
+access all the stored data. Here, the imported dashboard is preset to display 
+the temperature, that was sent by the previously imported Node-RED flow.
+{{% /notice %}}
 
 ## What's next?
 
-Next, you can create a node-red flow for yourself and then learn how to create a dashboard in Grafana. Click [here](/docs/getstarted/dataacquisitionmanipulation) to proceed.
+  Next, you can create a Node-RED flow and learn how to create your own dashboard
+  in Grafana. Click [here](/docs/getstarted/dataacquisitionmanipulation) 
+  to proceed. This guide is also linked in the tutorial in the Management 
+  Console.

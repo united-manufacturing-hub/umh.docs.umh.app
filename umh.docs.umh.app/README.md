@@ -2,6 +2,7 @@
 
  - Recent version of [Hugo](https://gohugo.io/getting-started/installing/)
  - [Git](https://git-scm.com/)
+ - [NodeJS](https://nodejs.org/en)
 
 # Preparation
 
