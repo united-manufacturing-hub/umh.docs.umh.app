@@ -4,6 +4,8 @@ content_type: task
 description: |
   This page describes how to access Kafka from outside the cluster.
 weight: 22
+published: false
+deprecated: true
 ---
 
 <!-- overview -->
