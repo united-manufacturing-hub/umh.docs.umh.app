@@ -79,7 +79,7 @@ Follow these steps to access the Kafka Broker outside the cluster:
 
 4. Click **Save** to apply the changes.
 
-Access the Kafka Broker at at port 9094.
+Access the Kafka Broker at port 9094.
 
 ## Services with ClusterIP
 
