@@ -45,21 +45,43 @@ service by default:
 - [Database](/docs/architecture/microservices/core/database/) at port 5432
 - [Kafka Console](/docs/architecture/microservices/core/kafka-console/) at port
   8090
-- [Kafka Broker](/docs/architecture/microservices/core/kafka-broker/) at port
-  9094
 - [Grafana](/docs/architecture/microservices/core/grafana/) at port 8080
 - [MQTT Broker](/docs/architecture/microservices/core/mqtt-broker/) at port
   1883
-- [Node-RED](/docs/architecture/microservices/core/node-red/) at port 1880
 - [OPCUA Simulator](/docs/architecture/microservices/community/opcua-simulator/)
   at port 46010
+- [Node-RED](/docs/architecture/microservices/core/node-red/) at port 1880
 
 {{% notice tip %}}
-To access Node-RED, you need to use the `/node-red` path, e.g.
+To access Node-RED, you need to use the `/node-red` path, for example
 `http://192.168.1.100:1880/node-red`.
 {{% /notice %}}
 
-## Services without a LoadBalancer
+## Services with NodePort by default
+
+The [Kafka Broker](/docs/architecture/microservices/core/kafka-broker/) uses the service type NodePort by default. 
+
+Follow these steps to access the Kafka Broker outside the cluster:
+
+1. Open UMHLens / OpenLens and navigate to **Network > Services**.
+2. Select the Service `united-manufacturing-hub-kafka-external` and click the **Edit** button.
+3. Scroll down to the line that shows:
+
+   ```yaml
+     type: NodePort
+   ```
+
+   Replace this with:
+
+   ```yaml
+     type: LoadBalancer
+   ```
+
+4. Click **Save** to apply the changes.
+
+Access the Kafka Broker at port 9094.
+
+## Services with ClusterIP
 
 Some of the microservices in the United Manufacturing Hub are exposed via
 a ClusterIP service. That means that they are only accessible from within the
@@ -162,3 +184,5 @@ the section `spec.ports.port` to a different port number.
 
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
+
+- See how to [Expose Grafana to the Internet](/docs/production-guide/administration/expose-grafana-to-internet/)
