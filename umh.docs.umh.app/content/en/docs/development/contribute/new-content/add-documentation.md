@@ -54,9 +54,9 @@ flowchart LR
 A([fa:fa-user New<br>Contributor]) --- id1[(umh/umh.docs.umh.app<br>GitHub)]
 subgraph tasks[Changes using GitHub]
 direction TB
-    0[ ] -.-
-    1[1. Edit this page] --> 2[2. Use GitHub markdown<br>editor to make changes]
-    2 --> 3[3. fill in Propose file change]
+0[ ] -.-
+1[1. Edit this page] --> 2[2. Use GitHub markdown<br>editor to make changes]
+2 --> 3[3. fill in Propose file change]
 
 end
 subgraph tasks2[ ]
@@ -173,23 +173,9 @@ Figure 2. Working from a local fork to make your changes.
 1. Navigate to the [`united-manufacturing-hub/umh.docs.umh.app`](https://github.com/united-manufacturing-hub/umh.docs.umh.app) repository.
 1. Select **Fork**.
 
-### Create a local clone and set the upstream
+### Fetch commits
 
-1. In a terminal window, clone your fork and update the [Docsy Hugo theme](https://github.com/google/docsy#readme):
-
-   ```shell
-   git clone git@github.com/<github_username>/umh.docs.umh.app
-   cd umh.docs.umh.app
-   git submodule update --init --recursive --depth 1
-   ```
-
-1. Navigate to the new `umh.docs.umh.app` directory. Set the `united-manufacturing-hub/umh.docs.umh.app` repository as the `upstream` remote:
-
-   ```shell
-   cd umh.docs.umh.app
-
-   git remote add upstream https://github.com/united-manufacturing-hub/umh.docs.umh.app.git
-   ```
+Before proceeding, verify that your [environment is setup](https://umh.docs.umh.app/docs/development/contribute/documentation/setup-environment/) correctly.
 
 1. Confirm your `origin` and `upstream` repositories:
 
@@ -200,10 +186,10 @@ Figure 2. Working from a local fork to make your changes.
    Output is similar to:
 
    ```none
-   origin git@github.com:<github_username>/umh.docs.umh.app.git (fetch)
-   origin git@github.com:<github_username>/umh.docs.umh.app.git (push)
-   upstream https://github.com/united-manufacturing-hub/umh.docs.umh.app.git (fetch)
-   upstream https://github.com/united-manufacturing-hub/umh.docs.umh.app.git (push)
+   origin  https://github.com/ricardo-maestas/umh.docs.umh.app.git (fetch)
+   origin  https://github.com/ricardo-maestas/umh.docs.umh.app.git (push)
+   upstream        https://github.com/united-manufacturing-hub/umh.docs.umh.app.git (fetch)
+   upstream        no_push (push)
    ```
 
 1. Fetch commits from your fork's `origin/main` and `united-manufacturing-hub/umh.docs.umh.app`'s `upstream/main`:
@@ -223,6 +209,8 @@ Figure 2. Working from a local fork to make your changes.
    - For new content about existing features, use `upstream/main`.
    - For localized content, use the localization's conventions. For more information, see
      [localizing United Manufacturing Hub documentation](/docs/development/contribute/documentation/localization/).
+   - It is helpful to name branches like [Purpose]/[ID]/[Title]
+     where Purpose is docs, feat, or fix and ID is the issue identifier (or xxx if there is no related issue).
 
    If you need help choosing a branch, reach out on the Discord channel.
 
@@ -310,6 +298,13 @@ Install and use the `hugo` command on your computer:
    hugo server --buildFuture
    ```
 
+   Alternatively, if you have installed GNU make and GNU awk:
+
+   ```shell
+   cd <path_to_your_repo>
+   make serve
+   ```
+
 4. In a web browser, navigate to `https://localhost:1313`. Hugo watches the
    changes and rebuilds the site as needed.
 
@@ -355,14 +350,14 @@ Figure 3. Steps to open a PR from your fork to the umh/umh.docs.umh.app.
 1. Select **Create Pull Request**.
 1. Add a description for your pull request:
 
-    - **Title** (50 characters or less): Summarize the intent of the change.
-    - **Description**: Describe the change in more detail.
+   - **Title** (50 characters or less): Summarize the intent of the change.
+   - **Description**: Describe the change in more detail.
 
-      - If there is a related GitHub issue, include `Fixes #12345` or `Closes #12345` in the
-        description. GitHub's automation closes the mentioned issue after merging the PR if used.
-        If there are other related PRs, link those as well.
-      - If you want advice on something specific, include any questions you'd like reviewers to
-        think about in your description.
+     - If there is a related GitHub issue, include `Fixes #12345` or `Closes #12345` in the
+       description. GitHub's automation closes the mentioned issue after merging the PR if used.
+       If there are other related PRs, link those as well.
+     - If you want advice on something specific, include any questions you'd like reviewers to
+       think about in your description.
 
 1. Select the **Create pull request** button.
 

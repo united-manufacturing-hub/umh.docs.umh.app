@@ -1,8 +1,8 @@
 ---
 title: Setup Local Environment
 description: |
-    This document describes how to set up your local environment for contributing
-    to United Manufacturing Hub documentation website.
+  This document describes how to set up your local environment for contributing
+  to United Manufacturing Hub documentation website.
 weight: 5
 ---
 
@@ -25,6 +25,7 @@ your preferred package manager to install them (for Windows users, we recommend
 using [Chocolatey](https://chocolatey.org/)).
 
 - [Git](https://git-scm.com/)
+- [Git LFS](https://git-lfs.com/)
 - [Hugo (Extended version)](https://gohugo.io/)
 - [Node.js LTS](https://nodejs.org/en/)
 
@@ -66,6 +67,12 @@ git remote set-url --push origin no_push
 
 ## Install dependencies
 
+Begin by browsing to the directory that contains your local copy of the repository:
+
+```sh
+cd <path_to_your_repo>
+```
+
 Install the required dependencies:
 
 ```sh
@@ -74,13 +81,21 @@ make module-init
 
 ## Run the development server
 
-To build and serve the website locally, run the following command:
+To preview changes in your local environment, start the Hugo server
 
 ```sh
+cd <path_to_your_repo>/umh.docs.umh.app
+hugo server --buildFuture
+```
+
+If you have chosen to install GNU make and GNU awk, it is possible to conveniently build and serve the website locally by running the following command:
+
+```sh
+cd <path_to_your_repo>
 make serve
 ```
 
-This will start the local Hugo server on port 1313. Open up your browser to
+Either method will start the local Hugo server on port 1313. Open up your browser to
 `http://localhost:1313` to view the website. As you make changes to the source
 files, Hugo updates the website and forces a browser refresh.
 
