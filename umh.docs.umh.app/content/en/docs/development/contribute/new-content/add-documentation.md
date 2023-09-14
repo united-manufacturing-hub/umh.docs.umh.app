@@ -186,8 +186,8 @@ Before proceeding, verify that your [environment is setup](https://umh.docs.umh.
    Output is similar to:
 
    ```none
-   origin  https://github.com/ricardo-maestas/umh.docs.umh.app.git (fetch)
-   origin  https://github.com/ricardo-maestas/umh.docs.umh.app.git (push)
+   origin  https://github.com/<github_username>/umh.docs.umh.app.git (fetch)
+   origin  https://github.com/<github_username>/umh.docs.umh.app.git (push)
    upstream        https://github.com/united-manufacturing-hub/umh.docs.umh.app.git (fetch)
    upstream        no_push (push)
    ```

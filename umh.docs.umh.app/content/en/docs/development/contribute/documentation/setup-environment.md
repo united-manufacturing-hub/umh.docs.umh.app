@@ -58,25 +58,10 @@ If you are not a member of the United Manufacturing Hub organization, you will
 need to add the upstream repository as a remote:
 
 ```sh
-git remote add origin https://github.com/united-manufacturing-hub/umh.docs.umh.app.git
-# or: git remote add upstream git@github.com:united-manufacturing-hub/umh.docs.umh.app.git
+git remote add upstream https://github.com/united-manufacturing-hub/umh.docs.umh.app.git
 
 # Never push to upstream master
-git remote set-url --push origin no_push
-```
-
-## Install dependencies
-
-Begin by browsing to the directory that contains your local copy of the repository:
-
-```sh
-cd <path_to_your_repo>
-```
-
-Install the required dependencies:
-
-```sh
-make module-init
+git remote set-url --push upstream no_push
 ```
 
 ## Run the development server
@@ -88,10 +73,16 @@ cd <path_to_your_repo>/umh.docs.umh.app
 hugo server --buildFuture
 ```
 
-If you have chosen to install GNU make and GNU awk, it is possible to conveniently build and serve the website locally by running the following command:
+If you have chosen to install GNU make and GNU awk, browse to the directory that contains your local copy of the repository and install the required dependencies:
 
 ```sh
 cd <path_to_your_repo>
+make module-init
+```
+
+It is now possible to conveniently build and serve the website locally by running the following command:
+
+```sh
 make serve
 ```
 
