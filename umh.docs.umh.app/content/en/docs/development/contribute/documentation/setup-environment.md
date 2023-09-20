@@ -1,8 +1,8 @@
 ---
 title: Setup Local Environment
 description: |
-    This document describes how to set up your local environment for contributing
-    to United Manufacturing Hub documentation website.
+  This document describes how to set up your local environment for contributing
+  to United Manufacturing Hub documentation website.
 weight: 5
 ---
 
@@ -25,6 +25,7 @@ your preferred package manager to install them (for Windows users, we recommend
 using [Chocolatey](https://chocolatey.org/)).
 
 - [Git](https://git-scm.com/)
+- [Git LFS](https://git-lfs.com/)
 - [Hugo (Extended version)](https://gohugo.io/)
 - [Node.js LTS](https://nodejs.org/en/)
 
@@ -57,30 +58,35 @@ If you are not a member of the United Manufacturing Hub organization, you will
 need to add the upstream repository as a remote:
 
 ```sh
-git remote add origin https://github.com/united-manufacturing-hub/umh.docs.umh.app.git
-# or: git remote add upstream git@github.com:united-manufacturing-hub/umh.docs.umh.app.git
+git remote add upstream https://github.com/united-manufacturing-hub/umh.docs.umh.app.git
 
 # Never push to upstream master
-git remote set-url --push origin no_push
-```
-
-## Install dependencies
-
-Install the required dependencies:
-
-```sh
-make module-init
+git remote set-url --push upstream no_push
 ```
 
 ## Run the development server
 
-To build and serve the website locally, run the following command:
+To preview changes in your local environment, start the Hugo server
+
+```sh
+cd <path_to_your_repo>/umh.docs.umh.app
+hugo server --buildFuture
+```
+
+If you have chosen to install GNU make and GNU awk, browse to the directory that contains your local copy of the repository and install the required dependencies:
+
+```sh
+cd <path_to_your_repo>
+make module-init
+```
+
+It is now possible to conveniently build and serve the website locally by running the following command:
 
 ```sh
 make serve
 ```
 
-This will start the local Hugo server on port 1313. Open up your browser to
+Either method will start the local Hugo server on port 1313. Open up your browser to
 `http://localhost:1313` to view the website. As you make changes to the source
 files, Hugo updates the website and forces a browser refresh.
 
