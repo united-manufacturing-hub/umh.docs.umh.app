@@ -5,6 +5,10 @@
 
 This repository contains the assets required to build the [United Manufacturing Hub documentation website](https://umh.docs.umh.app).
 
+## Quickstart
+
+If you're using Gitpod, your environment will be set up automatically. If not, you can open the project on Ubuntu and simply run make. If you encounter any issues, you can still edit the Markdown files directly and watch the resulting build on Cloudflare.
+
 ## Contributing
 
 The UMH is open source, and contributions from the UMH community are welcomed! An entire section of UMH's docs site contains information about [contributing](https://umh.docs.umh.app/docs/development/contribute/) to the project. Within this section, you can find information about [contributing to UMH docs](https://umh.docs.umh.app/docs/development/contribute/documentation/). Guidelines are provided for [adding documentation](https://umh.docs.umh.app/docs/development/contribute/new-content/add-documentation/), and it is possible to make small [changes using GitHub](https://umh.docs.umh.app/docs/development/contribute/new-content/add-documentation/#changes-using-github) without needing to understand git!
