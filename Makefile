@@ -2,6 +2,9 @@
 
 # make serve should be everything you need as a developer
 
+# Check if sudo is available
+HAS_SUDO := $(shell command -v sudo 2> /dev/null)
+
 # Default variables
 HUGO_ENV ?= production
 HUGO_VERSION ?= v0.111.3
@@ -21,7 +24,11 @@ check_versions:
 	else \
 		echo "Incorrect Hugo version, installing..."; \
 		wget https://github.com/gohugoio/hugo/releases/download/$(HUGO_VERSION)/hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb && \
-		sudo dpkg -i hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb && \
+		if [ -n "$(HAS_SUDO)" ]; then \
+			sudo dpkg -i hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb; \
+		else \
+			dpkg -i hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb; \
+		fi; \
 		rm hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb; \
 	fi
 	@if node -v | grep -q $(NODE_VERSION); then \
@@ -43,7 +50,11 @@ install_submodules:
 
 install_git_lfs:
 	# Installing dependencies for cloudflare
-	@sudo apt-get install -y git-lfs && git lfs install
+	if [ -n "$(HAS_SUDO)" ]; then \
+		sudo apt-get install -y git-lfs && sudo git lfs install; \
+	else \
+		apt-get install -y git-lfs && git lfs install; \
+	fi; \
 
 # Master install target
 install: check_versions install_submodules install_docsy install_postcss install_git_lfs
