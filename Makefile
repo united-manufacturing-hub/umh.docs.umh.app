@@ -1,56 +1,75 @@
-##@ Module management
+# Makefile for building and deploying Hugo website
 
-.PHONY: module-check
-## Check if all of the required submodules are correctly initialized.
-module-check: 
-	@git submodule status --recursive | awk '/^[+-]/ {err = 1; printf "\033[31mWARNING\033[0m Submodule not initialized: \033[34m%s\033[0m\n",$$2} END { if (err != 0) print "You need to run \033[32mmake module-init\033[0m to initialize missing modules first"; exit err }' 1>&2
+# make serve should be everything you need as a developer
 
-.PHONY: module-init
-## Initialize required submodules.
-module-init: 
-	@echo "Initializing submodules..." 1>&2
-	@git submodule update --init --recursive --depth 1
+# Default variables
+HUGO_ENV ?= production
+HUGO_VERSION ?= v0.111.3
+NODE_VERSION ?= v18.16.0
+SKIP_IMAGE_OPTIMIZATION ?= false
+
+# Ensure /bin/bash is used
+SHELL := /bin/bash
+
+install-and-serve: install serve
+
+# Check Hugo and Node.js versions
+check_versions:
+	@echo "Checking Hugo and Node.js versions..."
+	@if hugo version | grep -q $(HUGO_VERSION); then \
+    	echo "Correct Hugo version installed"; \
+	else \
+		echo "Incorrect Hugo version, installing..."; \
+		wget https://github.com/gohugoio/hugo/releases/download/$(HUGO_VERSION)/hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb; \
+		(sudo dpkg -i hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb) || (dpkg -i hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb); \
+		rm hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb; \
+	fi
+
+	@if node -v | grep -q $(NODE_VERSION); then \
+		echo "Correct Node version installed"; \
+	else \
+		echo "Incorrect Node version..."; \
+		. ~/.nvm/nvm.sh && \
+		(echo "Switching to the right version..." && nvm use $(NODE_VERSION) ) || (echo "Incorrect Node version, installing..." && nvm install $(NODE_VERSION) && nvm use $(NODE_VERSION)); \
+	fi
+
+install_docsy:
 	@cd umh.docs.umh.app/themes/docsy && npm install
 
-##@ Build
+install_postcss:
+	@cd umh.docs.umh.app && npm install postcss-cli autoprefixer
 
-.PHONY: all
-## Build site with production settings and put deliverables in ./public
-all: build
+install_submodules:
+	@git submodule update -f --init --recursive
 
-.PHONY: build
-## Build site with non-production settings and put deliverables in ./public
-build: module-check
-	cd umh.docs.umh.app && hugo --cleanDestinationDir --minify --environment development
+install_git_lfs:
+	# Installing dependencies for cloudflare
+	@(sudo apt-get install -y git-lfs && git lfs install) || (git lfs install);
+	
+# Master install target
+install: check_versions install_submodules install_docsy install_postcss install_git_lfs
+	@echo "All dependencies installed."
 
-.PHONY: build-preview
-## Build site with drafts and future posts enabled
-build-preview: module-check 
-	cd umh.docs.umh.app && hugo --cleanDestinationDir --buildDrafts --buildFuture --environment preview
+# Serve the Hugo site
+serve:
+	@echo "Serving site..."
+	@cd umh.docs.umh.app && hugo serve -D
 
-.PHONY: production-build
-## Build the production site and ensure that noindex headers aren't added
-production-build: module-check
-	cd umh.docs.umh.app && hugo --cleanDestinationDir --minify --environment production
+# Build the Hugo site
+build-cloudflare:
+	@echo "Building site..."
+	@cd umh.docs.umh.app && \
+		([[ "$(SKIP_IMAGE_OPTIMIZATION)" == "false" ]] && \
+		(cd ./static/images && npx --yes avif --overwrite --verbose --input="**/*.{jpg,png}" && cd ../..) || \
+		echo "Skipping image optimization") && \
+		hugo --gc --minify
 
-.PHONY: non-production-build
-## Build the non-production site, which adds noindex headers to prevent indexing
-non-production-build: module-check 
-	cd umh.docs.umh.app && hugo --cleanDestinationDir --enableGitInfo --environment nonprod
+# Production build
+build-production: 
+	@echo "Production build..."
+	$(MAKE) build-cloudflare HUGO_ENV=production SKIP_IMAGE_OPTIMIZATION=false
 
-.PHONY: serve
-## Boot the development server.
-serve: module-check
-	cd umh.docs.umh.app && hugo server --buildFuture --environment development
-
-##@ Utilities
-
-.PHONY: help
-## Display the help
-help:
-	@awk 'BEGIN { FS = "##"; printf "Usage|make [target] [VAR=VALUE]\n\n" } /^##[^@]/ { c=substr($$0,3); next }\
- 		  c && /^[[:upper:]_]+=/ { printf "  \033[36m%s|\033[0m %s. Default %s\n", substr($$1,1,index($$1,"=")-1), c, substr($$1,index($$1,"=")+1,length); c=0 }\
- 		  /^##[^@]/ { c=substr($$0,3); next }\
- 		  c && /^[[:alnum:]-]+:/ { printf "  \033[36m%s|\033[0m %s\n", substr($$1,1,index($$1,":")-1), c; c=0 }\
- 		  /^##@/ { printf "\n\033[32m%s|\033[0m \n", substr($$0, 5) } '\
- 		  $(MAKEFILE_LIST) | column -s '|' -t
+# Preview build
+build-preview: 
+	@echo "Preview build..."
+	$(MAKE) build-cloudflare HUGO_ENV=production SKIP_IMAGE_OPTIMIZATION=true
