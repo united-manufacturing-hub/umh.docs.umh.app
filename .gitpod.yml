@@ -5,9 +5,12 @@
 # Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
 
 tasks:
-  - init: >
-      git config lfs.storage .git/lfs && git config lfs.https://github.com/united-manufacturing-hub/umh.docs.umh.app.git/info/lfs.locksverify false &&
-      make
+  - before: |
+      git config lfs.storage .git/lfs && git config lfs.https://github.com/united-manufacturing-hub/umh.docs.umh.app.git/info/lfs.locksverify false
+  - init: | 
+      make install
+  - command: |
+      make install && make serve
 
 # Ports to expose on workspace startup
 ports:
