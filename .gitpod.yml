@@ -5,6 +5,15 @@
 # Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
 
 tasks:
-  - init: make
+  - init: >
+      git config lfs.storage .git/lfs &&
+      make
 
-
+# Ports to expose on workspace startup
+ports:
+    - port: 1313
+      onOpen: open-preview
+      name: Website
+      description: Website Preview
+      visibility: private
+      protocol: https

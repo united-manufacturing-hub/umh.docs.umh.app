@@ -2,9 +2,11 @@
 
 # Default variables
 HUGO_ENV ?= production
-HUGO_VERSION ?= v0.111.2
+HUGO_VERSION ?= v0.111.3
 NODE_VERSION ?= v18.16.0
 SKIP_IMAGE_OPTIMIZATION ?= false
+
+install-and-serve: install serve
 
 # Check Hugo and Node.js versions
 check_versions:
@@ -13,11 +15,11 @@ check_versions:
 		echo "Correct Hugo version installed"; \
 	else \
 		echo "Incorrect Hugo version, installing..."; \
-		wget https://github.com/gohugoio/hugo/releases/download/$(HUGO_VERSION)/hugo_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb && \
-		sudo dpkg -i hugo_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb && \
-		rm hugo_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb; \
+		wget https://github.com/gohugoio/hugo/releases/download/$(HUGO_VERSION)/hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb && \
+		sudo dpkg -i hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb && \
+		rm hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb; \
 	fi
-	if node -v | grep -q $(NODE_VERSION); then \
+	@if node -v | grep -q $(NODE_VERSION); then \
 		echo "Correct Node version installed"; \
 	else \
 		echo "Incorrect Node version..."; \
@@ -25,23 +27,32 @@ check_versions:
 		(echo "Switching to the right version..." && nvm use $(NODE_VERSION) ) || (echo "Incorrect Node version, installing..." && nvm install $(NODE_VERSION) && nvm use $(NODE_VERSION)); \
 	fi
 
-# Install dependencies and init submodules
-install: check_versions
-	@echo "Installing dependencies..."
-	sudo apt-get install -y git-lfs
-	git lfs install
-	git submodule update -f --init --recursive
-	cd umh.docs.umh.app/themes/docsy && npm install
-	cd ../.. && npm install postcss-cli autoprefixer
+install_docsy:
+	@cd umh.docs.umh.app/themes/docsy && npm install
+
+install_postcss:
+	@cd umh.docs.umh.app && npm install postcss-cli autoprefixer
+
+install_submodules:
+	@git submodule update -f --init --recursive
+
+install git_lfs:
+	# Installing dependencies for cloudflare
+	@sudo apt-get install -y git-lfs && git lfs install
+
+# Master install target
+install: check_versions install_submodules install_docsy install_postcss
+	@echo "All dependencies installed."
 
 # Serve the Hugo site
 serve:
 	@echo "Serving site..."
-	hugo serve -D
+	@cd umh.docs.umh.app && hugo serve -D
 
 # Build the Hugo site
 build-cloudflare:
 	@echo "Building site..."
+	cd umh.docs.umh.app
 	[[ $(SKIP_IMAGE_OPTIMIZATION) = false ]] && (cd ./static/images && npx --yes avif --overwrite --verbose --input="**/*.{jpg,png}" && cd ../..) || echo "Skipping image optimization"
 	hugo --gc --minify
 
