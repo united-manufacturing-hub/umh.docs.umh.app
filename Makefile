@@ -1,10 +1,15 @@
 # Makefile for building and deploying Hugo website
 
+# make serve should be everything you need as a developer
+
 # Default variables
 HUGO_ENV ?= production
 HUGO_VERSION ?= v0.111.3
 NODE_VERSION ?= v18.16.0
 SKIP_IMAGE_OPTIMIZATION ?= false
+
+# Ensure /bin/bash is used
+SHELL := /bin/bash
 
 install-and-serve: install serve
 
@@ -36,12 +41,12 @@ install_postcss:
 install_submodules:
 	@git submodule update -f --init --recursive
 
-install git_lfs:
+install_git_lfs:
 	# Installing dependencies for cloudflare
 	@sudo apt-get install -y git-lfs && git lfs install
 
 # Master install target
-install: check_versions install_submodules install_docsy install_postcss
+install: check_versions install_submodules install_docsy install_postcss install_git_lfs
 	@echo "All dependencies installed."
 
 # Serve the Hugo site
@@ -52,12 +57,14 @@ serve:
 # Build the Hugo site
 build-cloudflare:
 	@echo "Building site..."
-	cd umh.docs.umh.app
-	[[ $(SKIP_IMAGE_OPTIMIZATION) = false ]] && (cd ./static/images && npx --yes avif --overwrite --verbose --input="**/*.{jpg,png}" && cd ../..) || echo "Skipping image optimization"
-	hugo --gc --minify
+	@cd umh.docs.umh.app && \
+		([[ "$(SKIP_IMAGE_OPTIMIZATION)" == "false" ]] && \
+		(cd ./static/images && npx --yes avif --overwrite --verbose --input="**/*.{jpg,png}" && cd ../..) || \
+		echo "Skipping image optimization") && \
+		hugo --gc --minify
 
 # Production build
-build: 
+build-production: 
 	@echo "Production build..."
 	$(MAKE) build-cloudflare HUGO_ENV=production SKIP_IMAGE_OPTIMIZATION=false
 
