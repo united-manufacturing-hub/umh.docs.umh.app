@@ -67,7 +67,7 @@ h2 {text-align: center; margin-left: auto; margin-right: auto}
 
 
 ## How does it work?
-<p class="center">Only requirement: a Kubernetes cluster (and we'll even help you with that!). You only need to install the United Manufacturing Hub <a href="">Helm Chart</a> on that cluster and configure it.</p>
+<p class="center">Only requirement: a Kubernetes cluster (and we'll even help you with that!). You only need to install the United Manufacturing Hub <a href="/docs/architecture/helm-chart/">Helm Chart</a> on that cluster and configure it.</p>
 <p class="center">The United Manufacturing Hub will then generate all the required files for Kubernetes, including auto-generated secrets, various microservices like bridges between MQTT / Kafka, datamodels and configurations. From there on, Kubernetes will take care of all the container management.</p>
 <br>
 <br>
