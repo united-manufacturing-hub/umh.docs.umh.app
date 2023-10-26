@@ -37,6 +37,8 @@ It runs on both push and pull request events.
 
 ### Small deployment test
 
+(deactivated for now as they were flaky. will be replaced in the future with E2E tests)
+
 This pipeline group verifies that the current changes can be successfully
 installed and that data flows correctly. There are two pipelines: a "tiny"
 version with the minimum amount of services needed to run the stack, and a "full"
