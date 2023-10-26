@@ -84,17 +84,24 @@ github_subdir = "umh.docs.umh.app"
 github_branch = "main"
 
 [[params.versions]]
-fullversion  = "v0.9.14"
-version      = "0.9.14"
+fullversion  = "v0.9.15"
+version      = "0.9.15"
 githubbranch = "main"
 docsbranch   = "main"
 url          = "https://umh.docs.umh.app/"
 
 [[params.versions]]
+fullversion  = "v0.9.14"
+version      = "0.9.14"
+githubbranch = "0.9.14"
+docsbranch   = "0.9.14"
+url          = "https://0-9-14.umh-docs-umh-app.pages.dev/docs/"
+
+[[params.versions]]
 fullversion  = "v0.9.13"
 version      = "0.9.13"
-githubbranch = "main"
-docsbranch   = "main"
+githubbranch = "0.9.13"
+docsbranch   = "0.9.13"
 url          = "https://0-9-13.umh-docs-umh-app.pages.dev/docs/"
 
 [[params.versions]]
