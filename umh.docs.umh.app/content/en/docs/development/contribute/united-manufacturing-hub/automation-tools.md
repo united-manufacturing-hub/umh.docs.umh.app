@@ -27,29 +27,17 @@ branch to use for testing.
 It runs on push events only when relevant files have been changed, such as the
 Dockerfiles or the source code.
 
-## Codecov
-
-This pipeline executes `go test` and uploads the results to `codecov`, to make
-sure that unit tests are passing and they cover most of the code.
-
-It runs on both push and pull request events.
-
 ## GitGuardian Scan
 
 This pipeline scans the code for security vulnerabilities, such as exposed secrets.
 
 It runs on both push and pull request events.
 
-## Helm Checks
-
-This pipeline runs checks on Helm configuration. It executes `helm lint` for the
-default `values.yaml` and for any custom values used for testing. Additionally,
-runs `checkov` to prevent misconfigurations and vulnerabilities, along with best
-practices checks.
-
-It runs on push events only when Helm template files have been changed.
-
 ## Test Deployment
+
+### Small deployment test
+
+(deactivated for now as they were flaky. will be replaced in the future with E2E tests)
 
 This pipeline group verifies that the current changes can be successfully
 installed and that data flows correctly. There are two pipelines: a "tiny"
@@ -66,3 +54,7 @@ sensorconnect is run, using a mocked sensor to verify the data flow.
 
 It runs on pull request events when the Helm configuration or the source code
 changes.
+
+### Full E2E test
+
+On every push to `main` and `staging`, an E2E test is executed. More information about this can be found [on Github](https://github.com/united-manufacturing-hub/united-manufacturing-hub/blob/staging/.github/workflows/test-e2e.yaml)
