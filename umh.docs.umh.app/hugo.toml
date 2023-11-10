@@ -35,7 +35,7 @@ style = "autumn"
 min = "v0.95.0"
 
 [outputs]
-section = ["HTML", "print"]
+section = ["HTML"]
 
 # Configure how URLs look like per section.
 [permalinks]
