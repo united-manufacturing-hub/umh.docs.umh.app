@@ -33,6 +33,8 @@ custom microservices:
   a barcode reader and sends it to the MQTT broker for further processing.
 - customMicroservice: a
   template for deploying any number of custom microservices.
+- [data-bridge](/docs/architecture/microservices/core/data-bridge/): transfers data between two
+  Kafka or MQTT brokers, transforming the data following the UNS data model.
 - [factoryinput](/docs/architecture/microservices/community/factoryinput/): provides REST
   endpoints for MQTT messages.
 - [factoryinsight](/docs/architecture/microservices/core/factoryinsight/): provides REST
@@ -132,6 +134,7 @@ The following table lists the configuration options that can be set in the
 | Parameter            | Description                                                                     | Type   | Allowed values    | Default                            |
 | -------------------- | ------------------------------------------------------------------------------- | ------ | ----------------- | ---------------------------------- |
 | `datainput`          | The configuration of the microservices used to input data.                      | object | See below         | [See below](#data-input)           |
+| `datamodel_v2`       | The configuration related to the UNS data model.                                | object | See below         | [See below](#data-model-v2)        |
 | `dataprocessing`     | The configuration of the microservices used to process data.                    | object | See below         | [See below](#data-processing)      |
 | `datasources`        | The configuration of the microservices used to acquire data.                    | object | See below         | [See below](#data-sources)         |
 | `datastorage`        | The configuration of the microservices used to store data.                      | object | See below         | [See below](#data-storage)         |
@@ -143,6 +146,43 @@ The following table lists the configuration options that can be set in the
 | `mqttBridge`         | The configuration for the MQTT bridge.                                          | object | See below         | [See below](#mqtt-bridge)          |
 | `serialNumber`       | The hostname of the device. Used by some microservices to identify the device.  | string | Any               | default                            |
 | `tulipconnector`     | The configuration for the Tulip connector.                                      | object | See below         | [See below](#tulip-connector)      |
+{{< /table >}}
+
+#### Data model v2
+
+The `_000_commonConfig.datamodel_v2` section contains the configuration related
+to the UNS data model.
+
+The following table lists the configuration options that can be set in the
+`_000_commonConfig.datamodel_v2` section:
+
+{{< table caption="datamodel_v2 section parameters" >}}
+| Parameter | Description                                | Type | Allowed values  | Default               |
+| --------- | ------------------------------------------ | ---- | --------------- | --------------------- |
+| `enabled` | Whether the UNS data model should be used. | bool | `true`, `false` | `true`                |
+| `bridges` | List of data bridges to create.            | list | See below       | [See below](#bridges) |
+{{< /table >}}
+
+##### Bridges
+
+The `_000_commonConfig.datamodel_v2.bridges` section contains a list of configuration
+options for the [data bridge](/docs/architecture/microservices/core/data-bridge/).
+Each item in the list represents a data bridge instance, and the following table
+lists the configuration options that can be set in each item:
+
+{{< table caption="bridges section parameters" >}}
+| Parameter           | Description                                                                                                                                                                                        | Type   | Allowed values                     | Default                             |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ---------------------------------- | ----------------------------------- |
+| `mode`              | The mode of the data bridge.                                                                                                                                                                       | string | mqtt-kafka, kafka-kafka, mqtt-mqtt | mqtt-kafka                          |
+| `brokerA`           | The address of the source broker. Can be either MQTT or Kafka, and must include the port                                                                                                           | string | Valid address                      | united-manufacturing-hub-mqtt:1883  |
+| `brokerB`           | The address of the destination broker. Can be either MQTT or Kafka, and must include the port                                                                                                      | string | Valid address                      | united-manufacturing-hub-kafka:9092 |
+| `topic`             | The topic to subscribe to. Can be in either MQTT or Kafka form. Wildcards (`#` for MQTT, `.*` for Kafka) are allowed in order to subscribe to multiple topics                                      | string | Any                                | umh.v1..*                           |
+| `topicMergePoint`   | The nth part of the topic to use as the message key. If the topic is `umh/v1/acme/anytown/foo/bar/#`, and this value is 5, then all the messages wil end up in the topic `umh.v1.acme.anytown.foo` | int    | Greater than 3                     | 5                                   |
+| `partitions`        | The number of partitions to use for the destination topic. Only used if the destination broker is Kafka.                                                                                           | int    | Greater than 0                     | 6                                   |
+| `replicationFactor` | The replication factor to use for the destination topic. Only used if the destination broker is Kafka.                                                                                             | int    | Odd integer                        | 1                                   |
+| `mqttEnableTLS`     | Whether to enable TLS for the MQTT connection. Only used with MQTT brokers                                                                                                                         | bool   | `true`, `false`                    | `false`                             |
+| `mqttPassword`      | The password to use for the MQTT connection. Only used with MQTT brokers                                                                                                                           | string | Any                                | ""                                  |
+| `messageLRUSize`    | The size of the LRU cache used to avoid message looping. Only used with MQTT brokers                                                                                                               | int    | Any                                | 1000000                             |
 {{< /table >}}
 
 #### Data sources
@@ -579,6 +619,7 @@ Everything below this point  should not be changed, unless you know what you are
 | Section                                            | Description                                                     |
 | -------------------------------------------------- | --------------------------------------------------------------- |
 | [`barcodereader`](#dz-barcodereader)               | Configuration for barcodereader                                 |
+| [`databridge`](#dz-databridge)                     | Configuration for databridge                                    |
 | [`factoryinput`](#dz-factoryinput)                 | Configuration for factoryinput                                  |
 | [`factoryinsight`](#dz-factoryinsight)             | Configuration for factoryinsight                                |
 | [`grafana`](#dz-grafana)                           | Configuration for Grafana                                       |
@@ -623,6 +664,28 @@ microservice.
 | `resources.requests.cpu`    | The CPU request                                                                 | string | Any                         | 2m                                                       |
 | `resources.requests.memory` | The memory request                                                              | string | Any                         | 30Mi                                                     |
 | `scanOnly`                  | Whether to only scan without sending the data to the Kafka broker               | bool   | `true`, `false`             | `false`                                                  |
+{{< /table >}}
+
+#### databridge {#dz-databridge}
+
+The `databridge` section contains the advanced configuration of the
+[databridge](/docs/architecture/microservices/core/databridge/)
+microservice.
+
+{{< table caption="databridge advanced section parameters" >}}
+| Parameter                   | Description                                                                  | Type   | Allowed values              | Default                                               |
+| --------------------------- | ---------------------------------------------------------------------------- | ------ | --------------------------- | ----------------------------------------------------- |
+| `enabled`                   | Whether to enable the databridge microservice                                | bool   | `true`, `false`             | `false`                                               |
+| `image.pullPolicy`          | The image pull policy                                                        | string | Always, IfNotPresent, Never | IfNotPresent                                          |
+| `image.repository`          | The image of the databridge microservice                                     | string | Any                         | {{< resource type="docker" name="repo" >}}/databridge |
+| `image.tag`                 | The tag of the databridge microservice. Defaults to Chart version if not set | string | Any                         | {{< latest-semver >}}                                 |
+| `pdb.enabled`               | Whether to enable a PodDisruptionBudget                                      | bool   | `true`, `false`             | `true`                                                |
+| `pdb.minAvailable`          | The minimum number of available pods                                         | int    | Any                         | 1                                                     |
+| `replicas`                  | The number of Pod replicas                                                   | int    | Any                         | 1                                                     |
+| `resources.limits.cpu`      | The CPU limit                                                                | string | Any                         | 400m                                                  |
+| `resources.limits.memory`   | The memory limit                                                             | string | Any                         | 300Mi                                                 |
+| `resources.requests.cpu`    | The CPU request                                                              | string | Any                         | 500m                                                  |
+| `resources.requests.memory` | The memory request                                                           | string | Any                         | 450Mi                                                 |
 {{< /table >}}
 
 #### factoryinput {#dz-factoryinput}
