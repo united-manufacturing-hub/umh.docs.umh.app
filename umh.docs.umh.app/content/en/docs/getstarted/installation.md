@@ -48,19 +48,25 @@ weight = 1000
   United Manufacturing Hub does not mandate Windows; this requirement
   only pertains to the Management Console, not the UMH itself.**
   
-1. [Open the Management Console](https://management.umh.app/) on a browser.
+1. [Open the Management Console](https://management.umh.app/) in the browser.
 
 2. When you are finished with the creation of your account, enter your information and click on **SIGN IN**.
+![Untitled](/images/getstarted/installation/signin.png)
 
 3. If you are not a member, continue with sign up. Register your information and click on **SIGN UP**.
+![Untitled](/images/getstarted/installation/signup.png)
 
 4. Click on **+ADD INSTANCE** button.
+![Untitled](/images/getstarted/installation/dashboard.png)
 
 5. Select **Install UMH Only**.
+![Untitled](/images/getstarted/installation/addinstance.png)
 
 6. Enter your instace name and then click on **CREATE MY COMMAND**.
+![Untitled](/images/getstarted/installation/entername.png)
 
 7. You should be able to see a create command. Copy and paste the following command into your server's terminal (via ssh).
+![Untitled](/images/getstarted/installation/command.png)
 
 ## Do you need more technical background information?
 
