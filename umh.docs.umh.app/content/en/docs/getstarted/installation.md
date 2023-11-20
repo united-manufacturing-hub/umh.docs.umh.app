@@ -6,29 +6,22 @@ weight = 1000
 +++
 
 
-  The United Manufacturing Hub can be installed locally, on your current 
-  computer, or on an external device, for example an edge device or a VM.
-  For your first installation or simple tinkering and development, we recommend installing it locally using
-  our Management Console.
-  {{% notice note %}}
-  If you prefer an open-source approach, we also provide instructions for
-  using [k3d](/docs/production-guide/installation/local-k3d-installation/).
-  {{% /notice %}}
+  The United Manufacturing Hub will be installed, or you can linking your existing UMH instance with the Management Console.
 
+## Software Requirements
+  The UMH installation requires one of the following Operaing System on your server:
+  - Flatcar version current-2023 or higher
+  - RHEL 9.0 or higher
+
+  If you already have one of them runnning or if you don't have it yet running, but would like to install Flatcar on the server, you can follow this guide.
+
+  You can try other OS, but proceed on your own risk (but we would be glad if you could write us if it worked or not on a certain OS, just contact us in [Discord](https://discord.gg/F9mqkZnm9d))
 
 ## Hardware Requirements
 
-  If you want to install the United Manufacturing Hub locally, on your own 
-  device, you will need a device that fits the following requirements:
+  You will need a device that fits the following requirements:
   - CPU cores: 4
   - Memory size: 16 GB
-  - available disk space: 32 GB
-
-  If you only want to install the Management Console to manage external devices,
-  you will need a
-  device that fits the following requirements:
-  - CPU cores: 4
-  - Memory size: 8 GB
   - available disk space: 32 GB
 
   If you are at the limits of these requirements, the installation might take 
@@ -36,26 +29,38 @@ weight = 1000
   installation.
 
 
-## Local installation using the Management Console (recommended)
+## Flatcar Installation
+  If you would like to install Flatcar on your server, follow [this documentaion](https://umh.docs.umh.app/docs/production-guide/installation/flatcar-installation-bare-metal/). If you have the mentioned OS running, skip this step.
+
+  {{% notice note %}}
+  **The Management Console provides a demo mode for a quick overview without additional setups.**
+  If you would like to run the UMH on a VM, setup the environment and install a OS. We recommend you to install it with Flatcar or simmilar OS. [This guide](https://umh.docs.umh.app/docs/production-guide/installation/flatcar-installation-virtual-machine/) helps you for installing the UMH on Flatcar with VM.
+  You can also read a instruction for [UMH Deployment on Proxmox with Flatcar and k3s](https://learn.umh.app/course/flatcar-installation-on-proxmox/).
+  {{% /notice %}}
 
 
-  The Management Console is a client-side software, designed to assist you in 
+## Install UMH with the Management Console
+
+  The Management Console is a client-side web application, designed to assist you in 
   the installation, configuration, and maintenance of the United Manufacturing
-  Hub (UMH) locally, on edge devices, virtual machines, on-premises servers, or
-  in the cloud. Although the Management Console currently operates exclusively
-  on Windows, it can facilitate the installation of UMH instances on a wide
-  array of platforms, using Flatcar (a very basic and stable Linux version).
+  Hub (UMH).
   **To avoid any confusion, it's essential to understand that the 
   United Manufacturing Hub does not mandate Windows; this requirement
   only pertains to the Management Console, not the UMH itself.**
   
-1. Download the Management Console and follow the instructions in the 
-   documentation to install it.
+1. [Open the Management Console](https://management.umh.app/) on a browser.
 
-<a class="btn btn-primary" href="https://mgmt.docs.umh.app/docs/getstarted/download/" target="_blank" role="button" aria-label="Management Console">Management Console</a>
+2. When you are finished with the creation of your account, enter your information and click on **SIGN IN**.
 
-2. When you are finished with the creation of your account, continue with the
-   [next page](https://umh.docs.umh.app/docs/getstarted/managingthesystem/).
+3. If you are not a member, continue with sign up. Register your information and click on **SIGN UP**.
+
+4. Click on **+ADD INSTANCE** button.
+
+5. Select **Install UMH Only**.
+
+6. Enter your instace name and then click on **CREATE MY COMMAND**.
+
+7. You should be able to see a create command. Copy and paste the following command into your server's terminal (via ssh).
 
 ## Do you need more technical background information?
 
@@ -69,7 +74,5 @@ weight = 1000
 
 ## What's next?
 
-  Once you have downloaded the Management Console, you can continue with the
-  [next page](/docs/getstarted/managingthesystem) of this tutorial to install
-  the Management Console and a local United Manufacturing Hub instance, and
-  learn how to access the microservices.
+  Once you installed UMH, you can continue with the
+  [next page](/docs/getstarted/managingthesystem) to learn how to manage the system, for example, access to the microservices.
