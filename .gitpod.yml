@@ -6,12 +6,8 @@
 
 tasks:
   - name: Serve Website
-    before: |
-      make install
-      git config lfs.storage .git/lfs
-      git config lfs.https://github.com/united-manufacturing-hub/umh.docs.umh.app.git/info/lfs.locksverify false
     command: |
-      make serve
+      make install-and-serve
 
 # Ports to expose on workspace startup
 ports:
