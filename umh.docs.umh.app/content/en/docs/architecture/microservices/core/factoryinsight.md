@@ -20,7 +20,7 @@ the KPIs. By default, it's only accessible from the internal network of the
 cluster, but it can be configured to be
 [accessible from the external network](/docs/production-guide/administration/access-factoryinsight-outside-cluster/).
 
-The APIs require authentication, that can be ehither a Basic Auth or a Bearer
+The APIs require authentication, that can be either a Basic Auth or a Bearer
 token. Both of these can be found in the Secret `{{< resource type="secret" name="factoryinsight" >}}`.
 
 ### API documentation
@@ -52,11 +52,11 @@ chart values file.
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------ | ------ | ----------------------- | ---------------------------------------------------------- |
 | `CUSTOMER_NAME_{NUMBER}`     | Specifies a user for the REST API. Multiple users can be set                                                 | string | Any                     | ""                                                         |
 | `CUSTOMER_PASSWORD_{NUMBER}` | Specifies the password of the user for the REST API                                                          | string | Any                     | ""                                                         |
-| `DEBUG_ENABLE_FGTRACE`       | Enables the use of the [fgtrace](https://github.com/felixge/fgtrace) library. Not reccomended for production | string | `true`, `false`         | `false`                                                    |
+| `DEBUG_ENABLE_FGTRACE`       | Enables the use of the [fgtrace](https://github.com/felixge/fgtrace) library. Not recommended for production | string | `true`, `false`         | `false`                                                    |
 | `DRY_RUN`                    | If enabled, data wont be stored in database                                                                  | bool   | `true`, `false`         | `false`                                                    |
 | `FACTORYINSIGHT_PASSWORD`    | Specifies the password for the admin user for the REST API                                                   | string | Any                     | _Random UUID_                                              |
 | `FACTORYINSIGHT_USER`        | Specifies the admin user for the REST API                                                                    | string | Any                     | factoryinsight                                             |
-| `INSECURE_NO_AUTH`           | If enabled, no authentication is required for the REST API. Not reccomended for production                   | bool   | `true`, `false`         | `false`                                                    |
+| `INSECURE_NO_AUTH`           | If enabled, no authentication is required for the REST API. Not recommended for production                   | bool   | `true`, `false`         | `false`                                                    |
 | `LOGGING_LEVEL`              | Defines which logging level is used, mostly relevant for developers                                          | string | PRODUCTION, DEVELOPMENT | PRODUCTION                                                 |
 | `MICROSERVICE_NAME`          | Name of the microservice. Used for tracing                                                                   | string | Any                     | united-manufacturing-hub-factoryinsight                    |
 | `POSTGRES_DATABASE`          | Specifies the database name to use                                                                           | string | Any                     | factoryinsight                                             |
@@ -66,6 +66,6 @@ chart values file.
 | `POSTGRES_USER`              | Specifies the database user to use                                                                           | string | Any                     | factoryinsight                                             |
 | `REDIS_PASSWORD`             | Password to access the redis sentinel                                                                        | string | Any                     | _Random UUID_                                              |
 | `REDIS_URI`                  | The URI of the Redis instance                                                                                | string | Any                     | {{< resource type="service" name="cache-headless" >}}:6379 |
-| `SERIAL_NUMBER`              | Serial number of the cluster. Used for tracing                                                               | string | Any                     | defalut                                                    |
+| `SERIAL_NUMBER`              | Serial number of the cluster. Used for tracing                                                               | string | Any                     | default                                                    |
 | `VERSION`                    | The version of the API used. Each version also enables all the previous ones                                 | int    | Any                     | 2                                                          |
 {{< /table >}}
