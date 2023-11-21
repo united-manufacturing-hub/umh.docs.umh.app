@@ -10,10 +10,10 @@ The United Manufacturing Hub (UMH) can be deployed on various external devices, 
 
 ## Software Requirements
 The UMH installation requires one of the following Operaing System on your server:
-- Flatcar version current-2023 or higher (3510.3.1). Recommended where where you have full control over the operating system. To install Flatcar on your server, follow [this guide](https://umh.docs.umh.app/docs/production-guide/installation/flatcar-installation-bare-metal/). <!-- This article needs to be merged together https://umh.docs.umh.app/docs/production-guide/installation/flatcar-installation-virtual-machine/ https://learn.umh.app/course/flatcar-installation-on-proxmox/ -->
-- Red Hat Enterprise Linux (RHEL) 9.0 and higher. Recommended when you can choose only out of a small amount of potnetial Operating System in your large enterprise
+- Flatcar version current-2023 or higher (3510.3.1). It is recommended that you have full control over the operating system. To install Flatcar on your server, follow [this guide](https://umh.docs.umh.app/docs/production-guide/installation/flatcar-installation-bare-metal/). <!-- This article needs to be merged together https://umh.docs.umh.app/docs/production-guide/installation/flatcar-installation-virtual-machine/ https://learn.umh.app/course/flatcar-installation-on-proxmox/ -->
+- Red Hat Enterprise Linux (RHEL) 9.0 and higher. Recommended when you can choose only out of a small amount of potential Operating System in your large enterprise
 
-While UMH is optimized for RHEL and Flatcar, it can theoretically run on other Linux distributions. However, support is not guaranteed. For Windows, you could try running on of the above described Operating Systems in a VM (e.g., Hyper-V). If you experiment with other systems, we encourage sharing your experiences on our [Discord](https://discord.gg/F9mqkZnm9d) channel. 
+While UMH is optimized for RHEL and Flatcar, it can theoretically run on other Linux distributions. However, support is not guaranteed. For Windows, you could try running one of the above described Operating Systems in a VM (e.g., Hyper-V). If you experiment with other systems, we encourage sharing your experiences on our [Discord](https://discord.gg/F9mqkZnm9d) channel. 
 
 ## Hardware Requirements
 
@@ -45,16 +45,16 @@ Note: Systems at the edge of these requirements may experience longer installati
 7. You should be able to see a create command. Copy and paste the following command into your server's terminal (via ssh).
 ![Untitled](/images/getstarted/installation/command.png)
 
-8. The installation script runs a lot of checking and setup. For example, it checks your operating system, installation of requred tools, and internet connection. After the check phase, kubectl and Helm will be installed. The script shall show you what actions will be happen on your system in the next step. If you want to proceed, type **Y** and press **enter key** on with your keyboard
+8. The installation script runs a lot of checking and setup. For example, it checks your operating system, installation of required tools, and internet connection. After the check phase, kubectl and Helm will be installed. The script shall show you what actions will happen to your system in the next step. If you want to proceed, type **Y** and press **enter key**.
 ![Untitled](/images/getstarted/installation/checking.png)
 
-9. In this step, k3s will be installed. Then, it installs the UMH Helm Chart in Kubernetes. After that, the Management Companion will be installed into Kubernetes. Until everything is setup, it can take a while.
+9. In this step, k3s will be installed. Then, it installs the UMH Helm Chart in Kubernetes. After that, the Management Companion will be installed into Kubernetes. Until everything is set up, it can take a while.
 ![Untitled](/images/getstarted/installation/installphase.png)
 
-10. After successful installation, you should be able to see message like in the picture below.
+10. After successful installation, you should be able to see messages like in the picture below.
 ![Untitled](/images/getstarted/installation/successful.png)
 
-11. Go back to the Management Console and click on "LET'S GO!"
+11. Go back to the Management Console and click on **LET'S GO!**
 ![Untitled](/images/getstarted/installation/letsgo.png)
 
 12. Now, you should be able to see your instance on the dashboard.
