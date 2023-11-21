@@ -186,11 +186,58 @@ Connect MQTT Explorer to the MQTT broker using the instance's IP address and por
 
 ## Troubleshooting
 
-### cluster error for the kubeconfig
+### Error: `You must be logged in to the server` while using the `kubectl` Command
 
-### kubectl not found
+If you encounter the error below while using the `kubectl` command:
 
-### user permissions
+```text
+E1121 13:05:52.772843  218533 memcache.go:265] couldn't get current server API group list: the server has asked for the client to provide credentials
+error: You must be logged in to the server (the server has asked for the client to provide credentials)
+```
+
+This issue can be resolved by setting the `KUBECONFIG` environment variable. Run
+the following command:
+
+```bash
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+```
+
+Alternatively, use the `--kubeconfig` flag to specify the configuration file path:
+
+```bash
+kubectl --kubeconfig /etc/rancher/k3s/k3s.yaml get pods -n united-manufacturing-hub
+```
+
+### "Permission Denied" Error with `kubectl` Command
+
+Encountering the error below while using the `kubectl` command:
+
+```text
+error: error loading config file "/etc/rancher/k3s/k3s.yaml": open /etc/rancher/k3s/k3s.yaml: permission denied
+```
+
+Indicates the need for root access. Run the command with `sudo`, or log in as
+the root user.
+
+### `kubectl: command not found` error
+
+If you encounter the error below while using the `kubectl` command:
+
+```text
+kubectl: command not found
+```
+
+The solution is to use the full path to the `kubectl` binary. You can do this by
+prefixing the command with `/usr/local/bin/` or by adding it to your `PATH`
+environment variable:
+
+```bash
+/usr/local/bin/kubectl get pods -n united-manufacturing-hub
+
+# or
+
+export PATH=$PATH:/usr/local/bin
+```
 
 ## What's next?
 
