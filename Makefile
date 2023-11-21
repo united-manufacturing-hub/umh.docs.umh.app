@@ -45,9 +45,7 @@ install_submodules:
 
 install_git_lfs:
 	# Installing dependencies for cloudflare
-	@sudo apt-get install -y git-lfs
-	@git lfs install
-	@git lfs pull
+	@(sudo apt-get install -y git-lfs && sudo git lfs install && sudo git lfs pull) || (git lfs install);
 	
 # Master install target
 install: check_versions install_submodules install_docsy install_postcss install_git_lfs

@@ -5,12 +5,14 @@
 # Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
 
 tasks:
-  - name: Serve Website
-    command: |
-      git config lfs.storage .git/lfs
-      git config lfs.https://github.com/united-manufacturing-hub/umh.docs.umh.app.git/info/lfs.locksverify false
+  - before: |
+      git config lfs.storage .git/lfs && git config lfs.https://github.com/united-manufacturing-hub/umh.docs.umh.app.git/info/lfs.locksverify false
+  - init: | 
       make install
-      make serve
+      gp sync-done hugo-install
+  - command: |
+      gp sync-await hugo-install
+      make install && make serve
 
 # Ports to expose on workspace startup
 ports:
