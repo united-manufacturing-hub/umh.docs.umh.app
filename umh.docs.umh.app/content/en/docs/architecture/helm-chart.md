@@ -970,8 +970,8 @@ The `kafkastatedetector` section contains the configuration of the
 {{< table caption="kafkastatedetector section parameters" >}}
 | Parameter          | Description                                                                          | Type   | Allowed values              | Default                                                         |
 | ------------------ | ------------------------------------------------------------------------------------ | ------ | --------------------------- | --------------------------------------------------------------- |
-| `activityEnabled`  | Controls wheter to check the activity of the Kafka broker                            | bool   | `true`, `false`             | `true`                                                          |
-| `anomalyEnabled`   | Controls wheter to check for anomalies in the Kafka broker                           | bool   | `true`, `false`             | `true`                                                          |
+| `activityEnabled`  | Controls whether to check the activity of the Kafka broker                            | bool   | `true`, `false`             | `true`                                                          |
+| `anomalyEnabled`   | Controls whether to check for anomalies in the Kafka broker                           | bool   | `true`, `false`             | `true`                                                          |
 | `enabled`          | Whether to enable the Kafka state detector                                           | bool   | `true`, `false`             | `true`                                                          |
 | `image.pullPolicy` | The image pull policy                                                                | string | Always, IfNotPresent, Never | IfNotPresent                                                    |
 | `image.repository` | The image of the kafkastatedetector microservice                                     | string | Any                         | {{< resource type="docker" name="repo" >}}/kafka-state-detector |
