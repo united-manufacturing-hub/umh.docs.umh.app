@@ -45,7 +45,17 @@ Note: Systems at the edge of these requirements may experience longer installati
 7. You should be able to see a create command. Copy and paste the following command into your server's terminal (via ssh).
 ![Untitled](/images/getstarted/installation/command.png)
 
-<!-- Show how it does now look like. What does this command now do? When is it finished? How can I see if it is finished -->
+<!-- Show how it does now look like. What does this command now do? When is it finished? How can I see if it is finished 
+
+What happens in the install script:
+- a lot of checking
+- installes basic tools for manageing KUbernetes like Helm and kubectl
+- installs k3s (Kubernetes)
+- Installs the UMH Helm Chart into Kubernetes
+- Installs the Management Companion into Kubernetes
+- Waits until everything is setup 
+
+-->
 
 ## Do you need more technical background information?
 
