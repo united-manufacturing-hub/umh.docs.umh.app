@@ -12,6 +12,21 @@ At this stage, you should have already installed the UMH on your device. If you
 have not done so, please follow the steps in the [Installation](/docs/getstarted/installation)
 chapter first.
 
+## A Few Words About the Communication
+
+Now that you have connected a UMH instance to the Management Console, you might
+be curious about how the Management Console communicates with the instance.
+
+The Management Companion is a microservice that runs in conjunction with the UMH.
+It plays a crucial role in linking the instance to the Management Console. This
+includes gathering the status of the device and the various components within
+the system.
+
+The diagram below illustrates the communication flow between the Management
+Console and the instance:
+
+![Communication between the Management Console and the instance](/images/getstarted/managingTheSystem/simpleInfrastructureDiagram.png)
+
 ## Overview of Your Instances
 
 On the left side of the Management Console, you can view the list of your
@@ -23,7 +38,7 @@ working properly, while yellow indicates that there may be an issue.
 
 The **Messages Received** statistic shows the number of messages received by you
 from the instance since you opened the Management Console. It is usually a good
-indicator of the health of your device and the latency of the connection between
+indicator of the health of the Companion and the latency of the connection between
 you and the instance.
 
 ## Monitoring the Instance's Status
