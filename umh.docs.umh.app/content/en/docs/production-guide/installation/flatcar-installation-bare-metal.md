@@ -120,18 +120,35 @@ You can leave the VM ID unchanged, but if you do make sure it is unique.
 
 1. If necessary, boot the downloaded ISO image. For bare metal, connect the USB stick to the device and boot it. Each device has a different way of booting from USB, so you need to consult your device's documentation.  
 2. Accept the License.
+![Untitled](/images/production-guide/flatcar-installation/flatcar1.png)
+
 3. Select the correct network settings. If you are unsure, select DHCP, but
    keep in mind that a static IP address is strongly recommended.
+   ![Untitled](/images/production-guide/flatcar-installation/flatcar2.png)
+   ![Untitled](/images/production-guide/flatcar-installation/flatcar3.png)
+   ![Untitled](/images/production-guide/flatcar-installation/flatcar4.png)
+
 4. Select the correct drive to install Flatcar Linux on. If you are unsure, check
    the [troubleshooting section](#drive).
+  ![Untitled](/images/production-guide/flatcar-installation/flatcar5.png)
+
 5. Check that the installation settings are correct, and press **Confirm** to start
    the installation.
+  ![Untitled](/images/production-guide/flatcar-installation/flatcar6.png)
+  
 
-Now, the installation will start. Shortly after, you should observe a green command line `core@flatcar-0-install ~$~`. Then, remove the USB stick from the
+6. Now, the installation will start. 
+  ![Untitled](/images/production-guide/flatcar-installation/flatcar7.png)
+
+7. Shortly after, you should be able to see a green command line `core@flatcar-0-install ~$~`. Then, remove the USB stick from the
 device. At this point, the system is still processing the installation. After a few minutes,
 depending on the speed of your network, the installation will finish, and the
-system will reboot. Now you should see a grey login prompt that says
+system will reboot.
+  ![Untitled](/images/production-guide/flatcar-installation/flatcar8.png)
+
+8. Now you should see a grey login prompt that says
 `flatcar-1-umh login:`, as well as the IP address of the device.
+  ![Untitled](/images/production-guide/flatcar-installation/flatcar9.png)
 
 
 {{% notice note %}}
