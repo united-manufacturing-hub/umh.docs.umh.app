@@ -74,7 +74,7 @@ chart values file.
 {{< table caption="Environment variables" >}}
 | Variable name            | Description                                                                                                  | Type   | Allowed values          | Default                                                 |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------ | ------ | ----------------------- | ------------------------------------------------------- |
-| `DEBUG_ENABLE_FGTRACE`   | Enables the use of the [fgtrace](https://github.com/felixge/fgtrace) library. Not reccomended for production | string | `true`, `false`         | `false`                                                 |
+| `DEBUG_ENABLE_FGTRACE`   | Enables the use of the [fgtrace](https://github.com/felixge/fgtrace) library. Not recommended for production | string | `true`, `false`         | `false`                                                 |
 | `DRY_RUN`                | If set to true, the microservice will not write to the database                                              | `bool` | `true`, `false`         | `false`                                                 |
 | `KAFKA_BOOTSTRAP_SERVER` | URL of the Kafka broker used, port is required                                                               | string | Any                     | {{< resource type="service" name="kafkabroker" >}}:9092 |
 | `KAFKA_SSL_KEY_PASSWORD` | Key password to decode the SSL private key                                                                   | string | Any                     | ""                                                      |

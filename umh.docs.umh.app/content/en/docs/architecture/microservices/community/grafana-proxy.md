@@ -38,7 +38,7 @@ the proxied request.
 {{< table caption="Environment variables" >}}
 | Variable name             | Description                                                                                                  | Type   | Allowed values          | Default                                                      |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------ | ------ | ----------------------- | ------------------------------------------------------------ |
-| `DEBUG_ENABLE_FGTRACE`    | Enables the use of the [fgtrace](https://github.com/felixge/fgtrace) library. Not reccomended for production | string | `true`, `false`         | `false`                                                      |
+| `DEBUG_ENABLE_FGTRACE`    | Enables the use of the [fgtrace](https://github.com/felixge/fgtrace) library. Not recommended for production | string | `true`, `false`         | `false`                                                      |
 | `FACTORYINPUT_BASE_URL`   | URL of factoryinput                                                                                          | string | Any                     | http://{{< resource type="service" name="factoryinput" >}}   |
 | `FACTORYINPUT_KEY`        | Specifies the password for the admin user for factoryinput                                                   | string | Any                     | _Random UUID_                                                |
 | `FACTORYINPUT_USER`       | Specifies the admin user for factoryinput                                                                    | string | Any                     | factoryinput                                                 |
