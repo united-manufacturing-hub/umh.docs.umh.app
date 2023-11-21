@@ -45,6 +45,21 @@ Note: Systems at the edge of these requirements may experience longer installati
 7. You should be able to see a create command. Copy and paste the following command into your server's terminal (via ssh).
 ![Untitled](/images/getstarted/installation/command.png)
 
+8. The installation script runs a lot of checking and setup. For example, it checks your operating system, installation of requred tools, and internet connection. After the check phase, kubectl and Helm will be installed. The script shall show you what actions will be happen on your system in the next step. If you want to proceed, type **Y** and press **enter key** on with your keyboard
+![Untitled](/images/getstarted/installation/checking.png)
+
+9. In this step, k3s will be installed. Then, it installs the UMH Helm Chart in Kubernetes. After that, the Management Companion will be installed into Kubernetes. Until everything is setup, it can take a while.
+![Untitled](/images/getstarted/installation/installphase.png)
+
+10. After successful installation, you should be able to see message like in the picture below.
+![Untitled](/images/getstarted/installation/successful.png)
+
+11. Go back to the Management Console and click on "LET'S GO!"
+![Untitled](/images/getstarted/installation/letsgo.png)
+
+12. Now, you should be able to see your instance on the dashboard.
+![Untitled](/images/getstarted/installation/newinstance.png)
+
 <!-- Show how it does now look like. What does this command now do? When is it finished? How can I see if it is finished 
 
 What happens in the install script:
