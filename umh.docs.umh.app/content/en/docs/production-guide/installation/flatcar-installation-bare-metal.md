@@ -13,55 +13,42 @@ aliases:
 
 Here is a step-by-step guide on how to deploy the UMH stack on
 [Flatcar Linux](https://www.flatcar.org/), a Linux distribution designed for
-container workloads with high security and low maintenance.
+container workloads with high security and low maintenance. This will leverage the UMH Device and Container Infrastructure, which is used in this example as the community edition. During the installation, we will download and boot on your device / on our VM from the bootloader iPXE. iPXE, if downloaded further below, is pre-configured and tailored to the UMH. First, it will guide you through an installation assistant. Then, it will load flatcar from the latest LTS version (current-2023) and boot into it. This system is called flatcar-0. Then it will install flatcar to disk. Upon automatic rebooting, it will boot into the installed flatcar instance called flatcar-1, which will automatically install the UMH.
 
-## {{% heading "prerequisites" %}}
+## Prerequisites
 
-{{< include "task-befinst-prereqs.md" >}}
+Before initiating the deployment process, ensure your system aligns with the following prerequisites:
 
-You need the latest version of our iPXE boot image:
+CPU Cores: Minimum of 4
+Memory: At least 8 GB
+Storage: Minimum 32 GB disk space
+iPXE Boot Image: Obtain the latest version appropriate for your system architecture:
 
 - [ipxe-x86_64-efi](https://github.com/united-manufacturing-hub/ipxe/releases/latest/download/ipxe-x86_64-efi.usb):
-  for reasonably modern systems. **If you would like to use Proxmox, download this image.**
-
+  Suitable for modern systems, recommended for Proxmox.
 - [ipxe-x86_64-bios](https://github.com/united-manufacturing-hub/ipxe/releases/latest/download/ipxe-x86_64-bios.usb):
-  for older systems.
+   For legacy systems.
 - [ipxe-arm64-efi](https://github.com/united-manufacturing-hub/ipxe/releases/latest/download/ipxe-arm64-efi.usb):
-  for ARM systems. Currently, Raspberry Pi 4 is **not** supported.
+  For ARM architectures (**Note**: Raspberry Pi 4 is currently unsupported).
 
+
+### Deployment Overview
 ## Booting from the iPXE image
 
-### Bare Metal
-The image needs to be written to a USB stick for installation on bare metal. If you want to know how to do this,
-follow our
-[guide on how to flash an operating system onto a USB-stick](https://learn.umh.app/course/flashing-an-operating-system-onto-a-usb-stick/).
+### Bare Metal Installation
+1. **USB Preparation**: Write the iPXE image to a USB stick. Refer to our guide on [Flashing Operating Systems to USB]((https://learn.umh.app/course/flashing-an-operating-system-onto-a-usb-stick/)) for detailed instructions.
 
-You also need a computer with an SSH client (most modern operating systems
-already have it).
+2. **SSH Client Requirement**: Ensure your computer has an SSH client installed.
+3. Network Configuration: Setup should include:
+- Internal Network
+- WAN and LAN connections
+- Edge Device
+- Router Setup
 
-Additionally, this guide assumes a configuration similar to the following:
+4. IP Addressing: Assign a static IP address to your edge device for consistent network performance. Configure this either via a static lease in your DHCP server or during the installation process. Avoid changing the IP post-installation to prevent certificate issues.
 
-{{< mermaid theme="neutral" >}}
-%%{ init: { 'flowchart': { 'curve': 'bumpY' } } }%%
-flowchart LR
-    A(Internet) -. WAN .- B[Router]
-    subgraph Internal network
-        B -- LAN --- C[Edge device]
-        B -- LAN --- D[Your computer]
-    end
-{{< /mermaid >}}
-
-{{< notice info >}}
-For optimal functionality, we recommend assigning a static IP address to your
-edge device. This can be accomplished through a static lease in the DHCP server
-or by setting the IP address during installation. Changing the IP address of the
-edge device after installation may result in certificate issues, so we strongly
-advise against doing so. By assigning a static IP address, you can ensure a more
-stable and reliable connection for your edge device.
-{{< /notice >}}
-
-### Virtual Machine
-Create a new virtual machine in your virtual machine software. Make sure to use the following settings:
+### Virtual Machine Setup
+1. **VM Creation**: In your virtualization software, create a new VM with these specifications:
 
 - Operating System: Linux
 - Version: Other Linux (64-bit)
@@ -69,8 +56,9 @@ Create a new virtual machine in your virtual machine software. Make sure to use 
 - Memory size: 8 GB
 - Hard disk size: 32 GB
 
-Load the ISO image into the virtual machine and proceed to initiate the boot process. For proxmox, here is a detailed guide:
+2. **ISO Loading**: Insert the ISO image into the VM and initiate the boot sequence.
 
+#### Proxmox Specific Steps
 1. Open your proxmox and click on the left side on **local(proxmox)** &rArr; **ISO images** &rArr; **upload** and upload the iso image to your proxmox storage.
 
 ![Untitled](/images/production-guide/flatcar-installation/proxmox1.png)
