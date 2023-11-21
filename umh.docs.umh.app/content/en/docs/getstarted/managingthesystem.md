@@ -241,4 +241,7 @@ export PATH=$PATH:/usr/local/bin
 
 ## What's next?
 
-TODO
+Now that you have learned how to monitor, manage and configure your UMH instance
+with the Management Console, you can start creating your first data flow. To
+learn how to do this, proceed to the [Data Acquisition and Manipulation](/docs/getstarted/dataacquisitionmanipulation)
+chapter.
