@@ -1,53 +1,30 @@
 +++
 title = "1. Installation"
 menuTitle = "1. Installation"
-description = "Install the United Manufacturing Hub using the Management Console."
+description = "Install the United Manufacturing Hub together with all required tools on a Linux Operating System."
 weight = 1000
 +++
 
 
-  The United Manufacturing Hub will be installed, or you can linking your existing UMH instance with the Management Console.
+The United Manufacturing Hub (UMH) can be deployed on various external devices, including edge devices and virtual machines (VMs). For initial installations or for development purposes, it is recommended to use a VM.
 
 ## Software Requirements
-  The UMH installation requires one of the following Operaing System on your server:
-  - Flatcar version current-2023 or higher
-  - RHEL 9.0 or higher
+The UMH installation requires one of the following Operaing System on your server:
+- Flatcar version current-2023 or higher (3510.3.1). Recommended where where you have full control over the operating system. To install Flatcar on your server, follow [this guide](https://umh.docs.umh.app/docs/production-guide/installation/flatcar-installation-bare-metal/). <!-- This article needs to be merged together https://umh.docs.umh.app/docs/production-guide/installation/flatcar-installation-virtual-machine/ https://learn.umh.app/course/flatcar-installation-on-proxmox/ -->
+- Red Hat Enterprise Linux (RHEL) 9.0 and higher. Recommended when you can choose only out of a small amount of potnetial Operating System in your large enterprise
 
-  If you already have one of them runnning or if you don't have it yet running, but would like to install Flatcar on the server, you can follow this guide.
-
-  You can try other OS, but proceed on your own risk (but we would be glad if you could write us if it worked or not on a certain OS, just contact us in [Discord](https://discord.gg/F9mqkZnm9d))
+While UMH is optimized for RHEL and Flatcar, it can theoretically run on other Linux distributions. However, support is not guaranteed. For Windows, you could try running on of the above described Operating Systems in a VM (e.g., Hyper-V). If you experiment with other systems, we encourage sharing your experiences on our [Discord](https://discord.gg/F9mqkZnm9d) channel. 
 
 ## Hardware Requirements
 
-  You will need a device that fits the following requirements:
-  - CPU cores: 4
-  - Memory size: 16 GB
-  - available disk space: 32 GB
+- CPU: Minimum 4 cores
+- Memory: 16 GB RAM
+- Disk Space: 32 GB available
 
-  If you are at the limits of these requirements, the installation might take 
-  longer. It is also advised, to close other unused programs during the
-  installation.
+Note: Systems at the edge of these requirements may experience longer installation times. Close other programs during installation for optimal performance.
 
+## Installation Steps
 
-## Flatcar Installation
-  If you would like to install Flatcar on your server, follow [this documentaion](https://umh.docs.umh.app/docs/production-guide/installation/flatcar-installation-bare-metal/). If you have the mentioned OS running, skip this step.
-
-  {{% notice note %}}
-  **The Management Console provides a demo mode for a quick overview without additional setups.**
-  If you would like to run the UMH on a VM, setup the environment and install a OS. We recommend you to install it with Flatcar or simmilar OS. [This guide](https://umh.docs.umh.app/docs/production-guide/installation/flatcar-installation-virtual-machine/) helps you for installing the UMH on Flatcar with VM.
-  You can also read a instruction for [UMH Deployment on Proxmox with Flatcar and k3s](https://learn.umh.app/course/flatcar-installation-on-proxmox/).
-  {{% /notice %}}
-
-
-## Install UMH with the Management Console
-
-  The Management Console is a client-side web application, designed to assist you in 
-  the installation, configuration, and maintenance of the United Manufacturing
-  Hub (UMH).
-  **To avoid any confusion, it's essential to understand that the 
-  United Manufacturing Hub does not mandate Windows; this requirement
-  only pertains to the Management Console, not the UMH itself.**
-  
 1. [Open the Management Console](https://management.umh.app/) in the browser.
 
 2. When you are finished with the creation of your account, enter your information and click on **SIGN IN**.
@@ -68,10 +45,11 @@ weight = 1000
 7. You should be able to see a create command. Copy and paste the following command into your server's terminal (via ssh).
 ![Untitled](/images/getstarted/installation/command.png)
 
+<!-- Show how it does now look like. What does this command now do? When is it finished? How can I see if it is finished -->
+
 ## Do you need more technical background information?
 
   Here are some links to get you started:
- 
 
   - [Introduction IT](https://learn.umh.app/course/introduction-into-it-ot-information-technology/)
   - [Introduction OT](https://learn.umh.app/course/introduction-into-it-ot-operational-technology-ot/)
