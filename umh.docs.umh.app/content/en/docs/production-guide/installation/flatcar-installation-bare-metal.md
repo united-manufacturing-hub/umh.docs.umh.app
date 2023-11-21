@@ -3,7 +3,7 @@ title: "Flatcar Installation"
 content_type: task
 description: |
     This page describes how to deploy the United Manufacturing Hub on Flatcar
-    Linux on bare metal and VMs (Proxmox or other VMs).
+    Linux on bare metal and virtual machines (Proxmox or other VMs).
 weight: 50
 aliases:
    - /docs/production-guide/installation/installation-guide-flatcar/
@@ -13,7 +13,7 @@ aliases:
 
 Here is a step-by-step guide on how to deploy the UMH stack on
 [Flatcar Linux](https://www.flatcar.org/), a Linux distribution designed for
-container workloads, with high security and low maintenance.
+container workloads with high security and low maintenance.
 
 ## {{% heading "prerequisites" %}}
 
@@ -32,7 +32,7 @@ You need the latest version of our iPXE boot image:
 ## Booting from the iPXE image
 
 ### Bare Metal
-The image needs to be written to a USB stick for installing on bare metal. If you want to know how to do this,
+The image needs to be written to a USB stick for installation on bare metal. If you want to know how to do this,
 follow our
 [guide on how to flash an operating system onto a USB-stick](https://learn.umh.app/course/flashing-an-operating-system-onto-a-usb-stick/).
 
@@ -63,43 +63,47 @@ stable and reliable connection for your edge device.
 ### Virtual Machine
 Create a new virtual machine in your virtual machine software. Make sure to use the following settings:
 
-Operating System: Linux
-Version: Other Linux (64-bit)
-CPU cores: 4
-Memory size: 8 GB
-Hard disk size: 32 GB
+- Operating System: Linux
+- Version: Other Linux (64-bit)
+- CPU cores: 4
+- Memory size: 8 GB
+- Hard disk size: 32 GB
 
-The ISO image needs to be loaded in the VM, and then boot it. For proxmox, here is a detailed guide:
+Load the ISO image into the virtual machine and proceed to initiate the boot process. For proxmox, here is a detailed guide:
 
 1. Open your proxmox and click on the left side on **local(proxmox)** &rArr; **ISO images** &rArr; **upload** and upload the iso image to your proxmox storage.
 
 ![Untitled](/images/production-guide/flatcar-installation/proxmox1.png)
 
 2. Click **Create VM**.
-![Untitled](/images/production-guide/flatcar-installation/proxmox2.png)
 
 3. Ensure **Start at boot** and **Advanced** are selected.
-![Untitled](/images/production-guide/flatcar-installation/proxmox3.png)
+![Untitled](/images/production-guide/flatcar-installation/proxmox2.png)
 
 4. Select **ipxe-x86_64-efi.iso** image.
+![Untitled](/images/production-guide/flatcar-installation/proxmox3.png)
+
+{{< notice info >}}
+You can leave the VM ID unchanged, but if you do make sure it is unique.
+{{< /notice >}}
+
+5. Change the Machine to **q35**, BIOS to **OVMF (UEFI)** and select your **local-lvm** for EFI Storage.
 ![Untitled](/images/production-guide/flatcar-installation/proxmox4.png)
 
-5. Change the Machine to **q35**, BIOS to **OVMF (UEFI)** and select your **local-lvm** for EFI Storage
+6. Change the Bus/Device to **SATA** and enable **SSD emulation**, if you are using an SSD/NVME disk.
 ![Untitled](/images/production-guide/flatcar-installation/proxmox5.png)
 
-6. Change the Bus/Device to **SATA** and enable **SSD emulation**, if you are using an SSD/NVME disk.
+7. Change the Type to **host** and give it at least 4 Cores.
 ![Untitled](/images/production-guide/flatcar-installation/proxmox6.png)
 
-7. Change the Type to **host** and give it at least 4 Cores.
+8. Increase the Memory to at least 8096 MiB.
 ![Untitled](/images/production-guide/flatcar-installation/proxmox7.png)
 
-8. Increase the Memory to atleast 8096 mb.
+9. Select the correct network bridge.
 ![Untitled](/images/production-guide/flatcar-installation/proxmox8.png)
 
-9. Select the correct network bridge.
+10. Untick **Start** after creating and press **Finish**. 
 ![Untitled](/images/production-guide/flatcar-installation/proxmox9.png)
-
-10. Untick **Start** after created and press **Finish**. 
 
 11. Also, UEFI configuration is necessary. On your first start, press ESC to enter the UEFI configuration.
 ![Untitled](/images/production-guide/flatcar-installation/proxmox10.png)
@@ -107,26 +111,25 @@ The ISO image needs to be loaded in the VM, and then boot it. For proxmox, here 
 12. Select **Device Manager** &rArr; **Secure Boot Configuration**.
 13. Disable **Attempt Secure Boot**.
 14. Press **F10** to save and confirm with **Y**.
-15. Press **ESC** until back to main menu and select **Reset**. The VM will now restart  and begin to install Flatcar.
+15. Press **ESC** until back to the main menu and select **Reset**. The VM will now restart  and begin to install Flatcar.
 
 
 
 <!-- steps -->
 ## Installation Steps
 
-1. Boot the downloaded ISO image if you have not done in previous steps yet. For bare metal, connect the USB stick to the device and boot it. Each device has a different way of booting from USB, so you need to consult the documentation of your device.  
+1. If necessary, boot the downloaded ISO image. For bare metal, connect the USB stick to the device and boot it. Each device has a different way of booting from USB, so you need to consult your device's documentation.  
 2. Accept the License.
 3. Select the correct network settings. If you are unsure, select DHCP, but
    keep in mind that a static IP address is strongly recommended.
 4. Select the correct drive to install Flatcar Linux on. If you are unsure, check
    the [troubleshooting section](#drive).
-5. Check that the installation settings are correct and press `Confirm` to start
+5. Check that the installation settings are correct, and press **Confirm** to start
    the installation.
 
-Now the installation will start. You should see a green command line soon after,
-that says `core@flatcar-0-install ~$~`. Now remove the USB stick from the
-device. At this point the system is still installing. After a few minutes,
-depending on the speed of your network, the installation will finish and the
+Now, the installation will start. Shortly after, you should observe a green command line `core@flatcar-0-install ~$~`. Then, remove the USB stick from the
+device. At this point, the system is still processing the installation. After a few minutes,
+depending on the speed of your network, the installation will finish, and the
 system will reboot. Now you should see a grey login prompt that says
 `flatcar-1-umh login:`, as well as the IP address of the device.
 
@@ -138,16 +141,16 @@ including network speed and system performance.
 
 ### After iPXE (**Proxmox**)
 1. After the first start of the VM, remove the auto boot option in Proxmox. Go to **Hardware**, double click on **CD/DVD DRIVE** and select **Do not use any media**.
-2. When the VM has restarted, the command line reads flatcar-1-umh login: in grey, it is now ready for use. Now you can find the correct IP address in the last line of the first text block.
+2. When the VM has restarted, the command line reads flatcar-1-umh login: in grey, it is now ready for use. Now, you can find the correct IP address in the last line of the first text block.
 
 
 ## Connect to the edge device or the VM
 
-Now you can leave the edge device or VM and connect to it from your computer via SSH.
+Now, you can leave the edge device or VM and connect to it from your computer via SSH.
 
 If you are on Windows 11, we recommend using the default [Windows terminal](https://learn.microsoft.com/en-us/windows/terminal/install),
-that you can find by typing terminal in the Windows search bar or Start menu. Next,
-connect to the edge device via SSH, using the IP address you saw on the login prompt:
+which you can find by typing terminal in the Windows search bar or Start menu. Next,
+connect to the edge device via SSH using the IP address you saw on the login prompt:
 
 ```bash
 ssh core@<ip-address>
@@ -212,9 +215,9 @@ In this case, the drive type is `SDA`. Generally, the drive type is the name of
 the first drive in the list, or at least the drive that doesn't match the
 size of the USB stick.
 
-### I can access the cluster but there are no resources
+### I can access the cluster, but there are no resources
 
-First completely shut down {{< resource type="lens" name="name" >}} (from the
+First, completely shut down {{< resource type="lens" name="name" >}} (from the
 system tray). Then start it again and try to access the cluster.
 
 If that doesn't work, access the edge device via SSH and run the following
@@ -233,8 +236,7 @@ systemctl status umh-install
 systemctl status helm-install
 ```
 
-If any of the commands returns some errors, is probably easier to reinstall the
-system.
+If any of the commands return some errors, it is probably easier to reinstall the system.
 
 ### I can't SSH into the virtual machine
 

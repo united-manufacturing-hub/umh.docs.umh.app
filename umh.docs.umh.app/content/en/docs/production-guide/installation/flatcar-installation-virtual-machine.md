@@ -7,6 +7,7 @@ description: |
 weight: 50
 aliases:
    - /docs/production-guide/installation/installation-guide-flatcar/
+draft: true
 ---
 
 <!-- overview -->
