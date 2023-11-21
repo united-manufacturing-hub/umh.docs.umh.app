@@ -150,16 +150,16 @@ Now, you can leave the edge device or VM and connect to it from your computer vi
 
 If you are on Windows 11, we recommend using the default [Windows terminal](https://learn.microsoft.com/en-us/windows/terminal/install),
 which you can find by typing terminal in the Windows search bar or Start menu. Next,
-connect to the edge device via SSH using the IP address you saw on the login prompt:
+connect to the edge device or the VM via SSH using the IP address you saw on the login prompt:
 
 ```bash
 ssh core@<ip-address>
 ```
 
 If you are not on Windows 11, you can use [MobaXTerm](https://mobaxterm.mobatek.net/)
-to connect to the edge device via SSH. Open MobaXTerm and click on **Session**
+to connect via SSH. Open MobaXTerm and click on **Session**
 in the top left corner. Then click on **SSH** and enter the IP address of the
-edge device in the **Remote host** field. Click on **Advanced SSH settings** and
+edge device or the VM in the **Remote host** field. Click on **Advanced SSH settings** and
 enter `core` in the Username field. Click on **Save** and then on **Open**.
 
 The default password for the `core` user is `umh`.
