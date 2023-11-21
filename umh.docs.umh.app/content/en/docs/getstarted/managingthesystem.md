@@ -25,7 +25,7 @@ the system.
 The diagram below illustrates the communication flow between the Management
 Console and the instance:
 
-![Communication between the Management Console and the instance](/images/getstarted/managingTheSystem/simpleInfrastructureDiagram.png)
+![Communication between the Management Console and the instance](/images/getstarted/managingTheSystem/simpleInfrastructureDiagram.png?width=80%)
 
 ## Overview of Your Instances
 
