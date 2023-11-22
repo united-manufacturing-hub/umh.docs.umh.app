@@ -18,7 +18,7 @@ the UMH Device and Container Infrastructure.
 
 The system can be installed either bare metal or in a virtual machine.
 
-## Prerequisites
+## {{% heading "prerequisites" %}}
 
 Ensure your system meets these minimum requirements:
 
@@ -83,7 +83,7 @@ confirm to start the process.
 Shortly after, you'll see a green command line `core@flatcar-0-install`. Remove
 the USB stick or the CD drive from the VM. The system will continue processing.
 
-![Flatcar Install Step 0](/images/production-guide/flatcar-installation/flatcar9.png)
+![Flatcar Install Step 0](/images/production-guide/flatcar-installation/flatcar9.png?width=75%)
 
 The installation will complete after a few minutes, and the system will reboot.
 
@@ -118,15 +118,16 @@ When prompted, enter the default password for the `core` user: `umh`.
 <!-- Optional section, but recommended; write the problem/question in H3 -->
 ## {{% heading "troubleshooting" %}}
 
-### The installation stops at the green login prompt
+### The Installation Stops at the First Green Login Prompt
 
-To check the status of the installation, run the following command:
+If the installation halts at the first green login prompt, check the installation
+status with:
 
 ```bash
 systemctl status installer
 ```
 
-If the installation is still running, you should see something like this:
+A typical response for an ongoing installation will look like this:
 
 ```bash
 ● installer.service - Flatcar Linux Installer
@@ -134,23 +135,23 @@ If the installation is still running, you should see something like this:
      Active: active (running) since Wed 2021-05-12 14:00:00 UTC; 1min 30s ago
 ```
 
-Otherwise, the installation failed. You can check the logs to see what went wrong.
+If the status differs, the installation may have failed. Review the logs to
+identify the issue.
 
-### I don't know which drive to select {#drive}
+### Unsure Which Drive to Select {#drive}
 
-You can check the drive type from the manual of your device.
+To determine the correct drive, refer to your device's manual:
 
-- For SATA drives (spinning hard disk or SSD), the drive type is `SDA`.
-- For NVMe drives, the drive type is `NVMe`.
+- SATA drives (HDD or SSD): Typically labeled as `sda`.
+- NVMe drives: Usually labeled as `nvm0n1`.
 
-If you are unsure, you can boot into the edge device with any Linux distribution
-and run the following command:
+For further verification, boot any Linux distribution on your device and execute:
 
 ```bash
 lsblk
 ```
 
-The output should look similar to this:
+The output, resembling the following, will help identify the drive:
 
 ```bash
 NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
@@ -161,42 +162,38 @@ sdb      8:0    0  31.8G  0 disk
 └─sdb1   8:1    0  31.8G  0 part /mnt/usb
 ```
 
-In this case, the drive type is `SDA`. Generally, the drive type is the name of
-the first drive in the list, or at least the drive that doesn't match the
-size of the USB stick.
+In most cases, the correct drive is the first listed or the one not matching the
+USB stick size.
 
-### I can access the cluster, but there are no resources
+### No Resources in the Cluster
 
-First, completely shut down {{< resource type="lens" name="name" >}} (from the
-system tray). Then start it again and try to access the cluster.
-
-If that doesn't work, access the edge device via SSH and run the following
-command:
+If you can access the cluster but see no resources, SSH into the edge device and
+check the cluster status:
 
 ```bash
 systemctl status k3s
 ```
 
-If the output contains a status different from `active (running)`, the cluster
-is not running. Otherwise, the UMH installation failed. You can check the logs
-with the following commands:
+If the status is not `active (running)`, the cluster isn't operational. Restart it with:
+
+```bash
+sudo systemctl restart k3s
+```
+
+If the cluster is active or restarting doesn't resolve the issue, inspect the
+installation logs:
 
 ```bash
 systemctl status umh-install
 systemctl status helm-install
 ```
 
-If any of the commands return some errors, it is probably easier to reinstall the system.
+Persistent errors may necessitate a system reinstallation.
 
 ### I can't SSH into the virtual machine
 
-If you can't SSH into the virtual machine, make sure that the network settings
-for the virtual machine are correct. If you are using VirtualBox, you can check
-the network settings by clicking on the virtual machine in the VirtualBox
-manager and then on **Settings**. In the **Network** tab, make sure that the
-**Adapter 1** is set to **NAT**.
-
-Disable any VPNs that you might be using.
+Ensure that your computer is on the same network as the virtual machine, with no
+firewalls or VPNs blocking the connection.
 
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
