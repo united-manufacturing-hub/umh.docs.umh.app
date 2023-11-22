@@ -61,11 +61,11 @@ documentation for booting instructions.
 
 At the first prompt, read and accept the license to proceed.
 
-![Read and Accept the License](/images/production-guide/flatcar-installation/flatcar1.png)
+![Read and Accept the License](/images/production-guide/flatcar-installation/license.png)
 
 Next, configure your network settings. Select DHCP if uncertain.
 
-![Network Settings](/images/production-guide/flatcar-installation/flatcar2.png)
+![Network Settings](/images/production-guide/flatcar-installation/networSettings.png)
 
 The connection will be tested next. If it fails, revisit the network settings.
 
@@ -73,17 +73,17 @@ Ensure your device has internet access and no firewalls are blocking the connect
 
 Then, select the drive for Flatcar Linux installation.
 
-![Select the Drive](/images/production-guide/flatcar-installation/flatcar5.png)
+![Select the Drive](/images/production-guide/flatcar-installation/selectDrive.png)
 
 A summary of the installation will appear. Check that everything is correct and
 confirm to start the process.
 
-![Summary](/images/production-guide/flatcar-installation/flatcar6.png)
+![Summary](/images/production-guide/flatcar-installation/summary.png)
 
 Shortly after, you'll see a green command line `core@flatcar-0-install`. Remove
 the USB stick or the CD drive from the VM. The system will continue processing.
 
-![Flatcar Install Step 0](/images/production-guide/flatcar-installation/flatcar9.png?width=75%)
+![Flatcar Install Step 0](/images/production-guide/flatcar-installation/flatcar0install.png?width=75%)
 
 The installation will complete after a few minutes, and the system will reboot.
 
