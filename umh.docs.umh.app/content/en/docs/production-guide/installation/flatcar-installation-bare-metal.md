@@ -3,7 +3,7 @@ title: "Flatcar Installation"
 content_type: task
 description: |
     This page describes how to deploy the United Manufacturing Hub on Flatcar
-    Linux on bare metal and virtual machines (Proxmox or other VMs).
+    Linux.
 weight: 50
 aliases:
    - /docs/production-guide/installation/installation-guide-flatcar/
@@ -11,164 +11,109 @@ aliases:
 
 <!-- overview -->
 
-Here is a step-by-step guide on how to deploy the UMH stack on
+Here is a step-by-step guide on how to deploy the United Manufacturing Hub on
 [Flatcar Linux](https://www.flatcar.org/), a Linux distribution designed for
-container workloads with high security and low maintenance. This will leverage the UMH Device and Container Infrastructure, which is used in this example as the community edition. During the installation, we will download and boot on your device / on our VM from the bootloader iPXE. iPXE, if downloaded further below, is pre-configured and tailored to the UMH. First, it will guide you through an installation assistant. Then, it will load flatcar from the latest LTS version (current-2023) and boot into it. This system is called flatcar-0. Then it will install flatcar to disk. Upon automatic rebooting, it will boot into the installed flatcar instance called flatcar-1, which will automatically install the UMH.
+container workloads with high security and low maintenance. This will leverage
+the UMH Device and Container Infrastructure.
+
+The system can be installed either bare metal or in a virtual machine.
 
 ## Prerequisites
 
-Before initiating the deployment process, ensure your system aligns with the following prerequisites:
+Ensure your system meets these minimum requirements:
 
-CPU Cores: Minimum of 4
-Memory: At least 8 GB
-Storage: Minimum 32 GB disk space
-iPXE Boot Image: Obtain the latest version appropriate for your system architecture:
+- 4-core CPU
+- 8 GB system RAM
+- 32 GB available disk space
+- Internet access
+
+You will also need the latest version of the iPXE boot image, suitable for your
+system:
 
 - [ipxe-x86_64-efi](https://github.com/united-manufacturing-hub/ipxe/releases/latest/download/ipxe-x86_64-efi.usb):
-  Suitable for modern systems, recommended for Proxmox.
+  For modern systems, recommended for virtual machines.
 - [ipxe-x86_64-bios](https://github.com/united-manufacturing-hub/ipxe/releases/latest/download/ipxe-x86_64-bios.usb):
-   For legacy systems.
+  For legacy systems.
 - [ipxe-arm64-efi](https://github.com/united-manufacturing-hub/ipxe/releases/latest/download/ipxe-arm64-efi.usb):
-  For ARM architectures (**Note**: Raspberry Pi 4 is currently unsupported).
+  For ARM architectures (**Note**: Raspberry Pi 4 is currently not supported).
 
+For bare metal installations, flash the image to a USB stick with at least 4 GB
+of storage. Our guide on
+[flashing an operating system to a USB stick](https://learn.umh.app/course/flashing-an-operating-system-onto-a-usb-stick/)
+can assist you.
 
-### Deployment Overview
-## Booting from the iPXE image
+For virtual machines, ensure UEFI boot is enabled when creating the VM.
 
-### Bare Metal Installation
-1. **USB Preparation**: Write the iPXE image to a USB stick. Refer to our guide on [Flashing Operating Systems to USB]((https://learn.umh.app/course/flashing-an-operating-system-onto-a-usb-stick/)) for detailed instructions.
-
-2. **SSH Client Requirement**: Ensure your computer has an SSH client installed.
-3. Network Configuration: Setup should include:
-- Internal Network
-- WAN and LAN connections
-- Edge Device
-- Router Setup
-
-4. IP Addressing: Assign a static IP address to your edge device for consistent network performance. Configure this either via a static lease in your DHCP server or during the installation process. Avoid changing the IP post-installation to prevent certificate issues.
-
-### Virtual Machine Setup
-1. **VM Creation**: In your virtualization software, create a new VM with these specifications:
-
-- Operating System: Linux
-- Version: Other Linux (64-bit)
-- CPU cores: 4
-- Memory size: 8 GB
-- Hard disk size: 32 GB
-
-2. **ISO Loading**: Insert the ISO image into the VM and initiate the boot sequence.
-
-#### Proxmox Specific Steps
-1. Open your proxmox and click on the left side on **local(proxmox)** &rArr; **ISO images** &rArr; **upload** and upload the iso image to your proxmox storage.
-
-![Untitled](/images/production-guide/flatcar-installation/proxmox1.png)
-
-2. Click **Create VM**.
-
-3. Ensure **Start at boot** and **Advanced** are selected.
-![Untitled](/images/production-guide/flatcar-installation/proxmox2.png)
-
-4. Select **ipxe-x86_64-efi.iso** image.
-![Untitled](/images/production-guide/flatcar-installation/proxmox3.png)
-
-{{< notice info >}}
-You can leave the VM ID unchanged, but if you do make sure it is unique.
-{{< /notice >}}
-
-5. Change the Machine to **q35**, BIOS to **OVMF (UEFI)** and select your **local-lvm** for EFI Storage.
-![Untitled](/images/production-guide/flatcar-installation/proxmox4.png)
-
-6. Change the Bus/Device to **SATA** and enable **SSD emulation**, if you are using an SSD/NVME disk.
-![Untitled](/images/production-guide/flatcar-installation/proxmox5.png)
-
-7. Change the Type to **host** and give it at least 4 Cores.
-![Untitled](/images/production-guide/flatcar-installation/proxmox6.png)
-
-8. Increase the Memory to at least 8096 MiB.
-![Untitled](/images/production-guide/flatcar-installation/proxmox7.png)
-
-9. Select the correct network bridge.
-![Untitled](/images/production-guide/flatcar-installation/proxmox8.png)
-
-10. Untick **Start** after creating and press **Finish**. 
-![Untitled](/images/production-guide/flatcar-installation/proxmox9.png)
-
-11. Also, UEFI configuration is necessary. On your first start, press ESC to enter the UEFI configuration.
-![Untitled](/images/production-guide/flatcar-installation/proxmox10.png)
-
-12. Select **Device Manager** &rArr; **Secure Boot Configuration**.
-13. Disable **Attempt Secure Boot**.
-14. Press **F10** to save and confirm with **Y**.
-15. Press **ESC** until back to the main menu and select **Reset**. The VM will now restart  and begin to install Flatcar.
-
-
+Lastly, ensure you are on the same network as the device for SSH access post-installation.
 
 <!-- steps -->
-## Installation Steps
 
-1. If necessary, boot the downloaded ISO image. For bare metal, connect the USB stick to the device and boot it. Each device has a different way of booting from USB, so you need to consult your device's documentation.  
-2. Accept the License.
-![Untitled](/images/production-guide/flatcar-installation/flatcar1.png)
+## System Preparation and Booting from iPXE
 
-3. Select the correct network settings. If you are unsure, select DHCP, but
-   keep in mind that a static IP address is strongly recommended.
-   ![Untitled](/images/production-guide/flatcar-installation/flatcar2.png)
-   ![Untitled](/images/production-guide/flatcar-installation/flatcar3.png)
-   ![Untitled](/images/production-guide/flatcar-installation/flatcar4.png)
+Identify the drive for Flatcar Linux installation. For virtual machines, this is
+typically sda. For bare metal, the drive depends on your physical storage. The
+[troubleshooting section](#drive) can help identify the correct drive.
 
-4. Select the correct drive to install Flatcar Linux on. If you are unsure, check
-   the [troubleshooting section](#drive).
-  ![Untitled](/images/production-guide/flatcar-installation/flatcar5.png)
+Boot your device from the iPXE image. Consult your device or hypervisor
+documentation for booting instructions.
 
-5. Check that the installation settings are correct, and press **Confirm** to start
-   the installation.
-  ![Untitled](/images/production-guide/flatcar-installation/flatcar6.png)
-  
+## Installation
 
-6. Now, the installation will start. 
-  ![Untitled](/images/production-guide/flatcar-installation/flatcar7.png)
+At the first prompt, read and accept the license to proceed.
 
-7. Shortly after, you should be able to see a green command line `core@flatcar-0-install ~$~`. Then, remove the USB stick from the
-device. At this point, the system is still processing the installation. After a few minutes,
-depending on the speed of your network, the installation will finish, and the
-system will reboot.
-  ![Untitled](/images/production-guide/flatcar-installation/flatcar8.png)
+![Read and Accept the License](/images/production-guide/flatcar-installation/flatcar1.png)
 
-8. Now you should see a grey login prompt that says
-`flatcar-1-umh login:`, as well as the IP address of the device.
-  ![Untitled](/images/production-guide/flatcar-installation/flatcar9.png)
+Next, configure your network settings. Select DHCP if uncertain.
 
+![Network Settings](/images/production-guide/flatcar-installation/flatcar2.png)
+
+The connection will be tested next. If it fails, revisit the network settings.
+
+Ensure your device has internet access and no firewalls are blocking the connection.
+
+Then, select the drive for Flatcar Linux installation.
+
+![Select the Drive](/images/production-guide/flatcar-installation/flatcar5.png)
+
+A summary of the installation will appear. Check that everything is correct and
+confirm to start the process.
+
+![Summary](/images/production-guide/flatcar-installation/flatcar6.png)
+
+Shortly after, you'll see a green command line `core@flatcar-0-install`. Remove
+the USB stick or the CD drive from the VM. The system will continue processing.
+
+![Flatcar Install Step 0](/images/production-guide/flatcar-installation/flatcar9.png)
+
+The installation will complete after a few minutes, and the system will reboot.
+
+When you see the green core@flatcar-1-umh login prompt, the installation is
+complete, and the device's IP address will be displayed.
 
 {{% notice note %}}
-Please note that the installation may take some time. This largely depends on the available resources
-including network speed and system performance.
+Installation time varies based on network speed and system performance.
 {{% /notice %}}
 
-### After iPXE (**Proxmox**)
-1. After the first start of the VM, remove the auto boot option in Proxmox. Go to **Hardware**, double click on **CD/DVD DRIVE** and select **Do not use any media**.
-2. When the VM has restarted, the command line reads flatcar-1-umh login: in grey, it is now ready for use. Now, you can find the correct IP address in the last line of the first text block.
+## Connect to the Device
 
+With the system installed, access it via SSH.
 
-## Connect to the edge device or the VM
+For Windows 11 users, the default
+[Windows Terminal](https://learn.microsoft.com/en-us/windows/terminal/install)
+is recommended. For other OS users, try [MobaXTerm](https://mobaxterm.mobatek.net/).
 
-Now, you can leave the edge device or VM and connect to it from your computer via SSH.
+To do so, open you terminal of choice. We recommend the default
+[Windows Terminal](https://learn.microsoft.com/en-us/windows/terminal/install),
+or [MobaXTerm](https://mobaxterm.mobatek.net/) if you are not on Windows 11.
 
-If you are on Windows 11, we recommend using the default [Windows terminal](https://learn.microsoft.com/en-us/windows/terminal/install),
-which you can find by typing terminal in the Windows search bar or Start menu. Next,
-connect to the edge device or the VM via SSH using the IP address you saw on the login prompt:
+Connect to the device using this command, substituting `<ip-address>` with your
+device's IP address:
 
 ```bash
 ssh core@<ip-address>
 ```
 
-If you are not on Windows 11, you can use [MobaXTerm](https://mobaxterm.mobatek.net/)
-to connect via SSH. Open MobaXTerm and click on **Session**
-in the top left corner. Then click on **SSH** and enter the IP address of the
-edge device or the VM in the **Remote host** field. Click on **Advanced SSH settings** and
-enter `core` in the Username field. Click on **Save** and then on **Open**.
-
-The default password for the `core` user is `umh`.
-
+When prompted, enter the default password for the `core` user: `umh`.
 
 <!-- Optional section, but recommended; write the problem/question in H3 -->
 ## {{% heading "troubleshooting" %}}
