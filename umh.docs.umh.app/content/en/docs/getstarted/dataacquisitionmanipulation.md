@@ -7,21 +7,32 @@ description: |
 weight: 3000
 ---
 
+One of the most powerful features of the United Manufacturing Hub is its ability
+to connect to various different data sources and to standardize the data into a
+common data model. This allows you to easily integrate your existing data
+infrastructure into the UMH and to use it for further processing and analysis.
 
- 
-  The United Manufacturing Hub provides several simulators, which deliver
-  different data through various protocols such as MQTT, PackML or OPC UA. In
-  this chapter we will take the MQTT simulated data and show you how to format
-  it into the **[UMH data model](/docs/architecture/datamodel/)** using Node-RED. 
-  It is highly recommended to read through the documentation of the UMH data
-  model before continuing with this chapter.
+There are currently two ways to connect data sources to the UMH: Benthos for
+OPC UA and [Node-RED](/docs/architecture/microservices/core/node-red/)
+for everything else.
 
-{{% notice note %}}
-  For a deep dive into industry 4.0 data models, check out this
-  **[article](https://learn.umh.app/lesson/navigating-data-flow-understanding-data-models)**
-  on our learn page.
-{{% /notice %}}
+Conveniently, the UMH comes with 3 pre-configured data simulators that you can
+use to test how to connect data sources to the UMH. You can find more information
+about them in their respective pages:
 
+- [OPC UA Simulator](/docs/architecture/microservices/community/opcua-simulator/)
+- [MQTT Simulator](/docs/architecture/microservices/community/mqtt-simulator/)
+- [PackML Simulator](/docs/architecture/microservices/community/packml-simulator/)
+
+## Connect OPC UA data sources
+
+### Create a Connection with the Management Console
+
+### Initialize the Connection
+
+## Connect MQTT data sources
+
+## Connect HTTP data sources
 
 ## Creating Node-RED flow with simulated MQTT-Data
 
