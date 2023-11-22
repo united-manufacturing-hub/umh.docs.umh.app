@@ -6,7 +6,9 @@ description: |
     Linux.
 weight: 50
 aliases:
-   - /docs/production-guide/installation/installation-guide-flatcar/
+   - /docs/production-guide/installation/installation-guide-flatcar
+   - /docs/production-guide/installation/flatcar-installation-bare-metal
+   - /docs/production-guide/installation/flatcar-installation-virtual-machine
 ---
 
 <!-- overview -->
