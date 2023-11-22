@@ -17,10 +17,11 @@ chapter first.
 Now that you have connected a UMH instance to the Management Console, you might
 be curious about how the Management Console communicates with the instance.
 
-The Management Companion is a microservice that runs in conjunction with the UMH.
-It plays a crucial role in linking the instance to the Management Console. This
-includes gathering the status of the device and the various components within
-the system.
+The Management Companion, serving as an agent within each UMH instance, provides
+a secure link to the Management Console. It enables comprehensive and secure
+monitoring and management of the UMH, ensuring system health and streamlined
+configuration, all while acting as a vigilant watchdog over system components and
+connected devices.
 
 The diagram below illustrates the communication flow between the Management
 Console and the instance:
@@ -29,17 +30,20 @@ Console and the instance:
 
 ## Overview of Your Instances
 
+![Instance overview](/images/getstarted/managingTheSystem/instanceOverview.png?width=80%)
+
 On the left side of the Management Console, you can view the list of your
 instances. If you have just installed the UMH, you should see only one instance
 in the list.
 
 The status of your instance is indicated by color: green means everything is
-working properly, while yellow indicates that there may be an issue.
+working properly, while yellow indicates that there may be a connection issue.
 
 The **Messages Received** statistic shows the number of messages received by you
 from the instance since you opened the Management Console. It is usually a good
-indicator of the health of the Companion and the latency of the connection between
-you and the instance.
+indicator of the health of the connection to the Companion.
+If the number is not increasing for 10 seconds, the instance is considered
+disconnected.
 
 ## Monitoring the Instance's Status
 
@@ -50,11 +54,12 @@ component of the system.
 ### Modules
 
 A _Module_ refers to a group of workloads in the United Manufacturing Hub
-responsible for specific tasks. For example, the _Data Source_ module collects
-data from various sources and is composed of multiple microservices.
+responsible for specific tasks. For example, the _Historian & Analytics_ module
+represents the microservices, storage, and connections that are responsible for
+storing and analyzing data.
 
 In the **Modules** tab, you can view the status of each module. If a module is
-not healthy, it means that one or more of its microservices are not functioning
+not healthy, it means that one or more of its components are not functioning
 properly.
 
 ### System
@@ -158,7 +163,7 @@ Use the retrieved credentials to log in.
 
 #### Access the RedPanda Console
 
-The RedPanda Console, used for managing the message broker, can be accessed at:
+The RedPanda Console, used for managing the Kafka broker, can be accessed at:
 
 ```text
 http://<instance-ip-address>:8090
