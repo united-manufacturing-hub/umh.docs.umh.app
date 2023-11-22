@@ -26,13 +26,12 @@ using [Chocolatey](https://chocolatey.org/)).
 
 - [Git](https://git-scm.com/)
 - [Git LFS](https://git-lfs.com/)
-- [Hugo (Extended version)](https://gohugo.io/)
-- [Node.js LTS](https://nodejs.org/en/)
+- [Hugo (Extended version)](https://gohugo.io/) v0.111.3
+- [Node.js LTS](https://nodejs.org/en/) v18.16.0
 
 Other tools that are not required, but are recommended:
 
 - [GNU make](https://www.gnu.org/software/make/) to easily run scripts
-- [GNU awk](https://www.gnu.org/software/gawk/) is used by some `make` scripts
 
 ## Fork the documentation repository
 
@@ -64,23 +63,36 @@ git remote add upstream https://github.com/united-manufacturing-hub/umh.docs.umh
 git remote set-url --push upstream no_push
 ```
 
-## Run the development server
+## Setup the environment
 
-To preview changes in your local environment, start the Hugo server
+If you are running on a Windows system, manually install the above required tools.
 
-```sh
-cd <path_to_your_repo>/umh.docs.umh.app
-hugo server --buildFuture
-```
-
-If you have chosen to install GNU make and GNU awk, browse to the directory that contains your local copy of the repository and install the required dependencies:
+If you are running on a Linux system, or can run a bash shell, you can use the
+following commands to install the required tools:
 
 ```sh
 cd <path_to_your_repo>
-make module-init
+make install
 ```
 
-It is now possible to conveniently build and serve the website locally by running the following command:
+## Run the development server
+
+Now it's time to run the server locally.
+
+Navigate to the `umh.docs.umh.app` directory inside the repository you cloned
+earlier.
+
+```sh
+cd <path_to_your_repo>/umh.docs.umh.app
+```
+
+If you have not installed GNU make, run the following command:
+
+```sh
+hugo server --buildDrafts
+```
+
+Otherwise, run the following command:
 
 ```sh
 make serve
@@ -91,15 +103,6 @@ Either method will start the local Hugo server on port 1313. Open up your browse
 files, Hugo updates the website and forces a browser refresh.
 
 You can stop the server by pressing `Ctrl+C` in the terminal.
-
-## Other useful commands
-
-Most of the commands are available as `make` targets. To see the list of all
-available commands, run:
-
-```sh
-make help
-```
 
 ## {{% heading "whatsnext" %}}
 

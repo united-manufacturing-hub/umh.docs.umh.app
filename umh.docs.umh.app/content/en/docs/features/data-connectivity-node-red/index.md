@@ -51,11 +51,11 @@ Node-RED comes preinstalled as a microservice with the United Manufacturing Hub.
 1. To access Node-RED navigate to **Network** -> **Services** on the left-hand side in UMHLens. You can download {{< resource type="lens" name="name" >}} [here](https://github.com/united-manufacturing-hub/UMHLens/releases).
 2. On the top right, change the Namespace from default to {{< resource type="ns" name="umh" >}}.
 
-   ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingServices.png?width=75%)
+   ![Untitled](/images/features/data-connectivity-node-red/lens-serviceTab.png?width=75%)
 
 3. Click on {{< resource type="service" name="nodered" >}}, scroll down to **Connection** and forward the port.
 
-   ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingForwarding.png?width=75%)
+   ![Untitled](/images/features/data-connectivity-node-red/lens-portForwardNodeRed.png?width=75%)
 4. Once Node-RED opens in the browser, add `nodered` to the URL to avoid the [cannot get error](https://learn.umh.app/course/how-to-fix-cannot-get-error-in-node-red/).
 5. Begin exploring right away! If you require inspiration on where to start, we provide a variety of guides to help you
       become familiar with various node-red workflows, including how to process data and align it with the UMH datamodel:
