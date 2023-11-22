@@ -57,6 +57,11 @@ typically sda. For bare metal, the drive depends on your physical storage. The
 Boot your device from the iPXE image. Consult your device or hypervisor
 documentation for booting instructions.
 
+{{% notice note %}}
+You can find a comprehensive guide on how to [configure a virtual machine in Proxmox](https://learn.umh.app/course/flatcar-installation-on-proxmox/)
+for installing Flatcar Linux on the Learning Hub.
+{{% /notice %}}
+
 ## Installation
 
 At the first prompt, read and accept the license to proceed.
