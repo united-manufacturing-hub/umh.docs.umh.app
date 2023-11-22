@@ -198,7 +198,7 @@ firewalls or VPNs blocking the connection.
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
 
-- You can follow the [Getting Started](https://learn.umh.app/getstarted) guide
+- You can follow the [Getting Started](/docs/getstarted) guide
   to get familiar with the UMH stack.
 - If you already know your way around the United Manufacturing Hub, you can
   follow the [Administration guides](/docs/production-guide/administration/) to
