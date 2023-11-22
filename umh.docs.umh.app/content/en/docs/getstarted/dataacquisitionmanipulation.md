@@ -1,9 +1,11 @@
-+++
-title = "3. Data Acquisition and Manipulation"
-menuTitle = "3. Data Acquisition and Manipulation"
-description = "Format raw data into the UMH data model using node-red."
-weight = 3000
-+++
+---
+title: "3. Data Acquisition and Manipulation"
+menuTitle: "3. Data Acquisition and Manipulation"
+description: |
+   Learn how to connect various different data sources to the UMH and how to
+   format the data into the UMH data model.
+weight: 3000
+---
 
 
  
