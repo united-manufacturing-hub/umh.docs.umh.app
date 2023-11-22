@@ -3,7 +3,6 @@ title: Documentation
 content_type: concept
 description: |
   Learn how to contribute to the United Manufacturing Hub documentation.
-no_list: true
 weight: 20
 ---
 

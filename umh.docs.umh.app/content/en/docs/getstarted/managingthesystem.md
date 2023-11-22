@@ -1,142 +1,252 @@
-+++
-title = "2. Managing the System"
-menuTitle = "2. Managing the System"
-description = "Learn the basics of the Management Console and how to import Node-RED and Grafana flows."
-weight = 2000
-+++
+---
+title: 2. Managing the System
+menuTitle: 2. Managing the System
+description: Learn how to manage your UMH instance with the Management Console.
+weight: 2000
+---
 
-  In this chapter, we will guide you through the installation of the Management 
-  Console and your first local instance of the UMH. We will also explain
-  how the basic components work together, by creating a first Node-RED flow and 
-  a Grafana dashboard. Check out the image below for an 
-  overview:
+In this chapter, you will learn how to monitor, manage and configure your UMH
+instance with the Management Console.
 
-![Untitled](/images/getstarted/managingTheSystem/getStartedUMHSimplifiedpng.png)
+At this stage, you should have already installed the UMH on your device. If you
+have not done so, please follow the steps in the [Installation](/docs/getstarted/installation)
+chapter first.
 
-  The United Manufacturing Hub is a collection of microservices, which work
-  together, to provide a complete solution for your manufacturing needs. From 
-  data collection to contextualization and visualization, or data storage. 
-  For rare cases that require a special feature, you can add it to your UMH
-  stack by creating your own custom microservice.
+## A Few Words About the Communication
 
-## 1. Install the UMH
+Now that you have connected a UMH instance to the Management Console, you might
+be curious about how the Management Console communicates with the instance.
 
+The Management Companion, serving as an agent within each UMH instance, provides
+a secure link to the Management Console. It enables comprehensive and secure
+monitoring and management of the UMH, ensuring system health and streamlined
+configuration, all while acting as a vigilant watchdog over system components and
+connected devices.
 
-1. Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop)
-   for your operating system. This is only 
-   necessary for local installations.
-   
+The diagram below illustrates the communication flow between the Management
+Console and the instance:
 
-2. Follow the tutorial in the Management Console to create your first local 
-   instance of the United Manufacturing Hub. Once the installation is finished,
-   press the blue **Finish** button the right bottom corner of the Console. 
+![Communication between the Management Console and the instance](/images/getstarted/managingTheSystem/simpleInfrastructureDiagram.png?width=80%)
 
+## Overview of Your Instances
 
-{{% notice info %}}
-A local installation functions similar to an installation on an external device,
-like an edge device or a VM. The benefit is, that you can easily set it up
-without any additional hardware and learn how to use it with simulated data.
-{{% /notice %}}
+![Instance overview](/images/getstarted/managingTheSystem/instanceOverview.png?width=80%)
 
-3. After creating your local instance of the UMH, you will be able to access the
-   local installation by clicking on the tile.
-   Open the device overview, where you can see every microservice of
-   the stack and access and configure them. While the components of the UMH 
-   stack are installed and starting, the icons
-   of the services will be red or white. Once the microservices look like in the 
-   picture, you can continue.
+On the left side of the Management Console, you can view the list of your
+instances. If you have just installed the UMH, you should see only one instance
+in the list.
 
-![Untitled](/images/getstarted/managingTheSystem/getStartedManagingMicServFinished.png)
+The status of your instance is indicated by color: green means everything is
+working properly, while yellow indicates that there may be a connection issue.
+
+The **Messages Received** statistic shows the number of messages received by you
+from the instance since you opened the Management Console. It is usually a good
+indicator of the health of the connection to the Companion.
+If the number is not increasing for 10 seconds, the instance is considered
+disconnected.
+
+## Monitoring the Instance's Status
+
+From the instance dashboard, in the overview tab, you can view the status of
+your instance. There are multiple interfaces that display the status of each
+component of the system.
+
+### Modules
+
+A _Module_ refers to a group of workloads in the United Manufacturing Hub
+responsible for specific tasks. For example, the _Historian & Analytics_ module
+represents the microservices, storage, and connections that are responsible for
+storing and analyzing data.
+
+In the **Modules** tab, you can view the status of each module. If a module is
+not healthy, it means that one or more of its components are not functioning
+properly.
+
+### System
+
+In the **System** tab, you can view the resource usage of your device, as well
+as some system's information.
+
+If there is an overload on the device, you can view it here. An overloaded device
+is unable to handle the workload, and you should consider upgrading the device.
+
+### Data
+
+In the **Data** tab, you can see an overview of the data infrastructure, including
+the number of messages going through the message broker, those stored in the
+database, and messages received by each data source.
+
+### Connection
+
+In the **Connection** tab, you can view the status of all the data source connections
+configured in the system. A non-healthy connection indicates that the device and
+the data source are unable to communicate.
+
+### Kubernetes
+
+In the **Kubernetes** tab, you can check for any error events in the Kubernetes
+cluster. Any errors suggest that the cluster is not operating correctly.
+
+Additionally, this tab displays the version of the United Manufacturing Hub and
+the Management Companion currently installed on your device.
+
+## Manage the Instance
+
+Before you begin, ensure that you are connected to the same network as the instance
+for accessing the various services and features discussed below.
+
+While a graphical user interface for managing the instance is not yet available,
+you can still manage it via the command line.
+
+### Access the Command Line
+
+To access the shell of your device, you can either interact directly with the
+device or use SSH. It's important to note that you need access to the root user
+to execute the following commands.
 
 {{% notice note %}}
-If you have a decent device, you should not be
-waiting longer then 5 minutes. On a slower computer, the start of your stack
-can take up to 15 minutes.
-
-If the icons are still not green after 15 minutes, the installation might have
-failed. Go back to the overview by clicking on the arrow in the top left corner
-and click on the **+ Add Device** button in the top right corner. Then you 
-can follow the same steps as you did before to create a new local instance.
-You will overwrite the old local installation on your device.
+If you don't have root user access, you can still execute the commands by
+prefixing them with `sudo`. However, you'll need to specify the full path to the
+binary. For example, use `/usr/local/bin/kubectl get pods` instead of just `kubectl
+get pods`.
 {{% /notice %}}
 
-4. If you have no experience with Node-RED or Grafana, we recommend
-   to follow the tutorial below.
-   If you are already familiar with Node-RED and Grafana, you can skip the
-   tutorial below and continue with the next part of this guide,
-   [Data Acquisition and Manipulation](https://umh.docs.umh.app/docs/getstarted/dataacquisitionmanipulation/),
-   to learn about the UMH data model.
+### Interact with the Instance
 
+After accessing the shell, you can interact with the instance using the `kubectl`
+command. Start by setting this specific environment variable:
 
+```bash
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+```
 
-## 2. Import flows to Node-RED
- 
-1. Open Node-RED by click on the tile in the device overview, then click on the
-   **open** button. You will be redirected to the web interface of Node-RED.
-<!--
-  ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingCannotGet.png?width=75%)
--->
-2. Once you are in the web interface, click on the three lines in the upper 
-   right corner and select **Import**.
+Then, to get a list of pods, run:
 
-   ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingImport.png?width=75%)
+```bash
+kubectl get pods -n united-manufacturing-hub
+```
 
-3. Now copy [this json file](/json/getstarted/noderedGetStarted.json) and paste
-   it into the import field. Then press **Import**.
+For a comprehensive list of commands, refer to the
+[Kubernetes documentation](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands).
 
-   ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingPasteJson.png?width=75%)
-
-{{% notice info %}}
-Node-RED is a tool, to manage and connect data flows. Simply said, you can 
-specify what data is processed how and then send where. 
-
-Each flow starts with an **input node**, where you can specify the data source.
-In this case, the data source is a simulated temperature sensor, the data 
-is conveyed via the MQTT microservice. After the **json node**, which is used to
-parse the data, it is then passed to a **function node**, where you can manipulate
-the data, for example add a timestamp or format it to the correct unit.
-After the manipulation or contextualization, the data is passed on to
-an **output node**, where you can specify the destination of the data.
+{{% notice note %}}
+Always specify the namespace when running a command by adding `-n united-manufacturing-hub`.
 {{% /notice %}}
 
-4. To activate the imported flow, simply click on the **Deploy** button located
-   at the top right of the screen. If everything is working as expected,
-   you should see green dots above the input and output. Once you have confirmed 
-   that the data is flowing correctly, you can proceed to display it in Grafana.
-   ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingDeploy.png?width=75%)
+#### Access Node-RED
 
+Node-RED, a visual tool for wiring the Internet of Things, is utilized by the
+United Manufacturing Hub for creating data flows. To access Node-RED, simply
+open the following URL in your browser:
 
-## 3. Import flows to Grafana & view dashboard
+```text
+http://<instance-ip-address>:1880/nodered
+```
 
-1. Go back to the Management Console, close the Node-RED popup and open the
-   Grafana popup. Again, click on the **open** button, to access the Grafana 
-   web interface. To log in, you need the Grafana log in credentials, which you
-   can also find in the Grafana popup.
+#### Access Grafana
 
-2. Once you are logged in, click on **Dashboards** on the left and select
-   **Import**. Now copy [this Grafana json](/json/getstarted/GrafanaGetStarted.json) 
-   and paste it into **Import via panel json**. Then click on **Load**. You 
-   will then be redirected to **Options** where you need to select the
-   **umh-v2-datasource**. Finally, click on **Import**.
+Grafana, an open-source analytics and monitoring solution, is used by UMH for
+dashboard displays. Retrieve the credentials with these commands:
 
-   ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingGrafanaImport.png?width=75%)
-3. If everything is working properly, you should now see a functional dashboard
-   with a temperature curve.
+```bash
+kubectl get secret grafana-secret -n united-manufacturing-hub -o jsonpath="{.data.adminuser}" | base64 --decode; echo
+kubectl get secret grafana-secret -n united-manufacturing-hub -o jsonpath="{.data.adminpassword}" | base64 --decode; echo
+```
 
-   ![Untitled](/images/getstarted/managingTheSystem/getStartedManagingGrafanaDashboard.png?width=75%)
+Then, access Grafana here:
 
-{{% notice info %}}
-Grafana is a tool, to visualize data. You can create dashboards, which can 
-display a wide range of different graphs and charts.
+```text
+http://<instance-ip-address>:8080
+```
 
-Grafana is connected to the message broker of the UMH stack and can therefore 
-access all the stored data. Here, the imported dashboard is preset to display 
-the temperature, that was sent by the previously imported Node-RED flow.
-{{% /notice %}}
+Use the retrieved credentials to log in.
+
+#### Access the RedPanda Console
+
+The RedPanda Console, used for managing the Kafka broker, can be accessed at:
+
+```text
+http://<instance-ip-address>:8090
+```
+
+#### Interact with the Database
+
+UMH uses TimescaleDB for database needs. Open a `psql` session with this command:
+
+```bash
+kubectl exec -it $(kubectl get pods -n united-manufacturing-hub -l app.kubernetes.io/component=timescaledb -o jsonpath="{.items[0].metadata.name}") -n united-manufacturing-hub -- psql -U postgres
+```
+
+Run SQL queries as needed. For an overview of the database schema, refer to the
+[Data Model](/docs/architecture/datamodel/database) documentation.
+
+#### Connect MQTT to MQTT Explorer
+
+MQTT Explorer is a comprehensive MQTT client that provides a structured overview
+of your MQTT topics and makes working with devices/services on your broker
+easier.
+
+Connect MQTT Explorer to the MQTT broker using the instance's IP address and port
+`1883`.
+
+## Troubleshooting
+
+### Error: `You must be logged in to the server` while using the `kubectl` Command
+
+If you encounter the error below while using the `kubectl` command:
+
+```text
+E1121 13:05:52.772843  218533 memcache.go:265] couldn't get current server API group list: the server has asked for the client to provide credentials
+error: You must be logged in to the server (the server has asked for the client to provide credentials)
+```
+
+This issue can be resolved by setting the `KUBECONFIG` environment variable. Run
+the following command:
+
+```bash
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+```
+
+Alternatively, use the `--kubeconfig` flag to specify the configuration file path:
+
+```bash
+kubectl --kubeconfig /etc/rancher/k3s/k3s.yaml get pods -n united-manufacturing-hub
+```
+
+### "Permission Denied" Error with `kubectl` Command
+
+Encountering the error below while using the `kubectl` command:
+
+```text
+error: error loading config file "/etc/rancher/k3s/k3s.yaml": open /etc/rancher/k3s/k3s.yaml: permission denied
+```
+
+Indicates the need for root access. Run the command with `sudo`, or log in as
+the root user.
+
+### `kubectl: command not found` error
+
+If you encounter the error below while using the `kubectl` command:
+
+```text
+kubectl: command not found
+```
+
+The solution is to use the full path to the `kubectl` binary. You can do this by
+prefixing the command with `/usr/local/bin/` or by adding it to your `PATH`
+environment variable:
+
+```bash
+/usr/local/bin/kubectl get pods -n united-manufacturing-hub
+
+# or
+
+export PATH=$PATH:/usr/local/bin
+```
 
 ## What's next?
 
-  Next, you can create a Node-RED flow and learn how to create your own dashboard
-  in Grafana. Click [here](/docs/getstarted/dataacquisitionmanipulation) 
-  to proceed. This guide is also linked in the tutorial in the Management 
-  Console.
+Now that you have learned how to monitor, manage and configure your UMH instance
+with the Management Console, you can start creating your first data flow. To
+learn how to do this, proceed to the [Data Acquisition and Manipulation](/docs/getstarted/dataacquisitionmanipulation)
+chapter.
