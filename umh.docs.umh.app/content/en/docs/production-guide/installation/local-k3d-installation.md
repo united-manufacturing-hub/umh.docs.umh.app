@@ -5,6 +5,7 @@ description: |
     This page describes how to deploy the United Manufacturing Hub locally using
     k3d.
 weight: 50
+draft: true
 ---
 
 <!-- overview -->
