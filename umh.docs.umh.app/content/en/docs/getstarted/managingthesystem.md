@@ -104,21 +104,46 @@ To access the shell of your device, you can either interact directly with the
 device or use SSH. It's important to note that you need access to the root user
 to execute the following commands.
 
-{{% notice note %}}
+To log in as the root user, after logging as a normal user, run:
+
+```bash
+sudo su
+```
+
 If you don't have root user access, you can still execute the commands by
 prefixing them with `sudo`. However, you'll need to specify the full path to the
-binary. For example, use `/usr/local/bin/kubectl get pods` instead of just `kubectl
-get pods`.
+binary, which you can find with the `which` command.
+
+For example, type `which kubectl` to get the path to the `kubectl` binary, then
+run the command with `sudo` and the full path.
+
+Besides, you must then add the `--kubeconfig /etc/rancher/k3s/k3s.yaml` flag to
+specify the configuration file path.
+
+This is what a command would look like:
+
+```bash
+sudo /usr/local/bin/kubectl get pods --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub
+```
+
+{{% notice warning %}}
+It is important to note that you will need to use `sudo` and the full path to
+the binary for all commands in this chapter.
 {{% /notice %}}
 
 ### Interact with the Instance
 
-After accessing the shell, you can interact with the instance using the `kubectl`
-command. Start by setting this specific environment variable:
+After accessing the shell as the root user, you can interact with the instance
+using the `kubectl` command. Start by setting this specific environment variable:
 
 ```bash
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 ```
+
+{{% notice note %}}
+You can skip this step by adding the `--kubeconfig /etc/rancher/k3s/k3s.yaml`
+flag. All the commands in this chapter will use this flag.
+{{% /notice %}}
 
 Then, to get a list of pods, run:
 
@@ -136,8 +161,9 @@ Always specify the namespace when running a command by adding `-n united-manufac
 #### Access Node-RED
 
 Node-RED, a visual tool for wiring the Internet of Things, is utilized by the
-United Manufacturing Hub for creating data flows. To access Node-RED, simply
-open the following URL in your browser:
+United Manufacturing Hub for creating data flows.
+
+To access Node-RED, simply open the following URL in your browser:
 
 ```text
 http://<instance-ip-address>:1880/nodered
@@ -146,11 +172,14 @@ http://<instance-ip-address>:1880/nodered
 #### Access Grafana
 
 Grafana, an open-source analytics and monitoring solution, is used by UMH for
-dashboard displays. Retrieve the credentials with these commands:
+dashboard displays.
+
+After logging in as the root user with `sudo su`, retrieve the credentials with
+these commands:
 
 ```bash
-kubectl get secret grafana-secret -n united-manufacturing-hub -o jsonpath="{.data.adminuser}" | base64 --decode; echo
-kubectl get secret grafana-secret -n united-manufacturing-hub -o jsonpath="{.data.adminpassword}" | base64 --decode; echo
+kubectl get secret grafana-secret --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub -o jsonpath="{.data.adminuser}" | base64 --decode; echo
+kubectl get secret grafana-secret --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub -o jsonpath="{.data.adminpassword}" | base64 --decode; echo
 ```
 
 Then, access Grafana here:
@@ -171,10 +200,13 @@ http://<instance-ip-address>:8090
 
 #### Interact with the Database
 
-UMH uses TimescaleDB for database needs. Open a `psql` session with this command:
+UMH uses TimescaleDB for database needs.
+
+After logging in as the root user with `sudo su`, open a `psql` session with
+this command:
 
 ```bash
-kubectl exec -it $(kubectl get pods -n united-manufacturing-hub -l app.kubernetes.io/component=timescaledb -o jsonpath="{.items[0].metadata.name}") -n united-manufacturing-hub -- psql -U postgres
+kubectl exec -it $(kubectl get pods --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub -l app.kubernetes.io/component=timescaledb -o jsonpath="{.items[0].metadata.name}") --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub -- psql -U postgres
 ```
 
 Run SQL queries as needed. For an overview of the database schema, refer to the
