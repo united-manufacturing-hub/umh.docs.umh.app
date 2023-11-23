@@ -20,7 +20,7 @@ The UMH includes 3 pre-configured data simulators for testing connections:
 - [MQTT Simulator](/docs/architecture/microservices/community/mqtt-simulator/)
 - [PackML Simulator](/docs/architecture/microservices/community/packml-simulator/)
 
-## Connect OPC UA data sources
+## Connect OPC UA Data Sources
 
 OPC UA, often complex, can be streamlined using our Benthos-based OPC UA connector
 accessible from the Management Console.
@@ -93,7 +93,7 @@ The new data source will now appear in the **Data Sources** section.
 
 ![Data Sources Overview](/images/getstarted/dataAcquisitionManipulation/dataSourcesOverview.png?width=80%)
 
-## Connect MQTT data sources
+## Connect MQTT Data Sources
 
 MQTT data sources can be connected to UMH exclusively through Node-RED.
 
@@ -106,7 +106,7 @@ http://<instance-ip-address>:1880/nodered
 Replace `<instance-ip-address>` with your UMH instance's IP. Ensure you're on the
 same network for access.
 
-### Add the MQTT connection
+### Add the MQTT Connection
 
 In Node-RED, find the mqtt-in node from the node palette and drag it into your
 flow. Double-click to configure and click the **pencil button** next to the
@@ -143,6 +143,7 @@ this script:
 
 ```jsx
 msg.payload = String(msg.payload)
+msg.key = "temperatureCelsius"
 
 return msg;
 ```
@@ -176,13 +177,10 @@ umh.v1.<enterprise>.<site>.<area>.<line>.<workcell>.<originID>.<tagName>.<usecas
 Example topic for this tutorial:
 
 ```text
-umh.v1.pharma-genix.aachen.packaging.packaging_1.blister.PLC13.temperature._historian
+umh.v1.pharma-genix.aachen.packaging.packaging_1.blister
 ```
 
 To learn more about the UMH data-model, read the [documentation](/docs/architecture/datamodel).
-
-Check **Allow Auto Topic Creation** in **Advanced Options** for automatic topic
-creation if it doesn't exist.
 
 Click **Done** and deploy.
 
@@ -192,7 +190,97 @@ Optional: Add a debug node for output visualization.
 
 ![Node-RED MQTT to Kafka](/images/getstarted/dataAcquisitionManipulation/noderedMqttKafka.png?width=80%)
 
-## Connect Kafka data sources
+## Connect Kafka Data Sources
+
+Kafka data sources can be integrated with UMH exclusively through Node-RED.
+
+To access Node-RED's web interface, navigate to:
+
+```text
+http://<instance-ip-address>:1880/nodered
+```
+
+Replace `<instance-ip-address>` with your UMH instance's IP, ensuring you're on the
+same network for access.
+
+Before proceeding, make sure the node-red-contrib-kafkajs plugin is installed.
+For installation guidance, see
+[How to Get Missing Plugins in Node-RED](https://learn.umh.app/course/how-to-get-missing-plugins-in-node-red/).
+
+### Add the Kafka Connection
+
+In Node-RED, locate the kafka-consumer node and drag it into your flow.
+Double-click to configure and click the pencil button beside the **Server** field.
+
+Enter your Kafka broker's details:
+
+- **Server**: united-manufacturing-hub-kafka
+- **Port**: 9092
+
+Click **Add** to save.
+
+![Connect Kafka to Node-RED](/images/getstarted/dataAcquisitionManipulation/noderedKafkaConnection.png?width=80%)
+
+Set the subscription topic. For demonstration, we'll use the topic created earlier:
+
+```text
+umh.v1.pharma-genix.aachen.packaging.packaging_1.blister
+```
+
+Link a debug node to the kafka-consumer node, deploy, and observe messages in the
+debug pane.
+
+![Kafka Debug Connection](/images/getstarted/dataAcquisitionManipulation/noderedKafkaDebugConnection.png?width=30%)
+
+{{% notice note %}}
+For topic structuring guidelines, refer to [Unified Namespace](/docs/features/unified-namespace).
+{{% /notice %}}
+
+### Format Incoming Messages
+
+Since the data is already processed from the previous step, use a function node
+to convert the temperature from Celsius to Fahrenheit. Connect it to the
+kafka-consumer node and paste the following script:
+
+```jsx
+if (msg.payload.key != "temperatureCelsius") {
+    return null;
+}
+var celsius = Number(msg.payload.value)
+var fahrenheit = (celsius * 9 / 5) + 32
+
+msg.payload = String(fahrenheit)
+msg.key = "temperatureFahrenheit" // Save using a different key
+
+return msg;
+```
+
+This script selectively processes messages with the temperatureCelsius key,
+converting the value to Fahrenheit.
+
+Finalize with **Done**.
+
+### Send Formatted Data Back to Kafka
+
+Now, we'll route the transformed data back to the same UMH Kafka broker topic,
+showcasing contextualized data sharing within the same topic by altering the key.
+
+Add a kafka-producer node, connecting it to the function node. Use the same
+Kafka client as earlier, and the same topic for output:
+
+```text
+umh.v1.pharma-genix.aachen.packaging.packaging_1.blister
+```
+
+For more on UMH data modeling, consult the [documentation](/docs/architecture/datamodel).
+
+Press **Done** and deploy.
+
+{{% notice note %}}
+Consider adding a debug node for visualizing output data.
+{{% /notice %}}
+
+![Node-RED Kafka to Kafka](/images/getstarted/dataAcquisitionManipulation/noderedKafkaKafka.png?width=80%)
 
 ## {{% heading "troubleshooting" %}}
 
