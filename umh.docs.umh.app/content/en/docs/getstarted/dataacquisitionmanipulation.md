@@ -95,6 +95,103 @@ The new data source will now appear in the **Data Sources** section.
 
 ## Connect MQTT data sources
 
+MQTT data sources can be connected to UMH exclusively through Node-RED.
+
+To access Node-RED's web interface, navigate to:
+
+```text
+http://<instance-ip-address>:1880/nodered
+```
+
+Replace `<instance-ip-address>` with your UMH instance's IP. Ensure you're on the
+same network for access.
+
+### Add the MQTT connection
+
+In Node-RED, find the mqtt-in node from the node palette and drag it into your
+flow. Double-click to configure and click the **pencil button** next to the
+**Server** field.
+
+Enter your MQTT broker's details:
+
+- **Server**: united-manufacturing-hub-mqtt
+- **Port**: 1883
+
+(For UMH MQTT Simulator, use the settings above.)
+
+Click **Add** to save.
+
+![Connect MQTT to Node-RED](/images/getstarted/dataAcquisitionManipulation/noderedMqttConnection.png?width=80%)
+
+Define the subscription topic. For example,
+`ia/raw/development/ioTSensors/Temperature` is used by the MQTT Simulator.
+
+To test, link a debug node to the mqtt-in node and deploy. Open the debug pane
+by clicking on the **bug** icon on the top right of the screen to view messages
+from the broker.
+
+![MQTT Debug Connection](/images/getstarted/dataAcquisitionManipulation/noderedMqttDebugConnection.png)
+
+{{% notice note %}}
+Explore [Unified Namespace](/docs/features/unified-namespace) for details on topic structuring.
+{{% /notice %}}
+
+### Format Incoming Messages
+
+Use a function node to format raw data. Connect it to the mqtt-in node and paste
+this script:
+
+```jsx
+msg.payload = String(msg.payload)
+
+return msg;
+```
+
+Finalize with **Done**.
+
+{{% notice note %}}
+This function transforms the payload into a string, meeting Kafka's data requirements.
+{{% /notice %}}
+
+### Send Formatted Data to Kafka
+
+For this guide, we'll send data to the UMH Kafka broker.
+
+Ensure you have node-red-contrib-kafkajs installed. If not, see
+[How to Get Missing Plugins in Node-RED](https://learn.umh.app/course/how-to-get-missing-plugins-in-node-red/).
+
+Add a kafka-producer node, connecting it to the function node. Configure as follows:
+
+- **Broker**: united-manufacturing-hub-kafka:9092
+- **Client ID**: nodered
+
+**Update** to save.
+
+Structure Kafka topics according to UMH data model:
+
+```text
+umh.v1.<enterprise>.<site>.<area>.<line>.<workcell>.<originID>.<tagName>.<usecase>
+```
+
+Example topic for this tutorial:
+
+```text
+umh.v1.pharma-genix.aachen.packaging.packaging_1.blister.PLC13.temperature._historian
+```
+
+To learn more about the UMH data-model, read the [documentation](/docs/architecture/datamodel).
+
+Check **Allow Auto Topic Creation** in **Advanced Options** for automatic topic
+creation if it doesn't exist.
+
+Click **Done** and deploy.
+
+{{% notice note %}}
+Optional: Add a debug node for output visualization.
+{{% /notice %}}
+
+![Node-RED MQTT to Kafka](/images/getstarted/dataAcquisitionManipulation/noderedMqttKafka.png?width=80%)
+
 ## Connect Kafka data sources
 
 ## Connect HTTP data sources
