@@ -1,7 +1,7 @@
 ---
 title: 4. Data Visualization
 menuTitle: 4. Data Visualization
-description: Build a simple Grafana dashboard, with the gathered data.
+description: Build simple Grafana dashboards with the gathered data.
 weight: 4000
 ---
 
@@ -50,13 +50,14 @@ previous chapter.
 `tag` data from a specific `asset`.
 In the code snippet above, the arguments provided to the function are based on the OPC-UA node we defined in the
 [**Initialize the Connection**](/docs/getstarted/dataacquisitionmanipulation/#initialize-the-connection)
-section of chapter 3, so adjust them accordingly if you used different values.
+section of chapter 3, so adjust them accordingly if you used different values, these values can also be found at
+the **data dashboard** of the **Management Console**, which displays all OPC-UA nodes in a tree structure.
 {{% /notice %}}
 
 7. Click on **Run query** at the top right-hand corner of the code editor.
    ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisRunQuery.png?width=75%)
 
-8. Feel free to experiment with different queries to get a feel for the data model.
+8. Feel free to experiment with different queries to get a better feel for the data model.
 
 9. Next, you can customize your dashboard. On the right side, you'll find various
    options, such as specifying units or setting thresholds. Playaround until it
