@@ -2,23 +2,19 @@
 title: "3. Data Acquisition and Manipulation"
 menuTitle: "3. Data Acquisition and Manipulation"
 description: |
-   Learn how to connect various different data sources to the UMH and how to
-   format the data into the UMH data model.
+   Learn how to connect various data sources to the UMH and format data into the
+   UMH data model.
 weight: 3000
 ---
 
-One of the most powerful features of the United Manufacturing Hub is its ability
-to connect to various different data sources and to standardize the data into a
-common data model. This allows you to easily integrate your existing data
-infrastructure into the UMH and to use it for further processing and analysis.
+The United Manufacturing Hub excels in its ability to integrate diverse data
+sources and standardize data into a unified model, enabling seamless integration
+of existing data infrastructure for analysis and processing.
 
-There are currently two ways to connect data sources to the UMH: Benthos for
-OPC UA and [Node-RED](/docs/architecture/microservices/core/node-red/)
-for everything else.
+Currently, data sources can be connected to the UMH through Benthos for OPC UA
+and [Node-RED](/docs/architecture/microservices/core/node-red/) for other types.
 
-Conveniently, the UMH comes with 3 pre-configured data simulators that you can
-use to test how to connect data sources to the UMH. You can find more information
-about them in their respective pages:
+The UMH includes 3 pre-configured data simulators for testing connections:
 
 - [OPC UA Simulator](/docs/architecture/microservices/community/opcua-simulator/)
 - [MQTT Simulator](/docs/architecture/microservices/community/mqtt-simulator/)
@@ -26,11 +22,80 @@ about them in their respective pages:
 
 ## Connect OPC UA data sources
 
+OPC UA, often complex, can be streamlined using our Benthos-based OPC UA connector
+accessible from the Management Console.
+
 ### Create a Connection with the Management Console
+
+After logging into the Management Console and selecting your instance, navigate
+to the **Data Connections** tab to view existing connections.
+
+![Data Connections Overview](/images/getstarted/dataAcquisitionManipulation/dataConnectionsOverview.png?width=80%)
+
+**Uninitialized Connections** are established but not yet configured as data
+sources, while **Initialized Connections** are fully configured.***h
+
+The health status reflects the UMH-data source connection, not data transmission status.
+
+To add a new connection, click **Add Connection**. Currently, the only option is
+OPC UA Server. Enter the server details, including the unique name and address
+with protocol (`opc.tcp://`) and port (usually `4840`).
+
+For testing with the OPC UA simulator, use:
+
+```text
+opc.tcp://united-manufacturing-hub-opcuasimulator-service:46010
+```
+
+![OPC UA Connection Details](/images/getstarted/dataAcquisitionManipulation/addConnectionDetails.png?width=80%)
+
+Test the connection, and if successful, click **Add Connection**.
 
 ### Initialize the Connection
 
+After adding, you must initialize the connection. This creates a new Benthos
+deployment for data publishing to the UMH Kafka broker.
+
+Navigate to **Data Sources** > **Uninitialized Connections** and initiate the
+connection.
+
+![Initialize Connection](/images/getstarted/dataAcquisitionManipulation/initializeConnection.png?width=80%)
+
+Enter authentication details (use _Anonymous_ for no authentication, as with the
+OPC UA simulator).
+
+Specify OPC UA nodes to subscribe to in a yaml file, following the ISA95 standard:
+
+```yaml
+  nodes:
+    - opcuaID: ns=2;s=Pressure,
+      enterprise: pharma-genix,
+      site: aachen,
+      area: packaging,
+      line: packaging_1,
+      workcell: blister,
+      originID: PLC13,
+      tagName: machineState,
+      usecase: _historian
+```
+
+Mandatory fields are `opcuaID`, `enterprise`, `tagName` and `useCase`.
+
+{{% notice note %}}
+Learn more about [Data Modeling in the Unified Namespace](https://learn.umh.app/lesson/data-modeling-in-the-unified-namespace-mqtt-kafka/)
+in the Learning Hub.
+{{% /notice %}}
+
+Review and confirm the nodes, then proceed with initialization. Successful
+initialization will be indicated by a green message.
+
+The new data source will now appear in the **Data Sources** section.
+
+![Data Sources Overview](/images/getstarted/dataAcquisitionManipulation/dataSourcesOverview.png?width=80%)
+
 ## Connect MQTT data sources
+
+## Connect Kafka data sources
 
 ## Connect HTTP data sources
 
@@ -211,6 +276,9 @@ of all available message types and the respective topics.
 
     ![Untitled](/images/getstarted/dataAcquisitionManipulation/getStartedDataAcqManGreaterThan.png)
 
+## {{% heading "troubleshooting" %}}
+
+### I Can't Connect an OPC UA Data Souurce to the Management Console
 
 ## What's next?
 
