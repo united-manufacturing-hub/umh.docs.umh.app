@@ -30,12 +30,28 @@ previous chapter.
 5. Open the code editor by switching from **Builder** to **Code**.
    ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisCodeTab.png?width=75%)
 
-6. Now we can write queries to retrieve data from your OPC-UA nodes. Let's begin with the following SQL
-   query; just copy and paste it into the code editor.
+6. Now we can write queries to retrieve time series data from your OPC-UA nodes. Let's begin with the
+   following SQL query; just copy and paste it into the code editor.
 
    ```sql
-   SELECT name, value, timestamp FROM tag
+   SELECT name, value, timestamp
+   FROM tag
+   WHERE asset_id = get_asset_id(
+     'pharma-genix',
+     'aachen',
+     'packaging',
+     'packaging_1',
+     'blister'
+   );
    ```
+
+{{% notice info %}}
+`get_asset_id` is a custom plpgsql function that we provide to simplify the process of querying
+`tag` data from a specific `asset`.
+In the code snippet above, the arguments provided to the function are based on the OPC-UA node we defined in the
+[**Initialize the Connection**](/docs/getstarted/dataacquisitionmanipulation/#initialize-the-connection)
+section of chapter 3, so adjust them accordingly if you used different values.
+{{% /notice %}}
 
 7. Click on **Run query** at the top right-hand corner of the code editor.
    ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisRunQuery.png?width=75%)
