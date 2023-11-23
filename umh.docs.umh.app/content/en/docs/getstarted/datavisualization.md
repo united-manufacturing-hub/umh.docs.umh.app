@@ -1,17 +1,16 @@
 ---
 title: 4. Data Visualization
 menuTitle: 4. Data Visualization
-description: Build simple Grafana dashboards with the gathered data.
+description: Build a simple Grafana dashboard with the gathered data.
 weight: 4000
 ---
 
 In the following step, we will delve into the process of visualizing the data.
-This chapter focuses on the construction of dashboards using Grafana. One
-dashboard will be crafted around the OPC-UA data source, and the other will be
-centered on the Node-RED flow, both of which were established in the
-previous chapter.
+This chapter focuses on the construction of dashboards using Grafana. The
+dashboard will be crafted around the OPC-UA data source and the Node-RED flow,
+both of which were established in the previous chapter.
 
-## Creating a Grafana dashboard for OPC-UA Data Source
+## Creating a Grafana dashboard
 
 1. If you haven't done so already, open and log in to Grafana by following the instructions given in the
    [**Acess Grafana**](/docs/getstarted/managingthesystem/#access-grafana) section of chapter 2.
@@ -20,102 +19,66 @@ previous chapter.
    **dashboards**, and click on **+ New dashboard**.
    ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisNewDashboard.png?width=75%)
 
-3. Click on **Add a new panel**.
-   ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisNewPanel.png?width=75%)
+3. Click on **Add a new panel**, which will redirect you to the edit panel view.
 
 4. Next, we'll retrieve OPC-UA data from TimescaleDB. Before moving forward, ensure that the
    **UMH TimescaleDB** data source is selected; it should be the default choice.
    ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisTimescaleDatasource.png?width=75%)
 
-5. Open the code editor by switching from **Builder** to **Code**.
-   ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisCodeTab.png?width=75%)
+5. We'll show you how to run queries with both the **Builder** mode (a graphical query builder) and the
+   **Code** mode (a code editor to write RAW SQL). Let's begin with the graphical approach.
 
-6. Now we can write queries to retrieve time series data from your OPC-UA nodes. Let's begin with the
-   following SQL query; just copy and paste it into the code editor.
+6. Let's query all `value`, `timestamp` and `name` columns from the `tag` table. For some guidance, refer to the
+   image below.
+   ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisQueryUI.png?width=75%)
 
-   ```sql
-   SELECT name, value, timestamp
-   FROM tag
-   WHERE asset_id = get_asset_id(
-     'pharma-genix',
-     'aachen',
-     'packaging',
-     'packaging_1',
-     'blister'
-   );
-   ```
+7. Click on the **Run Query** button located next to the Builder/Code modes switcher.
+
+8. You should now see a time series graph based on the query you just ran. The Builder mode is a great way to get
+   started, but it has its limitations. For more complex use cases, we recommend using the Code mode, which we'll
+   cover in the next steps.
+
+9. Open the code editor by switching from **Builder** to **Code**.
+
+10. Now we'll run a slightly more complex query. We'll retrieve the same columns as before, but this time only for a
+    specific `asset`.
+
+    ```sql
+    SELECT name, value, timestamp
+    FROM tag
+    WHERE asset_id = get_asset_id(
+      'pharma-genix',
+      'aachen',
+      'packaging',
+      'packaging_1',
+      'blister'
+    );
+    ```
 
 {{% notice info %}}
 `get_asset_id` is a custom plpgsql function that we provide to simplify the process of querying
 `tag` data from a specific `asset`.
 In the code snippet above, the arguments provided to the function are based on the OPC-UA node we defined in the
 [**Initialize the Connection**](/docs/getstarted/dataacquisitionmanipulation/#initialize-the-connection)
-section of chapter 3, so adjust them accordingly if you used different values, these values can also be found at
-the **data dashboard** of the **Management Console**, which displays all OPC-UA nodes in a tree structure.
+section of the previous chapter, so adjust them accordingly if you used different values, these values can also be
+found at the **data dashboard** of the **Management Console**, which displays all OPC-UA nodes in a tree structure.
 {{% /notice %}}
 
-7. Click on **Run query** at the top right-hand corner of the code editor.
-   ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisRunQuery.png?width=75%)
+11. Same as before, click on the **Run Query** button to execute the query. If you've been following along, you won't
+    see any noticeable changes, since we only have one `asset` in our database.
 
-8. Feel free to experiment with different queries to get a better feel for the data model.
+12. Feel free to experiment with different queries to get a better feel for the data model.
 
-9. Next, you can customize your dashboard. On the right side, you'll find various
-   options, such as specifying units or setting thresholds. Playaround until it
-   suits your needs.
+13. Next, you can customize your dashboard. On the right side, you'll find various
+    options, such as specifying units or setting thresholds. Playaround until it
+    suits your needs.
 
-10. Once you're done making adjustments, click on the blue **Apply** button in the
+14. Once you're done making adjustments, click on the blue **Apply** button in the
     top right-hand corner to save the panel and return to the overview.
 
-11. Congratulations, you have created your first Grafana dashboard, and for now it
+15. Congratulations, you have created your first Grafana dashboard, and for now it
     should look similar to the one below.
     ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisDashboard1.png?width=75%)
-
-12. If you're interested in creating a dashboard for the Node-RED flow, don't worry,
-    we got you covered in the next section. Otherwise, you can skip ahead to the
-    [**Moving to Production**](/docs/getstarted/movingtoproduction/) chapter.
-
-## Creating a Grafana dashboard for Node-RED flow
-
-1. Assuming you're at the panel overview, click on **Add Panel** at the top
-   right-hand corner to create a new one. Otherwise, follow the steps 1-3
-   from the [above section](#creating-a-grafana-dashboard-for-opc-ua-data-source).
-   ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisAddingNewPanel.png?width=75%)
-
-2. Next we will configure the **datasource-v2**, to retrieve the data we earlier
-   transformed in Node-RED. Click on **umh-datasource** and switch to
-   **umh-v2-datasource**.
-   ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisDatasourceV2.png?width=75%)
-
-3. Go to **Work cell to query** and select under **Select new work cell**:
-   `factoryinsight->Aachen->DefaultArea->DefaultProductionLine->testing`
-
-{{% notice info %}}
-One can notice, that this is not the exact topic, set in the Node-RED flow
-before. This due to our not yet finalized data model and not every part of
-it is fully utilized yet. In the future, `DefaultArea` and
-`DefaultProductionLine` will be replaced by actual values.
-{{% /notice %}}
-
-4. To select the temperature value, go to **Value to query** and
-   select under **Select new value**:
-   `tags->custom->temperature`.
-
-5. Click on **Refresh Dashboard** at the top right-hand corner,
-   the graph will refresh and display the temperature data.
-   ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisRefreshDashboard.png?width=75%)
-
-6. Same as before, feel free to customize your panel to your liking.
-
-7. Save your panel by clicking on the blue **Apply** button in the top right-hand
-   corner.
-
-8. Back at the panel overview, you should now see both panels, similar to the
-   image below.
-   <!-- ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisDashboard2.png?width=75%) -->
-
-9. This concludes the **Data Visualization** chapter. If you're interested in
-   learning more about Grafana, we recommend checking out the official
-   [documentation](https://grafana.com/docs/grafana/latest/).
 
 ## What's next?
 
