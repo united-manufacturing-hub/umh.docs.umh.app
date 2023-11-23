@@ -7,7 +7,7 @@ weight: 4000
 
 In the following step, we will delve into the process of visualizing the data.
 This chapter focuses on the construction of dashboards using Grafana. One
-dashboard will be crafted around the OPC_UA data source, and the other will be
+dashboard will be crafted around the OPC-UA data source, and the other will be
 centered on the Node-RED flow, both of which were established in the
 previous chapter.
 
@@ -23,12 +23,53 @@ previous chapter.
 3. Click on **Add a new panel**.
    ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisNewPanel.png?width=75%)
 
-4. Next we will configure the **datasource-v2**, to retrieve the data we earlier
+4. Next, we'll retrieve OPC-UA data from TimescaleDB. Before moving forward, ensure that the
+   **UMH TimescaleDB** data source is selected; it should be the default choice.
+   ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisTimescaleDatasource.png?width=75%)
+
+5. Open the code editor by switching from **Builder** to **Code**.
+   ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisCodeTab.png?width=75%)
+
+6. Now we can write queries to retrieve data from your OPC-UA nodes. Let's begin with the following SQL
+   query; just copy and paste it into the code editor.
+
+   ```sql
+   SELECT name, value, timestamp FROM tag
+   ```
+
+7. Click on **Run query** at the top right-hand corner of the code editor.
+   ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisRunQuery.png?width=75%)
+
+8. Feel free to experiment with different queries to get a feel for the data model.
+
+9. Next, you can customize your dashboard. On the right side, you'll find various
+   options, such as specifying units or setting thresholds. Playaround until it
+   suits your needs.
+
+10. Once you're done making adjustments, click on the blue **Apply** button in the
+    top right-hand corner to save the panel and return to the overview.
+
+11. Congratulations, you have created your first Grafana dashboard, and for now it
+    should look similar to the one below.
+    ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisDashboard1.png?width=75%)
+
+12. If you're interested in creating a dashboard for the Node-RED flow, don't worry,
+    we got you covered in the next section. Otherwise, you can skip ahead to the
+    [**Moving to Production**](/docs/getstarted/movingtoproduction/) chapter.
+
+## Creating a Grafana dashboard for Node-RED flow
+
+1. Assuming you're at the panel overview, click on **Add Panel** at the top
+   right-hand corner to create a new one. Otherwise, follow the steps 1-3
+   from the [above section](#creating-a-grafana-dashboard-for-opc-ua-data-source).
+   ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisAddingNewPanel.png?width=75%)
+
+2. Next we will configure the **datasource-v2**, to retrieve the data we earlier
    transformed in Node-RED. Click on **umh-datasource** and switch to
    **umh-v2-datasource**.
    ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisDatasourceV2.png?width=75%)
 
-5. Go to **Work cell to query** and select under **Select new work cell**:
+3. Go to **Work cell to query** and select under **Select new work cell**:
    `factoryinsight->Aachen->DefaultArea->DefaultProductionLine->testing`
 
 {{% notice info %}}
@@ -38,32 +79,26 @@ it is fully utilized yet. In the future, `DefaultArea` and
 `DefaultProductionLine` will be replaced by actual values.
 {{% /notice %}}
 
-6. To select the temperature value, go to **Value to query** and
+4. To select the temperature value, go to **Value to query** and
    select under **Select new value**:
    `tags->custom->temperature`.
 
-7. Click on **Refresh Dashboard** at the top right-hand corner,
+5. Click on **Refresh Dashboard** at the top right-hand corner,
    the graph will refresh and display the temperature data.
    ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisRefreshDashboard.png?width=75%)
 
-8. Next, you can customise your dashboard. On the right side are several
-   options, such as specifying a unit or setting thresholds, etc. Just play
-   around until it suits your needs.
+6. Same as before, feel free to customize your panel to your liking.
 
-9. Once you're done making adjustments, click on the blue **Apply** button in the
-   top right-hand corner to save the panel and return to the overview.
+7. Save your panel by clicking on the blue **Apply** button in the top right-hand
+   corner.
 
-10. Congratulations, you have created your first Grafana dashboard, and it
-    should look something like the one below.
-    <!-- TODO: Update this pic -->
-    ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisFinishedDashbaord.png?width=75%)
+8. Back at the panel overview, you should now see both panels, similar to the
+   image below.
+   <!-- ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisDashboard2.png?width=75%) -->
 
-## Creating a Grafana dashboard for Node-RED flow
-
-1. Assuming you're at the panel overview, click on **Add Panel** at the top
-   right-hand corner to create a new one. Otherwise, follow the steps 1-3
-   from the [above section](#creating-a-grafana-dashboard-for-node-red-flow).
-   ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisAddingNewPanel.png?width=75%)
+9. This concludes the **Data Visualization** chapter. If you're interested in
+   learning more about Grafana, we recommend checking out the official
+   [documentation](https://grafana.com/docs/grafana/latest/).
 
 ## What's next?
 
