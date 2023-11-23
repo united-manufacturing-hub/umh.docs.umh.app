@@ -282,11 +282,8 @@ Consider adding a debug node for visualizing output data.
 
 ![Node-RED Kafka to Kafka](/images/getstarted/dataAcquisitionManipulation/noderedKafkaKafka.png?width=80%)
 
-## {{% heading "troubleshooting" %}}
+## {{% heading "whatsnext" %}}
 
-### I Can't Connect an OPC UA Data Souurce to the Management Console
-
-## What's next?
-
-  Continue with the tutorial in the Management Console. The next chapter will
-  be about the use of Grafana to [display the formatted data](https://umh.docs.umh.app/docs/getstarted/datavisualization/) to proceed.
+Next, we'll dive into [Data Visualization](/docs/getstarted/datavisualization),
+where you'll learn to create Grafana dashboards using your newly configured data
+sources. This next chapter will help you visualize and interpret your data effectively.
