@@ -7,11 +7,11 @@ weight: 4000
 
 In the following step, we will delve into the process of visualizing the data.
 This chapter focuses on the construction of dashboards using Grafana. One
-dashboard will be crafted around the Node-RED flow, and the other will be
-centered on the OPC-UA data source, both of which were established in the
+dashboard will be crafted around the OPC_UA data source, and the other will be
+centered on the Node-RED flow, both of which were established in the
 previous chapter.
 
-## Creating a Grafana dashboard
+## Creating a Grafana dashboard for OPC-UA Data Source
 
 1. If you haven't done so already, open and log in to Grafana by following the instructions given in the
    [**Acess Grafana**](/docs/getstarted/managingthesystem/#access-grafana) section of chapter 2.
@@ -50,27 +50,20 @@ it is fully utilized yet. In the future, `DefaultArea` and
    options, such as specifying a unit or setting thresholds, etc. Just play
    around until it suits your needs.
 
-9. Once finished making adjustments, click on the blue **Apply** button in the
+9. Once you're done making adjustments, click on the blue **Apply** button in the
    top right-hand corner to save the panel and return to the overview.
 
-10. The next step is to display the temperature warnings. Click **Add Panel**
-    at the top right to create an additional panel.
-    ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisAddingNewPanel.png?width=75%)
-
-11. Repeat the steps discussed earlier, but this time, select
-    **TemperatureWarning** instead of **temperature** under **Value to query**.
-
-12. Instead of a time series chart to display the temperature warnings, select
-    **Stat** on the right side.
-    ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisStat.png?width=75%)
-
-13. Now you can again customize your panel and when you are done click on
-    **Apply**.
-
-14. Congratulations, you have created your first Grafana dashboard, and it
+10. Congratulations, you have created your first Grafana dashboard, and it
     should look something like the one below.
-
+    <!-- TODO: Update this pic -->
     ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisFinishedDashbaord.png?width=75%)
+
+## Creating a Grafana dashboard for Node-RED flow
+
+1. Assuming you're at the panel overview, click on **Add Panel** at the top
+   right-hand corner to create a new one. Otherwise, follow the steps 1-3
+   from the [above section](#creating-a-grafana-dashboard-for-node-red-flow).
+   ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisAddingNewPanel.png?width=75%)
 
 ## What's next?
 
