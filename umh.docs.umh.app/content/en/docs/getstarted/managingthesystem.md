@@ -202,7 +202,8 @@ http://<instance-ip-address>:8090
 
 UMH uses TimescaleDB for database needs.
 
-After logging in as the root user, open a `psql` session with this command:
+After logging in as the root user with `sudo su`, open a `psql` session with
+this command:
 
 ```bash
 kubectl exec -it $(kubectl get pods --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub -l app.kubernetes.io/component=timescaledb -o jsonpath="{.items[0].metadata.name}") --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub -- psql -U postgres
