@@ -5,16 +5,13 @@ description: Move the United Manufacturing Hub to production.
 weight: 5000
 ---
 
-Discover the power of the United Manufacturing Hub (UMH) — where efficiency meets insight. Whether you're eager to dive into local/production deployment or just wish to explore more about our product, the choice is yours.
+This chapter involves deploying the United Manufacturing Hub (UMH) on a virtual machine or an edge device in your production environment and connecting with your production assets. However, we recognize the importance of familiarizing yourself with the United Manufacturing Hub beforehand. Feel free to delve deeper into our product, explore the specifics of local installation, or proceed with the production deployment. The guide below will kickstart your UMH journey in a production setting.
 
 ## Check out our community
 
-We are quite active on GitHub and Discord. Feel free to join, introduce
-yourself and share your best-practices and experiences.
+We are quite active on GitHub and Discord.
 
-- [Give us a star on GitHub](https://github.com/united-manufacturing-hub/united-manufacturing-hub)
-- [Join our Discord channel](https://discord.gg/F9mqkZnm9d)
-- [Take a look at the Community Repository](https://github.com/united-manufacturing-hub/community-repo)
+Feel free to join our [community](https://www.umh.app/community), introduce yourself and share your best-practices and experiences.
 
 ## Learn more about the United Manufacturing Hub
 
