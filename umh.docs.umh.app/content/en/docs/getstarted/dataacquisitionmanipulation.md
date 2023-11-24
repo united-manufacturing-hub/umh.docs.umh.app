@@ -68,15 +68,15 @@ Specify OPC UA nodes to subscribe to in a yaml file, following the ISA95 standar
 
 ```yaml
   nodes:
-    - opcuaID: ns=2;s=Pressure,
-      enterprise: pharma-genix,
-      site: aachen,
-      area: packaging,
-      line: packaging_1,
-      workcell: blister,
-      originID: PLC13,
-      tagName: machineState,
-      usecase: _historian
+    - opcuaID: ns=2;s=Pressure
+      enterprise: pharma-genix
+      site: aachen
+      area: packaging
+      line: packaging_1
+      workcell: blister
+      originID: PLC13
+      tagName: machineState
+      useCase: _historian
 ```
 
 Mandatory fields are `opcuaID`, `enterprise`, `tagName` and `useCase`.
