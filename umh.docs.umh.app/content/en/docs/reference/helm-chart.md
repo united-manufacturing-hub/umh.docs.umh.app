@@ -159,10 +159,14 @@ The following table lists the configuration options that can be set in the
 `_000_commonConfig.datamodel_v2` section:
 
 {{< table caption="datamodel_v2 section parameters" >}}
-| Parameter | Description                                | Type | Allowed values  | Default               |
-| --------- | ------------------------------------------ | ---- | --------------- | --------------------- |
-| `enabled` | Whether the UNS data model should be used. | bool | `true`, `false` | `true`                |
-| `bridges` | List of data bridges to create.            | list | See below       | [See below](#bridges) |
+| Parameter            | Description                                           | Type   | Allowed values  | Default                  |
+| -------------------- | ----------------------------------------------------- | ------ | --------------- | ------------------------ |
+| `enabled`            | Whether the UNS data model should be used.            | bool   | `true`, `false` | `true`                   |
+| `bridges`            | List of data bridges to create.                       | list   | See below       | [See below](#bridges)    |
+| `database.name`      | The name of the database to use for the data model v2 | string | Any             | umh_v2                   |
+| `database.host`      | The host of the database to use for the data model v2 | string | Any             | united-manufacturing-hub |
+| `grafana.dbreader`   | The name of the Grafana read-only database user       | string | Any             | grafanareader            |
+| `grafana.dbpassword` | The password of the Grafana read-only database user   | string | Any             | changeme                 |
 {{< /table >}}
 
 ##### Bridges
@@ -618,31 +622,32 @@ Everything below this point  should not be changed, unless you know what you are
 {{< /notice >}}
 
 {{< table caption="Danger zone advanced configuration" >}}
-| Section                                            | Description                                                     |
-| -------------------------------------------------- | --------------------------------------------------------------- |
-| [`barcodereader`](#dz-barcodereader)               | Configuration for barcodereader                                 |
-| [`databridge`](#dz-databridge)                     | Configuration for databridge                                    |
-| [`factoryinput`](#dz-factoryinput)                 | Configuration for factoryinput                                  |
-| [`factoryinsight`](#dz-factoryinsight)             | Configuration for factoryinsight                                |
-| [`grafana`](#dz-grafana)                           | Configuration for Grafana                                       |
-| [`grafanaproxy`](#dz-grafana-proxy)                | Configuration for the Grafana proxy                             |
-| [`iotsensorsmqtt`](#dz-iotsensorsmqtt)             | Configuration for the IoTSensorsMQTT simulator                  |
-| [`kafkabridge`](#dz-kafka-bridge)                  | Configuration for kafka-bridge                                  |
-| [`kafkastatedetector`](#dz-kafka-state-detector)   | Configuration for kafka-state-detector                          |
-| [`kafkatopostgresql`](#dz-kafka-to-postgresql)     | Configuration for kafka-to-postgresql                           |
-| [`metrics`](#dz-metrics)                           | Configuration for the metrics                                   |
-| [`mqtt_broker`](#dz-mqtt-broker)                   | Configuration for the MQTT broker                               |
-| [`mqttbridge`](#dz-mqtt-bridge)                    | Configuration for mqtt-bridge                                   |
-| [`mqttkafkabridge`](#dz-mqtt-kafka-bridge)         | Configuration for mqtt-kafka-bridge                             |
-| [`nodered`](#dz-node-red)                          | Configuration for Node-RED                                      |
-| [`opcuasimulator`](#dz-opcua-simulator)            | Configuration for the OPC UA simulator                          |
-| [`packmlmqttsimulator`](#dz-packml-mqtt-simulator) | Configuration for the PackML MQTT simulator                     |
-| [`redis`](#dz-redis)                               | Configuration for Redis                                         |
-| [`redpanda`](#dz-kafka-broker)                     | Configuration for the Kafka broker                              |
-| [`sensorconnect`](#dz-sensorconnect)               | Configuration for sensorconnect                                 |
-| [`serviceAccount`](#service-account)               | Configuration for the service account used by the microservices |
-| [`timescaledb-single`](#dz-timescaledb-single)     | Configuration for TimescaleDB                                   |
-| [`tulipconnector`](#dz-tulip-connector)            | Configuration for tulip-connector                               |
+| Section                                             | Description                                                     |
+| --------------------------------------------------- | --------------------------------------------------------------- |
+| [`barcodereader`](#dz-barcodereader)                | Configuration for barcodereader                                 |
+| [`databridge`](#dz-databridge)                      | Configuration for databridge                                    |
+| [`factoryinput`](#dz-factoryinput)                  | Configuration for factoryinput                                  |
+| [`factoryinsight`](#dz-factoryinsight)              | Configuration for factoryinsight                                |
+| [`grafana`](#dz-grafana)                            | Configuration for Grafana                                       |
+| [`grafanaproxy`](#dz-grafana-proxy)                 | Configuration for the Grafana proxy                             |
+| [`iotsensorsmqtt`](#dz-iotsensorsmqtt)              | Configuration for the IoTSensorsMQTT simulator                  |
+| [`kafkabridge`](#dz-kafka-bridge)                   | Configuration for kafka-bridge                                  |
+| [`kafkastatedetector`](#dz-kafka-state-detector)    | Configuration for kafka-state-detector                          |
+| [`kafkatopostgresql`](#dz-kafka-to-postgresql)      | Configuration for kafka-to-postgresql                           |
+| [`kafkatopostgresqlv2`](#dz-kafka-to-postgresql-v2) | Configuration for kafka-to-postgresql-v2                        |
+| [`metrics`](#dz-metrics)                            | Configuration for the metrics                                   |
+| [`mqtt_broker`](#dz-mqtt-broker)                    | Configuration for the MQTT broker                               |
+| [`mqttbridge`](#dz-mqtt-bridge)                     | Configuration for mqtt-bridge                                   |
+| [`mqttkafkabridge`](#dz-mqtt-kafka-bridge)          | Configuration for mqtt-kafka-bridge                             |
+| [`nodered`](#dz-node-red)                           | Configuration for Node-RED                                      |
+| [`opcuasimulator`](#dz-opcua-simulator)             | Configuration for the OPC UA simulator                          |
+| [`packmlmqttsimulator`](#dz-packml-mqtt-simulator)  | Configuration for the PackML MQTT simulator                     |
+| [`redis`](#dz-redis)                                | Configuration for Redis                                         |
+| [`redpanda`](#dz-kafka-broker)                      | Configuration for the Kafka broker                              |
+| [`sensorconnect`](#dz-sensorconnect)                | Configuration for sensorconnect                                 |
+| [`serviceAccount`](#service-account)                | Configuration for the service account used by the microservices |
+| [`timescaledb-single`](#dz-timescaledb-single)      | Configuration for TimescaleDB                                   |
+| [`tulipconnector`](#dz-tulip-connector)             | Configuration for tulip-connector                               |
 {{< /table >}}
 
 ### Sections
@@ -835,9 +840,24 @@ datasources.yaml:
         apiKeyConfigured: true
       version: 1
       # <bool> allow users to edit datasources from the UI.
-      isDefault: true
+      isDefault: false
       editable: false
-    # <string, required> name of the datasource. Required
+    - name: UMH TimescaleDB 
+      type: postgres
+      url: united-manufacturing-hub:5432
+      user: $GRAFANAREADER_USER
+      isDefault: true
+      secureJsonData:
+        password: $GRAFANAREADER_PASSWORD
+      jsonData:
+        database: umh_v2
+        sslmode: 'require' # disable/require/verify-ca/verify-full
+        maxOpenConns: 100 # Grafana v5.4+
+        maxIdleConns: 100 # Grafana v5.4+
+        maxIdleConnsAuto: true # Grafana v9.5.1+
+        connMaxLifetime: 14400 # Grafana v5.4+
+        postgresVersion: 1300 # 903=9.3, 904=9.4, 905=9.5, 906=9.6, 1000=10
+        timescaledb: true
 ```
 
 ##### envValueFrom {#dz-grafana-envValueFrom}
@@ -846,12 +866,14 @@ The `envValueFrom` section contains the configuration of the environment
 variables to add to the Pod, from a secret or a configmap.
 
 {{< table caption="grafana envValueFrom section parameters" >}}
-| Parameter                   | Description                                                      | Value from   | Name                                                 | Key        |
-| --------------------------- | ---------------------------------------------------------------- | ------------ | ---------------------------------------------------- | ---------- |
-| `FACTORYINSIGHT_APIKEY`     | The API key to use to authenticate to the Factoryinsight API     | secretKeyRef | {{< resource type="secret" name="factoryinsight" >}} | apiKey     |
-| `FACTORYINSIGHT_BASEURL`    | The base URL of the Factoryinsight API                           | secretKeyRef | {{< resource type="secret" name="factoryinsight" >}} | baseURL    |
-| `FACTORYINSIGHT_CUSTOMERID` | The customer ID to use to authenticate to the Factoryinsight API | secretKeyRef | {{< resource type="secret" name="factoryinsight" >}} | customerID |
-| `FACTORYINSIGHT_PASSWORD`   | The password to use to authenticate to the Factoryinsight API    | secretKeyRef | {{< resource type="secret" name="factoryinsight" >}} | password   |
+| Parameter                   | Description                                                      | Value from    | Name                                                 | Key                   |
+| --------------------------- | ---------------------------------------------------------------- | ------------- | ---------------------------------------------------- | --------------------- |
+| `FACTORYINSIGHT_APIKEY`     | The API key to use to authenticate to the Factoryinsight API     | secretKeyRef  | {{< resource type="secret" name="factoryinsight" >}} | apiKey                |
+| `FACTORYINSIGHT_BASEURL`    | The base URL of the Factoryinsight API                           | secretKeyRef  | {{< resource type="secret" name="factoryinsight" >}} | baseURL               |
+| `FACTORYINSIGHT_CUSTOMERID` | The customer ID to use to authenticate to the Factoryinsight API | secretKeyRef  | {{< resource type="secret" name="factoryinsight" >}} | customerID            |
+| `FACTORYINSIGHT_PASSWORD`   | The password to use to authenticate to the Factoryinsight API    | secretKeyRef  | {{< resource type="secret" name="factoryinsight" >}} | password              |
+| `GRAFANAREADER_USER`        | The name of the Grafana read-only user for the data model v2     | secretKeyRef" | {{< resource type="secret" name="grafana" >}}        | grafanareader         |
+| `GRAFANAREADER_PASSWORD`    | The password of the Grafana read-only user for the data model v2 | secretKeyRef" | {{< resource type="secret" name="grafana" >}}        | grafanareaderpassword |
 {{< /table >}}
 
 ##### env {#dz-grafana-env}
@@ -972,8 +994,8 @@ The `kafkastatedetector` section contains the configuration of the
 {{< table caption="kafkastatedetector section parameters" >}}
 | Parameter          | Description                                                                          | Type   | Allowed values              | Default                                                         |
 | ------------------ | ------------------------------------------------------------------------------------ | ------ | --------------------------- | --------------------------------------------------------------- |
-| `activityEnabled`  | Controls whether to check the activity of the Kafka broker                            | bool   | `true`, `false`             | `true`                                                          |
-| `anomalyEnabled`   | Controls whether to check for anomalies in the Kafka broker                           | bool   | `true`, `false`             | `true`                                                          |
+| `activityEnabled`  | Controls whether to check the activity of the Kafka broker                           | bool   | `true`, `false`             | `true`                                                          |
+| `anomalyEnabled`   | Controls whether to check for anomalies in the Kafka broker                          | bool   | `true`, `false`             | `true`                                                          |
 | `enabled`          | Whether to enable the Kafka state detector                                           | bool   | `true`, `false`             | `true`                                                          |
 | `image.pullPolicy` | The image pull policy                                                                | string | Always, IfNotPresent, Never | IfNotPresent                                                    |
 | `image.repository` | The image of the kafkastatedetector microservice                                     | string | Any                         | {{< resource type="docker" name="repo" >}}/kafka-state-detector |
@@ -1000,6 +1022,36 @@ The `kafkatopostgresql` section contains the configuration of the
 | `resources.limits.memory`   | The memory limit                                                                    | string | Any                         | 300Mi                                                          |
 | `resources.requests.cpu`    | The CPU request                                                                     | string | Any                         | 50m                                                            |
 | `resources.requests.memory` | The memory request                                                                  | string | Any                         | 150Mi                                                          |
+{{< /table >}}
+
+#### kafkatopostgresqlv2 {#dz-kafka-to-postgresql-v2}
+
+The `kafkatopostgresqlv2` section contains the configuration of the
+[Kafka to PostgreSQL v2](/docs/architecture/microservices/core/kafka-to-postgresql-v2) microservice.
+
+{{< table caption="kafkatopostgresqlv2 section parameters" >}}
+| Parameter                            | Description                                                                                                                    | Type   | Allowed values              | Default                                                           |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------ | --------------------------- | ----------------------------------------------------------------- |
+| `enabled`                            | Whether to enable the Kafka to PostgreSQL v2 microservice                                                                      | bool   | `true`, `false`             | `true`                                                            |
+| `image.pullPolicy`                   | The image pull policy                                                                                                          | string | Always, IfNotPresent, Never | IfNotPresent                                                      |
+| `image.repository`                   | The image of the kafkatopostgresqlv2 microservice                                                                              | string | Any                         | {{< resource type="docker" name="repo" >}}/kafka-to-postgresql-v2 |
+| `image.tag`                          | The tag of the kafkatopostgresqlv2 microservice. Defaults to Chart version if not set                                          | string | Any                         | {{< latest-semver >}}                                             |
+| `replicas`                           | The number of Pod replicas                                                                                                     | int    | Any                         | 1                                                                 |
+| `resources.limits.cpu`               | The CPU limit                                                                                                                  | string | Any                         | 200m                                                              |
+| `resources.limits.memory`            | The memory limit                                                                                                               | string | Any                         | 300Mi                                                             |
+| `resources.requests.cpu`             | The CPU request                                                                                                                | string | Any                         | 50m                                                               |
+| `resources.requests.memory`          | The memory request                                                                                                             | string | Any                         | 150Mi                                                             |
+| `probes.startup.failureThreshold`    | The failure threshold of the startup probe                                                                                     | int    | Any                         | 30                                                                |
+| `probes.startup.initialDelaySeconds` | The initial delay of the startup probe                                                                                         | int    | Any                         | 10                                                                |
+| `probes.startup.periodSeconds`       | The period of the startup probe                                                                                                | int    | Any                         | 10                                                                |
+| `probes.liveness.periodSeconds`      | The period of the liveness probe                                                                                               | int    | Any                         | 10                                                                |
+| `probes.readiness.periodSeconds`     | The period of the readiness probe                                                                                              | int    | Any                         | 10                                                                |
+| `logging.level`                      | The logging level of the microservice                                                                                          | string | PRODUCTION, DEVELOPMENT     | PRODUCTION                                                        |
+| `asset.cach.lru.size`                | The size of the LRU cache                                                                                                      | int    | Any                         | 1000                                                              |
+| `workers.channel.size`               | Size in messages for each worker's channel                                                                                     | int    | Any                         | 10000                                                             |
+| `workers.goroutines.multiplier`      | The multiplier of the number of goroutines. The total number of goroutines is determined by the CPU count times the multiplier | int    | Any                         | 16                                                                |
+| `database.user`                      | The name of the database user for the Kafka to PostgreSQL v2 microservice                                                      | string | Any                         | kafkatopostgresqlv2                                               |
+| `database.password`                  | The password of the database user for the Kafka to PostgreSQL v2 microservice                                                  | string | Any                         | changemetoo                                                       |
 {{< /table >}}
 
 #### metrics {#dz-metrics}
