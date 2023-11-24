@@ -51,8 +51,10 @@ The installation is well documented in the [first chapter](/docs/getstarted/inst
 #### 4. Network Configuration
 
 Once your UMH instance is up and running, ensure it is placed in the same network as your machines. Additionally, ensure that the device running the Management Console is also within the same network.
+This step is crucial for facilitating seamless communication, especially when using advanced tools like Grafana or Node-RED.
 
-This step is crucial for seamless communication between the UMH instance and your machines. Verify the network settings to guarantee proper data exchange.
+While basic management and monitoring with the **Management Console** don't necessarily demand extensive network configuration, it's important to note that various open-source tools integrated into UMH do.
+For instance, issues may arise if your organization uses a misconfigured VPN or firewall that restricts certain ports, potentially impacting access to these tools.
 
 #### 5. Configure Connections and Data Sources
 
