@@ -5,7 +5,7 @@ description: Move the United Manufacturing Hub to production.
 weight: 5000
 ---
 
-This chapter involves deploying the United Manufacturing Hub (UMH) on a virtual machine or an edge device in your production environment and connecting with your production assets. However, we recognize the importance of familiarizing yourself with the United Manufacturing Hub beforehand. Feel free to delve deeper into our product, explore the specifics of local installation, or proceed with the production deployment. The guide below will kickstart your UMH journey in a production setting.
+This chapter involves deploying the United Manufacturing Hub (UMH) on a virtual machine or an edge device, allowing you to connect with your production assets. However, we recognize the importance of familiarizing yourself with the United Manufacturing Hub beforehand. Feel free to delve deeper into our product, explore the specifics of local installation, or proceed with the production deployment. The guide below will kickstart your UMH journey in a production setting.
 
 ## Check out our community
 
