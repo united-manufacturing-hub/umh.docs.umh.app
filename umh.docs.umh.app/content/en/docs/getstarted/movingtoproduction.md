@@ -5,13 +5,7 @@ description: Move the United Manufacturing Hub to production.
 weight: 5000
 ---
 
-The next big step is to use the UMH on a virtual machine or an edge device in
-your production and connect your production assets. However, we understand that
-you might want to understand a little bit more about the United Manufacturing
-Hub first. So, you can either read more about our product, deep-dive into your
-local installation, or continue with the deployment in production.
-You can use the guide below to get started with the UMH in production
-and connect a few machines to a single instance.
+Discover the power of the United Manufacturing Hub (UMH) — where efficiency meets insight. Whether you're eager to dive into local/production deployment or just wish to explore more about our product, the choice is yours.
 
 ## Check out our community
 
@@ -32,7 +26,7 @@ following chapters:
 - [Architecture](/docs/architecture/) to learn what is behind the United
   Manufacturing Hub and how everything works together.
 
-If reading is not your thing, you can always...
+Ready to transition to production? Continue reading to discover how to install UMH and seamlessly connect multiple machines to your instance.
 
 ## Set up your first instance and connect to a few machines
 
@@ -40,7 +34,7 @@ If you want to get a first impression of the UMH in a production environment, co
 
 #### 1. Choose an Edge Device or VM (Recommended: VM)
 
-Before starting the installation process, decide whether to use a generic server or edge device, or a virtual machine (VM). For ease of setup, we recommend using a VM. Ensure that the selected device has network access to the machines.
+Before starting the installation process, decide whether to use virtual machine (VM), or a generic server or edge device. For ease of setup, we recommend using a VM. Ensure that the selected device has network access to the machines.
 
 #### 2. Select Machines with OPC UA for Testing
 
@@ -86,7 +80,7 @@ If you encounter any issues, feel free to ask for help on our Discord channel.
 
 ## Play around with it locally
 
-If you want to try around locally, we recommend you try out the following topics.
+If you want to get a first impression of the UMH in a local environment, we recommend checking out the following topics:
 
 ### Grafana Canvas
 
