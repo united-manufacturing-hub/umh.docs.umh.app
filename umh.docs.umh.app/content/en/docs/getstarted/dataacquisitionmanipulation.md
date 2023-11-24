@@ -119,7 +119,13 @@ Enter your MQTT broker's details:
 - **Server**: united-manufacturing-hub-mqtt
 - **Port**: 1883
 
-(For UMH MQTT Simulator, use the settings above.)
+{{% notice info %}}
+For the purpose of this guide, we'll use the UMH MQTT broker, even though the
+data coming from it is already bridged to Kafka by the
+[MQTT Kafka Bridge](/docs/architecture/microservices/core/mqtt-kafka-bridge/).
+Since the simulated data is using the old Data Model, we'll use Node-RED to
+convert it to the new Data Model.
+{{% /notice %}}
 
 Click **Add** to save.
 
@@ -145,7 +151,6 @@ this script:
 
 ```jsx
 msg.payload = String(msg.payload)
-msg.key = "temperatureCelsius"
 
 return msg;
 ```
@@ -173,13 +178,13 @@ Add a kafka-producer node, connecting it to the function node. Configure as foll
 Structure Kafka topics according to UMH data model:
 
 ```text
-umh.v1.<enterprise>.<site>.<area>.<line>.<workcell>.<originID>.<tagName>.<usecase>
+umh.v1.<enterprise>.<site>.<area>.<line>.<workcell>.<originID>.<useCase>.<tagName>
 ```
 
 Example topic for this tutorial:
 
 ```text
-umh.v1.pharma-genix.aachen.packaging.packaging_1.blister._historian
+umh.v1.pharma-genix.aachen.packaging.packaging_1.blister.PLC13._historian.temperatureCelsius
 ```
 
 To learn more about the UMH data-model, read the [documentation](/docs/architecture/datamodel).
@@ -226,7 +231,7 @@ Click **Add** to save.
 Set the subscription topic. For demonstration, we'll use the topic created earlier:
 
 ```text
-umh.v1.pharma-genix.aachen.packaging.packaging_1.blister._historian
+umh.v1.pharma-genix.aachen.packaging.packaging_1.blister.PLC13._historian.temperatureCelsius
 ```
 
 Link a debug node to the kafka-consumer node, deploy, and observe messages in the
@@ -245,33 +250,26 @@ to convert the temperature from Celsius to Fahrenheit. Connect it to the
 kafka-consumer node and paste the following script:
 
 ```jsx
-if (msg.payload.key != "temperatureCelsius") {
-    return null;
-}
 var celsius = Number(msg.payload.value)
 var fahrenheit = (celsius * 9 / 5) + 32
 
 msg.payload = String(fahrenheit)
-msg.key = "temperatureFahrenheit" // Save using a different key
 
 return msg;
 ```
-
-This script selectively processes messages with the temperatureCelsius key,
-converting the value to Fahrenheit.
 
 Finalize with **Done**.
 
 ### Send Formatted Data Back to Kafka
 
-Now, we'll route the transformed data back to the same UMH Kafka broker topic,
-showcasing contextualized data sharing within the same topic by altering the key.
+Now, we'll route the transformed data back to the Kafka broker, in a different
+topic.
 
 Add a kafka-producer node, connecting it to the function node. Use the same
 Kafka client as earlier, and the same topic for output:
 
 ```text
-umh.v1.pharma-genix.aachen.packaging.packaging_1.blister
+umh.v1.pharma-genix.aachen.packaging.packaging_1.blister.PLC13._historian.temperatureFahrenheit
 ```
 
 For more on UMH data modeling, consult the [documentation](/docs/architecture/datamodel).
