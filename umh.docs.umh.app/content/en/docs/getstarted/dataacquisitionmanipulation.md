@@ -93,9 +93,9 @@ The new data source will now appear in the **Data Sources** section.
 
 ![Data Sources Overview](/images/getstarted/dataAcquisitionManipulation/dataSourcesOverview.png?width=80%)
 
-## Connect MQTT Data Sources
+## Connect MQTT Servers
 
-MQTT data sources can be connected to UMH exclusively through Node-RED.
+MQTT servers can be connected to UMH exclusively through Node-RED.
 
 To access Node-RED's web interface, navigate to:
 
@@ -177,7 +177,7 @@ umh.v1.<enterprise>.<site>.<area>.<line>.<workcell>.<originID>.<tagName>.<usecas
 Example topic for this tutorial:
 
 ```text
-umh.v1.pharma-genix.aachen.packaging.packaging_1.blister
+umh.v1.pharma-genix.aachen.packaging.packaging_1.blister._historian
 ```
 
 To learn more about the UMH data-model, read the [documentation](/docs/architecture/datamodel).
@@ -224,7 +224,7 @@ Click **Add** to save.
 Set the subscription topic. For demonstration, we'll use the topic created earlier:
 
 ```text
-umh.v1.pharma-genix.aachen.packaging.packaging_1.blister
+umh.v1.pharma-genix.aachen.packaging.packaging_1.blister._historian
 ```
 
 Link a debug node to the kafka-consumer node, deploy, and observe messages in the
