@@ -1027,7 +1027,7 @@ The `kafkatopostgresql` section contains the configuration of the
 #### kafkatopostgresqlv2 {#dz-kafka-to-postgresql-v2}
 
 The `kafkatopostgresqlv2` section contains the configuration of the
-[Kafka to PostgreSQL v2](/docs/architecture/microservices/core/kafka-to-postgresql-v2) microservice.
+[Kafka to PostgreSQL v2](/docs/reference/microservices/core/kafka-to-postgresql-v2/) microservice.
 
 {{< table caption="kafkatopostgresqlv2 section parameters" >}}
 | Parameter                            | Description                                                                                                                    | Type   | Allowed values              | Default                                                           |
@@ -1047,7 +1047,7 @@ The `kafkatopostgresqlv2` section contains the configuration of the
 | `probes.liveness.periodSeconds`      | The period of the liveness probe                                                                                               | int    | Any                         | 10                                                                |
 | `probes.readiness.periodSeconds`     | The period of the readiness probe                                                                                              | int    | Any                         | 10                                                                |
 | `logging.level`                      | The logging level of the microservice                                                                                          | string | PRODUCTION, DEVELOPMENT     | PRODUCTION                                                        |
-| `asset.cach.lru.size`                | The size of the LRU cache                                                                                                      | int    | Any                         | 1000                                                              |
+| `asset.cache.lru.size`               | The size of the LRU cache                                                                                                      | int    | Any                         | 1000                                                              |
 | `workers.channel.size`               | Size in messages for each worker's channel                                                                                     | int    | Any                         | 10000                                                             |
 | `workers.goroutines.multiplier`      | The multiplier of the number of goroutines. The total number of goroutines is determined by the CPU count times the multiplier | int    | Any                         | 16                                                                |
 | `database.user`                      | The name of the database user for the Kafka to PostgreSQL v2 microservice                                                      | string | Any                         | kafkatopostgresqlv2                                               |
