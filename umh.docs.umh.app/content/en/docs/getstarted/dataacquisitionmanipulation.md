@@ -95,7 +95,9 @@ The new data source will now appear in the **Data Sources** section.
 
 ## Connect MQTT Servers
 
-MQTT servers can be connected to UMH exclusively through Node-RED.
+There are a lot of options to connect an MQTT server to the UMH. For this guide,
+we'll use Node-RED to connect to the MQTT simulator and format data into the
+UMH data model.
 
 To access Node-RED's web interface, navigate to:
 
