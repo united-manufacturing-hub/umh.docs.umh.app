@@ -5,24 +5,9 @@ description: |
     The technical documentation of the redis microservice,
     which is used as a cache for the other microservices.
 weight: 0
-aliases:
-  - /docs/architecture/microservices/core/cache/
 ---
 
 <!-- overview -->
-
-The cache in the United Manufacturing Hub is [Redis](https://redis.io/), a
-key-value store that is used as a cache for the other microservices.
-
-## {{% heading "howitworks" %}}
-
-Recently used data is stored in the cache to reduce the load on the database.
-All the microservices that need to access the database will first check if the
-data is available in the cache. If it is, it will be used, otherwise the
-microservice will query the database and store the result in the cache.
-
-By default, Redis is configured to run in standalone mode, which means that it
-will only have one master node.
 
 <!-- body -->
 
