@@ -1,6 +1,6 @@
 ---
 title: Connectivity
 menuTitle: Connectivity
-description: Connect your devices and systems to the United Manufacturing Hub.
+description: This page describes the connectivity features of the United Manufacturing Hub.
 weight: 1000
 ---
