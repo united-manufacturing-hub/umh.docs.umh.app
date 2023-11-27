@@ -5,28 +5,9 @@ description: |
     The technical documentation of the factoryinput microservice,
     which provides REST endpoints for MQTT messages via HTTP requests.
 weight: 0
-aliases:
-  - /docs/architecture/microservices/community/factoryinput/
 ---
 
 <!-- overview -->
-
-{{% notice warning %}}
-This microservice is still in development and is not considered stable for production use
-{{% /notice %}}
-
-Factoryinput provides REST endpoints for MQTT messages via HTTP requests.
-
-This microservice is typically accessed via [grafana-proxy](/docs/architecture/microservices/community/grafana-proxy)
-
-## {{% heading "howitworks" %}}
-
-The factoryinput microservice provides REST endpoints for MQTT messages via HTTP requests.
-
-The main endpoint is `/api/v1/{customer}/{location}/{asset}/{value}`, with a POST
-request method. The customer, location, asset and value are all strings. And are
-used to build the MQTT topic. The body of the HTTP request is used as the MQTT
-payload.
 
 <!-- body -->
 
