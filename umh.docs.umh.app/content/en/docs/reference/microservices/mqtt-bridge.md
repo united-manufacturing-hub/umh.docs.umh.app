@@ -1,6 +1,6 @@
 ---
 title: "MQTT Bridge"
-content_type: microservices
+content_type: reference
 description: |
     The technical documentation of the mqtt-bridge microservice,
     which acts as a communication bridge between two MQTT brokers.

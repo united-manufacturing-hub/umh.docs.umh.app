@@ -1,6 +1,6 @@
 ---
 title: "Data Bridge"
-content_type: microservices
+content_type: reference
 description: |
     The technical documentation of the data-bridge microservice,
     which transfers data between two Kafka or MQTT brokers, tranforming

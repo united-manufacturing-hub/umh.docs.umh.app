@@ -1,6 +1,6 @@
 ---
 title: "Tulip Connector"
-content_type: microservices
+content_type: reference
 description: |
     The technical documentation of the tulip-connector microservice,
     which exposes internal APIs, such as factoryinsight, to the internet.

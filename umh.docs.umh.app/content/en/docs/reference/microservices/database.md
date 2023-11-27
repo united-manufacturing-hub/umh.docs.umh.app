@@ -1,6 +1,6 @@
 ---
 title: "Database"
-content_type: microservices
+content_type: reference
 description: |
     The technical documentation of the database microservice,
     which stores the data of the application.

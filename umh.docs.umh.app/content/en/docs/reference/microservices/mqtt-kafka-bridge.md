@@ -1,6 +1,6 @@
 ---
 title: "MQTT Kafka Bridge"
-content_type: microservices
+content_type: reference
 description: |
     The technical documentation of the mqtt-kafka-bridge microservice,
     which transfers messages from MQTT brokers to Kafka Brokers and vice versa.

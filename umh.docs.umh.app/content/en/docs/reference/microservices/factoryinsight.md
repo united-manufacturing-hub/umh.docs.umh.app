@@ -1,6 +1,6 @@
 ---
 title: "Factoryinsight"
-content_type: microservices
+content_type: reference
 description: |
     The technical documentation of the Factoryinsight microservice, which exposes
     a set of APIs to access the data from the database.

@@ -1,6 +1,6 @@
 ---
 title: "Kafka to Postgresql v2"
-content_type: microservices
+content_type: reference
 description: |
     The technical documentation of the kafka-to-postgresql-v2 microservice,
     which consumes messages from a Kafka broker and writes them in a PostgreSQL

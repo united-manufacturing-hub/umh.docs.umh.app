@@ -1,6 +1,6 @@
 ---
 title: "Sensorconnect"
-content_type: microservices
+content_type: reference
 description: |
     The technical documentation of the sensorconnect microservice,
     which reads data from sensors and sends them to the MQTT or Kafka broker.

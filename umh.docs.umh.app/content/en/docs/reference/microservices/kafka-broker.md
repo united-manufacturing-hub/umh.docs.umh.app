@@ -1,6 +1,6 @@
 ---
 title: "Kafka Broker"
-content_type: microservices
+content_type: reference
 description: |
     The technical documentation of the kafka-broker microservice,
     which handles the communication between the microservices.

@@ -1,6 +1,6 @@
 ---
 title: "PackML Simulator"
-content_type: microservices
+content_type: reference
 description: |
     The technical documentation of the packml-simulator microservice,
     which simulates a manufacturing line using PackML over MQTT.

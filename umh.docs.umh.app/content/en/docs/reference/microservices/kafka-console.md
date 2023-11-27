@@ -1,6 +1,6 @@
 ---
 title: "Kafka Console"
-content_type: microservices
+content_type: reference
 description: |
     The technical documentation of the kafka-console microservice,
     which provides a GUI to interact with the Kafka broker.

@@ -1,6 +1,6 @@
 ---
 title: "MQTT Simulator"
-content_type: microservices
+content_type: reference
 description: |
     The technical documentation of the iotsensorsmqtt microservice,
     which simulates sensors sending data to the MQTT broker.

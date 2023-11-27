@@ -1,6 +1,6 @@
 ---
 title: "OPCUA Simulator"
-content_type: microservices
+content_type: reference
 description: |
     The technical documentation of the opcua-simulator microservice,
     which simulates OPCUA devices.

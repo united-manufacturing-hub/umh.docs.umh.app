@@ -1,6 +1,6 @@
 ---
 title: "MQTT Broker"
-content_type: microservices
+content_type: reference
 description: |
     The technical documentation of the mqtt-broker microservice,
     which forwards MQTT messages between the other microservices.

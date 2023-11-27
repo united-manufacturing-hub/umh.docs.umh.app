@@ -1,6 +1,6 @@
 ---
 title: "Cache"
-content_type: microservices
+content_type: reference
 description: |
     The technical documentation of the redis microservice,
     which is used as a cache for the other microservices.

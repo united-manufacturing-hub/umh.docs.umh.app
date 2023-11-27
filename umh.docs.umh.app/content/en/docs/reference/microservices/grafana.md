@@ -1,6 +1,6 @@
 ---
 title: "Grafana"
-content_type: microservices
+content_type: reference
 description: |
     The technical documentation of the grafana microservice,
     which is a web application that provides visualization and analytics capabilities.

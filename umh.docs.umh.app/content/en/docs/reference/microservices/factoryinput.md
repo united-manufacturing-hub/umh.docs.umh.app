@@ -1,6 +1,6 @@
 ---
 title: "Factoryinput"
-content_type: microservices
+content_type: reference
 description: |
     The technical documentation of the factoryinput microservice,
     which provides REST endpoints for MQTT messages via HTTP requests.

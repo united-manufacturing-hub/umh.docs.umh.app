@@ -1,6 +1,6 @@
 ---
 title: "Node-RED"
-content_type: microservices
+content_type: reference
 description: |
     The technical documentation of the nodered microservice,
     which wires together hardware devices, APIs and online services.

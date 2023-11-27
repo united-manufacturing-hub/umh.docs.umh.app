@@ -1,6 +1,6 @@
 ---
 title: "Barcodereader"
-content_type: microservices
+content_type: reference
 description: |
     The technical documentation of the barcodereader microservice,
     which reads barcodes and sends the data to the Kafka broker.
