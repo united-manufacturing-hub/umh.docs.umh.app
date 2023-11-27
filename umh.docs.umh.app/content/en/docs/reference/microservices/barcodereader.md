@@ -5,21 +5,10 @@ description: |
     The technical documentation of the barcodereader microservice,
     which reads barcodes and sends the data to the Kafka broker.
 weight: 0
-aliases:
-  - /docs/architecture/microservices/community/barcodereader/
 ---
 
 <!-- overview -->
-
-{{% notice warning %}}
-This microservice is still in development and is not considered stable for production use.
-{{% /notice %}}
-
-Barcodereader is a microservice that reads barcodes and sends the data to the Kafka broker.
-
 ## {{% heading "howitworks" %}}
-
-Connect a barcode scanner to the system and the microservice will read the barcodes and send the data to the Kafka broker.
 
 <!-- body -->
 
