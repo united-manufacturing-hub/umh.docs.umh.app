@@ -5,29 +5,9 @@ description: |
     The technical documentation of the mqtt-kafka-bridge microservice,
     which transfers messages from MQTT brokers to Kafka Brokers and vice versa.
 weight: 0
-aliases:
-  - /docs/architecture/microservices/core/mqtt-kafka-bridge/
 ---
 
 <!-- overview -->
-
-Mqtt-kafka-bridge is a microservice that acts as a bridge between MQTT brokers
-and Kafka brokers, transfering messages from one to the other and vice versa.
-
-{{% notice note %}}
-This microservice requires that the Kafka Topic `umh.v1.kafka.newTopic` exits.
-This will happen automatically from version 0.9.12.
-{{% /notice %}}
-
-{{% notice tip %}}
-Since version 0.9.10, it allows all raw messages, even if their content is not
-in a valid JSON format.
-{{% /notice %}}
-
-## {{% heading "howitworks" %}}
-
-Mqtt-kafka-bridge consumes topics from a message broker, translates them to
-the proper format and publishes them to the other message broker.
 
 <!-- body -->
 
