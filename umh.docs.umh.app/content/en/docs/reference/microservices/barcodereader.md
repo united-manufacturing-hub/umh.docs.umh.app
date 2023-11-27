@@ -8,7 +8,6 @@ weight: 0
 ---
 
 <!-- overview -->
-## {{% heading "howitworks" %}}
 
 <!-- body -->
 

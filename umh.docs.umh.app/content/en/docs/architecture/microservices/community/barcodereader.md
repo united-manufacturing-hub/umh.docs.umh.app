@@ -16,6 +16,8 @@ Barcodereader is a microservice that reads barcodes and sends the data to the Ka
 
 <!-- body -->
 
+## {{% heading "howitworks" %}}
+
 Connect a barcode scanner to the system and the microservice will read the barcodes and send the data to the Kafka broker.
 
 <!-- Optional section; add links to information related to this topic. -->
