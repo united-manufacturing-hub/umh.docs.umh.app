@@ -60,5 +60,5 @@ and all the raw topics.
 
 ## {{% heading "whatsnext" %}}
 
-- Read the [Kafka-to-postgresql](/docs/reference/microservices/kafka-to-postgresql/) reference documentation
-  to learn more about the technical details of the Kafka-to-postgresql microservice.
+- Read the [Kafka to Postgresql](/docs/reference/microservices/kafka-to-postgresql/) reference documentation
+  to learn more about the technical details of the Kafka to Postgresql microservice.
