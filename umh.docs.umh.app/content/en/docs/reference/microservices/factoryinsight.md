@@ -5,31 +5,15 @@ description: |
     The technical documentation of the Factoryinsight microservice, which exposes
     a set of APIs to access the data from the database.
 weight: 0
-aliases:
-  - /docs/architecture/microservices/core/factoryinsight/
 ---
 
 <!-- overview -->
 
-Factoryinsight is a microservice that provides a set of REST APIs to access the
-data from the database. It is particularly useful to calculate the Key
-Performance Indicators (KPIs) of the factories.
-
-## {{% heading "howitworks" %}}
-
-Factoryinsight exposes REST APIs to access the data from the database or calculate
-the KPIs. By default, it's only accessible from the internal network of the
-cluster, but it can be configured to be
-[accessible from the external network](/docs/production-guide/administration/access-factoryinsight-outside-cluster/).
-
-The APIs require authentication, that can be either a Basic Auth or a Bearer
-token. Both of these can be found in the Secret `{{< resource type="secret" name="factoryinsight" >}}`.
+<!-- body -->
 
 ### API documentation
 
 {{< swaggerui src="/openapi/factoryinsight.yaml" >}}
-
-<!-- body -->
 
 ## {{% heading "kuberesources" %}}
 
