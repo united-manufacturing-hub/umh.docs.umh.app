@@ -1,5 +1,5 @@
 ---
-title: "Mqtt Broker"
+title: "MQTT Broker"
 content_type: concept
 # description: |
 #     Add a description of the concept here.

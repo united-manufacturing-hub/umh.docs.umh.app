@@ -1,5 +1,5 @@
 ---
-title: "Mqtt to Postgresql"
+title: "MQTT to Postgresql"
 content_type: concept
 # description: |
 #     Add a description of the concept here.

@@ -1,5 +1,5 @@
 ---
-title: "Mqtt Bridge"
+title: "MQTT Bridge"
 content_type: concept
 # description: |
 #     Add a description of the concept here.
