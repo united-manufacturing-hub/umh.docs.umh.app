@@ -5,27 +5,9 @@ description: |
     The technical documentation of the packml-simulator microservice,
     which simulates a manufacturing line using PackML over MQTT.
 weight: 0
-aliases:
-  - /docs/architecture/microservices/community/packml-simulator/
 ---
 
 <!-- overview -->
-
-{{% notice warning %}}
-This microservice is a community contribution and is not part of the main stack of the United Manufacturing Hub, but it is enabled by default.
-{{% /notice %}}
-
-PackML MQTT Simulator is a virtual line that interfaces using PackML implemented
-over MQTT. It implements the following PackML State model and communicates
-over MQTT topics as defined by environmental variables. The simulator can run
-with either a basic MQTT topic structure or SparkPlugB.
-
-![PackML StateModel](/images/microservices-community/PackML-StateModel.png)
-
-## {{% heading "howitworks" %}}
-
-You can read the full documentation on the
-[GitHub repository](https://github.com/Spruik/PackML-MQTT-Simulator).
 
 <!-- body -->
 
