@@ -5,24 +5,9 @@ description: |
     The technical documentation of the grafana-proxy microservice,
     which proxies request from Grafana to the backend services.
 weight: 0
-aliases:
-  - /docs/architecture/microservices/community/grafana-proxy/
 ---
 
 <!-- overview -->
-
-{{% notice warning %}}
-This microservice is still in development and is not considered stable for production use
-{{% /notice %}}
-
-## {{% heading "howitworks" %}}
-
-The grafana-proxy microservice serves an HTTP REST endpoint located at
-`/api/v1/{service}/{data}`. The `service` parameter specifies the backend
-service to which the request should be proxied, like factoryinput or
-factoryinsight. The `data` parameter specifies the API endpoint to forward to
-the backend service. The body of the HTTP request is used as the payload for
-the proxied request.
 
 <!-- body -->
 
