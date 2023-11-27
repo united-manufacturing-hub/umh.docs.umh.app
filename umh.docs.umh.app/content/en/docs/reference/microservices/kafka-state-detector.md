@@ -5,17 +5,9 @@ description: |
     The technical documentation of the kafka-state-detector microservice,
     which detects the state of the Kafka broker.
 weight: 0
-aliases:
-  - /docs/architecture/microservices/community/kafka-state-detector/
 ---
 
 <!-- overview -->
-
-{{< notice warning >}}
-This microservice is still in development and is not considered stable for production use
-{{< /notice >}}
-
-## {{% heading "howitworks" %}}
 
 <!-- body -->
 
