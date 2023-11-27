@@ -4,6 +4,8 @@ menuTitle: Retrofitting with USB barcodereader
 description: Integrate USB barcode scanners with United Manufacturing Hub's barcodereader microservice for seamless data publishing to Unified Namespace. Ideal for inventory, order processing, and quality testing stations.
 weight: 1000
 draft: true
+aliases:
+  - /docs/features/barcodereader-retrofitting
 ---
 
 The barcodereader microservice enables the processing of barcodes from USB-linked scanner devices, subsequently publishing the acquired

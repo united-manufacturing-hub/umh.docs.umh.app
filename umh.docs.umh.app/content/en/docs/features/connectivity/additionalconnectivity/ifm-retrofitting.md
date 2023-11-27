@@ -4,6 +4,8 @@ menuTitle: Retrofitting with ifm IO-link master and sensorconnect
 description: Upgrade older machines with ifm IO-Link master and Sensorconnect for seamless data collection and integration. Retrofit your shop floor with plug-and-play sensors for valuable insights and improved efficiency.
 weight: 1000
 draft: true
+aliases:
+  - /docs/features/ifm-retrofitting
 ---
 
 [Retrofitting](https://learn.umh.app/blog/connectivity-retrofitting-the-shopfloor-with-plug-play-sensors/) older machines with sensors is sometimes the only-way to capture process-relevant information.

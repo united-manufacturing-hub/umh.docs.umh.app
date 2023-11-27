@@ -3,6 +3,8 @@ title: Unified Namespace
 menuTitle: Unified Namespace
 description: Exchange events and messages across all your shopfloor equipment, IT / OT systems such as ERP or MES and microservices.
 weight: 1000
+aliases:
+  - /docs/features/unified-namespace
 ---
 
 The Unified Namespace is an event-driven architecture that allows for seamless communication between nodes in a network. It operates on the principle that all data, regardless of whether there is an immediate consumer, should be published and made available for consumption. This means that any node in the network can work as either a producer or a consumer, depending on the needs of the system at any given time.

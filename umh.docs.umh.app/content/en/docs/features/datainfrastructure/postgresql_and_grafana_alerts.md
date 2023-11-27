@@ -3,6 +3,8 @@ title: Alerting
 menuTitl: Alerting
 description: Monitor and maintain your manufacturing processes with real-time Grafana alerts from the United Manufacturing Hub. Get notified of potential issues and reduce downtime by proactively addressing problems.
 weight: 4000
+aliases:
+  - /docs/features/postgresql_and_grafana_alerts
 ---
 
 The United Manufacturing Hub utilizes a TimescaleDB database, which is based

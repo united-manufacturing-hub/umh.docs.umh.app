@@ -3,6 +3,8 @@ title: Layered Scaling
 menuTitle: Layered Scaling
 description: Efficiently scale your United Manufacturing Hub deployment across edge devices and servers using Layered Scaling.
 weight: 3000
+aliases:
+  - /docs/features/layered-scaling
 ---
 
 Layered Scaling is an architectural approach in the United Manufacturing Hub that enables efficient scaling of your

@@ -3,6 +3,8 @@ title: Historian / Data Storage
 menuTitle: Historian / Data Storage
 description: Learn how the United Manufacturing Hub's Historian feature provides reliable data storage and analysis for your manufacturing data.
 weight: 2000
+aliases:
+  - /docs/features/historian
 ---
 
 The Historian / Data Storage feature in the United Manufacturing Hub provides reliable data storage and analysis for your manufacturing data. Essentially, a Historian is just another term for a data storage system, designed specifically for time-series data in manufacturing.
