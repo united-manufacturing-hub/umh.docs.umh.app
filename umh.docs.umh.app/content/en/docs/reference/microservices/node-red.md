@@ -5,25 +5,9 @@ description: |
     The technical documentation of the nodered microservice,
     which wires together hardware devices, APIs and online services.
 weight: 0
-aliases:
-  - /docs/architecture/microservices/core/node-reD/
 ---
 
 <!-- overview -->
-
-[Node-RED](https://nodered.org/) is a programming tool for wiring together
-hardware devices, APIs and online services in new and interesting ways. It
-provides a browser-based editor that makes it easy to wire together flows using
-the wide range of nodes in the Node-RED library.
-
-## {{% heading "howitworks" %}}
-
-Node-RED is a JavaScript-based tool that can be used to create flows that
-interact with the other microservices in the United Manufacturing Hub or
-external services.
-
-See our [guides for Node-RED](https://learn.umh.app/topic/node-red/) to learn
-more about how to use it.
 
 <!-- body -->
 
