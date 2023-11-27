@@ -1,10 +1,9 @@
 ---
 title: "MQTT Simulator"
-content_type: microservices
-description: |
-    The technical documentation of the iotsensorsmqtt microservice,
-    which simulates sensors sending data to the MQTT broker.
-weight: 0
+content_type: concept
+# description: |
+#     Add a description of the concept here.
+weight: 10
 ---
 
 <!-- overview -->
@@ -18,6 +17,8 @@ MQTT broker. You can read the full documentation on the
 
 [GitHub repository](https://github.com/amine-amaach/simulators/tree/main/ioTSensorsMQTT).
 
+<!-- body -->
+
 ## {{% heading "howitworks" %}}
 
 The microservice publishes messages on the topic `ia/raw/development/ioTSensors/`,
@@ -26,14 +27,10 @@ simulations, which are `Temperature`, `Humidity`, and `Pressure`.
 The values are calculated using a normal distribution with a mean and standard
 deviation that can be configured.
 
-<!-- body -->
+<!-- Optional section; add links to information related to this topic. -->
 
-## {{% heading "kuberesources" %}}
+## {{% heading "whatsnext" %}}
 
-- Deployment: `{{< resource type="deployment" name="mqttsimulator" >}}`
-- ConfigMap: `{{< resource type="configmap" name="mqttsimulator" >}}`
-
-## {{% heading "configuration" %}}
-
-You can change the configuration of the microservice by updating the `config.json`
-file in the ConfigMap.
+- Read the [IoTSensors MQTT Simulator](/docs/reference/microservices/mqtt-simulator/) reference
+  documentation to learn more about the technical details of the IoTSensors MQTT Simulator
+  microservice.

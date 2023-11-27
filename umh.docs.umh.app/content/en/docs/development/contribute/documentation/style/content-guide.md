@@ -41,6 +41,13 @@ capabilities of the United Manufacturing Hub. It's a high-level overview of the
 project's features, and it's intended for users who want to learn more about them
 without diving into the technical details.
 
+### Data Model
+
+The [Data Model](/docs/datamodel/) section contains information about the data
+model of the United Manufacturing Hub. It's intended for users who want to learn
+more about the data model of the United Manufacturing Hub and how it's used by
+the different components of the project.
+
 ### Architecture
 
 The [Architecture](/docs/architecture/) section contains technical information
@@ -60,6 +67,13 @@ The [What's New](/docs/whatsnew/) section contains high-level overview of all
 the releases of the United Manufacturing Hub. Usually, only the last 3 to 4
 releases are displayed in the sidebar, but all the releases are available in the
 section page.
+
+### Reference
+
+The [Reference](/docs/reference/) section contains technical information about
+the different components of the United Manufacturing Hub. It's intended for users
+who want to learn more about the different components of the project and how
+they work.
 
 ### Development
 
