@@ -145,6 +145,9 @@ other = "united-manufacturing-hub-kafkatoblob"
 [resource_deployment_kafkatopostgresql]
 other = "united-manufacturing-hub-kafkatopostgresql"
 
+[resource_deployment_kafkatopostgresqlv2]
+other = "united-manufacturing-hub-kafkatopostgresqlv2"
+
 [resource_deployment_mqttkafkabridge]
 other = "united-manufacturing-hub-mqttkafkabridge"
 
