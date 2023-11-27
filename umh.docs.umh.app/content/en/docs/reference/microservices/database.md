@@ -5,36 +5,9 @@ description: |
     The technical documentation of the database microservice,
     which stores the data of the application.
 weight: 0
-aliases:
-  - /docs/architecture/microservices/core/database/
 ---
 
 <!-- overview -->
-
-The database microservice is the central component of the United Manufacturing
-Hub and is based on TimescaleDB, an open-source relational database built for
-handling time-series data. TimescaleDB is designed to provide scalable and
-efficient storage, processing, and analysis of time-series data.
-
-You can find more information on the datamodel of the database in the
-[Data Model](/docs/architecture/datamodel/) section, and read
-about the choice to use TimescaleDB in the
-[blog article](https://learn.umh.app/blog/why-we-chose-timescaledb-over-influxdb/).
-
-## {{% heading "howitworks" %}}
-
-When deployed, the database microservice will create two databases, with the
-related usernames and passwords:
-
-- `grafana`: This database is used by Grafana to store the dashboards and
-  other data.
-- `factoryinsight`: This database is the main database of the United Manufacturing
-  Hub. It contains all the data that is collected by the microservices.
-
-Then, it creates the tables based on the [database schema](/docs/architecture/datamodel/database/).
-
-If you want to learn more about how TimescaleDB works, you can read the
-[TimescaleDB documentation](https://docs.timescale.com/latest/introduction).
 
 <!-- body -->
 
