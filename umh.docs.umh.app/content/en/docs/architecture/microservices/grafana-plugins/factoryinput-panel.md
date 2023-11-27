@@ -4,8 +4,6 @@ content_type: task
 description: |
     This page contains the technical documentation of the plugin factoryinput-panel, which allows for easy execution of MQTT messages inside the UMH stack from a Grafana panel.
 weight: 3000
-aliases:
-  - /docs/architecture/microservices/grafana-plugins/factoryinput-panel/
 ---
 
 {{% notice warning %}}

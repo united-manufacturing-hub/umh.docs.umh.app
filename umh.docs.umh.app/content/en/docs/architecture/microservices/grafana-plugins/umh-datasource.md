@@ -4,8 +4,6 @@ content_type: grafana-plugin
 description: |
     This page contains the technical documentation of the plugin umh-datasource, which allows for easy data extraction from factoryinsight.
 weight: 2000
-aliases:
-  - /docs/architecture/microservices/grafana-plugins/umh-datasource/
 ---
 
 <!-- overview -->
