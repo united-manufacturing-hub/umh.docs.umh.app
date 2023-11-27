@@ -1,18 +1,12 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
-content_type: microservices
+content_type: reference
 description: |
-    The technical documentation of the {{ .Name }} microservice,
-    which
+    The technical documentation of the {{ .Name }} microservice
 weight: 0
 ---
-
-<!-- overview -->
-
-<!-- body -->
-
-## {{% heading "howitworks" %}}
-
+<!-- list all the kubernetes workloads associated to the microservice -->
+<!-- remember to also update the i18n/en.toml file with the resource definition -->
 ## {{% heading "kuberesources" %}}
 
 - Deployment: `{{< resource type="deployment" name="" >}}`
@@ -26,8 +20,10 @@ weight: 0
 - Secret: `{{< resource type="secret" name="" >}}`
 - PersistentVolumeClaim: `{{< resource type="pvc" name="" >}}`
 
+<!-- explain how to properly configure the microservice -->
 ## {{% heading "configuration" %}}
 
+<!-- list all the available environment variables -->
 ### {{% heading "envvars" %}}
 
 {{< table caption="Environment variables" >}}
