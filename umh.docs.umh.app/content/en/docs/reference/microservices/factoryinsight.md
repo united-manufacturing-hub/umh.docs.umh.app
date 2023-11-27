@@ -11,10 +11,6 @@ weight: 0
 
 <!-- body -->
 
-### API documentation
-
-{{< swaggerui src="/openapi/factoryinsight.yaml" >}}
-
 ## {{% heading "kuberesources" %}}
 
 - Deployment: `{{< resource type="deployment" name="factoryinsight" >}}`
@@ -55,3 +51,7 @@ chart values file.
 | `SERIAL_NUMBER`              | Serial number of the cluster. Used for tracing                                                               | string | Any                     | default                                                    |
 | `VERSION`                    | The version of the API used. Each version also enables all the previous ones                                 | int    | Any                     | 2                                                          |
 {{< /table >}}
+
+## API documentation
+
+{{< swaggerui src="/openapi/factoryinsight.yaml" >}}

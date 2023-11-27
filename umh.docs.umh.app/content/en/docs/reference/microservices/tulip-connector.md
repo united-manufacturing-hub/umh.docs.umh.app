@@ -10,10 +10,6 @@ weight: 0
 
 <!-- overview -->
 
-### API documentation
-
-{{< swaggerui src="/openapi/tulip-connector.yaml" >}}
-
 <!-- body -->
 
 ## {{% heading "kuberesources" %}}
@@ -40,3 +36,7 @@ section of the Helm chart values file.
 | `FACTORYINSIGHT_USER`     | Specifies the admin user for the REST API                                       | string | Any            | factoryinsight                                                 |
 | `MODE`                    | Specifies the mode that the service will run in. Change only during development | string | dev, prod      | prod                                                           |
 {{< /table >}}
+
+## API documentation
+
+{{< swaggerui src="/openapi/tulip-connector.yaml" >}}
