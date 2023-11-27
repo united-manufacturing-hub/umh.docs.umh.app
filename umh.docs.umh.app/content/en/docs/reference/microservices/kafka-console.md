@@ -5,26 +5,9 @@ description: |
     The technical documentation of the kafka-console microservice,
     which provides a GUI to interact with the Kafka broker.
 weight: 0
-aliases:
-  - /docs/architecture/microservices/core/kafka-console/
 ---
 
 <!-- overview -->
-
-Kafka-console uses [Redpanda Console](https://github.com/redpanda-data/console)
-to help you manage and debug your Kafka workloads effortlessy.
-
-With it, you can explore your Kafka topics, view messages, list the active
-consumers, and more.
-
-## {{% heading "howitworks" %}}
-
-You can access the Kafka console via its Service.
-
-It's automatically connected to the Kafka broker, so you can start using it
-right away.
-You can view the Kafka broker configuration in the Broker tab, and explore the
-topics in the Topics tab.
 
 <!-- body -->
 
