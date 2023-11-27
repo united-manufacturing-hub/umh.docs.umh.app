@@ -5,21 +5,9 @@ description: |
     The technical documentation of the mqtt-broker microservice,
     which forwards MQTT messages between the other microservices.
 weight: 0
-aliases:
-  - /docs/architecture/microservices/core/mqtt-broker/
 ---
 
 <!-- overview -->
-
-The MQTT broker in the United Manufacturing Hub is [HiveMQ](https://www.hivemq.com/)
-and is customized to fit the needs of the stack. It's a core component of
-the stack and is used to communicate between the different microservices.
-
-## {{% heading "howitworks" %}}
-
-The MQTT broker is responsible for receiving MQTT messages from the
-different microservices and forwarding them to the
-[MQTT Kafka bridge](/docs/architecture/microservices/core/mqtt-kafka-bridge/).
 
 <!-- body -->
 
