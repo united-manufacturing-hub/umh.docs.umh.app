@@ -41,7 +41,7 @@ To use ifm IO-link gateways and [Sensorconnect](/docs/architecture/microservices
 
 1. Ensure all IO-Link gateways are in the same network or accessible from your instance of the United Manufacturing Hub.
 2. Retrofit the machines by connecting the desired sensors and establish a connection with ifm IO-Link gateways.
-3. Configure the [Sensorconnect IP-range](/docs/architecture/helm-chart/#sensor-connect) to either match the IP address using subnet notation /32, or, in cases involving multiple masters, configure it to scan an entire range, for example /24. To change the value, go to the [Customize the United Manufacturing Hub](/docs/production-guide/administration/customize-umh-installation/) section.
+3. Configure the [Sensorconnect IP-range](/docs/architecture/helm-chart/#sensor-connect) to either match the IP address using subnet notation /32, or, in cases involving multiple masters, configure it to scan an entire range, for example /24. To change the value, go to the [Helm Chart](/docs/architecture/helm-chart/) section.
 4. Once completed, the data should be available in your [Unified Namespace](/docs/features/unified-namespace/).
 
 ## What are the limitations?
