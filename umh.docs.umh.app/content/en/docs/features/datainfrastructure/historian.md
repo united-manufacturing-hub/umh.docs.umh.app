@@ -19,7 +19,7 @@ The Historian / Data Storage feature of the United Manufacturing Hub allows you 
 
 ### Store and analyze data
 
-- Automatically store data from the `processValue` topics in the Unified Namespace. [Data can be sent to the Unified Namespace from various sources](/docs/features/unified-namespace/), allowing you to store tags from your PLC and production lines reliably.
+- Automatically store data from the `processValue` topics in the Unified Namespace. [Data can be sent to the Unified Namespace from various sources](/docs/features/datainfrastructure/unified-namespace/), allowing you to store tags from your PLC and production lines reliably.
 - Conduct basic data analysis, including automatic downsampling, gap filling, and statistical functions such as Min, Max, and Avg
 
 ### Query and visualize data
@@ -41,15 +41,15 @@ More information about the exact analytics functionalities can be found in the [
 
 ## How can I use it?
 
-Convert your data in your Unified Namespace to [processValue](/docs/architecture/datamodel/messages/processvalue/) messages, and the Historian feature will store them automatically. You can then view the data in Grafana. An example can be found in the [Getting Started guide](/docs/getstarted/).
+Convert your data in your Unified Namespace to [processValue](/docs/datamodel/messages/processvalue/) messages, and the Historian feature will store them automatically. You can then view the data in Grafana. An example can be found in the [Getting Started guide](/docs/getstarted/).
 
 For more information about what exactly is behind the Historian feature, check out our [our architecture page](/docs/architecture/)
 
 ## What are the limitations?
 
-- Only data in `processValue` topics are saved automatically. Data in topics like `ia/raw` are not. Data send to other messages in the [UMH datamodel](/docs/architecture/datamodel/) are stored slightly different and can be retrieved via Grafana as well. See also [Analytics feature](/docs/features/analytics/).
+- Only data in `processValue` topics are saved automatically. Data in topics like `ia/raw` are not. Data send to other messages in the [UMH datamodel](/docs/datamodel/) are stored slightly different and can be retrieved via Grafana as well. See also [Analytics feature](/docs/features/datainfrastructure/analytics/).
 - After storing a couple of millions messages, you should consider [compressing the messages or establishing retention policies](/docs/production-guide/administration/reduce-database-size/).
-- At the moment, extensive queries can only be done in your own code by leveraging the API in [factoryinsight](/docs/architecture/microservices/core/factoryinsight/), or processing the data in the [Unified Namespace](/docs/features/unified-namespace/).
+- At the moment, extensive queries can only be done in your own code by leveraging the API in [factoryinsight](/docs/architecture/microservices/core/factoryinsight/), or processing the data in the [Unified Namespace](/docs/features/datainfrastructure/unified-namespace/).
 
 Apart from these limitations, the United Manufacturing Hub's Historian feature is highly performant compared to legacy Historians.
 
