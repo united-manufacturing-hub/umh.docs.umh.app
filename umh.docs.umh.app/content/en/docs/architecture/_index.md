@@ -109,6 +109,17 @@ system availability through Kubernetes and simplifies maintenance with Docker an
 Prometheus. Additionally, it facilitates the use of AI, predictive maintenance,
 and digital twin technologies
 
+## Expandability
+
+The United Manufacturing Hub is architecturally designed for high expandability,
+offering the capability to integrate custom microservices or Docker containers
+into the UMH environment. This feature enables users to establish connections
+with third-party systems or to implement specialized data analysis tools.
+Furthermore, the platform supports the deployment of any third-party application
+available as a Helm Chart, Kubernetes resource, or Docker Compose configuration,
+which can be seamlessly converted to Kubernetes resources. This flexibility ensures
+that UMH can be tailored to meet diverse and evolving industrial needs.
+
 ## Data connectivity
 
 The United Manufacturing Hub includes microservices that extract data from the shop floor and push it into the Unified Namespace. Additionally, you can deploy your own microservices or third-party solutions directly into the Kubernetes cluster using the [custom microservice feature](/docs/architecture/helm-chart/#custom-microservices-configuration). To learn more about third-party solutions, check out our extensive tutorials on our [learning hub](https://learn.umh.app)
