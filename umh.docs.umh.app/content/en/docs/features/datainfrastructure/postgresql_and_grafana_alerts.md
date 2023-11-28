@@ -35,13 +35,13 @@ concentration of a component is too low. Notifications can be sent
 simultaneously across many services like Discord, Mail, Slack, Webhook,
 Telegram, or [Microsoft Teams](https://learn.umh.app/blog/how-to-install-grafana-alerts-in-microsoft-teams/). It is also possible to forward the alert with
 SMS over a personal Webhook. A complete list can be found on the
-[Grafana page](https://grafana.com/docs/grafana/latest/alerting/manage-notifications/manage-contact-points/configure-integrations/)
+[Grafana page](https://grafana.com/docs/grafana/latest/alerting/)
 about alerting.
 
 ## How can I use it?
 
 For a detailed tutorial on how to set up an alert, please visit our learn page
-with the detailed [step-by-step tutorial](https://learn.umh.app/alerts-in-grafana/). Here you
+with the detailed [step-by-step tutorial](https://learn.umh.app/course/alerts-in-grafana/). Here you
 can find an overview of the process.
 
 1. **Install the PostgreSQL plugin in Grafana:**
