@@ -2,7 +2,8 @@
 title: "Architecture"
 menuTitle: "Architecture"
 description: |
-  A detailed overview of the United Manufacturing Hub architecture.
+  A comprehensive overview of the United Manufacturing Hub architecture,
+  detailing its deployment, management, and data processing capabilities.
 weight: 2000
 no_list: true
 ---
@@ -14,9 +15,9 @@ deployable across a wide spectrum of environments, from edge devices to virtual
 machines, and even managed Kubernetes services, catering to diverse industrial
 needs.
 
-The following diagram illustrates the interaction between different types of
-users and UMH's components, offering a clear visual representation of its
-architecture and functionality.
+The following diagram depicts the interaction dynamics between UMH's components
+and user types, offering a visual guide to its architecture and operational
+mechanisms.
 
 {{< mermaid theme="neutral" >}}
 graph LR
@@ -66,7 +67,7 @@ graph LR
 
 ## Management Console
 
-The Management Console of the United Manufacturing Hub is a sophisticated web
+The Management Console of the United Manufacturing Hub is a robust web
 application designed to configure, manage, and monitor the various aspects of
 Data and Device & Container Infrastructures within UMH. Acting as the central
 command center, it provides a comprehensive overview and control over the system's
@@ -76,8 +77,8 @@ services and operations integral to UMH.
 
 ## Device & Container Infrastructure
 
-The Device & Container Infrastructure forms the foundational layer of the United
-Manufacturing Hub's architecture, streamlining the deployment and setup of critical
+The Device & Container Infrastructure lays the foundation of the United
+Manufacturing Hub's architecture, streamlining the deployment and setup of essential
 software and operating systems across devices. This infrastructure is pivotal in
 automating the installation process, ensuring that the essential software components
 and operating systems are efficiently and reliably established. It provides the
@@ -90,18 +91,14 @@ The Data Infrastructure is the heart of the United Manufacturing Hub, orchestrat
 the interconnection of data sources, storage, monitoring, and analysis solutions.
 It comprises three key components:
 
-- **Data Connectivity**: This layer is essential for linking various data sources
-  to the UMH, enabling seamless integration and data flow.
-- **Unified Namespace (UNS)**: The UNS plays a pivotal role in sharing and translating
-  data within UMH. It connects every layer of the automation pyramid to the UNS,
-  integrating additional data sources beyond the traditional automation pyramid.
-  This ensures that data is not only shared but also standardized into a cohesive
-  model.
-- **Historian**: A critical component for data storage, the Historian facilitates
-  both real-time and historical analytics. It is based on TimescaleDB, which combines
-  PostgreSQL with time-series data storage capabilities. All data in the UNS is
-  automatically stored in TimescaleDB and made accessible through Grafana for
-  advanced analytics and visualization.
+- **Data Connectivity**: Facilitates the integration of diverse data sources into
+  UMH, enabling uninterrupted data exchange.
+- **Unified Namespace (UNS)**: Centralizes and standardizes data within UMH into
+  a cohesive model, by linking each layer of the ISA-95 automation pyramid to the
+  UNS and assimilating non-traditional data sources.
+- **Historian**: Stores data in TimescaleDB, a PostgreSQL-based time-series
+  database, allowing real-time and historical data analysis through Grafana or
+  other tools.
 
 The UMH Data Infrastructure leverages Industrial IoT to expand the ISA95 Automation
 Pyramid, enabling high-speed data processing using systems like Kafka. It enhances
@@ -112,10 +109,8 @@ and digital twin technologies
 ## Expandability
 
 The United Manufacturing Hub is architecturally designed for high expandability,
-offering the capability to integrate custom microservices or Docker containers
-into the UMH environment. This feature enables users to establish connections
-with third-party systems or to implement specialized data analysis tools.
-Furthermore, the platform supports the deployment of any third-party application
-available as a Helm Chart, Kubernetes resource, or Docker Compose configuration,
-which can be seamlessly converted to Kubernetes resources. This flexibility ensures
-that UMH can be tailored to meet diverse and evolving industrial needs.
+enabling integration of custom microservices or Docker containers. This adaptability
+allows for users to establish connections with third-party systems or to implement
+specialized data analysis tools. The platform also accommodates any third-party
+application available as a Helm Chart, Kubernetes resource, or Docker Compose,
+offering vast potential for customization to suit evolving industrial demands.
