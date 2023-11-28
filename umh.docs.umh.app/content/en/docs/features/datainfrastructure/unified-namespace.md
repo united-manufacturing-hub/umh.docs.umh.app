@@ -14,7 +14,9 @@ To use any functionalities of the United Manufacturing Hub, you need to use the 
 
 ## When should I use it?
 
+
 An application always consists out of multiple building blocks. To connect those building blocks, one can either exchange data between them through databases, through service calls (such as [REST](https://learn.umh.app/lesson/introduction-into-it-ot-https-rest/)), or through a message broker.
+
 
 {{% notice tip %}}
 **Opinion:** We think for most applications in manufacturing, communication via a message broker is the best choice as it prevents spaghetti diagrams and allows for real-time data processing. For more information about this, you can [check out this blog article](https://learn.umh.app/blog/comparing-mqtt-brokers-for-the-industrial-iot/#message-brokers-and-mqtt).
@@ -59,6 +61,7 @@ If you send the messages into other topics, some features might not work correct
   - and vice versa
 - By default, there will be no Authorization and Authentication on the MQTT broker. [You need to enable authentication and authorization yourself](/docs/production-guide/security/).
 - The MQTT or Kafka broker is not exposed externally by default. [You need to enable external MQTT access first](/docs/production-guide/administration/access-services-from-outside-cluster/), or alternatively [expose Kafka externally](/docs/production-guide/administration/access-kafka-outside-cluster/).
+
 
 ## Where to get more information?
 
