@@ -86,11 +86,28 @@ scalable base for the entire architecture.
 
 ## Data Infrastructure
 
-### Data Connectivity
+The Data Infrastructure is the heart of the United Manufacturing Hub, orchestrating
+the interconnection of data sources, storage, monitoring, and analysis solutions.
+It comprises three key components:
 
-### Unified Namespace
+- **Data Connectivity**: This layer is essential for linking various data sources
+  to the UMH, enabling seamless integration and data flow.
+- **Unified Namespace (UNS)**: The UNS plays a pivotal role in sharing and translating
+  data within UMH. It connects every layer of the automation pyramid to the UNS,
+  integrating additional data sources beyond the traditional automation pyramid.
+  This ensures that data is not only shared but also standardized into a cohesive
+  model.
+- **Historian**: A critical component for data storage, the Historian facilitates
+  both real-time and historical analytics. It is based on TimescaleDB, which combines
+  PostgreSQL with time-series data storage capabilities. All data in the UNS is
+  automatically stored in TimescaleDB and made accessible through Grafana for
+  advanced analytics and visualization.
 
-### Historian
+The UMH Data Infrastructure leverages Industrial IoT to expand the ISA95 Automation
+Pyramid, enabling high-speed data processing using systems like Kafka. It enhances
+system availability through Kubernetes and simplifies maintenance with Docker and
+Prometheus. Additionally, it facilitates the use of AI, predictive maintenance,
+and digital twin technologies
 
 ## Data connectivity
 
