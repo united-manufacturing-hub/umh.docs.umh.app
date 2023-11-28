@@ -53,7 +53,7 @@ The installation is well documented in the [first chapter](/docs/getstarted/inst
 Once your UMH instance is up and running, ensure it is placed in the same network as your machines. Additionally, verify that the device running the Management Console is also within the same network.
 
 While basic management and monitoring with the **Management Console** don't necessarily demand extensive network configuration, it's important to note that various open-source tools integrated into UMH do.
-Therefore, to take full advantage of the UMH, ensure the reachability of the server's IP address and that the connection isn't blocked by a firewall, potentially impacting access to these tools.
+Therefore, to take full advantage of the UMH, ensure that you can reach the IP of the server to access Grafana or Node-RED, and that the connection is not blocked by a firewall.
 
 #### 5. Configure Connections and Data Sources
 
