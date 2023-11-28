@@ -3,7 +3,7 @@ title: "Management Console"
 menuTitle: "Management Console"
 description: |
   
-weight: 1000
+weight: 3000
 ---
 
 The Management Console is pivotal in configuring, managing, and monitoring the

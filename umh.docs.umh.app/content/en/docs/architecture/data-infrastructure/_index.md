@@ -3,7 +3,7 @@ title: "Data Infrastructure"
 menuTitle: "Data Infrastructure"
 description: |
   
-weight: 3000
+weight: 1000
 ---
 
 The Data Infrastructure of the United Manufacturing Hub is a crucial component
