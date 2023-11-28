@@ -35,21 +35,15 @@ graph TB
     19["`**Management Companion**
     Agent deployed on the infrastructure to enable interaction`"]
     style 19 fill:#aaaaaa,stroke:#47a0b5,color:#000000
-    20["`**Key Storage**
-    Stores private keys`"]
-    style 20 fill:#aaaaaa,stroke:#47a0b5,color:#000000
   end
 
   50-. Is deployed on .->27
   19-. Manages & monitors .->27
   19-. Manages & monitors .->50
   17<-. Exchange E2E
-  encrypted messages
-  using the private key .->18
-  18-. Fetches encrypted private key .->20
-  18-. Exchange E2E
-  encrypted messages
-  using the private key .->19
+  encrypted messages .->18
+  18<-. Exchange E2E
+  encrypted messages .->19
   1-. Interacts with the
       entire infrastructure .->17
   27-. Deploys .->19
@@ -59,15 +53,15 @@ graph TB
 
 The client-side Web Application enables users to register, add, and manage
 instances, and monitor the infrastructure within the United Manufacturing Hub. All
-communications between the Web Application and the user's devices are encrypted
-using the user's private key, ensuring complete confidentiality from the backend.
+communications between the Web Application and the user's devices are end-to-end
+encrypted, ensuring complete confidentiality from the backend.
 
 ## Management Companion
 
 Deployed on each UMH instance, the Management Companion acts as an agent
 responsible for decrypting messages from the Backend and executing requested
-actions. Responses are encrypted using the companion's private key, maintaining
-a secure and opaque channel to the Backend.
+actions. Responses are end-to-end encrypted, maintaining a secure and opaque
+channel to the Backend.
 
 ## Backend
 
