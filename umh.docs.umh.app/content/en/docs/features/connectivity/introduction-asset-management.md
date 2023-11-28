@@ -49,4 +49,4 @@ This approach ensures a flexible, adaptable IIoT environment that addresses both
 
 ## Asset Management
 
-Describe asset management functionality, describe the current best practice of having Excel sheets, and if something goes down, one is not notified immediately. The goal with asset management is that you can add everything with an IP on your shopfloor. So if the connection gets worse or drops entirely, you are notified. This is required for any data extraction step using benthos and the Management Console. In the future, we will also recommend adding an asset before working with it in Node-RED.
+The goal with asset management is that you can add everything with an IP on your shopfloor. So, if the connection gets worse or drops entirely, you are notified. This is required for any data extraction step using benthos and the Management Console. In the future, we will also recommend adding an asset before working with it in Node-RED.
