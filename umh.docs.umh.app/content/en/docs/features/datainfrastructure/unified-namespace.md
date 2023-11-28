@@ -58,7 +58,7 @@ If you send the messages into other topics, some features might not work correct
   - `/` characters will be replaced with a `.`
   - and vice versa
 - By default, there will be no Authorization and Authentication on the MQTT broker. [You need to enable authentication and authorization yourself](/docs/production-guide/security/).
-- The MQTT or Kafka broker is not exposed externally by default. [You need to enable external MQTT access first](/docs/production-guide/administration/access-mqtt-outside-cluster/), or alternatively [expose Kafka externally](/docs/production-guide/administration/access-kafka-outside-cluster/).
+- The MQTT or Kafka broker is not exposed externally by default. [You need to enable external MQTT access first](/docs/production-guide/administration/access-services-from-outside-cluster/), or alternatively [expose Kafka externally](/docs/production-guide/administration/access-kafka-outside-cluster/).
 
 ## Where to get more information?
 
