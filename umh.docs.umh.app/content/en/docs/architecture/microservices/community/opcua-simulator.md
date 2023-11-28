@@ -1,10 +1,9 @@
 ---
 title: "OPCUA Simulator"
-content_type: microservices
-description: |
-    The technical documentation of the opcua-simulator microservice,
-    which simulates OPCUA devices.
-weight: 0
+content_type: concept
+# description: |
+#     Add a description of the concept here.
+weight: 10
 ---
 
 <!-- overview -->
@@ -12,6 +11,8 @@ weight: 0
 {{% notice warning %}}
 This microservice is a community contribution and is not part of the main stack of the United Manufacturing Hub, but is enabled by default.
 {{% /notice %}}
+
+<!-- body -->
 
 ## {{% heading "howitworks" %}}
 
@@ -23,17 +24,10 @@ You can then connect to the simulated OPCUA server via Node-RED and read the
 values of the simulated devices. Learn more about how to connect to the OPCUA
 simulator to Node-RED in [our guide](https://learn.umh.app/course/creating-a-node-red-flow-with-simulated-opc-ua-data/).
 
-<!-- body -->
+<!-- Optional section; add links to information related to this topic. -->
 
-## {{% heading "kuberesources" %}}
+## {{% heading "whatsnext" %}}
 
-- Deployment: `{{< resource type="deployment" name="opcuasimulator" >}}`
-- Service:
-  - External LoadBalancer: `{{< resource type="service" name="opcuasimulator" >}}` at
-    port 46010
-- ConfigMap: `{{< resource type="configmap" name="opcuasimulator" >}}`
-
-## {{% heading "configuration" %}}
-
-You can change the configuration of the microservice by updating the `config.json`
-file in the ConfigMap.
+- Read the [OPCUA Simulator](/docs/reference/microservices/opcua-simulator/) reference
+  documentation to learn more about the technical details of the OPCUA Simulator
+  microservice.
