@@ -1,9 +1,11 @@
-+++
-title = "Historian / Data Storage"
-menuTitle = "Historian / Data Storage"
-description = "Learn how the United Manufacturing Hub's Historian feature provides reliable data storage and analysis for your manufacturing data."
-weight = 2
-+++
+---
+title: Historian / Data Storage
+menuTitle: Historian / Data Storage
+description: Learn how the United Manufacturing Hub's Historian feature provides reliable data storage and analysis for your manufacturing data.
+weight: 2000
+aliases:
+  - /docs/features/historian
+---
 
 The Historian / Data Storage feature in the United Manufacturing Hub provides reliable data storage and analysis for your manufacturing data. Essentially, a Historian is just another term for a data storage system, designed specifically for time-series data in manufacturing.
 
@@ -16,13 +18,14 @@ If you want to reliably store data from your shop floor that is not designed to 
 The Historian / Data Storage feature of the United Manufacturing Hub allows you to:
 
 ### Store and analyze data
+
 - Automatically store data from the `processValue` topics in the Unified Namespace. [Data can be sent to the Unified Namespace from various sources](/docs/features/unified-namespace/), allowing you to store tags from your PLC and production lines reliably.
 - Conduct basic data analysis, including automatic downsampling, gap filling, and statistical functions such as Min, Max, and Avg
 
 ### Query and visualize data
+
 - Query data in an ISA95 model, from enterprise to site, area, production line, and work cell.
 - Visualize your data in Grafana to easily monitor and troubleshoot your production processes.
-
 
 {{% notice tip %}}
 More information about the exact analytics functionalities can be found in the [umh-datasource-v2 documentation](/docs/architecture/microservices/grafana-plugins/umh-datasource-v2/). Further below some screenshots of said datasource.
@@ -31,7 +34,9 @@ More information about the exact analytics functionalities can be found in the [
 ![](/images/grafana-plugins/grafanaPluginsSelectingWorkCell.png?width=50%)
 ![](/images/grafana-plugins/grafanaPluginsSelectingValue.png?width=50%)
 ![](/images/grafana-plugins/grafanaPluginsSelectingOptions.png?width=50%)
+
 ### Efficiently manage data
+
 - Compress and retain data to reduce database size using various techniques.
 
 ## How can I use it?
@@ -49,6 +54,7 @@ For more information about what exactly is behind the Historian feature, check o
 Apart from these limitations, the United Manufacturing Hub's Historian feature is highly performant compared to legacy Historians.
 
 ## Where to get more information?
+
 - Learn more about the benefits of using open-source databases in our blog article, [Historians vs Open-Source databases - which is better?](https://learn.umh.app/blog/historians-vs-open-source-databases-which-is-better/)
 - Check out the [Getting Started guide](/docs/getstarted/) to start using the Historian feature.
 - Learn more about the United Manufacturing Hub's architecture by visiting [our architecture page](/docs/architecture/).
