@@ -1,0 +1,11 @@
+{{ if eq .Params.edition "community" }}
+<div class="edition-info">
+    This page contains features available in the <strong>UMH Community Edition</strong>, which are also included in the Enterprise Edition.
+    More details about the specific offerings of the Community Edition can be found <a href="#">here</a>. 
+</div>
+{{ else if eq .Params.edition "enterprise" }}
+<div class="edition-info">
+    This page contains features that are unique to the <strong>UMH Enterprise Edition</strong>. More details about the specific offerings of 
+    the Enterprise Edition can be found <a href="#">here</a>.
+</div>
+{{ end }}

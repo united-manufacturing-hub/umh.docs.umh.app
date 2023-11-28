@@ -3,6 +3,7 @@ title: Introduction & Asset Management
 content_type: task
 description: Introduction to IIoT Connectivity and Asset Management in UMH.
 weight: 1000
+edition: community
 ---
 
 ## Introduction to IIoT Connectivity and Asset Management in UMH
