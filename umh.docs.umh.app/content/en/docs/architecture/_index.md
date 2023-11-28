@@ -5,7 +5,6 @@ description: |
   A comprehensive overview of the United Manufacturing Hub architecture,
   detailing its deployment, management, and data processing capabilities.
 weight: 2000
-no_list: true
 ---
 
 The United Manufacturing Hub is a comprehensive Helm Chart for Kubernetes,
