@@ -76,6 +76,14 @@ services and operations integral to UMH.
 
 ## Device & Container Infrastructure
 
+The Device & Container Infrastructure forms the foundational layer of the United
+Manufacturing Hub's architecture, streamlining the deployment and setup of critical
+software and operating systems across devices. This infrastructure is pivotal in
+automating the installation process, ensuring that the essential software components
+and operating systems are efficiently and reliably established. It provides the
+groundwork upon which the Data Infrastructure is built, embodying a robust and
+scalable base for the entire architecture.
+
 ## Data Infrastructure
 
 ### Data Connectivity
