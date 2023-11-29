@@ -2,8 +2,6 @@
 title: "Umh Datasource V2"
 content_type: grafana-plugin
 description: |
-    This page contains the technical documentation of the umh-datasource-v2 plugin,
-    which allows for easy data extraction from factoryinsight.
 weight: 1000
 ---
 
@@ -55,5 +53,3 @@ resources from a database and build queries for your dashboard.
       Can be found with UMHLens by going to Secrets → {{< resource type="secret" name="factoryinsight" >}} → apiKey. It should follow the format `Basic xxxxxxxx`.
 
    ![selectingConfiguration](/images/grafana-plugins/grafanaPluginsConfuguringDatasourceV2.png/?width=85%)
-
-   {{< resource type="grafanaplugin" name="baseurlfactoryinsight" >}}
