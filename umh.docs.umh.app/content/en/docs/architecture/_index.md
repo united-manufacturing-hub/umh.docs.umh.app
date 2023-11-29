@@ -66,29 +66,30 @@ graph LR
 
 ## Management Console
 
-The Management Console of the United Manufacturing Hub is a robust web
-application designed to configure, manage, and monitor the various aspects of
-Data and Device & Container Infrastructures within UMH. Acting as the central
-command center, it provides a comprehensive overview and control over the system's
-functionalities, ensuring efficient operation and maintenance. The console simplifies
-complex processes, making it accessible for users to oversee the vast array of
-services and operations integral to UMH.
+The [Management Console](/docs/architecture/management-console)
+of the United Manufacturing Hub is a robust web application designed to configure,
+manage, and monitor the various aspects of Data and Device & Container
+Infrastructures within UMH. Acting as the central command center, it provides a
+comprehensive overview and control over the system's functionalities, ensuring
+efficient operation and maintenance. The console simplifies complex processes,
+making it accessible for users to oversee the vast array of services and operations
+integral to UMH.
 
 ## Device & Container Infrastructure
 
-The Device & Container Infrastructure lays the foundation of the United
-Manufacturing Hub's architecture, streamlining the deployment and setup of essential
-software and operating systems across devices. This infrastructure is pivotal in
-automating the installation process, ensuring that the essential software components
-and operating systems are efficiently and reliably established. It provides the
-groundwork upon which the Data Infrastructure is built, embodying a robust and
-scalable base for the entire architecture.
+The [Device & Container Infrastructure](/docs/architecture/device-&-container-infrastructure)
+lays the foundation of the United Manufacturing Hub's architecture, streamlining
+the deployment and setup of essential software and operating systems across devices.
+This infrastructure is pivotal in automating the installation process, ensuring
+that the essential software components and operating systems are efficiently and
+reliably established. It provides the groundwork upon which the Data Infrastructure
+is built, embodying a robust and scalable base for the entire architecture.
 
 ## Data Infrastructure
 
-The Data Infrastructure is the heart of the United Manufacturing Hub, orchestrating
-the interconnection of data sources, storage, monitoring, and analysis solutions.
-It comprises three key components:
+The [Data Infrastructure](/docs/architecture/data-infrastructure) is the heart of
+the United Manufacturing Hub, orchestrating the interconnection of data sources,
+storage, monitoring, and analysis solutions. It comprises three key components:
 
 - **Data Connectivity**: Facilitates the integration of diverse data sources into
   UMH, enabling uninterrupted data exchange.

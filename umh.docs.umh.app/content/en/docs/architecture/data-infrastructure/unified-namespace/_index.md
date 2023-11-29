@@ -11,10 +11,15 @@ The Unified Namespace (UNS) within the United Manufacturing Hub is a vital modul
 facilitating the streamlined flow and management of data. It comprises various
 microservices:
 
-- Redpanda (Kafka): Manages large-scale data processing and orchestrates communication between microservices.
-- HiveMQ: An MQTT broker crucial for receiving data from IoT devices on the shop floor.
-- Redpanda Console: Offers a graphical interface for monitoring Kafka topics and messages.
-- Data Bridge: Bridges data between MQTT and Kafka and between multiple Kafka instances, ensuring efficient data transmission.
+- [data-bridge](/docs/architecture/data-infrastructure/unified-namespace/data-bridge):
+  Bridges data between MQTT and Kafka and between multiple Kafka instances, ensuring
+  efficient data transmission.
+- [HiveMQ](/docs/architecture/data-infrastructure/unified-namespace/mqtt-broker):
+  An MQTT broker crucial for receiving data from IoT devices on the shop floor.
+- [Redpanda (Kafka)](/docs/architecture/data-infrastructure/unified-namespace/kafka-broker):
+  Manages large-scale data processing and orchestrates communication between microservices.
+- [Redpanda Console](/docs/architecture/data-infrastructure/unified-namespace/kafka-console):
+  Offers a graphical interface for monitoring Kafka topics and messages.
 
 The UNS serves as a pivotal point in the UMH architecture, ensuring data from shop
 floor systems and sensors (gathered via the Data Connectivity module) is effectively

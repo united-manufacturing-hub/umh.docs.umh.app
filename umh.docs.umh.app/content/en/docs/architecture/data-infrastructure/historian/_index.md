@@ -11,12 +11,18 @@ weight: 3000
 The Historian in the United Manufacturing Hub serves as a comprehensive data
 management and visualization system. It includes:
 
-- kafka-to-postgresql-v2: Archives Kafka messages adhering to the Data Model V2 schema into the database.
-- TimescaleDB: An open-source SQL database specialized in time-series data storage.
-- Grafana: A software tool for data visualization and analytics.
-- factoryinsight: An analytics tool designed for data analysis, including calculating operational efficiency metrics like OEE.
-- grafana-datasource-v2: A Grafana plugin facilitating connection to factoryinsight.
-- Redis: Utilized as an in-memory data structure store for caching purposes.
+- [kafka-to-postgresql-v2](/docs/architecture/data-infrastructure/historian/kafka-to-postgresql-v2):
+  Archives Kafka messages adhering to the Data Model V2 schema into the database.
+- [TimescaleDB](/docs/architecture/data-infrastructure/historian/database):
+  An open-source SQL database specialized in time-series data storage.
+- [Grafana](/docs/architecture/data-infrastructure/historian/grafana):
+  A software tool for data visualization and analytics.
+- [factoryinsight](/docs/architecture/data-infrastructure/historian/factoryinsight):
+  An analytics tool designed for data analysis, including calculating operational efficiency metrics like OEE.
+- [grafana-datasource-v2](/docs/architecture/data-infrastructure/historian/umh-datasource-v2):
+  A Grafana plugin facilitating connection to factoryinsight.
+- [Redis](/docs/architecture/data-infrastructure/historian/cache):
+  Utilized as an in-memory data structure store for caching purposes.
 
 This structure ensures that data from the Unified Namespace is systematically
 stored, processed, and made visually accessible, providing OT professionals with

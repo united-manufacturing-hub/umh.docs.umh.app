@@ -11,10 +11,14 @@ The Data Connectivity module in the United Manufacturing Hub is designed to enab
 seamless integration of various data sources from the manufacturing environment
 into the Unified Namespace. Key components include:
 
-- Node-RED: A versatile programming tool that links hardware devices, APIs, and online services.
-- Barcode Reader: Connects to USB barcode readers, pushing data to the message broker.
-- Sensor Connect: Integrates with IO-Link Masters and their sensors, relaying data to the message broker.
-- benthos-umh: A specialized version of benthos featuring an OPC UA plugin for efficient data extraction.
+- [Node-RED](/docs/architecture/data-infrastructure/data-connectivity/node-red):
+  A versatile programming tool that links hardware devices, APIs, and online services.
+- [barcodereader](/docs/architecture/data-infrastructure/data-connectivity/barcodereader):
+  Connects to USB barcode readers, pushing data to the message broker.
+- benthos-umh: A specialized version of benthos featuring an OPC UA plugin for
+  efficient data extraction.
+- [sensorconnect](/docs/architecture/data-infrastructure/data-connectivity/sensorconnect):
+  Integrates with IO-Link Masters and their sensors, relaying data to the message broker.
 
 These tools collectively facilitate the extraction and contextualization of data
 from diverse sources, adhering to the ISA-95 automation pyramid model, and

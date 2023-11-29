@@ -17,14 +17,16 @@ lake or analytics platform, where business analysts can access it for deeper ins
 
 It comprises three primary elements:
 
-- **Data Connectivity**: This component includes an array of tools and services designed
+- **[Data Connectivity](/docs/architecture/data-infrastructure/data-connectivity)**:
+  This component includes an array of tools and services designed
   to connect various systems and sensors on the shop floor, facilitating the flow
   of data into the Unified Namespace.
-- **Unified Namespace**: Acts as the central hub for all events and messages on the
+- **[Unified Namespace](/docs/architecture/data-infrastructure/unified-namespace)**:
+  Acts as the central hub for all events and messages on the
   shop floor, ensuring data consistency and accessibility.
-- **Historian**: Responsible for storing events in a time-series database, it
-  also provides tools for data visualization, enabling both real-time
-  and historical analytics.
+- **[Historian](/docs/architecture/data-infrastructure/historian)**: Responsible
+  for storing events in a time-series database, it also provides tools for data
+  visualization, enabling both real-time and historical analytics.
 
 Together, these elements provide a comprehensive framework for collecting,
 storing, and analyzing data, enhancing the operational efficiency and
