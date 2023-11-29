@@ -2,7 +2,8 @@
 title: "Data Infrastructure"
 menuTitle: "Data Infrastructure"
 description: |
-  
+  An overview of UMH's Data Infrastructure, integrating and managing diverse data
+  sources.
 weight: 1000
 ---
 

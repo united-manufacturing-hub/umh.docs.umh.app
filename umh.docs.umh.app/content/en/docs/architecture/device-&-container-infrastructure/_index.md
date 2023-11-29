@@ -2,7 +2,8 @@
 title: "Device & Container Infrastructure"
 menuTitle: "Device & Container Infrastructure"
 description: |
-  
+  Understand the automated deployment and setup process in UMH's Device &
+  Container Infrastructure.
 weight: 2000
 ---
 The Device & Container Infrastructure in the United Manufacturing Hub automates

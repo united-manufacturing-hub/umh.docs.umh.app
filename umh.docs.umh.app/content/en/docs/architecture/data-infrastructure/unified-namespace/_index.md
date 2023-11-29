@@ -2,7 +2,8 @@
 title: "Unified Namespace"
 menuTitle: "Unified Namespace"
 description: |
-  
+  Discover the Unified Namespace's role as a central hub for shop floor data in
+  UMH.
 weight: 2000
 ---
 

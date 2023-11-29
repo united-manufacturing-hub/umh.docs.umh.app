@@ -2,7 +2,8 @@
 title: "Management Console"
 menuTitle: "Management Console"
 description: |
-  
+  Delve into the functionalities and components of the UMH's Management Console,
+  ensuring efficient system management.
 weight: 3000
 ---
 

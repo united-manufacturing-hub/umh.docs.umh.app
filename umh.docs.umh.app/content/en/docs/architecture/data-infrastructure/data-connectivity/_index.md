@@ -2,7 +2,8 @@
 title: "Data Connectivity"
 menuTitle: "Data Connectivity"
 description: |
-  
+  Learn about the tools and services in UMH's Data Connectivity for integrating
+  shop floor systems.
 weight: 1000
 ---
 

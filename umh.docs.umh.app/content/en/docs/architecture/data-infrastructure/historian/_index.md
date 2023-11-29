@@ -2,7 +2,8 @@
 title: "Historian"
 menuTitle: "Historian"
 description: |
-  
+  Insight into the Historian's role in storing and visualizing data within the
+  UMH ecosystem.
 weight: 3000
 ---
 
