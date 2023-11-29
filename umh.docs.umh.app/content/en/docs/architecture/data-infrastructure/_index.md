@@ -6,24 +6,28 @@ description: |
 weight: 1000
 ---
 
-The Data Infrastructure of the United Manufacturing Hub is a crucial component
-designed to ensure seamless data integration and management across your
-manufacturing operations. It comprises three primary elements:
+The United Manufacturing Hub's Data Infrastructure is where all data converges.
+It extends the ISA95 Automation Pyramid, the usual model for data flow in factory
+settings. This infrastructure links each level of the traditional pyramid to the
+Unified Namespace (UNS), incorporating extra data sources that the typical automation
+pyramid doesn't include. The data is then organized, stored, and analyzed to offer
+useful information for frontline workers. Afterwards, it can be sent to the a data
+lake or analytics platform, where business analysts can access it for deeper insights.
 
-- Unified Namespace: Acts as the central hub for all events and messages on the
-  shop floor, ensuring data consistency and accessibility.
-- Historian: Responsible for storing events in a time-series database, the
-  Historian also provides tools for data visualization, enabling both real-time
-  and historical analytics.
-- Connectivity: This component includes an array of tools and services designed
+It comprises three primary elements:
+
+- **Data Connectivity**: This component includes an array of tools and services designed
   to connect various systems and sensors on the shop floor, facilitating the flow
   of data into the Unified Namespace.
+- **Unified Namespace**: Acts as the central hub for all events and messages on the
+  shop floor, ensuring data consistency and accessibility.
+- **Historian**: Responsible for storing events in a time-series database, it
+  also provides tools for data visualization, enabling both real-time
+  and historical analytics.
 
 Together, these elements provide a comprehensive framework for collecting,
 storing, and analyzing data, enhancing the operational efficiency and
-decision-making processes on the shop floor. The Data Infrastructure not only
-integrates with the ISA-95 automation pyramid but also connects to external
-data warehouses or lakes, offering a holistic view of manufacturing operations.
+decision-making processes on the shop floor.
 
 {{< mermaid theme="neutral" >}}
 graph LR

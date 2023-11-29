@@ -5,22 +5,24 @@ description: |
   
 weight: 2000
 ---
-The Device & Container Infrastructure in the United Manufacturing Hub is a
-sophisticated framework designed to automate the deployment and setup of key
-software and operating systems. It consists of several interconnected components:
+The Device & Container Infrastructure in the United Manufacturing Hub automates
+the deployment and setup of the data infrastructure in various environments. It
+is tailored for Edge deployments, particularly in Demilitarized Zones, to minimize
+latency on-premise, and also extends into the Cloud to harness its functionalities.
+It consists of several interconnected components:
 
 - **Provisioning Server**: Manages the initial bootstrapping of devices,
   including iPXE configuration and ignition file distribution.
-- **Flatcar Image Server**: A central repository hosting various versions of
+- **[Flatcar Image Server](https://www.flatcar.org/)**: A central repository hosting various versions of
   Flatcar Container Linux images, ensuring easy access and version control.
-- **Customized iPXE**: A specialized bootloader configured to streamline the
+- **[Customized iPXE](https://ipxe.org/)**: A specialized bootloader configured to streamline the
   initial boot process by fetching UMH-specific settings and configurations.
 - **First and Second Stage Flatcar OS**: A two-stage operating system setup where
   the first stage is a temporary OS used for installing the second stage, which
   is the final operating system equipped with specific configurations and tools.
 - **Installation Script**: An automated script hosted at management.umh.app,
   responsible for setting up and configuring the Kubernetes environment.
-- **Kubernetes (k3s)**: A lightweight Kubernetes setup that forms the backbone
+- **Kubernetes ([k3s](https://k3s.io/))**: A lightweight Kubernetes setup that forms the backbone
   of the container orchestration system.
 
 This infrastructure ensures a streamlined, automated installation process, laying
