@@ -170,7 +170,7 @@ Ensure you have node-red-contrib-kafkajs installed. If not, see
 
 Add a kafka-producer node, connecting it to the function node. Configure as follows:
 
-- **Broker**: united-manufacturing-hub-kafka:9092
+- **Brokers**: united-manufacturing-hub-kafka:9092
 - **Client ID**: nodered
 
 **Update** to save.
@@ -219,10 +219,15 @@ For installation guidance, see
 In Node-RED, locate the kafka-consumer node and drag it into your flow.
 Double-click to configure and click the pencil button beside the **Server** field.
 
+{{% notice info %}}
+If you have followed the guide, the kafka client should already be configured and
+automatically selected.
+{{% /notice %}}
+
 Enter your Kafka broker's details:
 
-- **Server**: united-manufacturing-hub-kafka
-- **Port**: 9092
+- **Brokers**: united-manufacturing-hub-kafka:9092
+- **Client ID**: nodered
 
 Click **Add** to save.
 
