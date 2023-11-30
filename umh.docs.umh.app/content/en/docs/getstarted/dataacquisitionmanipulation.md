@@ -157,8 +157,9 @@ msg.payload = {
 return msg;
 ```
 
-Finalize with **Done**. Then, connect a JSON node to the function node to parse
-the object into a string.
+Finalize with **Done**.
+
+Then, connect a JSON node to the function node to parse the object into a string.
 
 {{% notice note %}}
 This function transforms the payload into the correct format for the UMH data model.
@@ -270,15 +271,16 @@ msg.payload = {
 return msg;
 ```
 
-Finalize with **Done**. Then, connect a JSON node to the function node to parse
-the object into a string.
+Finalize with **Done**.
+
+Then, connect a JSON node to the function node to parse the object into a string.
 
 ### Send Formatted Data Back to Kafka
 
 Now, we'll route the transformed data back to the Kafka broker, in a different
 topic.
 
-Add a kafka-producer node, connecting it to the function node. Use the same
+Add a kafka-producer node, connecting it to the JSON node. Use the same
 Kafka client as earlier, and the same topic for output:
 
 ```text
