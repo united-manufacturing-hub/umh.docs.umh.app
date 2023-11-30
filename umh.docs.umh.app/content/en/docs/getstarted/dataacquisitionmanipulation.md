@@ -149,16 +149,19 @@ Explore [Unified Namespace](/docs/features/unified-namespace) for details on top
 Use a function node to format raw data. Connect it to the mqtt-in node and paste
 this script:
 
-```jsx
-msg.payload = String(msg.payload)
-
+```js
+msg.payload = {
+    "timestamp_ms": Date.now(),
+    "temperature": msg.payload
+}
 return msg;
 ```
 
-Finalize with **Done**.
+Finalize with **Done**. Then, connect a JSON node to the function node to parse
+the object into a string.
 
 {{% notice note %}}
-This function transforms the payload into a string, meeting Kafka's data requirements.
+This function transforms the payload into the correct format for the UMH data model.
 {{% /notice %}}
 
 ### Send Formatted Data to Kafka
@@ -168,7 +171,7 @@ For this guide, we'll send data to the UMH Kafka broker.
 Ensure you have node-red-contrib-kafkajs installed. If not, see
 [How to Get Missing Plugins in Node-RED](https://learn.umh.app/course/how-to-get-missing-plugins-in-node-red/).
 
-Add a kafka-producer node, connecting it to the function node. Configure as follows:
+Add a kafka-producer node, connecting it to the JSON node. Configure as follows:
 
 - **Brokers**: united-manufacturing-hub-kafka:9092
 - **Client ID**: nodered
@@ -255,15 +258,20 @@ to convert the temperature from Celsius to Fahrenheit. Connect it to the
 kafka-consumer node and paste the following script:
 
 ```jsx
-var celsius = Number(msg.payload.value)
-var fahrenheit = (celsius * 9 / 5) + 32
+const payloadObj = JSON.parse(msg.payload.value)
+const celsius = payloadObj.temperature
+const fahrenheit = (celsius * 9 / 5) + 32
 
-msg.payload = String(fahrenheit)
+msg.payload = {
+    "timestamp_ms": Date.now(),
+    "temperature": fahrenheit
+}
 
 return msg;
 ```
 
-Finalize with **Done**.
+Finalize with **Done**. Then, connect a JSON node to the function node to parse
+the object into a string.
 
 ### Send Formatted Data Back to Kafka
 
