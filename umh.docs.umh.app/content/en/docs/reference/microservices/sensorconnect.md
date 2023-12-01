@@ -29,6 +29,11 @@ section of the Helm chart values file.
 The default values of the other parameters are usually good for most use cases,
 but you can change them in the Danger Zone section of the Helm chart values file.
 
+If you want to increase the polling speed of the sensors, you can do so by
+setting the `sensorconnect.lowerPollingTime` parameter to a lower value. This
+can cause the ifm IO-link master to become unresponsive, if its firmware is
+not up to date.
+
 ### {{% heading "envvars" %}}
 
 {{< table caption="Environment variables" >}}
@@ -45,7 +50,7 @@ but you can change them in the Danger Zone section of the Helm chart values file
 | `KAFKA_SSL_KEY_PASSWORD`                   | The encrypted password of the SSL key. If empty, no password is used                                                                                          | string | Any                           | ""                                                         |
 | `KAFKA_USE_SSL`                            | Set to true to use SSL encryption for the connection to the Kafka broker                                                                                      | string | `true`, `false`               | `false`                                                    |
 | `LOGGING_LEVEL`                            | Defines which logging level is used, mostly relevant for developers                                                                                           | string | PRODUCTION, DEVELOPMENT       | PRODUCTION                                                 |
-| `LOWER_POLLING_TIME_MS`                    | Time in milliseconds to define the lower bound of time between sensor polling                                                                                 | int    | Any                           | 20                                                         |
+| `LOWER_POLLING_TIME_MS`                    | Time in milliseconds to define the lower bound of time between sensor polling                                                                                 | int    | Any                           | 100                                                        |
 | `MAX_SENSOR_ERROR_COUNT`                   | Amount of errors before a sensor is temporarily disabled                                                                                                      | int    | Any                           | 50                                                         |
 | `MICROSERVICE_NAME`                        | Name of the microservice (used for tracing)                                                                                                                   | string | Any                           | united-manufacturing-hub-sensorconnect                     |
 | `MQTT_BROKER_URL`                          | URL of the MQTT broker. Port is required                                                                                                                      | string | Any                           | {{< resource type="service" name="mqttbroker" >}}:1883     |
