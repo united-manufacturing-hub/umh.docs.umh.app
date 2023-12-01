@@ -149,16 +149,20 @@ Explore [Unified Namespace](/docs/features/unified-namespace) for details on top
 Use a function node to format raw data. Connect it to the mqtt-in node and paste
 this script:
 
-```jsx
-msg.payload = String(msg.payload)
-
+```js
+msg.payload = {
+    "timestamp_ms": Date.now(),
+    "temperature": msg.payload
+}
 return msg;
 ```
 
 Finalize with **Done**.
 
+Then, connect a JSON node to the function node to parse the object into a string.
+
 {{% notice note %}}
-This function transforms the payload into a string, meeting Kafka's data requirements.
+This function transforms the payload into the correct format for the UMH data model.
 {{% /notice %}}
 
 ### Send Formatted Data to Kafka
@@ -168,9 +172,9 @@ For this guide, we'll send data to the UMH Kafka broker.
 Ensure you have node-red-contrib-kafkajs installed. If not, see
 [How to Get Missing Plugins in Node-RED](https://learn.umh.app/course/how-to-get-missing-plugins-in-node-red/).
 
-Add a kafka-producer node, connecting it to the function node. Configure as follows:
+Add a kafka-producer node, connecting it to the JSON node. Configure as follows:
 
-- **Broker**: united-manufacturing-hub-kafka:9092
+- **Brokers**: united-manufacturing-hub-kafka:9092
 - **Client ID**: nodered
 
 **Update** to save.
@@ -219,10 +223,15 @@ For installation guidance, see
 In Node-RED, locate the kafka-consumer node and drag it into your flow.
 Double-click to configure and click the pencil button beside the **Server** field.
 
+{{% notice info %}}
+If you have followed the guide, the kafka client should already be configured and
+automatically selected.
+{{% /notice %}}
+
 Enter your Kafka broker's details:
 
-- **Server**: united-manufacturing-hub-kafka
-- **Port**: 9092
+- **Brokers**: united-manufacturing-hub-kafka:9092
+- **Client ID**: nodered
 
 Click **Add** to save.
 
@@ -250,22 +259,28 @@ to convert the temperature from Celsius to Fahrenheit. Connect it to the
 kafka-consumer node and paste the following script:
 
 ```jsx
-var celsius = Number(msg.payload.value)
-var fahrenheit = (celsius * 9 / 5) + 32
+const payloadObj = JSON.parse(msg.payload.value)
+const celsius = payloadObj.temperature
+const fahrenheit = (celsius * 9 / 5) + 32
 
-msg.payload = String(fahrenheit)
+msg.payload = {
+    "timestamp_ms": Date.now(),
+    "temperature": fahrenheit
+}
 
 return msg;
 ```
 
 Finalize with **Done**.
 
+Then, connect a JSON node to the function node to parse the object into a string.
+
 ### Send Formatted Data Back to Kafka
 
 Now, we'll route the transformed data back to the Kafka broker, in a different
 topic.
 
-Add a kafka-producer node, connecting it to the function node. Use the same
+Add a kafka-producer node, connecting it to the JSON node. Use the same
 Kafka client as earlier, and the same topic for output:
 
 ```text
