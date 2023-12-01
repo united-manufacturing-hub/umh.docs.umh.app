@@ -238,6 +238,61 @@ environment variable:
 export PATH=$PATH:/usr/local/bin
 ```
 
+### Viewing Pod Logs for Troubleshooting
+
+Logs are essential for diagnosing and understanding the behavior of your applications and infrastructure. Here's how to view logs for key components:
+
+- **Management Companion Logs**: To view the real-time logs of the Management Companion, use the following command. This can be helpful for monitoring the Companion's activities or troubleshooting issues.
+
+  ```bash
+  sudo $(which kubectl) logs -f mgmtcompanion-0 -n mgmtcompanion --kubeconfig /etc/rancher/k3s/k3s.yaml
+  ```
+
+- **TimescaleDB Logs**: For real-time logging of the TimescaleDB, execute this command. It's useful for tracking database operations and identifying potential issues.
+
+  ```bash
+  sudo $(which kubectl) logs -f united-manufacturing-hub-timescaledb-0 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
+  ```
+
+### Restarting a Pod for Troubleshooting
+
+Sometimes, the most straightforward troubleshooting method is to restart a problematic pod. Here’s how to restart specific pods:
+
+- **Restart Management Companion**: If you encounter issues with the Management Companion, restart it with this command:
+
+  ```bash
+  sudo $(which kubectl) delete pod mgmtcompanion-0 -n mgmtcompanion --kubeconfig /etc/rancher/k3s/k3s.yaml
+  ```
+
+- **Restart TimescaleDB**: Should TimescaleDB exhibit unexpected behavior, use the following command to restart it:
+
+  ```bash
+  sudo $(which kubectl) delete pod united-manufacturing-hub-timescaledb-0 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
+  ```
+
+### Troubleshooting Redpanda / Kafka
+
+For insights into your Kafka streams managed by Redpanda, these commands are invaluable:
+
+- **List All Topics**: To get an overview of all topics in your Redpanda cluster:
+
+  ```bash
+  sudo $(which kubectl) exec -it --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub  united-manufacturing-hub-kafka-0 -- rpk topic list
+  ```
+
+- **Describe a Specific Topic**: For detailed information about a specific topic, such as `umh.v1.e2e-enterprise.aachen.packaging`, use:
+
+  ```bash
+  sudo $(which kubectl) exec -it --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub united-manufacturing-hub-kafka-0 -- rpk topic describe umh.v1.e2e-enterprise.aachen.packaging
+  ```
+
+- **Consume Messages from a Topic**: To view messages from a topic like `umh.v1.e2e-enterprise.aachen.packaging`, this command is useful for real-time data observation:
+
+  ```bash
+  sudo $(which kubectl) exec -it --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub united-manufacturing-hub-kafka-0 -- rpk topic consume umh.v1.e2e-enterprise.aachen.packaging
+  ```
+
+
 ## What's next?
 
 Now that you have learned how to monitor, manage and configure your UMH instance
