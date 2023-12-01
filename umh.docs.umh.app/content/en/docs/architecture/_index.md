@@ -8,6 +8,13 @@ weight: 2000
 ---
 
 <!-- 
+
+To render the SVG, load this up in https://structurizr.com/
+
+-->
+
+<!-- 
+
 workspace {
 
   model {
