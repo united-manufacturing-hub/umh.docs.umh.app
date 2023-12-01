@@ -28,6 +28,8 @@ Console and the instance:
 
 ![Communication between the Management Console and the instance](/images/getstarted/managingTheSystem/simpleInfrastructureDiagram.png?width=80%)
 
+For more information, visit the [architecture](/docs/architecture/)
+
 ## Overview of Your Instances
 
 ![Instance overview](/images/getstarted/managingTheSystem/instanceOverview.png?width=80%)
@@ -100,55 +102,29 @@ you can still manage it via the command line.
 
 ### Access the Command Line
 
-To access the shell of your device, you can either interact directly with the
-device or use SSH. It's important to note that you need access to the root user
-to execute the following commands.
+Access your device's shell either directly or via SSH. Note: Root user access is required for the following commands.
 
-To log in as the root user, after logging as a normal user, run:
-
-```bash
-sudo su
-```
-
-If you don't have root user access, you can still execute the commands by
-prefixing them with `sudo`. However, you'll need to specify the full path to the
-binary, which you can find with the `which` command.
-
-For example, type `which kubectl` to get the path to the `kubectl` binary, then
-run the command with `sudo` and the full path.
-
-Besides, you must then add the `--kubeconfig /etc/rancher/k3s/k3s.yaml` flag to
-specify the configuration file path.
-
-This is what a command would look like:
-
-```bash
-sudo /usr/local/bin/kubectl get pods --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub
-```
-
-{{% notice warning %}}
-It is important to note that you will need to use `sudo` and the full path to
-the binary for all commands in this chapter.
+{{% notice tip %}}
+In UMH's current version, add `--kubeconfig /etc/rancher/k3s/k3s.yaml` to each kubectl command. Root privileges are needed to access it. The installation path of kubectl might vary (e.g., `/usr/local/bin/kubectl` on RHEL/Linux, `/opt/bin/kubectl` on flatcar). These paths may not be in the root user's PATH, so the commands below might appear complex.
 {{% /notice %}}
 
 ### Interact with the Instance
 
-After accessing the shell as the root user, you can interact with the instance
-using the `kubectl` command. Start by setting this specific environment variable:
+First, set this environment variable:
 
 ```bash
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 ```
 
 {{% notice note %}}
-You can skip this step by adding the `--kubeconfig /etc/rancher/k3s/k3s.yaml`
-flag. All the commands in this chapter will use this flag.
+You can bypass this by adding --kubeconfig /etc/rancher/k3s/k3s.yaml to your commands. All instructions in this chapter will include this flag.
 {{% /notice %}}
 
 Then, to get a list of pods, run:
 
+<!-- This command is tested within #1153 -->
 ```bash
-kubectl get pods -n united-manufacturing-hub
+sudo $(which kubectl) get pods -n united-manufacturing-hub  --kubeconfig /etc/rancher/k3s/k3s.yaml
 ```
 
 For a comprehensive list of commands, refer to the
@@ -160,10 +136,7 @@ Always specify the namespace when running a command by adding `-n united-manufac
 
 #### Access Node-RED
 
-Node-RED, a visual tool for wiring the Internet of Things, is utilized by the
-United Manufacturing Hub for creating data flows.
-
-To access Node-RED, simply open the following URL in your browser:
+Node-RED is used in UMH for creating data flows. Access it via:
 
 ```text
 http://<instance-ip-address>:1880/nodered
@@ -171,15 +144,11 @@ http://<instance-ip-address>:1880/nodered
 
 #### Access Grafana
 
-Grafana, an open-source analytics and monitoring solution, is used by UMH for
-dashboard displays.
-
-After logging in as the root user with `sudo su`, retrieve the credentials with
-these commands:
-
+UMH uses Grafana for dashboard displays. Get your credentials:
+<!-- These two commands are tested within #1153 -->
 ```bash
-kubectl get secret grafana-secret --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub -o jsonpath="{.data.adminuser}" | base64 --decode; echo
-kubectl get secret grafana-secret --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub -o jsonpath="{.data.adminpassword}" | base64 --decode; echo
+sudo $(which kubectl) get secret grafana-secret --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub -o jsonpath="{.data.adminuser}" | base64 --decode; echo
+sudo $(which kubectl) get secret grafana-secret --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub -o jsonpath="{.data.adminpassword}" | base64 --decode; echo
 ```
 
 Then, access Grafana here:
@@ -192,7 +161,7 @@ Use the retrieved credentials to log in.
 
 #### Access the RedPanda Console
 
-The RedPanda Console, used for managing the Kafka broker, can be accessed at:
+Manage the Kafka broker via the RedPanda Console:
 
 ```text
 http://<instance-ip-address>:8090
@@ -200,13 +169,11 @@ http://<instance-ip-address>:8090
 
 #### Interact with the Database
 
-UMH uses TimescaleDB for database needs.
+UMH uses TimescaleDB. Open a psql session:
 
-After logging in as the root user with `sudo su`, open a `psql` session with
-this command:
-
+<!-- This command is tested within #1153 -->
 ```bash
-kubectl exec -it $(kubectl get pods --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub -l app.kubernetes.io/component=timescaledb -o jsonpath="{.items[0].metadata.name}") --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub -- psql -U postgres
+sudo $(which kubectl) exec -it $(sudo $(which kubectl) get pods --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub -l app.kubernetes.io/component=timescaledb -o jsonpath="{.items[0].metadata.name}") --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub -- psql -U postgres
 ```
 
 Run SQL queries as needed. For an overview of the database schema, refer to the
@@ -214,12 +181,7 @@ Run SQL queries as needed. For an overview of the database schema, refer to the
 
 #### Connect MQTT to MQTT Explorer
 
-MQTT Explorer is a comprehensive MQTT client that provides a structured overview
-of your MQTT topics and makes working with devices/services on your broker
-easier.
-
-Connect MQTT Explorer to the MQTT broker using the instance's IP address and port
-`1883`.
+Use MQTT Explorer for a structured overview of MQTT topics. Connect using the instance's IP and port 1883.
 
 ## Troubleshooting
 
@@ -242,7 +204,7 @@ export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 Alternatively, use the `--kubeconfig` flag to specify the configuration file path:
 
 ```bash
-kubectl --kubeconfig /etc/rancher/k3s/k3s.yaml get pods -n united-manufacturing-hub
+sudo $(which kubectl) --kubeconfig /etc/rancher/k3s/k3s.yaml get pods -n united-manufacturing-hub
 ```
 
 ### "Permission Denied" Error with `kubectl` Command
@@ -265,7 +227,7 @@ kubectl: command not found
 ```
 
 The solution is to use the full path to the `kubectl` binary. You can do this by
-prefixing the command with `/usr/local/bin/` or by adding it to your `PATH`
+prefixing the command with `/usr/local/bin/` (for RHEL and other Linux systems), or `/opt/bin/` (for flatcar) or by adding it to your `PATH`
 environment variable:
 
 ```bash
