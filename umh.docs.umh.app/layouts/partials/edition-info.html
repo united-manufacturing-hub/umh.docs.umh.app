@@ -1,12 +1,10 @@
 {{ if eq .Params.edition "community" }}
 <div class="edition-info">
-    This page contains features that are only available in the UMH Community Edition, which require a free account on management.umh.app. 
-    More details about the specific offerings of the Community Edition can be found 
-    <a href="https://www.umh.app/umh-integrated-platform-editions-and-pricing" referrerpolicy="no-referrer" target="_blank">here</a>. 
+    This page contains features available in the Community Edition or higher. Create a <a href="https://management.umh.app/register" referrerpolicy="no-referrer" target="_blank">free account</a> to access them.
+    More details about the specific offerings of the Community Edition can be found in the <a href="https://www.umh.app/umh-integrated-platform-editions-and-pricing" referrerpolicy="no-referrer" target="_blank">Editions and Pricing</a> page. 
 </div>
 {{ else if eq .Params.edition "enterprise" }}
 <div class="edition-info">
-    This page contains features that are unique to the UMH Enterprise Edition. More details about the specific offerings of the Enterprise 
-    Edition can be found  <a href="https://www.umh.app/umh-integrated-platform-editions-and-pricing" referrerpolicy="no-referrer" target="_blank">here</a>. 
+    This page details features exclusive to the Enterprise Edition. For mor information, visit the <a href="https://www.umh.app/umh-integrated-platform-editions-and-pricing" referrerpolicy="no-referrer" target="_blank">Editions and Pricing</a> page. 
 </div>
 {{ end }}
