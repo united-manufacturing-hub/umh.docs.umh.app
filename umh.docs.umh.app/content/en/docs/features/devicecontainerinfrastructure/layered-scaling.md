@@ -77,5 +77,5 @@ them via MQTT to an instance of the UMH instead.
 ## Where to get more information?
 
 - Learn more about the United Manufacturing Hub's architecture by visiting [our architecture page](/docs/architecture/).
-- For more information about the Helm Chart and how to deploy it, refer to the [Helm Chart documentation](/docs/deployment/helm/).
+- For more information about the Helm Chart and how to deploy it, refer to the [Helm Chart documentation](/docs/reference/helm-chart/).
 - To get an overview of the microservices in the United Manufacturing Hub, check out the [microservices documentation](/docs/architecture/microservices/).
