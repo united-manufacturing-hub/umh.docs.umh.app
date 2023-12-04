@@ -26,20 +26,23 @@ something like a quality testing station (we once connected a Mitutoyo quality t
 To use the microservice barcode reader, you will need configure the helm-chart and enable it.
 
 1. Enable the barcodereader feature by executing the following command:
-```bash
-sudo $(which helm) upgrade --kubeconfig /etc/rancher/k3s/k3s.yaml  -n united-manufacturing-hub united-manufacturing-hub united-manufacturing-hub/united-manufacturing-hub --set _000_commonConfig.datasources.barcodereader.enabled=true --reuse-values --version $(sudo $(which helm) l
-s --kubeconfig /etc/rancher/k3s/k3s.yaml  -n united-manufacturing-hub -o json | jq -r '.[0].app_version')
-```
-2. During startup, it will show all connected USB devices. Remember yours and then change the INPUT_DEVICE_NAME and INPUT_DEVICE_PATH
-3. Also set ASSET_ID, CUSTOMER_ID, etc. as this will then send it into the topic ia/ASSET_ID/.../barcode
+    ```bash
+    sudo $(which helm) upgrade --kubeconfig /etc/rancher/k3s/k3s.yaml  -n united-manufacturing-hub united-manufacturing-hub united-manufacturing-hub/united-manufacturing-hub --set _000_commonConfig.datasources.barcodereader.enabled=true --reuse-values --version $(sudo $(which helm) l
+    s --kubeconfig /etc/rancher/k3s/k3s.yaml  -n united-manufacturing-hub -o json | jq -r '.[0].app_version')
+    ```
+2. During startup, it will show all connected USB devices. Remember yours and then change the `INPUT_DEVICE_NAME` and `INPUT_DEVICE_PATH`. Also set `ASSET_ID`, `CUSTOMER_ID`, etc. as this will then send it into the topic `ia/ASSET_ID/.../barcode`. To configure these values, you should modify the barcodereader's deployment. The following command allows you for editting:
+    ```bash
+    sudo $(which kubectl) edit deployment united-manufacturing-hub-barcodereader -n united-manufacturing-hub  --kubeconfig /etc/rancher/k3s/k3s.yaml
+    ``` 
+    Make sure that changes are saved after the modification.
 4. The following command lists running pods. Remember the barcodereader pod's name.
-```bash
-sudo $(which kubectl) get pods -n united-manufacturing-hub  --kubeconfig /etc/rancher/k3s/k3s.yaml
-```
+    ```bash
+    sudo $(which kubectl) get pods -n united-manufacturing-hub  --kubeconfig /etc/rancher/k3s/k3s.yaml
+    ```
 5. Execute the following command with the barcodereader pod's name to restart the pod:
-```bash
-sudo $(which kubectl) delete pod [BARCODEREADER_POD] -n united-manufacturing-hub  --kubeconfig /etc/rancher/k3s/k3s.yaml
-``` 
+    ```bash
+    sudo $(which kubectl) delete pod <barcodereader-pod-name> -n united-manufacturing-hub  --kubeconfig /etc/rancher/k3s/k3s.yaml
+    ``` 
 6. Scan a device, and it will be written into the topic xxx
 
 Once installed, you can [configure](/docs/reference/microservices/barcodereader/) the microservice by
