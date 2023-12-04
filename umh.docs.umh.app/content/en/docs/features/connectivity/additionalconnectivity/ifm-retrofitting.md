@@ -44,7 +44,7 @@ To use ifm IO-link gateways and [Sensorconnect](/docs/reference/microservices/se
 ```bash
 sudo helm upgrade --kubeconfig /etc/rancher/k3s/k3s.yaml  -n united-manufacturing-hub united-manufacturing-hub united-manufacturing-hub/united-manufacturing-hub --set _000_commonConfig.datasources.sensorconnect.iprange=[REPLACE_WITH_NEW_IPRANGE],_000_commonConfig.datasources.sensorconnect.enabled=true --version $(sudo helm ls --kubeconfig /etc/rancher/k3s/k3s.yaml  -n united-manufacturing-hub -o json | jq -r '.[0].app_version')
 ```
-4. Once completed, the data should be available in your [Unified Namespace](/docs/features/unified-namespace/).
+4. Once completed, the data should be available in your [Unified Namespace](/docs/features/datainfrastructure/unified-namespace/).
 
 ## What are the limitations?
 
@@ -56,4 +56,4 @@ sudo helm upgrade --kubeconfig /etc/rancher/k3s/k3s.yaml  -n united-manufacturin
 - [GitHub UMH Community Repository](https://github.com/united-manufacturing-hub/community-repo)
 - [Introduction into retrofitting](https://learn.umh.app/lesson/introduction-into-it-ot-retrofitting/)
 - [Retrofitting the shopfloor with plug play sensors](https://learn.umh.app/blog/connectivity-retrofitting-the-shopfloor-with-plug-play-sensors/)
-- [Documentation of Sensorconnect](/docs/microservices/core/sensorconnect/)
+- [Documentation of Sensorconnect](/docs/reference/microservices/sensorconnect/)
