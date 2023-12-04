@@ -59,11 +59,11 @@ You can find the configuration options in the [configurationTable](/docs/archite
 
 Using it is very easy:
 
-1. Send messages according to the [UMH datamodel](/docs/architecture/datamodel/) to the [Unified Namespace](/docs/features/unified-namespace/) (similar to the [Historian feature](/docs/features/historian/))
+1. Send messages according to the [UMH datamodel](/docs/datamodel/) to the [Unified Namespace](/docs/features/datainfrastructure/unified-namespace/) (similar to the [Historian feature](/docs/features/datainfrastructure/historian/))
 2. Configure your OEE calculation by adjusting the configuration table
 3. Open Grafana, select your equipment and select the analysis you want to have. More information can be found in the [umh-datasource-v2](/docs/architecture/microservices/grafana-plugins/umh-datasource-v2/).
 
-For more information about what exactly is behind the Analytics feature, check out our [our architecture page](/docs/architecture/) and [our datamodel](/docs/architecture/datamodel/)
+For more information about what exactly is behind the Analytics feature, check out our [our architecture page](/docs/architecture/) and [our datamodel](/docs/datamodel/)
 
 ## What are the limitations?
 
@@ -76,5 +76,5 @@ At the moment, the limitations are:
 
 - Learn more about the benefits of using open-source databases in our blog article, [Historians vs Open-Source databases - which is better?](https://learn.umh.app/blog/historians-vs-open-source-databases-which-is-better/)
 - Learn more about the United Manufacturing Hub's architecture by visiting [our architecture page](/docs/architecture/).
-- Learn more about the datamodel by visiting [our datamodel](/docs/architecture/datamodel/)
+- Learn more about the datamodel by visiting [our datamodel](/docs/datamodel/)
 - To build visual dashboards, [check out our tutorial on using Grafana Canvas](https://learn.umh.app/blog/building-shopfloor-dashboards-with-the-united-manufacturing-hub-and-grafana-canvas/)
