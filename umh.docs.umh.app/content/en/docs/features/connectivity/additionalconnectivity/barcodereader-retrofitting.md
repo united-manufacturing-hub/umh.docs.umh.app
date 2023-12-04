@@ -27,7 +27,7 @@ To use the microservice barcode reader, you will need configure the helm-chart a
 
 1. Enable the barcodereader feature by executing the following command:
 ```bash
-sudo $(which helm) upgrade --kubeconfig /etc/rancher/k3s/k3s.yaml  -n united-manufacturing-hub united-manufacturing-hub united-manufacturing-hub/united-manufacturing-hub --set _000_commonConfig.datasources.barcodereader.enabled=true --reuse-values --version $(sudo helm l
+sudo $(which helm) upgrade --kubeconfig /etc/rancher/k3s/k3s.yaml  -n united-manufacturing-hub united-manufacturing-hub united-manufacturing-hub/united-manufacturing-hub --set _000_commonConfig.datasources.barcodereader.enabled=true --reuse-values --version $(sudo $(which helm) l
 s --kubeconfig /etc/rancher/k3s/k3s.yaml  -n united-manufacturing-hub -o json | jq -r '.[0].app_version')
 ```
 2. During startup, it will show all connected USB devices. Remember yours and then change the INPUT_DEVICE_NAME and INPUT_DEVICE_PATH
