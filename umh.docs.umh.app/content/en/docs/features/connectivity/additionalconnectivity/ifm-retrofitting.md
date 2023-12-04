@@ -40,9 +40,9 @@ To use ifm IO-link gateways and [Sensorconnect](/docs/reference/microservices/se
 
 1. Ensure all IO-Link gateways are in the same network or accessible from your instance of the United Manufacturing Hub.
 2. Retrofit the machines by connecting the desired sensors and establish a connection with ifm IO-Link gateways.
-3. Configure the [Sensorconnect IP-range](/docs/reference/helm-chart/#sensor-connect) to either match the IP address using subnet notation /32, or, in cases involving multiple masters, configure it to scan an entire range, for example /24. To change the value, execute the following command with your IP range:
+3. Deploy the sensorconnect feature and configure the [Sensorconnect IP-range](/docs/reference/helm-chart/#sensor-connect) to either match the IP address using subnet notation /32, or, in cases involving multiple masters, configure it to scan an entire range, for example /24. To deploy the feature and change the value, execute the following command with your IP range:
 ```bash
-sudo helm upgrade --kubeconfig /etc/rancher/k3s/k3s.yaml  -n united-manufacturing-hub united-manufacturing-hub united-manufacturing-hub/united-manufacturing-hub --set _000_commonConfig.datasources.sensorconnect.iprange=[REPLACE_WITH_NEW_IPRANGE],_000_commonConfig.datasources.sensorconnect.enabled=true --version $(sudo helm ls --kubeconfig /etc/rancher/k3s/k3s.yaml  -n united-manufacturing-hub -o json | jq -r '.[0].app_version')
+sudo helm upgrade --kubeconfig /etc/rancher/k3s/k3s.yaml  -n united-manufacturing-hub united-manufacturing-hub united-manufacturing-hub/united-manufacturing-hub --set _000_commonConfig.datasources.sensorconnect.enabled=true,_000_commonConfig.datasources.sensorconnect.iprange=[REPLACE_WITH_NEW_IPRANGE] --reuse-values --version $(sudo helm ls --kubeconfig /etc/rancher/k3s/k3s.yaml  -n united-manufacturing-hub -o json | jq -r '.[0].app_version')
 ```
 4. Once completed, the data should be available in your [Unified Namespace](/docs/features/datainfrastructure/unified-namespace/).
 
