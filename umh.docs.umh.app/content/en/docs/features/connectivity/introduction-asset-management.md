@@ -4,26 +4,35 @@ content_type: task
 description: Introduction to IIoT Connectivity and Asset Management in UMH.
 weight: 1000
 edition: community
-draft: true
+draft: false
 ---
 
-## Introduction to IIoT Connectivity and Asset Management in UMH
 
 In IIoT, connectivity involves extracting and contextualizing data from various systems into the Unified Namespace. There's no universal solution; a blend of different tools is required, tailored to specific technical and organizational challenges.
+The goal with asset management is that you can add everything with an IP on your shopfloor. So, if the connection gets worse or drops entirely, you are notified. This is required for any data extraction step using benthos and the Management Console. In the future, we will also recommend adding an asset before working with it in Node-RED.
 
-## Technical Challenges Examples:
+## When should I use it?
+Integration of heterogeneous techniques is not straightforward. Additionally, mismatches and limitations in the organization make it more complicated. Asset Management in UMH addresses the following challenges, for instance.
+
+
+### Technical Challenges Examples:
 
 - **Uncommon Protocols:** Handling rare communication protocols.
 - **Non-Ethernet Protocols:** Dealing with non-standard connections, like a 4-20 mA sensor or a USB-connected barcode reader.
 - **Monotonous Integrations:** Numerous data sources in the same format can lead to tedious, error-prone setup processes. Templating is a key solution here.
 - **High Variance in Data Sources:** For instance, different QA stations in production lines might use slightly varied REST API versions, necessitating extensive customization.
 
-## Organizational Challenges Examples:
+### Organizational Challenges Examples:
 
 - **IT and OT Tool Mismatch:** Advanced IT tools like Spark/Flink may be challenging for OT personnel who have crucial domain knowledge.
 - **OT Tools’ Limitations:** Traditional OT tools often struggle in modern IT environments, lacking features like Docker compatibility, monitoring, automated backups, or high availability.
 
-## Recommended Tools in UMH
+## What can I do with it?
+
+You can manage connectivity effectively; for example, you can create, configure, and delete connections using tools in a comfortable way. 
+
+
+## How can I use it?
 
 To address these challenges, UMH recommends a combination of tools for effective connectivity:
 
@@ -33,8 +42,6 @@ To address these challenges, UMH recommends a combination of tools for effective
 - **Advantages:** Vast global community, extensive connectors, Docker compatibility, user-friendly for OT personnel.
 - **Disadvantages:** Reliability may vary.
 - **UMH Recommendation:** Primarily for prototyping and integrating parts of the shopfloor that demand high levels of customization and domain knowledge.
-
-[Learn more about Node-RED's role in the industrial IoT](/docs/getstarted/noderedarticle/)
 
 ### 2. benthos-umh
 
@@ -49,7 +56,12 @@ To address these challenges, UMH recommends a combination of tools for effective
 
 This approach ensures a flexible, adaptable IIoT environment that addresses both technical and organizational needs effectively.
 
-## Asset Management
+## What are the limitations?
+Although the mentioned tools don't require professional knowledge, you still need to learn them. Furthermore, each tool has drawbacks, as discussed in the previous section.
 
 
-The goal with asset management is that you can add everything with an IP on your shopfloor. So, if the connection gets worse or drops entirely, you are notified. This is required for any data extraction step using benthos and the Management Console. In the future, we will also recommend adding an asset before working with it in Node-RED.
+## Where to get more information?
+- Learn more about Node-RED and the United Manufacturing Hub by following our [Get started guide](/docs/getstarted/).
+- Learn [how to connect devices using Node-RED with United Manufacturing Hub](/docs/features/connectivity/node-red/).
+- Learn [how to retrofit legacy machines with ifm IO-link master and sensorconnect](/docs/features/connectivity/additionalconnectivity/ifm-retrofitting/).
+- Learn [how to retrofit with USB barcodereader](/docs/features/connectivity/additionalconnectivity/barcodereader-retrofitting/).
