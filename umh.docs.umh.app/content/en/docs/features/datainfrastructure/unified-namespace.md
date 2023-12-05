@@ -52,19 +52,27 @@ If you send the messages into other topics, some features might not work correct
 {{% /notice %}}
 
 ## What are the limitations?
+- Increased complexity in integrating MQTT with Kafka.
+- Deviating from established standards might initially cause discomfort among some users.
+- You have to use the following specific topic structure that adheres to the ISA95 model:
 
-- Messages are only bridged between MQTT and Kafka if they fulfill the following requirements:
-  - payload is a valid JSON OR message is sent to the `ia/raw` topic
-  - only sent to topics matching the [allowed topics in the UMH datamodel](/docs/datamodel/messages/), independent of what is configured in the environment variables (will be changed soon)
-  - The topic lengths can be maximum 249 characters as this is a Kafka limitation
-  - Only the following characters are allowed in the topic: `a-z`, `A-Z`, `_` and `-`
-  - Max. messages size for the mqtt-kafka-bridge is 0.95MB (1000000 bytes). If you have more, we recommend using Kafka directly and not bridging it via MQTT.
-- Messages from MQTT to Kafka will be published under a different topic:
-  - Spaces will be removed
-  - `/` characters will be replaced with a `.`
-  - and vice versa
-- By default, there will be no Authorization and Authentication on the MQTT broker. [You need to enable authentication and authorization yourself](/docs/production-guide/security/).
-- The MQTT or Kafka broker is not exposed externally by default. [You need to enable external MQTT access first](/docs/production-guide/administration/access-services-from-outside-cluster/), or alternatively [expose Kafka externally](/docs/production-guide/administration/access-kafka-outside-cluster/).
+  - **Topic Names and Rules**: All parts of this structure, such as `enterprise`, `site`, `area`, etc., are flexible in terms of their naming. They can include letters (a-z, A-Z), numbers (0-9), and certain symbols (`-` and `_`). However, symbols like `.`, `+`, `#` or `/` are not used as they have special meanings in MQTT or Kafka.
+  - **Versioning Prefix**: The `umh/v1` at the beginning is obligatory. It ensures that the structure can evolve over time without causing confusion or compatibility issues.
+  - **ISA95 Compliance**: The terms like 'enterprise', 'site', 'area', etc., are aligned with the ISA95 model, which is a standard for industrial systems. 'Enterprise' is the only mandatory term; others can be skipped if they don't apply, e.g., a room temperature sensor for a specific area
+  - **Origin ID**: This part identifies where the data is coming from. It could be a serial number, a MAC address, or even a software component like a Docker container. If multiple sources are involved, they're separated by underscores. Examples of originIDs: `E588974`, `00-80-41-ae-fd-7e`, `VM241_nodered_mes`.
+  - **The _schema Field**: This is where IT and OT professionals need to pay close attention. The `_schema` field, identified by its leading underscore, is crucial for defining the type of data or the format being sent. In the UMH, we have default schemas like `_historian`, `_analytics`, and `_local`, but users can add more as needed. The underscore is important for clarity in parsing the structure, especially when some elements like `workCell` might be omitted.
+
+    1. **Schemas _historian and _analytics**:
+        - Validation of Messages: The United Manufacturing Hub (UMH) is programmed to process messages under the `_historian` and `_analytics` schemas only if they adhere to a valid schema format (see further below)
+        - Handling Invalid Messages: Any message that is not in JSON format or does otherwise not meet the schema, even if sent to these schemas, will not be saved in the database nor forwarded to another broker. This ensures data integrity and consistency in processing.
+    2. **Schema _local**:
+        - Non-Processing Policy: Messages sent under the `_local` schema will not be processed by UMH. This schema is reserved for data that is intended to remain local and is not meant for forwarding or storing in the database.
+    3. **Other Schemas**:
+        - Forwarding without Storage: Messages falling under schemas other than `_historian`, `_analytics`, and `_local` will be forwarded to other brokers via bridges.
+        - Independence from Structure and Payload: This forwarding occurs regardless of the specific topic structure following the `_schema` marker and irrespective of the payload format. However, UMH will not store these messages in its database.
+
+- We recommend using JSON payloads that require more resource than Protobuf or Avro. However, JSON enhances the capability of OT professionals to work with and understand messages.
+
 
 
 ## Where to get more information?
