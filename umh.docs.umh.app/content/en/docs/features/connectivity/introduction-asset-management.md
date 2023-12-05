@@ -12,7 +12,7 @@ In IIoT, connectivity involves extracting and contextualizing data from various 
 The goal with asset management is that you can add everything with an IP on your shopfloor. So, if the connection gets worse or drops entirely, you are notified. This is required for any data extraction step using benthos and the Management Console. In the future, we will also recommend adding an asset before working with it in Node-RED.
 
 ## When should I use it?
-Integration of heterogeneous techniques is not straightforward. Additionally, mismatches and limitations in the organization make it more complicated. Asset Management in UMH addresses the following challenges, for instance.
+Integrating diverse techniques presents challenges, involving non-standard connections, specific communication protocols, and more. Additionally, mismatches between IT and OT technology may arise. Detailed examples of these challenges are provided below. Asset Management in UMH is designed to address these issues.
 
 
 ### Technical Challenges Examples:
