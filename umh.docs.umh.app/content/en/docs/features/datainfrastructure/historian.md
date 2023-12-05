@@ -19,7 +19,7 @@ The Historian / Data Storage feature of the United Manufacturing Hub allows you 
 
 ### Store and analyze data
 
-- Automatically store data from the topics with the basic format `.../_historian` in the Unified Namespace. [Data can be sent to the Unified Namespace from various sources](/docs/features/datainfrastructure/unified-namespace/), allowing you to store tags from your PLC and production lines reliably. Optionally, you can use tag groups to manage a large number of tags and reduce the system load. [This article](https://learn.umh.app/lesson/data-modeling-in-the-unified-namespace-mqtt-kafka/) helps you for learning data modeling in the Unified Namespace.
+- Store data from the topics with the basic format `.../_historian` or `.../_historian/<tagGroup1>/<tagGroup2>/.../<tagGroupX>/<tagname>` in the Unified Namespace. [Data can be sent to the Unified Namespace from various sources](/docs/features/datainfrastructure/unified-namespace/), allowing you to store tags from your PLC and production lines reliably. Optionally, you can use tag groups to manage a large number of tags and reduce the system load. [This article](https://learn.umh.app/lesson/data-modeling-in-the-unified-namespace-mqtt-kafka/) helps you learn data modeling in the Unified Namespace.
 - Conduct basic data analysis, including automatic downsampling, gap filling, and statistical functions such as Min, Max, and Avg.
 
 ### Query and visualize data
@@ -41,13 +41,13 @@ More information about the exact analytics functionalities can be found in the [
 
 ## How can I use it?
 
-Convert your data in your Unified Namespace to [processValue](/docs/datamodel/messages/processvalue/) messages, and the Historian feature will store them automatically. You can then view the data in Grafana. An example can be found in the [Getting Started guide](/docs/getstarted/).
+Transform your data in the Unified Namespace datamodel with the basic topic format `.../_historian` or `.../_historian/<tagGroup1>/<tagGroup2>/.../<tagGroupX>/<tagname>`, and the Historian feature will store them. You can then view the data in Grafana. An example can be found in the [Getting Started guide](/docs/getstarted/).
 
 For more information about what exactly is behind the Historian feature, check out our [our architecture page](/docs/architecture/)
 
 ## What are the limitations?
 
-- Only data in `processValue` topics are saved automatically. Data in topics like `ia/raw` are not. Data send to other messages in the [UMH datamodel](/docs/datamodel/) are stored slightly different and can be retrieved via Grafana as well. See also [Analytics feature](/docs/features/datainfrastructure/analytics/).
+- Transforming data is necessary to store messages. Data in topics like `ia/raw` are not. Therefore, you should define the corresponding topic for formatting data, for example, using the Node-RED. 
 - After storing a couple of millions messages, you should consider [compressing the messages or establishing retention policies](/docs/production-guide/administration/reduce-database-size/).
 - At the moment, extensive queries can only be done in your own code by leveraging the API in [factoryinsight](/docs/architecture/microservices/core/factoryinsight/), or processing the data in the [Unified Namespace](/docs/features/datainfrastructure/unified-namespace/).
 
@@ -58,3 +58,4 @@ Apart from these limitations, the United Manufacturing Hub's Historian feature i
 - Learn more about the benefits of using open-source databases in our blog article, [Historians vs Open-Source databases - which is better?](https://learn.umh.app/blog/historians-vs-open-source-databases-which-is-better/)
 - Check out the [Getting Started guide](/docs/getstarted/) to start using the Historian feature.
 - Learn more about the United Manufacturing Hub's architecture by visiting [our architecture page](/docs/architecture/).
+- Learn more about Data Modeling in the Unified Namespace by visiting [our guide](https://learn.umh.app/lesson/data-modeling-in-the-unified-namespace-mqtt-kafka/).
