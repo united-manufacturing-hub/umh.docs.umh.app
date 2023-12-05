@@ -19,8 +19,8 @@ The Historian / Data Storage feature of the United Manufacturing Hub allows you 
 
 ### Store and analyze data
 
-- Automatically store data from the `processValue` topics in the Unified Namespace. [Data can be sent to the Unified Namespace from various sources](/docs/features/datainfrastructure/unified-namespace/), allowing you to store tags from your PLC and production lines reliably.
-- Conduct basic data analysis, including automatic downsampling, gap filling, and statistical functions such as Min, Max, and Avg
+- Automatically store data from the topics with the basic format `.../_historian` in the Unified Namespace. [Data can be sent to the Unified Namespace from various sources](/docs/features/datainfrastructure/unified-namespace/), allowing you to store tags from your PLC and production lines reliably. Optionally, you can use tag groups to manage a large number of tags and reduce the system load. [This article](https://learn.umh.app/lesson/data-modeling-in-the-unified-namespace-mqtt-kafka/) helps you for learning data modeling in the Unified Namespace.
+- Conduct basic data analysis, including automatic downsampling, gap filling, and statistical functions such as Min, Max, and Avg.
 
 ### Query and visualize data
 
