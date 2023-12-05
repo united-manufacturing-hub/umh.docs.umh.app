@@ -28,7 +28,7 @@ The Historian / Data Storage feature of the United Manufacturing Hub allows you 
 - Visualize your data in Grafana to easily monitor and troubleshoot your production processes.
 
 {{% notice tip %}}
-More information about the exact analytics functionalities can be found in the [umh-datasource-v2 documentation](/docs/architecture/microservices/grafana-plugins/umh-datasource-v2/). Further below some screenshots of said datasource.
+More information about the exact analytics functionalities can be found in the [umh-datasource-v2 documentation](/docs/architecture/data-infrastructure/historian/umh-datasource-v2/). Further below some screenshots of said datasource.
 {{% /notice %}}
 
 ![](/images/grafana-plugins/grafanaPluginsSelectingWorkCell.png?width=50%)
@@ -41,15 +41,32 @@ More information about the exact analytics functionalities can be found in the [
 
 ## How can I use it?
 
-Transform your data in the Unified Namespace datamodel with the basic topic format `.../_historian` or `.../_historian/<tagGroup1>/<tagGroup2>/.../<tagGroupX>/<tagname>`, and the Historian feature will store them. You can then view the data in Grafana. An example can be found in the [Getting Started guide](/docs/getstarted/).
+Transform your data in the Unified Namespace datamodel with the basic topic format `.../_historian` or `.../_historian/<tagGroup1>/<tagGroup2>/.../<tagGroupX>/<tagname>`, for example, using Node-RED, and the Historian feature will store them. You can then view the data in Grafana. An example can be found in the [Getting Started guide](/docs/getstarted/).
+
+Extensive queries can be done by SQL queries. Hier, you see an example query:
+
+```sql
+SELECT name, value, timestamp
+FROM tag
+WHERE asset_id = get_asset_id(
+  'pharma-genix',
+  'aachen',
+  'packaging',
+  'packaging_1',
+  'blister'
+);
+```
+`get_asset_id` is a custom plpgsql function that we provide to simplify the process of querying tag data from a specific `asset`. 
+
+
+Also, you have the option to query data in your custom code by utilizing the API in [factoryinsight](/docs/reference/microservices/factoryinsight/) or processing the data in the [Unified Namespace](/docs/features/datainfrastructure/unified-namespace/).
 
 For more information about what exactly is behind the Historian feature, check out our [our architecture page](/docs/architecture/)
 
 ## What are the limitations?
 
-- Transforming data is necessary to store messages. Data in topics like `ia/raw` are not. Therefore, you should define the corresponding topic for formatting data, for example, using the Node-RED. 
+- Transforming data is necessary to store messages. Data in topics like `ia/raw` will be not stored. Therefore, you should define the corresponding topic for formatting data.
 - After storing a couple of millions messages, you should consider [compressing the messages or establishing retention policies](/docs/production-guide/administration/reduce-database-size/).
-- At the moment, extensive queries can only be done in your own code by leveraging the API in [factoryinsight](/docs/architecture/microservices/core/factoryinsight/), or processing the data in the [Unified Namespace](/docs/features/datainfrastructure/unified-namespace/).
 
 Apart from these limitations, the United Manufacturing Hub's Historian feature is highly performant compared to legacy Historians.
 
