@@ -58,12 +58,12 @@ If you send the messages into other topics, some features might not work correct
 
   - **Topic Names and Rules**: All parts of this structure, such as `enterprise`, `site`, `area`, etc., are flexible in terms of their naming. They can include letters (a-z, A-Z), numbers (0-9), and certain symbols (`-` and `_`). However, symbols like `.`, `+`, `#` or `/` are not used as they have special meanings in MQTT or Kafka.
   - **Versioning Prefix**: The `umh/v1` at the beginning is obligatory. It ensures that the structure can evolve over time without causing confusion or compatibility issues.
-  - **ISA95 Compliance**: The terms like 'enterprise', 'site', 'area', etc., are aligned with the ISA95 model, which is a standard for industrial systems. 'Enterprise' is the only mandatory term; others can be skipped if they don't apply, e.g., a room temperature sensor for a specific area
+  - **ISA95 Compliance**: The terms like 'enterprise', 'site', 'area', etc., are aligned with the ISA95 model, which is a standard for industrial systems. 'Enterprise' is the only mandatory term; others can be skipped if they don't apply, e.g., a room temperature sensor for a specific area.
   - **Origin ID**: This part identifies where the data is coming from. It could be a serial number, a MAC address, or even a software component like a Docker container. If multiple sources are involved, they're separated by underscores. Examples of originIDs: `E588974`, `00-80-41-ae-fd-7e`, `VM241_nodered_mes`.
   - **The _schema Field**: This is where IT and OT professionals need to pay close attention. The `_schema` field, identified by its leading underscore, is crucial for defining the type of data or the format being sent. In the UMH, we have default schemas like `_historian`, `_analytics`, and `_local`, but users can add more as needed. The underscore is important for clarity in parsing the structure, especially when some elements like `workCell` might be omitted.
 
     1. **Schemas _historian and _analytics**:
-        - Validation of Messages: The United Manufacturing Hub (UMH) is programmed to process messages under the `_historian` and `_analytics` schemas only if they adhere to a valid schema format (see further below)
+        - Validation of Messages: The United Manufacturing Hub (UMH) is programmed to process messages under the `_historian` and `_analytics` schemas only if they adhere to a valid schema format (see further below).
         - Handling Invalid Messages: Any message that is not in JSON format or does otherwise not meet the schema, even if sent to these schemas, will not be saved in the database nor forwarded to another broker. This ensures data integrity and consistency in processing.
     2. **Schema _local**:
         - Non-Processing Policy: Messages sent under the `_local` schema will not be processed by UMH. This schema is reserved for data that is intended to remain local and is not meant for forwarding or storing in the database.
