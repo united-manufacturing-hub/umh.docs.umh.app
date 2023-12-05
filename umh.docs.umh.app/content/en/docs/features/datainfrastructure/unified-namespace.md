@@ -29,17 +29,21 @@ In the United Manufacturing Hub, each single piece of information / "message" / 
 The Unified Namespace / Message Broker in the United Manufacturing Hub provides several notable functionalities in addition to the features already mentioned:
 
 - Easy integration using MQTT: Many modern shopfloor equipment can send and receive data using the MQTT protocol.
-- Easy integration with legacy equipment: Using tools like [Node-RED](/docs/architecture/microservices/core/node-red/), data can be easily extracted from various protocols such as Siemens S7, OPC-UA, or Modbus
+- Easy integration with legacy equipment: Using tools like [Node-RED](/docs/reference/microservices/node-red/), data can be easily extracted from various protocols such as Siemens S7, OPC-UA, or Modbus
 - Get notified in real-time via MQTT: The Unified Namespace allows you to receive real-time notifications via MQTT when new messages are published. This can be useful for applications that require near real-time processing of data, such as an AGV waiting for new commands.
 - Retrieve past messages from Kafka logs: By looking into the Kafka logs, you can always be aware of the last messages that have been sent to a topic. This allows you to replay certain scenarios for troubleshooting or testing purposes.
 - Efficiently process messages from millions of devices: The Unified Namespace is designed to handle messages from millions of devices in your factory, even over unreliable connections. By using Kafka, you can efficiently at-least-once process each message, ensuring that each message arrives at-least-once (1 or more times).
-- Trace messages through the system: The Unified Namespace provides tracing capabilities, allowing you to understand where messages are coming from and where they go. This can be useful for debugging and troubleshooting purposes. You can use the [Management Console](https://mgmt.docs.umh.app/docs/) to visualize the flow of messages through the system.to visualize the flow of messages through the system.
+- Trace messages through the system: The Unified Namespace provides tracing capabilities, allowing you to understand where messages are coming from and where they go. This can be useful for debugging and troubleshooting purposes. You can use the Management Console to visualize the flow of messages through the system to visualize the flow of messages through the system like in the picture below.
+
+  ![Untitled](/images/features/unified-namespace/dataDashboardMC.png?width=75%)
 
 ## How can I use it?
 
 Using the Unified Namespace is quite simple:
 
-Configure your IoT devices and devices on the shopfloor to use the in-built MQTT broker of the United Manufacturing Hub by specifying the MQTT protocol, selecting unencrypted (1883) / encrypted (8883) ports depending on your configuration, and send the messages into a topic starting with `ia/raw`. From there on, you can start processing the messages in Node-RED by reading in the messages again via MQTT or Kafka, adjusting the payload or the topic to match the [UMH datamodel](/docs/architecture/datamodel/) and sending it back again to MQTT or Kafka.
+Configure your IoT devices and devices on the shopfloor to use the in-built MQTT broker of the United Manufacturing Hub by specifying the MQTT protocol, selecting unencrypted (1883) / encrypted (8883) ports depending on your configuration, and send the messages into a topic starting with `ia/raw`. From there on, you can start processing the messages in Node-RED by reading in the messages again via MQTT or Kafka, adjusting the payload or the topic to match the [UMH datamodel](/docs/datamodel/) and sending it back again to MQTT or Kafka. 
+
+The [Data Bridge](/docs/reference/microservices/data-bridge/)  microservice assists you in transmitting data between two Kafka or MQTT brokers and transforming the data according to the UNS data model. It also offers a merge point feature that consolidates messages from various detailed topics into a general topic, minimizing overhead in managing a large number of topics. You can find more information in [this article](https://learn.umh.app/lesson/data-modeling-in-the-unified-namespace-mqtt-kafka/).
 
 If you send the messages into other topics, some features might not work correctly (see also [limitations](#what-are-the-limitations)).
 
@@ -51,7 +55,7 @@ If you send the messages into other topics, some features might not work correct
 
 - Messages are only bridged between MQTT and Kafka if they fulfill the following requirements:
   - payload is a valid JSON OR message is sent to the `ia/raw` topic
-  - only sent to topics matching the [allowed topics in the UMH datamodel](/docs/architecture/datamodel/messages/), independent of what is configured in the environment variables (will be changed soon)
+  - only sent to topics matching the [allowed topics in the UMH datamodel](/docs/datamodel/messages/), independent of what is configured in the environment variables (will be changed soon)
   - The topic lengths can be maximum 249 characters as this is a Kafka limitation
   - Only the following characters are allowed in the topic: `a-z`, `A-Z`, `_` and `-`
   - Max. messages size for the mqtt-kafka-bridge is 0.95MB (1000000 bytes). If you have more, we recommend using Kafka directly and not bridging it via MQTT.
@@ -66,5 +70,5 @@ If you send the messages into other topics, some features might not work correct
 ## Where to get more information?
 
 - For more information about the involved microservices, please take a look at our [architecture page](/docs/architecture/).
-- For more information about [MQTT](/lesson/introduction-into-it-ot-mqtt/), [Kafka](https://learn.umh.app/lesson/introduction-into-it-ot-kafka/), or the [Unified Namespace](https://learn.umh.app/lesson/introduction-into-it-ot-unified-namespace/), visit the Learning Hub.
+- For more information about [MQTT](https://learn.umh.app/lesson/introduction-into-it-ot-mqtt/), [Kafka](https://learn.umh.app/lesson/introduction-into-it-ot-kafka/), or the [Unified Namespace](https://learn.umh.app/lesson/introduction-into-it-ot-unified-namespace/), visit the Learning Hub.
 - For more information about the reasons to use MQTT and Kafka, please take a look at our blog article [Tools & Techniques for scalable data processing in Industrial IoT](https://learn.umh.app/blog/tools-techniques-for-scalable-data-processing-in-industrial-iot/).
