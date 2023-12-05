@@ -40,46 +40,109 @@ about alerting.
 
 ## How can I use it?
 
-For a detailed tutorial on how to set up an alert, please visit our learn page
-with the detailed [step-by-step tutorial](https://learn.umh.app/course/alerts-in-grafana/). Here you
-can find an overview of the process.
+Follow this tutorial to set up an alert.
 
-1. **Install the PostgreSQL plugin in Grafana:**
-   Before you can formulate alerts, you need to install the PostgreSQL plugin,
-   which is already integrated into Grafana.
+### Install the PostgreSQL plugin in Grafana
+Before you can formulate alerts, you need to install the PostgreSQL plugin,
+which is already integrated into Grafana.
 
-2. **Alert Rule:**
-   When creating an alert, you first have to set the alert rule in Grafana. Here
-   you set a name, specify which values are used for the rule, and
-   when the rule is fired. Additionally, you can add labels for your rules,
-   to link them to the correct contact points. You have to use SQL to select the
-   desired values.
+1. Hover over the **Configuration** button in the bottom left corner and click on **Data sources**.
+2. Click on **Plugins**, search for PostgreSQL and then install the plugin.
 
-3. **Contact Point:**
-   In a contact point you create a collection of addresses and services that
-   should be notified in case of an alert. This could be a Discord channel or
-   Slack for example. When a linked alert is triggered, everyone within the
-   contact point receives a message. The messages can be preconfigured and are
-   specific to every service or contact.
+   ![Untitled](/images/features/grafana-alert/postgres-plugin.png?width=50%)
 
-4. **Notification Policies:**
-   In a notification policy, you establish the connection of a contact point
-   with the desired alerts. This is done by adding the labels of the desired
-   alerts and the contact point to the policy.
+### Alert Rule
+When creating an alert, you first have to set the alert rule in Grafana. Here
+you set a name, specify which values are used for the rule, and
+when the rule is fired. Additionally, you can add labels for your rules,
+to link them to the correct contact points. You have to use SQL to select the
+desired values. 
 
-5. **Mute Timing:**
-   In case you do not want to receive messages during a recurring time
-   period, you can add a mute timing to Grafana. If added to the notification
-   policy, no notifications will be sent out by the contact point. This could be
-   times without shifts, like weekends or during regular maintenance.
 
-6. **Silence:**
-   You can also add silences for a specific time frame and labels, in case
-   you only want to mute alerts once.
+1. To add a new rule, hover over the bell symbol on the left and click on **Alert rules**. 
+Then click on the blue **Create alert rule** button.
 
-An alert is only sent out once
-after being triggered. For the next alert, it has to return to the normal
-state, so the data no longer violates the rule.
+   ![Untitled](/images/features/grafana-alert/create-alert-rule.png?width=75%)
+
+2. Choose a name for your rule.
+3. In the next step, you need to select and manipulate the value that triggers your alert and declare the function for the alert.
+<!-- update https://learn.umh.app/course/alerts-in-grafana/ so that the tutorial refers the new data model-->
+<!-- also, add new screenshots of grafana-->
+
+4. Define the rule location, the time interval for rule checking, and the duration for which the rule has to be broken before an alert is triggered.
+   - Select a name for your rule's folder or add it to an existing one by clicking the arrow. Find all your rules grouped in these folders on the Alert rules page under Alerting.
+   - An Evaluation group is a grouping of rules, which are checked after the same time interval. Creating a new group requires setting a time interval for rule checking. The minimum interval from Grafana is ten seconds.
+   - Specify the duration the rule must be violated before triggering the alert. For example, with a ten-second check interval and a 20-second duration, the rule must be broken twice in a row before an alert is fired.
+
+      ![Untitled](/images/features/grafana-alert/alert-eval-behavior.png?width=75%)
+5. Add details and descriptions for your rule.
+
+      ![Untitled](/images/features/grafana-alert/alert-add-details.png?width=75%)
+
+6. In the next step, you will be required to assign labels to your alert, ensuring it is directed to the appropriate contacts. For example, you may designate a label team with **alertrule1**: `team = operator` and **alertrule2**: `team = management`. It can be helpful to use labels more than once, like **alertrule3**: `team = operator`, to link multiple alerts to a contact point at once.
+
+      ![Untitled](/images/features/grafana-alert/alert-assign-label.png?width=75%)
+
+Your rule is now completed; click on **Save** and **Exit** on the right upper corner, next to section one.
+         
+
+### Contact Point
+In a contact point you create a collection of addresses and services that
+should be notified in case of an alert. This could be a Discord channel or
+Slack for example. When a linked alert is triggered, everyone within the
+contact point receives a message. The messages can be preconfigured and are
+specific to every service or contact. The following steps shall be done to create a contact point.
+
+1. Navigate to **Contact points**, located at the top of the Grafana alerting page.
+2. Click on the blue + Add contact point button.
+3. Now, you should be able to see setting page. Choose a name for your contact point.
+
+   ![Untitled](/images/features/grafana-alert/contact-point.png?width=75%)
+4. Pick the receiving service; in this example, Discord.
+5. Generate a new Webhook in your Discord server (Server Settings &rArr Integrations &rArr View Webhooks &rArr New Webhook or create Webhook). Assign a name to the Webhook and designate the messaging channel. Copy the Webhook URL from Discord and insert it into the corresponding field in Grafana. Customize the message to Discord under **Optional Discord settings** if desired.
+6. If you need, add more services to the contact point, by clicking **+ Add contact point integration**.
+7. Save the contact point; you can see it in the **Contact points** list, below the **grafana-default-email** contact point.
+
+
+### Notification Policies
+In a notification policy, you establish the connection of a contact point
+with the desired alerts. To add the notification policy, you need to do the following steps.
+
+1. Go to the **Notification policies** section in the Grafana alerting page, next to the **Contact points**.
+2. Select **+ New specific policy** to create a new policy, followed by **+ Add matcher** to choose the label and value from the alert (for example `team = operator`). In this example, both alert1 and alert3 will be forwarded to the associated contact point. You can include multiple labels in a single notification policy.
+3. Choose the contact point designated to receive the alert notifications. Now, the inputs should be like in the picture.
+
+   ![Untitled](/images/features/grafana-alert/notify-policy.png?width=75%)
+
+4. Press **Save policy** to finalize your settings. Your new policy will now be displayed in the list.
+
+### Mute Timing
+In case you do not want to receive messages during a recurring time
+period, you can add a mute timing to Grafana. You can set up a mute timing in the **Notification policies** section.
+
+1. Select + Add mute timing below the notification policies.
+2. Choose a name for the mute timing.
+3. Specify the time during which notifications should not be forwarded.
+   - Time has to be given in UTC time and formatted as HH:MM. Use **06:00** instead of **6:00** to avoid an error in Grafana.
+4. You can combine several time intervals into one mute timing by clicking on the **+ Add another time interval** button at the end of the page.
+5. Click **Submit** to save your settings.
+6. To apply the mute timing to a notification policy, click **Edit** on the right side of the notification policy, and then select the desired mute timing from the drop-down menu at the bottom of the policy. Click on **Save Policy** to apply the change.
+
+   ![Untitled](/images/features/grafana-alert/mute-timing.png?width=75%)
+
+### Silence
+You can also add silences for a specific time frame and labels, in case
+you only want to mute alerts once. To add a silence, switch to the **Silences** section, next to **Notification policies**.
+
+1. Click on **+ Add Silence**.
+2. Specify the beginning for the silence and its duration.
+3. Select the labels and their values you want silenced.
+4. If you need, you can add a comment to the silence.
+5. Click the **Submit** button at the bottom of the page.
+
+   ![Untitled](/images/features/grafana-alert/silence.png?width=75%)
+
+
 
 ## What are the limitations?
 
