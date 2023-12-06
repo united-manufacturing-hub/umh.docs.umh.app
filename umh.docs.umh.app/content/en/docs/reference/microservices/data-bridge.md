@@ -6,8 +6,6 @@ description: |
     which transfers data between two Kafka or MQTT brokers, tranforming
     the data following the UNS data model.
 weight: 0
-aliases:
-  - /docs/architecture/microservices/core/data-bridge/
 ---
 
 <!-- overview -->
