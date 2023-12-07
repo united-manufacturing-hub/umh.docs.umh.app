@@ -542,7 +542,7 @@ following parameters:
 {{< /table >}}
 
 For more information about the topic maps, see the
-[kafka-bridge documentation](/docs/architecture/microservices/core/kafka-bridge/#configuration).
+[kafka-bridge documentation](/docs/reference/microservices/kafka-bridge/#configuration).
 
 #### Kafka State Detector
 
@@ -896,7 +896,7 @@ containers to add to the Pod.
 
 The init-plugins container is used to install the default plugins shipped with
 the UMH version of Grafana without the need to have an internet connection.
-See the [documentation](/docs/architecture/microservices/core/grafana/#configuration)
+See the [documentation](/docs/reference/microservices/grafana/#configuration)
 for a list of the plugins.
 
 ```yaml
@@ -1457,5 +1457,5 @@ to the Pod.
 
 ## {{% heading "whatsnext" %}}
 
-- Take a look at the [overview of the architecture](/docs/architecture)
-- Deep dive into the [microservices](/docs/architecture/microservices)
+- Take a look at the [overview of the architecture](/docs/architecture).
+- Deep dive into the microservices' [reference](/docs/reference/microservices).
