@@ -30,7 +30,48 @@ flowchart LR
     tagGroup -.-> |1-N| tagGroup
 {{</ mermaid >}}
 
-# Forwarding and processing
+# Format
+## Topic Names & Rules
+
+All part of this structure, except for `enterprise` and `_schema` are optional.
+They can consist of any letters (`a-z`, `A-Z`), numbers (`0-9`) and therein symbols (`-` & `_`).
+Be careful to avoid `.`, `+`, `#` or `/` as these are special symbols in Kafka or MQTT.
+Ensure that your topic always begins with `umh/v1`, otherwise our system will ignore your messages.
+
+
+{{% notice note %}}
+Throughout this documentation we will use the MQTT syntax for topics (`umh/v1`), the corresponding Kafka topic names are the same but `/` replaced with `.`
+{{% /notice %}}
+
+## OriginID
+This part identifies where the data is coming from.
+Good options include the senders MAC address, hostname, container id.
+Examples for originID: `00-80-41-ae-fd-7e`, `E588974`, `e5f484a1791d` 
+
+## _schema
+
+  - _historian
+
+    These messages must include a `timestamp_ms` key set to a UNIX timestamp in milliseconds since the epoch.
+
+    They must also contain one or more other keys, used as tags for saving into the db.
+
+    If your message does not follow this format it will be ignored 
+    by our databridge and kafka-to-postgresql-v2 microservices, and therefore neither forwarded nor processed.
+
+  - _analytics
+
+      Analytics messages are currently work-in-progress and will be detailed later.
+
+  - _local
+
+      This key might contain any data, that you do not want to bridge further.
+
+  - Other
+
+      All other schemas will be forwarded by bridges but ignored by any of our processors
+
+### Forwarding and processing
 
 {{<mermaid theme="neutral" >}}
 flowchart TB
@@ -55,3 +96,13 @@ local[_local]
     class processed,forwarded action;
 
 {{</ mermaid >}}
+
+# Tag grouping
+1) __Using Underscores in Key Names__: For example, `spindle_axis_x.`
+This results in the tag `x` being categorized under the group `axis`, which is part of the `spindle` group.
+
+2) __Using Tags / Tag Groups in the Topic__:
+The tag is placed before the key name, allowing for multiple group formations.
+
+3) __Combining Both Methods__:
+For instance, a message to .../_historian/spindle/axis with key x_pos will categorize `pos` under `x`, which is under `axis` and `spindle`.
