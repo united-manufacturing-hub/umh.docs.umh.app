@@ -4,6 +4,8 @@ content_type: concept
 # description: |
 #     Add a description of the concept here.
 weight: 10
+aliases:
+  - /docs/architecture/microservices/core/data-bridge/
 ---
 
 <!-- overview -->
