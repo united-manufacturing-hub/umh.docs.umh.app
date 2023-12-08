@@ -1,39 +1,53 @@
 ---
 title: "Database"
 chapter: true
-description: "The database stores the messages in different tables."
-aliases:
-  - /docs/architecture/datamodel/database/
+description: "The database stores all '_historian' data"
 ---
 
+Our database for the umh.v1 datamodel currently consists of three tables.
 
-## Introduction
+{{< mermaid theme="neutral" >}}
+erDiagram
+    asset {
+        int id PK "SERIAL PRIMARY KEY"
+        text enterprise "NOT NULL"
+        text site "DEFAULT '' NOT NULL"
+        text area "DEFAULT '' NOT NULL"
+        text line "DEFAULT '' NOT NULL"
+        text workcell "DEFAULT '' NOT NULL"
+        text origin_id "DEFAULT '' NOT NULL"
+    }
 
-We are using the database TimescaleDB, which is based on PostgreSQL and supports standard relational SQL database work,
-while also supporting time-series databases.
-This allows for usage of regular SQL queries, while also allowing to process and store time-series data.
-Postgresql has proven itself reliable over the last 25 years, so we are happy to use it.
+    tag {
+        timestamptz timestamp "NOT NULL"
+        text name "NOT NULL"
+        text origin "NOT NULL"
+        int asset_id FK "REFERENCES asset(id) NOT NULL"
+        real value
+    }
 
-If you want to learn more about database paradigms, please refer to the [knowledge article](https://learn.umh.app/lesson/introduction-into-it-ot-databases/) about that topic. 
-It also includes a concise video summarizing what you need to know about different paradigms.
+    tag_string {
+        timestamptz timestamp "NOT NULL"
+        text name "NOT NULL"
+        text origin "NOT NULL"
+        int asset_id FK "REFERENCES asset(id) NOT NULL"
+        text value
+    }
 
-Our database model is designed to represent a physical manufacturing process. It keeps track of the following data:
-  - The state of the machine
-  - The products that are produced
-  - The orders for the products
-  - The workers' shifts
-  - Arbitrary process values (sensor data)
-  - The producible products
-  - Recommendations for the production
+    asset ||--o{ tag : "id"
+    asset ||--o{ tag_string : "id"
 
-{{% notice note %}}
-Please note that our database does not use a retention policy. This means that your database can grow quite fast if you save a lot of process values. Take a look at our [guide on enabling data compression and retention in TimescaleDB](/docs/production-guide/administration/reduce-database-size) to customize the database to your needs.
+{{</ mermaid >}}
 
+# asset
+This table holds all assets.
+Note that all keys except for `id` and `enterprise` are optional.
 
-A good method to check your db size would be to use the following commands inside postgres shell:
-```sql
-SELECT pg_size_pretty(pg_database_size('factoryinsight'));
-```
+# tag
 
+This table is a timescale [hypertable](https://docs.timescale.com/use-timescale/latest/hypertables/about-hypertables/).
+It holds the values associated to an asset.
 
-{{% /notice %}}
+# tag_string
+
+This table is the same as tag, but for string values.
