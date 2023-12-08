@@ -3,6 +3,8 @@ title: "Umh Datasource V2"
 content_type: grafana-plugin
 description: |
 weight: 1000
+aliases:
+   - /docs/architecture/microservices/grafana-plugins/
 ---
 
 <!-- overview -->
