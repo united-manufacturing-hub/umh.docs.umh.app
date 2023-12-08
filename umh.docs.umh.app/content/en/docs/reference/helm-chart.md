@@ -16,7 +16,9 @@ installation, configuration, and deployment of applications and services.
 It contains all the necessary Kubernetes manifests, configuration files, and
 dependencies required to run a particular application or service.  One of the
 main advantages of Helm is that it allows to define the configuration of the
-installed resources in a single YAML file, called `values.yaml`. Helm provides great documentation on how to acheive this at https://helm.sh/docs/intro/using_helm/#customizing-the-chart-before-installing
+installed resources in a single YAML file, called `values.yaml`. Helm provides
+[great documentation](https://helm.sh/docs/intro/using_helm/#customizing-the-chart-before-installing)
+on this process.
 
 The Helm Chart of the United Manufacturing Hub is composed of both custom
 microservices and third-party applications. If you want a more in-depth view of
@@ -540,7 +542,7 @@ following parameters:
 {{< /table >}}
 
 For more information about the topic maps, see the
-[kafka-bridge documentation](/docs/architecture/microservices/core/kafka-bridge/#configuration).
+[kafka-bridge documentation](/docs/reference/microservices/kafka-bridge/#configuration).
 
 #### Kafka State Detector
 
@@ -894,7 +896,7 @@ containers to add to the Pod.
 
 The init-plugins container is used to install the default plugins shipped with
 the UMH version of Grafana without the need to have an internet connection.
-See the [documentation](/docs/architecture/microservices/core/grafana/#configuration)
+See the [documentation](/docs/reference/microservices/grafana/#configuration)
 for a list of the plugins.
 
 ```yaml
@@ -1455,5 +1457,5 @@ to the Pod.
 
 ## {{% heading "whatsnext" %}}
 
-- Take a look at the [overview of the architecture](/docs/architecture)
-- Deep dive into the [microservices](/docs/architecture/microservices)
+- Take a look at the [overview of the architecture](/docs/architecture).
+- Deep dive into the microservices' [reference](/docs/reference/microservices).
