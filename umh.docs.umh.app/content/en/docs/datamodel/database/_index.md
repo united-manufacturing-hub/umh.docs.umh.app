@@ -49,10 +49,23 @@ erDiagram
 This table holds all assets.
 Note that all keys except for `id` and `enterprise` are optional.
 
+## Example
+| id | enterprise       | site      | area  | line | workcell | origin_id |
+|----|------------------|-----------|-------|------|----------|-----------|
+| 1  | Acme Corporation |           |       |      |          |           |
+| 2  | Acme Corporation | New York  |       |      |          |           |
+| 3  | Acme Corporation | London    | North |      |          |           |
+| 4  | Stark Industries | Berlin    | South | A    |          |           |
+| 5  | Stark Industries | Tokyo     | East  | B    | Alpha    |           |
+| 6  | Stark Industries | Paris     | West  | C    | Beta     | 1001      |
+
+
 # tag
 
 This table is a timescale [hypertable](https://docs.timescale.com/use-timescale/latest/hypertables/about-hypertables/).
 It holds the values associated to an asset.
+
+`origin` holds the origin as set by the `x-origin` header, if unset it defaults to `unknown`
 
 # tag_string
 
