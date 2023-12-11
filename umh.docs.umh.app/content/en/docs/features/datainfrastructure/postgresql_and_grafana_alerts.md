@@ -76,6 +76,8 @@ Then click on the blue **Create alert rule** button.
 - In subsection **B**, you need to reduce the values to numbers, Grafana can work with. By default, **Reduce** will already be selected. However, you can change it to a different option by clicking the pencil icon next to the letter **B**. For this example, we will create an upper limit. So selecting **Max** as the **Function** is the best choice. Set **Input** as **A** (the output of the first section) and choose **Strict** for the Mode. So subsection **B** will output the maximum value the query in **A** selects as a single number.
 - In subsection **C**, you can establish the rule. If you select **Math**, you can utilize expressions like `$B > 50` to trigger an alert when a value from section **B** (`$B` means the output from section B) exceeds 50. In this case, only the largest value selected in **A** is passed through the reduce function from **B** to **C**. A simpler way to set such a limit is by choosing **Threshold** instead of **Math**.
 
+   ![Untitled](/images/features/grafana-alert/alert-rule.png?width=75%)
+
    To add more queries or expressions, find the buttons at the end of section two and click on the desired option. You can also preview the results of your queries and functions by clicking on **Preview** and check if they function correctly and fire an alert.
 
    <!-- grafana image-->
