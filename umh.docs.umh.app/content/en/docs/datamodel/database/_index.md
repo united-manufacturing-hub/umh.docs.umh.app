@@ -75,7 +75,13 @@ If you send data to `umh/v1/umh/cologne/office/dev/server1/sensor0` using this p
   "temperature_c": 80
 }
 ```
-This will insert 
+This will insert the asset or retrieve it's id if already existing.
+In our case we will get asset id `7`.
+
+Afterwards the inserted data in the tag table looks like:
+| timestamp  | name          | origin  | asset_id | value |
+|------------|---------------|---------|----------|-------|
+| 1702290705 | temperature_c | unknown | 7        | 80    |
 
 # tag_string
 
