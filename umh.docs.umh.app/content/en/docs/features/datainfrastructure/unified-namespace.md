@@ -47,13 +47,11 @@ Configure your IoT devices and devices on the shopfloor to use the in-built MQTT
 umh/v1/enterprise/site/area/productionLine/workCell/originID/_schema
 ```
 
-- **Topic Names and Rules**: All parts of this structure, such as `enterprise`, `site`, `area`, etc., are flexible in terms of their naming. Here, you find valid and invalid characters:
+- **Topic Names and Rules**: All parts of this structure, such as `enterprise`, `site`, `area`, etc., are flexible in terms of their naming. Here, you find valid characters:
   - Valid characters:
       - Letters: `a-z`, `A-Z`
       - Numbers: `0-9`
       - Symbols: `-`, `_`
-  - Invalid characters: 
-      - `.`, `+`, `#`, `/`
 
 
 - **Versioning Prefix**: The `umh/v1` at the beginning is obligatory. It ensures that the structure can evolve over time without causing confusion or compatibility issues.
