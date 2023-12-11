@@ -72,6 +72,7 @@ Examples for originID: `00-80-41-ae-fd-7e`, `E588974`, `e5f484a1791d`
   - _local
 
       This key might contain any data, that you do not want to bridge further.
+      It will not be bridged between MQTT & Kafka.
 
   - Other
 
