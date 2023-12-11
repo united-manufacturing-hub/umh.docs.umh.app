@@ -50,15 +50,15 @@ This table holds all assets.
 Note that all keys except for `id` and `enterprise` are optional.
 
 ## Example
-| id | enterprise       | site     | area  | line        | workcell | origin_id    |
-|----|------------------|----------|-------|-------------|----------|--------------|
-| 1  | acme-corporation |          |       |             |          |              |
-| 2  | acme-corporation | new-york |       |             |          |              |
-| 3  | acme-corporation | london   | north | assembly    |          |              |
-| 4  | stark-industries | berlin   | south | fabrication | cell-a1  | 3002         |
-| 5  | stark-industries | tokyo    | east  | testing     | cell-b3  | 3005         |
-| 6  | stark-industries | paris    | west  | packaging   | cell-c2  | 3009         |
-| 7  | umh              | cologne  | office| dev | serve
+| id | enterprise       | site     | area   | line        | workcell | origin_id |
+|----|------------------|----------|--------|-------------|----------|-----------|
+| 1  | acme-corporation |          |        |             |          |           |
+| 2  | acme-corporation | new-york |        |             |          |           |
+| 3  | acme-corporation | london   | north  | assembly    |          |           |
+| 4  | stark-industries | berlin   | south  | fabrication | cell-a1  | 3002      |
+| 5  | stark-industries | tokyo    | east   | testing     | cell-b3  | 3005      |
+| 6  | stark-industries | paris    | west   | packaging   | cell-c2  | 3009      |
+| 7  | umh              | cologne  | office | dev         | server1  | sensor0   |
 
 # tag
 
@@ -75,7 +75,7 @@ If you send data to `umh/v1/umh/cologne/office/dev/server1/sensor0` using this p
   "temperature_c": 80
 }
 ```
-This will insert a or retrieve a line from the asset table
+This will insert 
 
 # tag_string
 
