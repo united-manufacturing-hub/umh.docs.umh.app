@@ -48,8 +48,8 @@ Examples:
 
 
 {{% notice note %}}
-If you use a boolean value
-
+If you use a boolean value, it will be interpreted as a number.
+{{% /notice %}}
 
 # Topic structure
 
