@@ -56,8 +56,8 @@ To address these challenges, UMH recommends a combination of tools for effective
 
 This approach ensures a flexible, adaptable IIoT environment that addresses both technical and organizational needs effectively.
 
-## What are the limitations?
-Although the mentioned tools don't require professional knowledge, you still need to learn them. Furthermore, each tool has drawbacks, as discussed in the previous section.
+## What are the limitations? 
+- Each tool has drawbacks, as discussed in the previous section.
 
 
 ## Where to get more information?
