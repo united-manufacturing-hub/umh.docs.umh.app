@@ -2,9 +2,14 @@
 title: "Database"
 chapter: true
 description: "The database stores all '_historian' data"
+edition: community
 ---
 
 Our database for the umh.v1 datamodel currently consists of three tables.
+
+{{% notice note %}}
+To learn more about, how we created our database layout and the trade-offs we did, checkout our [learn article](https://learn.umh.app/lesson/data-modeling-in-the-unified-namespace-mqtt-kafka/).
+{{% /notice %}}
 
 {{< mermaid theme="neutral" >}}
 erDiagram

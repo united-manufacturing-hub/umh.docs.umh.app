@@ -2,6 +2,7 @@
 title: "Messages"
 chapter: true
 description: "All available messages"
+edition: community
 ---
 
 {{<mermaid theme="neutral" >}}
@@ -39,7 +40,7 @@ Be careful to avoid `.`, `+`, `#` or `/` as these are special symbols in Kafka o
 Ensure that your topic always begins with `umh/v1`, otherwise our system will ignore your messages.
 
 
-{{% notice note %}}
+{{% notice info %}}
 Throughout this documentation we will use the MQTT syntax for topics (`umh/v1`), the corresponding Kafka topic names are the same but `/` replaced with `.`
 {{% /notice %}}
 
