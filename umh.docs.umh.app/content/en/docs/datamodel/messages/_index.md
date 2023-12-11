@@ -8,7 +8,7 @@ weight: 1000
 
 # Message structure
 
-The messages in our datamodel have to be JSON using the following format:
+The messages in our data model have to be JSON using the following format:
 ```json
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
@@ -66,9 +66,9 @@ flowchart LR
     _schema --> |Optional| tagGroup
     tagGroup --> tagName
     
-    classDef mqtt fill:#00aa00,stroke:#333,stroke-width:4px;
+    classDef mqtt fill:#00dd00,stroke:#333,stroke-width:4px;
     class umh,v1,enterprise,_schema mqtt;
-    classDef optional fill:#779977,stroke:#333,stroke-width:4px;
+    classDef optional fill:#77aa77,stroke:#333,stroke-width:4px;
     class site,area,productionLine,workCell,originID,tagGroup,tagName optional;
     
     enterprise -.-> _schema
