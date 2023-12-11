@@ -70,7 +70,10 @@ This key might contain any data, that you do not want to bridge to other nodes.
 
 
 For example this could be data you want to pre-process on your local node, and then put into another `_schema`.
+This data must not necessarily be JSON.
 
 ### Other
 
 All other schemas will be forwarded by bridges but ignored by any of our processors.
+
+This data must not necessarily be JSON.
