@@ -22,7 +22,7 @@ Key aspects of the UNS include:
 
 For efficient message handling and data organization within the UNS, several strategies have been implemented:
 
-1. **Time-Series Data Handling**: The '_historian' schema, using TimescaleDB, organizes time-series data effectively. This structured approach enables detailed data analysis while ensuring organized data management and reduced system load.
+1. **Time-Series Data Handling**: The `_historian` schema, using TimescaleDB, organizes time-series data effectively. This structured approach enables detailed data analysis while ensuring organized data management and reduced system load.
 
 2. **Payload Structure**: JSON has been selected as the primary data format for payloads. Its direct readability, simplicity, and compatibility make it particularly suitable for the manufacturing environment, striking a balance between handling complex data structures and maintaining user-friendliness.
 
