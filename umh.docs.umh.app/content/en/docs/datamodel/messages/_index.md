@@ -19,6 +19,7 @@ flowchart LR
     productionLine -->|Optional| workCell
     workCell -->|Optional| originID
     originID -->|Optional| _schema
+    _schema -->_opt["Schema dependent context"]
     
     classDef mqtt fill:#00dd00,stroke:#333,stroke-width:4px;
     class umh,v1,enterprise,_schema mqtt;
@@ -55,50 +56,26 @@ Examples for originID: `00-80-41-ae-fd-7e`, `E588974`, `e5f484a1791d`
 
 ## _schema
 
-  - _historian
+### [_historian](./_historian)
 
-    These messages must include a `timestamp_ms` key set to a UNIX timestamp in milliseconds since the epoch.
+These messages must include a `timestamp_ms` key set to a UNIX timestamp in milliseconds since the epoch.
 
-    They must also contain one or more other keys, used as tags for saving into the db.
+They must also contain one or more other keys, used as tags for saving into the db.
 
-    If your message does not follow this format it will be ignored 
-    by our databridge and kafka-to-postgresql-v2 microservices, and therefore neither forwarded nor processed.
+If your message does not follow this format it will be ignored 
+by our databridge and kafka-to-postgresql-v2 microservices, and therefore neither forwarded nor processed.
 
-  - _analytics
+### _analytics
 
-      Analytics messages are currently work-in-progress and will be detailed later.
+Analytics messages are currently work-in-progress and will be detailed later.
 
-  - _local
+### _local
 
-      This key might contain any data, that you do not want to bridge further.
-      It will not be bridged between MQTT & Kafka.
+This key might contain any data, that you do not want to bridge to other nodes.
 
-  - Other
 
-      All other schemas will be forwarded by bridges but ignored by any of our processors
+For example this could be data you want to pre-process on your local node, and then put into another `_schema`.
 
-### Forwarding and processing
+### Other
 
-{{<mermaid theme="neutral" >}}
-flowchart TB
-historian[_historian]
-analytics[_analytics]
-other[Other]
-local[_local]
-
-    processed[Processed]
-    forwarded[Forwarded]
-
-    historian --> processed
-    historian --> forwarded
-    analytics --> processed
-    analytics --> forwarded
-    other --> forwarded
-
-    classDef schema fill:#add8e6,stroke:#333,stroke-width:2px;
-    class historian,analytics,local,other schema;
-
-    classDef action fill:#90ee90,stroke:#333,stroke-width:2px;
-    class processed,forwarded action;
-
-{{</ mermaid >}}
+All other schemas will be forwarded by bridges but ignored by any of our processors.
