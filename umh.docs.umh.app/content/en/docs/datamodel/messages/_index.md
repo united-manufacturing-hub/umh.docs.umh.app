@@ -18,21 +18,18 @@ flowchart LR
     area -->|Optional| productionLine
     productionLine -->|Optional| workCell
     workCell -->|Optional| originID
-    originID -->|Optional| _schema --> |Optional| tagName
-    _schema --> |Optional| tagGroup
-    tagGroup --> tagName
+    originID -->|Optional| _schema
     
     classDef mqtt fill:#00dd00,stroke:#333,stroke-width:4px;
     class umh,v1,enterprise,_schema mqtt;
     classDef optional fill:#77aa77,stroke:#333,stroke-width:4px;
-    class site,area,productionLine,workCell,originID,tagGroup,tagName optional;
+    class site,area,productionLine,workCell,originID optional;
     
     enterprise -.-> _schema
     site -.-> _schema
     area -.-> _schema
     productionLine -.-> _schema
     workCell -.-> _schema
-    tagGroup -.-> |1-N| tagGroup
 {{</ mermaid >}}
 
 ## Versioning Prefix

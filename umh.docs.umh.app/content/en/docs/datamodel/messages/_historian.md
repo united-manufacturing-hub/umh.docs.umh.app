@@ -5,6 +5,34 @@ edition: community
 weight: 1000
 ---
 
+# Topic structure
+
+{{<mermaid theme="neutral" >}}
+flowchart LR
+umh --> v1
+v1 --> enterprise
+enterprise -->|Optional| site
+site -->|Optional| area
+area -->|Optional| productionLine
+productionLine -->|Optional| workCell
+workCell -->|Optional| originID
+originID -->|Optional| _historian --> |Optional| tagName
+_historian --> |Optional| tagGroup
+tagGroup --> tagName
+
+    classDef mqtt fill:#00dd00,stroke:#333,stroke-width:4px;
+    class umh,v1,enterprise,_historian mqtt;
+    classDef optional fill:#77aa77,stroke:#333,stroke-width:4px;
+    class site,area,productionLine,workCell,originID,tagGroup,tagName optional;
+    
+    enterprise -.-> _historian
+    site -.-> _historian
+    area -.-> _historian
+    productionLine -.-> _historian
+    workCell -.-> _historian
+    tagGroup -.-> |1-N| tagGroup
+{{</ mermaid >}}
+
 
 # Message structure
 
