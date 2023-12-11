@@ -50,14 +50,14 @@ This table holds all assets.
 Note that all keys except for `id` and `enterprise` are optional.
 
 ## Example
-| id | enterprise       | site      | area  | line | workcell | origin_id |
-|----|------------------|-----------|-------|------|----------|-----------|
-| 1  | Acme Corporation |           |       |      |          |           |
-| 2  | Acme Corporation | New York  |       |      |          |           |
-| 3  | Acme Corporation | London    | North |      |          |           |
-| 4  | Stark Industries | Berlin    | South | A    |          |           |
-| 5  | Stark Industries | Tokyo     | East  | B    | Alpha    |           |
-| 6  | Stark Industries | Paris     | West  | C    | Beta     | 1001      |
+| id | enterprise       | site      | area  | line         | workcell    | origin_id    |
+|----|------------------|-----------|-------|--------------|-------------|--------------|
+| 1  | Acme Corporation |           |       |              |             |              |
+| 2  | Acme Corporation | New York  |       |              |             |              |
+| 3  | Acme Corporation | London    | North | Assembly     |             |              |
+| 4  | Stark Industries | Berlin    | South | Fabrication  | Cell A1     | 3002         |
+| 5  | Stark Industries | Tokyo     | East  | Testing      | Cell B3     | 3005         |
+| 6  | Stark Industries | Paris     | West  | Packaging    | Cell C2     | 3009         |
 
 
 # tag
