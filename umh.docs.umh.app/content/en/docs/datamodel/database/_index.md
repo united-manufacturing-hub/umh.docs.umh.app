@@ -3,6 +3,7 @@ title: "Database"
 chapter: true
 description: "The database stores all '_historian' data"
 edition: community
+weight: 2000
 ---
 
 Our database for the umh.v1 datamodel currently consists of three tables.

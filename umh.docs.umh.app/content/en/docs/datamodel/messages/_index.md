@@ -3,6 +3,7 @@ title: "Messages"
 chapter: true
 description: "All available messages"
 edition: community
+weight: 1000
 ---
 
 {{<mermaid theme="neutral" >}}
@@ -32,6 +33,10 @@ flowchart LR
 {{</ mermaid >}}
 
 # Format
+## Versioning Prefix
+
+The `umh/v1` at the beginning is obligatory. It ensures that the structure can evolve over time without causing confusion or compatibility issues.
+
 ## Topic Names & Rules
 
 All part of this structure, except for `enterprise` and `_schema` are optional.
