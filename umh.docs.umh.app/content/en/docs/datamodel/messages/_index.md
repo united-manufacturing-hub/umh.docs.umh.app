@@ -58,12 +58,7 @@ Examples for originID: `00-80-41-ae-fd-7e`, `E588974`, `e5f484a1791d`
 
 ### [_historian](./_historian)
 
-These messages must include a `timestamp_ms` key set to a UNIX timestamp in milliseconds since the epoch.
-
-They must also contain one or more other keys, used as tags for saving into the db.
-
-If your message does not follow this format it will be ignored 
-by our databridge and kafka-to-postgresql-v2 microservices, and therefore neither forwarded nor processed.
+Messages tagged with `_historian` will be stored in our database and are available via Grafana.
 
 ### _analytics
 

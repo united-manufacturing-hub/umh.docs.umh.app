@@ -1,6 +1,6 @@
 ---
 title: "_historian"
-description: "TODO"
+description: "Messages for our historian feature"
 edition: community
 weight: 1000
 ---
