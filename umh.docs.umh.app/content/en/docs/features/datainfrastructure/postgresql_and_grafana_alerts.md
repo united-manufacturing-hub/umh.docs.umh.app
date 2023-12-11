@@ -42,15 +42,6 @@ about alerting.
 
 Follow this tutorial to set up an alert.
 
-### Install the PostgreSQL plugin in Grafana
-Before you can formulate alerts, you need to install the PostgreSQL plugin,
-which is already integrated into Grafana.
-
-1. Hover over the **Configuration** button in the bottom left corner and click on **Data sources**.
-2. Click on **Plugins**, search for PostgreSQL and then install the plugin.
-
-   ![Untitled](/images/features/grafana-alert/postgres-plugin.png?width=50%)
-
 ### Alert Rule
 When creating an alert, you first have to set the alert rule in Grafana. Here
 you set a name, specify which values are used for the rule, and
@@ -68,6 +59,26 @@ Then click on the blue **Create alert rule** button.
 3. In the next step, you need to select and manipulate the value that triggers your alert and declare the function for the alert.
 <!-- update https://learn.umh.app/course/alerts-in-grafana/ so that the tutorial refers the new data model-->
 <!-- also, add new screenshots of grafana-->
+- Subsection **A** is, by default the selection of your values: You can use the Grafana builder for this, but it is not useful, as it cannot select a time interval even though there is a selector for it. If you choose, for example, the last 20 seconds, your query will select values from hours ago. Therefore, it is necessary to use SQL directly. To add command manually, switch to **Code** in the right corner of the section.
+   - First, you must select the value you want to create an alert for. In the United Manufacturing Hub's data structure, a process value is stored in the table `tag`. Unfortunately Grafana cannot differentiate between different values of the same sensor; if you select the `ConcentrationNH3` value from the example and more than one of the selected values violates your rule in the selected time interval, it will trigger multiple alerts. Because Grafana is not able to tell the alerts apart, this results in errors. To solve this, you need to add the value `"timestamp"` to the `Select` part. So the first part of the SQL command is: `SELECT value, "timestamp"`.
+   - The source is `tag`, so add `FROM tag` at the end.
+   <!-- Asset ID?-->
+   - The different values are distinguished by the variable `name` in the `tag`, so add `WHERE name = '<key-name>'` to select only the value you need. If you followed [Get Started](/docs/getstarted/) guide, you can use `temperature` as the name.
+   - Since the selection of the time interval in Grafana is not working, you must add this manually as an addition to the `WHERE` command: `AND "timestamp" > (NOW() - INTERVAL 'X seconds')`. `X` is the number of past seconds you want to query. It's not useful to set `X` to less than 10 seconds, as this is the fastest interval Grafana can check your rule, and you might miss values.
+
+   The complete command is:
+
+   <!-- where asset_id = get_asset_id ?-->
+   ```sql
+   SELECT value, "timestamp" FROM tag WHERE name = 'temperature' AND "timestamp" > (NOW() - INTERVAL '10 seconds')
+   ```
+
+- In subsection **B**, you need to reduce the values to numbers, Grafana can work with. By default, **Reduce** will already be selected. However, you can change it to a different option by clicking the pencil icon next to the letter **B**. For this example, we will create an upper limit. So selecting **Max** as the **Function** is the best choice. Set **Input** as **A** (the output of the first section) and choose **Strict** for the Mode. So subsection **B** will output the maximum value the query in **A** selects as a single number.
+- In subsection **C**, you can establish the rule. If you select **Math**, you can utilize expressions like `$B > 50` to trigger an alert when a value from section **B** (`$B` means the output from section B) exceeds 50. In this case, only the largest value selected in **A** is passed through the reduce function from **B** to **C**. A simpler way to set such a limit is by choosing **Threshold** instead of **Math**.
+
+   To add more queries or expressions, find the buttons at the end of section two and click on the desired option. You can also preview the results of your queries and functions by clicking on **Preview** and check if they function correctly and fire an alert.
+
+   <!-- grafana image-->
 
 4. Define the rule location, the time interval for rule checking, and the duration for which the rule has to be broken before an alert is triggered.
    - Select a name for your rule's folder or add it to an existing one by clicking the arrow. Find all your rules grouped in these folders on the Alert rules page under Alerting.
