@@ -76,7 +76,7 @@ Specify OPC UA nodes to subscribe to in a yaml file, following the ISA95 standar
       workcell: blister
       originID: PLC13
       tagName: machineState
-      useCase: _historian
+      useCase: _historian.md
 ```
 
 Mandatory fields are `opcuaID`, `enterprise`, `tagName` and `useCase`.
