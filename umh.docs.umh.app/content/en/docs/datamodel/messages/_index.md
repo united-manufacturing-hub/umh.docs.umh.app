@@ -6,6 +6,53 @@ edition: community
 weight: 1000
 ---
 
+# Message structure
+
+The messages in our datamodel have to be JSON using the following format:
+```
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "timestamp_ms": {
+      "type": "integer"
+    }
+  },
+  "required": ["timestamp_ms"],
+  "additionalProperties": {
+    "oneOf": [
+      { "type": "string" },
+      { "type": "number" }
+      { "type": "boolean" }
+    ]
+  },
+  "minProperties": 2
+}
+```
+Examples:
+```
+{
+    "timestamp_ms": 1702286893,
+    "temperature_c": 154.1
+}
+```
+
+```
+{
+    "timestamp_ms": 1702286893,
+    "temperature_c": 154.1,
+    "pressure_bar": 5,
+    "notes": "sensor 1 is faulty"
+}
+```
+
+
+{{% notice note %}}
+If you use a boolean value
+
+
+# Topic structure
+
 {{<mermaid theme="neutral" >}}
 flowchart LR
     umh --> v1
@@ -32,7 +79,6 @@ flowchart LR
     tagGroup -.-> |1-N| tagGroup
 {{</ mermaid >}}
 
-# Format
 ## Versioning Prefix
 
 The `umh/v1` at the beginning is obligatory. It ensures that the structure can evolve over time without causing confusion or compatibility issues.
@@ -104,7 +150,7 @@ local[_local]
 
 {{</ mermaid >}}
 
-# Tag grouping
+## Tag grouping
 1) __Using Underscores in Key Names__: For example, `spindle_axis_x.`
 This results in the tag `x` being categorized under the group `axis`, which is part of the `spindle` group.
 
