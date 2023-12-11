@@ -74,7 +74,7 @@ Then click on the blue **Create alert rule** button.
    ```
 
 - In subsection **B**, you need to reduce the values to numbers, Grafana can work with. By default, **Reduce** will already be selected. However, you can change it to a different option by clicking the pencil icon next to the letter **B**. For this example, we will create an upper limit. So selecting **Max** as the **Function** is the best choice. Set **Input** as **A** (the output of the first section) and choose **Strict** for the Mode. So subsection **B** will output the maximum value the query in **A** selects as a single number.
-- In subsection **C**, you can establish the rule. If you select **Math**, you can utilize expressions like `$B > 50` to trigger an alert when a value from section **B** (`$B` means the output from section B) exceeds 50. In this case, only the largest value selected in **A** is passed through the reduce function from **B** to **C**. A simpler way to set such a limit is by choosing **Threshold** instead of **Math**.
+- In subsection **C**, you can establish the rule. If you select **Math**, you can utilize expressions like `$B > 120` to trigger an alert when a value from section **B** (`$B` means the output from section B) exceeds 50. In this case, only the largest value selected in **A** is passed through the reduce function from **B** to **C**. A simpler way to set such a limit is by choosing **Threshold** instead of **Math**.
 
    ![Untitled](/images/features/grafana-alert/alert-rule.png?width=75%)
 
@@ -107,12 +107,12 @@ contact point receives a message. The messages can be preconfigured and are
 specific to every service or contact. The following steps shall be done to create a contact point.
 
 1. Navigate to **Contact points**, located at the top of the Grafana alerting page.
-2. Click on the blue + Add contact point button.
+2. Click on the blue **+ Add contact** point button.
 3. Now, you should be able to see setting page. Choose a name for your contact point.
 
    ![Untitled](/images/features/grafana-alert/contact-point.png?width=75%)
 4. Pick the receiving service; in this example, Discord.
-5. Generate a new Webhook in your Discord server (Server Settings &rArr Integrations &rArr View Webhooks &rArr New Webhook or create Webhook). Assign a name to the Webhook and designate the messaging channel. Copy the Webhook URL from Discord and insert it into the corresponding field in Grafana. Customize the message to Discord under **Optional Discord settings** if desired.
+5. Generate a new Webhook in your Discord server (Server Settings &rArr; Integrations &rArr; View Webhooks &rArr; New Webhook or create Webhook). Assign a name to the Webhook and designate the messaging channel. Copy the Webhook URL from Discord and insert it into the corresponding field in Grafana. Customize the message to Discord under **Optional Discord settings** if desired.
 6. If you need, add more services to the contact point, by clicking **+ Add contact point integration**.
 7. Save the contact point; you can see it in the **Contact points** list, below the **grafana-default-email** contact point.
 
@@ -133,7 +133,7 @@ with the desired alerts. To add the notification policy, you need to do the foll
 In case you do not want to receive messages during a recurring time
 period, you can add a mute timing to Grafana. You can set up a mute timing in the **Notification policies** section.
 
-1. Select + Add mute timing below the notification policies.
+1. Select **+ Add mute timing** below the notification policies.
 2. Choose a name for the mute timing.
 3. Specify the time during which notifications should not be forwarded.
    - Time has to be given in UTC time and formatted as HH:MM. Use **06:00** instead of **6:00** to avoid an error in Grafana.
@@ -177,6 +177,5 @@ an API like process values.
 
 ## Where to get more information?
 
-- [Detailed step-by-step tutorial](https://learn.umh.app/course/alerts-in-grafana/)
 - [The Grafana page about alerting](https://grafana.com/docs/grafana/latest/alerting/)
 - [How to add Grafana to Teams](https://learn.umh.app/blog/how-to-install-grafana-alerts-in-microsoft-teams/)
