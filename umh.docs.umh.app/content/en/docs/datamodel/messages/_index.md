@@ -8,7 +8,7 @@ weight: 1000
 
 # Message structure
 
-The messages in our data model have to be JSON using the following format:
+The messages in our data model must be JSON using the following format:
 ```json
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
