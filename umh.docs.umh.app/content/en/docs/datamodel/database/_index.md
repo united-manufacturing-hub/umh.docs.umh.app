@@ -1,7 +1,7 @@
 ---
 title: "Database"
 chapter: true
-description: "The database stores all `_historian.md` data"
+description: "The database stores all `_historian` data"
 edition: community
 weight: 2000
 ---
@@ -50,15 +50,15 @@ This table holds all assets.
 Note that all keys except for `id` and `enterprise` are optional.
 
 ## Example
-| id | enterprise       | site      | area  | line         | workcell    | origin_id    |
-|----|------------------|-----------|-------|--------------|-------------|--------------|
-| 1  | Acme Corporation |           |       |              |             |              |
-| 2  | Acme Corporation | New York  |       |              |             |              |
-| 3  | Acme Corporation | London    | North | Assembly     |             |              |
-| 4  | Stark Industries | Berlin    | South | Fabrication  | Cell A1     | 3002         |
-| 5  | Stark Industries | Tokyo     | East  | Testing      | Cell B3     | 3005         |
-| 6  | Stark Industries | Paris     | West  | Packaging    | Cell C2     | 3009         |
-
+| id | enterprise       | site     | area  | line        | workcell | origin_id    |
+|----|------------------|----------|-------|-------------|----------|--------------|
+| 1  | acme-corporation |          |       |             |          |              |
+| 2  | acme-corporation | new-york |       |             |          |              |
+| 3  | acme-corporation | london   | north | assembly    |          |              |
+| 4  | stark-industries | berlin   | south | fabrication | cell-a1  | 3002         |
+| 5  | stark-industries | tokyo    | east  | testing     | cell-b3  | 3005         |
+| 6  | stark-industries | paris    | west  | packaging   | cell-c2  | 3009         |
+| 7  | umh              | cologne  | office| dev | serve
 
 # tag
 
@@ -66,6 +66,16 @@ This table is a timescale [hypertable](https://docs.timescale.com/use-timescale/
 It holds the values associated to an asset.
 
 `origin` holds the origin as set by the `x-origin` header, if unset it defaults to `unknown`
+
+## Example
+If you send data to `umh/v1/umh/cologne/office/dev/server1/sensor0` using this payload:
+```json
+{
+  "timestamp_ms": 1702290705,
+  "temperature_c": 80
+}
+```
+This will insert a or retrieve a line from the asset table
 
 # tag_string
 
