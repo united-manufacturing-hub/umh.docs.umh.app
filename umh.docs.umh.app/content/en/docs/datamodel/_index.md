@@ -2,10 +2,13 @@
 title: "Data Model (v1)"
 menuTitle: "Data Model (v1)"
 description: "This page describes the data model of the UMH stack - from the message payloads up to database tables."
-weight: 1750
+weight: 1725
 edition: community
 ---
 
+{{% notice note %}}
+If you like to learn more about our data model & ADR's checkout our [learn article](https://learn.umh.app/lesson/data-modeling-in-the-unified-namespace-mqtt-kafka/).
+{{% /notice %}}
 
 ### Unified Namespace and Message Management in UMH
 
