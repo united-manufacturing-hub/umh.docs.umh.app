@@ -9,7 +9,7 @@ weight: 1000
 # Message structure
 
 The messages in our datamodel have to be JSON using the following format:
-```
+```json
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
@@ -30,14 +30,14 @@ The messages in our datamodel have to be JSON using the following format:
 }
 ```
 Examples:
-```
+```json
 {
     "timestamp_ms": 1702286893,
     "temperature_c": 154.1
 }
 ```
 
-```
+```json
 {
     "timestamp_ms": 1702286893,
     "temperature_c": 154.1,
