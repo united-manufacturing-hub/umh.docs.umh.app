@@ -2,7 +2,6 @@
 title: "Database"
 chapter: true
 description: "The database stores all `_historian` data"
-edition: community
 weight: 2000
 ---
 

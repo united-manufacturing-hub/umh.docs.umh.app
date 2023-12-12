@@ -1,7 +1,6 @@
 ---
 title: "_historian"
 description: "Messages for our historian feature"
-edition: community
 weight: 1000
 ---
 
@@ -20,6 +19,7 @@ tagGroup --> tagName
     class site,area,productionLine,workCell,originID,tagGroup,tagName optional;
 
     tagGroup -.-> |1-N| tagGroup
+    click topicStart href "../"
 {{</ mermaid >}}
 
 
@@ -132,3 +132,7 @@ If we want to group this for easier access in Grafana, we could use two types of
       "collision": false
     }
     ```
+
+## What's next?
+
+Find out how the data is [stored and can be retrieved from our database](../../database).

@@ -2,7 +2,6 @@
 title: "Messages"
 chapter: true
 description: "All available messages"
-edition: community
 weight: 1000
 ---
 
@@ -18,7 +17,7 @@ flowchart LR
     area -->|Optional| productionLine
     productionLine -->|Optional| workCell
     workCell -->|Optional| originID
-    originID -->|Optional| _schema["_historian, _analytics, _local, ..."]
+    originID -->|Optional| _schema["_schema (Ex: _historian, _analytics, _local)"]
     _schema -->_opt["Schema dependent context"]
     
     classDef mqtt fill:#00dd00,stroke:#333,stroke-width:4px;
@@ -31,6 +30,8 @@ flowchart LR
     area -.-> _schema
     productionLine -.-> _schema
     workCell -.-> _schema
+
+    click _schema href "#_schema"
 {{</ mermaid >}}
 
 ## Versioning Prefix
@@ -82,10 +83,9 @@ This data must not necessarily be JSON.
 
 ## Converting other data models
 Most data models already follow a location based naming structure.
-This location can either be physical (sensor on a machine), virtual (pod running in Kubernetes cluster) or mixed (service running on a specific physical server).
 
 ### KKS Identification System for Power Stations
-KKS (Kraftwerk-Kennzeichensystem) is a standardized system for identifying and classifying equipment and systems in power plants, particularly in German-speaking countries.
+KKS ([Kraftwerk-Kennzeichensystem](https://de.wikipedia.org/wiki/Kraftwerk-Kennzeichensystem)) is a standardized system for identifying and classifying equipment and systems in power plants, particularly in German-speaking countries.
 
 In a flow diagram, the designation is: `1 2LAC03 CT002 QT12`
 
