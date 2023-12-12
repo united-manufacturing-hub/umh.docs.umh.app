@@ -79,3 +79,52 @@ This data must not necessarily be JSON.
 Any other schema, which starts with an underscore (for example: `_images`), will be forwarded by both MQTT-Kafka & Kafka-Kafka bridges but never processed or stored.
 
 This data must not necessarily be JSON.
+
+## Converting other data models
+Most data models already follow a location based naming structure.
+This location can either be physical (sensor on a machine), virtual (pod running in Kubernetes cluster) or mixed (service running on a specific physical server).
+
+### KKS Identification System for Power Stations
+KKS (Kraftwerk-Kennzeichensystem) is a standardized system for identifying and classifying equipment and systems in power plants, particularly in German-speaking countries.
+
+In a flow diagram, the designation is: `1 2LAC03 CT002 QT12`
+
+- Level 0 Classification:
+
+    Block 1 of a power plant site is designated as 1 in this level.
+
+- Level 1 Classification:
+
+    The designation for the 3rd feedwater pump in the 2nd steam-water circuit is 2LAC03. This means:
+    
+    Main group 2L: 2nd steam, water, gas circuit
+    Subgroup (2L)A: Feedwater system
+    Subgroup (2LA)C: Feedwater pump system
+    Counter (2LAC)03: third feedwater pump system
+
+- Level 2 Classification:
+
+    For the 2nd temperature measurement, the designation CT002 is used. This means:
+    
+    Main group C: Direct measurement
+    Subgroup (C)T: Temperature measurement
+    Counter (CT)002: second temperature measurement
+- Level 3 Classification:
+    
+    For the 12th immersion sleeve as a sensor protection, the designation QT12 is used. This means:
+    
+    - Main group Q: Control technology equipment
+    - Subgroup (Q)T: Protective tubes and immersion sleeves as sensor protection
+    - Counter (QT)12: twelfth protective tube or immersion sleeve
+
+The above example refers to the 12th immersion sleeve at the 2nd temperature measurement of the 3rd feed pump in block 1 of a power plant site.
+Translating this in our data model could result in:
+`umh/v1/nuclearCo/1/2LAC03/CT002/QT12/_schema`
+
+Where:
+- nuclearCo: Represents the enterprise or the name of the nuclear company.
+- 1: Maps to the 'site', corresponding to Block 1 of the power plant as per the KKS number.
+- 2LAC03: Fits into the 'area', representing the 3rd feedwater pump in the 2nd steam-water circuit.
+- CT002: Aligns with 'productionLine', indicating the 2nd temperature measurement in this context.
+- QT12: Serves as the 'workCell' or 'originID', denoting the 12th immersion sleeve.
+- _schema: Placeholder for the specific data schema being applied.
