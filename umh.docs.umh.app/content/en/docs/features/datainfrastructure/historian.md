@@ -11,7 +11,7 @@ The Historian / Data Storage feature in the United Manufacturing Hub provides re
 
 ## When should I use it?
 
-If you want to reliably store data from your shop floor that is not designed to fulfill any legal purposes, such as GxP, then the United Manufacturing Hub's Historian feature is ideal. Open-Source databases such as TimescaleDB [are superior to traditional historians](https://learn.umh.app/blog/historians-vs-open-source-databases-which-is-better/) in terms of [reliability, scalability and maintainability](https://learn.umh.app/blog/comparing-mqtt-brokers-for-the-industrial-iot/#three-main-requirements-for-your-it-ot-architecture), but can be challenging to use for the OT engineer. The United Manufacturing Hub fills this usability gap, allowing OT engineers to easily ingest, process, and store data permanently in an Open-Source database.
+If you want to reliably store data from your shop floor that is not designed to fulfill any legal purposes, such as GxP, then the United Manufacturing Hub's Historian feature is ideal. Open-Source databases such as TimescaleDB are [superior to traditional historians](https://learn.umh.app/blog/historians-vs-open-source-databases-which-is-better/) in terms of [reliability, scalability and maintainability](https://learn.umh.app/blog/comparing-mqtt-brokers-for-the-industrial-iot/#three-main-requirements-for-your-it-ot-architecture), but can be challenging to use for the OT engineer. The United Manufacturing Hub fills this usability gap, allowing OT engineers to easily ingest, process, and store data permanently in an Open-Source database.
 
 ## What can I do with it?
 
@@ -19,7 +19,7 @@ The Historian / Data Storage feature of the United Manufacturing Hub allows you 
 
 ### Store and analyze data
 
-- Store data from the topics with the basic format `.../_historian` or `.../_historian/<tagGroup1>/<tagGroup2>/.../<tagGroupX>/<tagname>` in the Unified Namespace. [Data can be sent to the Unified Namespace from various sources](/docs/features/datainfrastructure/unified-namespace/), allowing you to store tags from your PLC and production lines reliably. Optionally, you can use tag groups to manage a large number of tags and reduce the system load. [This article](https://learn.umh.app/lesson/data-modeling-in-the-unified-namespace-mqtt-kafka/) helps you learn data modeling in the Unified Namespace.
+- Store data from the topics with the basic format `.../_historian` or `.../_historian/<tagGroup1>/<tagGroup2>/.../<tagGroupX>/<tagname>` in the Unified Namespace. [Data can be sent to the Unified Namespace from various sources](/docs/features/datainfrastructure/unified-namespace/), allowing you to store tags from your PLC and production lines reliably. Optionally, you can use tag groups to manage a large number of tags and reduce the system load. [This article](https://learn.umh.app/lesson/data-modeling-in-the-unified-namespace-mqtt-kafka/) assists you in learning data modeling in the Unified Namespace. 
 - Conduct basic data analysis, including automatic downsampling, gap filling, and statistical functions such as Min, Max, and Avg.
 
 ### Query and visualize data
@@ -28,12 +28,8 @@ The Historian / Data Storage feature of the United Manufacturing Hub allows you 
 - Visualize your data in Grafana to easily monitor and troubleshoot your production processes.
 
 {{% notice tip %}}
-More information about the exact analytics functionalities can be found in the [umh-datasource-v2 documentation](/docs/architecture/data-infrastructure/historian/umh-datasource-v2/). Further below some screenshots of said datasource.
+More information about the exact analytics functionalities can be found in the [umh-datasource-v2 documentation](/docs/architecture/data-infrastructure/historian/umh-datasource-v2/).
 {{% /notice %}}
-
-![](/images/grafana-plugins/grafanaPluginsSelectingWorkCell.png?width=50%)
-![](/images/grafana-plugins/grafanaPluginsSelectingValue.png?width=50%)
-![](/images/grafana-plugins/grafanaPluginsSelectingOptions.png?width=50%)
 
 ### Efficiently manage data
 
