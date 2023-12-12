@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const regex = /^umh\.v1\.(?<enterprise>[\w\-_]+)\.((?<site>[\w\-_]+)\.)?((?<area>[\w\-_]+)\.)?((?<productionLine>[\w\-_]+)\.)?((?<workCell>[\w\-_]+)\.)?((?<originId>[\w\-_]+)\.)?(?<usecase>(_\w+))(\.(?<tag>[\w\-_.]+))?/;
         // Strip whitespaces & replace / with .
         const value = inputField.value.trim().replaceAll('/','.');
+        if (value.length === 0){
+            outputField.textContent = "";
+        }
         const containsBothSlashAndDot = value.includes('/') && value.includes('.');
         if (containsBothSlashAndDot){
             outputField.textContent = "You are mixing Kafka & MQTT style separators."
