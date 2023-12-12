@@ -29,6 +29,4 @@ For efficient message handling and data organization within the UNS, several str
 
 2. **Payload Structure**: JSON has been selected as the primary data format for payloads. Its direct readability, simplicity, and compatibility make it particularly suitable for the manufacturing environment, striking a balance between handling complex data structures and maintaining user-friendliness.
 
-3. **Custom Bridge Development**: To ensure seamless integration within UMH's system architecture, a custom bridge solution was developed, aligning with our commitment to open-source principles and tailored system functionality.
-
-4. **Data Bridge for MQTT and Kafka Integration**: A crucial element is the Data Bridge microservice, which efficiently transfers data between MQTT and Kafka brokers. It uses a merge point feature to maintain a consistent topic strategy across both platforms, optimizing performance while ensuring clarity and accessibility for OT professionals.
+3. **Data Bridge for MQTT and Kafka Integration**: A crucial element is the Data Bridge microservice, which efficiently transfers data between MQTT and Kafka brokers. It uses a merge point feature to maintain a consistent topic strategy across both platforms, optimizing performance while ensuring clarity and accessibility for OT professionals.

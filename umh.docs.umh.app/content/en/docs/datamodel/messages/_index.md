@@ -18,7 +18,7 @@ flowchart LR
     area -->|Optional| productionLine
     productionLine -->|Optional| workCell
     workCell -->|Optional| originID
-    originID -->|Optional| _schema
+    originID -->|Optional| _schema["_historian, _analytics, _local, ..."]
     _schema -->_opt["Schema dependent context"]
     
     classDef mqtt fill:#00dd00,stroke:#333,stroke-width:4px;
@@ -44,6 +44,7 @@ They can consist of any letters (`a-z`, `A-Z`), numbers (`0-9`) and therein symb
 Be careful to avoid `.`, `+`, `#` or `/` as these are special symbols in Kafka or MQTT.
 Ensure that your topic always begins with `umh/v1`, otherwise our system will ignore your messages.
 
+Be aware that our topics are case-sensitive, therefore `umh.v1.ACMEIncorperated` is __not__ the same as `umh.v1.acmeincorperated`.
 
 {{% notice info %}}
 Throughout this documentation we will use the MQTT syntax for topics (`umh/v1`), the corresponding Kafka topic names are the same but `/` replaced with `.`
@@ -62,11 +63,12 @@ Messages tagged with `_historian` will be stored in our database and are availab
 
 ### _analytics
 
-Analytics messages are currently work-in-progress and will be detailed later.
+Analytics messages are currently not implemented.
+They will incorporate state, shift, order, ... messages in the future and feature automatic OEE calculations.
 
 ### _local
 
-This key might contain any data, that you do not want to bridge to other nodes.
+This key might contain any data, that you do not want to bridge to other nodes (it will however be MQTT-Kafka bridged on its node).
 
 
 For example this could be data you want to pre-process on your local node, and then put into another `_schema`.
@@ -74,6 +76,6 @@ This data must not necessarily be JSON.
 
 ### Other
 
-All other schemas will be forwarded by bridges but ignored by any of our processors.
+Any other schema, which starts with an underscore (for example: `_images`), will be forwarded by both MQTT-Kafka & Kafka-Kafka bridges but never processed or stored.
 
 This data must not necessarily be JSON.
