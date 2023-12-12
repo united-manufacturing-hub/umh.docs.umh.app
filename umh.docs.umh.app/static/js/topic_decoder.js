@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     const inputField = document.getElementById('inputTopic');
     const outputField = document.getElementById('outputMatches');
-
+    function containsInvalidChars(str) {
+        return /[^a-zA-Z0-9._-]/.test(str);
+    }
     inputField.addEventListener('input', function() {
-        const regex = /^umh\.v1\.(?<enterprise>[\w\-_]+)\.((?<site>[\w\-_]+)\.)?((?<area>[\w\-_]+)\.)?((?<productionLine>[\w\-_]+)\.)?((?<workCell>[\w\-_]+)\.)?((?<originId>[\w\-_]+)\.)?(?<usecase>(_\w+))(\.(?<tag>[\w\-_.]+))?/;
+        const regex = /^umh\.v1\.(?<enterprise>[\w\-_]+)\.((?<site>[\w\-_]+)\.)?((?<area>[\w\-_]+)\.)?((?<productionLine>[\w\-_]+)\.)?((?<workCell>[\w\-_]+)\.)?((?<originId>[\w\-_]+)\.)?(?<usecase>(_\w+))(\.(?<tag>[\w\-_.]+))?$/;
         // Strip whitespaces & replace / with .
         const value = inputField.value.trim().replaceAll('/','.');
         if (value.length === 0){
@@ -11,7 +13,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         const containsBothSlashAndDot = value.includes('/') && value.includes('.');
         if (containsBothSlashAndDot){
-            outputField.textContent = "You are mixing Kafka & MQTT style separators."
+            outputField.textContent = "❗Invalid Topic\n";
+            outputField.textContent += "You are mixing Kafka & MQTT style separators."
+            return;
+        }
+        if (containsInvalidChars(value)){
+            outputField.textContent = "❗Invalid Topic\n";
+            outputField.textContent += "You are using invalid characters."
             return;
         }
         const matches = regex.exec(value);
