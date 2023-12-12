@@ -69,7 +69,8 @@ umh/v1/enterprise/site/area/productionLine/workCell/originID/_schema
       - Forwarding without Storage: Messages falling under schemas other than `_historian`, `_analytics`, and `_local` will be forwarded to other brokers via bridges.
       - Independence from Structure and Payload: This forwarding occurs regardless of the specific topic structure following the `_schema` marker and irrespective of the payload format. However, UMH will not store these messages in its database.
 
-The [Data Bridge](/docs/reference/microservices/data-bridge/)  microservice assists you in transmitting data between two Kafka or MQTT brokers and transforming the data according to the UNS data model. It also offers a merge point feature that consolidates messages from various detailed topics into a general topic, minimizing overhead in managing a large number of topics. You can find more information in [this article](https://learn.umh.app/lesson/data-modeling-in-the-unified-namespace-mqtt-kafka/).
+The [Data Bridge](/docs/reference/microservices/data-bridge/) microservice helps you transmit data between two Kafka or MQTT brokers and transform the data according to the UNS data model. The bridge consolidates messages from multiple MQTT topics into a single Kafka topic. The point where the topics will be merged is referred to as a "merge point," and you can configure it. For example, with a merge point of 4, it consolidates messages from various detailed topics like `umh/v1/acme/anytown/foo/bar` into a general topic `umh.v1.acme.anytown` while using the specific sub-topic paths (`foo.bar`, `foo.baz`, etc.) as message keys in Kafka. You can find more information in [this article](https://learn.umh.app/lesson/data-modeling-in-the-unified-namespace-mqtt-kafka/).
+
 
 If you send the messages into other topics, some features might not work correctly (see also [limitations](#what-are-the-limitations)).
 
