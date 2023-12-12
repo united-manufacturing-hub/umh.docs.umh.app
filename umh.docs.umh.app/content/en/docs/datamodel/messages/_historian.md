@@ -82,6 +82,7 @@ Sometimes it makes sense to further group data together.
 In the following example we have a CNC cutter, emitting data about it's head position.
 If we want to group this for easier access in Grafana, we could use two types of grouping.
 1) __Using Underscores in Key Names:__
+
     Topic: `umh/v1/cuttingincorperated/cologne/cnc-cutter/_historian`
     ```json
     {
@@ -96,6 +97,7 @@ If we want to group this for easier access in Grafana, we could use two types of
 
 2) __Using Tags / Tag Groups in the Topic__:
    Equivalent to the above we could also send:
+
    Topic: `umh/v1/cuttingincorperated/cologne/cnc-cutter/_historian/head/pos`
     ```json
     {
@@ -109,6 +111,7 @@ If we want to group this for easier access in Grafana, we could use two types of
 
 3) __Combining Both Methods__:
    Equivalent to the above we could also send:
+
    Topic: `umh/v1/cuttingincorperated/cologne/cnc-cutter/_historian/head`
     ```json
     {
@@ -118,7 +121,7 @@ If we want to group this for easier access in Grafana, we could use two types of
       "pos_z": 3.2
     }
     ```
-   This can be useful, if we also want to monitor the cutter head temperature and other attributes
+   This can be useful, if we also want to monitor the cutter head temperature and other attributes, while still preserving most of the readability of the above method.
     ```json
     {
      "timestamp_ms": 1670001234567,
