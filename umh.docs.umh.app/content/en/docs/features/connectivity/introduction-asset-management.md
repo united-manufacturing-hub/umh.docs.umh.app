@@ -9,7 +9,6 @@ draft: false
 
 
 In IIoT, connectivity involves extracting and contextualizing data from various systems into the Unified Namespace. There's no universal solution; a blend of different tools is required, tailored to specific technical and organizational challenges.
-The goal with asset management is that you can add everything with an IP on your shopfloor. So, if the connection gets worse or drops entirely, you are notified. This is required for any data extraction step using benthos and the Management Console. In the future, we will also recommend adding an asset before working with it in Node-RED.
 
 ## When should I use it?
 Integrating diverse techniques presents challenges, involving non-standard connections, specific communication protocols, and more. Additionally, mismatches between IT and OT technology may arise. Detailed examples of these challenges are provided below. Asset Management in UMH is designed to address these issues.
@@ -34,27 +33,24 @@ You can manage connectivity effectively; for example, you can create, configure,
 
 ## How can I use it?
 
-To address these challenges, UMH recommends a combination of tools for effective connectivity:
+To address these challenges, UMH recommends a combination of the following tools for effective connectivity:
 
-### 1. Node-RED
+### Node-RED
 
-- **Description:** A leading open-source tool for IIoT connectivity, widely accepted alongside Kepware.
-- **Advantages:** Vast global community, extensive connectors, Docker compatibility, user-friendly for OT personnel.
-- **Disadvantages:** Reliability may vary.
-- **UMH Recommendation:** Primarily for prototyping and integrating parts of the shopfloor that demand high levels of customization and domain knowledge.
+Node-RED is a leading open-source tool for IIoT connectivity, widely accepted alongside Kepware. We recommend this tool for prototyping and integrating parts of the shop floor that demand high levels of customization and domain knowledge.
+- Advantages: Vast global community, extensive connectors, Docker compatibility, user-friendly for OT personnel.
+- Disadvantages: Reliability may vary.
 
-### 2. benthos-umh
+### benthos-umh
 
-- **Description:** UMH's custom extension of the Benthos project, enhanced with an OPC UA plugin.
-- **Advantages:** Ideal for reliably moving medium-sized data volumes, ease of deployment and management.
-- **Disadvantages:** Technical expertise required, longer development cycles.
-- **UMH Recommendation:** For scenarios involving the extraction of large data volumes in a standardized format.
+The benthos-umh is UMH's custom extension of the Benthos project, enhanced with an OPC UA plugin. It is recommended for scenarios involving the extraction of large data volumes in a standardized format.
+- Advantages: Ideal for reliably moving medium-sized data volumes, ease of deployment and management.
+- Disadvantages: Technical expertise required, longer development cycles.
 
-### 3. Other Tools
+### Other Tools
+Incorporating existing connectivity solutions or third-party tools, such as Kepware, [barcode readers](/docs/features/connectivity/additionalconnectivity/barcodereader-retrofitting/), and [sensor connection systems](/docs/features/connectivity/additionalconnectivity/ifm-retrofitting/) might be effective for some use cases.
 
-- **Recommendation:** Incorporate existing connectivity solutions or third-party tools, such as Kepware, barcode readers, and sensor connection systems.
-
-This approach ensures a flexible, adaptable IIoT environment that addresses both technical and organizational needs effectively.
+This approach ensures a flexible, adaptable IIoT environment that addresses both technical and organizational needs effectively. The goal with asset management is that you can add everything with an IP on your shop floor. Also, if the connection gets worse or drops entirely, you should be notified. These features are essential for any data extraction step using benthos and the Management Console. In the future, we will also recommend adding an asset before working with it in Node-RED.
 
 ## What are the limitations? 
 - Each tool has drawbacks, as discussed in the previous section.
