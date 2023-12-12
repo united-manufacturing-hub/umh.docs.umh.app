@@ -41,33 +41,8 @@ The Unified Namespace / Message Broker in the United Manufacturing Hub provides 
 
 Using the Unified Namespace is quite simple:
 
-Configure your IoT devices and devices on the shopfloor to use the in-built MQTT broker of the United Manufacturing Hub by specifying the MQTT protocol, selecting unencrypted (1883) / encrypted (8883) ports depending on your configuration, and send the messages into a topic. From there on, you can start processing the messages in Node-RED by reading in the messages again via MQTT or Kafka, adjusting the payload or the topic and sending it back again to MQTT or Kafka. In the United Manufacturing Hub (UMH), we organize data using a specific topic structure. The structure looks like this:
+Configure your IoT devices and devices on the shopfloor to use the in-built MQTT broker of the United Manufacturing Hub by specifying the MQTT protocol, selecting unencrypted (1883) / encrypted (8883) ports depending on your configuration, and send the messages into a topic. From there on, you can start processing the messages in Node-RED by reading in the messages again via MQTT or Kafka, adjusting the payload or the topic and sending it back again to MQTT or Kafka. In the United Manufacturing Hub (UMH), we organize data using a specific topic structure based on the ISA95 standard model that ensures data integrity and ease of understanding for OT professionals. JSON has been selected as the primary data format for payloads. You can get more detailed information in the [Data Model]() page. <!-- add datamodel link-->
 
-```
-umh/v1/enterprise/site/area/productionLine/workCell/originID/_schema
-```
-
-- **Topic Names and Rules**: All parts of this structure, such as `enterprise`, `site`, `area`, etc., are flexible in terms of their naming. Here, you find valid characters:
-  - Valid characters:
-      - Letters: `a-z`, `A-Z`
-      - Numbers: `0-9`
-      - Symbols: `-`, `_`
-
-
-- **Versioning Prefix**: The `umh/v1` at the beginning is obligatory. It ensures that the structure can evolve over time without causing confusion or compatibility issues.
-- **ISA95 Compliance**: The terms like `enterprise`, `site`, `area`, etc., are aligned with the ISA95 model, which is a standard for industrial systems. `enterprise` is the only mandatory term; others can be skipped if they don't apply, e.g., a room temperature sensor for a specific area.
-- **Origin ID**: This part identifies where the data is coming from. It could be a serial number, a MAC address, or even a software component like a Docker container. If multiple sources are involved, they're separated by underscores. Examples of originIDs: `E588974`, `00-80-41-ae-fd-7e`, `VM241_nodered_mes`.
-
-- **The _schema Field**: This is where IT and OT professionals need to pay close attention. The `_schema` field, identified by its leading underscore, is crucial for defining the type of data or the format being sent. In the UMH, we have default schemas like `_historian`, `_analytics`, and `_local`, but users can add more as needed. The underscore is important for clarity in parsing the structure, especially when some elements like `workCell` might be omitted. This feature does not block a message from entering Kafka or MQTT, but it will prevents forwarding or processing the message, and will throw warnings.
-
-  1. **Schemas _historian and _analytics**:
-      - Validation of Messages: The United Manufacturing Hub (UMH) is programmed to process messages under the `_historian` and `_analytics` schemas only if they adhere to a valid schema format (see further below).
-      - Handling Invalid Messages: Any message that is not in JSON format or does otherwise not meet the schema, even if sent to these schemas, will not be saved in the database nor forwarded to another broker. This ensures data integrity and consistency in processing.
-  2. **Schema _local**:
-      - Non-Processing Policy: Messages sent under the `_local` schema will not be processed by UMH. This schema is reserved for data that is intended to remain local and is not meant for forwarding or storing in the database.
-  3. **Other Schemas**:
-      - Forwarding without Storage: Messages falling under schemas other than `_historian`, `_analytics`, and `_local` will be forwarded to other brokers via bridges.
-      - Independence from Structure and Payload: This forwarding occurs regardless of the specific topic structure following the `_schema` marker and irrespective of the payload format. However, UMH will not store these messages in its database.
 
 The [Data Bridge](/docs/reference/microservices/data-bridge/) microservice helps you transmit data between two Kafka or MQTT brokers and transform the data according to the UNS data model. The bridge consolidates messages from multiple MQTT topics into a single Kafka topic. The point where the topics will be merged is referred to as a "merge point," and you can configure it. For example, with a merge point of 4, it consolidates messages from various detailed topics like `umh/v1/acme/anytown/foo/bar` into a general topic `umh.v1.acme.anytown` while using the specific sub-topic paths (`foo.bar`, `foo.baz`, etc.) as message keys in Kafka. You can find more information in [this article](https://learn.umh.app/lesson/data-modeling-in-the-unified-namespace-mqtt-kafka/).
 
