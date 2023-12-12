@@ -47,7 +47,10 @@ privacy_policy = "https://www.umh.app/data-security"
 favicon        = "favicon.png"
 version_menu   = "Version"
 
-custom_css = ["css/copy-button.css"]
+custom_css = [
+    "css/copy-button.css",
+    "css/spoiler.css"
+]
 # Enable Algolia DocSearch
 algolia_docsearch = false
 # Enable Lunr.js offline search

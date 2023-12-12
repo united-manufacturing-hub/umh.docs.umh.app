@@ -68,7 +68,7 @@ It holds the values associated to an asset.
 `origin` holds the origin as set by the `x-origin` header, if unset it defaults to `unknown`
 
 ## Example
-If you send data to `umh/v1/umh/cologne/office/dev/server1/sensor0` using this payload:
+If you send data to `umh/v1/umh/cologne/office/dev/server1/sensor0/_historian` using this payload:
 ```json
 {
   "timestamp_ms": 1702290705,
