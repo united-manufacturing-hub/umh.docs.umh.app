@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
         outputField.textContent = "❗Invalid Topic\n";
         // Split the string
         const parts = value.split('.');
-        outputField.textContent = "";
         if (parts.length < 4) {
             outputField.textContent += "Topic name must consists of at least `umh/v1/<enterprise>/<_schema>`"
             return;
