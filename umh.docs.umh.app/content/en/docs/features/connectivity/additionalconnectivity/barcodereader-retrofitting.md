@@ -45,4 +45,5 @@ the data to the Kafka topic.
 
 ## Where to get more information?
 
-- [technical documentation of barcodereader](/docs/reference/microservices/barcodereader/)
+- You can get more information in the [technical documentation of barcodereader](/docs/reference/microservices/barcodereader/)
+- [Our helm chart reference](/docs/reference/helm-chart/#barcode-reader) provides lists of configuration parameters.
