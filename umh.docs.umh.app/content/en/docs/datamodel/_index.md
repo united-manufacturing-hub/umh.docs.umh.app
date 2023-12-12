@@ -34,6 +34,11 @@ H_d --> DL[Data Lake]
 click C_d_infoX href "../features/connectivity"
 click UN_d_infoX href "./messages"
 click H_d_infoX href "./database"
+click C_d_info href "../features/connectivity"
+click UN_d_info href "./messages"
+click H_d_info href "./database"
+
+
 {{</ mermaid >}}
 The Data Infrastructure of the UMH consists out of the three components: Connectivity, Unified Namespace, and Historian (see also [Architecture](./../architecture)). Each of the components has their own standards and best-practices, so a consistent data model across
 multiple building blocks need to combine all of them.

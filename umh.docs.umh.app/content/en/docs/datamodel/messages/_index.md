@@ -53,6 +53,8 @@ Be aware that our topics are case-sensitive, therefore `umh.v1.ACMEIncorperated`
 Throughout this documentation we will use the MQTT syntax for topics (`umh/v1`), the corresponding Kafka topic names are the same but `/` replaced with `.`
 {{% /notice %}}
 
+{{% topic_decoder %}}
+
 ## OriginID
 This part identifies where the data is coming from.
 Good options include the senders MAC address, hostname, container id.
