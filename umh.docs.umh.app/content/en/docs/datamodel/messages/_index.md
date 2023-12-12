@@ -1,7 +1,7 @@
 ---
-title: "Messages"
+title: "Unified Namespace"
 chapter: true
-description: "All available messages"
+description: "Describes all available _schema and there structure"
 weight: 1000
 ---
 

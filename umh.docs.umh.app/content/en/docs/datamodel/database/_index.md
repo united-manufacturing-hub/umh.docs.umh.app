@@ -1,7 +1,7 @@
 ---
-title: "Database"
+title: "Historian"
 chapter: true
-description: "The database stores all `_historian` data"
+description: "How `_historian` data is stored and can be queried"
 weight: 2000
 ---
 
@@ -44,7 +44,7 @@ erDiagram
 
 {{</ mermaid >}}
 
-# asset
+## asset
 This table holds all assets.
 An asset for us is the unique combination of `enterprise`, `site`, `area`, `line`, `workcell` & `origin_id`.
 
@@ -52,7 +52,6 @@ All keys except for `id` and `enterprise` are optional.
 In our example we have just started our CNC cutter, so it's unique asset will get inserted into the database.
 It already contains some data we inserted before so the new asset will be inserted at `id: 8`
 
-## Example
 | id | enterprise         | site     | area       | line        | workcell | origin_id |
 |----|--------------------|----------|------------|-------------|----------|-----------|
 | 1  | acme-corporation   |          |            |             |          |           |
@@ -64,7 +63,7 @@ It already contains some data we inserted before so the new asset will be insert
 | 7  | umh                | cologne  | office     | dev         | server1  | sensor0   |
 | 8  | cuttingincoperated | cologne  | cnc-cutter |             |          |           |
 
-# tag
+## tag
 
 This table is a timescale [hypertable](https://docs.timescale.com/use-timescale/latest/hypertables/about-hypertables/).
 These tables are optimized to contain a large amount of data which is roughly sorted by time.
@@ -98,7 +97,7 @@ The origin is a placeholder for a later feature, and currently defaults to `unkn
 {{% /notice %}}
 
 
-# tag_string
+## tag_string
 
 This table is the same as tag, but for string data.
 Our CNC cutter also emits the G-Code currently processed.
@@ -116,6 +115,30 @@ Resulting in this entry:
 |---------------|--------|---------|----------|----------------|
 | 1670001247568 | g-code | unknown | 8        | G01 X10 Y10 Z0 |
 
-# SQL Lookup
+## Data retrieval
 
-TODO
+### SQL
+1) SSH into your instance.
+2) [Open a PSQL session](https://umh.docs.umh.app/docs/getstarted/managingthesystem/#interact-with-the-database)
+3) Select the `umh_v2` database using `\c umh_v2`
+4) Execute any query against our tables.
+
+#### Example Queries
+- **Get the number of rows in your tag table**:
+  ```postgresql
+  SELECT COUNT(1) FROM tag;
+  ```
+- **Get the newest row for "umh/v1/umh/cologne"**:
+  ```postgresql
+  SELECT * FROM tag WHERE asset_id=get_asset_id('umh', 'cologne') LIMIT 1;
+  ```
+  The equivalent function, without using our helper is:
+  ```postgresql
+  SELECT t.* FROM tag t, asset a WHERE t.asset_id=a.id AND a.enterprise='umh' AND a.site='cologne' LIMIT 1;
+  ```
+  
+{{% notice info %}}
+`get_asset_id(<enterprise>, <site>, <area>, <line>, <workcell>, <origin_id>)` is a helper function to ease retrieval of the asset id.
+
+All fields except `<enterprise>` are optional and it will always return the first asset id matching the search.
+{{% /notice %}}
