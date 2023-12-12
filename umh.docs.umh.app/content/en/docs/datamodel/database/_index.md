@@ -115,3 +115,7 @@ Resulting in this entry:
 | timestamp     | name   | origin  | asset_id | value          |
 |---------------|--------|---------|----------|----------------|
 | 1670001247568 | g-code | unknown | 8        | G01 X10 Y10 Z0 |
+
+# SQL Lookup
+
+TODO

@@ -6,7 +6,7 @@ weight: 1725
 ---
 
 {{% notice note %}}
-If you like to learn more about our data model & ADR's checkout our [learn article](https://learn.umh.app/lesson/data-modeling-in-the-unified-namespace-mqtt-kafka/).
+If you like to learn more about our data model & [ADR's](https://adr.github.io/) checkout our [learn article](https://learn.umh.app/lesson/data-modeling-in-the-unified-namespace-mqtt-kafka/).
 {{% /notice %}}
 
 ### Unified Namespace and Message Management in UMH
@@ -17,8 +17,8 @@ In the United Manufacturing Hub (UMH), we have established a Unified Namespace (
 
 Key aspects of the UNS include:
 1. **Hybrid Architecture**: Combining MQTT's user-friendliness and widespread adoption in Operational Technology (OT) with Kafka's advanced processing capabilities.
-2. **Data Modeling Schema**: Developing a proprietary schema that aligns with [ISA95](https://en.wikipedia.org/wiki/ANSI/ISA-95) standards, simplifying data payloads to [JSON](https://www.json.org/json-en.html) format for accessibility.
-3. **Topic Structure Management**: Aligning topic structures with the ISA95 model, ensuring data integrity and ease of understanding for OT professionals.
+2. **Data Modeling Schema**: Developing an [open schema](./messages) that aligns with [ISA95](https://en.wikipedia.org/wiki/ANSI/ISA-95) standards, simplifying data payloads to [JSON](https://www.json.org/json-en.html) format for accessibility.
+3. **Topic Structure Management**: [Aligning topic structures with the ISA95 model](https://learn.umh.app/blog/historians-vs-open-source-databases-which-is-better/#:~:text=How%20we%20handle%20the%20situation), ensuring data integrity and ease of understanding for OT professionals.
 
 #### Message Management Strategies
 
