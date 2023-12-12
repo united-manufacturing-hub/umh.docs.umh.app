@@ -123,8 +123,8 @@ Translating this in our data model could result in:
 
 Where:
 - nuclearCo: Represents the enterprise or the name of the nuclear company.
-- 1: Maps to the 'site', corresponding to Block 1 of the power plant as per the KKS number.
-- 2LAC03: Fits into the 'area', representing the 3rd feedwater pump in the 2nd steam-water circuit.
-- CT002: Aligns with 'productionLine', indicating the 2nd temperature measurement in this context.
-- QT12: Serves as the 'workCell' or 'originID', denoting the 12th immersion sleeve.
+- 1: Maps to the `site`, corresponding to Block 1 of the power plant as per the KKS number.
+- 2LAC03: Fits into the `area`, representing the 3rd feedwater pump in the 2nd steam-water circuit.
+- CT002: Aligns with `productionLine`, indicating the 2nd temperature measurement in this context.
+- QT12: Serves as the `workCell` or `originID`, denoting the 12th immersion sleeve.
 - _schema: Placeholder for the specific data schema being applied.
