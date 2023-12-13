@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     inputField.addEventListener('input', function() {
         const regex = /^umh\.v1\.(?<enterprise>[\w\-_]+)\.((?<site>[\w\-_]+)\.)?((?<area>[\w\-_]+)\.)?((?<productionLine>[\w\-_]+)\.)?((?<workCell>[\w\-_]+)\.)?((?<originId>[\w\-_]+)\.)?(?<schema>(_\w+))(\.(?<tag>[\w\-_.]+))?$/;
         // Strip whitespaces & replace / with .
-        const value = inputField.value.trim().replaceAll('/','.');
+        let value = inputField.value.trim();
         if (value.length === 0){
             outputField.textContent = "";
         }
@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
             outputField.textContent += "You are mixing Kafka & MQTT style separators."
             return;
         }
+        value = value.replaceAll('/','.');
         if (containsInvalidChars(value)){
             outputField.textContent = "❗Invalid Topic\n";
             outputField.textContent += "You are using invalid characters."
