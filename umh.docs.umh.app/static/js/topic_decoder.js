@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return /[^a-zA-Z0-9._-]/.test(str);
     }
     inputField.addEventListener('input', function() {
-        const regex = /^umh\.v1\.(?<enterprise>[\w\-_]+)\.((?<site>[\w\-_]+)\.)?((?<area>[\w\-_]+)\.)?((?<productionLine>[\w\-_]+)\.)?((?<workCell>[\w\-_]+)\.)?((?<originId>[\w\-_]+)\.)?(?<usecase>(_\w+))(\.(?<tag>[\w\-_.]+))?$/;
+        const regex = /^umh\.v1\.(?<enterprise>[\w\-_]+)\.((?<site>[\w\-_]+)\.)?((?<area>[\w\-_]+)\.)?((?<productionLine>[\w\-_]+)\.)?((?<workCell>[\w\-_]+)\.)?((?<originId>[\w\-_]+)\.)?(?<schema>(_\w+))(\.(?<tag>[\w\-_.]+))?$/;
         // Strip whitespaces & replace / with .
         const value = inputField.value.trim().replaceAll('/','.');
         if (value.length === 0){
@@ -29,11 +29,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 matches.groups.tag = matches.groups.tag.replaceAll('.', '_');
             }
             outputField.textContent = "✔️ Valid Topic\n";
-            if (matches.groups.usecase === "_historian"){
+            if (matches.groups.schema === "_historian"){
                 outputField.textContent += "✅ Using UMH _historian schema\n"
-            }else if (matches.groups.usecase === "_analytics"){
+            }else if (matches.groups.schema === "_analytics"){
                 outputField.textContent += "✅ Using UMH _analytics schema\n"
-            }else if (matches.groups.usecase === "_local"){
+            }else if (matches.groups.schema === "_local"){
                 outputField.textContent += "✅ Using UMH _local schema\n"
             }else{
                 outputField.textContent += "ℹ️ Using custom schema\n"

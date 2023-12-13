@@ -76,7 +76,7 @@ Specify OPC UA nodes to subscribe to in a yaml file, following the ISA95 standar
       workcell: blister
       originID: PLC13
       tagName: machineState
-      useCase: _historian.md
+      useCase: _historian
 ```
 
 Mandatory fields are `opcuaID`, `enterprise`, `tagName` and `useCase`.
@@ -182,7 +182,7 @@ Add a kafka-producer node, connecting it to the JSON node. Configure as follows:
 Structure Kafka topics according to UMH data model:
 
 ```text
-umh.v1.<enterprise>.<site>.<area>.<line>.<workcell>.<originID>.<useCase>.<tagName>
+umh.v1.<enterprise>.<site>.<area>.<line>.<workcell>.<originID>.<schema>.<tagName>
 ```
 
 Example topic for this tutorial:
