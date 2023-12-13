@@ -144,4 +144,14 @@ All fields except `<enterprise>` are optional, and it will always return the fir
 {{% /notice %}}
 
 ### Grafana
-Follow our [Data Visualization](https://umh.docs.umh.app/docs/getstarted/datavisualization/) tutorial to get started.
+Follow our [Data Visualization](../../getstarted/datavisualization/) tutorial to get started.
+
+### External access (Datagrip, PGAdmin, ...)
+1) SSH into your instance.
+2) Get the password of the `kafkatopostgresqlv2` user
+   ```shell
+   sudo kubectl get secret timescale-post-init-pw --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub -o json | jq -r '.data["1_set_passwords.sh"]' | base64 -d | grep "kafkatopostgresqlv2 WITH PASSWORD" | awk -F "'" '{print $2}'
+   ```
+3) Use your preferred tool to connect to our `umh_v2` database using the `kafkatopostgresqlv2` user and the password from above command.
+
+   ![datagrip](/images/datamodel/database/datagrip.png)
