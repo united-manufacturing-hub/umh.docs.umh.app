@@ -4,6 +4,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function containsInvalidChars(str) {
         return /[^a-zA-Z0-9._-]/.test(str);
     }
+    function containsMultipleCharacters(str, character) {
+        const regex = new RegExp(`${character}{2,}`, 'g');
+        return regex.test(str);
+    }
     inputField.addEventListener('input', function() {
         const regex = /^umh\.v1\.(?<enterprise>[\w\-_]+)\.((?<site>[\w\-_]+)\.)?((?<area>[\w\-_]+)\.)?((?<productionLine>[\w\-_]+)\.)?((?<workCell>[\w\-_]+)\.)?((?<originId>[\w\-_]+)\.)?(?<schema>(_\w+))(\.(?<tag>[\w\-_.]+))?$/;
         // Strip whitespaces & replace / with .
@@ -23,6 +27,18 @@ document.addEventListener('DOMContentLoaded', function() {
             outputField.textContent += "You are using invalid characters."
             return;
         }
+        // Check for multiple topic separators
+        if (containsMultipleCharacters(value, "\\.")){
+            outputField.textContent = "❗Invalid Topic\n";
+            outputField.textContent += "You are using multiple topic separators without text between."
+            return;
+        }
+        if (containsMultipleCharacters(value, "_")){
+            outputField.textContent = "❗Invalid Topic\n";
+            outputField.textContent += "You are using multiple tag group separators without text between."
+            return;
+        }
+
         const matches = regex.exec(value);
         if (matches) {
             if (matches.groups.tag) {
