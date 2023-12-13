@@ -142,3 +142,6 @@ Resulting in this entry:
 
 All fields except `<enterprise>` are optional, and it will always return the first asset id matching the search.
 {{% /notice %}}
+
+### Grafana
+Follow our [Data Visualization](https://umh.docs.umh.app/docs/getstarted/datavisualization/) tutorial to get started.
