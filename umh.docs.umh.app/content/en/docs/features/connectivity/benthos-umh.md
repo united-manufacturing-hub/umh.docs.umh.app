@@ -11,7 +11,7 @@ draft: false
 The [benthos-umh](https://github.com/united-manufacturing-hub/benthos-umh), a version of Benthos maintained by the United Manufacturing Hub (UMH), is a Docker container designed to facilitate smooth OPC-UA integration with [Unified Namespace](https://learn.umh.app/lesson/introduction-into-it-ot-unified-namespace/) (MQTT/Kafka).
 
 ## When should I use it?
-OPC UA is a communications protocol coming from the OT industry, so the integration with IT tools is necessary to stream data from an OPC UA server. The benthos-umh realizes a simple integration; especially, it is suitable for the integration with the United Manufacturing Hub.
+OPC UA is a communications protocol coming from the OT industry, so integration with IT tools is necessary to stream data from an OPC UA server. The benthos-umh realizes a simple integration; it is especially suitable for integration with the United Manufacturing Hub.
 
 ## What can I do with it?
 The benthos-umh offers the following features:
