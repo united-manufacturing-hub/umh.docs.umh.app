@@ -19,7 +19,7 @@ The Historian / Data Storage feature of the United Manufacturing Hub allows you 
 
 ### Store and analyze data
 
-- Store data from the topics with the basic format `.../_historian` or `.../_historian/<tagGroup1>/<tagGroup2>/.../<tagGroupX>/<tagname>` in the Unified Namespace. [Data can be sent to the Unified Namespace from various sources](/docs/features/datainfrastructure/unified-namespace/), allowing you to store tags from your PLC and production lines reliably. Optionally, you can use tag groups to manage a large number of tags and reduce the system load. [This article](https://learn.umh.app/lesson/data-modeling-in-the-unified-namespace-mqtt-kafka/) assists you in learning data modeling in the Unified Namespace. 
+- Store data from the topics with the basic format `.../_historian` or `.../_historian/<tagGroup1>/<tagGroup2>/.../<tagGroupX>/<tagname>` in the Unified Namespace. [Data can be sent to the Unified Namespace from various sources](/docs/features/datainfrastructure/unified-namespace/), allowing you to store tags from your PLC and production lines reliably. Optionally, you can use tag groups to manage a large number of tags and reduce the system load. [Our Data Model page](/docs/datamodel/) assists you in learning data modeling in the Unified Namespace. 
 - Conduct basic data analysis, including automatic downsampling, gap filling, and statistical functions such as Min, Max, and Avg.
 
 ### Query and visualize data
@@ -37,8 +37,7 @@ More information about the exact analytics functionalities can be found in the [
 
 ## How can I use it?
 
-Transform your data in the Unified Namespace datamodel with the basic topic format `.../_historian` or `.../_historian/<tagGroup1>/<tagGroup2>/.../<tagGroupX>/<tagname>`, for example, using Node-RED, and the Historian feature will store them. You can then view the data in Grafana. An example can be found in the [Getting Started guide](/docs/getstarted/). Also, you find more information about our topic structure on the [Data Model page]().
-<!-- Add the link to the data model page-->
+Transform your data in the Unified Namespace datamodel with the basic topic format `.../_historian` or `.../_historian/<tagGroup1>/<tagGroup2>/.../<tagGroupX>/<tagname>`, for example, using Node-RED, and the Historian feature will store them. You can then view the data in Grafana. An example can be found in the [Getting Started guide](/docs/getstarted/). Also, you find more information about our topic structure on the [Data Model page](/docs/datamodel/).
 
 Extensive queries can be done by SQL queries. Hier, you see an example query:
 
@@ -62,7 +61,7 @@ For more information about what exactly is behind the Historian feature, check o
 
 ## What are the limitations?
 
-- In order to store messages, you should transform data and use our topic structure. The payload should be in a specific JSON format, and the message must be tagged with `_historian`.  You find more information about our topic structure on the [Data Model page](). <!-- Add the link to the data model page-->
+- In order to store messages, you should transform data and use our topic structure. The payload should be in a specific JSON format, and the message must be tagged with `_historian`.  You find more information about our topic structure on the [Data Model page](/docs/datamodel/).
 - After storing a couple of millions messages, you should consider [compressing the messages or establishing retention policies](/docs/production-guide/administration/reduce-database-size/).
 
 Apart from these limitations, the United Manufacturing Hub's Historian feature is highly performant compared to legacy Historians.
@@ -72,5 +71,5 @@ Apart from these limitations, the United Manufacturing Hub's Historian feature i
 - Learn more about the benefits of using open-source databases in our blog article, [Historians vs Open-Source databases - which is better?](https://learn.umh.app/blog/historians-vs-open-source-databases-which-is-better/)
 - Check out the [Getting Started guide](/docs/getstarted/) to start using the Historian feature.
 - Learn more about the United Manufacturing Hub's architecture by visiting [our architecture page](/docs/architecture/).
-- Learn more about our Data Model by visiting [this page](). <!-- Add the link to the data model page-->
+- Learn more about our Data Model by visiting [this page](/docs/datamodel/).
 - Learn more about Data Modeling in the Unified Namespace by visiting [our guide](https://learn.umh.app/lesson/data-modeling-in-the-unified-namespace-mqtt-kafka/).
