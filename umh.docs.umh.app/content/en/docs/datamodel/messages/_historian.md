@@ -81,22 +81,9 @@ If you use a boolean value, it will be interpreted as a number.
 Sometimes it makes sense to further group data together.
 In the following example we have a CNC cutter, emitting data about it's head position.
 If we want to group this for easier access in Grafana, we could use two types of grouping.
-1) __Using Underscores in Key Names:__
 
-    Topic: `umh/v1/cuttingincorperated/cologne/cnc-cutter/_historian`
-    ```json
-    {
-     "timestamp_ms": 1670001234567,
-      "head_pos_x": 12.5,
-      "head_pos_y": 7.3,
-      "head_pos_z": 3.2
-    }
-    ```
+1) __Using Tags / Tag Groups in the Topic__:
    This will result in 3 new database entries, grouped by `head` & `pos`.
-   It's usefull if the machine cannot send to multiple topics, but grouping is still desired.
-
-2) __Using Tags / Tag Groups in the Topic__:
-   Equivalent to the above we could also send:
 
    Topic: `umh/v1/cuttingincorperated/cologne/cnc-cutter/_historian/head/pos`
     ```json
@@ -107,7 +94,26 @@ If we want to group this for easier access in Grafana, we could use two types of
       "z": 3.2
     }
     ```
-    This method allows very easy monitoring of the data in tools like our Management Console or MQTT Explorer, as each new `/` will be displayed as a Tree.
+   This method allows very easy monitoring of the data in tools like our Management Console or MQTT Explorer, as each new `/` will be displayed as a Tree.
+{{< comment >}}
+2) __Using JSON subobjects:__
+
+    Equivalent to the above we could also send:
+    Topic: `umh/v1/cuttingincorperated/cologne/cnc-cutter/_historian`
+    ```json
+    {
+     "timestamp_ms": 1670001234567,
+      "head": {
+         "pos": {
+            "x": 12.5,
+            "y": 7.3,
+            "z": 3.2   
+         }
+      }
+    }
+    ```
+   It's usefull if the machine cannot send to multiple topics, but grouping is still desired.
+
 
 3) __Combining Both Methods__:
    Equivalent to the above we could also send:
@@ -116,22 +122,27 @@ If we want to group this for easier access in Grafana, we could use two types of
     ```json
     {
      "timestamp_ms": 1670001234567,
-      "pos_x": 12.5,
-      "pos_y": 7.3,
-      "pos_z": 3.2
+      "pos": {
+         "x": 12.5,
+         "y": 7.3,
+         "z": 3.2
+      }
     }
     ```
    This can be useful, if we also want to monitor the cutter head temperature and other attributes, while still preserving most of the readability of the above method.
     ```json
     {
      "timestamp_ms": 1670001234567,
-      "pos_x": 12.5,
-      "pos_y": 7.3,
-      "pos_z": 3.2,
+      "pos": {
+         "x": 12.5,
+         "y": 7.3,
+         "z": 3.2
+      },
       "temperature": 50.0,
       "collision": false
     }
     ```
+{{< /comment >}}
 
 ## What's next?
 
