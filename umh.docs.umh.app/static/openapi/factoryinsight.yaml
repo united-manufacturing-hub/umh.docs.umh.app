@@ -179,7 +179,7 @@ components:
         - process_TotalApparentPower
 
 
-    asset_state: #TODO changing asset state and asset datapoint to be linked properly requires changing the datamodel
+    asset_state: #TODO changing asset state and asset datapoint to be linked properly requires changing the datamodel_old
       properties:
         columnNames:
           type: array
