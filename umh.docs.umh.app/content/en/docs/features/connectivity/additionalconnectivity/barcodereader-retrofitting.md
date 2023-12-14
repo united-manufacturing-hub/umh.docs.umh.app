@@ -25,20 +25,25 @@ something like a quality testing station (we once connected a Mitutoyo quality t
 
 To use the microservice barcode reader, you will need configure the helm-chart and enable it.
 
-1. Enable \_000_commonConfig.datasources.barcodereader.enabled in the [Helm Chart](https://umh.docs.umh.app/docs/architecture/helm-chart/#configuration-options)
-2. During startup, it will show all connected USB devices. Remember yours and then change the INPUT_DEVICE_NAME and INPUT_DEVICE_PATH
-3. Also set ASSET_ID, CUSTOMER_ID, etc. as this will then send it into the topic ia/ASSET_ID/.../barcode
-4. Restart the pod
-5. Scan a device, and it will be written into the topic xxx
+1. Enable the barcodereader feature by executing the following command:
+    ```bash
+    sudo $(which helm) upgrade --kubeconfig /etc/rancher/k3s/k3s.yaml  -n united-manufacturing-hub united-manufacturing-hub united-manufacturing-hub/united-manufacturing-hub --set _000_commonConfig.datasources.barcodereader.enabled=true --reuse-values --version $(sudo $(which helm) ls --kubeconfig /etc/rancher/k3s/k3s.yaml  -n united-manufacturing-hub -o json | jq -r '.[0].app_version')
+    ```
+2. During startup, it will show all connected USB devices. Remember yours and then change the `INPUT_DEVICE_NAME` and `INPUT_DEVICE_PATH`. Also set `ASSET_ID`, `CUSTOMER_ID`, etc. as this will then send it into the topic `ia/ASSET_ID/.../barcode`. You can change these values of the helm chart using `helm upgrade`. You find the list of parameters [here](/docs/reference/helm-chart/#barcode-reader). The following command should be executed, for example:
+    ```bash
+    sudo $(which helm) upgrade --kubeconfig /etc/rancher/k3s/k3s.yaml  -n united-manufacturing-hub united-manufacturing-hub united-manufacturing-hub/united-manufacturing-hub --set _000_commonConfig.datasources.barcodereader.USBDeviceName=<input-device-name>,_000_commonConfig.datasources.barcodereader.USBDevicePath=<input-device-path>,_000_commonConfig.datasources.barcodereader.machineID=<asset-id>,_000_commonConfig.datasources.barcodereader.customerID=<customer-id> --reuse-values --version $(sudo $(which helm) ls --kubeconfig /etc/rancher/k3s/k3s.yaml  -n united-manufacturing-hub -o json | jq -r '.[0].app_version')
+    ``` 
+3. Scan a device, and it will be written into the topic `ia/ASSET_ID/.../barcode`.
 
-Once installed, you can [configure](/docs/architecture/microservices/community/barcodereader/) the microservice by
+Once installed, you can [configure](/docs/reference/microservices/barcodereader/) the microservice by
 setting the needed environment variables. The program will continuously scan for barcodes using the device and publish
 the data to the Kafka topic.
 
 ## What are the limitations?
 
-- Sometimes special characters are not parsed correctly. They need to be adjusted afterward in th Unified Namespace.
+- Sometimes special characters are not parsed correctly. They need to be adjusted afterward in the Unified Namespace.
 
 ## Where to get more information?
 
-- [technical documentation of barcodereader](/docs/architecture/microservices/community/barcodereader/)
+- You can get more information in the [technical documentation of barcodereader](/docs/reference/microservices/barcodereader/)
+- [Our helm chart reference](/docs/reference/helm-chart/#barcode-reader) provides lists of configuration parameters.
