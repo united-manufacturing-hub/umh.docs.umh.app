@@ -35,6 +35,6 @@ The next page will ask you to select a install type. After selecting, follow the
 - Installation requiremetns should be fulfilled. You can find them on the Management Console or on the [Installation](/docs/getstarted/installation/) page.
 
 ## Where to get more information?
-- The [Get Started!](/docs/getstarted) guide helps you for setting up the United Manufacturing Hub.
+- The [Get Started!](/docs/getstarted) guide assists you to set up the United Manufacturing Hub.
 - To get an overview of the Data Infrastructure, visit [this page](https://www.umh.app/umh-integrated-platform-data-infrastructure).
-- [This page](https://www.umh.app/umh-integrated-platform-device-container-infrastructure) provides you an overview of the Device & Container Infrastructure.
+- To get an overview of the Device & Container Infrastructure, visit [this page](https://www.umh.app/umh-integrated-platform-device-container-infrastructure).
