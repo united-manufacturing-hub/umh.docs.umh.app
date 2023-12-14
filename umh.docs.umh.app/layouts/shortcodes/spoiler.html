@@ -1,0 +1,19 @@
+<!-- https://github.com/akuznecov/hugo-shortcode-spoiler/tree/master -->
+<div class="spoiler panel panel-default">
+    <div class='spoiler_block'>
+        {{ if (.Get "text") }}
+        <h4 class='spoiler_block_head'>{{ with .Get "text" }}{{ . | safeHTML }}{{ else }}&nbsp;{{ end }}</h4>
+        {{ end }}
+        <a href='#' class='spoiler-block-icon spoiler-block-icon-zoom-in spoiler_block_show'>
+            {{ .Get 0 }}
+        </a>
+        {{ if .Inner }}
+        <a href='#' class='spoiler-block-icon spoiler-block-icon-zoom-out spoiler_block_hide' style='display: none;'>
+            {{ .Get 1 }}
+        </a>
+        {{ end }}
+        <div class='spoiler_block_content' style='display: none;'>
+            {{ .Inner | markdownify }}
+        </div>
+    </div>
+</div>

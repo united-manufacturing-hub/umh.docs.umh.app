@@ -115,7 +115,7 @@ workspace {
                 databridge -> dataWarehouse "Provides data"
             }
             historian = container "Historian" "Stores events in a time-series database and provides visualization tools." {
-                kafkaToPostgreSQL = component "kafka-to-postgresql" "Subscribes to _historian and _analytics topics and stores it into the database"
+                kafkaToPostgreSQL = component "kafka-to-postgresql" "Subscribes to _historian.md and _analytics topics and stores it into the database"
                 timescaledb = component "TimescaleDB" "An open-source time-series SQL database."
                 grafana = component "Grafana" "Visualization and analytics software that allows on-the-fly data analysis."
                 factoryinsight = component "factoryinsight" "Analytics software that allows on-the-fly data analysis (e.g., OEE)"
@@ -124,7 +124,7 @@ workspace {
                 
                 
                 kafkaToPostgreSQL -> timescaledb "Stores data"
-                kafka -> kafkaToPostgreSQL "Stores data in the schema _historian and _analytics"
+                kafka -> kafkaToPostgreSQL "Stores data in the schema _historian.md and _analytics"
                 grafana -> timescaledb "Querying SQL commands"
                 grafana -> grafanaDatasource "included"
                 grafanaDatasource -> factoryinsight "fetches KPIs and other high-level metrics"
