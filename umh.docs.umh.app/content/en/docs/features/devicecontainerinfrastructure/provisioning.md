@@ -4,7 +4,7 @@ menuTitle: Provisioning
 description: Learn the different ways to provision the the Data and the Device & Container Infrastructures.
 weight: 1000
 edition: community
-draft: true
+draft: false
 ---
 
 Using the UMH's Management Console, you can provision the UMH in a simple process.
