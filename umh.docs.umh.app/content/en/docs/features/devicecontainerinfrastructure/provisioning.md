@@ -7,11 +7,15 @@ edition: community
 draft: true
 ---
 
-
+Using the UMH's Management Console, you can provision the UMH in a simple process.
 
 
 ## When should I use it?
-There are multiple ways to provision the United Manufacturing Hub.
+There are multiple ways to provision the United Manufacturing Hub. The choice depends on the use case and the available resources.
+
+- **Install UMH + Operating System**: This option is currently not implemented. You will get a .iso image that installs the corresponding operating system and the UMH. It also configure the Management Companion for you automatically. 
+- **Install UMH Only**: If you want to install the UMH on your server, this option is the best choice. This option requires that a supported operating system is installed on your server. The user will receive a single command that must be executed via SSH on an existing Linux system. You find the software and hardware requirements in the [Installation](/docs/getstarted/installation/) page.
+- **Test the UMH**: This option is currently not implemented. You will get a guide of the local installation on Linux OS and Windows.
 
 
 ## What can I do with it?
@@ -22,14 +26,15 @@ After logging in to the Management Console, you can click on the **+ ADD INSTANC
 
 ![](/images/getstarted/installation/dashboard.png?width=80%)
 
-The next page will ask you to select a install type.
+The next page will ask you to select a install type. After selecting, follow the installation guide.
 
 ![](/images/features/provisioning/provision.png?width=80%)
 
 ## What are the limitations?
-
+- **Install UMH Only** option is suitable for use with RHEL and Flatcar Linux. While other Linux OS versions may work, they are not officially supported.
+- You can find system requirements on the Management Console or on the [Installation](/docs/getstarted/installation/) page.
 
 ## Where to get more information?
 - The [Get Started!](/docs/getstarted) guide helps you for setting up the United Manufacturing Hub.
-- To get an overview of the Data Infrastructure, visit [this page](https://www.umh.app/umh-integrated-platform-data-infrastructure)
+- To get an overview of the Data Infrastructure, visit [this page](https://www.umh.app/umh-integrated-platform-data-infrastructure).
 - [This page](https://www.umh.app/umh-integrated-platform-device-container-infrastructure) provides you an overview of the Device & Container Infrastructure.
