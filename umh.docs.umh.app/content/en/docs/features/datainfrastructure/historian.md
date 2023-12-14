@@ -52,12 +52,12 @@ WHERE asset_id = get_asset_id(
   'blister'
 );
 ```
-`get_asset_id` is a custom plpgsql function that we provide to simplify the process of querying tag data from a specific `asset`. To learn more about our database, visit [this page](/docs/datamodel/database/)
+`get_asset_id` is a custom plpgsql function that we provide to simplify the process of querying tag data from a specific `asset`. To learn more about our database, visit [this page](/docs/datamodel/database/).
 
 
 Also, you have the option to query data in your custom code by utilizing the API in [factoryinsight](/docs/reference/microservices/factoryinsight/) or processing the data in the [Unified Namespace](/docs/features/datainfrastructure/unified-namespace/).
 
-For more information about what exactly is behind the Historian feature, check out our [our architecture page](/docs/architecture/)
+For more information about what exactly is behind the Historian feature, check out our [our architecture page](/docs/architecture/).
 
 ## What are the limitations?
 
@@ -72,4 +72,4 @@ Apart from these limitations, the United Manufacturing Hub's Historian feature i
 - Check out the [Getting Started guide](/docs/getstarted/) to start using the Historian feature.
 - Learn more about the United Manufacturing Hub's architecture by visiting [our architecture page](/docs/architecture/).
 - Learn more about our Data Model by visiting [this page](/docs/datamodel/).
-- Learn more about our database for `_historian` schema by visiting [our documentation](/docs/datamodel/database/)
+- Learn more about our database for `_historian` schema by visiting [our documentation](/docs/datamodel/database/).
