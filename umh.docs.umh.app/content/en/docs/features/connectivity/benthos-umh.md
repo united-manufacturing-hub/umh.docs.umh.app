@@ -106,7 +106,7 @@ Learn more about [Data Model](/docs/datamodel) in our documentation.
 
 4. Review and confirm the nodes, then proceed with initialization. Successful initialization will be indicated by a green message.
 
-5. The new data source will now appear in the Data Sources section.
+5. The new data source will now appear in the **Data Sources** section.
 
     ![Data Sources Overview](/images/getstarted/dataAcquisitionManipulation/dataSourcesOverview.png?width=80%)
 
@@ -115,4 +115,5 @@ Learn more about [Data Model](/docs/datamodel) in our documentation.
 
 
 ## Where to get more information?
-- Visit our [Github repository](https://github.com/united-manufacturing-hub/benthos-umh).
+- Learn more about benthos-umh by visiting our [Github repository](https://github.com/united-manufacturing-hub/benthos-umh).
+- Learn more about [Data Model](/docs/datamodel) in our documentation.
