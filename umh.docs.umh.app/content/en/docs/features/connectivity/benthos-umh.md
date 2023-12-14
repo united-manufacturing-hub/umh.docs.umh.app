@@ -26,6 +26,39 @@ The benthos-umh offers the following features:
 
 ## How can I use it?
 
+### Standalone
+To use benthos-umh in standalone mode with Docker, follow this instructions.
+1. Create a new file called benthos.yaml with the provided content
+    ``` yaml
+
+    input:
+    opcua:
+        endpoint: 'opc.tcp://localhost:46010'
+        nodeIDs: ['ns=2;s=IoTSensors']
+
+    pipeline:
+    processors:
+        - bloblang: |
+            root = {
+            meta("opcua_path"): this,
+            "timestamp_ms": (timestamp_unix_nano() / 1000000).floor()
+            }
+
+    output:
+    mqtt:
+        urls:
+        - 'localhost:1883'
+        topic: 'ia/raw/opcuasimulator/${! meta("opcua_path") }'
+        client_id: 'benthos-umh'
+    ```
+
+2. Execute the docker run command to start a new benthos-umh container 
+    ``` bash
+    docker run --rm --network="host" -v '<absolute-path-to-your-file>/benthos.yaml:/benthos.yaml' ghcr.io/united-manufacturing-hub/benthos-umh:latest
+    ```
+    
+### With the UMH's Management Console
+
 
 ## What are the limitations?
 
