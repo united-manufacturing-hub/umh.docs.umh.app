@@ -13,9 +13,9 @@ Using the UMH's Management Console, you can provision the UMH in a simple proces
 ## When should I use it?
 There are multiple ways to provision the United Manufacturing Hub. The choice depends on the use case and the available resources.
 
-- **Install UMH + Operating System**: This option is currently not implemented. You will get a .iso image that installs the corresponding operating system and the UMH. It also configure the Management Companion for you automatically. 
-- **Install UMH Only**: If you want to install the UMH on your server, this option is the best choice. This option requires that a supported operating system is installed on your server. The user will receive a single command that must be executed via SSH on an existing Linux system. You find the software and hardware requirements in the [Installation](/docs/getstarted/installation/) page.
-- **Test the UMH**: This option is currently not implemented. You will get a guide of the local installation on Linux OS and Windows.
+- **Install UMH + Operating System**: This option is currently not implemented. You will get a .iso image that installs the corresponding operating system and the UMH. It also configures the Management Companion for you automatically. 
+- **Install UMH Only**: If you want to install the UMH on your server, this option is the best choice. This option requires that a supported operating system is installed on your server. The user will receive a single command that must be executed via SSH on an existing Linux system. You find the software and hardware requirements on the [Installation](/docs/getstarted/installation/) page.
+- **Test the UMH**: This option is currently not implemented. You will get a local installation guide on Linux OS and Windows.
 
 
 ## What can I do with it?
@@ -32,7 +32,7 @@ The next page will ask you to select a install type. After selecting, follow the
 
 ## What are the limitations?
 - **Install UMH Only** option is suitable for use with RHEL and Flatcar Linux. While other Linux OS versions may work, they are not officially supported.
-- You can find system requirements on the Management Console or on the [Installation](/docs/getstarted/installation/) page.
+- Installation requiremetns should be fulfilled. You can find them on the Management Console or on the [Installation](/docs/getstarted/installation/) page.
 
 ## Where to get more information?
 - The [Get Started!](/docs/getstarted) guide helps you for setting up the United Manufacturing Hub.
