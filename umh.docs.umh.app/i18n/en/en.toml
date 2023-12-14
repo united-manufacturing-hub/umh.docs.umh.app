@@ -118,6 +118,9 @@ other = "united-manufacturing-hub-barcodereader"
 [resource_deployment_cameraconnect]
 other = "united-manufacturing-hub-cameraconnect"
 
+[resource_deployment_databridge]
+other = "united-manufacturing-hub-databridge-0"
+
 [resource_deployment_factoryinsight]
 other = "united-manufacturing-hub-factoryinsight-deployment"
 
@@ -141,6 +144,9 @@ other = "united-manufacturing-hub-kafkatoblob"
 
 [resource_deployment_kafkatopostgresql]
 other = "united-manufacturing-hub-kafkatopostgresql"
+
+[resource_deployment_kafkatopostgresqlv2]
+other = "united-manufacturing-hub-kafkatopostgresqlv2"
 
 [resource_deployment_mqttkafkabridge]
 other = "united-manufacturing-hub-mqttkafkabridge"
@@ -231,6 +237,9 @@ other = "united-manufacturing-hub-barcodereader-secrets"
 
 [resource_secret_cache]
 other = "redis-secret"
+
+[resource_secret_databridge-mqtt]
+other = "united-manufacturing-hub-databridge-mqtt-secrets"
 
 [resource_secret_db-certificate]
 other = "united-manufacturing-hub-certificate"

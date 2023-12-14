@@ -53,8 +53,8 @@ service by default:
 - [Node-RED](/docs/architecture/microservices/core/node-red/) at port 1880
 
 {{% notice tip %}}
-To access Node-RED, you need to use the `/node-red` path, for example
-`http://192.168.1.100:1880/node-red`.
+To access Node-RED, you need to use the `/nodered` path, for example
+`http://192.168.1.100:1880/nodered`.
 {{% /notice %}}
 
 ## Services with NodePort by default

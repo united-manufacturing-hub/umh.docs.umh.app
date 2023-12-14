@@ -1,8 +1,8 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
 content_type: concept
-description: |
-    Add a description of the concept here.
+# description: |
+#     Add a description of the concept here.
 weight: 10
 ---
 

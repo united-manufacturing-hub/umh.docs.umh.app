@@ -13,7 +13,7 @@ Releases are coordinated by the United Manufacturing Hub team. All the features
 and bug fixes due for a release are tracked in the internal project board.
 
 Once all the features and bug fixes for a release are ready and merged into the
-`main` branch, the release process can start.
+`staging` branch, the release process can start.
 
 <!-- steps -->
 
@@ -24,10 +24,10 @@ If bugs are found during the prerelease, they can be fixed and the release
 process can be restarted. Once the prerelease is finished, the release can be
 published.
 
-1. Create a prerelease branch from `main`:
+1. Create a prerelease branch from `staging`:
 
     ```bash
-    git checkout main
+    git checkout staging
     git pull
     git checkout -b <next-version>-prerelease1
     ```
@@ -45,7 +45,7 @@ published.
 
     ```bash
     helm package ../united-manufacturing-hub
-    helm repo index --url https://v<next-version>-prerelease1.united-manufacturing-hub.pages.dev --merge index.yaml .
+    helm repo index --url https://staging.united-manufacturing-hub.pages.dev --merge index.yaml .
     ```
 
    Pay attantion to use `-` instead of `.` as a separator in `<next-version>`.
@@ -57,6 +57,8 @@ published.
     git commit -m "build: <next-version>-prerelease1"
     git push origin <next-version>-prerelease1
     ```
+
+5. Merge prerelease branch into `staging`
 
 ## Test
 
@@ -77,9 +79,9 @@ necessary.
 ## Release
 
 Once all the tests have passed, the release can be published. Merge the
-prerelease branch into `main` and create a new release branch.
+prerelease branch into `staging` and create a new release branch.
 
-1. Create a release branch from `main`:
+1. Create a release branch from `staging`:
 
    ```bash
    git checkout main
@@ -112,5 +114,7 @@ prerelease branch into `main` and create a new release branch.
      git push origin <next-version> --tags
      ```
 
-5. Merge the release branch into `main` and create a new release from the tag on
+5. Merge the release branch into `staging`
+
+6. Merge `staging` into `main` and create a new release from the tag on
    GitHub.

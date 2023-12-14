@@ -9,7 +9,9 @@ tasks:
       git config lfs.storage .git/lfs && git config lfs.https://github.com/united-manufacturing-hub/umh.docs.umh.app.git/info/lfs.locksverify false
   - init: | 
       make install
+      gp sync-done hugo-install
   - command: |
+      gp sync-await hugo-install
       make install && make serve
 
 # Ports to expose on workspace startup

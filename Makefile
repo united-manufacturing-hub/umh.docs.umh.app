@@ -29,6 +29,7 @@ check_versions:
 		echo "Correct Node version installed"; \
 	else \
 		echo "Incorrect Node version..."; \
+		curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash && \
 		. ~/.nvm/nvm.sh && \
 		(echo "Switching to the right version..." && nvm use $(NODE_VERSION) ) || (echo "Incorrect Node version, installing..." && nvm install $(NODE_VERSION) && nvm use $(NODE_VERSION)); \
 	fi
