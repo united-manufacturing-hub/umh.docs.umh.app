@@ -1,45 +1,77 @@
 ---
-title: "Data Model"
-menuTitle: "Data Model"
+title: "Data Model (v1)"
+menuTitle: "Data Model (v1)"
 description: "This page describes the data model of the UMH stack - from the message payloads up to database tables."
-weight: 1750
-aliases:
-  - /docs/architecture/datamodel/
+weight: 1725
 ---
 
-## Raw Data
+{{<mermaid theme="neutral" >}}
+flowchart LR
+AP[Automation Pyramid] --> C_d
+C_d --> UN_d
+UN_d --> H_d
+H_d --> DL[Data Lake]
 
-If you have events that you just want to send to the message broker / Unified Namespace without the need for it to be stored, simply send it to the `raw` topic.
-This data will not be processed by the UMH stack, but you can use it to build your own data processing pipeline.
+    subgraph UNS[ ]
+        subgraph C_d[ ]
+            C_d_infoX["Connectivity\n(e.g., OPC UA)"]
+            C_d_info["Time-Series data\nUnstructured / semi-structured data\nRelational data (master, operational, batch)"]
+            C_d_infoX --- C_d_info
+        end
 
-### ProcessValue Data
+        subgraph UN_d[ ]
+            UN_d_infoX["Unified Namespace\n(e.g., MQTT, Kafka)"]
+            UN_d_info["umh/v1/enterprise/site/area/productionLine/workCell/originID/_schema/schema_specific"]
+            UN_d_infoX --- UN_d_info
+        end
 
-If you have data that does not fit in the other topics (such as your PLC tags or sensor data), you can use the `processValue` topic. It will be saved in the database in the [processValue](/docs/architecture/datamodel/database/processvaluetable/) or [processValueString](/docs/architecture/datamodel/database/processvaluestringtable/) and can be queried using [factorysinsight](/docs/architecture/microservices/core/factoryinsight/) or the [umh-datasource](/docs/architecture/microservices/grafana-plugins/umh-datasource/) Grafana plugin.
+        subgraph H_d[ ]
+            H_d_infoX["Historian\n(e.g., TimescaleDB)"]
+            H_d_info[Table: asset\nTable: tag\nTable: tag_string]
+            H_d_infoX --- H_d_info
+        end
+    end
+click C_d_infoX href "../features/connectivity"
+click UN_d_infoX href "./messages"
+click H_d_infoX href "./database"
+click C_d_info href "../features/connectivity"
+click UN_d_info href "./messages"
+click H_d_info href "./database"
 
-### Production Data
 
-In a production environment, you should first declare products using [addProduct](/docs/architecture/datamodel/messages/addproduct).
-This allows you to create an order using [addOrder](/docs/architecture/datamodel/messages/addorder). Once you have created an order, 
-send an [state](/docs/architecture/datamodel/messages/state) message to tell the database that the machine is working (or not working) on the order. 
+{{</ mermaid >}}
+The Data Infrastructure of the UMH consists out of the three components: Connectivity, Unified Namespace, and Historian (see also [Architecture](./../architecture)). Each of the components has their own standards and best-practices, so a consistent data model across
+multiple building blocks need to combine all of them.
 
-When the machine is ordered to produce a product, send a [startOrder](/docs/architecture/datamodel/messages/startorder) message.
-When the machine has finished producing the product, send an [endOrder](/docs/architecture/datamodel/messages/endorder) message.
-
-Send [count](/docs/architecture/datamodel/messages/count) messages if the machine has produced a product, but it does not make sense to give the product its ID. Especially useful for bottling or any other use case with a large amount of products, where not each product is traced. 
-
-You can also add shifts using [addShift](/docs/architecture/datamodel/messages/addshift).
-
-All messages land up in different tables in the [database](/docs/architecture/datamodel/database/) and will be accessible from [factorysinsight](/docs/architecture/microservices/core/factoryinsight/) or the [umh-datasource](/docs/architecture/microservices/grafana-plugins/umh-datasource/) Grafana plugin.
-
-{{% notice tip %}}
-**Recommendation:** Start with *addShift* and *state* and continue from there on
+{{% notice note %}}
+If you like to learn more about our data model & [ADR's](https://adr.github.io/) checkout our [learn article](https://learn.umh.app/lesson/data-modeling-in-the-unified-namespace-mqtt-kafka/).
 {{% /notice %}}
 
-### Modifying Data
+## Connectivity
+Incoming data is often unstructured, therefore our standard allows either conformant data in our `_historian` schema, or any kind of data in any other schema.
 
-If you have accidentally sent the wrong state or if you want to modify a value, you can use the [modifyState](/docs/architecture/datamodel/messages/modifystate) message.
+Our key considerations where:
+1. **Event driven architecture**: We only look at changes, reducing network and system load
+2. **Ease of use**: We allow any data in, allowing OT & IT to process it as they wish
 
-### Unique Product Tracking
+## [Unified Namespace](./messages)
+The UNS employs [MQTT](https://mqtt.org/) and [Kafka](https://kafka.apache.org/) in a hybrid approach, utilizing MQTT for efficient data collection and Kafka for robust data processing.
+The UNS is designed to be reliable, scalable, and maintainable, facilitating real-time data processing and seamless integration or removal of system components.
 
-You can use [uniqueProduct](/docs/architecture/datamodel/messages/uniqueproduct) to tell the database that a new instance of a product has been created.
-If the produced product is scrapped, you can use [scrapUniqueProduct](/docs/architecture/datamodel/messages/scrapuniqueproduct/) to change its state to scrapped.
+These elements are the foundation for our data model in UNS:
+
+1. **Incoming data based on OT standards**: Data needs to be contextualized here not by IT people, but by OT people.
+They want to model their data (topic hierarchy and payloads) according to ISA-95, Weihenstephaner Standard, Omron PackML, Euromap84,  (or similar) standards, and need e.g., [JSON](https://www.json.org/json-en.html) as payload to better understand it.
+
+2. **Hybrid Architecture**: Combining MQTT’s user-friendliness and widespread adoption in Operational Technology (OT) with Kafka’s advanced processing capabilities.
+Topics and payloads can not be interchanged fully between them due to limitations in MQTT and Kafka, so some trade-offs needs to be done.
+
+3. **Processed data based on IT standards**: Data is sent after processing to IT systems, and needs to adhere with standards: the data inside of the UNS needs to be easy processable for either contextualization, or storing it in a Historian or Data Lake.
+
+## [Historian](./database)
+We choose [TimescaleDB](https://www.timescale.com/) as our primary database.
+
+Key elements we considered:
+1. **IT best-practice**: used SQL and Postgres for easy compatibility, and therefore TimescaleDb
+2. **Straightforward queries**: we aim to make easy SQL queries, so that everyone can build dashboards
+3. **Performance**: because of time-series and typical workload, the database layout might not be optimized fully on usability, but we did some trade-offs that allow it to store millions of data points per second
