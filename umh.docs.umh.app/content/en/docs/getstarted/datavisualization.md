@@ -51,7 +51,8 @@ both of which were established in the previous chapter.
       'aachen',
       'packaging',
       'packaging_1',
-      'blister'
+      'blister',
+      'PLC13'
     );
     ```
 
