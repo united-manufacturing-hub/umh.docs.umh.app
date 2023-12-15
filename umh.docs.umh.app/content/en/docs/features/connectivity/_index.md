@@ -120,5 +120,5 @@ accessible.
 - Follow the [Get started guide](/docs/getstarted/) to learn how to connect
   your assets to the United Manufacturing Hub.
 - Deep dive into the [Node-RED features](/docs/features/connectivity/node-red/).
-- Explore [retrofitting with ifm IO-Link master and sensorconnect](/docs/features/connectivity/additionalconnectivity/ifm-retrofitting/).
-- Learn how to [retrofit with USB barcodereader](/docs/features/connectivity/additionalconnectivity/barcodereader-retrofitting/).
+- Explore [retrofitting with ifm IO-Link master and sensorconnect](/docs/features/connectivity/other-tools/ifm-retrofitting/).
+- Learn how to [retrofit with USB barcodereader](/docs/features/connectivity/other-tools/barcodereader-retrofitting/).
