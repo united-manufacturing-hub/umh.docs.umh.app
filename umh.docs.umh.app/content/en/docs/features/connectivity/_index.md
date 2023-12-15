@@ -5,6 +5,7 @@ description: |
   Introduction to IIoT Connections and Data Sources Management in the
   United Manufacturing Hub.
 weight: 1000
+edition: community
 no_list: true
 ---
 
@@ -24,50 +25,53 @@ and that provides data, we will use the term **asset**.
 
 ## When should I use it?
 
-Contextializing data can present a variety of challenges, both technical and
-organizational. The Connection Management functionality aims to reduce the complexity
-that comes with these challenges.
+Contextualizing data can present a variety of challenges, both technical and
+at the organization level. The Connection Management functionality aims to reduce
+the complexity that comes with these challenges.
 
-Here are some examples:
+Here are some common issues that can be solved with the Connection Management:
 
-### Technical Challenges Examples
-
-- **Uncommon protocols:** Handling rare communication protocols.
-- **Non-ethernet protocols:** Dealing with non-standard connections, like a 4-20
-  mA sensor or a USB-connected barcode reader.
-- **Monotonous integrations:** Numerous data sources in the same format can lead
-  to tedious, error-prone setup processes. Templating is a key solution here.
-- **High variance in data sources:** On the other end, many different data sources
-  in different formats need extensive customization.
-
-### Organizational Challenges Examples
-
-- **IT and OT tool mismatch:** Advanced IT tools like
-  [Apache Spark](https://spark.apache.org/) or [Apache Flink](https://flink.apache.org/)
-  may be challenging for OT personnel who have crucial domain knowledge.
-- **OT tools limitations:** Traditional OT tools often struggle in modern IT
-  environments, lacking features like Docker compatibility, monitoring, automated
-  backups, or high availability.
-- **No centralized overview**: It is hard to get an overview of all the data
-  sources and their connections' status, as the concepts of "connection" and
-  "data source" are often decoupled. This leads to list the connections information
-  into long spreadsheets, which are hard to maintain and troubleshoot.
+- It is hard to get an overview of all the data sources and their connections'
+  status, as the concepts of "connection" and "data source" are often decoupled.
+  This leads to list the connections' information into long spreadsheets, which
+  are hard to maintain and troubleshoot.
+- Handling uncommon communication protocols.
+- Dealing with non-standard connections, like a 4-20 mA sensor or a USB-connected
+  barcode reader.
+- Advanced IT tools like [Apache Spark](https://spark.apache.org/) or
+  [Apache Flink](https://flink.apache.org/) may be challenging for OT personnel
+  who have crucial domain knowledge.
+- Traditional OT tools often struggle in modern IT environments, lacking features
+  like Docker compatibility, monitoring, automated backups, or high availability.
 
 ## What can I do with it?
 
+![Connection Management](/images/features/connectivity/management-console-connection-management.png?width=80%)
+
 The Connection Management functionality in the Management Console aims to
-address these challenges by providing a simple and easy to use tool to manage
+address those challenges by providing a simple and easy to use tool to manage
 all the assets in your factory.
 
 You can add, delete, and most importantly, visualize the status of all your
-connections in a single place. You can then configure them to start extracting
-data, regardless of the type of connection.
+connections in a single place. For example, a periodic check is performed to
+measure the latency of each connection, and the status of the connection is
+displayed in the Management Console.
+
+You can also add notes to each connection, so that you can keep all the documentation
+in a single place.
+
+![Connection Notes](/images/features/connectivity/management-console-connection-management-notes.png?)
+
+You can then configure a data source for each connection, to start extracting
+data from your assets. Once the data source is configured, specific information
+about its status is displayed, prompting you in case of misconfigurations, data
+not being received, or other any error that may occur.
 
 ## How can I use it?
 
-Once you have connected the assets to the United Manufacturing Hub via the
-Management Console, there are multiple ways to extract data from them, depending
-on the type of communication that they use.
+Add new connections from the Connection Management page of the Management Console.
+Then, configure a data source for each of them by choosing one of the available
+tools, depending on the type of connection.
 
 The following tools come with the United Manufacturing Hub and are recommended
 for extracting data from your assets:
