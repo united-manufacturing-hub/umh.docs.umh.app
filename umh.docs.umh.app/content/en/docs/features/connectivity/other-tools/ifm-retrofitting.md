@@ -2,7 +2,7 @@
 title: Retrofitting with ifm IO-link master and sensorconnect
 menuTitle: Retrofitting with ifm IO-link master and sensorconnect
 description: Upgrade older machines with ifm IO-Link master and Sensorconnect for seamless data collection and integration. Retrofit your shop floor with plug-and-play sensors for valuable insights and improved efficiency.
-weight: 1000
+weight: 3000
 aliases:
   - /docs/features/ifm-retrofitting
 ---

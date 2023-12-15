@@ -2,7 +2,7 @@
 title: Node-RED
 menuTitle: Node-RED
 description: Connect devices on the shop floor using Node-RED with United Manufacturing Hub's Unified Namespace. Simplify data integration across PLCs, Quality Stations, and MES/ERP systems with a user-friendly UI.
-weight: 2000
+weight: 1000
 aliases:
   - /docs/features/data-connectivity-node-red/
 ---
