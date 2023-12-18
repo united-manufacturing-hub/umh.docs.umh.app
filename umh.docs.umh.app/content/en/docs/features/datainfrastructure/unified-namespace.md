@@ -10,7 +10,7 @@ aliases:
   - /docs/features/unified-namespace
 ---
 
-The Unified Namespace is a centralized, standardized and event-driven data
+The Unified Namespace is a centralized, standardized, event-driven data
 architecture that enables for seamless integration and communication across
 various devices and systems in an industrial environment. It operates on the
 principle that all data, regardless of whether there is an immediate consumer,
@@ -23,20 +23,15 @@ can read more about it in the [Learning Hub article](https://learn.umh.app/lesso
 
 ## When should I use it?
 
-An application always consists out of multiple building blocks. To connect those
-building blocks, one can either exchange data between them through databases,
-through service calls (such as [REST](https://learn.umh.app/lesson/introduction-into-it-ot-https-rest/)),
-or through a message broker.
+The Unified Namespace is the ideal solution for exchanging data between
+applications and devices. It effectively eliminates the complexity of spaghetti
+diagrams and enables real-time data processing.
 
-{{% notice tip %}}
-**Opinion:** We think for most applications in manufacturing, communication via
-a message broker is the best choice as it prevents spaghetti diagrams and allows
-for real-time data processing. For more information about this, you can
-[check out this blog article](https://learn.umh.app/blog/comparing-mqtt-brokers-for-the-industrial-iot/#message-brokers-and-mqtt).
-{{% /notice %}}
-
-In the United Manufacturing Hub, each single piece of information / "message" /
-"event" is sent through a message broker, which is also called the Unified Namespace.
+While data can be shared through databases,
+[REST APIs](https://learn.umh.app/lesson/introduction-into-it-ot-https-rest/),
+or message brokers, we believe that a message broker approach is most suitable
+for most manufacturing applications. Consequently, every piece of information
+within the United Manufacturing Hub is transmitted via a message broker.
 
 ## What can I do with it?
 
