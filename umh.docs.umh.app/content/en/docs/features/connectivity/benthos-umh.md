@@ -106,6 +106,14 @@ for more information on how to use different components.
 
 ## What are the limitations?
 
+While Benthos is great at handling large amounts of data, it does not allow for
+the same level of flow customization as Node-RED. If you need to perform complex
+data transformations or integrate with other systems, you should consider using
+Node-RED instead.
+
+Additionally, the Management Console currently only supports deploying Benthos
+UMH with OPC-UA data sources. If you want to use other data sources, you must
+deploy Benthos UMH in standalone mode or use Node-RED.
 
 ## Where to get more information?
 - Learn more about benthos-umh by visiting our [Github repository](https://github.com/united-manufacturing-hub/benthos-umh).
