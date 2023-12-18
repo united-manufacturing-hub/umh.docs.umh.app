@@ -8,9 +8,17 @@ weight: 2000
 draft: false
 ---
 
-[Benthos](https://www.benthos.dev/docs/about) is a stream processing tool that is designed to make common data engineering tasks such as transformations, integrations, and multiplexing easy to perform and manage. It uses declarative, unit-testable configuration, allowing users to easily adapt their data pipelines as requirements change. Benthos is able to connect to a wide range of sources and sinks, and has a wide range of processors and a “lit mapping language” built-in. 
+[Benthos](https://www.benthos.dev/docs/about) is a stream processing tool that
+is designed to make common data engineering tasks such as transformations,
+integrations, and multiplexing easy to perform and manage. It uses declarative,
+unit-testable configuration, allowing users to easily adapt their data
+pipelines as requirements change. Benthos is able to connect to a wide range of
+sources and sinks, and can use different languages for processing and mapping
+data.
 
-The [benthos-umh](https://github.com/united-manufacturing-hub/benthos-umh), a version of Benthos maintained by the United Manufacturing Hub (UMH), is a Docker container designed to facilitate smooth OPC-UA integration with [Unified Namespace](https://learn.umh.app/lesson/introduction-into-it-ot-unified-namespace/) (MQTT/Kafka).
+[Benthos UMH](/docs/features/connectivity/benthos-umh/) is a custom extension of
+Benthos that is designed to connect to OPC-UA servers and stream data into the
+Unified Namespace.
 
 ## When should I use it?
 OPC UA is a communications protocol coming from the OT industry, so integration with IT tools is necessary to stream data from an OPC UA server. The benthos-umh realizes a simple integration; it is especially suitable for integration with the United Manufacturing Hub.
