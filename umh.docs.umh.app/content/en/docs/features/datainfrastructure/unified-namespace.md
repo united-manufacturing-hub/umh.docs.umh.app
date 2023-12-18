@@ -104,12 +104,11 @@ compared to formats like Protobuf or Avro.
 
 ## Where to get more information?
 
-- For more information about the involved microservices, please take a look at
-  our [architecture page](/docs/architecture/).
-- For more information about [MQTT](https://learn.umh.app/lesson/introduction-into-it-ot-mqtt/),
-[Kafka](https://learn.umh.app/lesson/introduction-into-it-ot-kafka/),
-  or the [Unified Namespace](https://learn.umh.app/lesson/introduction-into-it-ot-unified-namespace/),
-  visit the Learning Hub.
-- For more information about the reasons to use MQTT and Kafka, please take a
-  look at our blog article [Tools & Techniques for scalable data processing in Industrial IoT](https://learn.umh.app/blog/tools-techniques-for-scalable-data-processing-in-industrial-iot/).
-- For more information about the data model, visit [data model page](/docs/datamodel/).
+- Explore the UMH [architecture](/docs/architecture/) and
+  [data model](/docs/datamodel/).
+- Read articles about [MQTT](https://learn.umh.app/lesson/introduction-into-it-ot-mqtt/),
+  [Kafka](https://learn.umh.app/lesson/introduction-into-it-ot-kafka/),
+  and the [Unified Namespace](https://learn.umh.app/lesson/introduction-into-it-ot-unified-namespace/)
+  on the Learning Hub.
+- Read the blog article about
+  [Tools & Techniques for scalable data processing in Industrial IoT](https://learn.umh.app/blog/tools-techniques-for-scalable-data-processing-in-industrial-iot/).
