@@ -1,7 +1,9 @@
 ---
 title: Unified Namespace
 menuTitle: Unified Namespace
-description: Exchange events and messages across all your shopfloor equipment, IT / OT systems such as ERP or MES and microservices.
+description: |
+  Seamlessly connect and communicate across shopfloor equipment, IT/OT systems,
+  and microservices.
 weight: 1000
 edition: community
 aliases:
