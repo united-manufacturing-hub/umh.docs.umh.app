@@ -28,15 +28,21 @@ UMH, you can easily connect to an OPC UA server, define the nodes you want to
 stream, and send the data to the Unified Namespace.
 
 ## What can I do with it?
-The benthos-umh offers the following features:
 
-- Simple deployment in Docker, docker-compose, and Kubernetes.
-- Connects to an OPC-UA server, browses selected nodes, and forwards all sub-nodes in 1-second intervals.
-- Supports a wide range of outputs, from the Unified Namespace (MQTT and Kafka) to HTTP, AMQP, Redis, NATS, SQL, MongoDB, Cassandra, or AWS S3. Check out the official [benthos output library](https://www.benthos.dev/docs/components/outputs/about/).
-- Fully customizable messages using the benthos processor library: implement Report-by-Exception (RBE) / message deduplication, modify payloads and add timestamps using bloblang, apply protobuf (and therefore SparkplugB), and explore many more options.
-- Integrates with modern IT landscape, providing metrics, logging, tracing, versionable configuration, and more.
-- Entirely open-source (Apache 2.0) and free-to-use.
+Benthos UMH offers some benefits over mainline Benthos, including:
 
+- **Management Console integration**: Configure and deploy any number of
+  Benthos UMH instances directly from the Management Console.
+- **OPC-UA support**: Connect to any OPC-UA server and stream data into the
+  Unified Namespace.
+- **Per-node configuration**: Define the nodes you want to stream and configure
+  them individually.
+- **Broad customization**: Use Benthos' extensive configuration options to
+  customize your data pipeline.
+- **Easy deployment**: Deploy Benthos UMH as a standalone Docker container or
+  directly from the Management Console.
+- **Fully open source**: Benthos UMH is fully open source and available on
+  [Github](https://github.com/united-manufacturing-hub/benthos-umh).
 
 ## How can I use it?
 
