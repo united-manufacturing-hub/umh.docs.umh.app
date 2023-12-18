@@ -46,90 +46,55 @@ Benthos UMH offers some benefits over mainline Benthos, including:
 
 ## How can I use it?
 
-### Standalone
-To use benthos-umh in standalone mode with Docker, follow this instructions.
-1. Create a new file called benthos.yaml with the provided content
-    ``` yaml
+### With the Management Console
 
-    input:
-    opcua:
-        endpoint: 'opc.tcp://localhost:46010'
-        nodeIDs: ['ns=2;s=IoTSensors']
+The easiest way to use Benthos UMH is to deploy it directly from the Management
+Console
 
-    pipeline:
-    processors:
-        - bloblang: |
-            root = {
-            meta("opcua_path"): this,
-            "timestamp_ms": (timestamp_unix_nano() / 1000000).floor()
-            }
-
-    output:
-    mqtt:
-        urls:
-        - 'localhost:1883'
-        topic: 'ia/raw/opcuasimulator/${! meta("opcua_path") }'
-        client_id: 'benthos-umh'
-    ```
-
-2. Execute the docker run command to start a new benthos-umh container 
-    ``` bash
-    docker run --rm --network="host" -v '<absolute-path-to-your-file>/benthos.yaml:/benthos.yaml' ghcr.io/united-manufacturing-hub/benthos-umh:latest
-    ```
-    
-### With the UMH's Management Console
-
-If you want to integrate an OPC-UA server with the UMH, you can deploy the benthos-umh with the UMH's Management Console. 
-
-#### Create a connection
-1. After logging into the Management Console and selecting your instance, navigate to the **Data Connections** tab to view existing connections.
-![Data Connections Overview](/images/getstarted/dataAcquisitionManipulation/dataConnectionsOverview.png?width=80%)
-
-2. To add a new connection, click **Add Connection**, then select OPC UA Server. After that, enter the server details, including the unique name and address with protocol (opc.tcp://) and port (usually 4840).
-
-    For testing with the OPC UA simulator, use:
-    ``` text
-    opc.tcp://united-manufacturing-hub-opcuasimulator-service:46010
-    ```
-
-    Test the connection, and if successful, click Add Connection.
-
-#### Initialize the Connection
-After adding a new connection, you must initialize it. This process creates a new benthos-umh deployment for data publishing to the UMH Kafka broker.
-
-1. Navigate to **Data Sources** > **Uninitialized Connections** and initiate the connection.
-
-    ![Initialize Connection](/images/getstarted/dataAcquisitionManipulation/initializeConnection.png?width=80%)
-
-2. Enter authentication details (use Anonymous for no authentication, as with the OPC UA simulator).
-
-3. Specify OPC UA nodes to subscribe to in a yaml file. For testing the OPC UA simulator, you can use:
-
-    ```yaml
-    nodes:
-        - opcuaID: ns=2;s=Pressure
-        enterprise: pharma-genix
-        site: aachen
-        area: packaging
-        line: packaging_1
-        workcell: blister
-        originID: PLC13
-        tagName: machineState
-        useCase: _historian
-    ```
-
-    Mandatory fields are `opcuaID`, `enterprise`, `tagName` and `useCase`.
-
-{{% notice note %}}
-Learn more about [Data Model](/docs/datamodel) in our documentation.
+{{% notice warning %}}
+Currently, only OPC-UA data sources can be configured from the Management
+Console. To use other data sources, you must deploy Benthos UMH in standalone
+mode or use [Node-RED](/docs/features/connectivity/node-red/).
 {{% /notice %}}
 
-4. Review and confirm the nodes, then proceed with initialization. Successful initialization will be indicated by a green message.
+You first have to add a new connection to your OPC-UA server from the
+**Connection Management** tab.
 
-5. The new data source will now appear in the **Data Sources** section.
+![Add Connection](/images/features/data-connectivity-benthos/connection-management.png?width=80%)
 
-    ![Data Sources Overview](/images/getstarted/dataAcquisitionManipulation/dataSourcesOverview.png?width=80%)
+Afterwards, you can initialize the connection by pressing the **Play** button
+next to the connection. Select the correct authentication method and enter the
+OPC-UA nodes you want to stream.
 
+Currently, the only method supported for configuring OPC-UA nodes is by
+specifying a YAML file. You can find an example file below:
+
+``` yaml
+nodes:
+    - opcuaID: ns=2;s=Pressure
+      enterprise: pharma-genix
+      site: aachen
+      area: packaging
+      line: packaging_1
+      workcell: blister
+      originID: PLC13
+      tagName: machineState
+      useCase: _historian
+```
+
+Mandatory fields are `opcuaID`, `enterprise`, `tagName` and `useCase`. Read
+the [data model](/docs/datamodel) documentation for an explanation of the
+different fields.
+
+### Standalone
+
+You can manually deploy Benthos UMH as part of the UMH stack by using the
+provided Docker image and following the instructions in the
+[README](https://github.com/united-manufacturing-hub/benthos-umh?tab=readme-ov-file#with-the-united-manufacturing-hub-kubernetes--kafka).
+
+This way, you have full control over the configuration of Benthos UMH and can
+use any data source or sink supported by Benthos, along with the full range of
+processors and other configuration options.
 
 ## What are the limitations?
 
