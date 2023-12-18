@@ -35,34 +35,32 @@ within the United Manufacturing Hub is transmitted via a message broker.
 
 ## What can I do with it?
 
-The Unified Namespace / Message Broker in the United Manufacturing Hub provides
-several notable functionalities in addition to the features already mentioned:
+The Unified Namespace in the United Manufacturing Hub allows for diverse functionalities and applications:
 
-- Easy integration using MQTT: Many modern shopfloor equipment can send and
-  receive data using the MQTT protocol.
-- Easy integration with legacy equipment: Using tools like
-[Node-RED](/docs/reference/microservices/node-red/), data can be easily
-  extracted from various protocols such as Siemens S7, OPC-UA, or Modbus
-- Get notified in real-time via MQTT: The Unified Namespace allows you to receive
-  eal-time notifications via MQTT when new messages are published. This can be
-  seful for applications that require near real-time processing of data, such as
-  n AGV waiting for new commands.
-- Retrieve past messages from Kafka logs: By looking into the Kafka logs, you
-  an always be aware of the last messages that have been sent to a topic. This
-  llows you to replay certain scenarios for troubleshooting or testing purposes.
-- Efficiently process messages from millions of devices: The Unified Namespace
-  is designed to handle messages from millions of devices in your factory, even
-  over unreliable connections. By using Kafka, you can efficiently at-least-once
-  process each message, ensuring that each message arrives at-least-once (1 or
-  more times).
-- Trace messages through the system: The Unified Namespace provides tracing
-  capabilities, allowing you to understand where messages are coming from and
-  where they go. This can be useful for debugging and troubleshooting purposes.
-  You can use the Management Console to visualize the flow of messages through
-  the system to visualize the flow of messages through the system like in the
-  picture below.
+- **Seamless Integration with MQTT**: Facilitates straightforward connection
+  with modern industrial equipment using the MQTT protocol.
+- **Legacy Equipment Compatibility**: Provides easy integration with older
+  systems using tools like [Node-RED](/docs/architecture/data-infrastructure/unified-namespace/node-red/),
+  supporting various protocols like Siemens S7, OPC-UA, and Modbus.
+- **Real-time Notifications**: Enables instant alerting and data transmission
+  through MQTT, crucial for time-sensitive operations.
+- **Historical Data Access**: Offers the ability to view and analyze past
+  messages stored in Kafka logs, which is essential for troubleshooting and
+  understanding historical trends.
+- **Scalable Message Processing**: Designed to handle vast quantities of data
+  from numerous devices efficiently, ensuring reliable message delivery even
+  over unstable network connections.
+- **Advanced Message Tracing**: Equips you with the capability to trace the
+  origin and path of messages, aiding in debugging and system optimization.
+- **Data Transformation and Transfer**: Utilizes the
+  [Data Bridge](/docs/architecture/data-infrastructure/unified-namespace/data-bridge/)
+  to adapt and transmit data between different formats and systems, maintaining
+  data consistency and reliability.
 
-  ![Data Dashboard](/images/features/unified-namespace/dataDashboardMC.png?width=75%)
+Each feature opens up possibilities for enhanced data management, real-time
+monitoring, and system optimization in industrial settings.
+
+![Data Dashboard](/images/features/unified-namespace/dataDashboardMC.png?width=80%)
 
 ## How can I use it?
 
