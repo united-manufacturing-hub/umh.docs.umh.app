@@ -1,14 +1,18 @@
 ---
 title: Provisioning
 menuTitle: Provisioning
-description: Learn the different ways to provision the the Data and the Device & Container Infrastructures.
+description: |
+  Learn the different ways to provision the Data and the Device & Container
+  Infrastructures.
 weight: 1000
 edition: community
 draft: false
 ---
 
-Using the UMH's Management Console, you can provision the UMH in a simple process.
-
+The Management Console allows you to easily deploy the
+[Data Infrastructure](https://www.umh.app/umh-integrated-platform-data-infrastructure)
+on any existing system, and also guides you through the provisioning of the
+[Device & Container Infrastructure](https://www.umh.app/umh-integrated-platform-device-container-infrastructure).
 
 ## When should I use it?
 There are multiple ways to provision the United Manufacturing Hub. The choice depends on the use case and the available resources.
