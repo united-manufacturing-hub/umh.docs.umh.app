@@ -101,6 +101,9 @@ This way, you have full control over the configuration of Benthos UMH and can
 use any data source or sink supported by Benthos, along with the full range of
 processors and other configuration options.
 
+Read the official [Benthos documentation](https://www.benthos.dev/docs/components/about)
+for more information on how to use different components.
+
 ## What are the limitations?
 
 
