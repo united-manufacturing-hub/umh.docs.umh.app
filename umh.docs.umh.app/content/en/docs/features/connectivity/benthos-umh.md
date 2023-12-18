@@ -21,7 +21,11 @@ Benthos that is designed to connect to OPC-UA servers and stream data into the
 Unified Namespace.
 
 ## When should I use it?
-OPC UA is a communications protocol coming from the OT industry, so integration with IT tools is necessary to stream data from an OPC UA server. The benthos-umh realizes a simple integration; it is especially suitable for integration with the United Manufacturing Hub.
+
+OPC UA is a communication protocol coming from the OT industry, so integration
+with IT tools is necessary to stream data from an OPC UA server. With Benthos
+UMH, you can easily connect to an OPC UA server, define the nodes you want to
+stream, and send the data to the Unified Namespace.
 
 ## What can I do with it?
 The benthos-umh offers the following features:
