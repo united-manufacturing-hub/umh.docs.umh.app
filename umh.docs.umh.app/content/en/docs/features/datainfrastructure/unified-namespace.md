@@ -40,7 +40,8 @@ The Unified Namespace in the United Manufacturing Hub allows for diverse functio
 - **Seamless Integration with MQTT**: Facilitates straightforward connection
   with modern industrial equipment using the MQTT protocol.
 - **Legacy Equipment Compatibility**: Provides easy integration with older
-  systems using tools like [Node-RED](/docs/architecture/data-infrastructure/unified-namespace/node-red/),
+  systems using tools like [Node-RED](/docs/architecture/data-infrastructure/unified-namespace/node-red/)
+  or [Benthos UMH](/docs/features/connectivity/benthos-umh/),
   supporting various protocols like Siemens S7, OPC-UA, and Modbus.
 - **Real-time Notifications**: Enables instant alerting and data transmission
   through MQTT, crucial for time-sensitive operations.
@@ -64,38 +65,27 @@ monitoring, and system optimization in industrial settings.
 
 ## How can I use it?
 
-Using the Unified Namespace is quite simple:
+To effectively use the Unified Namespace in the United Manufacturing Hub, start
+by configuring your IoT devices to communicate with the UMH's MQTT broker,
+considering the necessary security protocols.
 
-Configure your IoT devices and devices on the shopfloor to use the in-built
-MQTT broker of the United Manufacturing Hub by specifying the MQTT protocol,
-selecting unencrypted (1883) / encrypted (8883) ports depending on your
-configuration, and send the messages into a topic. From there on, you can start
-processing the messages in Node-RED by reading in the messages again via MQTT
-or Kafka, adjusting the payload or the topic and sending it back again to MQTT
-or Kafka.
+Once the devices are set up, handle the incoming data messages using tools like
+[Node-RED](/docs/architecture/data-infrastructure/unified-namespace/node-red/)
+or [Benthos UMH](/docs/features/connectivity/benthos-umh/). This step involves
+adjusting payloads and topics as needed. It's also important to understand and
+follow the ISA95 standard model for data organization, using JSON as the
+primary format.
 
-You can acquire hands-on experience with the configuration process on the
-[Get Started!](/docs/getstarted/) page.
-
-In the United Manufacturing Hub (UMH), we organize data using a specific topic
-structure based on the ISA95 standard model that ensures data integrity and
-ease of understanding for OT professionals. JSON has been selected as the
-primary data format for payloads. You can get more detailed information in the
-[Data Model](/docs/datamodel/) page.
-
-The [Data Bridge](/docs/reference/microservices/data-bridge/) microservice
-helps you transmit data between two Kafka or MQTT brokers and transform the
-data according to the UNS data model. The bridge consolidates messages from
-multiple MQTT topics into a single Kafka topic. The point where the topics will
-be merged is referred to as a "merge point," and you can configure it. For
-example, with a merge point of 4, it consolidates messages from various
-detailed topics like `umh/v1/acme/anytown/foo/bar` into a general topic
-`umh.v1.acme.anytown` while using the specific sub-topic paths (`foo.bar`,
-`foo.baz`, etc.) as message keys in Kafka. You can find more information in
-[this article](https://learn.umh.app/lesson/data-modeling-in-the-unified-namespace-mqtt-kafka/).
-
-If you send the messages into other topics, some features might not work
-correctly (see also [limitations](#what-are-the-limitations)).
+Additionally, the [Data Bridge](/docs/architecture/data-infrastructure/unified-namespace/data-bridge/)
+microservice plays a crucial role in transferring and transforming data between
+MQTT and Kafka, ensuring that it adheres to the UMH data model. You can
+configure a merge point to consolidate messages from multiple MQTT topics into
+a single Kafka topic. For instance, if you set a merge point of 3, the Data
+Bridge will consolidate messages from more detailed topics like
+`umh/v1/plant1/machineA/temperature` into a broader topic like `umh/v1/plant1`.
+This process helps in organizing and managing data efficiently, ensuring that
+messages are grouped logically while retaining key information for each topic
+in the Kafka message key.
 
 {{% notice tip %}}
 **Recommendation:** Send messages from IoT devices via MQTT and then work in
