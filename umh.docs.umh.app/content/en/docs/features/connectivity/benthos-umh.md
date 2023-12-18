@@ -1,8 +1,10 @@
 ---
-title: benthos-umh
-menuTitle: benthos-umh
-description: A version of benthos providing seamless OPC-UA integration with the Unified Namespace
-weight: 3000
+title: Benthos UMH
+menuTitle: Benthos UMH
+description: |
+  Configure OPC-UA data sources to stream data to Kafka directly in the
+  Management Console.
+weight: 2000
 draft: false
 ---
 
