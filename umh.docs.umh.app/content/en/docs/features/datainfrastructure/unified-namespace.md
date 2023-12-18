@@ -10,16 +10,16 @@ aliases:
   - /docs/features/unified-namespace
 ---
 
-The Unified Namespace is an event-driven architecture that allows for seamless
-communication between nodes in a network. It operates on the principle that all
-data, regardless of whether there is an immediate consumer, should be published
-and made available for consumption. This means that any node in the network can
-work as either a producer or a consumer, depending on the needs of the system at
-any given time.
+The Unified Namespace is a centralized, standardized and event-driven data
+architecture that enables for seamless integration and communication across
+various devices and systems in an industrial environment. It operates on the
+principle that all data, regardless of whether there is an immediate consumer,
+should be published and made available for consumption. This means that any
+node in the network can work as either a producer or a consumer, depending on
+the needs of the system at any given time.
 
-To use any functionalities of the United Manufacturing Hub, you need to use the
-Unified Namespace as well. More information can be found in our
-[Learning Hub on the topic of Unified Namespace](https://learn.umh.app/lesson/introduction-into-it-ot-unified-namespace/).
+This architecture is the foundation of the United Manufacturing Hub, and you
+can read more about it in the [Learning Hub article](https://learn.umh.app/lesson/introduction-into-it-ot-unified-namespace/).
 
 ## When should I use it?
 
