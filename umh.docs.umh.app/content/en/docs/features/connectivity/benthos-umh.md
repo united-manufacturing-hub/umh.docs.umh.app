@@ -27,6 +27,9 @@ with IT tools is necessary to stream data from an OPC UA server. With Benthos
 UMH, you can easily connect to an OPC UA server, define the nodes you want to
 stream, and send the data to the Unified Namespace.
 
+Additionally, Benthos has proven more reliable than other tools, like Node-RED,
+when it comes to handling large amounts of data.
+
 ## What can I do with it?
 
 Benthos UMH offers some benefits over mainline Benthos, including:
@@ -35,6 +38,8 @@ Benthos UMH offers some benefits over mainline Benthos, including:
   Benthos UMH instances directly from the Management Console.
 - **OPC-UA support**: Connect to any OPC-UA server and stream data into the
   Unified Namespace.
+- **Report by exception**: By configuring the OPC-UA nodes in subscribe mode,
+  you can only stream data when the value of the node changes.
 - **Per-node configuration**: Define the nodes you want to stream and configure
   them individually.
 - **Broad customization**: Use Benthos' extensive configuration options to
