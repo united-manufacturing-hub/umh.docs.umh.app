@@ -116,5 +116,7 @@ UMH with OPC-UA data sources. If you want to use other data sources, you must
 deploy Benthos UMH in standalone mode or use Node-RED.
 
 ## Where to get more information?
-- Learn more about benthos-umh by visiting our [Github repository](https://github.com/united-manufacturing-hub/benthos-umh).
-- Learn more about [Data Model](/docs/datamodel) in our documentation.
+
+- Learn more about Benthos UMH in the [Github repository](https://github.com/united-manufacturing-hub/benthos-umh).
+- Explore the [Data Model](/docs/datamodel).
+- Confront these features with [Node-RED](/docs/features/connectivity/node-red/).
