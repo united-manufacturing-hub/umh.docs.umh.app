@@ -94,11 +94,13 @@ Kafka only.
 
 ## What are the limitations?
 
-- Increased complexity in integrating MQTT with Kafka.
-- The specific topic structure should be used.
-- We recommend using JSON payloads that require more resource than Protobuf or
-  Avro. However, JSON enhances the capability of OT professionals to work with
-  and understand messages.
+The limitations of the Unified Namespace primarily revolve around its technical
+complexity. Integrating MQTT with Kafka can be challenging, requiring a solid
+understanding of both systems. Additionally, the specific topic structure
+mandated by UMH must be adhered to, which might limit flexibility in some
+cases. While JSON is the only supported payload format due to its
+accessibility, it's important to note that it can be more resource-intensive
+compared to formats like Protobuf or Avro.
 
 ## Where to get more information?
 
