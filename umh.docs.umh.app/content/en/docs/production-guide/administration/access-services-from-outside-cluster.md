@@ -25,17 +25,7 @@ provides a single IP address that can be used to access the Pods.
 
 ## Accessing the services
 
-The LoadBalancer service provides a single IP address that can be used to access
-the Pods. To find the IP address, open {{< resource type="lens" name="name" >}}
-and navigate to **Network** > **Services**. The IP address is listed in the
-**External IP** column.
-
-To access the services, use the IP address and the port number of the service,
-e.g. `http://192.168.1.100:8080`.
-
-If you installed the United Manufacturing Hub on your local machine, either
-using the Management Console or the command line, the services are accessible
-at `localhost:<port-number>`.
+{{< include "service-list.md" >}}
 
 ## Services with LoadBalancer by default
 
