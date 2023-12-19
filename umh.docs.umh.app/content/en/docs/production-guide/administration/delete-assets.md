@@ -27,6 +27,12 @@ see [Backing Up and Restoring the Database](/docs/production-guide/backup_recove
 
 {{< include "open-database-shell.md" >}}
 
+Connect to the `factoryinsight` database:
+
+```bash
+\c factoryinsight
+```
+
 ## Choose the assets to delete
 
 You have multiple choices to delete assets, like deleting a single asset, or

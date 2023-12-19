@@ -22,6 +22,12 @@ text, like stop codes, to a different language.
 
 {{< include "open-database-shell.md" >}}
 
+Connect to the `factoryinsight` database:
+
+```bash
+\c factoryinsight
+```
+
 ## Change the language
 
 Execute the following command to change the language:

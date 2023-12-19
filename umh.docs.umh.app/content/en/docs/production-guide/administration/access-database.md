@@ -104,6 +104,9 @@ directly from the **{{< resource type="pod" name="database" >}}** Pod.
 
 You will not need credentials to access the database from the Pod's CLI.
 
+The following steps need to be performed from the machine where the cluster is
+running, either by logging into it or by using a remote shell.
+
 ### Open a shell in the database Pod
 
 {{< include "open-database-shell.md" >}}

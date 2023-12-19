@@ -27,6 +27,12 @@ menu in the datasource takes a long time to load or does not load at all.
 
 {{< include "open-database-shell.md" >}}
 
+Connect to the `factoryinsight` database:
+
+```bash
+\c factoryinsight
+```
+
 ## Create an index
 
 Indexes are used to speed up queries. Run this query to create an index on the
