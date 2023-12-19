@@ -30,14 +30,15 @@ you just want to see the data in a dashboard and don't need to manupulate it.
 ### Get the database credentials
 
 If you are not using the CLI, you need to know the database credentials. You can
-find them in the **{{< resource type="secret" name="db-psw">}}** Secret. By
-default, the username is factoryinsight and the password is changeme.
+find them in the **{{< resource type="secret" name="db-psw">}}** Secret. Run the
+following command to get the credentials:
 
 ```bash
-...
-ALTER USER factoryinsight WITH PASSWORD 'changeme';
-...
+sudo $(which kubectl) get secret {{< resource type="secret" name="db-psw">}} -n united-manufacturing-hub -o go-template='{{range $k,$v := .data}}{{if eq $k "1_set_passwords.sh"}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}{{end}}'  --kubeconfig /etc/rancher/k3s/k3s.yaml
 ```
+
+This command will print an SQL script that contains the username and password
+for the different databases.
 
 <!-- steps -->
 
