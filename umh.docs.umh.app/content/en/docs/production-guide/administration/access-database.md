@@ -3,7 +3,7 @@ title: "Access the Database"
 content_type: task
 description: |
   This page describes how to access the United Manufacturing Hub database to 
-  perform SQL operations using a database client, the CLI or Grafana.
+  perform SQL operations using a database client or the CLI.
 weight: 11
 ---
 
@@ -20,8 +20,8 @@ install a database client on your machine.
 Using the CLI gives you more control over the database, but it requires you to
 have a good understanding of SQL.
 
-Grafana, on the other hand, is for visualizing data. It is a good option if
-you just want to see the data in a dashboard and don't need to manupulate it.
+Grafana comes with a pre-configured PostgreSQL datasource, so you can use it to
+visualize the data.
 
 ## {{% heading "prerequisites" %}}
 
@@ -119,30 +119,6 @@ Once you have a shell in the database, you can perform
    ```bash
     exit
     ```
-
-## Access the database using Grafana
-
-You can use Grafana to visualize data from the database.
-
-### Add PostgreSQL as a data source
-
-1. Open the Grafana dashboard in your browser.
-2. From the **Configuration** (gear) icon, select **Data Sources**.
-3. Click **Add data source** and select PostgreSQL.
-4. Configure the connection to the database:
-
-   - The **Host** is {{< resource type="service-cluster" name="database" >}}.
-   - The **Database** is factoryinsight.
-   - The **User** and **Password** are the ones you found in the Secret.
-   - Set **TLS/SSL Mode** to require.
-   - Enable **TimescaleDB**.
-
-   Everything else can be left as the default.
-
-   ![Grafana PostgreSQL data source](/images/administration/grafana-postgresql-data-source.png)
-5. Click **Save & Test** to save the data source.
-6. Now click on **Explore** to start querying the database.
-7. You can also create dashboards using the newly created data source.
 
 <!-- discussion -->
 
