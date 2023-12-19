@@ -59,15 +59,6 @@ For the sake of this tutorial, pgAdmin will be used as an example, but other cli
 have similar functionality. Refer to the specific client documentation for more
 information.
 
-### Forward the database port to your local machine
-
-1. From the **Pods** section in {{< resource type="lens" name="name" >}}, find
-   the **{{< resource type="pod" name="database" >}}** Pod.
-2. In the **Pod Details** window, click the **Forward** button next to the
-   postgresql:5432/TCP port.
-3. Enter a port number, such as 5432, and click **Start**. You can disable the
-   **Open in browser** option if you don't want to open the port in your browser.
-
 ### Using pgAdmin
 
 You can use [pgAdmin](https://www.pgadmin.org/) to access the database. To do so,
@@ -81,8 +72,8 @@ the [pgAdmin documentation](https://www.pgadmin.org/docs/pgadmin4/latest/index.h
 2. In the **General** tab, give the server a meaningful name. In the **Connection**
    tab, enter the database credentials:
 
-   - The **Host name/address** is localhost.
-   - The **Port** is the port you forwarded.
+   - The **Host name/address** is the IP address of your instance.
+   - The **Port** is 5432.
    - The **Maintenance database** is postgres.
    - The **Username** and **Password** are the ones you found in the Secret.
 
