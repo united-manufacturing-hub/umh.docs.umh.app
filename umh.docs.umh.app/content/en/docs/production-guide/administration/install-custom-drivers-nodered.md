@@ -20,35 +20,21 @@ with proper security measures.
 
 ## Change the security context
 
-1. From the StatefulSets section in {{< resource type="lens" name="name" >}}, click on **{{% resource type="statefulset" name="nodered" %}}**
-   to open the details page.
-2. {{< include "statefulset-edit.md" >}}
-3. Press `Ctrl+F` and search for `securityContext`.
-4. Set the values of the `runAsUser` field to 0, of `fsGroup` to 0, and of
-   `runAsNonRoot` to false.
+From the instance's shell, execute this command:
 
-   ```yaml
-   ...
-          securityContext:
-            runAsUser: 0
-      restartPolicy: Always
-      terminationGracePeriodSeconds: 30
-      dnsPolicy: ClusterFirst
-      securityContext:
-        runAsUser: 0
-        runAsNonRoot: false
-        fsGroup: 0
-   ...
-   ```
-
-5. Click **Save**.
+```bash
+sudo $(which kubectl) patch statefulset {{% resource type="statefulset" name="nodered" %}} -n united-manufacturing-hub -p '{"spec":{"template":{"spec":{"securityContext":{"runAsUser":0,"runAsNonRoot":false,"fsGroup":0}}}}}' --kubeconfig /etc/rancher/k3s/k3s.yaml
+```
 
 ## Install the packages
 
-1. From the Pods section in {{< resource type="lens" name="name" >}}, click on **{{% resource type="pod" name="nodered" %}}**
-   to open the details page.
-2. {{< include "pod-shell.md" >}}
-3. Install the packages with `apk`:
+1. Open a shell in the {{% resource type="pod" name="nodered" %}} pod with:
+
+      ```bash
+      sudo $(which kubectl) exec -it {{% resource type="pod" name="nodered" %}} -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml -- /bin/sh
+      ```
+
+2. Install the packages with `apk`:
 
    ```bash
    apk add <package>
@@ -62,34 +48,18 @@ with proper security measures.
 
    You can find the list of available packages [here](https://pkgs.alpinelinux.org/packages).
 
-4. Exit the shell.
+3. Exit the shell by typing `exit`.
 
 ## Revert the security context
 
 For security reasons, you should revert the security context after you install
 the packages.
 
-1. From the StatefulSets section in {{< resource type="lens" name="name" >}}, click on **{{% resource type="statefulset" name="nodered" %}}**
-   to open the details page.
-2. {{< include "statefulset-edit.md" >}}
-3. Set the values of the `runAsUser` field to 1000, of `fsGroup` to 1000, and of
-   `runAsNonRoot` to true.
+From the instance's shell, execute this command:
 
-   ```yaml
-   ...
-          securityContext:
-            runAsUser: 1000
-      restartPolicy: Always
-      terminationGracePeriodSeconds: 30
-      dnsPolicy: ClusterFirst
-      securityContext:
-        runAsUser: 1000
-        runAsNonRoot: true
-        fsGroup: 1000
-   ...
-   ```
-
-4. Click **Save**.
+```bash
+sudo $(which kubectl) patch statefulset {{% resource type="statefulset" name="nodered" %}} -n united-manufacturing-hub -p '{"spec":{"template":{"spec":{"securityContext":{"runAsUser":1000,"runAsNonRoot":true,"fsGroup":1000}}}}}' --kubeconfig /etc/rancher/k3s/k3s.yaml
+```
 
 <!-- discussion -->
 

@@ -20,23 +20,31 @@ and explore the data.
 
 ## Open a shell in the cache Pod
 
-1. Open {{< resource type="lens" name="name" >}} and navigate to the **Config** >
-   **Secrets** page.
-2. Get the cache password from the Secret **{{< resource type="secret" name="cache" >}}**.
-3. From the **Pods** section click on **{{% resource type="pod" name="cache" %}}**
-   to open the details page.
+Get access to the instance's shell and execute the following commands.
+
+1. Get the cache password
+
+   ```bash
+   sudo $(which kubectl) get secret {{< resource type="secret" name="cache" >}} -n united-manufacturing-hub -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'  --kubeconfig /etc/rancher/k3s/k3s.yaml
+   ```
+
+2. Open a shell in the Pod:
+
+   ```bash
+   sudo $(which kubectl) exec -it {{< resource type="pod" name="cache" >}} -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml -- /bin/sh
+   ```
 
    {{< notice note >}}
    If you have multiple cache Pods, you can select any of them.
    {{< /notice >}}
-4. {{< include "pod-shell.md" >}}
-5. Enter the shell:
+
+3. Enter the Redis shell:
 
     ```bash
     redis-cli -a <cache-password>
     ```
 
-6. Now you can execute any command. For example, to get the number of keys in
+4. Now you can execute any command. For example, to get the number of keys in
    the cache, run:
 
     ```bash

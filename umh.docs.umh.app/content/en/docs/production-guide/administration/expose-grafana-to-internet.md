@@ -28,8 +28,7 @@ sudo $(which helm) upgrade --set grafana.ingress.enabled=true united-manufacturi
 ```
 
 Remember to add a DNS record for your domain name that points to the external IP
-address of the Kubernetes host. You can find the external IP address of the
-Kubernetes host on the **Nodes** page in {{< resource type="lens" name="name" >}}.
+address of the Kubernetes host.
 
 <!-- discussion -->
 

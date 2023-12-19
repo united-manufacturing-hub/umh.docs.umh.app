@@ -48,13 +48,12 @@ If you have already created an index, you can rollback the factoryinsight deploy
 to version 0.9.4. This way it will use a less optimized but faster query, significantly
 reducing the execution time.
 
-1. From the Deployments section in {{< resource type="lens" name="name" >}}, click
-   on **{{< resource type="deployment" name="factoryinsight" >}}** to open the
-   details page.
-2. {{< include "deployment-edit.md" >}}
-3. Scroll down to the `spec.containers` section and change the `image` value to
-   {{< resource type="docker" name="org" >}}/factoryinsight:0.9.4.
-4. Click **Save**.
+From the instance's shell, run the following command:
+
+```bash
+sudo $(which helm) upgrade united-manufacturing-hub united-manufacturing-hub/united-manufacturing-hub --set factoryinsight.image.tag=0.9.4 -n united-manufacturing-hub --reuse-values --version $(sudo $(which helm) get metadata united-manufacturing-hub -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml -o json | jq '.version') --kubeconfig /etc/rancher/k3s/k3s.yaml
+```
+
 <!-- discussion -->
 
 <!-- Optional section; add links to information related to this topic. -->

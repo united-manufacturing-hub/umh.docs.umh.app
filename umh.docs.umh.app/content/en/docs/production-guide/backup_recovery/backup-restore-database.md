@@ -104,10 +104,9 @@ This step could take a while depending on the size of the backup file.
 
 ### Temporarly disable kafkatopostrgesql
 
-1. Navigate to **Workloads** > **Deployments**.
-2. Select the {{< resource type="deployment" name="kafkatopostgresql" >}} Deployment.
-3. {{< include "deployment-scale" >}}
-4. Scale the number of replicas to 0.
+```bash
+sudo $(which kubectl) scale deployment {{< resource type="deployment" name="kafkatopostgresql" >}} --replicas=0 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
+```
 
 ### Open a shell in the database pod
 
@@ -149,10 +148,9 @@ This step could take a while depending on the size of the backup file.
 
 ### Enable kafkatopostgresql
 
-1. Navigate to **Workloads** > **Deployments**.
-2. Select the {{< resource type="deployment" name="kafkatopostgresql" >}} Deployment.
-3. {{< include "deployment-scale" >}}
-4. Scale the number of replicas to the original value, usually 1.
+```bash
+sudo $(which kubectl) scale deployment {{< resource type="deployment" name="kafkatopostgresql" >}} --replicas=1 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
+```
 
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}

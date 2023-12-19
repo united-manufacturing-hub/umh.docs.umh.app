@@ -65,11 +65,12 @@ Create a Grafana API Token for an admin user by following these steps:
 
 To prevent data inconsistencies, you need to temporarily stop the MQTT and Kafka Brokers.
 
-1. In {{< resource type="lens" name="name" >}} go to the **Workloads** > **StatefulSets** tab.
-2. Select the {{< resource type="statefulset" name="kafkabroker" >}} StatefulSet
-3. {{< include "statefulset-scale.md" >}}
-4. Set the number of replicas to 0 and click **Scale**.
-5. Repeat the process for the {{< resource type="statefulset" name="mqttbroker" >}} StatefulSet.
+Access the instance's shell and execute the following commands:
+
+```bash
+sudo $(which kubectl) scale statefulset {{< resource type="statefulset" name="kafkabroker" >}} --replicas=0 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
+sudo $(which kubectl) scale statefulset {{< resource type="statefulset" name="mqttbroker" >}} --replicas=0 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
+```
 
 ### Backup using the script
 
