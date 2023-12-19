@@ -53,21 +53,14 @@ The [Kafka Broker](/docs/architecture/microservices/core/kafka-broker/) uses the
 
 Follow these steps to access the Kafka Broker outside the cluster:
 
-1. Open UMHLens / OpenLens and navigate to **Network > Services**.
-2. Select the Service `united-manufacturing-hub-kafka-external` and click the **Edit** button.
-3. Scroll down to the line that shows:
+1. Access your instance via SSh
+2. Execute this command:
 
-   ```yaml
-     type: NodePort
+   ```bash
+   sudo $(which helm) upgrade --set redpanda.external.type=LoadBalancer united-manufacturing-hub united-manufacturing-hub/united-manufacturing-hub -n united-manufacturing-hub --reuse-values --version $(sudo $(which helm) get metadata united-manufacturing-hub -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml -o json | jq '.version') --kubeconfig /etc/rancher/k3s/k3s.yaml
    ```
 
-   Replace this with:
-
-   ```yaml
-     type: LoadBalancer
-   ```
-
-4. Click **Save** to apply the changes.
+3. Wait for the changes to be applied.
 
 Access the Kafka Broker at port 9094.
 

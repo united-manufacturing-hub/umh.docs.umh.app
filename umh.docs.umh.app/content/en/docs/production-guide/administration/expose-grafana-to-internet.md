@@ -19,15 +19,13 @@ it from outside the Kubernetes cluster.
 
 ## Enable the ingress
 
-To expose Grafana to the Internet, you need to enable the ingress.
+Enable the ingress by upgrading the value in the Helm chart.
 
-1. Open {{< resource type="lens" name="name" >}} and go to the **Helm** > **Releases**
-page.
-2. Click the **Upgrade** button and search for Grafana.
-3. Scroll down to the `ingress` section
-4. Set the `enabled` field to `true`.
-5. Add you domain name to the `hosts` field.
-6. Click **Upgrade** to apply the changes.
+To do so, run the following command:
+
+```bash
+sudo $(which helm) upgrade --set grafana.ingress.enabled=true united-manufacturing-hub united-manufacturing-hub/united-manufacturing-hub -n united-manufacturing-hub --reuse-values --version $(sudo $(which helm) get metadata united-manufacturing-hub -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml -o json | jq '.version') --kubeconfig /etc/rancher/k3s/k3s.yaml
+```
 
 Remember to add a DNS record for your domain name that points to the external IP
 address of the Kubernetes host. You can find the external IP address of the

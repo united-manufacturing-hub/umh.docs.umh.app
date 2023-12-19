@@ -16,12 +16,13 @@ aliase:
 
 ## Enable RBAC
 
-1. Open {{< resource type="lens" name="name" >}}
-2. Navigate to **Helm** > **Releases**.
-3. Select the {{< resource type="helm" name="release" >}} release and click **Upgrade**.
-4. Find the `mqtt_broker` section.
-5. Locate the `rbacEnabled` parameter and change its value from `false` to `true`.
-6. Click **Upgrade**.
+Enable RBAC by upgrading the value in the Helm chart.
+
+To do so, run the following command:
+
+```bash
+sudo $(which helm) upgrade --set mqtt_broker.rbacEnabled=true united-manufacturing-hub united-manufacturing-hub/united-manufacturing-hub -n united-manufacturing-hub --reuse-values --version $(sudo $(which helm) get metadata united-manufacturing-hub -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml -o json | jq '.version') --kubeconfig /etc/rancher/k3s/k3s.yaml
+```
 
 Now all MQTT connections require password authentication with the following defaults:
 
