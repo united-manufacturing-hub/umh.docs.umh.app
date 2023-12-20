@@ -19,14 +19,17 @@ Once initial deployment of the United Manufacturing Hub is completed, you can mo
 ## What can I do with it?
 
 You can monitor the statuses of the following items using the Management Console:
-- Statuses of Modules, a grouped set of related Kubernetes components.
-- System status like CPU and RAM usages.
-- Data status, for example, the current rate of Kafka messages per second. 
-- Data connection statuses measures the current latency.
-- Kubernetes statuses shows error events.
-- In addtion, you can check the topic structure used by data sources and the corresponding payloads.
+- **Modules**: A Module refer to a grouped set of related Kubernetes components like pods, statefulsets, and services. It provides a way to monitor and manage these components as a single unit.
+- **System**:
+    - Resource Utilization: CPU, RAM, and DISK usages
+    - OS information: the used operating system, kernel version, and instruction set architecture
+- **Data source**: the rate of Kafka/TimescaleDB messages per second, the health of data sources
+- **Data connection**: the health of connections
+- **Kubernetes**: the number of error events and the deployed management companion's and UMH's versions
 
-Also, you can create a new connection and initilize the created connection to deploy a data source.
+In addtion, you can check the topic structure used by data sources and the corresponding payloads.
+
+Moreover, you can create a new connection and initilize the created connection to deploy a data source.
 <!--Add delete and edit if these functionalities are available-->
 
 ## How can I use it?
