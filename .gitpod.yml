@@ -6,7 +6,7 @@
 
 tasks:
   - init: | 
-      git config lfs.storage .git/lfs && git config lfs.https://github.com/united-manufacturing-hub/umh.docs.umh.app.git/info/lfs.locksverify false
+      git lfs pull
       make install
     command: |
       make serve
