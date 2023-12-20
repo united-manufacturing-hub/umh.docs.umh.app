@@ -33,13 +33,13 @@ to the **Data Connections** tab to view existing connections.
 ![Data Connections Overview](/images/getstarted/dataAcquisitionManipulation/dataConnectionsOverview.png?width=80%)
 
 **Uninitialized Connections** are established but not yet configured as data
-sources, while **Initialized Connections** are fully configured.***h
+sources, while **Initialized Connections** are fully configured.
 
 The health status reflects the UMH-data source connection, not data transmission status.
 
 To add a new connection, click **Add Connection**. Currently, the only option is
 OPC UA Server. Enter the server details, including the unique name and address
-with protocol (`opc.tcp://`) and port (usually `4840`).
+with protocol (`opc.tcp://`) and port.
 
 For testing with the OPC UA simulator, use:
 
