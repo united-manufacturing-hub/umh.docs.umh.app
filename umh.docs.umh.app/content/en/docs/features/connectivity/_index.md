@@ -109,9 +109,7 @@ sensors or [USB barcode readers](/docs/features/connectivity/additionalconnectiv
 
 ### Third-Party Tools
 
-Virtually any existing connectivity solution can be integrated with the United
-Manufacturing Hub. However, we recommend using the tools mentioned above, as
-they are the most tested and reliable.
+Any existing connectivity solution can be integrated with the United Manufacturing Hub, assuming it can send data to either MQTT or Kafka. Additionally, if you want to deploy those tools on the Device & Container Infrastructure, they must be available as a Docker container (developed with best-practices). Therefore, we recommend using the tools mentioned above, as they are the most tested and reliable.
 
 ## What are the limitations?
 
