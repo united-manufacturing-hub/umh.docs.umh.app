@@ -5,7 +5,8 @@
 # Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
 
 tasks:
-  - init: | 
+  - name: Install & Serve
+    init: | 
       git lfs pull
       make install
     command: |
