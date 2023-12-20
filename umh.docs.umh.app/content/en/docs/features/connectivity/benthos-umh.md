@@ -32,7 +32,7 @@ when it comes to handling large amounts of data.
 
 ## What can I do with it?
 
-Benthos UMH offers some benefits over mainline Benthos, including:
+Benthos UMH offers some benefits, including:
 
 - **Management Console integration**: Configure and deploy any number of
   Benthos UMH instances directly from the Management Console.
@@ -87,9 +87,11 @@ nodes:
       useCase: _historian
 ```
 
-Mandatory fields are `opcuaID`, `enterprise`, `tagName` and `useCase`. Read
-the [data model](/docs/datamodel) documentation for an explanation of the
-different fields.
+Mandatory fields are `opcuaID`, `enterprise`, `tagName` and `useCase`. `opcuaID` 
+is the NodeID in OPC-UA and can also be a folder (see [README](https://github.com/united-manufacturing-hub/benthos-umh?tab=readme-ov-file#node-ids) 
+for more information). The remaining components are components of the resulting 
+topic / ISA-95 structure (see also our [datamodel](/docs/datamodel)). By default, 
+the schema will always be in _historian, and tagName is the keyname.
 
 ### Standalone
 
