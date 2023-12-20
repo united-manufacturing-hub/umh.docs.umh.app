@@ -50,4 +50,8 @@ The **DATA DASHBOAD** displays the topic structure and publisher & subscriber in
 ## What are the limitations?
 
 
+
 ## Where to get more information?
+- Our [Provisioning](/docs/features/devicecontainerinfrastructure/provisioning) guide assists you to complete initial deployment of the UMH.
+- Learn more about the [Data Infrastructure](/docs/architecture/data-infrastructure/).
+- Take a look at the [Device & Container Infrastructure](/docs/architecture/device--container-infrastructure/).
