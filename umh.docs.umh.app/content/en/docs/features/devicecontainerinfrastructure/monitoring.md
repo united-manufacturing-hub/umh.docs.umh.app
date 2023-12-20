@@ -24,7 +24,7 @@ You can monitor the statuses of the following items using the Management Console
 - Data status, for example, the current rate of Kafka messages per second. 
 - Data connection statuses measures the current latency.
 - Kubernetes statuses shows error events.
-- The current topic structure used by data sources and the corresponding payloads.
+- In addtion, you can check the topic structure used by data sources and the corresponding payloads.
 
 Also, you can create a new connection and initilize the created connection to deploy a data source.
 <!--Add delete and edit if these functionalities are available-->
