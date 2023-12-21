@@ -17,7 +17,7 @@ for time-series data in manufacturing.
 
 If you want to reliably store data from your shop floor that is not designed to
 fulfill any legal purposes, such as GxP, then the United Manufacturing Hub's
-Historian feature is ideal. Open-Source databases such as TimescaleDB are
+Historian feature is preferred. In our opinion, open-Source databases such as TimescaleDB are
 [superior to traditional historians](https://learn.umh.app/blog/historians-vs-open-source-databases-which-is-better/)
 in terms of [reliability, scalability and maintainability](https://learn.umh.app/blog/comparing-mqtt-brokers-for-the-industrial-iot/#three-main-requirements-for-your-it-ot-architecture),
 but can be challenging to use for the OT engineer. The United Manufacturing Hub
