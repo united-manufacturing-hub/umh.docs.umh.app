@@ -35,9 +35,9 @@ compatibility, consult the [Installation](/docs/getstarted/installation/) guide.
 
 ## What are the limitations?
 
-- Current limitations include the necessity for pre-configured systems for
-installation and linking to the Management Console. As of now, the Console
-doesn't support provisioning new systems directly.
+- A beforehand installed operating system is necessary for installation and 
+linking to the Management Console. As of now, the Console does not support 
+provisioning new systems directly.
 - Automated tests running on flatcar and RHEL are available, and it should work 
 on other OS as well, but they are not officially supported.
 
