@@ -40,29 +40,28 @@ corresponding payloads.
 
 Moreover, you can create a new connection and initilize the created connection to 
 deploy a data source.
-<!--Add delete and edit if these functionalities are available-->
 
 ## How can I use it?
 
-After logging in, the **INSTANCE DASHBOARD** page shows the **Overview** tab. 
+After logging in, the Instance Dashboard page shows the **Overview** tab. 
 You can click and open each status on this tab.
 
-![](/images/features/monitor-management/modules.png?width=80%)
+![Instance Dashboard](/images/features/monitor-management/modules.png?width=80%)
 
 The **Data Connections** tab shows the status of connections. Moreover, you can 
 add new connections on this tab.
 
-![](/images/features/monitor-management/data-connections.png?width=80%)
+![Data Connections](/images/features/monitor-management/data-connections.png?width=80%)
 
 You can initialize created connections on the **Data Sources** tab. Additionaly, 
 you can check the health of connection and data sources.
 
-![](/images/features/monitor-management/data-sources.png?width=80%)
+![Data Sources](/images/features/monitor-management/data-sources.png?width=80%)
 
-The **DATA DASHBOAD** displays the topic structure and publisher & subscriber 
+The Data Dashboard displays the topic structure and publisher & subscriber 
 information.
 
-![](/images/features/monitor-management/data-dashboard.png?width=80%)
+![Data Dashboard](/images/features/monitor-management/data-dashboard.png?width=80%)
 
 ## What are the limitations?
 Presently, removing a UMH instance from the Management Console is not supported. 
