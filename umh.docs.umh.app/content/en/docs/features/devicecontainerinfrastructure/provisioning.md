@@ -35,13 +35,15 @@ compatibility, consult the [Installation](/docs/getstarted/installation/) guide.
 
 ## What are the limitations?
 
-Current limitations include the necessity for pre-configured systems for
+- Current limitations include the necessity for pre-configured systems for
 installation and linking to the Management Console. As of now, the Console
 doesn't support provisioning new systems directly.
+- Automated tests running on flatcar and RHEL are available, and it should work 
+on other OS as well, but they are not officially supported.
 
 ## Where to get more information?
 
-- The [Get Started!](/docs/getstarted/installation/) guide assists you to set up
+- The [Get Started!](/docs/getstarted/) guide assists you to set up
   the United Manufacturing Hub.
 - Learn more about the [Data Infrastructure](/docs/architecture/data-infrastructure/).
 - Take a look at the [Device & Container Infrastructure](/docs/architecture/device--container-infrastructure/).
