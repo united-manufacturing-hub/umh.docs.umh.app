@@ -83,7 +83,8 @@ via port `8090`) to view data from a single instance (but single instance only).
 
 To effectively use the Unified Namespace in the United Manufacturing Hub, start
 by configuring your IoT devices to communicate with the UMH's MQTT broker,
-considering the necessary security protocols.
+considering the necessary security protocols. While MQTT is recommended for 
+gathering data on the shopfloor, you can send messages to Kafka as well.
 
 Once the devices are set up, handle the incoming data messages using tools like
 [Node-RED](/docs/architecture/data-infrastructure/unified-namespace/node-red/)
@@ -110,13 +111,9 @@ Kafka only.
 
 ## What are the limitations?
 
-The limitations of the Unified Namespace primarily revolve around its technical
-complexity. Integrating MQTT with Kafka can be challenging, requiring a solid
-understanding of both systems. Additionally, the specific topic structure
-mandated by UMH must be adhered to, which might limit flexibility in some
-cases. While JSON is the only supported payload format due to its
-accessibility, it's important to note that it can be more resource-intensive
-compared to formats like Protobuf or Avro.
+While JSON is the only supported payload format due to its accessibility, it's 
+important to note that it can be more resource-intensive compared to formats 
+like Protobuf or Avro.
 
 ## Where to get more information?
 
