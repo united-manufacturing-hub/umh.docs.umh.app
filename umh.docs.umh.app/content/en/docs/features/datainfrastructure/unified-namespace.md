@@ -23,15 +23,22 @@ can read more about it in the [Learning Hub article](https://learn.umh.app/lesso
 
 ## When should I use it?
 
-The Unified Namespace is the ideal solution for exchanging data between
-applications and devices. It effectively eliminates the complexity of spaghetti
-diagrams and enables real-time data processing.
+In our opinion, the Unified Namespace provides the best tradeoff for connecting 
+systems in manufacturing / shopfloor scenarios. It effectively eliminates the 
+complexity of spaghetti diagrams and enables real-time data processing.
 
 While data can be shared through databases,
 [REST APIs](https://learn.umh.app/lesson/introduction-into-it-ot-https-rest/),
 or message brokers, we believe that a message broker approach is most suitable
 for most manufacturing applications. Consequently, every piece of information
 within the United Manufacturing Hub is transmitted via a message broker.
+
+Both MQTT and Kafka are used in the United Manufacturing Hub. MQTT is designed 
+for the safe message delivery between devices and simplifies gathering data on 
+the shopfloor. However, it is not designed for reliable stream processing. 
+Although Kafka does not provide a simple way to collect data, it is suitable 
+for contextualizing and processing data. Therefore, we are combining both the 
+strengths of MQTT and Kafka. You can get more information from [this article](https://learn.umh.app/blog/tools-techniques-for-scalable-data-processing-in-industrial-iot/).
 
 ## What can I do with it?
 
