@@ -27,9 +27,9 @@ with IT tools is necessary to stream data from an OPC UA server. With Benthos
 UMH, you can easily connect to an OPC UA server, define the nodes you want to
 stream, and send the data to the Unified Namespace.
 
-Additionally, Benthos has proven more reliable than other tools, like Node-RED,
-when it comes to handling large amounts of data in our tests. See also 
-[this article](https://learn.umh.app/blog/our-open-source-docker-container-to-connect-opc-ua-with-the-unified-namespace/#testing-existing-solutions).
+Furthermore, [in our tests](https://learn.umh.app/blog/our-open-source-docker-container-to-connect-opc-ua-with-the-unified-namespace/#testing-existing-solutions),
+Benthos has proven more reliable than tools like Node-RED, when it comes to 
+handling large amounts of data.
 
 ## What can I do with it?
 
