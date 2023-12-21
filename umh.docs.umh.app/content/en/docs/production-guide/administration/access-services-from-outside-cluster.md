@@ -53,7 +53,7 @@ The [Kafka Broker](/docs/architecture/microservices/core/kafka-broker/) uses the
 
 Follow these steps to access the Kafka Broker outside the cluster:
 
-1. Access your instance via SSh
+1. Access your instance via SSH
 2. Execute this command:
 
    ```bash
