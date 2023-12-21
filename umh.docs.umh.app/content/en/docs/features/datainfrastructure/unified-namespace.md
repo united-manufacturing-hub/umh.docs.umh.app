@@ -42,7 +42,8 @@ strengths of MQTT and Kafka. You can get more information from [this article](ht
 
 ## What can I do with it?
 
-The Unified Namespace in the United Manufacturing Hub allows for diverse functionalities and applications:
+The Unified Namespace in the United Manufacturing Hub provides you the following 
+functionalities and applications:
 
 - **Seamless Integration with MQTT**: Facilitates straightforward connection
   with modern industrial equipment using the MQTT protocol.
@@ -55,11 +56,11 @@ The Unified Namespace in the United Manufacturing Hub allows for diverse functio
 - **Historical Data Access**: Offers the ability to view and analyze past
   messages stored in Kafka logs, which is essential for troubleshooting and
   understanding historical trends.
-- **Scalable Message Processing**: Designed to handle vast quantities of data
-  from numerous devices efficiently, ensuring reliable message delivery even
-  over unstable network connections.
-- **Advanced Message Tracing**: Equips you with the capability to trace the
-  origin and path of messages, aiding in debugging and system optimization.
+- **Scalable Message Processing**: Designed to handle a large amount of data
+  from a lot of devices efficiently, ensuring reliable message delivery even
+  over unstable network connections. By using IT standard tools, we can 
+  theoretically process data in the measure of `GB/second` instead of 
+  `messages/second`.
 - **Data Transformation and Transfer**: Utilizes the
   [Data Bridge](/docs/architecture/data-infrastructure/unified-namespace/data-bridge/)
   to adapt and transmit data between different formats and systems, maintaining
@@ -68,7 +69,15 @@ The Unified Namespace in the United Manufacturing Hub allows for diverse functio
 Each feature opens up possibilities for enhanced data management, real-time
 monitoring, and system optimization in industrial settings.
 
+You can view the Unified Namespace by using the Management Console like in the picture 
+below, which will automatically aggregate data from all connected instances / brokers; 
+it shows the topic structure and which data belongs to which namespace.
+
 ![Data Dashboard](/images/features/unified-namespace/dataDashboardMC.png?width=80%)
+
+One can also use tools like [MQTT Explorer](https://mqtt-explorer.com/) 
+(not included in the UMH) or Redpanda Console (enabled by defualt, accessible 
+via port `8090`) to view data from a single instance (but single instance only).
 
 ## How can I use it?
 
