@@ -67,6 +67,7 @@ To prevent data inconsistencies, you need to temporarily stop the MQTT and Kafka
 
 Access the instance's shell and execute the following commands:
 
+<!-- tested in e2e #1343 -->
 ```bash
 sudo $(which kubectl) scale statefulset {{< resource type="statefulset" name="kafkabroker" >}} --replicas=0 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
 sudo $(which kubectl) scale statefulset {{< resource type="statefulset" name="mqttbroker" >}} --replicas=0 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml

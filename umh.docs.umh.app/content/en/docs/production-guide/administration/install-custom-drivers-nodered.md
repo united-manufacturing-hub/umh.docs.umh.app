@@ -22,6 +22,7 @@ with proper security measures.
 
 From the instance's shell, execute this command:
 
+<!-- tested in e2e #1343 -->
 ```bash
 sudo $(which kubectl) patch statefulset {{% resource type="statefulset" name="nodered" %}} -n united-manufacturing-hub -p '{"spec":{"template":{"spec":{"securityContext":{"runAsUser":0,"runAsNonRoot":false,"fsGroup":0}}}}}' --kubeconfig /etc/rancher/k3s/k3s.yaml
 ```
@@ -30,6 +31,7 @@ sudo $(which kubectl) patch statefulset {{% resource type="statefulset" name="no
 
 1. Open a shell in the {{% resource type="pod" name="nodered" %}} pod with:
 
+    <!-- tested in e2e #1343 -->
       ```bash
       sudo $(which kubectl) exec -it {{% resource type="pod" name="nodered" %}} -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml -- /bin/sh
       ```
@@ -57,6 +59,7 @@ the packages.
 
 From the instance's shell, execute this command:
 
+<!-- tested in e2e #1343 -->
 ```bash
 sudo $(which kubectl) patch statefulset {{% resource type="statefulset" name="nodered" %}} -n united-manufacturing-hub -p '{"spec":{"template":{"spec":{"securityContext":{"runAsUser":1000,"runAsNonRoot":true,"fsGroup":1000}}}}}' --kubeconfig /etc/rancher/k3s/k3s.yaml
 ```

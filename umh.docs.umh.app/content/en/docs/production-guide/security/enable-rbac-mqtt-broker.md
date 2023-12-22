@@ -33,6 +33,7 @@ Now all MQTT connections require password authentication with the following defa
 
 1. Open a shell inside the Pod:
 
+   <!-- tested in e2e #1343 -->
    ```bash
    sudo $(which kubectl) exec -it {{< resource type="pod" name="mqttbroker" >}} -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml -- /bin/sh
    ```
@@ -79,6 +80,7 @@ Now all MQTT connections require password authentication with the following defa
 7. Save the changes.
 8. Recreate the Pod:
 
+   <!-- tested in e2e #1343 -->
     ```bash
     sudo $(which kubectl) delete pod {{< resource type="pod" name="mqttbroker" >}} -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
     ```

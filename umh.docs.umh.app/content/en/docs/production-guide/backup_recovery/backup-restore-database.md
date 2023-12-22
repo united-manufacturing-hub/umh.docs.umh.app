@@ -104,6 +104,7 @@ This step could take a while depending on the size of the backup file.
 
 ### Temporarly disable kafkatopostrgesql
 
+<!-- tested in e2e #1343 -->
 ```bash
 sudo $(which kubectl) scale deployment {{< resource type="deployment" name="kafkatopostgresql" >}} --replicas=0 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
 ```
@@ -148,6 +149,7 @@ sudo $(which kubectl) scale deployment {{< resource type="deployment" name="kafk
 
 ### Enable kafkatopostgresql
 
+<!-- tested in e2e #1343 -->
 ```bash
 sudo $(which kubectl) scale deployment {{< resource type="deployment" name="kafkatopostgresql" >}} --replicas=1 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
 ```

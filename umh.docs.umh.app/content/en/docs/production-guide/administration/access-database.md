@@ -33,6 +33,7 @@ If you are not using the CLI, you need to know the database credentials. You can
 find them in the **{{< resource type="secret" name="db-psw">}}** Secret. Run the
 following command to get the credentials:
 
+<!-- tested in e2e #1343 -->
 ```bash
 sudo $(which kubectl) get secret {{< resource type="secret" name="db-psw">}} -n united-manufacturing-hub -o go-template='{{range $k,$v := .data}}{{if eq $k "1_set_passwords.sh"}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}{{end}}'  --kubeconfig /etc/rancher/k3s/k3s.yaml
 ```

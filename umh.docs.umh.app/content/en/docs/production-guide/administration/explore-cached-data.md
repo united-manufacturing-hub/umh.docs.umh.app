@@ -24,12 +24,14 @@ Get access to the instance's shell and execute the following commands.
 
 1. Get the cache password
 
+   <!-- tested in e2e #1343 -->
    ```bash
    sudo $(which kubectl) get secret {{< resource type="secret" name="cache" >}} -n united-manufacturing-hub -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'  --kubeconfig /etc/rancher/k3s/k3s.yaml
    ```
 
 2. Open a shell in the Pod:
 
+   <!-- tested in e2e #1343 -->
    ```bash
    sudo $(which kubectl) exec -it {{< resource type="pod" name="cache" >}} -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml -- /bin/sh
    ```

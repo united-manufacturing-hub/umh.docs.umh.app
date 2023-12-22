@@ -21,6 +21,7 @@ administrative tasks. This page describes how to execute Kafka shell scripts.
 
 1. From the instance's shell, execute this command:
 
+   <!-- tested in e2e #1343 -->
    ```bash
    sudo $(which kubectl) exec -it {{% resource type="pod" name="kafka" %}} -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml -- /bin/sh
    ```
