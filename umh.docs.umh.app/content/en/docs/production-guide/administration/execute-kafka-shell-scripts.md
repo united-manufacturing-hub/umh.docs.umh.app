@@ -19,26 +19,26 @@ administrative tasks. This page describes how to execute Kafka shell scripts.
 
 ## Open a shell in the Kafka container
 
-1. From the Pod section in {{< resource type="lens" name="name" >}}, click on **{{% resource type="pod" name="kafka" %}}**
-   to open the details page.
-2. {{< include "pod-shell.md" >}}
-3. Navigate to the Kafka bin directory:
+1. From the instance's shell, execute this command:
+
+   <!-- tested in e2e #1343 -->
+   ```bash
+   sudo $(which kubectl) exec -it {{% resource type="pod" name="kafka" %}} -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml -- /bin/sh
+   ```
+
+2. Navigate to the Kafka bin directory:
 
    ```bash
    cd /opt/bitnami/kafka/bin
    ```
 
-4. Execute any Kafka shell scripts. For example, to list all topics:
+3. Execute any Kafka shell scripts. For example, to list all topics:
 
    ```bash
    ./kafka-topics.sh --list --zookeeper zookeeper:2181
    ```
 
-5. To exit the shell:
-
-   ```bash
-   exit
-   ```
+4. Exit the shell by typing `exit`.
 
 ## {{% heading "whatsnext" %}}
 
