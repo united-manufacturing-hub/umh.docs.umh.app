@@ -49,7 +49,8 @@ To access Node-RED, you need to use the `/nodered` path, for example
 
 ## Services with NodePort by default
 
-The [Kafka Broker](/docs/reference/microservices/kafka-broker/) uses the service type NodePort by default. 
+The [Kafka Broker](/docs/reference/microservices/kafka-broker/) uses the service 
+type NodePort by default. 
 
 Follow these steps to access the Kafka Broker outside the cluster:
 
@@ -78,7 +79,8 @@ page.
 
 For any other microservice, follow these steps to enable the LoadBalancer service:
 
-1. Execute the following command to get the list of available services and remember the service to be exposed.
+1. Execute the following command to get the list of available services and remember 
+   the service to be exposed.
    ```bash
    sudo $(which kubectl) get svc -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
    ```
@@ -86,7 +88,8 @@ For any other microservice, follow these steps to enable the LoadBalancer servic
    ```bash
    sudo $(which kubectl) edit svc <service-name> -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
    ```
-3. It will allows you to edit the configuration. Scroll down to the `status.loadBalancer` section and change it to the following:
+3. It will allows you to edit the configuration. Scroll down to the `status.loadBalancer` 
+   section and change it to the following:
 
    ```yaml
    status:
@@ -96,41 +99,33 @@ For any other microservice, follow these steps to enable the LoadBalancer servic
    ```
 
    Replace `<external-ip>` with the external IP address of the node.
-4. Scroll to the `spec.type` section and change the value from ClusterIP to
-   LoadBalancer. 
+4. Scroll to the `spec.type` section and change the value from `ClusterIP` to
+   `LoadBalancer`. 
 5. Save your changes. The changes will be applied automatically.
 
-If you installed the United Manufacturing Hub on your local machine, either
-using the Management Console or the command line, you also need to map the port
-exposed by the k3d cluster to a port on your local machine. To do that, run the
-following command:
-
-```bash
-k3d cluster edit {{< resource type="cluster" name="name" >}} --port-add "<local-port>:<cluster-port>@server:0"
-```
-
-Replace `<local-port>` with a free port number on your local machine, and
-`<cluster-port>` with the port number of the service.
-
-### Port forwarding in {{% resource type="lens" name="name" %}}
+### Port forwarding
 
 If you don't want to create a LoadBalancer service, effectively exposing the
-microservice to anyone that has access to the host IP address, you can use
-{{% resource type="lens" name="name" %}} to forward the port to your local
-machine.
+microservice to anyone that has access to the host IP address, you can forward 
+the port to your local machine.
 
-1. Open {{< resource type="lens" name="name" >}} and navigate to **Network** >
-    **Services**.
-2. Select the service that you want to access.
-3. Scroll down to the **Connection** section and click the **Forward...** button.
-4. From the dialog, you can choose a port on your local machine to forward the
-   cluster port from, or you can leave it empty to use a random port.
-5. Click **Forward** to apply the changes.
-6. If you left the checkbox **Open in browser** checked, then the service will
-   open in your default browser.
+1. Execute the following command to get the list of available services and remember 
+   the service to be exposed.
+   ```bash
+   sudo $(which kubectl) get svc -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
+   ```
+2. Run the following command to do port-forwarding:
+   ```bash
+   sudo $(which kubectl) port-forward service/<your-service> <local-port>:<remote-port> -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
+   ```
+3. You should be able to see logs like:
+   ```text
+   Forwarding from 127.0.0.1:31922 -> 9121
+   Forwarding from [::1]:31922 -> 9121
+   Handling connection for 31922
+   ```
 
-You can see and manage the forwarded ports of your cluster in the **Network** >
-**Port Forwarding** section.
+   Now, you can access to the service from the shown address.
 
 {{< notice warning >}}
 Port forwarding can be unstable, especially if the connection to the cluster is
@@ -144,7 +139,8 @@ instead.
 
 ### MQTT broker
 
-There are some security considerations to keep in mind when exposing the MQTT broker.
+There are some security considerations to keep in mind when exposing the MQTT 
+broker.
 
 By default, the MQTT broker is configured to allow anonymous connections. This
 means that anyone can connect to the broker without providing any credentials.
