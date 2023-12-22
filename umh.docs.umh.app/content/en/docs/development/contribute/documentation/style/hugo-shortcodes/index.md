@@ -324,24 +324,23 @@ Renders to:
 
 {{< param "version" >}}
 
-### `{{</* latest-version */>}}`
+### `{{</* latest-umh-version */>}}`
 
-The `{{</* latest-version */>}}` shortcode returns the value of the `latest` site parameter.
-The `latest` site parameter is updated when a new version of the documentation is released.
-This parameter does not always match the value of `version` in a documentation set.
+The `{{</* latest-umh-version */>}}` shortcode returns the value of the `latestUMH` site parameter.
+The `latestUMH` site parameter must be updated when a new version of the UMH Helm chart is released.
 
 Renders to:
 
-{{< latest-version >}}
+{{< latest-umh-version >}}
 
-### `{{</* latest-semver */>}}`
+### `{{</* latest-umh-semver */>}}`
 
-The `{{</* latest-semver */>}}` shortcode generates the value of `latest`
+The `{{</* latest-umh-semver */>}}` shortcode generates the value of `latestUMH`
 without the "v" prefix.
 
 Renders to:
 
-{{< latest-semver >}}
+{{< latest-umh-semver >}}
 
 ### `{{</* version-check */>}}`
 

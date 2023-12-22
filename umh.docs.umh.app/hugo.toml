@@ -58,7 +58,7 @@ offlineSearch = false
 # Enable syntax highlighting and copy buttons on code blocks with Prism
 prism_syntax_highlighting = false
 
-latest       = "v0.1"
+latestUMH    = "0.10.0"
 version      = "v0.1"
 docsbranch   = "main"
 deprecated   = false
