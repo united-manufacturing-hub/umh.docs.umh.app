@@ -26,6 +26,12 @@ some columns from varchar to text.
 
 {{< include "open-database-shell" >}}
 
+Connect to the `factoryinsight` database:
+
+```bash
+\c factoryinsight
+```
+
 ## Alter the tables
 
 Execute the following SQL statements:
