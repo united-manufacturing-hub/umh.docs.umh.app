@@ -78,9 +78,15 @@ page.
 
 For any other microservice, follow these steps to enable the LoadBalancer service:
 
-1. 
-2. Select the service and click the **Edit** button.
-3. Scroll down to the `status.loadBalancer` section and change it to the following:
+1. Execute the following command to get the list of available services and remember the service to be exposed.
+   ```bash
+   sudo $(which kubectl) get svc -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
+   ```
+2. To edit the service, run the following command:
+   ```bash
+   sudo $(which kubectl) edit svc <service-name> -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
+   ```
+3. It will allows you to edit the configuration. Scroll down to the `status.loadBalancer` section and change it to the following:
 
    ```yaml
    status:
@@ -91,8 +97,8 @@ For any other microservice, follow these steps to enable the LoadBalancer servic
 
    Replace `<external-ip>` with the external IP address of the node.
 4. Scroll to the `spec.type` section and change the value from ClusterIP to
-   LoadBalancer.
-5. Click **Save** to apply the changes.
+   LoadBalancer. 
+5. Save your changes. The changes will be applied automatically.
 
 If you installed the United Manufacturing Hub on your local machine, either
 using the Management Console or the command line, you also need to map the port
