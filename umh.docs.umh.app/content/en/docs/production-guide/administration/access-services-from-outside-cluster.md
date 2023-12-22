@@ -57,7 +57,7 @@ Follow these steps to access the Kafka Broker outside the cluster:
 2. Execute this command:
 
    ```bash
-   sudo $(which helm) upgrade --set redpanda.external.type=LoadBalancer united-manufacturing-hub united-manufacturing-hub/united-manufacturing-hub -n united-manufacturing-hub --reuse-values --version $(sudo $(which helm) get metadata united-manufacturing-hub -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml -o json | jq '.version') --kubeconfig /etc/rancher/k3s/k3s.yaml
+   sudo $(which helm) upgrade --set redpanda.external.type=LoadBalancer united-manufacturing-hub united-manufacturing-hub/united-manufacturing-hub -n united-manufacturing-hub --reuse-values --version $(sudo $(which helm) get metadata united-manufacturing-hub -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml -o json | jq -r '.version') --kubeconfig /etc/rancher/k3s/k3s.yaml
    ```
 
 3. Wait for the changes to be applied.
