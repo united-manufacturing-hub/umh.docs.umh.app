@@ -88,7 +88,7 @@ For any other microservice, follow these steps to enable the LoadBalancer servic
    ```bash
    sudo $(which kubectl) edit svc <service-name> -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
    ```
-3. It will allows you to edit the configuration. Scroll down to the `status.loadBalancer` 
+3. It will allows you to edit the configuration. Go to the `status.loadBalancer` 
    section and change it to the following:
 
    ```yaml
@@ -99,9 +99,10 @@ For any other microservice, follow these steps to enable the LoadBalancer servic
    ```
 
    Replace `<external-ip>` with the external IP address of the node.
-4. Scroll to the `spec.type` section and change the value from `ClusterIP` to
+4. Go to the `spec.type` section and change the value from `ClusterIP` to
    `LoadBalancer`. 
-5. Save your changes. The changes will be applied automatically.
+5. After saving, your changes will be applied automatically and the service will 
+   be updated. Now, you can access the service with the configured address.
 
 ### Port forwarding
 
@@ -114,7 +115,7 @@ the port to your local machine.
    ```bash
    sudo $(which kubectl) get svc -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
    ```
-2. Run the following command to do port-forwarding:
+2. Run the following command to forward the port:
    ```bash
    sudo $(which kubectl) port-forward service/<your-service> <local-port>:<remote-port> -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
    ```
