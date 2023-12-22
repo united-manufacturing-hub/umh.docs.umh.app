@@ -352,16 +352,6 @@ Renders to:
 
 {{< version-check >}}
 
-### `{{</* latest-release-notes */>}}`
-
-The `{{</* latest-release-notes */>}}` shortcode generates a version string
-from `latest` and removes the "v" prefix. The shortcode prints a new URL for
-the release note CHANGELOG page with the modified version string.
-
-Renders to:
-
-{{< latest-release-notes >}}
-
 ## {{% heading "whatsnext" %}}
 
 - Read the [Hugo documentation](https://gohugo.io/documentation/).
