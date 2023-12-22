@@ -1311,7 +1311,7 @@ Here are only the values different from the default ones.
 | ------------------------------------------- | ------------------------------------------------------- | ------ | ---------------------- | ------------------------------------------------------ |
 | `config.cluster.auto_create_topics_enabled` | Whether to enable auto creation of topics               | bool   | `true`, `false`        | `true`                                                 |
 | `console`                                   | The configuration for RedPanda Console                  | object | Any                    | See [console](#dz-kafka-broker-console) section        |
-| `external.type`                             | The type of Service for external access                 | string | NodePort, LoadBalancer | LoadBalancer                                           |
+| `external.type`                             | The type of Service for external access                 | string | NodePort, LoadBalancer | NodePort                                               |
 | `fullnameOverride`                          | The full name override                                  | string | Any                    | {{< resource type="statefulset" name="kafkabroker" >}} |
 | `listeners.kafka.port`                      | The port of the Kafka listener                          | int    | Any                    | 9092                                                   |
 | `rbac.enable`                               | Whether to enable RBAC                                  | bool   | `true`, `false`        | `true`                                                 |

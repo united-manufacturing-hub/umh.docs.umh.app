@@ -127,23 +127,33 @@ You could also do it manually with the following command:
   openssl base64 -A -in <filename> -out <filename>.b64
   ```
 
-Now you can import the PKI into the United Manufacturing Hub. To do so:
+Now you can import the PKI into the United Manufacturing Hub. To do so, create
+a file named `pki.yaml` with the following content:
 
-1. Open {{< resource type="lens" name="name" >}}.
-2. Navigate to **Helm** > **Releases**.
-3. Select the {{< resource type="helm" name="release" >}} release.
-4. Click the **Upgrade** button.
-5. Find the `_000_commonConfig.infrastructure.mqtt.tls` section.
-6. Update the value of the `keystoreBase64` field with the content of the
-   `hivemq.jks.b64` file and the value of the `keystorePassword` field with the
-   password you used for the keystore.
-7. Update the value of the `truststoreBase64` field with the content of the
-   `hivemq-trust-store.jks.b64` file and the value of the `truststorePassword`
-   field with the password you used for the truststore.
-8. Update the value of the `<servicename>.cert` field with the content of the
-   `<servicename>-cert.pem.b64` file and the value of the `<servicename>.key` field
-   with the content of the `<servicename>-key.pem.b64` file.
-9. Click the **Upgrade** button to apply the changes.
+```yaml
+_000_commonConfig:
+  infrastructure:
+    mqtt:
+      tls:
+        keystoreBase64: <content of hivemq.jks.b64>
+        keystorePassword: <password>
+        truststoreBase64: <content of hivemq-trust-store.jks.b64>
+        truststorePassword: <password>
+        <servicename>.cert: <content of <servicename>-cert.pem.b64>
+        <servicename>.key: <content of <servicename>-key.pem.b64>
+```
+
+Now, send copy it to your instance with the following command:
+
+```bash
+scp pki.yaml <username>@<ip-address>:/tmp
+```
+
+After that, access the instance with SSH and run the following command:
+
+```bash
+sudo $(which helm) upgrade -f /tmp/pki.yaml united-manufacturing-hub united-manufacturing-hub/united-manufacturing-hub -n united-manufacturing-hub --reuse-values --version $(sudo $(which helm) get metadata united-manufacturing-hub -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml -o json | jq '.version') --kubeconfig /etc/rancher/k3s/k3s.yaml
+```
 
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}

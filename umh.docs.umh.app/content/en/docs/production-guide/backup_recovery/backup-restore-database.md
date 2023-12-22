@@ -16,15 +16,21 @@ For this task, you need to have [PostgreSQL](https://www.postgresql.org/download
 installed on your machine.
 
 You also need to have enough space on your machine to store the backup. To check
-the size of the database, follow the steps below:
+the size of the database, ssh into the system and follow the steps below:
 
 {{< include "open-database-shell" >}}
 
-5. Run the following command to get the size of the database:
+Connect to the `umh_v2` or `factoryinsight` database:
 
-    ```sql
-    SELECT pg_size_pretty(pg_database_size('factoryinsight'));
-    ```
+```bash
+\c <database-name>
+```
+
+ Run the following command to get the size of the database:
+
+```sql
+SELECT pg_size_pretty(pg_database_size('<database-name>'));
+```
 
 <!-- steps -->
 
@@ -98,10 +104,10 @@ This step could take a while depending on the size of the backup file.
 
 ### Temporarly disable kafkatopostrgesql
 
-1. Navigate to **Workloads** > **Deployments**.
-2. Select the {{< resource type="deployment" name="kafkatopostgresql" >}} Deployment.
-3. {{< include "deployment-scale" >}}
-4. Scale the number of replicas to 0.
+<!-- tested in e2e #1343 -->
+```bash
+sudo $(which kubectl) scale deployment {{< resource type="deployment" name="kafkatopostgresql" >}} --replicas=0 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
+```
 
 ### Open a shell in the database pod
 
@@ -143,10 +149,10 @@ This step could take a while depending on the size of the backup file.
 
 ### Enable kafkatopostgresql
 
-1. Navigate to **Workloads** > **Deployments**.
-2. Select the {{< resource type="deployment" name="kafkatopostgresql" >}} Deployment.
-3. {{< include "deployment-scale" >}}
-4. Scale the number of replicas to the original value, usually 1.
+<!-- tested in e2e #1343 -->
+```bash
+sudo $(which kubectl) scale deployment {{< resource type="deployment" name="kafkatopostgresql" >}} --replicas=1 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
+```
 
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}

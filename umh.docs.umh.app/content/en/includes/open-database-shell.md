@@ -1,14 +1,5 @@
-1. From the Pod section in {{< resource type="lens" name="name" >}}, click on **{{% resource type="pod" name="database" %}}**
-   to open the details page.
-2. {{< include "pod-shell.md" >}}
-3. Enter the postgres shell:
+```bash
+sudo $(which kubectl) exec -it $(sudo $(which kubectl) get pods --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub -l app.kubernetes.io/component=timescaledb -o jsonpath="{.items[0].metadata.name}") --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub -- psql -U postgres
+```
 
-   ```bash
-   psql
-   ```
-
-4. Connect to the database:
-
-   ```bash
-   \c factoryinsight
-   ```
+This command will open a `psql` shell connected to the default postgres database.
