@@ -38,6 +38,12 @@ However, data may be less accurate.
 
 {{< include "open-database-shell.md" >}}
 
+Connect to the `factoryinsight` database:
+
+```bash
+\c factoryinsight
+```
+
 ## Enable data compression
 
 To enable data compression, you need to execute the following SQL command from

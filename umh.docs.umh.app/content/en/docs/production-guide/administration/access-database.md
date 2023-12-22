@@ -3,7 +3,7 @@ title: "Access the Database"
 content_type: task
 description: |
   This page describes how to access the United Manufacturing Hub database to 
-  perform SQL operations using a database client, the CLI or Grafana.
+  perform SQL operations using a database client or the CLI.
 weight: 11
 ---
 
@@ -20,8 +20,8 @@ install a database client on your machine.
 Using the CLI gives you more control over the database, but it requires you to
 have a good understanding of SQL.
 
-Grafana, on the other hand, is for visualizing data. It is a good option if
-you just want to see the data in a dashboard and don't need to manupulate it.
+Grafana comes with a pre-configured PostgreSQL datasource, so you can use it to
+visualize the data.
 
 ## {{% heading "prerequisites" %}}
 
@@ -30,14 +30,16 @@ you just want to see the data in a dashboard and don't need to manupulate it.
 ### Get the database credentials
 
 If you are not using the CLI, you need to know the database credentials. You can
-find them in the **{{< resource type="secret" name="db-psw">}}** Secret. By
-default, the username is factoryinsight and the password is changeme.
+find them in the **{{< resource type="secret" name="db-psw">}}** Secret. Run the
+following command to get the credentials:
 
+<!-- tested in e2e #1343 -->
 ```bash
-...
-ALTER USER factoryinsight WITH PASSWORD 'changeme';
-...
+sudo $(which kubectl) get secret {{< resource type="secret" name="db-psw">}} -n united-manufacturing-hub -o go-template='{{range $k,$v := .data}}{{if eq $k "1_set_passwords.sh"}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}{{end}}'  --kubeconfig /etc/rancher/k3s/k3s.yaml
 ```
+
+This command will print an SQL script that contains the username and password
+for the different databases.
 
 <!-- steps -->
 
@@ -58,15 +60,6 @@ For the sake of this tutorial, pgAdmin will be used as an example, but other cli
 have similar functionality. Refer to the specific client documentation for more
 information.
 
-### Forward the database port to your local machine
-
-1. From the **Pods** section in {{< resource type="lens" name="name" >}}, find
-   the **{{< resource type="pod" name="database" >}}** Pod.
-2. In the **Pod Details** window, click the **Forward** button next to the
-   postgresql:5432/TCP port.
-3. Enter a port number, such as 5432, and click **Start**. You can disable the
-   **Open in browser** option if you don't want to open the port in your browser.
-
 ### Using pgAdmin
 
 You can use [pgAdmin](https://www.pgadmin.org/) to access the database. To do so,
@@ -80,8 +73,8 @@ the [pgAdmin documentation](https://www.pgadmin.org/docs/pgadmin4/latest/index.h
 2. In the **General** tab, give the server a meaningful name. In the **Connection**
    tab, enter the database credentials:
 
-   - The **Host name/address** is localhost.
-   - The **Port** is the port you forwarded.
+   - The **Host name/address** is the IP address of your instance.
+   - The **Port** is 5432.
    - The **Maintenance database** is postgres.
    - The **Username** and **Password** are the ones you found in the Secret.
 
@@ -104,6 +97,9 @@ directly from the **{{< resource type="pod" name="database" >}}** Pod.
 
 You will not need credentials to access the database from the Pod's CLI.
 
+The following steps need to be performed from the machine where the cluster is
+running, either by logging into it or by using a remote shell.
+
 ### Open a shell in the database Pod
 
 {{< include "open-database-shell.md" >}}
@@ -124,30 +120,6 @@ Once you have a shell in the database, you can perform
    ```bash
     exit
     ```
-
-## Access the database using Grafana
-
-You can use Grafana to visualize data from the database.
-
-### Add PostgreSQL as a data source
-
-1. Open the Grafana dashboard in your browser.
-2. From the **Configuration** (gear) icon, select **Data Sources**.
-3. Click **Add data source** and select PostgreSQL.
-4. Configure the connection to the database:
-
-   - The **Host** is {{< resource type="service-cluster" name="database" >}}.
-   - The **Database** is factoryinsight.
-   - The **User** and **Password** are the ones you found in the Secret.
-   - Set **TLS/SSL Mode** to require.
-   - Enable **TimescaleDB**.
-
-   Everything else can be left as the default.
-
-   ![Grafana PostgreSQL data source](/images/administration/grafana-postgresql-data-source.png)
-5. Click **Save & Test** to save the data source.
-6. Now click on **Explore** to start querying the database.
-7. You can also create dashboards using the newly created data source.
 
 <!-- discussion -->
 
