@@ -56,7 +56,9 @@ Follow these steps to access the Kafka Broker outside the cluster:
 1. Access your instance via SSH
 2. Execute this command to check the host port of the Kafka Broker:
 
-sudo $(which kubectl) get svc -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
+   ```bash
+   sudo $(which kubectl) get svc united-manufacturing-hub-kafka-external -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
+   ```
 
 3. In the `PORT(S)` column, you should be able to see the port with `9094:<host-port>/TCP`.
 4. To access the Kafka Broker, use `<instance-ip-address>:<host-port>`.
@@ -76,8 +78,7 @@ page.
 
 For any other microservice, follow these steps to enable the LoadBalancer service:
 
-1. Open {{< resource type="lens" name="name" >}} and navigate to **Network** >
-    **Services**.
+1. 
 2. Select the service and click the **Edit** button.
 3. Scroll down to the `status.loadBalancer` section and change it to the following:
 
