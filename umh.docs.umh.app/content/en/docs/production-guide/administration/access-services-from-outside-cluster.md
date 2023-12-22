@@ -54,15 +54,12 @@ The [Kafka Broker](/docs/reference/microservices/kafka-broker/) uses the service
 Follow these steps to access the Kafka Broker outside the cluster:
 
 1. Access your instance via SSH
-2. Execute this command:
+2. Execute this command to check the host port of the Kafka Broker:
 
-   ```bash
-   sudo $(which helm) upgrade --set redpanda.external.type=LoadBalancer united-manufacturing-hub united-manufacturing-hub/united-manufacturing-hub -n united-manufacturing-hub --reuse-values --version $(sudo $(which helm) get metadata united-manufacturing-hub -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml -o json | jq -r '.version') --kubeconfig /etc/rancher/k3s/k3s.yaml
-   ```
+sudo $(which kubectl) get svc -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
 
-3. Wait for the changes to be applied.
-
-Access the Kafka Broker at port 9094.
+3. In the `PORT(S)` column, you should be able to see the port with `9094:<host-port>/TCP`.
+4. To access the Kafka Broker, use `<instance-ip-address>:<host-port>`.
 
 ## Services with ClusterIP
 
@@ -73,7 +70,7 @@ LoadBalancer service.
 
 ### Create a LoadBalancer service
 
-If you are looking to expose th Kafka broker, follow the instructions in the
+If you are looking to expose the Kafka broker, follow the instructions in the
 [Access Kafka outside the cluster](/docs/production-guide/administration/access-kafka-outside-cluster/)
 page.
 
