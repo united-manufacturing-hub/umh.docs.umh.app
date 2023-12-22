@@ -64,6 +64,7 @@ Follow these steps to access the Kafka Broker outside the cluster:
 3. In the `PORT(S)` column, you should be able to see the port with `9094:<host-port>/TCP`.
 4. To access the Kafka Broker, use `<instance-ip-address>:<host-port>`.
 
+
 ## Services with ClusterIP
 
 Some of the microservices in the United Manufacturing Hub are exposed via
