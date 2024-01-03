@@ -13,7 +13,8 @@ aliases:
 ## {{% heading "prerequisites" %}}
 
 For this task, you need to have [PostgreSQL](https://www.postgresql.org/download/)
-installed on your machine.
+installed on your machine. Make sure that its version is a compatible with the version
+installed on the UMH.
 
 You also need to have enough space on your machine to store the backup. To check
 the size of the database, ssh into the system and follow the steps below:
@@ -30,6 +31,12 @@ Connect to the `umh_v2` or `factoryinsight` database:
 
 ```sql
 SELECT pg_size_pretty(pg_database_size('<database-name>'));
+```
+
+If you need, check the version of PostgreSQL with this command:
+
+```bash
+\! psql --version
 ```
 
 <!-- steps -->
@@ -60,12 +67,20 @@ machine:
 2. Run the following command:
 
    ```bash
-   pg_dump -h <REMOTE_HOST> -p 5432 -U factoryinsight -Fc -f <BACKUP_NAME>.bak factoryinsight
+   pg_dump -h <REMOTE_HOST> -p 5432 -U factoryinsight -Fc -f <BACKUP_NAME>.bak 
+   factoryinsight
    ```
 
    - `<REMOTE_HOST>` is the IP of the server where the database is running.
      Use `localhost` if you installed the United Manufacturing Hub using k3d.
    - `<BACKUP_NAME>` is the name of the backup file.
+
+3. Using `scp` (secure copy), save the `.bak` file on the server. If you use 
+Windows OS, you need to install it.
+
+   ```bash
+   scp <source-file-on-local-machine> <save-destination-on-server>
+   ```
 
 ### Grafana database
 
