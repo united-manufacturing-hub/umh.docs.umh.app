@@ -71,11 +71,20 @@ monitoring, and system optimization in industrial settings.
 
 You can view the Unified Namespace by using the Management Console like in the picture 
 below, which will automatically aggregate data from all connected instances / brokers; 
-it shows the topic structure and which data belongs to which namespace.
+it shows the topic structure and which data belongs to which namespace. The picture 
+shows data under the topic `umh/v1/pharma-genix/aachen/_historian/wheather/wheather`,
+where
+- `umh/v1` is a versioning prefix.
+- `pharma-genix` is a sample `enterprise` tag.
+- `aachen` is a sample `site` tag.
+- `_historian` is a schema tag. Data with this tag will be stored in the UMH's database.
+- `wheather/wheather` is a sample schema dependent context.
+
+You can find more detailed information about the topic structure [here](/docs/datamodel/messages).
 
 ![Data Dashboard](/images/features/unified-namespace/dataDashboardMC.png?width=80%)
 
-One can also use tools like [MQTT Explorer](https://mqtt-explorer.com/) 
+You can also use tools like [MQTT Explorer](https://mqtt-explorer.com/) 
 (not included in the UMH) or Redpanda Console (enabled by defualt, accessible 
 via port `8090`) to view data from a single instance (but single instance only).
 
