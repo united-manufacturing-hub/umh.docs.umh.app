@@ -103,13 +103,10 @@ Manufacturing Hub installation with an empty database.
 
 ### Copy the backup file to the database pod
 
-1. Open {{< resource type="lens" name="name" >}}.
-2. Launch a new terminal sesstion by clicking on the **+** button in the
-   bottom-left corner of the window.
-3. Run the following command to copy the backup file to the database pod:
+1. Run the following command to copy the backup file to the database pod:
 
    ```bash
-   kubectl cp /path/to/local/backup.bak {{< resource type="pod" name="database" >}}:/tmp/backup.bak
+   sudo $(which kubectl) cp <path-to-local>/backup.bak {{< resource type="pod" name="database" >}}:/tmp/backup.bak -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
    ```
 
    Replace `/path/to/local/backup.bak` with the path to the backup file on your
