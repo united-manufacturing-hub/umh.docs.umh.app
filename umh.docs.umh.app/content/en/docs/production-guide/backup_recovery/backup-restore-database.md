@@ -64,37 +64,47 @@ machine:
    If the folder does not exist, you can create it using the `mkdir` command or
    your file manager.
 
-2. Run the following command:
+2. Run the following command to dump the schema pre-data. :
 
    ```bash
-   pg_dump -h <REMOTE_HOST> -p 5432 -U factoryinsight -Fc -f <BACKUP_NAME>.bak factoryinsight
+   pg_dump -U factoryinsight -h <remote-host> -p 5432 -Fc -v --section=pre-data --exclude-schema="_timescaledb*" -f dump_pre_data.bak factoryinsight
    ```
 
-   - `<REMOTE_HOST>` is the IP of the server where the database is running.
-     Use `localhost` if you installed the United Manufacturing Hub using k3d.
-   - `<BACKUP_NAME>` is the name of the backup file.
+   - `<remote-host>` is the IP of the server where the database is running.
 
-### Grafana database
+   {{% notice note %}}
 
-If you want to backup the Grafana database, you can follow the same steps as
-above, but you need to replace any occurence of `factoryinsight` with
-`grafana`.
+   The output of the command does not include Timescale-specific schemas. 
+
+   {{% /notice %}}
+
+3. Run the following command to connect to the factoryinsight database:
+
+   ```bash
+   psql "postgres://factoryinsight:<password>@<server-IP>:5432/factoryinsight?sslmode=require"
+   ```
+
+   The default username for factoryinsight is `factoryinsight` and the password is `changeme`.
+
+4. Check the table list running `\dt` and run the following command for each table to save all data to `.csv` files:
+
+   ```sql
+   \COPY (SELECT * FROM <TABLE_NAME>) TO <TABLE_NAME>.csv CSV
+   ```
+
+### Grafana and umh_v2 database
+
+If you want to backup the Grafana or umh_v2 database, you can follow the same steps 
+as above, but you need to replace any occurence of `factoryinsight` with `grafana`.
 
 Additionally, you also need to write down the credentials in the
 {{< resource type="secret" name="grafana" >}} Secret, as they will be needed
 to access the dashboard after restoring the database.
 
+The default username for umh_v2 is `kafkatopostgresqlv2` and the password is `changemetoo`.
+
 ## Restoring the database
 
-{{% notice warning %}}
-
-This method works best on databases smaller than 100 GB. You can find more detailed 
-information in [the official documentation of TimescaleDB](https://docs.timescale.com/self-hosted/latest/migration/entire-database/). 
-Also, refer [this documentation](https://docs.timescale.com/self-hosted/latest/migration/entire-database/) 
-for larger databases to migrate schema and data separately or to restore your 
-hypertables.
-
-{{% /notice %}}
 
 For this section, we assume that you are restoring the data to a fresh United
 Manufacturing Hub installation with an empty database.
@@ -167,6 +177,14 @@ sudo $(which kubectl) scale deployment {{< resource type="deployment" name="kafk
 ```bash
 sudo $(which kubectl) scale deployment {{< resource type="deployment" name="kafkatopostgresql" >}} --replicas=1 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
 ```
+
+{{% notice note %}}
+
+Also, refer [this documentation](https://docs.timescale.com/self-hosted/latest/migration/entire-database/) 
+for larger databases to migrate schema and data separately or to restore your 
+hypertables.
+
+{{% /notice %}}
 
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
