@@ -89,7 +89,8 @@ definitions, as well as information on sequences, owners, and settings:
 
    The default password is `changeme`.
 
-4. Check the table list running `\dt` and run the following command for each table to save all data to `.csv` files:
+4. Check the table list running `\dt` and run the following command for each table 
+to save all data to `.csv` files:
 
    ```sql
    \COPY (SELECT * FROM <TABLE_NAME>) TO <TABLE_NAME>.csv CSV
@@ -191,7 +192,8 @@ with the following command:
    \COPY <table-name> FROM '<table-name>.csv' WITH (FORMAT CSV);
    ```
 
-6. Go back to the terminal connected to the server and take the database out of maintenance mode. Make sure that the databsae shell is open:
+6. Go back to the terminal connected to the server and take the database out of 
+maintenance mode. Make sure that the databsae shell is open:
 
    ```sql
    SELECT timescaledb_post_restore();
