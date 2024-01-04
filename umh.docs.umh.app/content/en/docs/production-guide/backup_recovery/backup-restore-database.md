@@ -70,7 +70,7 @@ machine:
    pg_dump -U factoryinsight -h <remote-host> -p 5432 -Fc -v --section=pre-data --exclude-schema="_timescaledb*" -f dump_pre_data.bak factoryinsight
    ```
 
-   - `<remote-host>` is the IP of the server where the database is running.
+   - `<remote-host>` is the IP of the server where the database (UMH instance) is running.
 
    {{% notice note %}}
 
@@ -109,43 +109,32 @@ The default username for umh_v2 is `kafkatopostgresqlv2` and the password is `ch
 For this section, we assume that you are restoring the data to a fresh United
 Manufacturing Hub installation with an empty database.
 
-### Copy the backup file to the database pod
-
-1. Using `scp` (secure copy), save the `.bak` file on the server. If you use 
-Windows OS, you need to install it. Run the following command on your local machine:
-
-   ```bash
-   scp <path-to-local-.bak-file> <umh-instance-ip>:<save-location-on-server>
-   ```
-
-2. Run the following command to copy the backup file to the database pod (on the server):
-
-   ```bash
-   sudo $(which kubectl) cp <path-to-host-.bak-file> {{< resource type="pod" name="database" >}}:/tmp/backup.bak -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
-   ```
-
-This step could take a while depending on the size of the backup file.
-
 ### Temporarly disable kafkatopostrgesql
+
+Run the following command to disable `kafkatopostgresql` temporarly: 
 
 <!-- tested in e2e #1343 -->
 ```bash
 sudo $(which kubectl) scale deployment {{< resource type="deployment" name="kafkatopostgresql" >}} --replicas=0 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
 ```
 
-### Open a shell in the database pod
-
-{{< include "open-database-shell" >}}
-
 ### Restore the database
 
-1. Drop the existing database:
+This section shows an example for restoring factoryinsight. If you want to restore 
+`umh_v2` or `grafana`, you need to replace any occurence of `factoryinsight` with 
+`umh_v2` or `grafana`.
+
+1. Connect to your server via SSH and run the following command:
+
+   {{< include "open-database-shell" >}}
+
+2. Drop the existing database:
 
    ```sql
-   DROP DATABASE factoryinsight;
+   DROP DATABASE factoryinsight WITH (FORCE);
    ```
 
-2. Create a new database:
+3. Create a new database:
 
    ```sql
    CREATE DATABASE factoryinsight;
@@ -153,19 +142,50 @@ sudo $(which kubectl) scale deployment {{< resource type="deployment" name="kafk
    CREATE EXTENSION IF NOT EXISTS timescaledb;
    ```
 
-3. Put the database in maintenance mode:
+4. Put the database in maintenance mode:
 
    ```sql
    SELECT timescaledb_pre_restore();
    ```
 
-4. Restore the database:
+5. Now, open a new terminal and restore schemas except Timescale-specific schemas 
+with the following command:
 
-   ```sql
-   \! pg_restore -Fc -d factoryinsight /tmp/backup.bak
+   ```bash
+   pg_restore -U factoryinsight -h 10.13.37.205 -p 5432 --no-owner -Fc -v -d factoryinsight <path-to-dump_pre_data.bak>
    ```
 
-5. Take the database out of maintenance mode:
+
+6. Connect to the database:
+
+    ```bash
+   psql "postgres://factoryinsight:<password>@<server-IP>:5432/factoryinsight?sslmode=require"
+   ```
+
+7. Restore hypertables:
+   - Commands for factoryinsight:
+      ```sql
+      SELECT create_hypertable('productTagTable', 'product_uid', chunk_time_interval => 100000);
+      SELECT create_hypertable('productTagStringTable', 'product_uid', chunk_time_interval => 100000);
+      SELECT create_hypertable('processValueStringTable', 'timestamp');
+      SELECT create_hypertable('stateTable', 'timestamp');
+      SELECT create_hypertable('countTable', 'timestamp');
+      SELECT create_hypertable('processValueTable', 'timestamp');
+      ```
+   - Commands for umh_v2
+      ```sql
+      SELECT create_hypertable('tag', 'timestamp');
+      SELECT create_hypertable('tag_string', 'timestamp');
+      ```
+   - Grafana database does not have hypertables by default.
+
+8. Run the follwoing SQL commands for each table to restore data into database:
+
+   ```sql
+   \copy <table-name> FROM '<table-name>.csv' WITH (FORMAT CSV);
+   ```
+
+6. Take the database out of maintenance mode:
 
    ```sql
    SELECT timescaledb_post_restore();
@@ -173,21 +193,15 @@ sudo $(which kubectl) scale deployment {{< resource type="deployment" name="kafk
 
 ### Enable kafkatopostgresql
 
+Run the following command to enable `kafkatopostgresql`:
+
 <!-- tested in e2e #1343 -->
 ```bash
 sudo $(which kubectl) scale deployment {{< resource type="deployment" name="kafkatopostgresql" >}} --replicas=1 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
 ```
 
-{{% notice note %}}
-
-Also, refer [this documentation](https://docs.timescale.com/self-hosted/latest/migration/entire-database/) 
-for larger databases to migrate schema and data separately or to restore your 
-hypertables.
-
-{{% /notice %}}
-
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
 
-- See the official [TimescaleDB migration guide](https://docs.timescale.com/self-hosted/latest/migration/entire-database/)
+- See the official [TimescaleDB migration guide](https://docs.timescale.com/self-hosted/latest/migration/schema-then-data/)
 - See the official [pg_dump documentation](https://www.postgresql.org/docs/current/app-pgdump.html)
