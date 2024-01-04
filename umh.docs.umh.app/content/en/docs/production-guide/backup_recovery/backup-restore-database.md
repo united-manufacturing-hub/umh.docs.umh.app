@@ -71,6 +71,8 @@ definitions, as well as information on sequences, owners, and settings:
    pg_dump -U factoryinsight -h <remote-host> -p 5432 -Fc -v --section=pre-data --exclude-schema="_timescaledb*" -f dump_pre_data.bak factoryinsight
    ```
 
+   Then, enter your password. The default for factoryinsight is `changeme`.
+
    - `<remote-host>` is the server's IP where the database (UMH instance) is running.
 
    {{% notice note %}}
@@ -85,7 +87,7 @@ definitions, as well as information on sequences, owners, and settings:
    psql "postgres://factoryinsight:<password>@<server-IP>:5432/factoryinsight?sslmode=require"
    ```
 
-   The default username for factoryinsight is `factoryinsight` and the password is `changeme`.
+   The default password is `changeme`.
 
 4. Check the table list running `\dt` and run the following command for each table to save all data to `.csv` files:
 
@@ -102,8 +104,8 @@ In addition, you need to write down the credentials in the
 {{< resource type="secret" name="grafana" >}} Secret, as they are necessary
 to access the dashboard after restoring the database.
 
-The default username for umh_v2 is `kafkatopostgresqlv2`, and the password is 
-`changemetoo`.
+The default username for `umh_v2` database is `kafkatopostgresqlv2`, and the password is 
+`changemetoo`. 
 
 ## Restoring the database
 
@@ -113,7 +115,7 @@ Manufacturing Hub installation with an empty database.
 
 ### Temporarly disable kafkatopostrgesql
 
-Run the following command: 
+Connect to your server via SSH and run the following command: 
 
 <!-- tested in e2e #1343 -->
 ```bash
@@ -123,10 +125,12 @@ sudo $(which kubectl) scale deployment {{< resource type="deployment" name="kafk
 ### Restore the database
 
 This section shows an example for restoring factoryinsight. If you want to restore 
-`umh_v2` or `grafana`, you need to replace any occurence of `factoryinsight` with 
-`umh_v2` or `grafana`.
+`grafana`, you need to replace any occurence of `factoryinsight` with `grafana`.
 
-1. Connect to your server via SSH and run the following command:
+For `umh_v2`, you should use `kafkatopostgresqlv2` for the user name and 
+`changemetoo` for the password.
+
+1. Make sure that your device is connected to server via SSH and run the following command:
 
    {{< include "open-database-shell" >}}
 
@@ -184,10 +188,10 @@ with the following command:
 8. Run the follwoing SQL commands for each table to restore data into database:
 
    ```sql
-   \copy <table-name> FROM '<table-name>.csv' WITH (FORMAT CSV);
+   \COPY <table-name> FROM '<table-name>.csv' WITH (FORMAT CSV);
    ```
 
-6. Take the database out of maintenance mode:
+6. Go back to the terminal connected to the server and take the database out of maintenance mode. Make sure that the databsae shell is open:
 
    ```sql
    SELECT timescaledb_post_restore();
