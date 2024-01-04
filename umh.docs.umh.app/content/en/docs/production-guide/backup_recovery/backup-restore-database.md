@@ -67,20 +67,12 @@ machine:
 2. Run the following command:
 
    ```bash
-   pg_dump -h <REMOTE_HOST> -p 5432 -U factoryinsight -Fc -f <BACKUP_NAME>.bak 
-   factoryinsight
+   pg_dump -h <REMOTE_HOST> -p 5432 -U factoryinsight -Fc -f <BACKUP_NAME>.bak factoryinsight
    ```
 
    - `<REMOTE_HOST>` is the IP of the server where the database is running.
      Use `localhost` if you installed the United Manufacturing Hub using k3d.
    - `<BACKUP_NAME>` is the name of the backup file.
-
-3. Using `scp` (secure copy), save the `.bak` file on the server. If you use 
-Windows OS, you need to install it.
-
-   ```bash
-   scp <source-file-on-local-machine> <save-destination-on-server>
-   ```
 
 ### Grafana database
 
@@ -94,23 +86,33 @@ to access the dashboard after restoring the database.
 
 ## Restoring the database
 
-{{< notice warning >}}
-This section is untested. Please report any issues you encounter.
-{{< /notice >}}
+{{% notice warning %}}
+
+This method works best on databases smaller than 100 GB. You can find more detailed 
+information in [the official documentation of TimescaleDB](https://docs.timescale.com/self-hosted/latest/migration/entire-database/). 
+Also, refer [this documentation](https://docs.timescale.com/self-hosted/latest/migration/entire-database/) 
+for larger databases to migrate schema and data separately or to restore your 
+hypertables.
+
+{{% /notice %}}
 
 For this section, we assume that you are restoring the data to a fresh United
 Manufacturing Hub installation with an empty database.
 
 ### Copy the backup file to the database pod
 
-1. Run the following command to copy the backup file to the database pod:
+1. Using `scp` (secure copy), save the `.bak` file on the server. If you use 
+Windows OS, you need to install it. Run the following command on your local machine:
 
    ```bash
-   sudo $(which kubectl) cp <path-to-local>/backup.bak {{< resource type="pod" name="database" >}}:/tmp/backup.bak -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
+   scp <path-to-local-.bak-file> <umh-instance-ip>:<save-location-on-server>
    ```
 
-   Replace `/path/to/local/backup.bak` with the path to the backup file on your
-   machine.
+2. Run the following command to copy the backup file to the database pod (on the server):
+
+   ```bash
+   sudo $(which kubectl) cp <path-to-host-.bak-file> {{< resource type="pod" name="database" >}}:/tmp/backup.bak -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
+   ```
 
 This step could take a while depending on the size of the backup file.
 
@@ -169,5 +171,5 @@ sudo $(which kubectl) scale deployment {{< resource type="deployment" name="kafk
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
 
-- See the official [TimescaleDB backup guide](https://docs.timescale.com/timescaledb/latest/how-to-guides/backup-and-restore/pg-dump-and-restore/)
+- See the official [TimescaleDB migration guide](https://docs.timescale.com/self-hosted/latest/migration/entire-database/)
 - See the official [pg_dump documentation](https://www.postgresql.org/docs/current/app-pgdump.html)
