@@ -33,6 +33,12 @@ Connect to the `factoryinsight` database:
 \c factoryinsight
 ```
 
+Or connect to the `umh_v2` database:
+
+```bash
+\c umh_v2
+```
+
 ## Choose the assets to delete
 
 You have multiple choices to delete assets, like deleting a single asset, or
