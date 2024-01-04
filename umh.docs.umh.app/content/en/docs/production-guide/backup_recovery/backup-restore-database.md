@@ -13,10 +13,10 @@ aliases:
 ## {{% heading "prerequisites" %}}
 
 For this task, you need to have [PostgreSQL](https://www.postgresql.org/download/)
-installed on your machine. Make sure that its version is a compatible with the version
+installed on your machine. Make sure that its version is compatible with the version
 installed on the UMH.
 
-You also need to have enough space on your machine to store the backup. To check
+Also, enough free space is required on your machine to store the backup. To check
 the size of the database, ssh into the system and follow the steps below:
 
 {{< include "open-database-shell" >}}
@@ -64,13 +64,14 @@ machine:
    If the folder does not exist, you can create it using the `mkdir` command or
    your file manager.
 
-2. Run the following command to dump the schema pre-data. :
+2. Run the following command to backup pre-data, which includes table and schema 
+definitions, as well as information on sequences, owners, and settings:
 
    ```bash
    pg_dump -U factoryinsight -h <remote-host> -p 5432 -Fc -v --section=pre-data --exclude-schema="_timescaledb*" -f dump_pre_data.bak factoryinsight
    ```
 
-   - `<remote-host>` is the IP of the server where the database (UMH instance) is running.
+   - `<remote-host>` is the server's IP where the database (UMH instance) is running.
 
    {{% notice note %}}
 
@@ -97,11 +98,12 @@ machine:
 If you want to backup the Grafana or umh_v2 database, you can follow the same steps 
 as above, but you need to replace any occurence of `factoryinsight` with `grafana`.
 
-Additionally, you also need to write down the credentials in the
-{{< resource type="secret" name="grafana" >}} Secret, as they will be needed
+In addition, you need to write down the credentials in the
+{{< resource type="secret" name="grafana" >}} Secret, as they are necessary
 to access the dashboard after restoring the database.
 
-The default username for umh_v2 is `kafkatopostgresqlv2` and the password is `changemetoo`.
+The default username for umh_v2 is `kafkatopostgresqlv2`, and the password is 
+`changemetoo`.
 
 ## Restoring the database
 
@@ -111,7 +113,7 @@ Manufacturing Hub installation with an empty database.
 
 ### Temporarly disable kafkatopostrgesql
 
-Run the following command to disable `kafkatopostgresql` temporarly: 
+Run the following command: 
 
 <!-- tested in e2e #1343 -->
 ```bash
