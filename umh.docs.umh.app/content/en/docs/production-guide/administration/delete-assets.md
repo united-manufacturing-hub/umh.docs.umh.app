@@ -165,10 +165,10 @@ a combination of the following filters:
 - `origin_id`
 
 To filter an SQL command, you can use the WHERE clause. For example, you can filter 
-by using `enterprise`, `site`, and `area`:
+by `enterprise`, `site`, and `area`:
 
 ```sql
-WHERE enterprise = `<your-enterprise>` AND site = `<your-site>` AND area = `<your-area>`;
+WHERE enterprise = '<your-enterprise>' AND site = '<your-site>' AND area = '<your-area>';
 ```
 
 You can use any combination of the filters, even just one of them.
