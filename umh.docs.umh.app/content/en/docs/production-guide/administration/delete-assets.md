@@ -51,7 +51,7 @@ To filter an SQL command, you can use the `WHERE` clause. For example, using all
 of the filters:
 
 ```sql
-WHERE assetid = `<asset-id>` AND location = `<location>` AND customer = `<customer>`;
+WHERE assetid = '<asset-id>' AND location = '<location>' AND customer = '<customer>';
 ```
 
 You can use any combination of the filters, even just one of them.
@@ -150,9 +150,49 @@ Connect to the `umh_v2` database:
 \c umh_v2
 ```
 
+### Choose the assets to delete
+You have multiple choices to delete assets, like deleting a single asset, or 
+deleting all assets in a location, or deleting all assets with a specific name.
+
+To do so, you can customize the SQL command using different filters. Specifically, 
+a combination of the following filters:
+
+- `enterprise`
+- `site`
+- `area`
+- `line`
+- `workcell`
+- `origin_id`
+
+To filter an SQL command, you can use the WHERE clause. For example, you can filter 
+by using `enterprise`, `site`, and `area`:
+
+```sql
+WHERE enterprise = `<your-enterprise>` AND site = `<your-site>` AND area = `<your-area>`;
+```
+
+You can use any combination of the filters, even just one of them.
+
+### Delete the assets
+Once you know the filters you want to use, you can use the following SQL commands 
+to delete assets:
+
+```sql
+BEGIN;
+WITH assets_to_be_deleted AS (SELECT id FROM asset <filter>)
+DELETE FROM tag WHERE asset_id IN (SELECT id FROM assets_to_be_deleted);
+
+WITH assets_to_be_deleted AS (SELECT id FROM asset <filter>)
+DELETE FROM tag_string WHERE asset_id IN (SELECT id FROM assets_to_be_deleted);
+
+WITH assets_to_be_deleted AS (SELECT id FROM asset <filter>)
+DELETE FROM asset WHERE id IN (SELECT id FROM assets_to_be_deleted);
+COMMIT;
+```
+
 <!-- discussion -->
 
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
 
-- See [Backing Up and Restoring the Database](/docs/production-guide/backup_recovery/backup-timescale)
+- See [Backing Up and Restoring the Database](/docs/production-guide/backup_recovery/backup-restore-database)
