@@ -114,13 +114,17 @@ The default username for `umh_v2` database is `kafkatopostgresqlv2`, and the pas
 For this section, we assume that you are restoring the data to a fresh United
 Manufacturing Hub installation with an empty database.
 
-### Temporarly disable kafkatopostrgesql
+### Temporarly disable kafkatopostrgesql, kafkatopostgresqlv2, and factoryinsight
 
-Connect to your server via SSH and run the following command: 
+Since `kafkatopostrgesql`, `kafkatopostgresqlv2`, and `factoryinsight` microservices 
+might write actual data into the database while restoring it, they should be 
+disabled. Connect to your server via SSH and run the following command: 
 
 <!-- tested in e2e #1343 -->
 ```bash
-sudo $(which kubectl) scale deployment {{< resource type="deployment" name="kafkatopostgresql" >}} --replicas=0 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
+sudo $(which kubectl) scale deployment {{< resource type="deployment" name="kafkatopostgresql" >}} --replicas=0 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml;
+sudo $(which kubectl) scale deployment {{< resource type="deployment" name="kafkatopostgresqlv2" >}} --replicas=0 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml;
+sudo $(which kubectl) scale deployment {{< resource type="deployment" name="factoryinsight" >}} --replicas=0 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
 ```
 
 ### Restore the database
@@ -138,7 +142,7 @@ For `umh_v2`, you should use `kafkatopostgresqlv2` for the user name and
 2. Drop the existing database:
 
    ```sql
-   DROP DATABASE factoryinsight WITH (FORCE);
+   DROP DATABASE factoryinsight;
    ```
 
 3. Create a new database:
@@ -186,7 +190,7 @@ with the following command:
       ```
    - Grafana database does not have hypertables by default.
 
-8. Run the follwoing SQL commands for each table to restore data into database:
+8. Run the following SQL commands for each table to restore data into database:
 
    ```sql
    \COPY <table-name> FROM '<table-name>.csv' WITH (FORMAT CSV);
@@ -199,13 +203,15 @@ maintenance mode. Make sure that the databsae shell is open:
    SELECT timescaledb_post_restore();
    ```
 
-### Enable kafkatopostgresql
+### Enable kafkatopostgresql, kafkatopostgresqlv2, and factoryinsight
 
-Run the following command to enable `kafkatopostgresql`:
+Run the following command to enable `kafkatopostgresql`, `kafkatopostgresqlv2`, and `factoryinsight`:
 
 <!-- tested in e2e #1343 -->
 ```bash
-sudo $(which kubectl) scale deployment {{< resource type="deployment" name="kafkatopostgresql" >}} --replicas=1 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
+sudo $(which kubectl) scale deployment {{< resource type="deployment" name="kafkatopostgresql" >}} --replicas=1 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml;
+sudo $(which kubectl) scale deployment {{< resource type="deployment" name="kafkatopostgresqlv2" >}} --replicas=1 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml;
+sudo $(which kubectl) scale deployment {{< resource type="deployment" name="factoryinsight" >}} --replicas=2 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
 ```
 
 <!-- Optional section; add links to information related to this topic. -->
