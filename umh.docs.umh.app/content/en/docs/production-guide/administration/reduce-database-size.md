@@ -54,39 +54,43 @@ Or connect to the `umh_v2` database:
 
 You can find sample SQL commands to enable data compression here:
 
-- An example for the `processvaluetable` table in the `factoryinsight` database:
+### Sample command for the processvaluetable in the factoryinsight database:
 
-  First, turn on compression:
+1. First, turn on compression:
 
-  ```sql
-  ALTER TABLE processvaluetable SET (timescaledb.compress, timescaledb.compress_segmentby = 'asset_id', timescaledb.compress_orderby = 'valuename');
-  ```
+    ```sql
+    ALTER TABLE processvaluetable SET (timescaledb.compress, timescaledb.compress_segmentby = 'asset_id', timescaledb.compress_orderby = 'valuename');
+    ```
+    This command set `asset_id` as the key for the compressed segments 
+    and orders the table by `valuename`.
 
-  Then, create a compression policy:
+2. Then, create a compression policy:
 
-  ```sql
-  SELECT add_compression_policy('processvaluetable', INTERVAL '7 days');
-  ```
+    ```sql
+    SELECT add_compression_policy('processvaluetable', INTERVAL '7 days');
+    ```
 
-  This command will set a compression policy on the `processvaluetable` table,
-  which will compress data older than 7 days.
+    This command will set a compression policy on the `processvaluetable` table,
+    which will compress data older than 7 days.
 
-- An example for the `tag` table in the `umh_v2` database:
+### Sample command for the tag table in the umh_v2 database:
 
-   First, turn on compression:
+1. First, turn on compression:
 
-  ```sql
-  ALTER TABLE tag SET (timescaledb.compress, timescaledb.compress_segmentby = 'asset_id', timescaledb.compress_orderby = 'name');
-  ```
+    ```sql
+    ALTER TABLE tag SET (timescaledb.compress, timescaledb.compress_segmentby = 'asset_id', timescaledb.compress_orderby = 'name');
+    ```
+    This command set `asset_id` as the key for the compressed segments 
+    and orders the table by `name`.
 
-  Then, create a compression policy:
+2. Then, create a compression policy:
 
-  ```sql
-  SELECT add_compression_policy('tag', INTERVAL '2 weeks');
-  ```
+    ```sql
+    SELECT add_compression_policy('tag', INTERVAL '2 weeks');
+    ```
 
-  This command will set a compression policy on the `tag` table,
-  which will compress data older than 2 weeks.
+    This command will set a compression policy on the `tag` table,
+    which will compress data older than 2 weeks.
 
 
 Refer to [the official documentation](https://docs.timescale.com/api/latest/compression/alter_table_compression/)
@@ -97,7 +101,7 @@ for more detailed information about these queries.
 
 You can find sample SQL commands to enable data retention here:
 
-- An example for the `processvaluetable` table in the `factoryinsight` database:
+### Sample command for the processvaluetable in the factoryinsight database:
 
   ```sql
   SELECT add_retention_policy('processvaluetable', INTERVAL '7 days');
@@ -106,7 +110,7 @@ You can find sample SQL commands to enable data retention here:
   This command will set a retention policy on the `processvaluetable` table, which
   will delete data older than 7 days.
 
-- An example for the `tag` table in the `umh_v2` database:
+### Sample command for the tag table in the umh_v2 database:
 
   ```sql
   SELECT add_retention_policy('tag', INTERVAL '3 months');
