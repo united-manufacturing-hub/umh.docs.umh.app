@@ -56,7 +56,7 @@ You can find sample SQL commands to enable data compression here:
 
 - An example for the `processvaluetable` table in the `factoryinsight` database:
 
- First, turn on compression:
+  First, turn on compression:
 
   ```sql
   ALTER TABLE processvaluetable SET (timescaledb.compress, timescaledb.compress_segmentby = 'asset_id', timescaledb.compress_orderby = 'valuename');
@@ -115,10 +115,17 @@ You can find sample SQL commands to enable data retention here:
   This command will set a retention policy on the `tag` table, which
   will delete data older than 3 months.
 
-Refer to [the official documentation](https://docs.timescale.com/api/latest/compression/alter_table_compression/)
+Refer to [the official documentation](https://docs.timescale.com/api/latest/data-retention/add_retention_policy/)
 for more detailed information about these queries.
 
 <!-- discussion -->
 
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
+
+- [Offcial documentation](https://docs.timescale.com/api/latest/compression/alter_table_compression/) 
+how to turn on compression.
+- For more detailed information about creating a compression policy, 
+visit [this documentation](https://docs.timescale.com/api/latest/compression/add_compression_policy/).
+- [Documentation](https://docs.timescale.com/api/latest/data-retention/add_retention_policy/) 
+about data retention.
