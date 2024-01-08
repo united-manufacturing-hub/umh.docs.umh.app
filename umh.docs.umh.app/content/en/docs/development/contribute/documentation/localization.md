@@ -231,7 +231,7 @@ To find source files for your target version:
 |----------------|----------------------------------------------------------------------------------|
 | Latest version | [`main`](https://github.com/united-manufacturing-hub/umh.docs.umh.app/tree/main) |
 
-The `main` branch holds content for the current release `{{< latest-version >}}`.
+The `main` branch holds content for the current release `{{< latest-umh-version >}}`.
 
 ### Site strings in i18n
 
