@@ -124,7 +124,7 @@ for more detailed information about these queries.
 ## {{% heading "whatsnext" %}}
 
 - [Offcial documentation](https://docs.timescale.com/api/latest/compression/alter_table_compression/) 
-how to turn on compression.
+explains how to turn on compression.
 - For more detailed information about creating a compression policy, 
 visit [this documentation](https://docs.timescale.com/api/latest/compression/add_compression_policy/).
 - [Documentation](https://docs.timescale.com/api/latest/data-retention/add_retention_policy/) 
