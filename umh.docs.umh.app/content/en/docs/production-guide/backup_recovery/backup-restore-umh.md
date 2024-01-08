@@ -165,13 +165,19 @@ Each component of the United Manufacturing Hub can be restored separately, in
 order to allow for more flexibility and to reduce the damage in case of a
 failure.
 
-### Copy kubeconfig file (for flatcar)
+### Copy kubeconfig file
 
 1. Move to the folder on the server where the kubeconfig file is located:
 
    ```bash
    cd /etc/rancher/k3s
    ```
+
+   {{% notice tip %}}
+   This guide assumes that the kubeconfig file is located at 
+   `/etc/rancher/k3s/k3s.yaml`. The location depends on your 
+   environment and may differ.
+   {{% /notice %}}
 
 2. Show the content of `k3s.yaml` with the following command and copy the output:
 
