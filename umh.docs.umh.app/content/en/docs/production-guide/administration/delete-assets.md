@@ -23,7 +23,9 @@ see [Backing Up and Restoring the Database](/docs/production-guide/backup_recove
 
 <!-- steps -->
 
-## Open the database shell
+## Delete assets from factoryinsight
+If you want to delete assets from the `umh_v2` database, go to [this section](/docs/production-guide/administration/delete-assets/#delete-assets-from-umh_v2).
+### Open the database shell
 
 {{< include "open-database-shell.md" >}}
 
@@ -33,7 +35,7 @@ Connect to the `factoryinsight` database:
 \c factoryinsight
 ```
 
-## Choose the assets to delete
+### Choose the assets to delete
 
 You have multiple choices to delete assets, like deleting a single asset, or
 deleting all assets in a location, or deleting all assets with a specific name.
@@ -41,7 +43,7 @@ deleting all assets in a location, or deleting all assets with a specific name.
 To do so, you can customize the SQL command using different filters. Specifically,
 a combination of the following filters:
 
-- `assetname`
+- `assetid`
 - `location`
 - `customer`
 
@@ -49,7 +51,7 @@ To filter an SQL command, you can use the `WHERE` clause. For example, using all
 of the filters:
 
 ```sql
-WHERE assetname = <my-asset> AND location = <my-location> AND customer = <my-customer>;
+WHERE assetid = '<asset-id>' AND location = '<location>' AND customer = '<customer>';
 ```
 
 You can use any combination of the filters, even just one of them.
@@ -59,28 +61,28 @@ Here are some examples:
 - Delete all assets with the same name  from any location and any customer:
 
   ```sql
-  WHERE assetname = '<asset-name>'
+  WHERE assetid = '<asset-id>'
   ```
 
 - Delete all assets in a specific location:
 
   ```sql
-   WHERE location = '<location-name>'
+   WHERE location = '<location>'
    ```
 
 - Delete all assets with the same name in a specific location:
 
   ```sql
-  WHERE assetname = '<asset-name>' AND location = '<location-name>'
+  WHERE assetid = '<asset-id>' AND location = '<location>'
   ```
 
 - Delete all assets with the same name in a specific location for a single customer:
 
   ```sql
-  WHERE assetname = 'my-asset' AND location = 'my-location' AND customer = 'customer'
+  WHERE assetid = '<asset-id>' AND location = '<location>' AND customer = '<customer>'
   ```
 
-## Delete the assets
+### Delete the assets
 
 Once you know the filters you want to use, you can use the following SQL commands
 to delete assets:
@@ -135,9 +137,62 @@ you used the track&trace feature:
    DELETE FROM uniqueproducttable WHERE asset_id IN (SELECT id FROM assets_to_be_deleted);
    ```
 
+<!-- umh_v2 -->
+## Delete assets from umh_v2
+
+### Open the database shell
+
+{{< include "open-database-shell.md" >}}
+
+Connect to the `umh_v2` database:
+
+```bash
+\c umh_v2
+```
+
+### Choose the assets to delete
+You have multiple choices to delete assets, like deleting a single asset, or 
+deleting all assets in a location, or deleting all assets with a specific name.
+
+To do so, you can customize the SQL command using different filters. Specifically, 
+a combination of the following filters:
+
+- `enterprise`
+- `site`
+- `area`
+- `line`
+- `workcell`
+- `origin_id`
+
+To filter an SQL command, you can use the WHERE clause. For example, you can filter 
+by `enterprise`, `site`, and `area`:
+
+```sql
+WHERE enterprise = '<your-enterprise>' AND site = '<your-site>' AND area = '<your-area>';
+```
+
+You can use any combination of the filters, even just one of them.
+
+### Delete the assets
+Once you know the filters you want to use, you can use the following SQL commands 
+to delete assets:
+
+```sql
+BEGIN;
+WITH assets_to_be_deleted AS (SELECT id FROM asset <filter>)
+DELETE FROM tag WHERE asset_id IN (SELECT id FROM assets_to_be_deleted);
+
+WITH assets_to_be_deleted AS (SELECT id FROM asset <filter>)
+DELETE FROM tag_string WHERE asset_id IN (SELECT id FROM assets_to_be_deleted);
+
+WITH assets_to_be_deleted AS (SELECT id FROM asset <filter>)
+DELETE FROM asset WHERE id IN (SELECT id FROM assets_to_be_deleted);
+COMMIT;
+```
+
 <!-- discussion -->
 
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
 
-- See [Backing Up and Restoring the Database](/docs/production-guide/backup_recovery/backup-timescale)
+- See [Backing Up and Restoring the Database](/docs/production-guide/backup_recovery/backup-restore-database)
