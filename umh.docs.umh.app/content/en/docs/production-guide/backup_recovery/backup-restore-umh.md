@@ -73,13 +73,19 @@ sudo $(which kubectl) scale statefulset {{< resource type="statefulset" name="ka
 sudo $(which kubectl) scale statefulset {{< resource type="statefulset" name="mqttbroker" >}} --replicas=0 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
 ```
 
-### Copy kubeconfig file (for flatcar)
+### Copy kubeconfig file
 
 1. Move to the folder on the server where the kubeconfig file is located:
 
    ```bash
    cd /etc/rancher/k3s
    ```
+
+   {{% notice tip %}}
+   This guide assumes that the kubeconfig file is located at 
+   `/etc/rancher/k3s/k3s.yaml`. The location depends on your 
+   environment and may differ.
+   {{% /notice %}}
 
 2. Show the content of `k3s.yaml` with the following command and copy the output:
 
@@ -107,13 +113,13 @@ The backup script is located inside the folder you downloaded earlier.
 1. Open a terminal and navigate inside the folder.
 
    ```powershell
-   cd <folder-path>
+   cd <FOLDER_PATH>
    ```
 
 2. Run the script:
 
    ```powershell
-   .\backup.ps1 -IP <ip-of-the-server> -GrafanaToken <grafana-api-key> -KubeconfigPath <path-to-kubeconfig-saved-locally>
+   .\backup.ps1 -IP <IP_OF_THE_SERVER> -GrafanaToken <GRAFANA_API_KEY> -KubeconfigPath <PATH_TO_KUBECONFIG_SAVED_LOCALLY>
    ```
 
    You can find a list of all available parameters down below.
