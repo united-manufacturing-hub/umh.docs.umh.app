@@ -55,7 +55,7 @@ SELECT pg_size_pretty(pg_database_size('<database-name>'));
 
 Create a Grafana API Token for an admin user by following these steps:
 1. Open the Grafana UI in your browser and log in with an admin user.
-2. Click on the **Settings** icon in the left sidebar and select **API Keys**.
+2. Click on the **Configuration** icon in the left sidebar and select **API Keys**.
 3. Give the API key a name and change its role to **Admin**.
 4. Optionally set an expiration date.
 5. Click **Add**.
@@ -73,6 +73,32 @@ sudo $(which kubectl) scale statefulset {{< resource type="statefulset" name="ka
 sudo $(which kubectl) scale statefulset {{< resource type="statefulset" name="mqttbroker" >}} --replicas=0 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
 ```
 
+### Copy kubeconfig file (for flatcar)
+
+1. Move to the folder on the server where the kubeconfig file is located:
+
+   ```bash
+   cd /etc/rancher/k3s
+   ```
+
+2. Show the content of `k3s.yaml` with the following command and copy the output:
+
+   ```bash
+   sudo cat k3s.yaml
+   ```
+
+3. Create a `.yaml` file on your local device and paste the content in it.
+
+4. Adjust the server's IP address under `clusters` &rArr; `cluster` &rArr; `server`, then save it:
+      ```yaml
+      apiVersion: v1
+      clusters:
+      - cluster:
+         certificate-authority-data: xxx
+         server: https://<your-server-ip>:6443
+      
+      ```
+
 ### Backup using the script
 
 The backup script is located inside the folder you downloaded earlier.
@@ -86,7 +112,7 @@ The backup script is located inside the folder you downloaded earlier.
 2. Run the script:
 
    ```powershell
-   .\backup.ps1 -IP <IP_OF_THE_SERVER> -GrafanaToken <GRAFANA_API_KEY> -KubeconfigPath <PATH_TO_KUBECONFIG>
+   .\backup.ps1 -IP <ip-of-the-server> -GrafanaToken <grafana-api-key> -KubeconfigPath <path-to-kubeconfig-saved-locally>
    ```
 
    You can find a list of all available parameters down below.
@@ -148,7 +174,7 @@ To restore the Grafana dashboards, you first need to create a Grafana API Key
 for an admin user in the new cluster by following these steps:
 
 1. Open the Grafana UI in your browser and log in with an admin user.
-2. Click on the **Settings** icon in the left sidebar and select **API Keys**.
+2. Click on the **Configuration** icon in the left sidebar and select **API Keys**.
 3. Give the API key a name and change its role to **Admin**.
 4. Optionally set an expiration date.
 5. Click **Add**.
