@@ -44,29 +44,63 @@ Connect to the `factoryinsight` database:
 \c factoryinsight
 ```
 
-## Enable data compression
+Or connect to the `umh_v2` database:
 
-To enable data compression, you need to execute the following SQL command from
-the database shell:
-
-```sql
-SELECT add_retention_policy('processvaluetable', INTERVAL '7 days');
+```bash
+\c umh_v2
 ```
 
-This command will set a retention policy on the `processvaluetable` table, which
-will delete data older than 7 days.
+## Enable data compression
+
+You can find sample SQL commands to enable data compression here:
+
+- An example for the `processvaluetable` table in the `factoryinsight` database:
+
+  ```sql
+  SELECT add_compression_policy('processvaluetable', INTERVAL '7 days');
+  ```
+
+  This command will set a compression policy on the `processvaluetable` table,
+  which will compress data older than 7 days.
+
+- An example for the `tag` table in the `umh_v2` database:
+
+  ```sql
+  SELECT add_compression_policy('tag', INTERVAL '2 weeks');
+  ```
+
+  This command will set a compression policy on the `tag` table,
+  which will compress data older than 2 weeks.
+
+
+To get more detailed information about this query, refer 
+[the official documentation](https://docs.timescale.com/api/latest/compression/add_compression_policy/).
+
 
 ## Enable data retention
 
-To enable data retention, you need to execute the following SQL command from the
-database shell:
+You can find sample SQL commands to enable data retention here:
 
-```sql
-SELECT add_compression_policy('processvaluetable', INTERVAL '7 days');
-```
+- An example for the `processvaluetable` table in the `factoryinsight` database:
 
-This command will set a compression policy on the `processvaluetable` table,
-which will compress data older than 7 days.
+  ```sql
+  SELECT add_retention_policy('processvaluetable', INTERVAL '7 days');
+  ```
+
+  This command will set a retention policy on the `processvaluetable` table, which
+  will delete data older than 7 days.
+
+- An example for the `tag` table in the `umh_v2` database:
+
+  ```sql
+  SELECT add_retention_policy('tag', INTERVAL '3 months');
+  ```
+
+  This command will set a retention policy on the `tag` table, which
+  will delete data older than 3 months.
+
+To get more detailed information about this query, refer 
+[the official documentation](https://docs.timescale.com/api/latest/data-retention/add_retention_policy/).
 
 <!-- discussion -->
 
