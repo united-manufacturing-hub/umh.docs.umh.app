@@ -89,7 +89,8 @@ sudo $(which kubectl) scale statefulset {{< resource type="statefulset" name="mq
 
 3. Create a `.yaml` file on your local device and paste the content in it.
 
-4. Adjust the server's IP address under `clusters` &rArr; `cluster` &rArr; `server`, then save it:
+4. Adjust the server's IP address under `clusters` &rArr; `cluster` &rArr; `server`, 
+then save it:
       ```yaml
       apiVersion: v1
       clusters:
@@ -106,7 +107,7 @@ The backup script is located inside the folder you downloaded earlier.
 1. Open a terminal and navigate inside the folder.
 
    ```powershell
-   cd <FOLDER_PATH>
+   cd <folder-path>
    ```
 
 2. Run the script:
@@ -158,6 +159,33 @@ Each component of the United Manufacturing Hub can be restored separately, in
 order to allow for more flexibility and to reduce the damage in case of a
 failure.
 
+### Copy kubeconfig file (for flatcar)
+
+1. Move to the folder on the server where the kubeconfig file is located:
+
+   ```bash
+   cd /etc/rancher/k3s
+   ```
+
+2. Show the content of `k3s.yaml` with the following command and copy the output:
+
+   ```bash
+   sudo cat k3s.yaml
+   ```
+
+3. Create a `.yaml` file on your local device and paste the content in it.
+
+4. Adjust the server's IP address under `clusters` &rArr; `cluster` &rArr; `server`, 
+then save it:
+      ```yaml
+      apiVersion: v1
+      clusters:
+      - cluster:
+         certificate-authority-data: xxx
+         server: https://<your-server-ip>:6443
+      
+      ```
+
 ### Cluster configuration
 To restore the Kubernetes cluster, execute the `.\restore-helm.ps1` script with
 the following parameters:
@@ -205,6 +233,19 @@ following parameters:
    ````powershell
    .\restore-timescale.ps1 -Ip <IP_OF_THE_SERVER> -BackupPath <PATH_TO_BACKUP_FOLDER> -PatroniSuperUserPassword <DATABASE_PASSWORD>
    ````
+
+## Troubleshooting
+### Unable to connect to the server: x509: certificate signed ...
+This issue can occur when the device's IP address changes from DHCP to static 
+after installation. A quick solution is skipping TLS validation. If you want 
+to enable `insecure-skip-tls-verify` option, run the following command on 
+the instance's shell **before** copying kubeconfig on the server:
+
+   ```bash
+   sudo $(which kubectl) config set-cluster default --insecure-skip-tls-verify=true --kubeconfig /etc/rancher/k3s/k3s.yaml
+   ```
+
+
 
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
