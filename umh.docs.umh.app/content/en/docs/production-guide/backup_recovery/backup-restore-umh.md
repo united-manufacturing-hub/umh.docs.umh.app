@@ -12,7 +12,8 @@ This page describes how to back up the following:
 - All Node-RED flows
 - All Grafana dashboards
 - The Helm values used for installing the {{< resource type="helm" name="release" >}} release
-- All the contents of the United Manufacturing Hub database
+- All the contents of the United Manufacturing Hub database (`factoryinsight` and `umh_v2`)
+- The Management Console Companion's setting
 
 It does **not** back up:
 - Additional databases other than the United Manufacturing Hub default database
