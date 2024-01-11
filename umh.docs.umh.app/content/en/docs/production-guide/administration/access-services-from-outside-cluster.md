@@ -69,8 +69,9 @@ Follow these steps to access the Kafka Broker outside the cluster:
 
 Some of the microservices in the United Manufacturing Hub are exposed via
 a ClusterIP service. That means that they are only accessible from within the
-cluster itself. To access them from outside the cluster, you need to create a
-LoadBalancer service.
+cluster itself. To access them from outside the cluster, you have to either [create a
+LoadBalancer service](/docs/production-guide/administration/access-services-from-outside-cluster/#create-a-loadbalancer-service) 
+or expose a microservice by [port forwarding](/docs/production-guide/administration/access-services-from-outside-cluster/#port-forwarding).
 
 ### Create a LoadBalancer service
 
@@ -110,6 +111,12 @@ If you don't want to create a LoadBalancer service, effectively exposing the
 microservice to anyone that has access to the host IP address, you can forward 
 the port to your local machine.
 
+{{% notice warning %}}
+Port forwarding can be unstable, especially if the connection to the cluster is
+slow. If you are experiencing issues, try to create a LoadBalancer service
+instead.
+{{% /notice %}}
+
 1. Execute the following command to list the services and note the name of the one 
 you want to port-forward and the internal port that it use.
    ```bash
@@ -132,12 +139,6 @@ you want to port-forward and the internal port that it use.
 
    You can now access the service using the IP address of the node and 
    the port you choose.
-
-{{< notice warning >}}
-Port forwarding can be unstable, especially if the connection to the cluster is
-slow. If you are experiencing issues, try to create a LoadBalancer service
-instead.
-{{< /notice >}}
 
 <!-- discussion -->
 
