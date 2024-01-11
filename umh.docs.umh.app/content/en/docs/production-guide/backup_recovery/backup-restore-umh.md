@@ -38,15 +38,25 @@ the size of the database, ssh into the system and follow the steps below:
 
 Connect to the `umh_v2` or `factoryinsight` database:
 
-```bash
-\c <database-name>
-```
+{{< tabs name="connect_db" >}}
+  {{< tab name="factoryinsight" codelang="sql" >}}
+  \c factoryinsight
+  {{< /tab >}}
+  {{< tab name="umh_v2" codelang="sql" >}}
+  \c umh_v2
+  {{< /tab >}}
+  {{< /tabs >}}
 
  Run the following command to get the size of the database:
 
-```sql
-SELECT pg_size_pretty(pg_database_size('<database-name>'));
-```
+{{< tabs name="get_size_db" >}}
+  {{< tab name="factoryinsight" codelang="sql" >}}
+  SELECT pg_size_pretty(pg_database_size('factoryinsight'));
+  {{< /tab >}}
+  {{< tab name="umh_v2" codelang="sql" >}}
+  SELECT pg_size_pretty(pg_database_size('umh_v2'));
+  {{< /tab >}}
+  {{< /tabs >}}
 
 <!-- steps -->
 ## Backup
