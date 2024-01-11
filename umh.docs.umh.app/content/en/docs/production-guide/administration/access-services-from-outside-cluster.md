@@ -69,17 +69,22 @@ Follow these steps to access the Kafka Broker outside the cluster:
 
 Some of the microservices in the United Manufacturing Hub are exposed via
 a ClusterIP service. That means that they are only accessible from within the
-cluster itself. To access them from outside the cluster, you have to either [create a
-LoadBalancer service](/docs/production-guide/administration/access-services-from-outside-cluster/#create-a-loadbalancer-service) 
-or expose a microservice by [port forwarding](/docs/production-guide/administration/access-services-from-outside-cluster/#port-forwarding).
+cluster itself. There are two options for enabling access them from outside the cluster: 
+- [Creating a LoadBalancer service](/docs/production-guide/administration/access-services-from-outside-cluster/#create-a-loadbalancer-service):
+A LoadBalancer is a service that exposes a set of Pods on the same network 
+as the cluster, but not necessarily to the entire internet.
+- [Port forwarding](/docs/production-guide/administration/access-services-from-outside-cluster/#port-forwarding):
+You can just forward the port of a service to your local machine.
+
+{{% notice warning %}}
+Port forwarding can be unstable, especially if the connection to the cluster is
+slow. If you are experiencing issues, try to create a LoadBalancer service
+instead.
+{{% /notice %}}
 
 ### Create a LoadBalancer service
 
-If you are looking to expose the Kafka broker, follow the instructions in the
-[Access Kafka outside the cluster](/docs/production-guide/administration/access-kafka-outside-cluster/)
-page.
-
-For any other microservice, follow these steps to enable the LoadBalancer service:
+Follow these steps to enable the LoadBalancer service for the corresponding microservice:
 
 1. Execute the following command to list the services and note the name of 
 the one you want to access.
@@ -106,16 +111,6 @@ the one you want to access.
    be updated. Now, you can access the service at the configured address.
 
 ### Port forwarding
-
-If you don't want to create a LoadBalancer service, effectively exposing the
-microservice to anyone that has access to the host IP address, you can forward 
-the port to your local machine.
-
-{{% notice warning %}}
-Port forwarding can be unstable, especially if the connection to the cluster is
-slow. If you are experiencing issues, try to create a LoadBalancer service
-instead.
-{{% /notice %}}
 
 1. Execute the following command to list the services and note the name of the one 
 you want to port-forward and the internal port that it use.
