@@ -38,17 +38,16 @@ However, data may be less accurate.
 
 {{< include "open-database-shell.md" >}}
 
-Connect to the `factoryinsight` database:
+Connect to the corresponding database:
 
-```bash
-\c factoryinsight
-```
-
-Or connect to the `umh_v2` database:
-
-```bash
-\c umh_v2
-```
+{{< tabs name="connect_db" >}}
+  {{< tab name="factoryinsight" codelang="sql" >}}
+  \c factoryinsight
+  {{< /tab >}}
+  {{< tab name="umh_v2" codelang="sql" >}}
+  \c umh_v2
+  {{< /tab >}}
+  {{< /tabs >}}
 
 ## Enable data compression
 
@@ -56,7 +55,7 @@ You can find sample SQL commands to enable data compression here:
 
 ### Sample command for the processvaluetable in the factoryinsight database:
 
-1. First, turn on compression:
+1. The first step is to turn on data compression on the target table, and set the compression options. Refer to the [TimescaleDB documentation](https://docs.timescale.com/api/latest/compression/alter_table_compression/) for a full list of options.
 
     ```sql
     ALTER TABLE processvaluetable SET (timescaledb.compress, timescaledb.compress_segmentby = 'asset_id', timescaledb.compress_orderby = 'valuename');
@@ -64,7 +63,7 @@ You can find sample SQL commands to enable data compression here:
     This command set `asset_id` as the key for the compressed segments 
     and orders the table by `valuename`.
 
-2. Then, create a compression policy:
+2. Then, you have to create the compression policy. The interval determines the age that the chunks of data need to reach before being compressed. Read the [official documentation](https://docs.timescale.com/api/latest/compression/add_compression_policy/) for more information.
 
     ```sql
     SELECT add_compression_policy('processvaluetable', INTERVAL '7 days');
@@ -75,7 +74,7 @@ You can find sample SQL commands to enable data compression here:
 
 ### Sample command for the tag table in the umh_v2 database:
 
-1. First, turn on compression:
+1. The first step is to turn on data compression on the target table, and set the compression options. Refer to the [TimescaleDB documentation](https://docs.timescale.com/api/latest/compression/alter_table_compression/) for a full list of options.
 
     ```sql
     ALTER TABLE tag SET (timescaledb.compress, timescaledb.compress_segmentby = 'asset_id', timescaledb.compress_orderby = 'name');
@@ -83,7 +82,9 @@ You can find sample SQL commands to enable data compression here:
     This command set `asset_id` as the key for the compressed segments 
     and orders the table by `name`.
 
-2. Then, create a compression policy:
+2. Then, you have to create the compression policy. The interval determines 
+the age that the chunks of data need to reach before being compressed. 
+Read the [official documentation](https://docs.timescale.com/api/latest/compression/add_compression_policy/) for more information.
 
     ```sql
     SELECT add_compression_policy('tag', INTERVAL '2 weeks');
@@ -93,34 +94,26 @@ You can find sample SQL commands to enable data compression here:
     which will compress data older than 2 weeks.
 
 
-Refer to [the official documentation](https://docs.timescale.com/api/latest/compression/alter_table_compression/)
-for more detailed information about these queries.
-
-
 ## Enable data retention
 
 You can find sample SQL commands to enable data retention here:
 
-### Sample command for the processvaluetable in the factoryinsight database:
+### Sample command for factoryinsight and umh_v2 databases:
 
-  ```sql
+  Enabling data retention consists in only adding the policy with the desired 
+  retention interval. Refer to [the official documentation](https://docs.timescale.com/api/latest/data-retention/add_retention_policy/) 
+  for more detailed information about these queries.
+
+  {{< tabs name="retention_sample" >}}
+  {{< tab name="factoryinsight" codelang="sql" >}}
+  -- Set a retention policy on the `processvaluetable` table, which will delete data older than 7 days.
   SELECT add_retention_policy('processvaluetable', INTERVAL '7 days');
-  ```
-
-  This command will set a retention policy on the `processvaluetable` table, which
-  will delete data older than 7 days.
-
-### Sample command for the tag table in the umh_v2 database:
-
-  ```sql
+  {{< /tab >}}
+  {{< tab name="umh_v2" codelang="sql" >}}
+  -- set a retention policy on the `tag` table, which will delete data older than 3 months.
   SELECT add_retention_policy('tag', INTERVAL '3 months');
-  ```
-
-  This command will set a retention policy on the `tag` table, which
-  will delete data older than 3 months.
-
-Refer to [the official documentation](https://docs.timescale.com/api/latest/data-retention/add_retention_policy/)
-for more detailed information about these queries.
+  {{< /tab >}}
+  {{< /tabs >}}
 
 <!-- discussion -->
 
