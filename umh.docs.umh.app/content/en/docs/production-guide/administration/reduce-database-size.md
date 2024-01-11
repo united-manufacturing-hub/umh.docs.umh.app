@@ -120,9 +120,6 @@ You can find sample SQL commands to enable data retention here:
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
 
-- [Offcial documentation](https://docs.timescale.com/api/latest/compression/alter_table_compression/) 
+- Learn how to [delete assets from the database](/docs/production-guide/administration/delete-assets) 
 explains how to turn on compression.
-- For more detailed information about creating a compression policy, 
-visit [this documentation](https://docs.timescale.com/api/latest/compression/add_compression_policy/).
-- [Documentation](https://docs.timescale.com/api/latest/data-retention/add_retention_policy/) 
-about data retention.
+- Learn how to [change the language in factoryinsight](/docs/production-guide/administration/change-factoryinsight-language).
