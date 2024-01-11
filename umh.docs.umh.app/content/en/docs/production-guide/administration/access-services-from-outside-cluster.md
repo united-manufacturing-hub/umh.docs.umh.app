@@ -80,17 +80,16 @@ page.
 
 For any other microservice, follow these steps to enable the LoadBalancer service:
 
-1. Execute the following command to get the list of available services and remember 
-   the service to be exposed.
+1. Execute the following command to list the services and note the name of 
+the one you want to access.
    ```bash
    sudo $(which kubectl) get svc -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
    ```
-2. To edit the service, run the following command:
+2. Start editing the service configuration by running this command:
    ```bash
    sudo $(which kubectl) edit svc <service-name> -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
    ```
-3. It will allows you to edit the configuration. Go to the `status.loadBalancer` 
-   section and change it to the following:
+3. Find the `status.loadBalancer` section and update it to the following:
 
    ```yaml
    status:
@@ -103,7 +102,7 @@ For any other microservice, follow these steps to enable the LoadBalancer servic
 4. Go to the `spec.type` section and change the value from `ClusterIP` to
    `LoadBalancer`. 
 5. After saving, your changes will be applied automatically and the service will 
-   be updated. Now, you can access the service with the configured address.
+   be updated. Now, you can access the service at the configured address.
 
 ### Port forwarding
 
@@ -111,8 +110,8 @@ If you don't want to create a LoadBalancer service, effectively exposing the
 microservice to anyone that has access to the host IP address, you can forward 
 the port to your local machine.
 
-1. Execute the following command to get the list of available services and remember 
-   the service to be exposed.
+1. Execute the following command to list the services and note the name of the one 
+you want to port-forward and the internal port that it use.
    ```bash
    sudo $(which kubectl) get svc -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
    ```
@@ -120,6 +119,10 @@ the port to your local machine.
    ```bash
    sudo $(which kubectl) port-forward service/<your-service> <local-port>:<remote-port> -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
    ```
+   Where `<local-port>` is the port on the host that you want to use, 
+   and `<remote-port>` is the service port that you noted before. 
+   Usually, it's good practice to pick a high number (greater than 30000) 
+   for the host port, in order to avoid conflicts.
 3. You should be able to see logs like:
    ```text
    Forwarding from 127.0.0.1:31922 -> 9121
@@ -127,7 +130,8 @@ the port to your local machine.
    Handling connection for 31922
    ```
 
-   Now, you can access to the service from the shown address.
+   You can now access the service using the IP address of the node and 
+   the port you choose.
 
 {{< notice warning >}}
 Port forwarding can be unstable, especially if the connection to the cluster is
