@@ -51,7 +51,7 @@ Connect to the corresponding database:
 
 ## Enable data compression
 
-You can find sample SQL commands to enable data compression here:
+You can find sample SQL commands to enable data compression here.
 
 ### Sample command for the processvaluetable in the factoryinsight database:
 
@@ -90,7 +90,7 @@ Read the [official documentation](https://docs.timescale.com/api/latest/compress
 
 ## Enable data retention
 
-You can find sample SQL commands to enable data retention here:
+You can find sample SQL commands to enable data retention here.
 
 ### Sample command for factoryinsight and umh_v2 databases:
 
