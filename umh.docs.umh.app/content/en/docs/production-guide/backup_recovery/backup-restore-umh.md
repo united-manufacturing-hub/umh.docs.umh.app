@@ -75,10 +75,10 @@ sudo $(which kubectl) scale statefulset {{< resource type="statefulset" name="mq
 
 ### Copy kubeconfig file
 
-1. Move to the folder on the server where the kubeconfig file is located:
+1. Show the content of kubeconfig file with the following command and copy the output:
 
    ```bash
-   cd /etc/rancher/k3s
+   sudo cat /etc/rancher/k3s/k3s.yaml
    ```
 
    {{% notice tip %}}
@@ -87,15 +87,9 @@ sudo $(which kubectl) scale statefulset {{< resource type="statefulset" name="mq
    environment and may differ.
    {{% /notice %}}
 
-2. Show the content of `k3s.yaml` with the following command and copy the output:
+2. Create a `.yaml` file on your local device and paste the content in it.
 
-   ```bash
-   sudo cat k3s.yaml
-   ```
-
-3. Create a `.yaml` file on your local device and paste the content in it.
-
-4. Adjust the server's IP address under `clusters` &rArr; `cluster` &rArr; `server`, 
+3. Adjust the server's IP address under `clusters` &rArr; `cluster` &rArr; `server`, 
 then save it:
       ```yaml
       apiVersion: v1
@@ -167,10 +161,10 @@ failure.
 
 ### Copy kubeconfig file
 
-1. Move to the folder on the server where the kubeconfig file is located:
+1. Show the content of kubeconfig file with the following command and copy the output:
 
    ```bash
-   cd /etc/rancher/k3s
+   sudo cat /etc/rancher/k3s/k3s.yaml
    ```
 
    {{% notice tip %}}
@@ -179,15 +173,9 @@ failure.
    environment and may differ.
    {{% /notice %}}
 
-2. Show the content of `k3s.yaml` with the following command and copy the output:
+2. Create a `.yaml` file on your local device and paste the content in it.
 
-   ```bash
-   sudo cat k3s.yaml
-   ```
-
-3. Create a `.yaml` file on your local device and paste the content in it.
-
-4. Adjust the server's IP address under `clusters` &rArr; `cluster` &rArr; `server`, 
+3. Adjust the server's IP address under `clusters` &rArr; `cluster` &rArr; `server`, 
 then save it:
       ```yaml
       apiVersion: v1
