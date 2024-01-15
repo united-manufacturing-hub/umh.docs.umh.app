@@ -22,11 +22,7 @@ easy to connect them together.
 To connect to a service from another service, you can use the service name as the
 host name.
 
-To get a list of available services and related ports you can open
-{{< resource type="lens" name="name" >}} and go to **Network** > **Services**.
-
-All of them are available from within the cluster. The ones of type LoadBalancer
-are also available from outside the cluster using the node IP.
+{{< include "service-list.md" >}}
 
 <!-- discussion -->
 

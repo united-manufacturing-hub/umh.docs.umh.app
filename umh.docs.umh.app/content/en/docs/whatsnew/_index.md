@@ -1,5 +1,5 @@
 ---
-title: "What's new"
+title: "What's New"
 description: |
     This section contains information about the new features and changes in the
     United Manufacturing Hub.
@@ -10,16 +10,5 @@ no_list: true
 For release highlights, deprecations, and breaking changes in the United
 Manufacturing Hub, refer to these "What's new" pages for each version.
 
-For a complete list of every change, with links to pull requests and related
-issues, refer to the [release notes](https://github.com/united-manufacturing-hub/united-manufacturing-hub/releases).
-
-## United Manufacturing Hub 0.9
-
-- [What's new 0.9.15](/docs/whatsnew/0.9.15/)
-- [What's new 0.9.14](/docs/whatsnew/0.9.14/)
-- [What's new 0.9.13](/docs/whatsnew/0.9.13/)
-- [What's new 0.9.12](/docs/whatsnew/0.9.12/)
-- [What's new 0.9.11](/docs/whatsnew/0.9.11/)
-- [What's new 0.9.10](/docs/whatsnew/0.9.10/)
-- [What's new 0.9.9](/docs/whatsnew/0.9.9/)
-- [What's new 0.9.8](/docs/whatsnew/0.9.8/)
+<!-- list the releases from latest to oldest -->
+- [What's new in v0.1](/docs/whatsnew/0.1/)
