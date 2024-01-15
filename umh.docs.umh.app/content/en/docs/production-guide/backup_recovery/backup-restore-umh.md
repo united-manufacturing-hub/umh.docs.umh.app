@@ -238,12 +238,25 @@ the following parameters:
 
 ### Restore the database
 
-To restore the database, execute the `.\restore-timescale.ps1` script with the
+To restore the `factoryinsight` or `umh_v2` database, execute the `.\restore-timescale.ps1` or  `.\restore-timescale-v2.ps1` script with the
 following parameters:
 
-   ````powershell
-   .\restore-timescale.ps1 -Ip <IP_OF_THE_SERVER> -BackupPath <PATH_TO_BACKUP_FOLDER> -PatroniSuperUserPassword <DATABASE_PASSWORD>
-   ````
+{{< tabs name="restore_db" >}}
+  {{< tab name="factoryinsight" codelang="powershell" >}}
+  .\restore-timescale.ps1 -Ip <IP_OF_THE_SERVER> -BackupPath <PATH_TO_BACKUP_FOLDER> -PatroniSuperUserPassword <DATABASE_PASSWORD>
+  {{< /tab >}}
+  {{< tab name="umh_v2" codelang="powershell" >}}
+  .\restore-timescale-v2.ps1 -Ip <IP_OF_THE_SERVER> -BackupPath <PATH_TO_BACKUP_FOLDER> -PatroniSuperUserPassword <DATABASE_PASSWORD>
+  {{< /tab >}}
+{{< /tabs >}}
+
+
+### Restore the Management Console Companion
+
+Execute the `.\restore-companion.ps1` script with the following parameters to restore the companion:
+   ```powershell
+   .\restore-companion.ps1 -KubeconfigPath <PATH_TO_KUBECONFIG_OF_THE_NEW_SERVER> -BackupPath <FULL_PATH_TO_BACKUP_FOLDER>
+   ```
 
 ## Troubleshooting
 ### Unable to connect to the server: x509: certificate signed ...
