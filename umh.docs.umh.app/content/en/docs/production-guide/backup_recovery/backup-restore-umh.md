@@ -236,7 +236,7 @@ the following parameters:
       ```
 
 2. Execute the `.\restore-timescale.ps1` and  `.\restore-timescale-v2.ps1` script with the
-following parameters:
+following parameters to restore `factoryinsight` and `umh_v2` databases:
       ```powershell
       .\restore-timescale.ps1 -Ip <IP_OF_THE_SERVER> -BackupPath <PATH_TO_BACKUP_FOLDER> -PatroniSuperUserPassword <DATABASE_PASSWORD>
       .\restore-timescale-v2.ps1 -Ip <IP_OF_THE_SERVER> -BackupPath <PATH_TO_BACKUP_FOLDER> -PatroniSuperUserPassword <DATABASE_PASSWORD>
