@@ -53,39 +53,31 @@ Connect to the corresponding database:
 
 You can find sample SQL commands to enable data compression here.
 
-### Sample command for the processvaluetable in the factoryinsight database:
-
 1. The first step is to turn on data compression on the target table, and set the compression options. Refer to the [TimescaleDB documentation](https://docs.timescale.com/api/latest/compression/alter_table_compression/) for a full list of options.
 
-    ```sql
-    -- set "asset_id" as the key for the compressed segments and orders the table by "valuename".
-    ALTER TABLE processvaluetable SET (timescaledb.compress, timescaledb.compress_segmentby = 'asset_id', timescaledb.compress_orderby = 'valuename');
-    ```
+    {{< tabs name="enable_compression" >}}
+    {{< tab name="factoryinsight" codelang="sql" >}}
+      -- set "asset_id" as the key for the compressed segments and orders the table by "valuename".
+      ALTER TABLE processvaluetable SET (timescaledb.compress, timescaledb.compress_segmentby = 'asset_id', timescaledb.compress_orderby = 'valuename');
+    {{< /tab >}}
+    {{< tab name="umh_v2" codelang="sql" >}}
+      -- set "asset_id" as the key for the compressed segments and orders the table by "name".
+      ALTER TABLE tag SET (timescaledb.compress, timescaledb.compress_segmentby = 'asset_id', timescaledb.compress_orderby = 'name');
+    {{< /tab >}}
+    {{< /tabs >}}
 
 2. Then, you have to create the compression policy. The interval determines the age that the chunks of data need to reach before being compressed. Read the [official documentation](https://docs.timescale.com/api/latest/compression/add_compression_policy/) for more information.
 
-    ```sql
-    -- set a compression policy on the "processvaluetable" table, which will compress data older than 7 days.
-    SELECT add_compression_policy('processvaluetable', INTERVAL '7 days');
-    ```
-
-### Sample command for the tag table in the umh_v2 database:
-
-1. The first step is to turn on data compression on the target table, and set the compression options. Refer to the [TimescaleDB documentation](https://docs.timescale.com/api/latest/compression/alter_table_compression/) for a full list of options.
-
-    ```sql
-    -- set "asset_id" as the key for the compressed segments and orders the table by "name".
-    ALTER TABLE tag SET (timescaledb.compress, timescaledb.compress_segmentby = 'asset_id', timescaledb.compress_orderby = 'name');
-    ```
-
-2. Then, you have to create the compression policy. The interval determines 
-the age that the chunks of data need to reach before being compressed. 
-Read the [official documentation](https://docs.timescale.com/api/latest/compression/add_compression_policy/) for more information.
-
-    ```sql
-    -- set a compression policy on the "tag" table, which will compress data older than 2 weeks.
-    SELECT add_compression_policy('tag', INTERVAL '2 weeks');
-    ```
+    {{< tabs name="compression_policy" >}}
+    {{< tab name="factoryinsight" codelang="sql" >}}
+      -- set a compression policy on the "processvaluetable" table, which will compress data older than 7 days.
+      SELECT add_compression_policy('processvaluetable', INTERVAL '7 days');
+    {{< /tab >}}
+    {{< tab name="umh_v2" codelang="sql" >}}
+      -- set a compression policy on the "tag" table, which will compress data older than 2 weeks.
+      SELECT add_compression_policy('tag', INTERVAL '2 weeks');
+    {{< /tab >}}
+    {{< /tabs >}}
 
 
 ## Enable data retention
