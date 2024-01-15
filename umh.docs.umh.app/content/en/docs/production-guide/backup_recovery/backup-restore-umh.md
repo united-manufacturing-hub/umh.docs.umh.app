@@ -13,7 +13,7 @@ This page describes how to back up the following:
 - All Grafana dashboards
 - The Helm values used for installing the {{< resource type="helm" name="release" >}} release
 - All the contents of the United Manufacturing Hub database (`factoryinsight` and `umh_v2`)
-- The Management Console Companion's setting
+- The Management Console Companion's settings
 
 It does **not** back up:
 - Additional databases other than the United Manufacturing Hub default database
@@ -264,7 +264,7 @@ Execute the `.\restore-companion.ps1` script with the following parameters to re
 
 ## Troubleshooting
 ### Unable to connect to the server: x509: certificate signed ...
-This issue can occur when the device's IP address changes from DHCP to static 
+This issue may occur when the device's IP address changes from DHCP to static 
 after installation. A quick solution is skipping TLS validation. If you want 
 to enable `insecure-skip-tls-verify` option, run the following command on 
 the instance's shell **before** copying kubeconfig on the server:
