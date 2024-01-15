@@ -37,27 +37,11 @@ the size of the database, ssh into the system and follow the steps below:
 
 {{< include "open-database-shell" >}}
 
-Connect to the `umh_v2` or `factoryinsight` database:
-
-{{< tabs name="connect_db" >}}
-  {{< tab name="factoryinsight" codelang="sql" >}}
-  \c factoryinsight
-  {{< /tab >}}
-  {{< tab name="umh_v2" codelang="sql" >}}
-  \c umh_v2
-  {{< /tab >}}
-  {{< /tabs >}}
-
  Run the following command to get the size of the database:
 
-{{< tabs name="get_size_db" >}}
-  {{< tab name="factoryinsight" codelang="sql" >}}
-  SELECT pg_size_pretty(pg_database_size('factoryinsight'));
-  {{< /tab >}}
-  {{< tab name="umh_v2" codelang="sql" >}}
-  SELECT pg_size_pretty(pg_database_size('umh_v2'));
-  {{< /tab >}}
-  {{< /tabs >}}
+```sql
+SELECT pg_size_pretty(pg_database_size('umh_v2')) AS "umh_v2", pg_size_pretty(pg_database_size('factoryinsight')) AS "factoryinsight";
+```
 
 <!-- steps -->
 ## Backup
@@ -86,21 +70,34 @@ sudo $(which kubectl) scale statefulset {{< resource type="statefulset" name="mq
 
 ### Copy kubeconfig file
 
-1. Show the content of kubeconfig file with the following command and copy the output:
+The backup script is located inside the folder you downloaded earlier.
 
-   ```bash
-   sudo cat /etc/rancher/k3s/k3s.yaml
-   ```
+1. Open a terminal and navigate inside the folder.
 
-   {{% notice tip %}}
-   This guide assumes that the kubeconfig file is located at 
-   `/etc/rancher/k3s/k3s.yaml`. The location depends on your 
-   environment and may differ.
-   {{% /notice %}}
+      ```powershell
+      cd <FOLDER_PATH>
+      ```
 
-2. Create a `.yaml` file on your local device and paste the content in it.
+2. Create a file with the name `k3s.yaml` on your local device.
 
-3. Adjust the server's IP address under `clusters` &rArr; `cluster` &rArr; `server`, 
+      ```powershell
+      cd > k3s.yaml
+      ```
+
+3. Show the content of kubeconfig file with the following command in 
+the instance's shell and copy&paste the output to `k3s.yaml` on your device:
+
+      ```bash
+      sudo cat /etc/rancher/k3s/k3s.yaml
+      ```
+
+      {{% notice tip %}}
+      This guide assumes that the kubeconfig file is located at 
+      `/etc/rancher/k3s/k3s.yaml`. The location depends on your 
+      environment and may differ.
+      {{% /notice %}}
+
+4. Adjust the server's IP address under `clusters` &rArr; `cluster` &rArr; `server`, 
 then save it:
       ```yaml
       apiVersion: v1
@@ -124,7 +121,7 @@ The backup script is located inside the folder you downloaded earlier.
 2. Run the script:
 
    ```powershell
-   .\backup.ps1 -IP <IP_OF_THE_SERVER> -GrafanaToken <GRAFANA_API_KEY> -KubeconfigPath <PATH_TO_KUBECONFIG_SAVED_LOCALLY>
+   .\backup.ps1 -IP <IP_OF_THE_SERVER> -GrafanaToken <GRAFANA_API_KEY> -KubeconfigPath .\k3s.yaml
    ```
 
    You can find a list of all available parameters down below.
@@ -172,21 +169,35 @@ failure.
 
 ### Copy kubeconfig file
 
-1. Show the content of kubeconfig file with the following command and copy the output:
+The backup script is located inside the folder you downloaded earlier.
 
-   ```bash
-   sudo cat /etc/rancher/k3s/k3s.yaml
-   ```
+1. Open a terminal and navigate inside the folder.
 
-   {{% notice tip %}}
-   This guide assumes that the kubeconfig file is located at 
-   `/etc/rancher/k3s/k3s.yaml`. The location depends on your 
-   environment and may differ.
-   {{% /notice %}}
+      ```powershell
+      cd <FOLDER_PATH>
+      ```
 
-2. Create a `.yaml` file on your local device and paste the content in it.
+2. Create a file with the name `k3s.yaml` on your local device, 
+if it does not exist in the backup scripts' folder.
 
-3. Adjust the server's IP address under `clusters` &rArr; `cluster` &rArr; `server`, 
+      ```powershell
+      cd > k3s.yaml
+      ```
+
+3. Show the content of kubeconfig file with the following command in 
+the instance's shell and copy&paste the output to `k3s.yaml` on your device:
+
+      ```bash
+      sudo cat /etc/rancher/k3s/k3s.yaml
+      ```
+
+      {{% notice tip %}}
+      This guide assumes that the kubeconfig file is located at 
+      `/etc/rancher/k3s/k3s.yaml`. The location depends on your 
+      environment and may differ.
+      {{% /notice %}}
+
+4. Adjust the server's IP address under `clusters` &rArr; `cluster` &rArr; `server`, 
 then save it:
       ```yaml
       apiVersion: v1
@@ -202,7 +213,7 @@ To restore the Kubernetes cluster, execute the `.\restore-helm.ps1` script with
 the following parameters:
 
 ```powershell
-.\restore-helm.ps1 -KubeconfigPath <PATH_TO_KUBECONFIG> -BackupPath <PATH_TO_BACKUP_FOLDER>
+.\restore-helm.ps1 -KubeconfigPath .\k3s.yaml -BackupPath <PATH_TO_BACKUP_FOLDER>
 ```
 
 Verify that the cluster is up and running by opening {{< resource type="lens" name="name" >}}
@@ -233,7 +244,7 @@ To restore the Node-RED flows, execute the `.\restore-nodered.ps1` script with
 the following parameters:
 
    ````powershell
-   .\restore-nodered.ps1 -KubeconfigPath <PATH_TO_KUBECONFIG> -BackupPath <PATH_TO_BACKUP_FOLDER>
+   .\restore-nodered.ps1 -KubeconfigPath .\k3s.yaml -BackupPath <PATH_TO_BACKUP_FOLDER>
    ````
 
 ### Restore the database
@@ -259,7 +270,7 @@ sudo $(which kubectl) get secret united-manufacturing-hub-credentials --kubeconf
 
 Execute the `.\restore-companion.ps1` script with the following parameters to restore the companion:
    ```powershell
-   .\restore-companion.ps1 -KubeconfigPath <PATH_TO_KUBECONFIG_OF_THE_NEW_SERVER> -BackupPath <FULL_PATH_TO_BACKUP_FOLDER>
+   .\restore-companion.ps1 -KubeconfigPath .\k3s.yaml -BackupPath <FULL_PATH_TO_BACKUP_FOLDER>
    ```
 
 ## Troubleshooting
