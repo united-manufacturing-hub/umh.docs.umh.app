@@ -70,43 +70,34 @@ sudo $(which kubectl) scale statefulset {{< resource type="statefulset" name="mq
 
 ### Copy kubeconfig file
 
-The backup script is located inside the folder you downloaded earlier.
+To run the backup script, you'll first need to obtain a copy of the Kubernetes 
+configuration file from your instance. This is essential for providing the 
+script with access to the instance.
 
-1. Open a terminal and navigate inside the folder.
+1. In the shell of your instance, execute the following command to display the 
+Kubernetes configuration:
 
-      ```powershell
-      cd <FOLDER_PATH>
-      ```
+   ```bash
+   sudo cat /etc/rancher/k3s/k3s.yaml
+   ```
 
-2. Create a file with the name `k3s.yaml` on your local device.
+   Make sure to copy the entire output to your clipboard.
 
-      ```powershell
-      cd > k3s.yaml
-      ```
+   {{% notice tip %}}
+   This tutorial is based on the assumption that your kubeconfig file is located 
+   at /etc/rancher/k3s/k3s.yaml. Depending on your setup, the actual file location 
+   might be different.
+   {{% /notice %}}
 
-3. Show the content of kubeconfig file with the following command in 
-the instance's shell and copy&paste the output to `k3s.yaml` on your device:
+2. Open a text editor, like Notepad, on your local machine and paste the copied content.
+3. In the pasted content, find the server field. It usually defaults to `https://127.0.0.1:6443`. 
+Replace this with your instance's IP address
 
-      ```bash
-      sudo cat /etc/rancher/k3s/k3s.yaml
-      ```
+    ```yaml
+    server: https://<INSTANCE_IP>:6443
+    ```
 
-      {{% notice tip %}}
-      This guide assumes that the kubeconfig file is located at 
-      `/etc/rancher/k3s/k3s.yaml`. The location depends on your 
-      environment and may differ.
-      {{% /notice %}}
-
-4. Adjust the server's IP address under `clusters` &rArr; `cluster` &rArr; `server`, 
-then save it:
-      ```yaml
-      apiVersion: v1
-      clusters:
-      - cluster:
-         certificate-authority-data: xxx
-         server: https://<your-server-ip>:6443
-      
-      ```
+4. Save the file as `k3s.yaml` inside the `backup` folder you downloaded earlier.
 
 ### Backup using the script
 
@@ -169,44 +160,34 @@ failure.
 
 ### Copy kubeconfig file
 
-The backup script is located inside the folder you downloaded earlier.
+To run the backup script, you'll first need to obtain a copy of the Kubernetes 
+configuration file from your instance. This is essential for providing the 
+script with access to the instance.
 
-1. Open a terminal and navigate inside the folder.
+1. In the shell of your instance, execute the following command to display the 
+Kubernetes configuration:
 
-      ```powershell
-      cd <FOLDER_PATH>
-      ```
+   ```bash
+   sudo cat /etc/rancher/k3s/k3s.yaml
+   ```
 
-2. Create a file with the name `k3s.yaml` on your local device, 
-if it does not exist in the backup scripts' folder.
+   Make sure to copy the entire output to your clipboard.
 
-      ```powershell
-      cd > k3s.yaml
-      ```
+   {{% notice tip %}}
+   This tutorial is based on the assumption that your kubeconfig file is located 
+   at /etc/rancher/k3s/k3s.yaml. Depending on your setup, the actual file location 
+   might be different.
+   {{% /notice %}}
 
-3. Show the content of kubeconfig file with the following command in 
-the instance's shell and copy&paste the output to `k3s.yaml` on your device:
+2. Open a text editor, like Notepad, on your local machine and paste the copied content.
+3. In the pasted content, find the server field. It usually defaults to `https://127.0.0.1:6443`. 
+Replace this with your instance's IP address
 
-      ```bash
-      sudo cat /etc/rancher/k3s/k3s.yaml
-      ```
+    ```yaml
+    server: https://<INSTANCE_IP>:6443
+    ```
 
-      {{% notice tip %}}
-      This guide assumes that the kubeconfig file is located at 
-      `/etc/rancher/k3s/k3s.yaml`. The location depends on your 
-      environment and may differ.
-      {{% /notice %}}
-
-4. Adjust the server's IP address under `clusters` &rArr; `cluster` &rArr; `server`, 
-then save it:
-      ```yaml
-      apiVersion: v1
-      clusters:
-      - cluster:
-         certificate-authority-data: xxx
-         server: https://<your-server-ip>:6443
-      
-      ```
+4. Save the file as `k3s.yaml` inside the `backup` folder you downloaded earlier.
 
 ### Cluster configuration
 To restore the Kubernetes cluster, execute the `.\restore-helm.ps1` script with
@@ -243,28 +224,23 @@ with the following parameters:
 To restore the Node-RED flows, execute the `.\restore-nodered.ps1` script with
 the following parameters:
 
-   ````powershell
+   ```powershell
    .\restore-nodered.ps1 -KubeconfigPath .\k3s.yaml -BackupPath <PATH_TO_BACKUP_FOLDER>
-   ````
+   ```
 
 ### Restore the database
 
-To restore the `factoryinsight` or `umh_v2` database, execute the `.\restore-timescale.ps1` or  `.\restore-timescale-v2.ps1` script with the
+1. Check the database password by running the following command in your instance's shell:
+      ```bash
+      sudo $(which kubectl) get secret united-manufacturing-hub-credentials --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub -o jsonpath="{.data.PATRONI_SUPERUSER_PASSWORD}" | base64 --decode; echo
+      ```
+
+2. Execute the `.\restore-timescale.ps1` and  `.\restore-timescale-v2.ps1` script with the
 following parameters:
-
-{{< tabs name="restore_db" >}}
-  {{< tab name="factoryinsight" codelang="powershell" >}}
-  .\restore-timescale.ps1 -Ip <IP_OF_THE_SERVER> -BackupPath <PATH_TO_BACKUP_FOLDER> -PatroniSuperUserPassword <DATABASE_PASSWORD>
-  {{< /tab >}}
-  {{< tab name="umh_v2" codelang="powershell" >}}
-  .\restore-timescale-v2.ps1 -Ip <IP_OF_THE_SERVER> -BackupPath <PATH_TO_BACKUP_FOLDER> -PatroniSuperUserPassword <DATABASE_PASSWORD>
-  {{< /tab >}}
-{{< /tabs >}}
-
-You can check the database password by running the following command in your instance's shell:
-```bash
-sudo $(which kubectl) get secret united-manufacturing-hub-credentials --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub -o jsonpath="{.data.PATRONI_SUPERUSER_PASSWORD}" | base64 --decode; echo
-```
+      ```powershell
+      .\restore-timescale.ps1 -Ip <IP_OF_THE_SERVER> -BackupPath <PATH_TO_BACKUP_FOLDER> -PatroniSuperUserPassword <DATABASE_PASSWORD>
+      .\restore-timescale-v2.ps1 -Ip <IP_OF_THE_SERVER> -BackupPath <PATH_TO_BACKUP_FOLDER> -PatroniSuperUserPassword <DATABASE_PASSWORD>
+      ```
 
 ### Restore the Management Console Companion
 
