@@ -1,8 +1,8 @@
 ---
 title: "Data Infrastructure"
 content_type: concept
-# description: |
-#     Add a description of the concept here.
+description: |
+    Concepts related to the security of the Data Infrastructure.
 weight: 10
 draft: true
 ---
