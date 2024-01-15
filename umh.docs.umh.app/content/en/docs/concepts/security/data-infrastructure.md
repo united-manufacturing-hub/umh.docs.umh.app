@@ -36,7 +36,3 @@ encryption.
 The database is exposed to the instance network, but not to the public internet.
 The database uses username and password authentication, with different users for
 different databases.
-
-<!-- Optional section; add links to information related to this topic. -->
-
-## {{% heading "whatsnext" %}}
