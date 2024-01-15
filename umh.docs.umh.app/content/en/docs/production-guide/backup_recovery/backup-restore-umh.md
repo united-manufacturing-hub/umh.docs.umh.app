@@ -250,6 +250,10 @@ following parameters:
   {{< /tab >}}
 {{< /tabs >}}
 
+You can check the database password by running the following command in your instance's shell:
+```bash
+sudo $(which kubectl) get secret united-manufacturing-hub-credentials --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub -o jsonpath="{.data.PATRONI_SUPERUSER_PASSWORD}" | base64 --decode; echo
+```
 
 ### Restore the Management Console Companion
 
