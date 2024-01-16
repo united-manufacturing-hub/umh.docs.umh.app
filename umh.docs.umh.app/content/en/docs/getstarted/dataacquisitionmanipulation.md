@@ -76,10 +76,10 @@ Specify OPC UA nodes to subscribe to in a yaml file, following the ISA95 standar
       workcell: blister
       originID: PLC13
       tagName: machineState
-      useCase: _historian
+      schema: _historian
 ```
 
-Mandatory fields are `opcuaID`, `enterprise`, `tagName` and `useCase`.
+Mandatory fields are `opcuaID`, `enterprise`, `tagName` and `schema`.
 
 {{% notice note %}}
 Learn more about [Data Modeling in the Unified Namespace](https://learn.umh.app/lesson/data-modeling-in-the-unified-namespace-mqtt-kafka/)
