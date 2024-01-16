@@ -26,10 +26,37 @@ passwords and session cookies.
 This feature is currently in development and is subject to change.
 {{% /notice %}}
 
-All the messages exchanged between the Management Console and your UMH instance,
-which inevitably go through our servers, are encrypted using a secret key that
-is only known to you and your UMH instance. This ensures that no one, not even
-us, can read the content of these messages.
+Other than the standard TLS encryption provided by HTTPS, we also provide an
+additional layer of encryption for the messages exchanged between the Management
+Console and your UMH instance.
+Every action that you perform on the Management Console, such as creating a new
+data source, and every information that you retrieve, such as the messages in
+the Unified Namespace, is encrypted using a secret key that is only known to
+you and your UMH instance. This ensures that no one, not even us, can see, read
+or reverse engineer the content of these messages.
+
+The process we use (which is now patent pending) is simple yet effective:
+
+1. When you create a new user on the Management Console, we generate a new
+   private key and we encrypt it using your password. This means that only you
+   can decrypt it.
+2. The encrypted private key and your hashed password are stored in our database.
+3. When you login to the Management Console, we verify your password and check
+   if it can decrypt the private key, in order to authenticate you.
+4. When you add a new UMH instance to the Management Console, it generates a
+   token that the Management Companion (aka your instance) will use to
+   authenticate itself. This token works the same way as your user password: it
+   is used to encrypt a private key that only the UMH instance can decrypt.
+5. The instance encrypted private key and the hashed token are stored in our
+   database. A relationship is also created between the user and the instance.
+6. All the messages exchanged between the Management Console and the UMH
+   instance are encrypted using the private keys, and then encrypted again using
+   the TLS encryption provided by HTTPS.
+
+The only drawback to this approach is that, if you forget your password, we
+won't be able to recover your private key. This means that you will have to
+create a new user and reconfigure all your UMH instances. But your data will
+still be safe and secure.
 
 However, even though we are unable to read any private key, there is some information
 that we can inevitably see:
