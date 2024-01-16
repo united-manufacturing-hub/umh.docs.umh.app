@@ -12,7 +12,8 @@ This page describes how to back up the following:
 - All Node-RED flows
 - All Grafana dashboards
 - The Helm values used for installing the {{< resource type="helm" name="release" >}} release
-- All the contents of the United Manufacturing Hub database
+- All the contents of the United Manufacturing Hub database (`factoryinsight` and `umh_v2`)
+- The Management Console Companion's settings
 
 It does **not** back up:
 - Additional databases other than the United Manufacturing Hub default database
@@ -36,16 +37,10 @@ the size of the database, ssh into the system and follow the steps below:
 
 {{< include "open-database-shell" >}}
 
-Connect to the `umh_v2` or `factoryinsight` database:
-
-```bash
-\c <database-name>
-```
-
  Run the following command to get the size of the database:
 
 ```sql
-SELECT pg_size_pretty(pg_database_size('<database-name>'));
+SELECT pg_size_pretty(pg_database_size('umh_v2')) AS "umh_v2", pg_size_pretty(pg_database_size('factoryinsight')) AS "factoryinsight";
 ```
 
 <!-- steps -->
@@ -55,7 +50,7 @@ SELECT pg_size_pretty(pg_database_size('<database-name>'));
 
 Create a Grafana API Token for an admin user by following these steps:
 1. Open the Grafana UI in your browser and log in with an admin user.
-2. Click on the **Settings** icon in the left sidebar and select **API Keys**.
+2. Click on the **Configuration** icon in the left sidebar and select **API Keys**.
 3. Give the API key a name and change its role to **Admin**.
 4. Optionally set an expiration date.
 5. Click **Add**.
@@ -73,6 +68,37 @@ sudo $(which kubectl) scale statefulset {{< resource type="statefulset" name="ka
 sudo $(which kubectl) scale statefulset {{< resource type="statefulset" name="mqttbroker" >}} --replicas=0 -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
 ```
 
+### Copy kubeconfig file
+
+To run the backup script, you'll first need to obtain a copy of the Kubernetes 
+configuration file from your instance. This is essential for providing the 
+script with access to the instance.
+
+1. In the shell of your instance, execute the following command to display the 
+Kubernetes configuration:
+
+   ```bash
+   sudo cat /etc/rancher/k3s/k3s.yaml
+   ```
+
+   Make sure to copy the entire output to your clipboard.
+
+   {{% notice tip %}}
+   This tutorial is based on the assumption that your kubeconfig file is located 
+   at /etc/rancher/k3s/k3s.yaml. Depending on your setup, the actual file location 
+   might be different.
+   {{% /notice %}}
+
+2. Open a text editor, like Notepad, on your local machine and paste the copied content.
+3. In the pasted content, find the server field. It usually defaults to `https://127.0.0.1:6443`. 
+Replace this with your instance's IP address
+
+    ```yaml
+    server: https://<INSTANCE_IP>:6443
+    ```
+
+4. Save the file as `k3s.yaml` inside the `backup` folder you downloaded earlier.
+
 ### Backup using the script
 
 The backup script is located inside the folder you downloaded earlier.
@@ -86,7 +112,7 @@ The backup script is located inside the folder you downloaded earlier.
 2. Run the script:
 
    ```powershell
-   .\backup.ps1 -IP <IP_OF_THE_SERVER> -GrafanaToken <GRAFANA_API_KEY> -KubeconfigPath <PATH_TO_KUBECONFIG>
+   .\backup.ps1 -IP <IP_OF_THE_SERVER> -GrafanaToken <GRAFANA_API_KEY> -KubeconfigPath .\k3s.yaml
    ```
 
    You can find a list of all available parameters down below.
@@ -132,12 +158,43 @@ Each component of the United Manufacturing Hub can be restored separately, in
 order to allow for more flexibility and to reduce the damage in case of a
 failure.
 
+### Copy kubeconfig file
+
+To run the backup script, you'll first need to obtain a copy of the Kubernetes 
+configuration file from your instance. This is essential for providing the 
+script with access to the instance.
+
+1. In the shell of your instance, execute the following command to display the 
+Kubernetes configuration:
+
+   ```bash
+   sudo cat /etc/rancher/k3s/k3s.yaml
+   ```
+
+   Make sure to copy the entire output to your clipboard.
+
+   {{% notice tip %}}
+   This tutorial is based on the assumption that your kubeconfig file is located 
+   at /etc/rancher/k3s/k3s.yaml. Depending on your setup, the actual file location 
+   might be different.
+   {{% /notice %}}
+
+2. Open a text editor, like Notepad, on your local machine and paste the copied content.
+3. In the pasted content, find the server field. It usually defaults to `https://127.0.0.1:6443`. 
+Replace this with your instance's IP address
+
+    ```yaml
+    server: https://<INSTANCE_IP>:6443
+    ```
+
+4. Save the file as `k3s.yaml` inside the `backup` folder you downloaded earlier.
+
 ### Cluster configuration
 To restore the Kubernetes cluster, execute the `.\restore-helm.ps1` script with
 the following parameters:
 
 ```powershell
-.\restore-helm.ps1 -KubeconfigPath <PATH_TO_KUBECONFIG> -BackupPath <PATH_TO_BACKUP_FOLDER>
+.\restore-helm.ps1 -KubeconfigPath .\k3s.yaml -BackupPath <PATH_TO_BACKUP_FOLDER>
 ```
 
 Verify that the cluster is up and running by opening {{< resource type="lens" name="name" >}}
@@ -148,7 +205,7 @@ To restore the Grafana dashboards, you first need to create a Grafana API Key
 for an admin user in the new cluster by following these steps:
 
 1. Open the Grafana UI in your browser and log in with an admin user.
-2. Click on the **Settings** icon in the left sidebar and select **API Keys**.
+2. Click on the **Configuration** icon in the left sidebar and select **API Keys**.
 3. Give the API key a name and change its role to **Admin**.
 4. Optionally set an expiration date.
 5. Click **Add**.
@@ -167,18 +224,43 @@ with the following parameters:
 To restore the Node-RED flows, execute the `.\restore-nodered.ps1` script with
 the following parameters:
 
-   ````powershell
-   .\restore-nodered.ps1 -KubeconfigPath <PATH_TO_KUBECONFIG> -BackupPath <PATH_TO_BACKUP_FOLDER>
-   ````
+   ```powershell
+   .\restore-nodered.ps1 -KubeconfigPath .\k3s.yaml -BackupPath <PATH_TO_BACKUP_FOLDER>
+   ```
 
 ### Restore the database
 
-To restore the database, execute the `.\restore-timescale.ps1` script with the
-following parameters:
+1. Check the database password by running the following command in your instance's shell:
+      ```bash
+      sudo $(which kubectl) get secret united-manufacturing-hub-credentials --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub -o jsonpath="{.data.PATRONI_SUPERUSER_PASSWORD}" | base64 --decode; echo
+      ```
 
-   ````powershell
-   .\restore-timescale.ps1 -Ip <IP_OF_THE_SERVER> -BackupPath <PATH_TO_BACKUP_FOLDER> -PatroniSuperUserPassword <DATABASE_PASSWORD>
-   ````
+2. Execute the `.\restore-timescale.ps1` and  `.\restore-timescale-v2.ps1` script with the
+following parameters to restore `factoryinsight` and `umh_v2` databases:
+      ```powershell
+      .\restore-timescale.ps1 -Ip <IP_OF_THE_SERVER> -BackupPath <PATH_TO_BACKUP_FOLDER> -PatroniSuperUserPassword <DATABASE_PASSWORD>
+      .\restore-timescale-v2.ps1 -Ip <IP_OF_THE_SERVER> -BackupPath <PATH_TO_BACKUP_FOLDER> -PatroniSuperUserPassword <DATABASE_PASSWORD>
+      ```
+
+### Restore the Management Console Companion
+
+Execute the `.\restore-companion.ps1` script with the following parameters to restore the companion:
+   ```powershell
+   .\restore-companion.ps1 -KubeconfigPath .\k3s.yaml -BackupPath <FULL_PATH_TO_BACKUP_FOLDER>
+   ```
+
+## Troubleshooting
+### Unable to connect to the server: x509: certificate signed ...
+This issue may occur when the device's IP address changes from DHCP to static 
+after installation. A quick solution is skipping TLS validation. If you want 
+to enable `insecure-skip-tls-verify` option, run the following command on 
+the instance's shell **before** copying kubeconfig on the server:
+
+   ```bash
+   sudo $(which kubectl) config set-cluster default --insecure-skip-tls-verify=true --kubeconfig /etc/rancher/k3s/k3s.yaml
+   ```
+
+
 
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
