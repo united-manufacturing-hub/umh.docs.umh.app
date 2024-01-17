@@ -32,15 +32,15 @@ provides a single IP address that can be used to access the Pods.
 The following services are exposed outside the cluster with a LoadBalancer
 service by default:
 
-- [Database](/docs/architecture/microservices/core/database/) at port 5432
-- [Kafka Console](/docs/architecture/microservices/core/kafka-console/) at port
+- [Database](/docs/reference/microservices/database/) at port 5432
+- [Kafka Console](/docs/reference/microservices/kafka-console/) at port
   8090
-- [Grafana](/docs/architecture/microservices/core/grafana/) at port 8080
-- [MQTT Broker](/docs/architecture/microservices/core/mqtt-broker/) at port
+- [Grafana](/docs/reference/microservices/grafana/) at port 8080
+- [MQTT Broker](/docs/reference/microservices/mqtt-broker/) at port
   1883
-- [OPCUA Simulator](/docs/architecture/microservices/community/opcua-simulator/)
+- [OPCUA Simulator](/docs/reference/microservices/opcua-simulator/)
   at port 46010
-- [Node-RED](/docs/architecture/microservices/core/node-red/) at port 1880
+- [Node-RED](/docs/reference/microservices/node-red/) at port 1880
 
 {{% notice tip %}}
 To access Node-RED, you need to use the `/nodered` path, for example
@@ -49,40 +49,53 @@ To access Node-RED, you need to use the `/nodered` path, for example
 
 ## Services with NodePort by default
 
-The [Kafka Broker](/docs/architecture/microservices/core/kafka-broker/) uses the service type NodePort by default. 
+The [Kafka Broker](/docs/reference/microservices/kafka-broker/) uses the service 
+type NodePort by default. 
 
 Follow these steps to access the Kafka Broker outside the cluster:
 
 1. Access your instance via SSH
-2. Execute this command:
+2. Execute this command to check the host port of the Kafka Broker:
 
    ```bash
-   sudo $(which helm) upgrade --set redpanda.external.type=LoadBalancer united-manufacturing-hub united-manufacturing-hub/united-manufacturing-hub -n united-manufacturing-hub --reuse-values --version $(sudo $(which helm) get metadata united-manufacturing-hub -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml -o json | jq '.version') --kubeconfig /etc/rancher/k3s/k3s.yaml
+   sudo $(which kubectl) get svc united-manufacturing-hub-kafka-external -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
    ```
 
-3. Wait for the changes to be applied.
+3. In the `PORT(S)` column, you should be able to see the port with `9094:<host-port>/TCP`.
+4. To access the Kafka Broker, use `<instance-ip-address>:<host-port>`.
 
-Access the Kafka Broker at port 9094.
 
 ## Services with ClusterIP
 
 Some of the microservices in the United Manufacturing Hub are exposed via
 a ClusterIP service. That means that they are only accessible from within the
-cluster itself. To access them from outside the cluster, you need to create a
-LoadBalancer service.
+cluster itself. There are two options for enabling access them from outside the cluster: 
+- [Creating a LoadBalancer service](/docs/production-guide/administration/access-services-from-outside-cluster/#create-a-loadbalancer-service):
+A LoadBalancer is a service that exposes a set of Pods on the same network 
+as the cluster, but not necessarily to the entire internet.
+- [Port forwarding](/docs/production-guide/administration/access-services-from-outside-cluster/#port-forwarding):
+You can just forward the port of a service to your local machine.
+
+{{% notice warning %}}
+Port forwarding can be unstable, especially if the connection to the cluster is
+slow. If you are experiencing issues, try to create a LoadBalancer service
+instead.
+{{% /notice %}}
 
 ### Create a LoadBalancer service
 
-If you are looking to expose th Kafka broker, follow the instructions in the
-[Access Kafka outside the cluster](/docs/production-guide/administration/access-kafka-outside-cluster/)
-page.
+Follow these steps to enable the LoadBalancer service for the corresponding microservice:
 
-For any other microservice, follow these steps to enable the LoadBalancer service:
-
-1. Open {{< resource type="lens" name="name" >}} and navigate to **Network** >
-    **Services**.
-2. Select the service and click the **Edit** button.
-3. Scroll down to the `status.loadBalancer` section and change it to the following:
+1. Execute the following command to list the services and note the name of 
+the one you want to access.
+   ```bash
+   sudo $(which kubectl) get svc -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
+   ```
+2. Start editing the service configuration by running this command:
+   ```bash
+   sudo $(which kubectl) edit svc <service-name> -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
+   ```
+3. Find the `status.loadBalancer` section and update it to the following:
 
    ```yaml
    status:
@@ -92,47 +105,35 @@ For any other microservice, follow these steps to enable the LoadBalancer servic
    ```
 
    Replace `<external-ip>` with the external IP address of the node.
-4. Scroll to the `spec.type` section and change the value from ClusterIP to
-   LoadBalancer.
-5. Click **Save** to apply the changes.
+4. Go to the `spec.type` section and change the value from `ClusterIP` to
+   `LoadBalancer`. 
+5. After saving, your changes will be applied automatically and the service will 
+   be updated. Now, you can access the service at the configured address.
 
-If you installed the United Manufacturing Hub on your local machine, either
-using the Management Console or the command line, you also need to map the port
-exposed by the k3d cluster to a port on your local machine. To do that, run the
-following command:
+### Port forwarding
 
-```bash
-k3d cluster edit {{< resource type="cluster" name="name" >}} --port-add "<local-port>:<cluster-port>@server:0"
-```
+1. Execute the following command to list the services and note the name of the one 
+you want to port-forward and the internal port that it use.
+   ```bash
+   sudo $(which kubectl) get svc -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
+   ```
+2. Run the following command to forward the port:
+   ```bash
+   sudo $(which kubectl) port-forward service/<your-service> <local-port>:<remote-port> -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
+   ```
+   Where `<local-port>` is the port on the host that you want to use, 
+   and `<remote-port>` is the service port that you noted before. 
+   Usually, it's good practice to pick a high number (greater than 30000) 
+   for the host port, in order to avoid conflicts.
+3. You should be able to see logs like:
+   ```text
+   Forwarding from 127.0.0.1:31922 -> 9121
+   Forwarding from [::1]:31922 -> 9121
+   Handling connection for 31922
+   ```
 
-Replace `<local-port>` with a free port number on your local machine, and
-`<cluster-port>` with the port number of the service.
-
-### Port forwarding in {{% resource type="lens" name="name" %}}
-
-If you don't want to create a LoadBalancer service, effectively exposing the
-microservice to anyone that has access to the host IP address, you can use
-{{% resource type="lens" name="name" %}} to forward the port to your local
-machine.
-
-1. Open {{< resource type="lens" name="name" >}} and navigate to **Network** >
-    **Services**.
-2. Select the service that you want to access.
-3. Scroll down to the **Connection** section and click the **Forward...** button.
-4. From the dialog, you can choose a port on your local machine to forward the
-   cluster port from, or you can leave it empty to use a random port.
-5. Click **Forward** to apply the changes.
-6. If you left the checkbox **Open in browser** checked, then the service will
-   open in your default browser.
-
-You can see and manage the forwarded ports of your cluster in the **Network** >
-**Port Forwarding** section.
-
-{{< notice warning >}}
-Port forwarding can be unstable, especially if the connection to the cluster is
-slow. If you are experiencing issues, try to create a LoadBalancer service
-instead.
-{{< /notice >}}
+   You can now access the service using the IP address of the node and 
+   the port you choose.
 
 <!-- discussion -->
 
@@ -140,22 +141,17 @@ instead.
 
 ### MQTT broker
 
-There are some security considerations to keep in mind when exposing the MQTT broker.
+There are some security considerations to keep in mind when exposing the MQTT 
+broker.
 
 By default, the MQTT broker is configured to allow anonymous connections. This
 means that anyone can connect to the broker without providing any credentials.
 This is not recommended for production environments.
 
 To secure the MQTT broker, you can configure it to require authentication. For
-that, you can either [enable RBAC](/docs/production-guide/security/hivemq-rbac/)
-or [set up HiveMQ PKI](/docs/production-guide/security/hivemq-pki/) (recommended
+that, you can either [enable RBAC](/docs/production-guide/security/enable-rbac-mqtt-broker/)
+or [set up HiveMQ PKI](/docs/production-guide/security/setup-pki-mqtt-broker/) (recommended
 for production environments).
-
-{{% notice note %}}
-If you are using a version of the United Manufacturing Hub older than 0.9.10,
-then you need to [change the ACL configuration](/docs/production-guide/security/vernemq-acl/)
-to allow your MQTT client to connect to the broker.
-{{< /notice >}}
 
 ## {{% heading "troubleshooting" %}}
 
