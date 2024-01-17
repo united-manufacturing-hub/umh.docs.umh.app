@@ -41,8 +41,10 @@ The process we use (which is now patent pending) is simple yet effective:
    private key and we encrypt it using your password. This means that only you
    can decrypt it.
 2. The encrypted private key and your hashed password are stored in our database.
-3. When you login to the Management Console, we verify your password and check
-   if it can decrypt the private key, in order to authenticate you.
+3. When you login to the Management Console, the encrypted private key associated
+   with your user is downloaded to your browser and decrypted using your
+   password. This ensures that your password is never sent to our server, and
+   that the private key is only available to you.
 4. When you add a new UMH instance to the Management Console, it generates a
    token that the Management Companion (aka your instance) will use to
    authenticate itself. This token works the same way as your user password: it
