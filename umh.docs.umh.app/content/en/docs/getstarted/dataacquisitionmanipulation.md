@@ -74,16 +74,16 @@ OPC UA simulator).
 Specify OPC UA nodes to subscribe to in a yaml file, following the ISA95 standard:
 
 ```yaml
-nodes:
-  - opcuaID: ns=2;s=Pressure
-    enterprise: pharma-genix
-    site: aachen
-    area: packaging
-    line: packaging_1
-    workcell: blister
-    originID: PLC13
-    tagName: machineState
-    schema: _historian
+  nodes:
+    - opcuaID: ns=2;s=Pressure
+      enterprise: pharma-genix
+      site: aachen
+      area: packaging
+      line: packaging_1
+      workcell: blister
+      originID: PLC13
+      tagName: machineState
+      schema: _historian
 ```
 
 Mandatory fields are `opcuaID`, `enterprise`, `tagName` and `schema`.

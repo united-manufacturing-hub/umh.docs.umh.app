@@ -28,7 +28,7 @@ UMH, you can easily connect to an OPC UA server, define the nodes you want to
 stream, and send the data to the Unified Namespace.
 
 Furthermore, [in our tests](https://learn.umh.app/blog/our-open-source-docker-container-to-connect-opc-ua-with-the-unified-namespace/#testing-existing-solutions),
-Benthos has proven more reliable than tools like Node-RED, when it comes to 
+Benthos has proven more reliable than tools like Node-RED, when it comes to
 handling large amounts of data.
 
 ## What can I do with it?
@@ -85,13 +85,13 @@ nodes:
       workcell: blister
       originID: PLC13
       tagName: machineState
-      useCase: _historian
+      schema: _historian
 ```
 
-Mandatory fields are `opcuaID`, `enterprise`, `tagName` and `useCase`. `opcuaID` 
-is the NodeID in OPC-UA and can also be a folder (see [README](https://github.com/united-manufacturing-hub/benthos-umh?tab=readme-ov-file#node-ids) 
-for more information). The remaining components are components of the resulting 
-topic / ISA-95 structure (see also our [datamodel](/docs/datamodel)). By default, 
+Mandatory fields are `opcuaID`, `enterprise`, `tagName` and `schema`. `opcuaID`
+is the NodeID in OPC-UA and can also be a folder (see [README](https://github.com/united-manufacturing-hub/benthos-umh?tab=readme-ov-file#node-ids)
+for more information). The remaining components are components of the resulting
+topic / ISA-95 structure (see also our [datamodel](/docs/datamodel)). By default,
 the schema will always be in _historian, and tagName is the keyname.
 
 ### Standalone

@@ -38,37 +38,74 @@ However, data may be less accurate.
 
 {{< include "open-database-shell.md" >}}
 
-Connect to the `factoryinsight` database:
+Connect to the corresponding database:
 
-```bash
-\c factoryinsight
-```
+{{< tabs name="connect_db" >}}
+  {{< tab name="factoryinsight" codelang="sql" >}}
+  \c factoryinsight
+  {{< /tab >}}
+  {{< tab name="umh_v2" codelang="sql" >}}
+  \c umh_v2
+  {{< /tab >}}
+  {{< /tabs >}}
 
 ## Enable data compression
 
-To enable data compression, you need to execute the following SQL command from
-the database shell:
+You can find sample SQL commands to enable data compression here.
 
-```sql
-SELECT add_retention_policy('processvaluetable', INTERVAL '7 days');
-```
+1. The first step is to turn on data compression on the target table, and set the compression options. Refer to the [TimescaleDB documentation](https://docs.timescale.com/api/latest/compression/alter_table_compression/) for a full list of options.
 
-This command will set a retention policy on the `processvaluetable` table, which
-will delete data older than 7 days.
+    {{< tabs name="enable_compression" >}}
+    {{< tab name="factoryinsight" codelang="sql" >}}
+      -- set "asset_id" as the key for the compressed segments and orders the table by "valuename".
+      ALTER TABLE processvaluetable SET (timescaledb.compress, timescaledb.compress_segmentby = 'asset_id', timescaledb.compress_orderby = 'valuename');
+    {{< /tab >}}
+    {{< tab name="umh_v2" codelang="sql" >}}
+      -- set "asset_id" as the key for the compressed segments and orders the table by "name".
+      ALTER TABLE tag SET (timescaledb.compress, timescaledb.compress_segmentby = 'asset_id', timescaledb.compress_orderby = 'name');
+    {{< /tab >}}
+    {{< /tabs >}}
+
+2. Then, you have to create the compression policy. The interval determines the age that the chunks of data need to reach before being compressed. Read the [official documentation](https://docs.timescale.com/api/latest/compression/add_compression_policy/) for more information.
+
+    {{< tabs name="compression_policy" >}}
+    {{< tab name="factoryinsight" codelang="sql" >}}
+      -- set a compression policy on the "processvaluetable" table, which will compress data older than 7 days.
+      SELECT add_compression_policy('processvaluetable', INTERVAL '7 days');
+    {{< /tab >}}
+    {{< tab name="umh_v2" codelang="sql" >}}
+      -- set a compression policy on the "tag" table, which will compress data older than 2 weeks.
+      SELECT add_compression_policy('tag', INTERVAL '2 weeks');
+    {{< /tab >}}
+    {{< /tabs >}}
+
 
 ## Enable data retention
 
-To enable data retention, you need to execute the following SQL command from the
-database shell:
+You can find sample SQL commands to enable data retention here.
 
-```sql
-SELECT add_compression_policy('processvaluetable', INTERVAL '7 days');
-```
+### Sample command for factoryinsight and umh_v2 databases:
 
-This command will set a compression policy on the `processvaluetable` table,
-which will compress data older than 7 days.
+  Enabling data retention consists in only adding the policy with the desired 
+  retention interval. Refer to [the official documentation](https://docs.timescale.com/api/latest/data-retention/add_retention_policy/) 
+  for more detailed information about these queries.
+
+  {{< tabs name="retention_sample" >}}
+  {{< tab name="factoryinsight" codelang="sql" >}}
+  -- Set a retention policy on the "processvaluetable" table, which will delete data older than 7 days.
+  SELECT add_retention_policy('processvaluetable', INTERVAL '7 days');
+  {{< /tab >}}
+  {{< tab name="umh_v2" codelang="sql" >}}
+  -- set a retention policy on the "tag" table, which will delete data older than 3 months.
+  SELECT add_retention_policy('tag', INTERVAL '3 months');
+  {{< /tab >}}
+  {{< /tabs >}}
 
 <!-- discussion -->
 
 <!-- Optional section; add links to information related to this topic. -->
 ## {{% heading "whatsnext" %}}
+
+- Learn how to [delete assets from the database](/docs/production-guide/administration/delete-assets) 
+explains how to turn on compression.
+- Learn how to [change the language in factoryinsight](/docs/production-guide/administration/change-factoryinsight-language).
