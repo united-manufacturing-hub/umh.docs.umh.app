@@ -8,44 +8,57 @@ weight: 2000
 
 <!-- overview -->
 
-The Management Console simplifies the upgrade process for both the Management Companion and the UMH stack (not yet available).
-This page provides detailed instructions on executing these upgrades.
+Easily upgrade your UMH instance with the Management Console. This page offers clear, step-by-step instructions
+for a smooth upgrade process.
 
-## Management Companion
-
-Upgrade the Management Companion of your UMH instance to leverage the latest features and improvements.
-
-### {{% heading "prerequisites" %}}
+## {{% heading "prerequisites" %}}
 
 Before proceeding with the upgrade of the Companion, ensure that you have the following:
 
 - A functioning UMH instance, verified as "online" and in good health.
 - A reliable internet connection.
-- Familiarity with the changelog of the new version you are upgrading to, especially to identify any breaking changes or required manual interventions.
+- Familiarity with the changelog of the new version you are upgrading to, especially to identify any breaking changes
+  or required manual interventions.
 
-### Steps
+## Management Companion
 
-1. Navigate to the "Overview" tab on the Management Console's dashboard.
+Upgrade your UMH instance seamlessly using the Management Console. Follow these steps:
 
-2. If your instance has an outdated Companion version, an "upgrade" icon will appear next to the instance's name. Additionally, find the
-   "Upgrade Companion" button at the bottom of the "Overview" tab.
+### Navigate to the "Overview" Tab
+
+Access the Management Console's dashboard and click on the "Overview" tab.
+
+### Identify Outdated Instance
+
+Look for an "upgrade" icon next to your instance's name if it has an outdated Companion version. Additionally, find
+the "Upgrade Companion" button at the bottom of the "Overview" tab.
    ![Outdated Instance Overview](/images/production-guide/upgrading/instanceOverviewUpgradeButton.png?width=80%)
 
-3. Click the "Upgrade Companion" button. The changelog provides a brief overview of the latest changes and an expandable section to
-   view the full changelog, detailing changes from your current version to the latest version. It also displays a warning if manual intervention is required.
-   ![Upgrade Changelog](/images/production-guide/upgrading/upgradeChangelog.png?width=80%)
+### Initiate the Upgrade
 
-4. Click the "Next" button to access important information about what should be done and avoided during the upgrade process.
-   ![Upgrade Important Information](/images/production-guide/upgrading/upgradeImportantInfo.png?width=80%)
+Click the "Upgrade Companion" button. A changelog will appear, offering a quick overview of the latest changes.
+Expand to view the full changelog, including details from your current version to the latest version. Any warnings
+for manual intervention will also be displayed.
 
-5. Once ready, click the "Upgrade" button. A progress bar and logs will be displayed during the upgrade process.
-   ![Upgrade Progress](/images/production-guide/upgrading/upgradingProgress.png?width=80%)
+### Review Important Information
 
-6. Upon success, a message will indicate a successful upgrade. Click the "Let's Go" button to return to the dashboard and continue using your UMH instance with the latest enhancements.
+Click the "Next" button to access crucial information about what actions should be taken and avoided during the
+upgrade process.
+
+### Start the Upgrade
+
+Click the "Upgrade" button when you are ready. Progress updates, including a progress bar and logs, will be displayed
+as the upgrade advances.
+
+### Successful Upgrade
+
+Upon successful completion, a message will confirm the upgrade's success. Click the "Let's Go" button to return to
+the dashboard and continue using your UMH instance with the latest enhancements.
    ![Upgrade Success](/images/production-guide/upgrading/upgradingSuccess.png?width=80%)
 
 ## United Manufacturing Hub
 
-As of now, the upgrade of the UMH is not yet included in the Management Console, meaning that it has to be performed manually.
-However, it is planned to be included in the future. Until then, you can follow the instructions in the
-[Archive Upgrading page](/docs/production-guide/upgrading/archive/) section of the Production Guide.
+As of now, the upgrade of the UMH is not yet included in the Management Console, meaning that it has to be performed
+manually. However, it is planned to be included in the future. Until then, you can follow the instructions in the
+[What's New](/docs/whatsnew/) page.
+
