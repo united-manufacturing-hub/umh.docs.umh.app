@@ -25,7 +25,7 @@ Once all the features and bug fixes for a release are ready and merged into the
 4. Draft a changelog and submit a pull request to the documentation repository. The new version's details should be placed in the `/docs/whatsnew` directory.
 5. Prepare a concise summary and a one-liner description for `version.json`.
 6. Update the `version.json` file located at `frontend/static/version` to include the new version.
-7. Merge the staging branch into the main branch and create a new GitHub release labeled as `vA.B.C`.
+7. Merge the staging branch into the main branch and create a new GitHub release labeled as `A.B.C`.
 8. Complete the process by merging the documentation changes.
 
 <!--
