@@ -15,7 +15,22 @@ and bug fixes due for a release are tracked in the internal project board.
 Once all the features and bug fixes for a release are ready and merged into the
 `staging` branch, the release process can start.
 
-<!-- steps -->
+<!-- helm -->
+
+# Companion repository
+
+1. Ensure all tests are passing.
+2. Add a new migration (updater/cmd/upgrades) for the version to be released.
+3. Add the new migration to our version list (updater/cmd/versions.go).
+4. Write a changelog and create a PR on the documentation repo (new version shall be in the [/docs/whatsnew](/docs/whatsnew) folder).
+5. Create a short version and a one line version for the version.json.
+6. Edit the current version.json (frontend/static/version) to include the new version.
+7. Merge staging into main and create a new GitHub release (vA.B.C).
+8. Merge the docs changes.
+
+<!-- helm -->
+
+# Helm repository
 
 ## Prerelease
 
