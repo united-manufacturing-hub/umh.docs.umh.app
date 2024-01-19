@@ -28,6 +28,9 @@ Once all the features and bug fixes for a release are ready and merged into the
 7. Merge the staging branch into the main branch and create a new GitHub release labeled as `vA.B.C`.
 8. Complete the process by merging the documentation changes.
 
+<!--
+   In the future we might need to add some additional steps, if the companion also updates the UMH
+-->
 
 <!-- helm -->
 
