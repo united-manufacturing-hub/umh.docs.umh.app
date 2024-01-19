@@ -17,7 +17,7 @@ Once all the features and bug fixes for a release are ready and merged into the
 
 <!-- helm -->
 
-# Companion repository
+# Companion
 
 1. Ensure all tests are passing.
 2. Add a new migration (updater/cmd/upgrades) for the version to be released.
@@ -30,7 +30,7 @@ Once all the features and bug fixes for a release are ready and merged into the
 
 <!-- helm -->
 
-# Helm repository
+# Helm Chart
 
 ## Prerelease
 
