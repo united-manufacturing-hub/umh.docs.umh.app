@@ -33,7 +33,7 @@ Initiate your document with an executive summary that encapsulates updates and c
 
 ## Version Update Procedure
 
-Navigate to the [ManagementConsole repository](https://github.com/united-manufacturing-hub/ManagementConsole) and contribute a new `.go` file within the `/updater/cmd/upgrades` path. This file's name must adhere to the semantic versioning convention of the update (e.g., `0.1.0.go`).
+Navigate to the [ManagementConsole repository](https://github.com/united-manufacturing-hub/ManagementConsole) and contribute a new `.go` file within the `/updater/cmd/upgrades` path. This file's name must adhere to the semantic versioning convention of the update (e.g., `0.0.5.go`).
 
 This file should:
 - Implement the `Version` interface defined in `upgrade_interface.go`.
@@ -100,7 +100,7 @@ To finalize:
 1. Submit a PR to the [documentation repository](https://github.com/united-manufacturing-hub/umh.docs.umh.app) to transition the release notes from draft to final.
 2. Initiate a PR from the staging to the main branch within the [ManagementConsole repository](https://github.com/united-manufacturing-hub/ManagementConsole), ensuring to reference the documentation PR.
 3. Confirm the success of all test suites.
-4. Merge the code changes and formalize the release on GitHub, labeling it with the semantic version (e.g., `0.1.0`, excluding any preceding `v`).
+4. Merge the code changes and formalize the release on GitHub, labeling it with the semantic version (e.g., `0.0.5`, excluding any preceding `v`).
 5. Merge the documentation PR to publicize the new version within the official documentation.
 
 
