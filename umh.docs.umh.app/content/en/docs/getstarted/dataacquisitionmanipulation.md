@@ -220,7 +220,7 @@ After that, click on the edit button.
     msg.topic = umh.v1.pharma-genix.aachen.packaging.packaging_1.blister.PLC13._historian.temperatureCelsius
     ```
 
-    For this tutorial, add this topic to kafka-producer.
+    For this tutorial, add this topic to kafka-producer in Node-RED.
 
     ![Node-RED Kafka Producer Topic](/images/getstarted/dataAcquisitionManipulation/noderedKafkaProducerTopic.png)
 
