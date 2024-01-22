@@ -93,6 +93,34 @@ func buildVersionLinkedList() error {
 ```
 
 Update the `version.json` in the `frontend/static/version` directory with the new image tag and incorporate the changelog derived from your initial documentation draft.
+```json
+{
+  "companion": {
+    "versions": [
+      {
+        "semver": "0.0.1",
+        "changelog": {
+          "full": ["INTERNAL TESTING 0.0.1"],
+          "short": "Bugfixes"
+        },
+        "requiresManualIntervention": false
+      },
+       
+       // Other previous versions        
+
+       // Our new version 
+      {
+        "semver": "0.0.5",
+        "changelog": {
+          "full": ["See 0.0.4"],
+          "short": "This version is the same as 0.0.5 and is used for upgrade testing"
+        },
+        "requiresManualIntervention": false
+      }
+    ]
+  }
+}
+```
 
 ## Finalizing the Release
 
