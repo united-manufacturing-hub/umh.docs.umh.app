@@ -61,13 +61,14 @@ workspace {
             companion = container "Management Companion" "..." "Docker, Go"
             keyStorage = container "Key Storage" "Stores and fetches encrypted private keys." "Database"
             redisMgmt = container "Message Queue" "Stores and forwards messages" "Redis"
-            upgrader = container "Upgrader" "Upgrades UMH instances" "Docker, Go"
+            updater = container "Updater" "Upgrades UMH instances" "Docker, Go"
 
             spa -> backend "Sends/receives E2E encrypted messages, fetches encrypted private key from backend"
             backend -> keyStorage "Fetches encrypted private key"
             backend -> companion "Sends/receives E2E encrypted messages"
             backend -> redisMgmt "Stores and fetches E2E encrypted messages"
-            backend -> upgrader "Sends/receives E2E encrypted messages"
+            companion -> updater "Requests to be updated"
+            updater -> companion "Updates"
 
             user -> spa "Opens management.umh.app, enters his password to decrypt private key, and then manages and monitors the entire infrastructure using the SPA" {
                 tags "LowLevel"
