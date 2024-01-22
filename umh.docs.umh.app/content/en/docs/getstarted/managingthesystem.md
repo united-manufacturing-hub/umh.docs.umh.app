@@ -72,17 +72,11 @@ as some system's information.
 If there is an overload on the device, you can view it here. An overloaded device
 is unable to handle the workload, and you should consider upgrading the device.
 
-### Data
+### Connection Management
 
-In the **Data** tab, you can see an overview of the data infrastructure, including
-the number of messages going through the message broker, those stored in the
-database, and messages received by each data source.
-
-### Connection
-
-In the **Connection** tab, you can view the status of all the data source connections
-configured in the system. A non-healthy connection indicates that the device and
-the data source are unable to communicate.
+In the **Connection Management** tab, you can view a brief overview of the data infrastructure,
+which includes the rate of messages going through the message broker and the database. Any unhealthy
+data sources or connections are also listed here.
 
 ### Kubernetes
 
@@ -123,6 +117,7 @@ You can bypass this by adding --kubeconfig /etc/rancher/k3s/k3s.yaml to your com
 Then, to get a list of pods, run:
 
 <!-- This command is tested within #1153 -->
+
 ```bash
 sudo $(which kubectl) get pods -n united-manufacturing-hub  --kubeconfig /etc/rancher/k3s/k3s.yaml
 ```
@@ -145,7 +140,9 @@ http://<instance-ip-address>:1880/nodered
 #### Access Grafana
 
 UMH uses Grafana for dashboard displays. Get your credentials:
+
 <!-- These two commands are tested within #1153 -->
+
 ```bash
 sudo $(which kubectl) get secret grafana-secret --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub -o jsonpath="{.data.adminuser}" | base64 --decode; echo
 sudo $(which kubectl) get secret grafana-secret --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub -o jsonpath="{.data.adminpassword}" | base64 --decode; echo
@@ -288,7 +285,6 @@ For insights into your Kafka streams managed by Redpanda, these commands are inv
   ```bash
   sudo $(which kubectl) exec -it --kubeconfig /etc/rancher/k3s/k3s.yaml -n united-manufacturing-hub united-manufacturing-hub-kafka-0 -- rpk topic consume umh.v1.e2e-enterprise.aachen.packaging
   ```
-
 
 ## What's next?
 
