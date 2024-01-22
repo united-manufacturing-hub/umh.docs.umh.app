@@ -59,7 +59,7 @@ offlineSearch = false
 prism_syntax_highlighting = false
 
 latestUMH    = "0.10.0"
-version      = "v0.1"
+version      = "v0.2"
 docsbranch   = "main"
 deprecated   = false
 currentUrl   = "https://umh.docs.umh.app/"
@@ -85,9 +85,13 @@ github_subdir = "umh.docs.umh.app"
 github_branch = "main"
 
 [[params.versions]]
-version      = "v0.1"
+version      = "v0.2"
 docsbranch   = "main"
 url          = "https://umh.docs.umh.app/"
+[[params.versions]]
+version      = "v0.1"
+docsbranch   = "v0.1"
+url          = "https://v0-1.umh-docs-umh-app.pages.dev/docs/"
 
 # User interface configuration
 [params.ui]
