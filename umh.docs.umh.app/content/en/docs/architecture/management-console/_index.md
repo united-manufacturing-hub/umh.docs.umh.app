@@ -31,12 +31,10 @@ secure and opaque channel to the Backend.
 
 ## Management Updater
 
-The Updater is an essential component integrated into the Management Console, designed to streamline the upgrading
-process of your UMH instances. Its purpose is to simplify the modification and upgrading of UMH Stack components
-directly through the console interface. Unlike external tools, it seamlessly integrates into the existing Management
-Console workflow. Its primary focus is to facilitate efficient upgrades of the Management Companion,
-empowering administrators and operators to keep their UMH environments up-to-date. In summary, the Updater provides
-a user-friendly and integrated approach to managing and maintaining your UMH environment.
+The Updater is a custom Job run by the Management Companion, responsible for
+updating the Management Companion itself. Its purpose is to automate the process
+of upgrading the Management Companion to the latest version, reducing the
+administrative overhead of managing UMH instances.
 
 ## Backend
 
