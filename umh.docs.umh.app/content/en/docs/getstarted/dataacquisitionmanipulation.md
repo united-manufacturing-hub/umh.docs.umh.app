@@ -174,26 +174,37 @@ Ensure you have node-red-contrib-kafkajs installed. If not, see
 
 Add a kafka-producer node, connecting it to the JSON node. Configure as follows:
 
-- **Brokers**: united-manufacturing-hub-kafka:9092
-- **Client ID**: nodered
+1. Open the configuration menu by double-click on the kafka-producer node.
+After that, click on the edit button.
 
-**Update** to save.
+    ![Node-RED Kafka Producer](/images/getstarted/dataAcquisitionManipulation/noderedKafkaProducer.png)
 
-Structure Kafka topics according to UMH data model:
+2. Change the fields of `Brokers` and `Client ID` as follows:
 
-```text
-umh.v1.<enterprise>.<site>.<area>.<line>.<workcell>.<originID>.<schema>.<tagName>
-```
+    - **Brokers**: united-manufacturing-hub-kafka:9092
+    - **Client ID**: nodered
 
-Example topic for this tutorial:
+    ![Node-RED Kafka Broker Configuration](/images/getstarted/dataAcquisitionManipulation/noderedKafkaBrokerConfigure.png)
 
-```text
-umh.v1.pharma-genix.aachen.packaging.packaging_1.blister.PLC13._historian.temperatureCelsius
-```
+    Click on **Update** to save.
 
-To learn more about the UMH data-model, read the [documentation](/docs/architecture/datamodel).
+3. Structure Kafka topics according to UMH data model:
 
-Click **Done** and deploy.
+    ```text
+    umh.v1.<enterprise>.<site>.<area>.<line>.<workcell>.<originID>.<schema>.<tagName>
+    ```
+
+    For this tutorial, add this sample topic:
+
+    ```text
+    umh.v1.pharma-genix.aachen.packaging.packaging_1.blister.PLC13._historian.temperatureCelsius
+    ```
+
+    ![Node-RED Kafka Producer Topic](/images/getstarted/dataAcquisitionManipulation/noderedKafkaProducerTopic.png)
+
+    To learn more about the UMH data-model, read the [documentation](/docs/architecture/datamodel).
+
+4. Click **Done** and deploy.
 
 {{% notice note %}}
 Optional: Add a debug node for output visualization.
