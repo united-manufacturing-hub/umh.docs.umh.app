@@ -207,7 +207,7 @@ After that, click on the edit button.
 
     The enterprise and schema fields are required. 
     To learn more about the UMH data-model, read the [documentation](/docs/architecture/datamodel).
-    
+
     For example, if you want to structure a topic for the temperature in celsius
     from the PLC, which
     - is running in a factory of Pharma-Genix in Aachen.
@@ -217,7 +217,7 @@ After that, click on the edit button.
     and you want to use `_historian` schema, then the topic should look like
 
     ```text
-    umh.v1.pharma-genix.aachen.packaging.packaging_1.blister.PLC13._historian.temperatureCelsius
+    msg.topic = umh.v1.pharma-genix.aachen.packaging.packaging_1.blister.PLC13._historian.temperatureCelsius
     ```
 
     For this tutorial, add this topic to kafka-producer.
