@@ -7,13 +7,13 @@ description: |
 weight: 2000
 ---
 
-<!-- 
+<!--
 
 To render the SVG, load this up in https://structurizr.com/
 
 -->
 
-<!-- 
+<!--
 
 workspace {
 
@@ -21,25 +21,25 @@ workspace {
     user = person "IT/OT Professional" "Manages and monitors the United Manufacturing Hub."
     otProfessional = person "OT Professional / Shopfloor" "Respinsible for everything on the shopfloor"
     businessAnalyst = person "Business Analyst" "Gets data for analysis from the data warehouse/data lake."
-    
+
     dataWarehouse = softwareSystem "Data Warehouse/Data Lake" "Stores data for analysis, possibly in the cloud." {
         tags "external"
     }
-    
+
     automationPyramid = softwareSystem "Automation Pyramid" "Represents the layered structure of systems in manufacturing operations based on the ISA-95 model."" {
-      
+
       // Level 4: Enterprise Resource Planning (ERP)
       erp = container "ERP" "Enterprise Resource Planning system that provides business and financial functionalities."
-      
+
       // Level 3: Manufacturing Execution System (MES)
       mes = container "MES" "Manufacturing Execution System that manages, monitors, and synchronizes the execution of real-time operations on the plant floor."
-      
+
       // Level 2: Supervisory Control and Data Acquisition (SCADA)
-      scada = container "SCADA" "Supervisory Control and Data Acquisition system that provides control and monitoring for industrial processes at the supervisory level." 
-      
+      scada = container "SCADA" "Supervisory Control and Data Acquisition system that provides control and monitoring for industrial processes at the supervisory level."
+
       // Level 1: Programmable Logic Controllers (PLC)
       plc = container "PLC" "Programmable Logic Controllers that execute control actions based on real-time operational data."
-      
+
       // Level 0: Field-level instrumentation and sensors/actuators
       fieldDevices = container "Field Devices" "Sensors and actuators that interact with the physical process."
 
@@ -48,10 +48,10 @@ workspace {
       mes -> scada "Coordinates and directs control actions"
       scada -> plc "Sends control commands"
       plc -> fieldDevices "Directs field-level operations"
-      
+
       otProfessional -> automationPyramid "working with it (programming, etc.)"
       tags "external"
-      
+
     }
 
     unitedManufacturingHub = group "United Manufacturing Hub" {
@@ -61,12 +61,15 @@ workspace {
             companion = container "Management Companion" "..." "Docker, Go"
             keyStorage = container "Key Storage" "Stores and fetches encrypted private keys." "Database"
             redisMgmt = container "Message Queue" "Stores and forwards messages" "Redis"
-            
+            updater = container "Updater" "Upgrades UMH instances" "Docker, Go"
+
             spa -> backend "Sends/receives E2E encrypted messages, fetches encrypted private key from backend"
             backend -> keyStorage "Fetches encrypted private key"
             backend -> companion "Sends/receives E2E encrypted messages"
             backend -> redisMgmt "Stores and fetches E2E encrypted messages"
-            
+            companion -> updater "Requests to be updated"
+            updater -> companion "Updates"
+
             user -> spa "Opens management.umh.app, enters his password to decrypt private key, and then manages and monitors the entire infrastructure using the SPA" {
                 tags "LowLevel"
             }
@@ -82,7 +85,7 @@ workspace {
             ipxe = container "Customized iPXE" "A specialized bootloader configured for fetching UMH-specific settings and configurations, streamlining the initial boot process." "iPXE"
             flatcar_0 = container "First Stage Flatcar OS" "Temporary operating system, used solely for the installation of the second-stage Flatcar OS."
             flatcar_1 = container "Second Stage Flatcar OS" "The final operating system on which the infrastructure runs, set up with specific configurations and tools."
-        
+
             ipxe -> provisioningServer "Requests configuration, including user token and serial number, and retrieves iPXE config."
             ipxe -> flatcarImageServer "Downloads the specified Flatcar version for the initial boot (flatcar_0)."
             ipxe -> flatcar_0 "Initiates the boot-up sequence of the first-stage OS."
@@ -91,8 +94,8 @@ workspace {
             flatcar_0 -> flatcarImageServer "Retrieves the image for the second-stage Flatcar OS."
             flatcar_1 -> provisioningServer "Acquires ignition config with token-specific setup instructions (networking, etc.)."
             flatcar_1 -> installScript "Downloads and executes the installation script."
-            flatcar_1 -> flatcarImageServer "Checks regularly for updates" 
-        
+            flatcar_1 -> flatcarImageServer "Checks regularly for updates"
+
             installScript -> kubernetes "Installs Kubernetes (k3s) along with all required tools (kubectl, etc.)."
             installScript -> kubernetes "Deploys the Helm Chart for the Data Infrastructure as part of the setup process."
             installScript -> companion "Deploys the Management Companion into the Kubernetes cluster" {
@@ -106,7 +109,7 @@ workspace {
                 mqtt = component "HiveMQ" "MQTT broker used for receiving data from IoT devices on the shop floor."
                 console = component "Redpanda Console" "Provides a graphical view of topics and messages in Kafka."
                 databridge = component "databridge" "Bridges messages between MQTT and Kafka as well as between Kafka and other Kafka instances"
-                
+
                 mqtt -> databridge
                 databridge -> kafka
                 kafka -> databridge
@@ -121,18 +124,18 @@ workspace {
                 factoryinsight = component "factoryinsight" "Analytics software that allows on-the-fly data analysis (e.g., OEE)"
                 grafanaDatasource = component "grafana-datasource-v2" "Addon for Grafana that allows easy access to factoryinsight"
                 redis = component "Redis" "In-memory data structure store used for caching."
-                
-                
+
+
                 kafkaToPostgreSQL -> timescaledb "Stores data"
                 kafka -> kafkaToPostgreSQL "Stores data in the schema _historian.md and _analytics"
                 grafana -> timescaledb "Querying SQL commands"
                 grafana -> grafanaDatasource "included"
                 grafanaDatasource -> factoryinsight "fetches KPIs and other high-level metrics"
                 factoryinsight -> timescaledb "fetches data"
-                
+
                 factoryinsight -> redis "caching"
                 kafkaToPostgreSQL -> redis "caching"
-                
+
                 otProfessional -> grafana "Accessing real-time dashboards"
             }
             connectivity = container "Connectivity" "Includes tools and services for connecting various shop floor systems and sensors." {
@@ -140,12 +143,12 @@ workspace {
                 barcodereader = component "Barcode Reader" "Connects to USB barcode reader devices and pushes data to the message broker."
                 sensorconnect = component "Sensor Connect" "Reads out IO-Link Master and their connected sensors, pushing data to the message broker."
                 benthosUMH = component "benthos-umh" "Customized version of benthos with an OPC UA plugin"
-                
+
                 nodered -> mqtt "Provides contextualized data"
                 barcodereader -> kafka "Provides contextualized data"
                 sensorconnect -> kafka "Provides contextualized data"
                 benthosUMH -> kafka "Provides contextualized data"
-                
+
                 benthosUMH -> plc "Extracts data via OPC UA" {
                     tags "LowLevel"
                 }
@@ -158,7 +161,7 @@ workspace {
                 benthosUMH -> erp "Extracts data via REST, SOAP, and many more protocols" {
                     tags "LowLevel"
                 }
-                
+
                 nodered -> plc "Extracts data via S7, and many more protocols" {
                     tags "LowLevel"
                 }
@@ -168,19 +171,19 @@ workspace {
                 nodered -> erp "Extracts data via REST, SOAP, and many more protocols" {
                     tags "LowLevel"
                 }
-                
+
                 companion -> benthosUMH "Manages and monitors"
             }
             // simulators = container "Simulators" "Includes simulators for generating data during development and testing."
-            
+
             connectivity -> automationPyramid "Provides and extracts data" {
                 tags "HighLevel"
             }
-            
+
             dataInfrastructure -> automationPyramid "Provides and extracts data" {
                 tags "HighLevel"
             }
-            
+
         }
         dataInfrastructure -> deviceInfrastructure "is installed on"
       }
@@ -188,8 +191,8 @@ workspace {
     // Management Console
     companion -> deviceInfrastructure "Manages & monitors"
     companion -> dataInfrastructure "Manages & monitors"
-    
-    
+
+
     businessAnalyst -> dataWarehouse "Gets data for analysis"
   }
 
@@ -199,39 +202,39 @@ workspace {
       autolayout lr
       exclude "relationship.tag==LowLevel"
     }
-    
-    
+
+
     container "deviceInfrastructure" {
       include *
       autolayout lr
     }
-    
+
     container "managementConsole" {
       include *
       autolayout lr
     }
-    
+
     container "dataInfrastructure" {
       include *
       autolayout lr
       exclude "relationship.tag==LowLevel"
     }
-    
+
     component "unifiedNamespace" {
       include *
       autolayout lr
     }
-    
+
     component "connectivity" {
       include *
       autolayout lr
     }
-    
+
     component "historian" {
       include *
       autolayout lr
     }
-    
+
     styles {
         element "Person" {
             shape person
@@ -280,8 +283,8 @@ mechanisms.
 
 {{< mermaid theme="neutral" >}}
 graph LR
-  subgraph group1 [United Manufacturing Hub]
-    style group1 fill:#ffffff,stroke:#47a0b5,color:#47a0b5,stroke-dasharray:5
+subgraph group1 [United Manufacturing Hub]
+style group1 fill:#ffffff,stroke:#47a0b5,color:#47a0b5,stroke-dasharray:5
 
     16["`**Management Console**
     Configures, manages, and monitors Data and Device & Container Infrastructures in the UMH Integrated Platform`"]
@@ -292,36 +295,37 @@ graph LR
     50["`**Data Infrastructure**
     Integrates every ISA-95 standard layer with the Unified Namespace, adding data sources beyond typical automation pyramid bounds`"]
     style 50 fill:#aaaaaa,stroke:#47a0b5,color:#000000
-  end
 
-  1["`fa:fa-user **IT/OT Professional**
-  Manages and monitors the United Manufacturing Hub`"]
-  style 1 fill:#dddddd,stroke:#9a9a9a,color:#000000
-  2["`fa:fa-user **OT Professional / Shopfloor**
-  Monitors and manages the shopfloor, including safety, automation and maintenance`"]
-  style 2 fill:#dddddd,stroke:#9a9a9a,color:#000000
-  3["`fa:fa-user **Business Analyst**
-  Gathers and analyzes company data to identify needs and recommend solutions`"]
-  style 3 fill:#dddddd,stroke:#9a9a9a,color:#000000
-  4["`**Data Warehouse/Data Lake**
-  Stores data for analysis, on-premise or in the cloud`"]
-  style 4 fill:#f4f4f4,stroke:#f4f4f4,color:#000000
-  5["`**Automation Pyramid**
-  Represents the layered structure of systems in manufacturing operations based on the ISA-95 model`"]
-  style 5 fill:#f4f4f4,stroke:#f4f4f4,color:#000000
+end
 
-  1-. Interacts with the
-      entire infrastructure .->16
-  16-. Manages & monitors .->27
-  16-. Manages & monitors .->50
-  2-. Access real-time
-      dashboards from .->50
-  2-. Works with .->5
-  3-. Gets and analyzes data from .->4
-  50-. Is installed on .->27
-  50-. Provides data to .->4
-  50-. Provides to and
-       extracts data from .->5
+1["`fa:fa-user **IT/OT Professional**
+Manages and monitors the United Manufacturing Hub`"]
+style 1 fill:#dddddd,stroke:#9a9a9a,color:#000000
+2["`fa:fa-user **OT Professional / Shopfloor**
+Monitors and manages the shopfloor, including safety, automation and maintenance`"]
+style 2 fill:#dddddd,stroke:#9a9a9a,color:#000000
+3["`fa:fa-user **Business Analyst**
+Gathers and analyzes company data to identify needs and recommend solutions`"]
+style 3 fill:#dddddd,stroke:#9a9a9a,color:#000000
+4["`**Data Warehouse/Data Lake**
+Stores data for analysis, on-premise or in the cloud`"]
+style 4 fill:#f4f4f4,stroke:#f4f4f4,color:#000000
+5["`**Automation Pyramid**
+Represents the layered structure of systems in manufacturing operations based on the ISA-95 model`"]
+style 5 fill:#f4f4f4,stroke:#f4f4f4,color:#000000
+
+1-. Interacts with the
+entire infrastructure .->16
+16-. Manages & monitors .->27
+16-. Manages & monitors .->50
+2-. Access real-time
+dashboards from .->50
+2-. Works with .->5
+3-. Gets and analyzes data from .->4
+50-. Is installed on .->27
+50-. Provides data to .->4
+50-. Provides to and
+extracts data from .->5
 {{</ mermaid >}}
 
 ## Management Console
