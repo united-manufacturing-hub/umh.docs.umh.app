@@ -188,21 +188,42 @@ After that, click on the edit button.
 
     Click on **Update** to save.
 
-3. Structure Kafka topics according to UMH data model:
+3. Structure Kafka topics according to UMH data model, following the ISA95 standard:
 
     ```text
     umh.v1.<enterprise>.<site>.<area>.<line>.<workcell>.<originID>.<schema>.<tagName>
     ```
 
-    For this tutorial, add this sample topic:
+    - `umh.v1`: obligatory versioning prefix
+    - `enterprise`: The company's name
+    - `site`: The facility's location
+    - `area`: The specific production's area
+    - `line`: The production line
+    - `workcell`: The workcell in the production line 
+    - `originID`: The data source ID
+    - `schema`: The schema of your data
+    - `tagName`: Arbitrary tags dependent context
+
+
+    The enterprise and schema fields are required. 
+    To learn more about the UMH data-model, read the [documentation](/docs/architecture/datamodel).
+    
+    For example, if you want to structure a topic for the temperature in celsius
+    from the PLC, which
+    - is running in a factory of Pharma-Genix in Aachen.
+    - is running in `blster` workcell in the packaging line 1 in the packaging area.
+    - has the ID `PLC13`.
+
+    and you want to use `_historian` schema, then the topic should look like
 
     ```text
     umh.v1.pharma-genix.aachen.packaging.packaging_1.blister.PLC13._historian.temperatureCelsius
     ```
 
+    For this tutorial, add this topic to kafka-producer.
+
     ![Node-RED Kafka Producer Topic](/images/getstarted/dataAcquisitionManipulation/noderedKafkaProducerTopic.png)
 
-    To learn more about the UMH data-model, read the [documentation](/docs/architecture/datamodel).
 
 4. Click **Done** and deploy.
 
