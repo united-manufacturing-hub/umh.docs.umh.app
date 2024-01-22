@@ -132,6 +132,17 @@ To finalize:
 5. Merge the documentation PR to publicize the new version within the official documentation.
 
 
+### Checklist
+
+- [ ] Draft documentation in `/docs/whatsnew` with version details and summary.
+- [ ] Add new `.go` file for version update in `/updater/cmd/upgrades`.
+- [ ] Implement `Version` interface and necessary migration functions.
+- [ ] Update `version.json` with new image tag and changelog.
+- [ ] Submit PR to finalize documentation.
+- [ ] Create and merge PR in ManagementConsole repository, referencing documentation PR.
+- [ ] Validate tests and merge code changes.
+- [ ] Release new GitHub version without the `v` prefix.
+- [ ] Merge documentation PR to publish new version details.
 
 
 
