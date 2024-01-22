@@ -17,16 +17,48 @@ Once all the features and bug fixes for a release are ready and merged into the
 
 <!-- companion -->
 
+Here's a refined version of your documentation text, aimed at enhancing clarity, conciseness, and readability for technical audiences:
+
+
 # Companion
 
-1. Ensure that all tests pass successfully.
-2. Create a new migration in `updater/cmd/upgrades` for the upcoming release.
-3. Add this new migration to our version list in `updater/cmd/versions.go`.
-4. Draft a changelog and submit a pull request to the documentation repository. The new version's details should be placed in the `/docs/whatsnew` directory.
-5. Prepare a concise summary and a one-liner description for `version.json`.
-6. Update the `version.json` file located at `frontend/static/version` to include the new version.
-7. Merge the staging branch into the main branch and create a new GitHub release labeled as `A.B.C`.
-8. Complete the process by merging the documentation changes.
+## Preparing the Documentation
+
+Begin by drafting new documentation within the `/docs/whatsnew` directory of the [United Manufacturing Hub documentation repository](https://github.com/united-manufacturing-hub/umh.docs.umh.app). Your draft should comprehensively include:
+- The UMH version rolled out with this release.
+- The new Companion version.
+- Versions of any installed plugins, such as `Benthos-UMH`.
+
+Initiate your document with an executive summary that encapsulates updates and changes across all platforms, including UMH and Companion.
+
+## Version Update Procedure
+
+Navigate to the [ManagementConsole repository](https://github.com/united-manufacturing-hub/ManagementConsole) and contribute a new `.go` file within the `/updater/cmd/upgrades` path. This file's name must adhere to the semantic versioning convention of the update (e.g., `0.1.0.go`).
+
+This file should:
+- Implement the `Version` interface defined in `upgrade_interface.go`.
+- Include `PreMigration` and `PostMigration` functions that may return `nil` if no specific migration tasks are necessary.
+- Define `GetImageVersion` to return the Docker tag associated with the new version.
+- Specify any Kubernetes controllers (e.g., Statefulsets, Deployments) needing restart post-update in the `GetPodControllers` function.
+
+{{% notice note %}}
+Ensure to review the restart policies for the Kubernetes objects designated for restart, paying special attention to jobs.
+{{% /notice %}}
+
+Update the `version.json` in the `frontend/static/version` directory with the new image tag and incorporate the changelog derived from your initial documentation draft.
+
+## Finalizing the Release
+
+To finalize:
+1. Submit a PR to the [documentation repository](https://github.com/united-manufacturing-hub/umh.docs.umh.app) to transition the release notes from draft to final.
+2. Initiate a PR from the staging to the main branch within the [ManagementConsole repository](https://github.com/united-manufacturing-hub/ManagementConsole), ensuring to reference the documentation PR.
+3. Confirm the success of all test suites.
+4. Merge the code changes and formalize the release on GitHub, labeling it with the semantic version (e.g., `0.1.0`, excluding any preceding `v`).
+5. Merge the documentation PR to publicize the new version within the official documentation.
+
+
+
+
 
 <!--
    In the future we might need to add some additional steps, if the companion also updates the UMH
