@@ -47,6 +47,7 @@ You can click and open each status on this tab.
 
 The **Connection Management** tab shows the status of all the instance's connections and their associated
 data sources. Moreover, you can create a new connection, as well as initialize them.
+Read more about the Connection Management in the [Connectivity](/docs/features/connectivity/) section.
 
 ![Connection Management](/images/features/monitor-management/instanceConnectionManagement.png?width=80%)
 
