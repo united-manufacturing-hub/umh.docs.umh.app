@@ -17,9 +17,6 @@ Once all the features and bug fixes for a release are ready and merged into the
 
 <!-- companion -->
 
-Here's a refined version of your documentation text, aimed at enhancing clarity, conciseness, and readability for technical audiences:
-
-
 # Companion
 
 ## Preparing the Documentation
@@ -65,7 +62,8 @@ This file should:
    ```
 
 {{% notice note %}}
-Ensure to review the restart policies for the Kubernetes objects designated for restart, paying special attention to jobs.
+Validate that all kubernetes objects referenced here, are designed to restart after terminating their Pod.
+This is especially important for Jobs.
 {{% /notice %}}
 
 Inside the `versions.go`, ensure to add your version inside the `buildVersionLinkedList` function.
