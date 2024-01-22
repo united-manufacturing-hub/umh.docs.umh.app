@@ -37,13 +37,60 @@ Navigate to the [ManagementConsole repository](https://github.com/united-manufac
 
 This file should:
 - Implement the `Version` interface defined in `upgrade_interface.go`.
-- Include `PreMigration` and `PostMigration` functions that may return `nil` if no specific migration tasks are necessary.
-- Define `GetImageVersion` to return the Docker tag associated with the new version.
-- Specify any Kubernetes controllers (e.g., Statefulsets, Deployments) needing restart post-update in the `GetPodControllers` function.
+-  Include PreMigration and PostMigration functions. These functions should return another function that, when executed, returns nil unless specific migration tasks are necessary. This nested function structure allows for conditional execution of migration steps, as demonstrated in the PostMigration example below:
+   ```go
+   func (v *v0x0x5) PostMigration() func(version *semver.Version, clientset kubernetes.Interface) error {
+       return func(version *semver.Version, clientset kubernetes.Interface) error {
+           zap.S().Infof("Post-Migration 0.0.5")
+           return nil
+       }
+   }
+   ```
+- Define `GetImageVersion` to return the Docker tag associated with the new version. For `0.5.0` this would look like:
+   ```go
+   func (v *v0x0x5) GetImageVersion() *semver.Version {
+       return semver.New(0, 0, 5, "", "")
+   }
+   ```
+- Specify any Kubernetes controllers (e.g., Statefulsets, Deployments) needing restart post-update in the `GetPodControllers` function. Usually you just need to restart the companion itself, so you can use:
+   ```go
+   func (v *v0x0x5) GetPodControllers() []types.KubernetesController {
+       return []types.KubernetesController{
+           {
+               Name: constants.StatefulsetName,
+               Type: types.Statefulset,
+           },
+       }
+   }
+   ```
 
 {{% notice note %}}
 Ensure to review the restart policies for the Kubernetes objects designated for restart, paying special attention to jobs.
 {{% /notice %}}
+
+Inside the `versions.go`, ensure to add your version inside the `buildVersionLinkedList` function.
+```go
+func buildVersionLinkedList() error {
+	var err error
+	builderOnce.Do(func() {
+		zap.S().Infof("Building version list")
+		start := v0x0x1{}
+		versionLinkedList = &start
+		/*
+		    Other previous versions
+		 */
+		
+		// Our new version
+		err = addVersion(&v0x0x5{})
+		if err != nil {
+			zap.S().Warnf("Failed to add 0.0.5 to version list: %s", err)
+			return
+		}
+		zap.S().Infof("Build version list")
+	})
+	return err
+}
+```
 
 Update the `version.json` in the `frontend/static/version` directory with the new image tag and incorporate the changelog derived from your initial documentation draft.
 
