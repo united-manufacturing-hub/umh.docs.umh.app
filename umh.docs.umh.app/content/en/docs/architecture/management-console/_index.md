@@ -12,7 +12,7 @@ United Manufacturing Hub. It comprises a [web application](https://management.um
 a backend API and the management companion agent, all designed to ensure secure and
 efficient operation.
 
-{{< figure src="/images/architecture/container-management-console.svg" title="Management Console Architecture" >}}
+![Management Console Architecture](/images/architecture/container-management-console.png)
 
 ## Web Application
 
@@ -28,6 +28,13 @@ Deployed on each UMH instance, the Management Companion acts as an agent respons
 for decrypting messages coming from the user via the Backend and executing
 requested actions. Responses are end-to-end encrypted as well, maintaining a
 secure and opaque channel to the Backend.
+
+## Management Updater
+
+The Updater is a custom Job run by the Management Companion, responsible for
+updating the Management Companion itself. Its purpose is to automate the process
+of upgrading the Management Companion to the latest version, reducing the
+administrative overhead of managing UMH instances.
 
 ## Backend
 
