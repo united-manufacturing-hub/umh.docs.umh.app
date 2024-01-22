@@ -12,7 +12,7 @@ United Manufacturing Hub. It comprises a [web application](https://management.um
 a backend API and the management companion agent, all designed to ensure secure and
 efficient operation.
 
-{{< figure src="/images/architecture/container-management-console.svg" title="Management Console Architecture" >}}
+![Management Console Architecture](/images/architecture/container-management-console.png)
 
 ## Web Application
 
