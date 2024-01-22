@@ -17,9 +17,12 @@ Once all the features and bug fixes for a release are ready and merged into the
 
 <!-- companion -->
 
-# Companion
+## Companion
+{{% notice note %}}
+This section is for internal use at UMH.
+{{% /notice %}}
 
-## Preparing the Documentation
+### Preparing the Documentation
 
 Begin by drafting new documentation within the `/docs/whatsnew` directory of the [United Manufacturing Hub documentation repository](https://github.com/united-manufacturing-hub/umh.docs.umh.app). Your draft should comprehensively include:
 - The UMH version rolled out with this release.
@@ -28,7 +31,7 @@ Begin by drafting new documentation within the `/docs/whatsnew` directory of the
 
 Initiate your document with an executive summary that encapsulates updates and changes across all platforms, including UMH and Companion.
 
-## Version Update Procedure
+### Version Update Procedure
 
 Navigate to the [ManagementConsole repository](https://github.com/united-manufacturing-hub/ManagementConsole) and contribute a new `.go` file within the `/updater/cmd/upgrades` path. This file's name must adhere to the semantic versioning convention of the update (e.g., `0.0.5.go`).
 
@@ -120,7 +123,7 @@ Update the `version.json` in the `frontend/static/version` directory with the ne
 }
 ```
 
-## Finalizing the Release
+### Finalizing the Release
 
 To finalize:
 1. Submit a PR to the [documentation repository](https://github.com/united-manufacturing-hub/umh.docs.umh.app) to transition the release notes from draft to final.
@@ -130,7 +133,7 @@ To finalize:
 5. Merge the documentation PR to publicize the new version within the official documentation.
 
 
-### Checklist
+#### Checklist
 
 - [ ] Draft documentation in `/docs/whatsnew` with version details and summary.
 - [ ] Add new `.go` file for version update in `/updater/cmd/upgrades`.
@@ -150,9 +153,9 @@ To finalize:
 
 <!-- helm -->
 
-# Helm Chart
+## Helm Chart
 
-## Prerelease
+### Prerelease
 
 The prerelease process is used to test the release before it is published.
 If bugs are found during the prerelease, they can be fixed and the release
@@ -195,7 +198,7 @@ published.
 
 5. Merge prerelease branch into `staging`
 
-## Test
+### Test
 
 All the new releases must be thoroughly tested before they can be published.
 This includes specific tests for the new features and bug fixes, as well as
@@ -211,7 +214,7 @@ If any bugs are found during the testing phase, they must be fixed and pushed
 to the prerelease branch. Multiple prerelease versions can be created if
 necessary.
 
-## Release
+### Release
 
 Once all the tests have passed, the release can be published. Merge the
 prerelease branch into `staging` and create a new release branch.
