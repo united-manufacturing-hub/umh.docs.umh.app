@@ -11,6 +11,9 @@ tasks:
       make install
     command: |
       make serve
+  - name: Setup git auto branch creation
+    init: |
+      git config push.autoSetupRemote true
 
 # Ports to expose on workspace startup
 ports:
