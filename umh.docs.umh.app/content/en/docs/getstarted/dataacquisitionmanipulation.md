@@ -181,26 +181,63 @@ Ensure you have node-red-contrib-kafkajs installed. If not, see
 
 Add a kafka-producer node, connecting it to the JSON node. Configure as follows:
 
-- **Brokers**: united-manufacturing-hub-kafka:9092
-- **Client ID**: nodered
+1. Open the configuration menu by double-click on the kafka-producer node.
+After that, click on the edit button.
 
-**Update** to save.
+    ![Node-RED Kafka Producer](/images/getstarted/dataAcquisitionManipulation/noderedKafkaProducer.png)
 
-Structure Kafka topics according to UMH data model:
+2. Change the fields of `Brokers` and `Client ID` as follows:
 
-```text
-umh.v1.<enterprise>.<site>.<area>.<line>.<workcell>.<originID>.<schema>.<tagName>
-```
+    - **Brokers**: united-manufacturing-hub-kafka:9092
+    - **Client ID**: nodered
 
-Example topic for this tutorial:
+    ![Node-RED Kafka Broker Configuration](/images/getstarted/dataAcquisitionManipulation/noderedKafkaBrokerConfigure.png)
 
-```text
-umh.v1.pharma-genix.aachen.packaging.packaging_1.blister.PLC13._historian.temperatureCelsius
-```
+    Click on **Update** to save.
 
-To learn more about the UMH data-model, read the [documentation](/docs/architecture/datamodel).
+3. Structure Kafka topics according to UMH data model, following the ISA95 standard:
 
-Click **Done** and deploy.
+    ```text
+    umh.v1.<enterprise>.<site>.<area>.<line>.<workcell>.<originID>.<schema>.<tagName>
+    ```
+
+    - `umh.v1`: obligatory versioning prefix
+    - `enterprise`: The company's name
+    - `site`: The facility's location
+    - `area`: The specific production's area
+    - `line`: The production line
+    - `workcell`: The workcell in the production line 
+    - `originID`: The data source ID
+    - `schema`: The schema of your data
+    - `tagName`: Arbitrary tags dependent context
+
+
+    The enterprise and schema fields are required. 
+    To learn more about the UMH data-model, read the [documentation](/docs/architecture/datamodel).
+
+    For example, if you want to structure a topic for the temperature in celsius
+    from the PLC, which
+    - is running in a factory of Pharma-Genix in Aachen.
+    - is running in `blister` workcell in the packaging line 1 in the packaging area.
+    - has the ID `PLC13`.
+
+    and you want to use `_historian` schema, then the topic should look like
+
+    ```text
+    msg.topic = umh.v1.pharma-genix.aachen.packaging.packaging_1.blister.PLC13._historian.temperatureCelsius
+    ```
+
+    Add this topic to the script in the function node, which created in 
+    [Format Incoming Messages](/docs/getstarted/dataacquisitionmanipulation/#format-incoming-messages) 
+    section.
+
+    ![Node-RED Kafka Topic](/images/getstarted/dataAcquisitionManipulation/noderedKafkaProducerTopic.png)
+
+    
+    Alternatively, you can set the topic to the kafka-producer node directly.
+
+
+4. Click **Done** and deploy.
 
 {{% notice note %}}
 Optional: Add a debug node for output visualization.
