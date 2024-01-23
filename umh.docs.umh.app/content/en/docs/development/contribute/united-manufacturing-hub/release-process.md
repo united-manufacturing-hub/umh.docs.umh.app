@@ -22,6 +22,26 @@ Once all the features and bug fixes for a release are ready and merged into the
 This section is for internal use at UMH.
 {{% /notice %}}
 
+### Testing
+
+If a new version of the Companion is ready to be released, it must be tested
+before it can be published. The testing process is done in the `staging`
+environment.
+
+The developer can push to the `staging` branch all the changes that needs to be
+tested, including the new version definition in the Updater and in the
+`version.json` file. They can then use the `make docker_tag
+GIT_TAG=<semver-tag-to-be-released>` command from the Companion directory to
+build and push the image. After that, from the staging environment, they can
+trigger the update process.
+
+{{% notice warning %}}
+This process will not make the changes available to the user, but keep in mind
+that the tagged version could still be accidentally used. Once the testing is
+done, all the changes are pushed to `main` and the new release is published,
+the image will be overwritten with the correct one.
+{{% /notice %}}
+
 ### Preparing the Documentation
 
 Begin by drafting new documentation within the `/docs/whatsnew` directory of the [United Manufacturing Hub documentation repository](https://github.com/united-manufacturing-hub/umh.docs.umh.app). Your draft should comprehensively include:
