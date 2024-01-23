@@ -227,18 +227,14 @@ After that, click on the edit button.
     msg.topic = umh.v1.pharma-genix.aachen.packaging.packaging_1.blister.PLC13._historian.temperatureCelsius
     ```
 
-    There are two options of applying this topic to messaging:
-
-    1. Add the topic in the function node via `msg.topic`, which created in 
+    Add this topic to the script in the function node, which created in 
     [Format Incoming Messages](/docs/getstarted/dataacquisitionmanipulation/#format-incoming-messages) 
     section.
-    2. Add the topic to the kafka-producer node.
 
+    ![Node-RED Kafka Topic](/images/getstarted/dataAcquisitionManipulation/noderedKafkaProducerTopic.png)
 
-    For this tutorial, add this topic to kafka-producer in Node-RED like in the 
-    picture below.
-
-    ![Node-RED Kafka Producer Topic](/images/getstarted/dataAcquisitionManipulation/noderedKafkaProducerTopic.png)
+    
+    Alternatively, you can set the topic to the kafka-producer node directly.
 
 
 4. Click **Done** and deploy.
