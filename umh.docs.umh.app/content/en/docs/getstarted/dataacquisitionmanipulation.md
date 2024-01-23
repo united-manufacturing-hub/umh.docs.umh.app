@@ -218,7 +218,7 @@ After that, click on the edit button.
     For example, if you want to structure a topic for the temperature in celsius
     from the PLC, which
     - is running in a factory of Pharma-Genix in Aachen.
-    - is running in `blster` workcell in the packaging line 1 in the packaging area.
+    - is running in `blister` workcell in the packaging line 1 in the packaging area.
     - has the ID `PLC13`.
 
     and you want to use `_historian` schema, then the topic should look like
