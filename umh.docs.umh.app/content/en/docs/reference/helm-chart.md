@@ -39,12 +39,8 @@ custom microservices:
   template for deploying any number of custom microservices.
 - [data-bridge](/docs/architecture/microservices/core/data-bridge/): transfers data between two
   Kafka or MQTT brokers, transforming the data following the UNS data model.
-- [factoryinput](/docs/architecture/microservices/community/factoryinput/): provides REST
-  endpoints for MQTT messages.
 - [factoryinsight](/docs/architecture/microservices/core/factoryinsight/): provides REST
   endpoints to fetch data and calculate KPIs.
-- [grafanaproxy](/docs/architecture/microservices/community/grafana-proxy): provides a
-  proxy to the backend services.
 - [MQTT Simulator](/docs/architecture/microservices/community/mqtt-simulator): simulates
   sensors and sends the data to the MQTT broker for further processing.
 - [kafka-bridge](/docs/architecture/microservices/core/kafka-bridge/): connects Kafka brokers
@@ -53,8 +49,6 @@ custom microservices:
   stores the data from the Kafka broker in a PostgreSQL database.
 - [mqtt-kafka-bridge](/docs/architecture/microservices/core/mqtt-kafka-bridge/): connects
   the MQTT broker and the Kafka broker.
-- [mqttbridge](/docs/architecture/microservices/core/mqtt-bridge/): connects MQTT brokers on
-  different Kubernetes clusters.
 - [opcuasimulator](/docs/architecture/microservices/community/opcua-simulator/): simulates
   OPC UA servers and sends the data to the MQTT broker for further processing.
 - [packmlmqttsimulator](/docs/architecture/microservices/community/packml-simulator/):
@@ -90,7 +84,7 @@ used to configure the applications:
 
 - [`customers`](#customers): contains the definition of the customers that will be created
   during the installation of the Helm Chart. This section is optional, and it's
-  used only by factoryinsight and factoryinput.
+  used only by factoryinsight.
 - [`_000_commonConfig`](#common-configuration-options): contains the basic configuration options to customize the
   United Manufacturing Hub, and it's divided into sections that group applications
   with similar scope, like the ones that compose the infrastructure or the ones
@@ -106,8 +100,8 @@ know what you are doing.
 
 {{% notice note %}}
 When a parameter contains `.` (dot) characters, it means that it is a nested
-parameter. For example, in the `tls.factoryinput.cert` parameter the `cert`
-parameter is nested inside the `tls.factoryinput` section, and the `factoryinput`
+parameter. For example, in the `tls.factoryinsight.cert` parameter the `cert`
+parameter is nested inside the `tls.factoryinsight` section, and the `factoryinsight`
 section is nested inside the `tls` section.
 {{% /notice %}}
 
@@ -145,9 +139,7 @@ The following table lists the configuration options that can be set in the
 | `debug`              | The configuration for the debug mode.                                           | object | See below         | [See below](#debug)                |
 | `infrastructure`     | The configuration of the microservices used to provide infrastructure services. | object | See below         | [See below](#infrastructure)       |
 | `kafkaBridge`        | The configuration for the Kafka bridge.                                         | object | See below         | [See below](#kafka-bridge)         |
-| `kafkaStateDetector` | The configuration for the Kafka state detector.                                 | object | See below         | [See below](#kafka-state-detector) |
 | `metrics.enabled`    | Whether to enable the anonymous metrics service or not.                         | bool   | `true` or `false` | `true`                             |
-| `mqttBridge`         | The configuration for the MQTT bridge.                                          | object | See below         | [See below](#mqtt-bridge)          |
 | `serialNumber`       | The hostname of the device. Used by some microservices to identify the device.  | string | Any               | default                            |
 | `tulipconnector`     | The configuration for the Tulip connector.                                      | object | See below         | [See below](#tulip-connector)      |
 {{< /table >}}
@@ -365,14 +357,8 @@ The following table lists the configuration options that can be set in the
 | `tls.truststoreBase64`        | The base64 encoded truststore                             | string | Any              | ""         |
 | `tls.truststorePassword`      | The password of the truststore                            | string | Any              | ""         |
 | `tls.caCert`                  | The CA certificate                                        | string | Any              | ""         |
-| `tls.factoryinput.cert`       | The certificate used for the factoryinput microservice    | string | Any              | ""         |
-| `tls.factoryinput.key`        | The key used for the factoryinput microservice            | string | Any              | ""         |
 | `tls.mqtt_kafka_bridge.cert`  | The certificate used for the mqttkafkabridge              | string | Any              | ""         |
 | `tls.mqtt_kafka_bridge.key`   | The key used for the mqttkafkabridge                      | string | Any              | ""         |
-| `tls.mqtt_bridge.local_cert`  | The certificate used for the local mqttbridge broker      | string | Any              | ""         |
-| `tls.mqtt_bridge.local_key`   | The key used for the local mqttbridge broker              | string | Any              | ""         |
-| `tls.mqtt_bridge.remote_cert` | The certificate used for the remote mqttbridge broker     | string | Any              | ""         |
-| `tls.mqtt_bridge.remote_key`  | The key used for the remote mqttbridge broker             | string | Any              | ""         |
 | `tls.sensorconnect.cert`      | The certificate used for the sensorconnect microservice   | string | Any              | ""         |
 | `tls.sensorconnect.key`       | The key used for the sensorconnect microservice           | string | Any              | ""         |
 | `tls.iotsensorsmqtt.cert`     | The certificate used for the iotsensorsmqtt microservice  | string | Any              | ""         |
@@ -406,22 +392,19 @@ The following table lists the configuration options that can be set in the
 | `tls.barcodereader.sslKeyPassword`         | The encrypted password of the SSL key for the barcodereader microservice. If empty, no password is used      | string | Any                                            | ""                                                                           |
 | `tls.barcodereader.sslKeyPem`              | The private key for the SSL certificate of the barcodereader microservice                                    | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
 | `tls.barcodereader.sslCertificatePem`      | The private SSL certificate for the barcodereader microservice                                               | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
-| `tls.kafkabridge.sslKeyPasswordLocal`      | The encrypted password of the SSL key for the local mqttbridge broker. If empty, no password is used         | string | Any                                            | ""                                                                           |
-| `tls.kafkabridge.sslKeyPemLocal`           | The private key for the SSL certificate of the local mqttbridge broker                                       | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
-| `tls.kafkabridge.sslCertificatePemLocal`   | The private SSL certificate for the local mqttbridge broker                                                  | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
-| `tls.kafkabridge.sslCACertRemote`          | The CA certificate for the remote mqttbridge broker                                                          | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
-| `tls.kafkabridge.sslCertificatePemRemote`  | The private SSL certificate for the remote mqttbridge broker                                                 | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
-| `tls.kafkabridge.sslKeyPasswordRemote`     | The encrypted password of the SSL key for the remote mqttbridge broker. If empty, no password is used        | string | Any                                            | ""                                                                           |
-| `tls.kafkabridge.sslKeyPemRemote`          | The private key for the SSL certificate of the remote mqttbridge broker                                      | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
+| `tls.kafkabridge.sslKeyPasswordLocal`      | The encrypted password of the SSL key for the local kafkabridge broker. If empty, no password is used         | string | Any                                            | ""                                                                           |
+| `tls.kafkabridge.sslKeyPemLocal`           | The private key for the SSL certificate of the local kafkabridge broker                                       | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
+| `tls.kafkabridge.sslCertificatePemLocal`   | The private SSL certificate for the local kafkabridge broker                                                  | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
+| `tls.kafkabridge.sslCACertRemote`          | The CA certificate for the remote kafkabridge broker                                                          | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
+| `tls.kafkabridge.sslCertificatePemRemote`  | The private SSL certificate for the remote kafkabridge broker                                                 | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
+| `tls.kafkabridge.sslKeyPasswordRemote`     | The encrypted password of the SSL key for the remote kafkabridge broker. If empty, no password is used        | string | Any                                            | ""                                                                           |
+| `tls.kafkabridge.sslKeyPemRemote`          | The private key for the SSL certificate of the remote kafkabridge broker                                      | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
 | `tls.kafkadebug.sslKeyPassword`            | The encrypted password of the SSL key for the kafkadebug microservice. If empty, no password is used         | string | Any                                            | ""                                                                           |
 | `tls.kafkadebug.sslKeyPem`                 | The private key for the SSL certificate of the kafkadebug microservice                                       | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
 | `tls.kafkadebug.sslCertificatePem`         | The private SSL certificate for the kafkadebug microservice                                                  | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
 | `tls.kafkainit.sslKeyPassword`             | The encrypted password of the SSL key for the kafkainit microservice. If empty, no password is used          | string | Any                                            | ""                                                                           |
 | `tls.kafkainit.sslKeyPem`                  | The private key for the SSL certificate of the kafkainit microservice                                        | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
 | `tls.kafkainit.sslCertificatePem`          | The private SSL certificate for the kafkainit microservice                                                   | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
-| `tls.kafkastatedetector.sslKeyPassword`    | The encrypted password of the SSL key for the kafkastatedetector microservice. If empty, no password is used | string | Any                                            | ""                                                                           |
-| `tls.kafkastatedetector.sslKeyPem`         | The private key for the SSL certificate of the kafkastatedetector microservice                               | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
-| `tls.kafkastatedetector.sslCertificatePem` | The private SSL certificate for the kafkastatedetector microservice                                          | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
 | `tls.kafkatopostgresql.sslKeyPassword`     | The encrypted password of the SSL key for the kafkatopostgresql microservice. If empty, no password is used  | string | Any                                            | ""                                                                           |
 | `tls.kafkatopostgresql.sslKeyPem`          | The private key for the SSL certificate of the kafkatopostgresql microservice                                | string | Any                                            | -----BEGIN PRIVATE KEY----- ... -----END PRIVATE KEY-----                    |
 | `tls.kafkatopostgresql.sslCertificatePem`  | The private SSL certificate for the kafkatopostgresql microservice                                           | string | Any                                            | -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----                    |
@@ -465,48 +448,6 @@ The following table lists the configurable parameters of the
 | `db_password` | The password for the database. Used by all the microservices that need to connect to the database | string | Any             | changeme |
 {{< /table >}}
 
-#### Data input
-
-The `_000_commonConfig.datainput` section contains the configuration of the
-microservices used to input data. Specifically, it controls the following
-microservices:
-
-- [factoryinput](/docs/architecture/microservices/community/factoryinput)
-- [grafanaproxy](/docs/architecture/microservices/community/grafana-proxy)
-
-If you want to specifically configure one of these microservices, you can do so
-in their respective sections in the danger zone.
-
-The following table lists the configurable parameters of the
-`_000_commonConfig.datainput` section./
-
-{{< table caption="datainput section parameters" >}}
-| Parameter | Description                                    | Type | Allowed values  | Default |
-| --------- | ---------------------------------------------- | ---- | --------------- | ------- |
-| `enabled` | Whether to enable the data input microservices | bool | `true`, `false` | `false` |
-{{< /table >}}
-
-#### MQTT Bridge
-
-The `_000_commonConfig.mqttBridge` section contains the configuration of the
-[mqtt-bridge](/docs/architecture/microservices/core/mqtt-bridge/) microservice,
-responsible for bridging MQTT brokers in different Kubernetes clusters.
-
-The following table lists the configurable parameters of the
-`_000_commonConfig.mqttBridge` section.
-
-{{< table caption="mqttBridge section parameters" >}}
-| Parameter                | Description                                                   | Type   | Allowed values            | Default                                                           |
-| ------------------------ | ------------------------------------------------------------- | ------ | ------------------------- | ----------------------------------------------------------------- |
-| `enabled`                | Whether to enable the mqtt-bridge microservice                | bool   | `true`, `false`           | `false`                                                           |
-| `localSubTopic`          | The topic that the local MQTT broker subscribes to            | string | Any valid MQTT topic      | ia/factoryinsight                                                 |
-| `localPubTopic`          | The topic that the local MQTT broker publishes to             | string | Any valid MQTT topic      | ia/factoryinsight                                                 |
-| `oneWay`                 | Whether to enable one-way communication, from local to remote | bool   | `true`, `false`           | `true`                                                            |
-| `remoteBrokerUrl`        | The URL of the remote MQTT broker                             | string | Any valid MQTT broker URL | ssl://united-manufacturing-hub-mqtt.united-manufacturing-hub:8883 |
-| `remoteBrokerSSLEnables` | Whether to enable SSL for the remote MQTT broker              | bool   | `true`, `false`           | `true`                                                            |
-| `remoteSubTopic`         | The topic that the remote MQTT broker subscribes to           | string | Any valid MQTT topic      | ia                                                                |
-| `remotePubTopic`         | The topic that the remote MQTT broker publishes to            | string | Any valid MQTT topic      | ia/factoryinsight                                                 |
-{{< /table >}}
 
 #### Kafka Bridge
 
@@ -544,20 +485,6 @@ following parameters:
 For more information about the topic maps, see the
 [kafka-bridge documentation](/docs/reference/microservices/kafka-bridge/#configuration).
 
-#### Kafka State Detector
-
-The `_000_commonConfig.kafkaStateDetector` section contains the configuration
-of the [kafka-state-detector](/docs/architecture/microservices/community/kafka-state-detector/)
-microservice, responsible for detecting the state of the Kafka broker.
-
-The following table lists the configurable parameters of the
-`_000_commonConfig.kafkaStateDetector` section.
-
-{{< table caption="kafkastatedetector section parameters" >}}
-| Parameter | Description                                             | Type | Allowed values  | Default |
-| --------- | ------------------------------------------------------- | ---- | --------------- | ------- |
-| `enabled` | Whether to enable the kafka-state-detector microservice | bool | `true`, `false` | `false` |
-{{< /table >}}
 
 #### Debug
 
@@ -628,18 +555,14 @@ Everything below this point  should not be changed, unless you know what you are
 | --------------------------------------------------- | --------------------------------------------------------------- |
 | [`barcodereader`](#dz-barcodereader)                | Configuration for barcodereader                                 |
 | [`databridge`](#dz-databridge)                      | Configuration for databridge                                    |
-| [`factoryinput`](#dz-factoryinput)                  | Configuration for factoryinput                                  |
 | [`factoryinsight`](#dz-factoryinsight)              | Configuration for factoryinsight                                |
 | [`grafana`](#dz-grafana)                            | Configuration for Grafana                                       |
-| [`grafanaproxy`](#dz-grafana-proxy)                 | Configuration for the Grafana proxy                             |
 | [`iotsensorsmqtt`](#dz-iotsensorsmqtt)              | Configuration for the IoTSensorsMQTT simulator                  |
 | [`kafkabridge`](#dz-kafka-bridge)                   | Configuration for kafka-bridge                                  |
-| [`kafkastatedetector`](#dz-kafka-state-detector)    | Configuration for kafka-state-detector                          |
 | [`kafkatopostgresql`](#dz-kafka-to-postgresql)      | Configuration for kafka-to-postgresql                           |
 | [`kafkatopostgresqlv2`](#dz-kafka-to-postgresql-v2) | Configuration for kafka-to-postgresql-v2                        |
 | [`metrics`](#dz-metrics)                            | Configuration for the metrics                                   |
 | [`mqtt_broker`](#dz-mqtt-broker)                    | Configuration for the MQTT broker                               |
-| [`mqttbridge`](#dz-mqtt-bridge)                     | Configuration for mqtt-bridge                                   |
 | [`mqttkafkabridge`](#dz-mqtt-kafka-bridge)          | Configuration for mqtt-kafka-bridge                             |
 | [`nodered`](#dz-node-red)                           | Configuration for Node-RED                                      |
 | [`opcuasimulator`](#dz-opcua-simulator)             | Configuration for the OPC UA simulator                          |
@@ -697,42 +620,6 @@ microservice.
 | `resources.requests.memory` | The memory request                                                           | string | Any                         | 450Mi                                                 |
 {{< /table >}}
 
-#### factoryinput {#dz-factoryinput}
-
-The `factoryinput` section contains the advanced configuration of the
-[factoryinput](/docs/architecture/microservices/community/factoryinput/)
-microservice.
-
-{{< table caption="factoryinput advanced section parameters" >}}
-| Parameter                | Description                                                                    | Type   | Allowed values              | Default                                                 |
-| ------------------------ | ------------------------------------------------------------------------------ | ------ | --------------------------- | ------------------------------------------------------- |
-| `enabled`                | Whether to enable the factoryinput microservice                                | bool   | `true`, `false`             | `false`                                                 |
-| `env`                    | The environment variables                                                      | object | Any                         | See [env](#dz-factoryinput-env) section                 |
-| `image.pullPolicy`       | The image pull policy                                                          | string | Always, IfNotPresent, Never | IfNotPresent                                            |
-| `image.repository`       | The image of the factoryinput microservice                                     | string | Any                         | {{< resource type="docker" name="repo" >}}/factoryinput |
-| `image.tag`              | The tag of the factoryinput microservice. Defaults to Chart version if not set | string | Any                         | {{< latest-umh-semver >}}                               |
-| `mqtt.encryptedPassword` | The encrypted password of the MQTT broker                                      | string | Any                         | _Base 64 encrypted password_                            |
-| `mqtt.password`          | The password of the MQTT broker                                                | string | Any                         | INSECURE_INSECURE_INSECURE                              |
-| `pdb.enabled`            | Whether to enable a PodDisruptionBudget                                        | bool   | `true`, `false`             | `true`                                                  |
-| `pdb.minAvailable`       | The minimum number of available pods                                           | int    | Any                         | 1                                                       |
-| `replicas`               | The number of Pod replicas                                                     | int    | Any                         | 1                                                       |
-| `service.annotations`    | Annotations to add to the factoryinput Service                                 | object | Any                         | {}                                                      |
-| `storageRequest`         | The amount of storage for the PersistentVolumeClaim                            | string | Any                         | 1Gi                                                     |
-| `user`                   | The user of factoryinput                                                       | string | Any                         | factoryinsight                                          |
-{{< /table >}}
-
-##### env {#dz-factoryinput-env}
-
-The `env` section contains the configuration of the environment variables to add
-to the Pod.
-
-{{< table caption="factoryinput env parameters" >}}
-| Parameter          | Description                                                                  | Type   | Allowed values          | Default    |
-| ------------------ | ---------------------------------------------------------------------------- | ------ | ----------------------- | ---------- |
-| `loggingLevel`     | The logging level of the factoryinput microservice                           | string | PRODUCTION, DEVELOPMENT | PRODUCTION |
-| `mqttQueueHandler` | Number of queue workers to spawn                                             | int    | 0-65535                 | 10         |
-| `version`          | The version of the API used. Each version also enables all the previous ones | int    | Any                     | 2          |
-{{< /table >}}
 
 #### factoryinsight {#dz-factoryinsight}
 
@@ -886,7 +773,7 @@ to the Pod.
 {{< table caption="grafana env section parameters" >}}
 | Parameter                                   | Description                                                                     | Type   | Allowed values       | Default                                                 |
 | ------------------------------------------- | ------------------------------------------------------------------------------- | ------ | -------------------- | ------------------------------------------------------- |
-| `GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS` | List of plugin identifiers to allow loading even if they lack a valid signature | string | Comma separated list | umh-datasource,umh-factoryinput-panel,umh-v2-datasource |
+| `GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS` | List of plugin identifiers to allow loading even if they lack a valid signature | string | Comma separated list | umh-datasource, umh-v2-datasource |
 {{< /table >}}
 
 ##### extraInitContainers {#dz-grafana-extraInitContainers}
@@ -930,29 +817,6 @@ database:
   type: postgres
 ```
 
-#### grafanaproxy {#dz-grafana-proxy}
-
-The `grafanaproxy` section contains the configuration of the
-[Grafana proxy](/docs/architecture/microservices/community/grafana-proxy/)
-microservice.
-
-{{< table caption="grafanaproxy section parameters" >}}
-| Parameter                | Description                                                                     | Type   | Allowed values              | Default                                                  |
-| ------------------------ | ------------------------------------------------------------------------------- | ------ | --------------------------- | -------------------------------------------------------- |
-| `enabled`                | Whether to enable the Grafana proxy microservice                                | bool   | `true`, `false`             | `true`                                                   |
-| `image.pullPolicy`       | The image pull policy                                                           | string | Always, IfNotPresent, Never | IfNotPresent                                             |
-| `image.repository`       | The image of the grafana-proxy microservice                                     | string | Any                         | {{< resource type="docker" name="repo" >}}/barcodereader |
-| `image.tag`              | The tag of the grafana-proxy microservice. Defaults to Chart version if not set | string | Any                         | {{< latest-umh-semver >}}                                |
-| `replicas`               | The number of Pod replicas                                                      | int    | Any                         | 1                                                        |
-| `service.annotations`    | Annotations to add to the service                                               | object | Any                         | {}                                                       |
-| `service.port`           | The port of the service                                                         | int    | Any                         | 2096                                                     |
-| `service.type`           | The type of the service                                                         | string | ClusterIP, LoadBalancer     | LoadBalancer                                             |
-| `service.targetPort`     | The target port of the service                                                  | int    | Any                         | 80                                                       |
-| `service.protocol`       | The protocol of the service                                                     | string | TCP, UDP                    | TCP                                                      |
-| `service.name`           | The name of the port of the service                                             | string | Any                         | service                                                  |
-| `resources.limits.cpu`   | The CPU limit                                                                   | string | Any                         | 300m                                                     |
-| `resources.requests.cpu` | The CPU request                                                                 | string | Any                         | 100m                                                     |
-{{< /table >}}
 
 #### iotsensorsmqtt {#dz-iotsensorsmqtt}
 
@@ -988,21 +852,6 @@ The `kafkabridge` section contains the configuration of the
 | `initContainer.tag`        | The tag of the init container. Defaults to Chart version if not set            | string | Any                         | {{< latest-umh-semver >}}                               |
 {{< /table >}}
 
-#### kafkastatedetector {#dz-kafka-state-detector}
-
-The `kafkastatedetector` section contains the configuration of the
-[Kafka state detector](/docs/architecture/microservices/community/kafka-state-detector).
-
-{{< table caption="kafkastatedetector section parameters" >}}
-| Parameter          | Description                                                                          | Type   | Allowed values              | Default                                                         |
-| ------------------ | ------------------------------------------------------------------------------------ | ------ | --------------------------- | --------------------------------------------------------------- |
-| `activityEnabled`  | Controls whether to check the activity of the Kafka broker                           | bool   | `true`, `false`             | `true`                                                          |
-| `anomalyEnabled`   | Controls whether to check for anomalies in the Kafka broker                          | bool   | `true`, `false`             | `true`                                                          |
-| `enabled`          | Whether to enable the Kafka state detector                                           | bool   | `true`, `false`             | `true`                                                          |
-| `image.pullPolicy` | The image pull policy                                                                | string | Always, IfNotPresent, Never | IfNotPresent                                                    |
-| `image.repository` | The image of the kafkastatedetector microservice                                     | string | Any                         | {{< resource type="docker" name="repo" >}}/kafka-state-detector |
-| `image.tag`        | The tag of the kafkastatedetector microservice. Defaults to Chart version if not set | string | Any                         | {{< latest-umh-semver >}}                                       |
-{{< /table >}}
 
 #### kafkatopostgresql {#dz-kafka-to-postgresql}
 
@@ -1117,24 +966,6 @@ initContainer:
       pullPolicy: IfNotPresent
 ```
 
-#### mqttbridge {#dz-mqtt-bridge}
-
-The `mqttbridge` section contains the configuration of the
-[MQTT bridge](/docs/architecture/microservices/core/mqtt-bridge).
-
-{{< table caption="mqttbridge section parameters" >}}
-| Parameter                   | Description                                                                   | Type   | Allowed values | Default                                                |
-| --------------------------- | ----------------------------------------------------------------------------- | ------ | -------------- | ------------------------------------------------------ |
-| `image`                     | The image of the mqtt-bridge microservice                                     | string | Any            | {{< resource type="docker" name="repo" >}}/mqtt-bridge |
-| `mqtt.encryptedPassword`    | The encrypted password of the MQTT broker                                     | string | Any            | _Base 64 encrypted password_                           |
-| `mqtt.password`             | The password of the MQTT broker                                               | string | Any            | INSECURE_INSECURE_INSECURE                             |
-| `resources.limits.cpu`      | The CPU limit                                                                 | string | Any            | 200m                                                   |
-| `resources.limits.memory`   | The memory limit                                                              | string | Any            | 100Mi                                                  |
-| `resources.requests.cpu`    | The CPU request                                                               | string | Any            | 100m                                                   |
-| `resources.requests.memory` | The memory request                                                            | string | Any            | 20Mi                                                   |
-| `storageRequest`            | The amount of storage for the PersistentVolumeClaim                           | string | Any            | 1Gi                                                    |
-| `tag`                       | The tag of the mqtt-bridge microservice. Defaults to Chart version if not set | string | Any            | {{< latest-umh-semver >}}                              |
-{{< /table >}}
 
 #### mqttkafkabridge {#dz-mqtt-kafka-bridge}
 
