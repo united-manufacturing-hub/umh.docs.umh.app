@@ -67,9 +67,9 @@ If you encounter issues during the upgrade process, consider the following steps
 If the problem persists after retrying and checking the logs, and you've confirmed that all prerequisites are met, please
 reach out to our support team for assistance.
 
-### I installed the Management Companion before the 0.2.0 release. How do I upgrade it?
+### I installed the Management Companion before the 0.1.0 release. How do I upgrade it?
 
-If you installed the Management Companion before the 0.2.0 release, you will need to reinstall it. This is because
+If you installed the Management Companion before the 0.1.0 release, you will need to reinstall it. This is because
 we made some changes that are not compatible with the previous version.
 
 Before reinstalling the Management Companion, you have to backup your configuration, so that you can restore
