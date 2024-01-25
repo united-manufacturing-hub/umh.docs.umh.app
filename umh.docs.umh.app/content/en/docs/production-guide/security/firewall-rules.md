@@ -9,7 +9,8 @@ weight: 50
 
 <!-- overview -->
 
-To guarantee the security and seamless operation of your UMH instances, proper firewall rules must be configured.
+For closed enterprise networks with specific permissions, this page outlines firewall rule configuration 
+to ensure the security and seamless operation of your UMH instances.
 
 ## {{% heading "prerequisites" %}}
 
@@ -44,7 +45,9 @@ UMH instance.
 This step lists the external domains and ports that are common while working with the UMH. Keep in mind that
 this list is not exhaustive, and you may need to add additional rules depending on your specific use case.
 
-- TODO: Add list of external domains and ports
+- registry.npmjs.org
+- storage.googleapis.com
+- grafana.com
 
 ## {{% heading "troubleshooting" %}}
 
