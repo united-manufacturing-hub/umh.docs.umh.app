@@ -13,7 +13,7 @@ To guarantee the security and seamless operation of your UMH instances, proper f
 
 ## {{% heading "prerequisites" %}}
 
-Before proceeding with the firewall setup, it's worth discussing why they matter in the first place.
+Before configuring the firewall, let's discuss some key points.
 
 The usage of the components integrated into the UMH require various rules for their proper operation.
 Considering the complexity involved in setting up and maintaining these rules, we have hosted as much 
