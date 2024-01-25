@@ -15,16 +15,16 @@ To guarantee the security and seamless operation of your UMH instances, proper f
 
 Before proceeding with the firewall setup, it's worth discussing why they matter in the first place.
 
-As you may or may not know, the UMH consists of several open-source components, and the usage of these might require
-various rules for their proper operation. Considering the complexity involved in setting up and maintaining these
-rules, we have hosted as much as possible under our own domain (management.umh.app). This way, the setup is much
-simpler and less error-prone on your end.
+The usage of the components integrated into the UMH require various rules for their proper operation.
+Considering the complexity involved in setting up and maintaining these rules, we have hosted as much 
+as possible under our own domain (management.umh.app), which leads to a simpler and less error-prone
+setup.
 
-However, it's important to note that, despite our efforts to minimize external requests, some of the components may
-require occasional communication to their respective services. For example, installing plugins for applications like
-Grafana or Node-RED will likely involve requests to their respective domains. In such cases, this page provides a
-comprehensive list of external domains and ports that are relevant during the usage of the UMH, helping you to
-anticipate and configure the rules accordingly.
+However, it's important to note that, some components may require occasional communication to external 
+services. For example, installing plugins for applications like Grafana or Node-RED will likely trigger 
+requests to their respective domains. In such cases, this page provides a comprehensive list of external 
+domains and ports that are relevant during the usage of the UMH, helping you to anticipate and configure
+the rules accordingly.
 
 ## Firewall Configuration
 
@@ -32,12 +32,11 @@ Once you're ready and ensured that you have the necessary permissions to configu
 
 ### Whitelist Our Domain
 
-The first and most important step simply involves allowing access to our domain (management.umh.app) on the following ports:
+The first and most important step simply involves allowing access to our domain (management.umh.app) on the following port:
 
-- TCP port 80: HTTP traffic
 - TCP port 443: HTTPS traffic
 
-Ignoring this step or even worse, blocking access to our domain and corresponding ports, will result in a malfunctioning
+Ignoring this step or even worse, blocking access to our domain and corresponding port, will result in a malfunctioning
 UMH instance.
 
 ### Whitelist External Domains
