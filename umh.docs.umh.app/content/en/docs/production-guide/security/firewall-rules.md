@@ -35,9 +35,11 @@ disrupt UMH functionality; installations, updates, and monitoring won't work as 
 
 Include these common external domains and ports in your firewall rules to allow installing Node-RED and Grafana plugins:
 
-- registry.npmjs.org
-- storage.googleapis.com
-- grafana.com
+- registry.npmjs.org (required for installing Node-RED plugins)
+- storage.googleapis.com (required for installing Grafana plugins)
+- grafana.com (required for displaying Grafana plugins)
+- catalogue.nodered.org (required for displaying Node-RED plugins, only relevant for the client that is using Node-RED, not
+  the server where it's installed on).
 
 Depending on your setup, additional domains may need to be whitelisted.
 
