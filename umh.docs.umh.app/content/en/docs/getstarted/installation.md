@@ -24,6 +24,13 @@ While UMH is optimized for RHEL and Flatcar, it can theoretically run on other L
 
 Note: Systems at the edge of these requirements may experience longer installation times. Close other programs during installation for optimal performance.
 
+## Network Requirements
+
+Before proceeding with the installation, ensure your system meets the necessary network requirements.
+
+To learn about configuring firewall and network rules for your UMH instances, please refer to our dedicated [Firewall Rules](/docs/production-guide/security/firewall-rules/)
+page.
+
 ## Installation Steps
 
 1. [Open the Management Console](https://management.umh.app/) in the browser.
