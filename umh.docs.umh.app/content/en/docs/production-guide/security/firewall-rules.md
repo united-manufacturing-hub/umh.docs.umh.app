@@ -50,7 +50,7 @@ contact us for a custom configuration file.
 
 ## Bring your own containers
 
-Our system tries to fetch all containers from our own registry (management.umh.app) first.
+Our system tries to fetch all containers from our own registry (`management.umh.app`) first.
 If this fails, it will try to fetch docker.io from `https://registry-1.docker.io`, ghcr.io from `https://ghcr.io` and quay.io from `https://quay.io` (and any other from `management.umh.app`)
 If you need to use a different registry, edit the `/var/lib/rancher/k3s/agent/etc/containerd/config.toml.tmpl` to set your own mirror configuration.
 
