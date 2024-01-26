@@ -9,45 +9,37 @@ weight: 50
 
 <!-- overview -->
 
-For closed enterprise networks with specific permissions, this page outlines firewall rule configuration
-to ensure the security and seamless operation of your UMH instances.
+Some enterprise networks operate in a whitelist manner, where all outgoing and incoming communication
+is blocked by default. However, the installation and maintenance of UMH requires internet access for
+tasks such as downloading the operating system, Docker containers, monitoring via the Management Console,
+and loading third-party plugins. As dependencies are hosted on various servers and may change based on
+vendors' decisions, we've simplified the user experience by consolidating all mandatory services under a
+single domain. Nevertheless, if you wish to install third-party components like Node-RED or Grafana plugins,
+you'll need to whitelist additional domains.
 
 ## {{% heading "prerequisites" %}}
 
-Before configuring the firewall, let's discuss some key points.
-
-The usage of the components integrated into the UMH require various rules for their proper operation.
-Considering the complexity involved in setting up and maintaining these rules, we have hosted as much
-as possible under our own domain (management.umh.app), which leads to a simpler and less error-prone
-setup.
-
-However, it's important to note that, some components may require occasional communication to external
-services. For example, installing plugins for applications like Grafana or Node-RED will likely trigger
-requests to their respective domains. In such cases, this page provides a comprehensive list of external
-domains and ports that are relevant during the usage of the UMH, helping you to anticipate and configure
-the rules accordingly.
+The only prerequisite is having a firewall that allows modification of rules. If you're unsure about this,
+consider contacting your network administrator.
 
 ## Firewall Configuration
 
 Once you're ready and ensured that you have the necessary permissions to configure the firewall, follow these steps:
 
-### Whitelist Our Domain
+### Whitelist management.umh.app
 
-The first and most important step simply involves allowing access to our domain (management.umh.app) on the following port:
+This mandatory step requires whitelisting `management.umh.app` on TCP port 443 (HTTPS traffic). Not doing so will
+disrupt UMH functionality; installations, updates, and monitoring won't work as expected.
 
-- TCP port 443: HTTPS traffic
+### Optional: Whitelist domains for common 3rd party plugins
 
-Ignoring this step or even worse, blocking access to our domain and corresponding port, will result in a malfunctioning
-UMH instance.
-
-### Whitelist External Domains
-
-This step lists the external domains and ports that are common while working with the UMH. Keep in mind that
-this list is not exhaustive, and you may need to add additional rules depending on your specific use case.
+Include these common external domains and ports in your firewall rules to allow installing Node-RED and Grafana plugins:
 
 - registry.npmjs.org
 - storage.googleapis.com
 - grafana.com
+
+Depending on your setup, additional domains may need to be whitelisted.
 
 ## DNS Configuration (Optional)
 
