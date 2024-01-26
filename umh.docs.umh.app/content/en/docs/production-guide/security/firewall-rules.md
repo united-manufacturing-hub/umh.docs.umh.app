@@ -45,13 +45,14 @@ Depending on your setup, additional domains may need to be whitelisted.
 
 ## DNS Configuration (Optional)
 
-By default, we make use of the following DNS servers:
+By default, we are using your DHCP configured DNS servers. If you are using static ip or want to use a different DNS server,
+contact us for a custom configuration file.
 
-- 1.1.1.1
-- 1.0.0.1 (fallback)
+## Bring your own containers
 
-Ensure that these DNS servers are accessible and not blocked by your enterprise network. Additionally, check for any
-custom DNS servers configured on your machine. If these are blocked, it may restrict the functionality of your UMH instances.
+Our system tries to fetch all containers from our own registry (management.umh.app) first.
+If this fails, it will try to fetch docker.io from `https://registry-1.docker.io`, ghcr.io from `https://ghcr.io` and quay.io from `https://quay.io` (and any other from `management.umh.app`)
+If you need to use a different registry, edit the `/var/lib/rancher/k3s/agent/etc/containerd/config.toml.tmpl` to set your own mirror configuration.
 
 ## {{% heading "troubleshooting" %}}
 
