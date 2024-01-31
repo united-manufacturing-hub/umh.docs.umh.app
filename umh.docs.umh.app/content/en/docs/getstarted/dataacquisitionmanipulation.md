@@ -331,7 +331,7 @@ Kafka client as earlier, and the same topic for output:
 umh.v1.pharma-genix.aachen.packaging.packaging_1.blister.PLC13._historian.temperatureFahrenheit
 ```
 
-For more on UMH data modeling, consult the [documentation](/docs/architecture/datamodel).
+For more on UMH data modeling, consult the [documentation](/docs/datamodel).
 
 Press **Done** and deploy.
 
