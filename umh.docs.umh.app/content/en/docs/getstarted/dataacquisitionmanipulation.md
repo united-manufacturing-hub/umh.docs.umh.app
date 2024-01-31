@@ -2,8 +2,8 @@
 title: "3. Data Acquisition and Manipulation"
 menuTitle: "3. Data Acquisition and Manipulation"
 description: |
-   Learn how to connect various data sources to the UMH and format data into the
-   UMH data model.
+  Learn how to connect various data sources to the UMH and format data into the
+  UMH data model.
 weight: 3000
 ---
 
@@ -28,38 +28,45 @@ accessible from the Management Console.
 ### Create a Connection with the Management Console
 
 After logging into the Management Console and selecting your instance, navigate
-to the **Data Connections** tab to view existing connections.
+to the **Connection Management** tab, where you'll find all your connections alongside their status.
 
-![Data Connections Overview](/images/getstarted/dataAcquisitionManipulation/dataConnectionsOverview.png?width=80%)
+![Connection Management](/images/getstarted/dataAcquisitionManipulation/connectionManagement.png?width=80%)
 
 **Uninitialized Connections** are established but not yet configured as data
 sources, while **Initialized Connections** are fully configured.
 
 The health status reflects the UMH-data source connection, not data transmission status.
 
-To add a new connection, click **Add Connection**. Currently, the only option is
-OPC UA Server. Enter the server details, including the unique name and address
-with protocol (`opc.tcp://`) and port.
+To add a new connection, click **Add Connection**. Currently, we only provide two type of connections:
 
-For testing with the OPC UA simulator, use:
+- **OPC-UA Server**: represents a connection to an OPC-UA server.
+- **n/a**: represents a generic asset (useful for connections we don't support yet).
+
+Enter the required server details, which include the unique name and address with the format `ip:port`.
+Optionally, you can also attach some notes to the connection, which can be useful for documentation purposes.
+
+For testing with the OPC UA simulator, select the `OPC-UA Server` type and use the following address:
 
 ```text
-opc.tcp://united-manufacturing-hub-opcuasimulator-service:46010
+united-manufacturing-hub-opcuasimulator-service:46010
 ```
 
-![OPC UA Connection Details](/images/getstarted/dataAcquisitionManipulation/addConnectionDetails.png?width=80%)
+![Connection Details](/images/getstarted/dataAcquisitionManipulation/addConnectionDetails.png?width=80%)
 
-Test the connection, and if successful, click **Add Connection**.
+Test the connection, and if successful, click **Add Connection** to save and deploy it.
 
 ### Initialize the Connection
 
-After adding, you must initialize the connection. This creates a new Benthos
-deployment for data publishing to the UMH Kafka broker.
+Back at **Connection Management**, your new connection should be listed in the table, and surely you'll notice that it's health is reported as `Not configured`.
 
-Navigate to **Data Sources** > **Uninitialized Connections** and initiate the
-connection.
+At this point, it's worth discussing what initializing a connection means and why it's important.
 
-![Initialize Connection](/images/getstarted/dataAcquisitionManipulation/initializeConnection.png?width=80%)
+New connections are created in an "uninitialized" state, meaning they are not yet configured as data sources, hence the `Not configured` health status.
+So for them to be actually useful, they need to be initialized, which will fully configure them as data sources and create a new Benthos deployment for data publishing to the UMH Kafka broker.
+
+Initialize the connection by pressing the "play" button under the `Actions` column.
+
+![Initialize Connection](/images/getstarted/dataAcquisitionManipulation/connectionManagementInitializeButton.png?width=80%)
 
 Enter authentication details (use _Anonymous_ for no authentication, as with the
 OPC UA simulator).
@@ -76,10 +83,10 @@ Specify OPC UA nodes to subscribe to in a yaml file, following the ISA95 standar
       workcell: blister
       originID: PLC13
       tagName: machineState
-      useCase: _historian
+      schema: _historian
 ```
 
-Mandatory fields are `opcuaID`, `enterprise`, `tagName` and `useCase`.
+Mandatory fields are `opcuaID`, `enterprise`, `tagName` and `schema`.
 
 {{% notice note %}}
 Learn more about [Data Modeling in the Unified Namespace](https://learn.umh.app/lesson/data-modeling-in-the-unified-namespace-mqtt-kafka/)
@@ -89,9 +96,9 @@ in the Learning Hub.
 Review and confirm the nodes, then proceed with initialization. Successful
 initialization will be indicated by a green message.
 
-The new data source will now appear in the **Data Sources** section.
+The connection's health status should now be marked as `Healthy` and display the current message rate. You can also check the tooltip for more details.
 
-![Data Sources Overview](/images/getstarted/dataAcquisitionManipulation/dataSourcesOverview.png?width=80%)
+![Connection Management](/images/getstarted/dataAcquisitionManipulation/connectionManagementHealthy.png?width=80%)
 
 ## Connect MQTT Servers
 
@@ -151,9 +158,9 @@ this script:
 
 ```js
 msg.payload = {
-    "timestamp_ms": Date.now(),
-    "temperature": msg.payload
-}
+  timestamp_ms: Date.now(),
+  temperature: msg.payload,
+};
 return msg;
 ```
 
@@ -174,26 +181,63 @@ Ensure you have node-red-contrib-kafkajs installed. If not, see
 
 Add a kafka-producer node, connecting it to the JSON node. Configure as follows:
 
-- **Brokers**: united-manufacturing-hub-kafka:9092
-- **Client ID**: nodered
+1. Open the configuration menu by double-click on the kafka-producer node.
+After that, click on the edit button.
 
-**Update** to save.
+    ![Node-RED Kafka Producer](/images/getstarted/dataAcquisitionManipulation/noderedKafkaProducer.png)
 
-Structure Kafka topics according to UMH data model:
+2. Change the fields of `Brokers` and `Client ID` as follows:
 
-```text
-umh.v1.<enterprise>.<site>.<area>.<line>.<workcell>.<originID>.<schema>.<tagName>
-```
+    - **Brokers**: united-manufacturing-hub-kafka:9092
+    - **Client ID**: nodered
 
-Example topic for this tutorial:
+    ![Node-RED Kafka Broker Configuration](/images/getstarted/dataAcquisitionManipulation/noderedKafkaBrokerConfigure.png)
 
-```text
-umh.v1.pharma-genix.aachen.packaging.packaging_1.blister.PLC13._historian.temperatureCelsius
-```
+    Click on **Update** to save.
 
-To learn more about the UMH data-model, read the [documentation](/docs/architecture/datamodel).
+3. Structure Kafka topics according to UMH data model, following the ISA95 standard:
 
-Click **Done** and deploy.
+    ```text
+    umh.v1.<enterprise>.<site>.<area>.<line>.<workcell>.<originID>.<schema>.<tagName>
+    ```
+
+    - `umh.v1`: obligatory versioning prefix
+    - `enterprise`: The company's name
+    - `site`: The facility's location
+    - `area`: The specific production's area
+    - `line`: The production line
+    - `workcell`: The workcell in the production line 
+    - `originID`: The data source ID
+    - `schema`: The schema of your data
+    - `tagName`: Arbitrary tags dependent context
+
+
+    The enterprise and schema fields are required. 
+    To learn more about the UMH data-model, read the [documentation](/docs/architecture/datamodel).
+
+    For example, if you want to structure a topic for the temperature in celsius
+    from the PLC, which
+    - is running in a factory of Pharma-Genix in Aachen.
+    - is running in `blister` workcell in the packaging line 1 in the packaging area.
+    - has the ID `PLC13`.
+
+    and you want to use `_historian` schema, then the topic should look like
+
+    ```text
+    msg.topic = umh.v1.pharma-genix.aachen.packaging.packaging_1.blister.PLC13._historian.temperatureCelsius
+    ```
+
+    Add this topic to the script in the function node, which created in 
+    [Format Incoming Messages](/docs/getstarted/dataacquisitionmanipulation/#format-incoming-messages) 
+    section.
+
+    ![Node-RED Kafka Topic](/images/getstarted/dataAcquisitionManipulation/noderedKafkaProducerTopic.png)
+
+    
+    Alternatively, you can set the topic to the kafka-producer node directly.
+
+
+4. Click **Done** and deploy.
 
 {{% notice note %}}
 Optional: Add a debug node for output visualization.
@@ -259,14 +303,14 @@ to convert the temperature from Celsius to Fahrenheit. Connect it to the
 kafka-consumer node and paste the following script:
 
 ```jsx
-const payloadObj = JSON.parse(msg.payload.value)
-const celsius = payloadObj.temperature
-const fahrenheit = (celsius * 9 / 5) + 32
+const payloadObj = JSON.parse(msg.payload.value);
+const celsius = payloadObj.temperature;
+const fahrenheit = (celsius * 9) / 5 + 32;
 
 msg.payload = {
-    "timestamp_ms": Date.now(),
-    "temperature": fahrenheit
-}
+  timestamp_ms: Date.now(),
+  temperature: fahrenheit,
+};
 
 return msg;
 ```
@@ -287,7 +331,7 @@ Kafka client as earlier, and the same topic for output:
 umh.v1.pharma-genix.aachen.packaging.packaging_1.blister.PLC13._historian.temperatureFahrenheit
 ```
 
-For more on UMH data modeling, consult the [documentation](/docs/architecture/datamodel).
+For more on UMH data modeling, consult the [documentation](/docs/datamodel).
 
 Press **Done** and deploy.
 
