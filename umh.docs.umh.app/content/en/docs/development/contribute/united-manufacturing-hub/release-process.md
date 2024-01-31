@@ -198,7 +198,11 @@ published.
     appVersion: <next-version>-prerelease1
     ```
 
-3. Navigate to the `deployment/helm-repo` directory and run the following
+3. Validate that all external docker images are correctly overwritten.
+   This is especially important if an external chart is updated.
+   The easiest way to do this is to run `helm template` and check the output.
+
+4. Navigate to the `deployment/helm-repo` directory and run the following
    commands:
 
     ```bash
@@ -208,7 +212,7 @@ published.
 
    Pay attantion to use `-` instead of `.` as a separator in `<next-version>`.
 
-4. Commit and push the changes:
+5. Commit and push the changes:
 
     ```bash
     git add .
