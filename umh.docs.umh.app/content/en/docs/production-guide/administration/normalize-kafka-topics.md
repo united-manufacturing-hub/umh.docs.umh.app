@@ -1,9 +1,9 @@
 ---
-title: "Normalize Kafka Topics"
+title: "Use Merge Point To Normalize Kafka Topics"
 content_type: task
 description: |
     This page describes how to reduce the amount of Kafka Topics in order to
-    lower the overhead.
+    lower the overhead by using the merge point feature.
 weight: 50
 edition: community
 ---
@@ -16,8 +16,16 @@ setup involves minimal topics, utilizing the
 [event key](https://kafka.apache.org/intro#intro_concepts_and_terms) for logical
 data segregation.
 
-The diagram below illustrates the principle of combining multiple topics into a
-single topic with different keys, simplifying topic management.
+On the contrary, MQTT shines when handling a large number of topics with a small
+number of messages. But when bridging MQTT to Kafka, the number of topics can
+become overwhelming.
+Specifically, with the default configuration, Kafka is able to handle around
+100-150 topics. This is because there is a limit of 1000 partitions per broker,
+and each topic requires has 6 partitions by default.
+
+So, if you are experiencing memory issues with Kafka, you may want to consider
+combining multiple topics into a single topic with different keys. The diagram
+below illustrates how this principle simplifies topic management.
 
 {{< mermaid >}}
 graph LR
@@ -48,6 +56,10 @@ bridge --> gmsg4
 {{< /mermaid >}}
 
 ## {{% heading "prerequisites" %}}
+
+{{< notice warning >}}
+This tutorial is for advanced users. Contact us if you need assistance.
+{{< /notice >}}
 
 {{< include "task-aftinst-prereqs.md" >}}
 
