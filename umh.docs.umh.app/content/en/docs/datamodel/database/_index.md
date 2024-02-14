@@ -72,9 +72,11 @@ In our example we send data to `umh/v1/cuttingincorperated/cologne/cnc-cutter/_h
 ```json
 {
  "timestamp_ms": 1670001234567,
-  "pos_x": 12.5,
-  "pos_y": 7.3,
-  "pos_z": 3.2,
+  "pos":{ 
+    "x": 12.5,
+    "y": 7.3,
+    "z": 3.2
+  },  
   "temperature": 50.0,
   "collision": false
 }
