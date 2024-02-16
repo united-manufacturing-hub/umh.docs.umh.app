@@ -324,3 +324,41 @@ return msg;
 54. Connect the top output of the delay node to the function node from step 17.
 55. Connect the delay node to the switch node from step 6.
 56. Deploy the flow.
+
+
+### Accidentally created shifts or states
+
+If you accidentally created a shift or state, you can remove it by creating a shift/delete or state/overwrite event.
+
+For shift/delete:
+1. Drag an inject node from the palette to the flow.
+2. Double-click the inject node and set the payload to:
+```json
+{
+  "startTime": <start time of the shift>,
+}
+```
+3. Set the topic to `umh/v1/printingCo/lisbon/hall-a/speedmaster106/_analytics/shift/delete`.
+4. Drag an mqtt out node from the palette to the flow.
+5. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, you can leave the topic empty as we have already set it in the inject node.
+6. Connect the inject node to the mqtt node.
+7. Deploy the flow.
+8. Click the inject node to remove the shift.
+
+
+For state/overwrite:
+1. Drag an inject node from the palette to the flow.
+2. Double-click the inject node and set the payload to:
+```json
+{
+  "startTime": <start time of the state>,
+  "endTime": <end time of the state>,
+  "state": <state id>
+}
+```
+3. Set the topic to `umh/v1/printingCo/lisbon/hall-a/speedmaster106/_analytics/state/overwrite`.
+4. Drag an mqtt out node from the palette to the flow.
+5. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, you can leave the topic empty as we have already set it in the inject node.
+6. Connect the inject node to the mqtt node.
+7. Deploy the flow.
+8. Click the inject node to overwrite the state.
