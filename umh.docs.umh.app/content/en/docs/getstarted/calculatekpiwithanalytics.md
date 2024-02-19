@@ -26,11 +26,11 @@ Therefore, we create an inject node and a mqtt node (to publish the product-type
 Since we are dealing with a printer, we use a low cycle time of 10 milliseconds.
 
 1. Drag an inject node from the palette to the flow.
-2. Double-click the inject node and set the payload to:
+2. Double-click the inject node and set the payload type to JSON and the payload to:
 ```json
 {
   "externalProductID": "otto-poster",
-  "cycleTime": 10
+  "cycleTime": 0.01
 }
 ```
 3. Set the topic to `umh/v1/printingCo/lisbon/hall-a/speedmaster106/_analytics/product-type/create`.
@@ -155,7 +155,7 @@ This node will stop the process when the work-order is finished.
 9. Connect the function node to the switch node.
 10. Drag a function node from the palette to the flow. 
 This function will handle the end of the work-order.
-11. Double-click the function node, set the name `workorder-end-handler`, and set the following code:
+11. Double-click the function node and set the name `workorder-end-handler` and the following code:
 ```javascript
 // We produced every product in this order, so let's stop it
 msg.payload = {
@@ -182,7 +182,7 @@ you can leave the topic empty as we have already set it in the function node.
 23. Set the filter node to block unless value changes and set the property to `msg.payload.state.id`.
 24. Connect both outputs of the *state-change-simulator* function node to the filter node.
 25. Drag a function node from the palette to the flow. This function will publish the state changes to the UNS.
-26. Double-click the function node, set the name `state-change-publisher`, and set the following code:
+26. Double-click the function node and set the name `state-change-publisher` and the following code:
 ```javascript
 // We have a state change, let's publish it
 msg.payload = {
@@ -200,7 +200,7 @@ you can leave the topic empty as we have already set it in the function node.
 30. Connect the *state-change-publisher* function node to the mqtt node.
 31. Now we will create the producer functions.
 32. Drag a function node from the palette to the flow. This function will increase the produced amount.
-33. Double-click the function node, set the name `produced-amount-incrementar`, and set the following code:
+33. Double-click the function node and set the name `produced-amount-incrementar` and the following code:
 ```javascript
 // Assuming that the producing isn't failing this works
 const produced = msg.payload.produced + 1;
@@ -220,7 +220,7 @@ return [msg_write_back,msg];
 35. Connect the bottom output of the *state-change-simulator* function node to the function node.
 36. Create another function node from the palette to the flow. 
 This function will publish the produced amount to the UNS.
-37. Double-click the function node, set the name `produced-amount-publisher`, and set the following code:
+37. Double-click the function node and set the name `produced-amount-publisher` and the following code:
 {{< codenew file="../../../static/js/getstarted/produce-amount-publisher.js" >}}
 
 38. Ensure that "Outputs" is set to 2 in the function node.
@@ -230,7 +230,7 @@ This function will publish the produced amount to the UNS.
 you can leave the topic empty as we have already set it in the function node.
 42. Connect the top output of the *produced-amount-publisher* function node to the mqtt node.
 43. Create a function node from the palette to the flow. This function will randomly scrap some products.
-44. Double-click the function node, set the name `products-scrap` and set the following code:
+44. Double-click the function node and set the name `products-scrap` and the following code:
 ```javascript
 // This works for us, as we produce one at a time
 msg.badQuantity = msg.quantity;
