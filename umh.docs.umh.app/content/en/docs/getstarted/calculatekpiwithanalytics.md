@@ -14,11 +14,14 @@ The first part will be setting up a printing machine and the second part will be
 In these steps we will setup a simple printing machine using Node-RED.
 If you are not interested in the setup, you can import the flow from [here](/json/getstarted/flows.json).
 
-This guide assumes that you have some basic knowledge of Node-RED. If you are new to Node-RED, you can find a good introduction [here](https://nodered.org/docs/tutorials/first-flow/).
+This guide assumes that you have some basic knowledge of Node-RED. If you are new to Node-RED, 
+you can find a good introduction [here](https://nodered.org/docs/tutorials/first-flow/).
 
 ### Creating the product-type/create function
 
-Before producing anything our system first needs to know what we are producing. This is done by creating a product-type. In this example we will create a product-type called "otto-poster" (Prints of our beloved mascot Otto).
+Before producing anything our system first needs to know what we are producing. This is done by creating 
+a product-type. 
+In this example we will create a product-type called "otto-poster" (Prints of our beloved mascot Otto).
 Therefore, we create an inject node and a mqtt node (to publish the product-type to the UNS).
 Since we are dealing with a printer, we use a low cycle time of 10 milliseconds.
 
@@ -32,13 +35,15 @@ Since we are dealing with a printer, we use a low cycle time of 10 milliseconds.
 ```
 3. Set the topic to `umh/v1/printingCo/lisbon/hall-a/speedmaster106/_analytics/product-type/create`.
 4. Drag an mqtt out node from the palette to the flow.
-5. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, you can leave the topic empty as we have already set it in the inject node.
+5. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
+you can leave the topic empty as we have already set it in the inject node.
 6. Connect the inject node to the mqtt node.
 7. Deploy the flow.
 
 ### Creating the shift/add function
 
-In order to calculate the OEE, we need to know when a shift starts and ends. Therefore, we create a shift. In this example our shift will be 8 hours long, beginning now.
+In order to calculate the OEE, we need to know when a shift starts and ends. 
+Therefore, we create a shift. In this example our shift will be 8 hours long, beginning now.
 We create an inject node, function node and a mqtt node (to publish the shift to the UNS).
 
 1. Drag an inject node from the palette to the flow.
@@ -58,14 +63,17 @@ msg.payload = {
 return msg;
 ```
 6. Drag an mqtt out node from the palette to the flow.
-7. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, you can leave the topic empty as we have already set it in the inject node.
+7. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
+you can leave the topic empty as we have already set it in the inject node.
 8. Connect the inject node to the function node and the function node to the mqtt node.
 9. Deploy the flow.
 
 ### Creating the work-order/create function
 
-Now that we have a product-type and a shift, we can create a work-order. In this example we will create a work-order for 7500 "otto-poster" prints.
-Each work-order has an work order id, which is unique per asset. In this example we will use the work order id "#1247".
+Now that we have a product-type and a shift, we can create a work-order. 
+In this example we will create a work-order for 7500 "otto-poster" prints.
+Each work-order has an work order id, which is unique per asset. 
+In this example we will use the work order id "#1247".
 This order id will come from your ERP system, but for this example we will use an inject node.
 
 1. Drag an inject node from the palette to the flow.
@@ -81,13 +89,15 @@ This order id will come from your ERP system, but for this example we will use a
 ```
 3. Set the topic to `umh/v1/printingCo/lisbon/hall-a/speedmaster106/_analytics/work-order/create`.
 4. Drag an mqtt out node from the palette to the flow.
-5. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, you can leave the topic empty as we have already set it in the inject node.
+5. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
+you can leave the topic empty as we have already set it in the inject node.
 6. Connect the inject node to the mqtt node.
 7. Deploy the flow.
 
 ### Creating the work-order/start function
 
-We are ready to start the work-order. This is done by creating a work-order/start event. In this example we will start the work-order "#1247", which we created in the previous step.
+We are ready to start the work-order. This is done by creating a work-order/start event. 
+In this example we will start the work-order "#1247", which we created in the previous step.
 
 1. Drag an inject node from the palette to the flow.
 2. Double-click the inject node and set the payload to:
@@ -106,7 +116,8 @@ msg.payload["startTime"] = startTime
 return msg;
 ```
 6. Drag an mqtt out node from the palette to the flow.
-7. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, you can leave the topic empty as we have already set it in the inject node.
+7. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
+you can leave the topic empty as we have already set it in the inject node.
 8. Connect the inject node to the function node and the function node to the mqtt node.
 9. Deploy the flow.
 
@@ -118,7 +129,8 @@ It will listen for the work-order/start event and then simulate produce the prin
 While producing it will change to different states, and might output some failed prints.
 
 1. Drag an mqtt in node from the palette to the flow.
-2. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server and set the topic to `umh/v1/printingCo/lisbon/hall-a/speedmaster106/_analytics/work-order/start`.
+2. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server 
+and set the topic to `umh/v1/printingCo/lisbon/hall-a/speedmaster106/_analytics/work-order/start`.
 3. Drag a function node from the palette to the flow. This function will setup the state machine.
 4. Double-click the function node and set the following code:
 ```javascript
@@ -134,11 +146,14 @@ msg.payload["state"] = {
 return msg;
 ```
 5. Connect the mqtt node to the function node.
-6. Drag a switch node from the palette to the flow. This node will stop the process when the work-order is finished.
-7. Set the switch node to check if `msg.payload.produced` is greater than or equal to `7500` (the quantity of the work-order).
+6. Drag a switch node from the palette to the flow. 
+This node will stop the process when the work-order is finished.
+7. Set the switch node to check if `msg.payload.produced` is greater than or equal to `7500` 
+(the quantity of the work-order).
 8. Add another rule to check if `msg.payload.produced` is less than `7500`.
 9. Connect the function node to the switch node.
-10. Drag a function node from the palette to the flow. This function will handle the end of the work-order.
+10. Drag a function node from the palette to the flow. 
+This function will handle the end of the work-order.
 11. Double-click the function node and set the following code:
 ```javascript
 // We produced every product in this order, so let's stop it
@@ -151,7 +166,8 @@ return msg;
 ```
 12. Connect the first rule (top output) of the switch node to the function node.
 13. Drag an mqtt out node from the palette to the flow.
-14. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, you can leave the topic empty as we have already set it in the function node.
+14. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
+you can leave the topic empty as we have already set it in the function node.
 15. Connect the function node from step 10 to the mqtt node.
 16. Now we will create the loop for the state machine.
 17. Drag a function node from the palette to the flow. This function will simulate state changes.
@@ -242,7 +258,8 @@ return msg;
 ```
 27. Connect the filter node to the function node.
 28. Drag an mqtt out node from the palette to the flow.
-29. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, you can leave the topic empty as we have already set it in the function node.
+29. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
+you can leave the topic empty as we have already set it in the function node.
 30. Connect the function node from step 25 to the mqtt node.
 31. Now we will create the producer functions.
 32. Drag a function node from the palette to the flow. This function will increase the produced amount.
@@ -264,7 +281,8 @@ return [msg_write_back,msg];
 ```
 34. Ensure that "Outputs" is set to 2 in the function node.
 35. Connect the bottom output of the function node from step 17 to the function node.
-36. Create another function node from the palette to the flow. This function will publish the produced amount to the UNS.
+36. Create another function node from the palette to the flow. 
+This function will publish the produced amount to the UNS.
 37. Double-click the function node and set the following code:
 ```javascript
 // An insecure implementation of uuid4
@@ -297,7 +315,8 @@ return [msg, null];
 38. Ensure that "Outputs" is set to 2 in the function node.
 39. Connect the bottom output of the function node from step 33 to the function node.
 40. Drag a mqtt out node from the palette to the flow.
-41. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, you can leave the topic empty as we have already set it in the function node.
+41. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
+you can leave the topic empty as we have already set it in the function node.
 42. Connect the top output of the function node from step 37 to the mqtt node.
 43. Create a function node from the palette to the flow. This function will randomly scrap some products.
 44. Double-click the function node and set the following code:
@@ -314,7 +333,8 @@ return msg;
 ```
 45. Connect the bottom output of the function node from step 37 to the function node.
 46. Drag a mqtt out node from the palette to the flow.
-47. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, you can leave the topic empty as we have already set it in the function node.
+47. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
+you can leave the topic empty as we have already set it in the function node.
 48. Connect the function node from step 43 to the mqtt node.
 49. Great, now we just need to create a feedback loop to continue the state machine.
 50. Drag a delay node from the palette to the flow.
@@ -340,7 +360,8 @@ For shift/delete:
 ```
 3. Set the topic to `umh/v1/printingCo/lisbon/hall-a/speedmaster106/_analytics/shift/delete`.
 4. Drag an mqtt out node from the palette to the flow.
-5. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, you can leave the topic empty as we have already set it in the inject node.
+5. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
+you can leave the topic empty as we have already set it in the inject node.
 6. Connect the inject node to the mqtt node.
 7. Deploy the flow.
 8. Click the inject node to remove the shift.
@@ -358,7 +379,8 @@ For state/overwrite:
 ```
 3. Set the topic to `umh/v1/printingCo/lisbon/hall-a/speedmaster106/_analytics/state/overwrite`.
 4. Drag an mqtt out node from the palette to the flow.
-5. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, you can leave the topic empty as we have already set it in the inject node.
+5. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
+you can leave the topic empty as we have already set it in the inject node.
 6. Connect the inject node to the mqtt node.
 7. Deploy the flow.
 8. Click the inject node to overwrite the state.
