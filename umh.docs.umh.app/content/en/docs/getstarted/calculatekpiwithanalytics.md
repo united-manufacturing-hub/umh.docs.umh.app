@@ -109,11 +109,12 @@ In this example we will start the work-order "#1247", which we created in the pr
 3. Set the topic to `umh/v1/printingCo/lisbon/hall-a/speedmaster106/_analytics/work-order/start`.
 4. Drag a function node from the palette to the flow.
 5. Double-click the function node and set the following code:
-```javascript
-const startTime = Date.now();
 
-msg.payload["startTime"] = startTime
-return msg;
+```javascript
+    const startTime = Date.now();
+
+    msg.payload["startTime"] = startTime
+    return msg;
 ```
 6. Drag an mqtt out node from the palette to the flow.
 7. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
@@ -172,72 +173,8 @@ you can leave the topic empty as we have already set it in the function node.
 16. Now we will create the loop for the state machine.
 17. Drag a function node from the palette to the flow. This function will simulate state changes.
 18. Double-click the function node and set the following code:
-```javascript
-const now = Date.now();
-const lastChange = msg.payload.state.lastchange;
-const duration = now - lastChange;
-const cycleTime = 10;
+{{< codenew file="../../../static/js/getstarted/simulate-state-changer.js" >}}
 
-msg.delay = cycleTime;
-
-// Function to calculate dynamic delay
-function calculateDynamicDelay(duration, startDelay, endDelay, rampTime) {
-    if (duration >= rampTime) return endDelay;
-    const delayRange = startDelay - endDelay;
-    const delayStep = delayRange / rampTime;
-    return startDelay - (delayStep * duration);
-}
-
-switch (msg.payload.state.id) {
-    case 10000:
-        // ProducingAtFullSpeedState
-        // After 10 seconds it has a 10% chance of changing the state
-        if (Math.random() < 0.1 && duration >= 10000) {
-            if (Math.random() < 0.5) {
-                // Simulate a CleaningState
-                msg.payload.state.id = 110000;
-                msg.payload.state.lastchange = Date.now();
-            } else {
-                // Simulate an OutletJamState
-                msg.payload.state.id = 70000;
-                msg.payload.state.lastchange = Date.now();
-            }
-        }
-        break;
-    case 20000:
-        // ProducingAtLowerThanFullSpeedState
-        // The machine takes 30s to ramp to full speed
-        if (duration >= 30000) {
-            msg.payload.state.id = 10000;
-            msg.payload.state.lastchange = Date.now();
-        }
-        // Calculate dynamic delay starting from 500 to 100 over 30 seconds
-        msg.delay = calculateDynamicDelay(duration, 500, 100, 30000);
-        break;
-    default:
-        if (msg.payload.state.id == 110000) {
-            // We have a cleaning state, this one takes 10 seconds to complete
-            if (duration >= 10000) {
-                // Machine needs to ramp up after cleaning
-                msg.payload.state.id = 20000;
-                msg.payload.state.lastchange = Date.now();
-            }
-        } else if (msg.payload.state.id == 70000) {
-            // We have an outlet jam state, this one takes 15 seconds to complete
-            if (duration >= 15000) {
-                // Machine needs to ramp up after fixing the jam
-                msg.payload.state.id = 20000;
-                msg.payload.state.lastchange = Date.now();
-            }
-        }
-}
-
-if (msg.payload.state.id < 30000) {
-    return [null, msg];
-}
-
-return [msg, null];
-```
 19. Ensure that "Outputs" is set to 2 in the function node.
 20. Connect the second rule (bottom output) of the switch node to the function node.
 21. We will now create the flow to publish state changes to the UNS.
@@ -284,34 +221,8 @@ return [msg_write_back,msg];
 36. Create another function node from the palette to the flow. 
 This function will publish the produced amount to the UNS.
 37. Double-click the function node and set the following code:
-```javascript
-// An insecure implementation of uuid4
-// It's fine for this example but shouldn't be used in production
-// See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random for more details
-function uuid4() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-    });
-}
+{{< codenew file="../../../static/js/getstarted/produce-amount-publisher.js" >}}
 
-msg.payload = {
-    "externalProductTypeId": "otto-poster",
-    "productId": uuid4(),
-    "endTime": Date.now(),
-    "quantity": 1
-};
-msg.topic = "umh/v1/printingCo/lisbon/hall-a/speedmaster106/_analytics/product/add";
-
-// 5% chance of a bad product
-const failureChance = 0.05;
-
-if (Math.random() < failureChance){
-    return [msg, msg];
-}
-
-return [msg, null];
-```
 38. Ensure that "Outputs" is set to 2 in the function node.
 39. Connect the bottom output of the function node from step 33 to the function node.
 40. Drag a mqtt out node from the palette to the flow.
