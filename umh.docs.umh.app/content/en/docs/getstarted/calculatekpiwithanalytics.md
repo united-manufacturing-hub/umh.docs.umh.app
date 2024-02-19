@@ -16,7 +16,7 @@ If you are not interested in the setup, you can import the flow from [here](/jso
 
 This guide assumes that you have some basic knowledge of Node-RED. If you are new to Node-RED, you can find a good introduction [here](https://nodered.org/docs/tutorials/first-flow/).
 
-### Step 1: Creating the product-type/create function
+### Creating the product-type/create function
 
 Before producing anything our system first needs to know what we are producing. This is done by creating a product-type. In this example we will create a product-type called "otto-poster" (Prints of our beloved mascot Otto).
 Therefore, we create an inject node and a mqtt node (to publish the product-type to the UNS).
@@ -36,7 +36,7 @@ Since we are dealing with a printer, we use a low cycle time of 10 milliseconds.
 6. Connect the inject node to the mqtt node.
 7. Deploy the flow.
 
-### Step 2: Creating the shift/add function
+### Creating the shift/add function
 
 In order to calculate the OEE, we need to know when a shift starts and ends. Therefore, we create a shift. In this example our shift will be 8 hours long, beginning now.
 We create an inject node, function node and a mqtt node (to publish the shift to the UNS).
@@ -62,7 +62,7 @@ return msg;
 8. Connect the inject node to the function node and the function node to the mqtt node.
 9. Deploy the flow.
 
-### Step 3: Creating the work-order/create function
+### Creating the work-order/create function
 
 Now that we have a product-type and a shift, we can create a work-order. In this example we will create a work-order for 7500 "otto-poster" prints.
 Each work-order has an work order id, which is unique per asset. In this example we will use the work order id "#1247".
@@ -85,7 +85,7 @@ This order id will come from your ERP system, but for this example we will use a
 6. Connect the inject node to the mqtt node.
 7. Deploy the flow.
 
-### Step 4: Creating the work-order/start function
+### Creating the work-order/start function
 
 We are ready to start the work-order. This is done by creating a work-order/start event. In this example we will start the work-order "#1247", which we created in the previous step.
 
@@ -111,7 +111,7 @@ return msg;
 9. Deploy the flow.
 
 
-### Step 5: Creating the state machine
+### Creating the state machine
 
 This step is quite complex. We will create a state machine to simulate the printing process.
 It will listen for the work-order/start event and then simulate produce the prints.
