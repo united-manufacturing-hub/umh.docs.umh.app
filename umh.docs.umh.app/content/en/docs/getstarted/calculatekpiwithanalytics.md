@@ -133,7 +133,7 @@ While producing it will change to different states, and might output some failed
 2. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server 
 and set the topic to `umh/v1/printingCo/lisbon/hall-a/speedmaster106/_analytics/work-order/start`.
 3. Drag a function node from the palette to the flow. This function will setup the state machine.
-4. Double-click the function node and set the following code:
+4. Double-click the function node, set the name `state-machine-setup`, and set the following code:
 ```javascript
 // At the start of each order there is nothing produced, so set it to zero
 msg.payload["produced"] = 0;
@@ -146,7 +146,7 @@ msg.payload["state"] = {
 }
 return msg;
 ```
-5. Connect the mqtt node to the function node.
+5. Connect the mqtt node to the *state-machine-setup* function node.
 6. Drag a switch node from the palette to the flow. 
 This node will stop the process when the work-order is finished.
 7. Set the switch node to check if `msg.payload.produced` is greater than or equal to `7500` 
@@ -155,7 +155,7 @@ This node will stop the process when the work-order is finished.
 9. Connect the function node to the switch node.
 10. Drag a function node from the palette to the flow. 
 This function will handle the end of the work-order.
-11. Double-click the function node and set the following code:
+11. Double-click the function node, set the name `workorder-end-handler`, and set the following code:
 ```javascript
 // We produced every product in this order, so let's stop it
 msg.payload = {
@@ -165,14 +165,14 @@ msg.payload = {
 msg.topic = "umh/v1/printingCo/lisbon/hall-a/speedmaster106/_analytics/work-order/stop";
 return msg;
 ```
-12. Connect the first rule (top output) of the switch node to the function node.
+12. Connect the first rule (top output) of the switch node to the *workorder-end-handler* function node.
 13. Drag an mqtt out node from the palette to the flow.
 14. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
 you can leave the topic empty as we have already set it in the function node.
-15. Connect the function node from step 10 to the mqtt node.
+15. Connect the *workorder-end-handler* function node to the mqtt node.
 16. Now we will create the loop for the state machine.
 17. Drag a function node from the palette to the flow. This function will simulate state changes.
-18. Double-click the function node and set the following code:
+18. Double-click the function node, set the name `state-change-simulator`, and set the following code:
 {{< codenew file="../../../static/js/getstarted/simulate-state-changer.js" >}}
 
 19. Ensure that "Outputs" is set to 2 in the function node.
@@ -180,9 +180,9 @@ you can leave the topic empty as we have already set it in the function node.
 21. We will now create the flow to publish state changes to the UNS.
 22. Drag a filter node from the palette to the flow. This node will filter out the state changes.
 23. Set the filter node to block unless value changes and set the property to `msg.payload.state.id`.
-24. Connect both outputs of the function node from step 17 to the filter node.
+24. Connect both outputs of the *state-change-simulator* function node to the filter node.
 25. Drag a function node from the palette to the flow. This function will publish the state changes to the UNS.
-26. Double-click the function node and set the following code:
+26. Double-click the function node, set the name `state-change-publisher`, and set the following code:
 ```javascript
 // We have a state change, let's publish it
 msg.payload = {
@@ -197,10 +197,10 @@ return msg;
 28. Drag an mqtt out node from the palette to the flow.
 29. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
 you can leave the topic empty as we have already set it in the function node.
-30. Connect the function node from step 25 to the mqtt node.
+30. Connect the *state-change-publisher* function node to the mqtt node.
 31. Now we will create the producer functions.
 32. Drag a function node from the palette to the flow. This function will increase the produced amount.
-33. Double-click the function node and set the following code:
+33. Double-click the function node, set the name `produced-amount-incrementar`, and set the following code:
 ```javascript
 // Assuming that the producing isn't failing this works
 const produced = msg.payload.produced + 1;
@@ -217,20 +217,20 @@ delete msg.payload.delay;
 return [msg_write_back,msg];
 ```
 34. Ensure that "Outputs" is set to 2 in the function node.
-35. Connect the bottom output of the function node from step 17 to the function node.
+35. Connect the bottom output of the *state-change-simulator* function node to the function node.
 36. Create another function node from the palette to the flow. 
 This function will publish the produced amount to the UNS.
-37. Double-click the function node and set the following code:
+37. Double-click the function node, set the name `produced-amount-publisher`, and set the following code:
 {{< codenew file="../../../static/js/getstarted/produce-amount-publisher.js" >}}
 
 38. Ensure that "Outputs" is set to 2 in the function node.
-39. Connect the bottom output of the function node from step 33 to the function node.
+39. Connect the bottom output of the *produced-amount-incrementar* function node to the function node.
 40. Drag a mqtt out node from the palette to the flow.
 41. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
 you can leave the topic empty as we have already set it in the function node.
-42. Connect the top output of the function node from step 37 to the mqtt node.
+42. Connect the top output of the *produced-amount-publisher* function node to the mqtt node.
 43. Create a function node from the palette to the flow. This function will randomly scrap some products.
-44. Double-click the function node and set the following code:
+44. Double-click the function node, set the name `products-scrap` and set the following code:
 ```javascript
 // This works for us, as we produce one at a time
 msg.badQuantity = msg.quantity;
@@ -242,17 +242,17 @@ delete msg.productId;
 msg.topic = "umh/v1/printingCo/lisbon/hall-a/speedmaster106/_analytics/product/setBadQuantity";
 return msg;
 ```
-45. Connect the bottom output of the function node from step 37 to the function node.
+45. Connect the bottom output of the *produced-amount-publisher* function node to the function node.
 46. Drag a mqtt out node from the palette to the flow.
 47. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
 you can leave the topic empty as we have already set it in the function node.
-48. Connect the function node from step 43 to the mqtt node.
+48. Connect the *products-scrap* function node to the mqtt node.
 49. Great, now we just need to create a feedback loop to continue the state machine.
 50. Drag a delay node from the palette to the flow.
 51. Set the delay node to 10 milliseconds.
 52. Set "Fixed Delay" to "Override delay with msg.delay".
-53. Connect the top output of the function node from step 33 to the delay node.
-54. Connect the top output of the delay node to the function node from step 17.
+53. Connect the top output of the *produced-amount-incrementar* function node to the delay node.
+54. Connect the top output of the delay node to the *state-change-simulator* function node.
 55. Connect the delay node to the switch node from step 6.
 56. Deploy the flow.
 
