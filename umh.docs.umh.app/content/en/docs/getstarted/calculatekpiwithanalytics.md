@@ -172,11 +172,11 @@ you can leave the topic empty as we have already set it in the function node.
 15. Connect the *workorder-end-handler* function node to the mqtt node.
 16. Now we will create the loop for the state machine.
 17. Drag a function node from the palette to the flow. This function will simulate state changes.
-18. Double-click the function node, set the name `state-change-simulator`, and set the following code:
+18. Double-click the function node and set the name `state-change-simulator` and the following code:
 {{< codenew file="../../../static/js/getstarted/simulate-state-changer.js" >}}
 
 19. Ensure that "Outputs" is set to 2 in the function node.
-20. Connect the second rule (bottom output) of the switch node to the function node.
+20. Connect the second rule (bottom output) of the switch node to the *state-change-simulator* function node.
 21. We will now create the flow to publish state changes to the UNS.
 22. Drag a filter node from the palette to the flow. This node will filter out the state changes.
 23. Set the filter node to block unless value changes and set the property to `msg.payload.state.id`.
@@ -193,7 +193,7 @@ msg.topic = "umh/v1/printingCo/lisbon/hall-a/speedmaster106/_analytics/state/add
 
 return msg;
 ```
-27. Connect the filter node to the function node.
+27. Connect the filter node to the *state-change-publisher* function node.
 28. Drag an mqtt out node from the palette to the flow.
 29. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
 you can leave the topic empty as we have already set it in the function node.
