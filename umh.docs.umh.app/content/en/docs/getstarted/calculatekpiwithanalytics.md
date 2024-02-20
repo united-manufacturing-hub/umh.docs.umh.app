@@ -125,7 +125,93 @@ you can leave the topic empty as we have already set it in the inject node.
 
 ### Creating the state machine
 
-This step is quite complex. We will create a state machine to simulate the printing process.
+Normally you get the machine state directly from the machine. In the first step, 
+we will simply inject a "machine running", and "machine stopped" with inject node. 
+As a more advanced step, we will build a simulator in Node-RED.
+
+#### Injecting running and stopped states
+
+In this step, we create a simple flow injecting running and stopped state of machine.
+
+1. Drag an inject node from the palette to the flow. This node injects the start status.
+2. Double-click the inject node and set the payload to:
+```json
+{
+  "externalWorkOrderId": "#1247"
+}
+```
+3. Drag a function node from the palette to the flow.
+4. Double-click the function node and set the name `start` and the following code:
+```javascript
+const startTime = Date.now();
+
+msg.payload["startTime"] = startTime
+// At the start of each order there is nothing produced, so set it to zero
+msg.payload["produced"] = 0;
+
+return msg;
+
+```
+5. Drag an inject node from the palette to the flow. This node injects the stopped status.
+6. Double-click the inject node and set the payload to:
+```json
+{
+  "externalWorkOrderId": "#1247"
+}
+```
+7. Drag a function node from the palette to the flow.
+8. Double-click the function node and set the name `stop` and the following code:
+```javascript
+// Production will stop if the produced amount reaches 7500
+msg.payload["produced"] = 7500;
+
+return msg;
+```
+9. Drag a switch node from the palette to the flow. 
+This node will stop the process when the work-order is finished.
+10. Set the switch node to check if `msg.payload.produced` is greater than or equal to `7500` 
+(the quantity of the work-order).
+11. Add another rule to check if `msg.payload.produced` is less than `7500`.
+12. Connect *start* and *stop* function nodes to the switch node.
+13. Drag a function node from the palette to the flow. This function creates a message of stopped state.
+14. Double-click the function node and set the following code:
+```javascript
+// We produced every product in this order, so let's stop it
+msg.payload = {
+    "externalWorkOrderId": "#1247",
+    "endTime": Date.now(),
+}
+msg.topic = "umh/v1/printingCo/lisbon/hall-a/speedmaster106/_analytics/work-order/stop";
+return msg;
+```
+15. Connect the first rule (top output) of the switch node to this function node.
+16. Drag an mqtt out node from the palette to the flow.
+17. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
+you can leave the topic empty as we have already set it in the function node.
+18. Connect the function node to the mqtt node.
+19. Drag a function node from the palette to the flow. This function creates a message of stopped state.
+20. Double-click the function node and set the following code:
+```javascript
+// Production is running
+msg.payload = {
+    "externalWorkOrderId": "#1247",
+    "produced": msg.payload.produced
+}
+msg.topic = "umh/v1/printingCo/lisbon/hall-a/speedmaster106/_analytics/work-order/running";
+return msg;
+```
+21. Connect the first rule (top output) of the switch node to this function node.
+22. Drag an mqtt out node from the palette to the flow.
+23. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
+you can leave the topic empty as we have already set it in the function node.
+24. Connect the function node to the mqtt node.
+25. Now, creating the flow shall be completed. 
+
+![start and stop flow](/images/getstarted/calculateKpiWithAnalytics/start-stop.png?width=75%)
+
+
+#### Creating state machine
+As an advanced step, we will create a state machine to simulate the printing process.
 It will listen for the work-order/start event and then simulate produce the prints.
 While producing it will change to different states, and might output some failed prints.
 
@@ -256,7 +342,7 @@ you can leave the topic empty as we have already set it in the function node.
 55. Connect the delay node to the switch node from step 6.
 56. Deploy the flow.
 
-
+![state machine](/images/getstarted/calculateKpiWithAnalytics/state-machine.png?width=75%)
 ### Accidentally created shifts or states
 
 If you accidentally created a shift or state, you can remove it by creating a shift/delete or state/overwrite event.
