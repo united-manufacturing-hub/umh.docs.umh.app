@@ -152,29 +152,31 @@ msg.payload["produced"] = 0;
 return msg;
 
 ```
-5. Drag an inject node from the palette to the flow. This node injects the stopped status.
-6. Double-click the inject node and set the payload to:
+5. Connect the inject node to the function node 
+6. Drag an inject node from the palette to the flow. This node injects the stopped status.
+7. Double-click the inject node and set the payload to:
 ```json
 {
   "externalWorkOrderId": "#1247"
 }
 ```
-7. Drag a function node from the palette to the flow.
-8. Double-click the function node and set the name `stop` and the following code:
+8. Drag a function node from the palette to the flow.
+9. Double-click the function node and set the name `stop` and the following code:
 ```javascript
 // Production will stop if the produced amount reaches 7500
 msg.payload["produced"] = 7500;
 
 return msg;
 ```
-9. Drag a switch node from the palette to the flow. 
+10. Connect the inject node to the *stop* function node.
+11. Drag a switch node from the palette to the flow. 
 This node will stop the process when the work-order is finished.
-10. Set the switch node to check if `msg.payload.produced` is greater than or equal to `7500` 
+12. Set the switch node to check if `msg.payload.produced` is greater than or equal to `7500` 
 (the quantity of the work-order).
-11. Add another rule to check if `msg.payload.produced` is less than `7500`.
-12. Connect *start* and *stop* function nodes to the switch node.
-13. Drag a function node from the palette to the flow. This function creates a message of stopped state.
-14. Double-click the function node and set the following code:
+13. Add another rule to check if `msg.payload.produced` is less than `7500`.
+14. Connect *start* and *stop* function nodes to the switch node.
+15. Drag a function node from the palette to the flow. This function creates a message of the stopped state.
+16. Double-click the function node and set the following code:
 ```javascript
 // We produced every product in this order, so let's stop it
 msg.payload = {
@@ -184,13 +186,13 @@ msg.payload = {
 msg.topic = "umh/v1/printingCo/lisbon/hall-a/speedmaster106/_analytics/work-order/stop";
 return msg;
 ```
-15. Connect the first rule (top output) of the switch node to this function node.
-16. Drag an mqtt out node from the palette to the flow.
-17. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
+17. Connect the first rule (top output) of the switch node to this function node.
+18. Drag an mqtt out node from the palette to the flow.
+19. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
 you can leave the topic empty as we have already set it in the function node.
-18. Connect the function node to the mqtt node.
-19. Drag a function node from the palette to the flow. This function creates a message of stopped state.
-20. Double-click the function node and set the following code:
+20. Connect the function node to the mqtt node.
+21. Drag a function node from the palette to the flow. This function creates a message of the start state.
+22. Double-click the function node and set the following code:
 ```javascript
 // Production is running
 msg.payload = {
@@ -200,12 +202,12 @@ msg.payload = {
 msg.topic = "umh/v1/printingCo/lisbon/hall-a/speedmaster106/_analytics/work-order/running";
 return msg;
 ```
-21. Connect the first rule (top output) of the switch node to this function node.
-22. Drag an mqtt out node from the palette to the flow.
-23. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
+23. Connect the second rule (bottom output) of the switch node to this function node.
+24. Drag an mqtt out node from the palette to the flow.
+25. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
 you can leave the topic empty as we have already set it in the function node.
-24. Connect the function node to the mqtt node.
-25. Now, creating the flow shall be completed. 
+26. Connect the function node to the mqtt node.
+27. Now, creating the flow shall be completed. 
 
 ![start and stop flow](/images/getstarted/calculateKpiWithAnalytics/start-stop.png?width=75%)
 
