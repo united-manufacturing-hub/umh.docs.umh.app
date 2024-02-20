@@ -252,7 +252,7 @@ you can leave the topic empty as we have already set it in the function node.
 51. Set the delay node to 10 milliseconds.
 52. Set "Fixed Delay" to "Override delay with msg.delay".
 53. Connect the top output of the *produced-amount-incrementar* function node to the delay node.
-54. Connect the top output of the delay node to the *state-change-simulator* function node.
+54. Connect the top output of the *state-change-simulator* function node to the delay node.
 55. Connect the delay node to the switch node from step 6.
 56. Deploy the flow.
 
