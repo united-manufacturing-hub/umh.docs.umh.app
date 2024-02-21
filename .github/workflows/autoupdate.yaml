@@ -8,6 +8,8 @@ on:
     - cron: '0 * * * *'
 jobs:
   autoupdate:
+    permissions:
+      contents: write
     name: autoupdate
     runs-on: ubuntu-20.04
     steps:
