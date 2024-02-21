@@ -43,18 +43,21 @@ deploy a data source.
 After logging in, the Instance Dashboard page shows the **Overview** tab.
 You can click and open each status on this tab.
 
-![Instance Overview](/images/features/monitor-management/instanceOverview.png?width=80%)
+![Instance Overview](/images/features/monitor-management/instanceOverviewDemo.png?width=80%)
 
 The **Connection Management** tab shows the status of all the instance's connections and their associated
 data sources. Moreover, you can create a new connection, as well as initialize them.
 Read more about the Connection Management in the [Connectivity](/docs/features/connectivity/) section.
 
-![Connection Management](/images/features/monitor-management/instanceConnectionManagement.png?width=80%)
+![Connection Management](/images/features/monitor-management/connectionManagementDemo.png?width=80%)
 
-The Data Dashboard displays the topic structure and publisher & subscriber
-information.
+<!-- TODO: Mention the payload's values history feature once implemented -->
 
-![Data Dashboard](/images/features/monitor-management/dataDashboard.png?width=80%)
+The **Tag Browser** displays the topic structure and publisher & subscriber
+information. Read more about the Tag Browser in the [Unified Namespace](/docs/features/datainfrastructure/unified-namespace)
+section.
+
+![Tag Browser](/images/features/monitor-management/tagBrowser.png?width=80%)
 
 ## What are the limitations?
 
