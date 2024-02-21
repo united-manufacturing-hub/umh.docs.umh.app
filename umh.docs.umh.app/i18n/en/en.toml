@@ -94,6 +94,9 @@ other = "united-manufacturing-hub-kafka"
 [resource_configmap_kafkaconsole]
 other = "united-manufacturing-hub-console"
 
+[resource_configmap_management-companion]
+other = "mgmtcompanion-config"
+
 [resource_configmap_mqttbroker-config]
 other = "united-manufacturing-hub-hivemqce-hive"
 
@@ -183,6 +186,9 @@ other = "united-manufacturing-hub-tulip-connector-ingress"
 
 [resource_lens_name]
 other = "UMHLens / OpenLens"
+
+[resource_ns_management-companion]
+other = "mgmtcompanion"
 
 [resource_ns_umh]
 other = "united-manufacturing-hub"
