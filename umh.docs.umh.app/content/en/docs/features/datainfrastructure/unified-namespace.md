@@ -86,16 +86,24 @@ The full tag name uniquely identifies a single tag, it can be found in the **Pub
 
 ![Tag Browser](/images/features/unified-namespace/tagBrowser.png?width=80%)
 
-The picture above shows the `Tag Browser`, our main tool for browsing the Unified Namespace. It includes the
+The above image showcases the `Tag Browser`, our main tool for navigating the Unified Namespace. It includes the
 following features:
 
-- **Data Aggregation**: Automatically aggregates data from all connected instances / brokers.
-- **Topic Structure**: Shows the topic structure and which data belongs to which namespace.
-- **Schema validation**: Known schemas such as `_historian` are validated and displayed in a structured way.
-  Note that unknown schemas are supported as well, but their payloads are displayed as raw JSON instead.
+- **Data Aggregation**: Automatically consolidates data from all connected instances / brokers.
+- **Topic Structure**: Displays the hierarchical structure of topics and which data belongs to which namespace.
+- **Tag Folder Structure**: Facilitates browsing through tag folders or groups within a single asset.
+- **Schema validation**: Introduces validation for known schemas such as `_historian`. In case of validation
+  failure, the corresponding errors are displayed.
 - **Publisher & Subscriber Info**: Provides various details, such as the origins and destinations of the data,
   the instance it was published from, the messages per minute to get an overview on how much data is flowing,
-  and the full tag name that uniquely identifies the selected tag.
+  and the full tag name to uniquely identify the selected tag.
+- **Payload Visualization**: Displays payloads under validated schemas in a formatted/structured manner, enhancing
+  readability. For unknown schemas without strict validation, the raw payload is displayed instead.
+
+{{% notice note %}}
+It's important to note that data displayed in the `Tag Browser` represent snapshots; hence, data sent at
+intervals shorter than 10 seconds may not be accurately reflected.
+{{% /notice %}}
 
 You can find more detailed information about the topic structure [here](/docs/datamodel/messages).
 
