@@ -341,6 +341,13 @@ Consider adding a debug node for visualizing output data.
 
 ![Node-RED Kafka to Kafka](/images/getstarted/dataAcquisitionManipulation/noderedKafkaKafka.png?width=80%)
 
+## Tag Browser
+
+Returning to the Management Console, you'll find the output data displayed within the **Tag Browser**,
+which offers a user-friendly tree structure for browsing the topic hierarchy we defined in previous steps.
+
+![Tag Browser](/images/getstarted/dataAcquisitionManipulation/tagBrowserTemperature.png?width=80%)
+
 ## {{% heading "whatsnext" %}}
 
 Next, we'll dive into [Data Visualization](/docs/getstarted/datavisualization),
