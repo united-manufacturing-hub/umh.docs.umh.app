@@ -344,7 +344,7 @@ Consider adding a debug node for visualizing output data.
 ## Tag Browser
 
 Returning to the Management Console, you'll find the output data displayed within the **Tag Browser**,
-which offers a user-friendly tree structure for browsing the topic hierarchy we defined in previous steps.
+which offers a user-friendly tree structure for browsing the tag hierarchy we defined in previous steps.
 
 ![Tag Browser](/images/getstarted/dataAcquisitionManipulation/tagBrowserTemperature.png?width=80%)
 
