@@ -136,78 +136,53 @@ In this step, we create a simple flow injecting running and stopped state of mac
 1. Drag an inject node from the palette to the flow. This node injects the start status.
 2. Double-click the inject node and set the payload to:
 ```json
-{
-  "externalWorkOrderId": "#1247"
+{  "state": 
+  {
+    "id": 100, 
+    "lastchange": 0
+  }
 }
 ```
-3. Drag a function node from the palette to the flow.
-4. Double-click the function node and set the name `start` and the following code:
-```javascript
-const startTime = Date.now();
-
-msg.payload["startTime"] = startTime
-// At the start of each order there is nothing produced, so set it to zero
-msg.payload["produced"] = 0;
-
-return msg;
-
-```
-5. Connect the inject node to the function node 
-6. Drag an inject node from the palette to the flow. This node injects the stopped status.
-7. Double-click the inject node and set the payload to:
+3. Drag an inject node from the palette to the flow. This node injects the stopped status.
+4. Double-click the inject node and set the payload to:
 ```json
-{
-  "externalWorkOrderId": "#1247"
+{  "state": 
+  {
+    "id": 200, 
+    "lastchange": 0
+  }
 }
 ```
-8. Drag a function node from the palette to the flow.
-9. Double-click the function node and set the name `stop` and the following code:
-```javascript
-// Production will stop if the produced amount reaches 7500
-msg.payload["produced"] = 7500;
 
-return msg;
-```
-10. Connect the inject node to the *stop* function node.
-11. Drag a switch node from the palette to the flow. 
-This node will stop the process when the work-order is finished.
-12. Set the switch node to check if `msg.payload.produced` is greater than or equal to `7500` 
-(the quantity of the work-order).
-13. Add another rule to check if `msg.payload.produced` is less than `7500`.
-14. Connect *start* and *stop* function nodes to the switch node.
-15. Drag a function node from the palette to the flow. This function creates a message of the stopped state.
-16. Double-click the function node and set the following code:
+3. Drag a function node from the palette to the flow.
+4. Double-click the function node and set the following code:
 ```javascript
-// We produced every product in this order, so let's stop it
-msg.payload = {
-    "externalWorkOrderId": "#1247",
-    "endTime": Date.now(),
+// Create a name of the received state
+switch (msg.payload.state.id) {
+    case 100:
+        msg.payload.state.name = "MachineStartingState"
+        break
+    case 200:
+        msg.payload.state.name = "MachineStopState"
+        break
+    default:
+        msg.payload.state.name = "UnknownState"
+        break
 }
-msg.topic = "umh/v1/printingCo/lisbon/hall-a/speedmaster106/_analytics/work-order/stop";
+
+// Set time
+const time = Date.now();
+msg.payload.state.lastchange = time
+    
+msg.topic = "umh/v1/printingCo/lisbon/hall-a/speedmaster106/_analytics/state/statewithname";
 return msg;
 ```
-17. Connect the first rule (top output) of the switch node to this function node.
-18. Drag an mqtt out node from the palette to the flow.
-19. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
+5. Connect both inject nodes to the function node.
+6. Drag an mqtt out node from the palette to the flow.
+7. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
 you can leave the topic empty as we have already set it in the function node.
-20. Connect the function node to the mqtt node.
-21. Drag a function node from the palette to the flow. This function creates a message of the start state.
-22. Double-click the function node and set the following code:
-```javascript
-// Production is running
-msg.payload = {
-    "externalWorkOrderId": "#1247",
-    "produced": msg.payload.produced
-}
-msg.topic = "umh/v1/printingCo/lisbon/hall-a/speedmaster106/_analytics/work-order/running";
-return msg;
-```
-23. Connect the second rule (bottom output) of the switch node to this function node.
-24. Drag an mqtt out node from the palette to the flow.
-25. Configure the mqtt node to use `united-manufacturing-hub-mqtt` as the Server, 
-you can leave the topic empty as we have already set it in the function node.
-26. Connect the function node to the mqtt node.
-27. Now, creating the flow shall be completed. 
+8. Connect the function node to the mqtt node.
+9. Now, creating the flow shall be completed. 
 
 ![start and stop flow](/images/getstarted/calculateKpiWithAnalytics/start-stop.png?width=75%)
 
