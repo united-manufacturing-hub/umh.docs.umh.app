@@ -261,7 +261,7 @@ you can leave the topic empty as we have already set it in the function node.
 16. Now we will create the loop for the state machine.
 17. Drag a function node from the palette to the flow. This function will simulate state changes.
 18. Double-click the function node and set the name `state-change-simulator` and the following code:
-{{< codenew file="../../../static/js/getstarted/simulate-state-changer.js" >}}
+{{< codenew file="js/simulate-state-changer.js" >}}
 
 19. Ensure that "Outputs" is set to 2 in the function node.
 20. Connect the second rule (bottom output) of the switch node to the *state-change-simulator* function node.
@@ -309,7 +309,7 @@ return [msg_write_back,msg];
 36. Create another function node from the palette to the flow. 
 This function will publish the produced amount to the UNS.
 37. Double-click the function node and set the name `produced-amount-publisher` and the following code:
-{{< codenew file="../../../static/js/getstarted/produce-amount-publisher.js" >}}
+{{< codenew file="js/produce-amount-publisher.js" >}}
 
 38. Ensure that "Outputs" is set to 2 in the function node.
 39. Connect the bottom output of the *produced-amount-incrementar* function node to the function node.
