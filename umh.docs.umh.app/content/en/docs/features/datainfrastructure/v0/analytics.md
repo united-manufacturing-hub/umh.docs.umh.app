@@ -3,6 +3,7 @@ title: Shopfloor KPIs / Analytics
 menuTitle: Shopfloor KPIs / Analytics
 description: The Shopfloor KPI/Analytics feature of the United Manufacturing Hub provides equipment-based KPIs, configurable dashboards, and detailed analytics for production transparency. Configure OEE calculation and track root causes of low OEE using drill-downs. Easily ingest, process, and analyze data in Grafana.
 weight: 3000
+deprecated: true
 aliases:
   - /docs/features/analytics
 ---
@@ -12,9 +13,6 @@ The Shopfloor KPI / Analytics feature of the United Manufacturing Hub provides a
 ![](/images/features/analytics/grafana-canvas.png?width=50%)
 ![](/images/features/analytics/oee-dashboard.png?width=50%)
 
-{{% notice tip %}}
-Click on the images to enlarge them. More examples can be found in this [YouTube video](https://www.youtube.com/watch?v=n3roOntfsgI) and in our [community-repo on GitHub](https://github.com/united-manufacturing-hub/community-repo).
-{{% /notice %}}
 
 ## When should I use it?
 
@@ -52,7 +50,7 @@ In the database, you can configure:
 - **Language Configuration:** The language of the machine states can be configured using the languageCode configuration option (or overwritten in Grafana).
 
 {{% notice tip %}}
-You can find the configuration options in the [configurationTable](/docs/datamodel/database/#configuration)
+You can find the configuration options in the [configurationTable](/docs/architecture/datamodel/database/configurationtable/)
 {{% /notice %}}
 
 ## How can I use it?
@@ -61,17 +59,16 @@ Using it is very easy:
 
 1. Send messages according to the [UMH datamodel](/docs/datamodel/) to the [Unified Namespace](/docs/features/datainfrastructure/unified-namespace/) (similar to the [Historian feature](/docs/features/datainfrastructure/historian/))
 2. Configure your OEE calculation by adjusting the configuration table
-3. Open Grafana, and checkout [our tutorial](/docs/getstarted/calculatekpiwithanalytics#calculate-the-oee-of-our-machine) on how to select the data.
+3. Open Grafana, select your equipment and select the analysis you want to have. More information can be found in the [umh-datasource-v2](/docs/architecture/microservices/grafana-plugins/umh-datasource-v2/).
 
-For more information about what exactly is behind the Analytics feature, check out [our architecture page](/docs/architecture/) and [our datamodel](/docs/datamodel/)
-
-<!--
-TODO: What are our current limitations?
+For more information about what exactly is behind the Analytics feature, check out our [our architecture page](/docs/architecture/) and [our datamodel](/docs/datamodel/)
 
 ## What are the limitations?
 
 At the moment, the limitations are:
--->
+
+- Speed losses in Performance are not calculated and can only be approximated using the LowSpeedThresholdInPcsPerHour configuration option
+- There is no way of tracking losses through reworked products. Either a product is scrapped or not.
 
 ## Where to get more information?
 
