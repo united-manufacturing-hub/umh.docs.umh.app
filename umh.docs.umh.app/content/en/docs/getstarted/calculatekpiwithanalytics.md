@@ -6,23 +6,25 @@ weight: 6000
 draft: false
 ---
 
-This chapter we build a simple example of how to calculate business KPIs such as OEE with _analytics.
-The first part will be setting up a printing machine and the second part will be calculating the OEE.
+This guide focuses on calculating Overall Equipment Effectiveness (OEE) using [_analytics](https://1313-unitedmanuf-umhdocsumha-ywbal2q7x0i.ws-eu108.gitpod.io/docs/datamodel/messages/#_analytics), 
+aimed at individuals familiar with MQTT, Node-RED, and Operational Technology (OT).
+It offers a practical approach to leverage analytics for improving business KPIs.
+
+In this guide we will set up a simple virtual printing machine using Node-RED, and calculate the OEE using the _analytics messages.
 
 ## Setting up a printing machine
 
-In these steps we will setup a simple printing machine using Node-RED.
 If you are not interested in the setup, you can import the flow from [here](/json/getstarted/flows.json).
 
 This guide assumes that you have some basic knowledge of Node-RED. If you are new to Node-RED, 
-you can find a good introduction [here](https://nodered.org/docs/tutorials/first-flow/).
+you can find a good introduction [here](https://nodered.org/docs/tutorials/first-flow).
 
 ### Creating the product-type/create function
 
 Before producing anything our system first needs to know what we are producing. This is done by creating 
 a product-type. 
 In this example we will create a product-type called "otto-poster" (Prints of our beloved mascot Otto).
-Therefore, we create an inject node and a mqtt node (to publish the product-type to the UNS).
+Therefore, we create an inject node and an MQTT node (to publish the product-type to the UNS).
 Since we are dealing with a printer, we use a low cycle time of 10 milliseconds.
 
 1. Drag an inject node from the palette to the flow.
@@ -73,7 +75,7 @@ you can leave the topic empty as we have already set it in the inject node.
 Now that we have a product-type and a shift, we can create a work-order. 
 In this example we will create a work-order for 7500 "otto-poster" prints.
 Each work-order has an work order id, which is unique per asset. 
-In this example we will use the work order id "#1247".
+In this example we will use the work order id `#1247`.
 This order id will come from your ERP system, but for this example we will use an inject node.
 
 1. Drag an inject node from the palette to the flow.
@@ -97,7 +99,7 @@ you can leave the topic empty as we have already set it in the inject node.
 ### Creating the work-order/start function
 
 We are ready to start the work-order. This is done by creating a work-order/start event. 
-In this example we will start the work-order "#1247", which we created in the previous step.
+In this example we will start the work-order `#1247`, which we created in the previous step.
 
 1. Drag an inject node from the palette to the flow.
 2. Double-click the inject node and set the payload to:
