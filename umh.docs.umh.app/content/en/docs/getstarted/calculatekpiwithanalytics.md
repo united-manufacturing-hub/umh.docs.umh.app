@@ -387,6 +387,7 @@ SELECT * FROM assets;
 ```
 
 <!--
+-- THIS IS A HTML COMMENT AND NOT VISISBLE IN THE FINAL DOCUMENTATION
 -- Work Order Table
 -- This table stores information about manufacturing orders. The ISA-95 model defines work orders in terms of production requests.
 -- Here, each work order is linked to a specific asset and product type
