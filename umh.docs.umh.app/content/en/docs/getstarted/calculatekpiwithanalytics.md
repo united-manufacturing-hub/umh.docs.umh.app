@@ -12,7 +12,7 @@ It offers a practical approach to leverage analytics for improving business KPIs
 
 In this guide we will set up a simple virtual printing machine using Node-RED, and calculate the OEE using the _analytics messages.
 
-## Setting up a printing machine
+## Setting up a printing machine (Part 1)
 
 If you are not interested in the setup, you can import the flow from [here](/json/getstarted/flows.json).
 
@@ -360,3 +360,547 @@ you can leave the topic empty as we have already set it in the inject node.
 6. Connect the inject node to the mqtt node.
 7. Deploy the flow.
 8. Click the inject node to overwrite the state.
+
+
+## Accessing the data (Part 2)
+
+Now that we have set up the printing machine, we can calculate the OEE.
+
+The easiest way to access the saved data is via Grafana.
+Navigate to the IP of your United Manufacturing Hub using port 8080 and log in with your credentials.
+
+If you do not know your credentials, log in via SSH and execute the following command:
+```bash
+sudo $(which kubectl) get secret grafana-secret -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml -o jsonpath='{.data.adminpassword}' | base64 -d
+```
+
+The default username is `admin`.
+
+Checkout the [Historian](http://localhost:1313/docs/datamodel/database/) page for more information on how the tables are structured.
+
+## Calculating the OEE (Part 3) using SQL
+
+The following steps assume that the asset id of the printing machine is 1.
+You can show all asset id's by executing the following SQL query:
+```sql
+SELECT * FROM assets;
+```
+
+<!--
+-- Work Order Table
+-- This table stores information about manufacturing orders. The ISA-95 model defines work orders in terms of production requests.
+-- Here, each work order is linked to a specific asset and product type
+CREATE TABLE work_orders (
+workOrderId SERIAL PRIMARY KEY,
+externalWorkOrderId TEXT UNIQUE NOT NULL,
+assetId INTEGER NOT NULL REFERENCES assets(id),
+productTypeId INTEGER NOT NULL REFERENCES product_types(productTypeId),
+quantity INTEGER NOT NULL,
+status INTEGER NOT NULL DEFAULT 0, -- 0: planned, 1: in progress, 2: completed
+startTime TIMESTAMPTZ,
+endTime TIMESTAMPTZ,
+CONSTRAINT asset_workorder_uniq UNIQUE (assetId, externalWorkOrderId),
+CHECK (quantity > 0),
+CHECK (status BETWEEN 0 AND 2),
+EXCLUDE USING gist (assetId WITH =, tstzrange(startTime, endTime) WITH &&) WHERE (startTime IS NOT NULL AND endTime IS NOT NULL)
+-- EXCLUDE USING gist ensures that no two work orders for the same asset overlap in time
+);
+
+-- Product Type Table
+CREATE TABLE product_types (
+productTypeId SERIAL PRIMARY KEY,
+externalProductTypeId TEXT UNIQUE NOT NULL,
+cycleTime REAL NOT NULL,
+assetId INTEGER REFERENCES assets(id),
+CONSTRAINT external_product_asset_uniq UNIQUE (externalProductTypeId, assetId),
+CHECK (cycleTime > 0)
+);
+
+-- Product Table
+-- -- Tracks individual products produced. This table captures production output, quality (through badQuantity), and timing
+CREATE TABLE products (
+productId SERIAL PRIMARY KEY,
+externalProductTypeId INTEGER REFERENCES product_types(productTypeId),
+assetId INTEGER REFERENCES assets(id),
+startTime TIMESTAMPTZ,
+endTime TIMESTAMPTZ NOT NULL,
+quantity INTEGER NOT NULL,
+badQuantity INTEGER DEFAULT 0,
+CHECK (quantity > 0),
+CHECK (badQuantity >= 0),
+CHECK (startTime <= endTime),
+CONSTRAINT product_endtime_asset_uniq UNIQUE (endTime, assetId)
+);
+
+-- creating hypertable
+SELECT create_hypertable('products', 'endTime');
+
+-- creating an index to increase performance
+CREATE INDEX idx_products_asset_endtime ON products(assetId, endTime DESC);
+
+-- Using btree_gist to avoid overlapping shifts
+-- Source: https://gist.github.com/fphilipe/0a2a3d50a9f3834683bf
+
+-- Shifts Table
+-- Manages work shifts for assets. Shift scheduling is a key operational aspect under ISA-95, impacting resource planning and allocation.
+CREATE TABLE shifts (
+shiftId SERIAL PRIMARY KEY,
+assetId INTEGER REFERENCES assets(id),
+startTime TIMESTAMPTZ NOT NULL,
+endTime TIMESTAMPTZ NOT NULL,
+CONSTRAINT shift_start_asset_uniq UNIQUE (startTime, assetId),
+CHECK (startTime < endTime),
+EXCLUDE USING gist (assetId WITH =, tstzrange(startTime, endTime) WITH &&)
+);
+
+-- State Table
+-- Records the state changes of assets over time. State tracking supports ISA-95's goal of detailed monitoring and control of manufacturing operations.
+CREATE TABLE states (
+stateId SERIAL PRIMARY KEY,
+assetId INTEGER REFERENCES assets(id),
+startTime TIMESTAMPTZ NOT NULL,
+state INT NOT NULL,
+CHECK (state >= 0),
+CONSTRAINT state_start_asset_uniq UNIQUE (startTime, assetId)
+);
+-- creating hypertable
+SELECT create_hypertable('states', 'startTime');
+
+-- creating an index to increase performance
+CREATE INDEX idx_states_asset_starttime ON states(assetId, startTime DESC);
+-->
+
+#### Calculate products per shift
+
+This SQL query calculates the number of products produced per shift.
+It is limited to products produced in 2024 enhancing the query performance.
+
+```sql
+-- Calculate products per shift
+SELECT
+    s.assetId,
+    s.startTime,
+    s.endTime,
+    COUNT(p.productId) AS products
+FROM
+    shifts s
+LEFT JOIN
+    products p
+ON
+    s.assetId = p.assetId
+AND
+    p.endTime BETWEEN s.startTime AND s.endTime
+AND
+    p.endTime BETWEEN '2024-01-01 00:00:00' AND '2024-12-31 23:59:59'
+GROUP BY
+    s.assetId,
+    s.startTime,
+    s.endTime
+```
+
+### Calculate the availability of our machine
+
+In this example, we calculate the availability of our machine.
+We define it as the time the machine was in a good state (`state > 10000 & state < 29999`) and had an active work-order, divided by the selected time frame.
+The result is the availability percentage.
+
+- The `selected_time_frame` CTE is where you define the start and end of your time frame for analysis.
+- The `good_state_time` CTE calculates the total time the asset was both in a good state and had an active work order within the selected time frame.
+- The `total_time_frame` CTE calculates the total duration of the selected time frame.
+- Finally, the main query calculates the availability percentage by dividing the total good state time by the total time frame duration.
+- Adjust the start and end times in `selected_time_frame` to match your specific time frame for analysis.
+
+```sql
+WITH selected_time_frame AS (
+    -- Define the overall time frame for calculating availability
+    SELECT
+        '2024-01-01T00:00:00Z'::TIMESTAMPTZ AS start_time, -- Example start time of selected time frame
+        '2024-01-31T23:59:59Z'::TIMESTAMPTZ AS end_time    -- Example end time of selected time frame
+),
+good_state_time AS (
+    -- Calculate total time in good state during active work orders
+    SELECT
+        SUM(LEAST(ws.endTime, stf.end_time) - GREATEST(ws.startTime, stf.start_time)) AS total_good_time
+    FROM
+        work_orders AS wo
+    INNER JOIN states AS s ON wo.assetId = s.assetId
+    INNER JOIN selected_time_frame stf ON s.startTime <= stf.end_time AND s.endTime >= stf.start_time
+    WHERE
+        wo.assetId = 1 -- Asset ID of the printing machine
+        AND s.state > 10000 AND s.state < 29999
+        AND wo.status BETWEEN 1 AND 2 -- Work orders that are in progress or completed
+        AND s.startTime < wo.endTime
+        AND (s.endTime IS NULL OR s.endTime > wo.startTime),
+total_time_frame AS (
+    -- Calculate the total selected time frame duration
+    SELECT
+        (end_time - start_time) AS total_time
+    FROM
+        selected_time_frame
+)
+SELECT
+    -- Calculate availability as the ratio of good state time to total time frame
+    (gt.total_good_time / tt.total_time) AS availability_percentage
+FROM
+    good_state_time gt,
+    total_time_frame tt;
+```
+
+### Calculate the performance of our machine
+
+In this example, we calculate the performance of our machine.
+We define it as the total number of products produced divided by the ideal production.
+The result is the performance percentage.
+
+- The `total_produced` CTE calculates the total number of products produced within the selected time frame.
+- The `ideal_production` CTE calculates the total time in good state during active work orders.
+- Finally, the main query calculates the performance percentage by dividing the total produced by the ideal production.
+
+```sql
+WITH total_produced AS (
+    -- Calculate total produced within the selected time frame
+    SELECT
+        SUM(quantity) AS total_produced
+    FROM
+        products
+    WHERE
+        endTime BETWEEN '2024-01-01T00:00:00Z'::TIMESTAMPTZ AND '2024-01-31T23:59:59Z'::TIMESTAMPTZ
+        -- Adjust the above timeframe to your specific requirement
+),
+ideal_production AS (
+    -- Calculate the total time in good state during active work orders
+    SELECT
+        ws.startTime,
+        ws.endTime
+    FROM
+        work_orders AS wo
+    INNER JOIN shifts AS ws ON wo.assetId = ws.assetId
+    WHERE
+        wo.assetId = 1 -- Asset ID of the printing machine
+        AND wo.status BETWEEN 1 AND 2 -- Work orders that are in progress or completed
+        AND ws.startTime < wo.endTime
+        AND (ws.endTime IS NULL OR ws.endTime > wo.startTime)
+)
+SELECT
+    -- Calculate performance as the ratio of total produced to the ideal production
+    (ps.total_produced / (ws.endTime - ws.startTime)) AS performance_percentage
+FROM
+    total_produced ps,
+    ideal_production ws;
+````
+
+
+### Calculate the quality of our machine
+
+In this example, we calculate the quality of our machine.
+We define it as the number of good products divided by the total number of products produced.
+The result is the quality percentage.
+
+- The `production_summary` CTE aggregates the total produced and bad quantity within the selected time frame.
+- Finally, the main query calculates the quality percentage by dividing the total produced by the bad quantity.
+
+```sql
+WITH production_summary AS (
+    -- Aggregate total produced and bad quantity within the given timeframe
+    SELECT
+        SUM(quantity) AS total_produced,
+        SUM(badQuantity) AS total_bad
+    FROM
+        products
+    WHERE
+        endTime BETWEEN '2024-01-01T00:00:00Z'::TIMESTAMPTZ AND '2024-01-31T23:59:59Z'::TIMESTAMPTZ
+        -- Adjust the above timeframe to your specific requirement
+)
+SELECT
+    -- Calculate Quality as (Total Produced - Bad Quantity) / Total Produced
+    (total_produced - total_bad)::FLOAT / total_produced AS quality
+FROM
+    production_summary;
+```
+
+### Calculate the OEE of our machine
+
+In this example, we calculate the OEE of our machine.
+The output will be a table with the availability, performance, and quality percentages.
+
+This SQL is based on the previous examples and combines the availability, performance, and quality calculations into a single query.
+
+```sql
+WITH selected_time_frame AS (
+    -- Define the overall time frame for calculating OEE
+    SELECT
+        '2024-01-01T00:00:00Z'::TIMESTAMPTZ AS start_time, -- Example start time of selected time frame
+        '2024-01-31T23:59:59Z'::TIMESTAMPTZ AS end_time    -- Example end time of selected time frame
+),
+availability AS (
+    -- Calculate availability as the ratio of good state time to total time frame
+    SELECT
+        (gt.total_good_time / tt.total_time) AS availability_percentage
+    FROM
+        (
+            -- Calculate total time in good state during active work orders
+            SELECT
+                SUM(LEAST(ws.endTime, stf.end_time) - GREATEST(ws.startTime, stf.start_time)) AS total_good_time
+            FROM
+                work_orders AS wo
+            INNER JOIN states AS s ON wo.assetId = s.assetId
+            INNER JOIN selected_time_frame stf ON s.startTime <= stf.end_time AND s.endTime >= stf.start_time
+            WHERE
+                wo.assetId = 1 -- Asset ID of the printing machine
+                AND s.state > 10000 AND s.state < 29999
+                AND wo.status BETWEEN 1 AND 2 -- Work orders that are in progress or completed
+                AND s.startTime < wo.endTime
+                AND (s.endTime IS NULL OR s.endTime > wo.startTime)
+        ) gt,
+        (
+            -- Calculate the total selected time frame duration
+            SELECT
+                (end_time - start_time) AS total_time
+            FROM
+                selected_time_frame
+        ) tt
+),
+performance AS (
+    -- Calculate performance as the ratio of total produced to the ideal production
+    SELECT
+        (ps.total_produced / (ws.endTime - ws.startTime)) AS performance_percentage
+    FROM
+        (
+            -- Calculate total produced within the selected time frame
+            SELECT
+                SUM(quantity) AS total_produced
+            FROM
+                products
+            WHERE
+                endTime BETWEEN '2024-01-01T00:00:00Z'::TIMESTAMPTZ AND '2024-01-31T23:59:59Z'::TIMESTAMPTZ
+                -- Adjust the above timeframe to your specific requirement
+        ) ps,
+        (
+            -- Calculate total time in good state during active work orders
+            SELECT
+                ws.startTime,
+                ws.endTime
+            FROM
+                work_orders AS wo
+            INNER JOIN shifts AS ws ON wo.assetId = ws.assetId
+            WHERE
+                wo.assetId = 1 -- Asset ID of the printing machine
+                AND wo.status BETWEEN 1 AND 2 -- Work orders that are in progress or completed
+                AND ws.startTime < wo.endTime
+                AND (ws.endTime IS NULL OR ws.endTime > wo.startTime)
+        ) ws
+),
+quality AS (
+    -- Calculate quality as the ratio of good products to total products produced
+    SELECT
+        (ps.total_produced - ps.total_bad)::FLOAT / ps.total_produced AS quality
+    FROM
+        (
+            -- Aggregate total produced and bad quantity within the given timeframe
+            SELECT
+                SUM(quantity) AS total_produced,
+                SUM(badQuantity) AS total_bad
+            FROM
+                products
+            WHERE
+                endTime BETWEEN '2024-01-01T00:00:00Z'::TIMESTAMPTZ AND '2024-01-31T23:59:59Z'::TIMESTAMPTZ
+                -- Adjust the above timeframe to your specific requirement
+        ) ps
+)
+SELECT
+    availability.availability_percentage,
+    performance.performance_percentage,
+    quality.quality
+FROM
+    availability,
+    performance,
+    quality;
+```
+
+
+### Calculate the stop reasons of our machine
+
+In this example, we calculate the stop reasons of our machine.
+The output will be a table with the stop reasons and the time and length of the stops.
+
+```sql
+WITH stop_reasons AS (
+    -- Select all stop reason occurrences for asset id = 1
+    SELECT
+        s.state AS stop_reason,
+        s.startTime,
+        s.endTime,
+        -- Calculate duration of each stop; handle ongoing stops by assuming current time as end time if end time is null
+        COALESCE(s.endTime, NOW()) - s.startTime AS duration
+    FROM
+        states s
+    WHERE
+        s.assetId = 1
+        AND (s.state <= 10000 OR s.state >= 29999) -- Everything not in good state range is a stop reason
+    AND 
+        s.startTime BETWEEN '2024-01-01 00:00:00' AND '2024-12-31 23:59:59' -- Example time frame
+)
+SELECT
+    stop_reason,
+    startTime,
+    endTime,
+    duration
+FROM
+    stop_reasons
+ORDER BY
+    startTime;
+```
+
+### Calculate the Shifts of our machine
+
+This example calculates the shifts of our machine and creates a timeline.
+
+- The `shift_timeline` CTE selects all shifts for asset id = 1 within the selected time frame.
+
+```sql
+WITH shift_timeline AS (
+    -- Select all shifts for asset id = 1
+    SELECT
+        s.startTime,
+        s.endTime
+    FROM
+        shifts s
+    WHERE
+        s.assetId = 1
+    AND 
+        s.startTime BETWEEN '2024-01-01 00:00:00' AND '2024-12-31 23:59:59' -- Example time frame
+)
+SELECT
+    startTime,
+    endTime
+FROM
+    shift_timeline
+ORDER BY
+    startTime;
+```
+
+### Calculate the Work Orders of our machine
+
+This example calculates the work orders of our machine and creates a timeline.
+
+- The `work_order_timeline` CTE selects all work orders for asset id = 1 within the selected time frame.
+
+```sql
+WITH work_order_timeline AS (
+    -- Select all work orders for asset id = 1
+    SELECT
+        wo.startTime,
+        wo.endTime
+    FROM
+        work_orders wo
+    WHERE
+        wo.assetId = 1
+    AND 
+        wo.startTime BETWEEN '2024-01-01 00:00:00' AND '2024-12-31 23:59:59' -- Example time frame
+)
+SELECT
+    startTime,
+    endTime
+FROM
+    work_order_timeline
+ORDER BY
+    startTime;
+```
+
+### Show the current product type
+
+This example shows the current product type of our machine.
+
+```sql
+SELECT
+    pt.externalProductTypeId
+FROM
+    product_types pt
+WHERE
+    pt.assetId = 1
+```
+
+## Show the order table
+
+This example shows the order table of our machine.
+
+```sql
+SELECT
+    wo.externalWorkOrderId,
+    wo.quantity,
+    wo.status,
+    wo.startTime,
+    wo.endTime
+FROM
+    work_orders wo
+WHERE
+    wo.assetId = 1
+```
+
+## Calculate the total time of all stop reasons grouped by stop reason
+
+This example calculates the total time of all stop reasons grouped by stop reason.
+
+- The `stop_reasons` CTE selects all stop reason occurrences for asset id = 1 within the selected time frame.
+- The main query calculates the total time of all stop reasons grouped by stop reason.
+
+```sql
+WITH stop_reasons AS (
+    -- Select all stop reason occurrences for asset id = 1
+    SELECT
+        s.state AS stop_reason,
+        s.startTime,
+        s.endTime,
+        -- Calculate duration of each stop; handle ongoing stops by assuming current time as end time if end time is null
+        COALESCE(s.endTime, NOW()) - s.startTime AS duration
+    FROM
+        states s
+    WHERE
+        s.assetId = 1
+        AND (s.state <= 10000 OR s.state >= 29999) -- Everything not in good state range is a stop reason
+    AND 
+        s.startTime BETWEEN '2024-01-01 00:00:00' AND '2024-12-31 23:59:59' -- Example time frame
+)
+SELECT
+    stop_reason,
+    SUM(duration) AS total_duration
+FROM
+    stop_reasons
+GROUP BY
+    stop_reason
+ORDER BY
+    stop_reason;
+```
+
+## Calculate the production speed over time
+
+This example uses timescale buckets to calculate the production speed over time.
+
+- The `production_speed` CTE calculates the production speed over time using timescale buckets, you can modify the `time_bucket` function to change the bucket size.
+
+```sql
+WITH production_speed AS (
+    -- Calculate production speed over time using timescale buckets
+    SELECT
+        time_bucket('5 minutes', p.endTime) AS bucket,
+        COUNT(p.productId) AS products
+    FROM
+        products p
+    WHERE
+        p.assetId = 1
+    AND 
+        p.endTime BETWEEN '2024-01-01 00:00:00' AND '2024-12-31 23:59:59' -- Example time frame
+    GROUP BY
+        bucket
+)
+SELECT
+    bucket,
+    SUM(products) AS total_products
+FROM
+    production_speed
+GROUP BY
+    bucket
+ORDER BY
+    bucket;
+```
+
