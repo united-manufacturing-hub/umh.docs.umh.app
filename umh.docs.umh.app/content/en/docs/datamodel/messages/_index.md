@@ -66,10 +66,10 @@ Examples for originID: `00-80-41-ae-fd-7e`, `E588974`, `e5f484a1791d`
 
 Messages tagged with `_historian` will be stored in our database and are available via Grafana.
 
-### _analytics
+### [_analytics](./_analytics)
 
-Analytics messages are currently not implemented.
-They will incorporate state, shift, order, ... messages in the future and feature automatic OEE calculations.
+Messages tagged with `_analytics` will be processed by our analytics pipeline.
+They are used for automatic calculation of KPI's and other statistics.
 
 ### _local
 

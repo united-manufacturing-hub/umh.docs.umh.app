@@ -1,7 +1,7 @@
 ---
 title: "_historian"
 description: "Messages for our historian feature"
-weight: 1000
+weight: 2000
 ---
 
 # Topic structure
