@@ -760,7 +760,7 @@ WITH stop_reasons AS (
         states s
     WHERE
         s.assetId = 1
-        AND (s.state <= 10000 OR s.state >= 29999) -- Everything not in good state range is a stop reason
+        AND (s.state < 10000 OR s.state > 29999) -- Everything not in good state range is a stop reason
     AND 
         s.startTime BETWEEN '2024-01-01 00:00:00' AND '2024-12-31 23:59:59' -- Example time frame
 )
