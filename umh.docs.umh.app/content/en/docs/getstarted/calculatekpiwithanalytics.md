@@ -479,24 +479,24 @@ It is limited to products produced in 2024 enhancing the query performance.
 ```sql
 -- Calculate products per shift
 SELECT
-    s.assetId,
-    s.startTime,
-    s.endTime,
-    COUNT(p.productId) AS products
+    sh.assetId,
+    sh.startTime,
+    sh.endTime,
+    COUNT(pr.productId) AS products
 FROM
-    shifts s
-LEFT JOIN
-    products p
-ON
-    s.assetId = p.assetId
-AND
-    p.endTime BETWEEN s.startTime AND s.endTime
-AND
-    p.endTime BETWEEN '2024-01-01 00:00:00' AND '2024-12-31 23:59:59'
+    shifts sh
+        LEFT JOIN
+    products pr
+    ON
+        sh.assetId = pr.assetId
+            AND
+        pr.endTime BETWEEN sh.startTime AND sh.endTime
+            AND
+        pr.endTime BETWEEN '2024-01-01 00:00:00' AND '2024-12-31 23:59:59'
 GROUP BY
-    s.assetId,
-    s.startTime,
-    s.endTime
+    sh.assetId,
+    sh.startTime,
+    sh.endTime
 ```
 
 ### Calculate the availability of our machine
@@ -516,34 +516,34 @@ The result is the availability percentage.
 WITH timeframe AS (
     SELECT
         '2023-01-01T00:00:00Z'::TIMESTAMPTZ AS start_time,
-            '2023-01-31T23:59:59Z'::TIMESTAMPTZ AS end_time
+        '2023-01-31T23:59:59Z'::TIMESTAMPTZ AS end_time
 ),
  good_state_duration AS (
      SELECT
-         s.assetId,
-         SUM(LEAST(s.endTime, tf.end_time) - GREATEST(s.startTime, tf.start_time)) AS good_state_time
+         st.assetId,
+         SUM(LEAST(st.endTime, tf.end_time) - GREATEST(st.startTime, tf.start_time)) AS good_state_time
      FROM
-         states s,
+         states st,
          timeframe tf
      WHERE
-         s.state > 10000 AND s.state < 29999
-       AND s.startTime < tf.end_time
-       AND s.endTime > tf.start_time
+         st.state > 10000 AND st.state < 29999
+       AND st.startTime < tf.end_time
+       AND st.endTime > tf.start_time
      GROUP BY
-         s.assetId
+         st.assetId
  ),
  active_work_order_duration AS (
      SELECT
-         w.assetId,
-         SUM(LEAST(w.endTime, tf.end_time) - GREATEST(w.startTime, tf.start_time)) AS work_order_time
+         wo.assetId,
+         SUM(LEAST(wo.endTime, tf.end_time) - GREATEST(wo.startTime, tf.start_time)) AS work_order_time
      FROM
-         work_orders w,
+         work_orders wo,
          timeframe tf
      WHERE
-         w.startTime < tf.end_time
-       AND w.endTime > tf.start_time
+         wo.startTime < tf.end_time
+       AND wo.endTime > tf.start_time
      GROUP BY
-         w.assetId
+         wo.assetId
  )
 SELECT
     gs.assetId,
@@ -557,7 +557,6 @@ FROM
     active_work_order_duration awo ON gs.assetId = awo.assetId
 ORDER BY
     gs.assetId;
-
 ```
 
 ### Calculate the performance of our machine
@@ -567,45 +566,40 @@ We define it as the total number of products produced divided by the ideal produ
 The result is the performance percentage.
 
 - The `total_produced` CTE calculates the total number of products produced within the selected time frame.
-- The `ideal_production` CTE calculates the total time in good state during active work orders.
 - Finally, the main query calculates the performance percentage by dividing the total produced by the ideal production.
 
 ```sql
 WITH total_produced AS (
-    -- Calculate total produced within the selected time frame
     SELECT
-        SUM(quantity) AS total_produced
+        SUM(pr.quantity) AS total_produced
     FROM
-        products
+        products pr
     WHERE
-        endTime BETWEEN '2024-01-01T00:00:00Z'::TIMESTAMPTZ AND '2024-01-31T23:59:59Z'::TIMESTAMPTZ
+        pr.endTime BETWEEN '2024-01-01T00:00:00Z'::TIMESTAMPTZ AND '2024-01-31T23:59:59Z'::TIMESTAMPTZ
     ),
     total_hours AS (
--- Calculate the total available time for production in hours
 SELECT
-    SUM(EXTRACT(EPOCH FROM (LEAST(ws.endTime, '2024-01-31T23:59:59Z'::TIMESTAMPTZ) - GREATEST(ws.startTime, '2024-01-01T00:00:00Z'::TIMESTAMPTZ))) / 3600) AS total_hours -- Converts time interval to hours
+    SUM(EXTRACT(EPOCH FROM (LEAST(sh.endTime, '2024-01-31T23:59:59Z'::TIMESTAMPTZ) - GREATEST(sh.startTime, '2024-01-01T00:00:00Z'::TIMESTAMPTZ))) / 3600) AS total_hours
 FROM
-    work_orders AS wo
-    INNER JOIN shifts AS ws ON wo.assetId = ws.assetId
+    work_orders wo
+    INNER JOIN shifts sh ON wo.assetId = sh.assetId
 WHERE
-    wo.assetId = 1 -- Asset ID of the printing machine
-  AND wo.status BETWEEN 1 AND 2 -- Work orders that are in progress or completed
-  AND ws.startTime < '2024-01-31T23:59:59Z'::TIMESTAMPTZ
-  AND (ws.endTime IS NULL OR ws.endTime > '2024-01-01T00:00:00Z'::TIMESTAMPTZ)
+    wo.assetId = 1
+  AND wo.status BETWEEN 1 AND 2
+  AND sh.startTime < '2024-01-31T23:59:59Z'::TIMESTAMPTZ
+  AND (sh.endTime IS NULL OR sh.endTime > '2024-01-01T00:00:00Z'::TIMESTAMPTZ)
     ),
     actual_production_rate AS (
--- Calculate the actual production rate for the selected timeframe
 SELECT
-    SUM(quantity) / SUM(EXTRACT(EPOCH FROM (endTime - startTime)) / 3600) AS rate
+    SUM(pr.quantity) / SUM(EXTRACT(EPOCH FROM (pr.endTime - pr.startTime)) / 3600) AS rate
 FROM
-    work_orders
+    products pr
 WHERE
-    status = 1 -- Assuming status = 1 means the work order is completed
-  AND assetId = 1 -- Filter by the specific asset
-  AND endTime BETWEEN '2024-01-01T00:00:00Z'::TIMESTAMPTZ AND '2024-01-31T23:59:59Z'::TIMESTAMPTZ -- Adjust this to your selected timeframe
+    pr.status = 1
+  AND pr.assetId = 1
+  AND pr.endTime BETWEEN '2024-01-01T00:00:00Z'::TIMESTAMPTZ AND '2024-01-31T23:59:59Z'::TIMESTAMPTZ
     )
 SELECT
-    -- Calculate performance as a percentage of actual produced vs. what was actually possible at the actual production rate
     (tp.total_produced / (th.total_hours * apr.rate)) * 100 AS performance_percentage
 FROM
     total_produced tp,
@@ -625,18 +619,15 @@ The result is the quality percentage.
 
 ```sql
 WITH production_summary AS (
-    -- Aggregate total produced and bad quantity within the given timeframe
     SELECT
-        SUM(quantity) AS total_produced,
-        SUM(badQuantity) AS total_bad
+        SUM(pr.quantity) AS total_produced,
+        SUM(pr.badQuantity) AS total_bad
     FROM
-        products
+        products pr
     WHERE
-        endTime BETWEEN '2024-01-01T00:00:00Z'::TIMESTAMPTZ AND '2024-01-31T23:59:59Z'::TIMESTAMPTZ
-        -- Adjust the above timeframe to your specific requirement
-)
+        pr.endTime BETWEEN '2024-01-01T00:00:00Z'::TIMESTAMPTZ AND '2024-01-31T23:59:59Z'::TIMESTAMPTZ
+    )
 SELECT
-    -- Calculate Quality as (Total Produced - Bad Quantity) / Total Produced
     (total_produced - total_bad)::FLOAT / total_produced AS quality
 FROM
     production_summary;
@@ -651,94 +642,92 @@ This SQL is based on the previous examples and combines the availability, perfor
 
 ```sql
 WITH selected_time_frame AS (
-    -- Define the overall time frame for calculating OEE
     SELECT
-        '2024-01-01T00:00:00Z'::TIMESTAMPTZ AS start_time, -- Example start time of selected time frame
-        '2024-01-31T23:59:59Z'::TIMESTAMPTZ AS end_time    -- Example end time of selected time frame
+        '2024-01-01T00:00:00Z'::TIMESTAMPTZ AS start_time,
+            '2024-01-31T23:59:59Z'::TIMESTAMPTZ AS end_time
 ),
-availability AS (
-    -- Calculate availability as the ratio of good state time to total time frame
-    SELECT
-        (gt.total_good_time / tt.total_time) AS availability_percentage
-    FROM
-        (
-            -- Calculate total time in good state during active work orders
-            SELECT
-                SUM(LEAST(ws.endTime, stf.end_time) - GREATEST(ws.startTime, stf.start_time)) AS total_good_time
-            FROM
-                work_orders AS wo
-            INNER JOIN states AS s ON wo.assetId = s.assetId
-            INNER JOIN selected_time_frame stf ON s.startTime <= stf.end_time AND s.endTime >= stf.start_time
-            WHERE
-                wo.assetId = 1 -- Asset ID of the printing machine
-                AND s.state > 10000 AND s.state < 29999
-                AND wo.status BETWEEN 1 AND 2 -- Work orders that are in progress or completed
-                AND s.startTime < wo.endTime
-                AND (s.endTime IS NULL OR s.endTime > wo.startTime)
-        ) gt,
-        (
-            -- Calculate the total selected time frame duration
-            SELECT
-                (end_time - start_time) AS total_time
-            FROM
-                selected_time_frame
-        ) tt
-),
-performance AS (
-    -- Calculate performance as the ratio of total produced to the ideal production
-    SELECT
-        (ps.total_produced / (ws.endTime - ws.startTime)) AS performance_percentage
-    FROM
-        (
-            -- Calculate total produced within the selected time frame
-            SELECT
-                SUM(quantity) AS total_produced
-            FROM
-                products
-            WHERE
-                endTime BETWEEN '2024-01-01T00:00:00Z'::TIMESTAMPTZ AND '2024-01-31T23:59:59Z'::TIMESTAMPTZ
-                -- Adjust the above timeframe to your specific requirement
-        ) ps,
-        (
-            -- Calculate total time in good state during active work orders
-            SELECT
-                ws.startTime,
-                ws.endTime
-            FROM
-                work_orders AS wo
-            INNER JOIN shifts AS ws ON wo.assetId = ws.assetId
-            WHERE
-                wo.assetId = 1 -- Asset ID of the printing machine
-                AND wo.status BETWEEN 1 AND 2 -- Work orders that are in progress or completed
-                AND ws.startTime < wo.endTime
-                AND (ws.endTime IS NULL OR ws.endTime > wo.startTime)
-        ) ws
-),
-quality AS (
-    -- Calculate quality as the ratio of good products to total products produced
-    SELECT
-        (ps.total_produced - ps.total_bad)::FLOAT / ps.total_produced AS quality
-    FROM
-        (
-            -- Aggregate total produced and bad quantity within the given timeframe
-            SELECT
-                SUM(quantity) AS total_produced,
-                SUM(badQuantity) AS total_bad
-            FROM
-                products
-            WHERE
-                endTime BETWEEN '2024-01-01T00:00:00Z'::TIMESTAMPTZ AND '2024-01-31T23:59:59Z'::TIMESTAMPTZ
-                -- Adjust the above timeframe to your specific requirement
-        ) ps
-)
+     availability AS (
+         SELECT
+             (gs.total_good_time / tt.total_time) AS availability_percentage
+         FROM
+             (
+                 SELECT
+                     SUM(LEAST(st.endTime, stf.end_time) - GREATEST(st.startTime, stf.start_time)) AS total_good_time
+                 FROM
+                     work_orders wo
+                         INNER JOIN states st ON wo.assetId = st.assetId
+                         INNER JOIN selected_time_frame stf ON st.startTime <= stf.end_time AND st.endTime >= stf.start_time
+                 WHERE
+                     wo.assetId = 1
+                   AND st.state > 10000 AND st.state < 29999
+                   AND wo.status BETWEEN 1 AND 2
+                   AND st.startTime < wo.endTime
+                   AND (st.endTime IS NULL OR st.endTime > wo.startTime)
+             ) gs,
+             (
+                 SELECT
+                     (end_time - start_time) AS total_time
+                 FROM
+                     selected_time_frame
+             ) tt
+     ),
+     performance AS (
+         SELECT
+             (tp.total_produced / (th.total_hours * apr.rate)) AS performance_percentage
+         FROM
+             (
+                 SELECT
+                     SUM(pr.quantity) AS total_produced
+                 FROM
+                     products pr
+                 WHERE
+                     pr.endTime BETWEEN '2024-01-01T00:00:00Z'::TIMESTAMPTZ AND '2024-01-31T23:59:59Z'::TIMESTAMPTZ
+             ) tp,
+             (
+                 SELECT
+                     SUM(EXTRACT(EPOCH FROM (LEAST(sh.endTime, '2024-01-31T23:59:59Z'::TIMESTAMPTZ) - GREATEST(sh.startTime, '2024-01-01T00:00:00Z'::TIMESTAMPTZ))) / 3600) AS total_hours
+                 FROM
+                     work_orders wo
+                         INNER JOIN shifts sh ON wo.assetId = sh.assetId
+                 WHERE
+                     wo.assetId = 1
+                   AND wo.status BETWEEN 1 AND 2
+                   AND sh.startTime < '2024-01-31T23:59:59Z'::TIMESTAMPTZ
+                AND (sh.endTime IS NULL OR sh.endTime > '2024-01-01T00:00:00Z'::TIMESTAMPTZ)
+             ) th,
+             (
+                 SELECT
+                     SUM(pr.quantity) / SUM(EXTRACT(EPOCH FROM (pr.endTime - pr.startTime)) / 3600) AS rate
+                 FROM
+                     products pr
+                 WHERE
+                     pr.status = 1
+                   AND pr.assetId = 1
+                   AND pr.endTime BETWEEN '2024-01-01T00:00:00Z'::TIMESTAMPTZ AND '2024-01-31T23:59:59Z'::TIMESTAMPTZ
+             ) apr
+     ),
+     quality AS (
+         SELECT
+             (ps.total_produced - ps.total_bad)::FLOAT / ps.total_produced AS quality_percentage
+         FROM
+             (
+                 SELECT
+                     SUM(pr.quantity) AS total_produced,
+                     SUM(pr.badQuantity) AS total_bad
+                 FROM
+                     products pr
+                 WHERE
+                     pr.endTime BETWEEN '2024-01-01T00:00:00Z'::TIMESTAMPTZ AND '2024-01-31T23:59:59Z'::TIMESTAMPTZ
+             ) ps
+     )
 SELECT
-    availability.availability_percentage,
-    performance.performance_percentage,
-    quality.quality
+    av.availability_percentage,
+    pe.performance_percentage,
+    qu.quality_percentage
 FROM
-    availability,
-    performance,
-    quality;
+    availability av,
+    performance pe,
+    quality qu;
 ```
 
 
@@ -749,20 +738,17 @@ The output will be a table with the stop reasons and the time and length of the 
 
 ```sql
 WITH stop_reasons AS (
-    -- Select all stop reason occurrences for asset id = 1
     SELECT
-        s.state AS stop_reason,
-        s.startTime,
-        s.endTime,
-        -- Calculate duration of each stop; handle ongoing stops by assuming current time as end time if end time is null
-        COALESCE(s.endTime, NOW()) - s.startTime AS duration
+        st.state AS stop_reason,
+        st.startTime,
+        st.endTime,
+        COALESCE(st.endTime, NOW()) - st.startTime AS duration
     FROM
-        states s
+        states st
     WHERE
-        s.assetId = 1
-        AND (s.state < 10000 OR s.state > 29999) -- Everything not in good state range is a stop reason
-    AND 
-        s.startTime BETWEEN '2024-01-01 00:00:00' AND '2024-12-31 23:59:59' -- Example time frame
+        st.assetId = 1
+      AND (st.state < 10000 OR st.state > 29999)
+      AND st.startTime BETWEEN '2024-01-01 00:00:00' AND '2024-12-31 23:59:59'
 )
 SELECT
     stop_reason,
@@ -783,16 +769,14 @@ This example calculates the shifts of our machine and creates a timeline.
 
 ```sql
 WITH shift_timeline AS (
-    -- Select all shifts for asset id = 1
     SELECT
-        s.startTime,
-        s.endTime
+        sh.startTime,
+        sh.endTime
     FROM
-        shifts s
+        shifts sh
     WHERE
-        s.assetId = 1
-    AND 
-        s.startTime BETWEEN '2024-01-01 00:00:00' AND '2024-12-31 23:59:59' -- Example time frame
+        sh.assetId = 1
+      AND sh.startTime BETWEEN '2024-01-01 00:00:00' AND '2024-12-31 23:59:59'
 )
 SELECT
     startTime,
@@ -811,7 +795,6 @@ This example calculates the work orders of our machine and creates a timeline.
 
 ```sql
 WITH work_order_timeline AS (
-    -- Select all work orders for asset id = 1
     SELECT
         wo.startTime,
         wo.endTime
@@ -819,8 +802,7 @@ WITH work_order_timeline AS (
         work_orders wo
     WHERE
         wo.assetId = 1
-    AND 
-        wo.startTime BETWEEN '2024-01-01 00:00:00' AND '2024-12-31 23:59:59' -- Example time frame
+      AND wo.startTime BETWEEN '2024-01-01 00:00:00' AND '2024-12-31 23:59:59'
 )
 SELECT
     startTime,
@@ -870,20 +852,17 @@ This example calculates the total time of all stop reasons grouped by stop reaso
 
 ```sql
 WITH stop_reasons AS (
-    -- Select all stop reason occurrences for asset id = 1
     SELECT
-        s.state AS stop_reason,
-        s.startTime,
-        s.endTime,
-        -- Calculate duration of each stop; handle ongoing stops by assuming current time as end time if end time is null
-        COALESCE(s.endTime, NOW()) - s.startTime AS duration
+        st.state AS stop_reason,
+        st.startTime,
+        st.endTime,
+        COALESCE(st.endTime, NOW()) - st.startTime AS duration
     FROM
-        states s
+        states st
     WHERE
-        s.assetId = 1
-        AND (s.state < 10000 OR s.state > 29999) -- Everything not in good state range is a stop reason
-    AND 
-        s.startTime BETWEEN '2024-01-01 00:00:00' AND '2024-12-31 23:59:59' -- Example time frame
+        st.assetId = 1
+      AND (st.state < 10000 OR st.state > 29999)
+      AND st.startTime BETWEEN '2024-01-01 00:00:00' AND '2024-12-31 23:59:59'
 )
 SELECT
     stop_reason,
@@ -904,16 +883,14 @@ This example uses timescale buckets to calculate the production speed over time.
 
 ```sql
 WITH production_speed AS (
-    -- Calculate production speed over time using timescale buckets
     SELECT
-        time_bucket('5 minutes', p.endTime) AS bucket,
-        COUNT(p.productId) AS products
+        time_bucket('5 minutes', pr.endTime) AS bucket,
+        COUNT(pr.productId) AS products
     FROM
-        products p
+        products pr
     WHERE
-        p.assetId = 1
-      AND
-        p.endTime BETWEEN '2024-01-01 00:00:00' AND '2024-12-31 23:59:59' -- Example time frame
+        pr.assetId = 1
+      AND pr.endTime BETWEEN '2024-01-01 00:00:00' AND '2024-12-31 23:59:59'
     GROUP BY
         bucket
 )
