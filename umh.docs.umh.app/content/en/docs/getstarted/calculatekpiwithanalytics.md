@@ -579,29 +579,39 @@ WITH total_produced AS (
         products
     WHERE
         endTime BETWEEN '2024-01-01T00:00:00Z'::TIMESTAMPTZ AND '2024-01-31T23:59:59Z'::TIMESTAMPTZ
-        -- Adjust the above timeframe to your specific requirement
-),
-ideal_production AS (
-    -- Calculate the total time in good state during active work orders
-    SELECT
-        ws.startTime,
-        ws.endTime
-    FROM
-        work_orders AS wo
-    INNER JOIN shifts AS ws ON wo.assetId = ws.assetId
-    WHERE
-        wo.assetId = 1 -- Asset ID of the printing machine
-        AND wo.status BETWEEN 1 AND 2 -- Work orders that are in progress or completed
-        AND ws.startTime < wo.endTime
-        AND (ws.endTime IS NULL OR ws.endTime > wo.startTime)
-)
+    ),
+    total_hours AS (
+-- Calculate the total available time for production in hours
 SELECT
-    -- Calculate performance as the ratio of total produced to the ideal production
-    (ps.total_produced / (ws.endTime - ws.startTime)) AS performance_percentage
+    SUM(EXTRACT(EPOCH FROM (LEAST(ws.endTime, '2024-01-31T23:59:59Z'::TIMESTAMPTZ) - GREATEST(ws.startTime, '2024-01-01T00:00:00Z'::TIMESTAMPTZ))) / 3600) AS total_hours -- Converts time interval to hours
 FROM
-    total_produced ps,
-    ideal_production ws;
-````
+    work_orders AS wo
+    INNER JOIN shifts AS ws ON wo.assetId = ws.assetId
+WHERE
+    wo.assetId = 1 -- Asset ID of the printing machine
+  AND wo.status BETWEEN 1 AND 2 -- Work orders that are in progress or completed
+  AND ws.startTime < '2024-01-31T23:59:59Z'::TIMESTAMPTZ
+  AND (ws.endTime IS NULL OR ws.endTime > '2024-01-01T00:00:00Z'::TIMESTAMPTZ)
+    ),
+    actual_production_rate AS (
+-- Calculate the actual production rate for the selected timeframe
+SELECT
+    SUM(quantity) / SUM(EXTRACT(EPOCH FROM (endTime - startTime)) / 3600) AS rate
+FROM
+    work_orders
+WHERE
+    status = 1 -- Assuming status = 1 means the work order is completed
+  AND assetId = 1 -- Filter by the specific asset
+  AND endTime BETWEEN '2024-01-01T00:00:00Z'::TIMESTAMPTZ AND '2024-01-31T23:59:59Z'::TIMESTAMPTZ -- Adjust this to your selected timeframe
+    )
+SELECT
+    -- Calculate performance as a percentage of actual produced vs. what was actually possible at the actual production rate
+    (tp.total_produced / (th.total_hours * apr.rate)) * 100 AS performance_percentage
+FROM
+    total_produced tp,
+    total_hours th,
+    actual_production_rate apr;
+```
 
 
 ### Calculate the quality of our machine
