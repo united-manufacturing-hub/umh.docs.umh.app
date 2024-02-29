@@ -471,7 +471,7 @@ SELECT create_hypertable('states', 'startTime');
 CREATE INDEX idx_states_asset_starttime ON states(assetId, startTime DESC);
 -->
 
-#### Calculate products per shift
+### Calculate products per shift
 
 This SQL query calculates the number of products produced per shift.
 It is limited to products produced in 2024 enhancing the query performance.
@@ -505,7 +505,7 @@ In this example, we calculate the availability of our machine.
 We define it as the time the machine was in a good state (`state > 10000 & state < 29999`) and had an active work-order, divided by the selected time frame.
 The result is the availability percentage.
 
-- The `selected_time_frame` CTE is where you define the start and end of your time frame for analysis.
+- The `selected_time_frame` [Common Table Expression (CTE)](https://www.postgresql.org/docs/current/queries-with.html) is where you define the start and end of your time frame for analysis.
 - The `good_state_time` CTE calculates the total time the asset was both in a good state and had an active work order within the selected time frame.
 - The `total_time_frame` CTE calculates the total duration of the selected time frame.
 - Finally, the main query calculates the availability percentage by dividing the total good state time by the total time frame duration.
@@ -821,7 +821,7 @@ WHERE
     pt.assetId = 1
 ```
 
-## Show the order table
+### Show the order table
 
 This example shows the order table of our machine.
 
@@ -838,7 +838,7 @@ WHERE
     wo.assetId = 1
 ```
 
-## Calculate the total time of all stop reasons grouped by stop reason
+### Calculate the total time of all stop reasons grouped by stop reason
 
 This example calculates the total time of all stop reasons grouped by stop reason.
 
@@ -873,7 +873,7 @@ ORDER BY
     stop_reason;
 ```
 
-## Calculate the production speed over time
+### Calculate the production speed over time
 
 This example uses timescale buckets to calculate the production speed over time.
 
