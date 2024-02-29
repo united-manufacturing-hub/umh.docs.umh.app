@@ -512,39 +512,7 @@ The result is the availability percentage.
 - Adjust the start and end times in `selected_time_frame` to match your specific time frame for analysis.
 
 ```sql
-WITH selected_time_frame AS (
-    -- Define the overall time frame for calculating availability
-    SELECT
-        '2024-01-01T00:00:00Z'::TIMESTAMPTZ AS start_time, -- Example start time of selected time frame
-        '2024-01-31T23:59:59Z'::TIMESTAMPTZ AS end_time    -- Example end time of selected time frame
-),
-good_state_time AS (
-    -- Calculate total time in good state during active work orders
-    SELECT
-        SUM(LEAST(ws.endTime, stf.end_time) - GREATEST(ws.startTime, stf.start_time)) AS total_good_time
-    FROM
-        work_orders AS wo
-    INNER JOIN states AS s ON wo.assetId = s.assetId
-    INNER JOIN selected_time_frame stf ON s.startTime <= stf.end_time AND s.endTime >= stf.start_time
-    WHERE
-        wo.assetId = 1 -- Asset ID of the printing machine
-        AND s.state > 10000 AND s.state < 29999
-        AND wo.status BETWEEN 1 AND 2 -- Work orders that are in progress or completed
-        AND s.startTime < wo.endTime
-        AND (s.endTime IS NULL OR s.endTime > wo.startTime),
-total_time_frame AS (
-    -- Calculate the total selected time frame duration
-    SELECT
-        (end_time - start_time) AS total_time
-    FROM
-        selected_time_frame
-)
-SELECT
-    -- Calculate availability as the ratio of good state time to total time frame
-    (gt.total_good_time / tt.total_time) AS availability_percentage
-FROM
-    good_state_time gt,
-    total_time_frame tt;
+
 ```
 
 ### Calculate the performance of our machine
@@ -553,42 +521,59 @@ In this example, we calculate the performance of our machine.
 We define it as the total number of products produced divided by the ideal production.
 The result is the performance percentage.
 
-- The `total_produced` CTE calculates the total number of products produced within the selected time frame.
-- The `ideal_production` CTE calculates the total time in good state during active work orders.
+- The `timeframe` CTE defines the overall time frame for calculating performance.
+- The `good_state_duration` CTE calculates the total time in a good state during active work orders within the selected time frame.
+- The `active_work_order_duration` CTE calculates the total time of active work orders within the selected time frame.
 - Finally, the main query calculates the performance percentage by dividing the total produced by the ideal production.
 
 ```sql
-WITH total_produced AS (
-    -- Calculate total produced within the selected time frame
+-- Calculating availability for assets
+WITH timeframe AS (
     SELECT
-        SUM(quantity) AS total_produced
-    FROM
-        products
-    WHERE
-        endTime BETWEEN '2024-01-01T00:00:00Z'::TIMESTAMPTZ AND '2024-01-31T23:59:59Z'::TIMESTAMPTZ
-        -- Adjust the above timeframe to your specific requirement
+        '2023-01-01T00:00:00Z'::TIMESTAMPTZ AS start_time,
+        '2023-01-31T23:59:59Z'::TIMESTAMPTZ AS end_time
 ),
-ideal_production AS (
-    -- Calculate the total time in good state during active work orders
-    SELECT
-        ws.startTime,
-        ws.endTime
-    FROM
-        work_orders AS wo
-    INNER JOIN shifts AS ws ON wo.assetId = ws.assetId
-    WHERE
-        wo.assetId = 1 -- Asset ID of the printing machine
-        AND wo.status BETWEEN 1 AND 2 -- Work orders that are in progress or completed
-        AND ws.startTime < wo.endTime
-        AND (ws.endTime IS NULL OR ws.endTime > wo.startTime)
-)
+ good_state_duration AS (
+     SELECT
+         s.assetId,
+         SUM(LEAST(s.endTime, tf.end_time) - GREATEST(s.startTime, tf.start_time)) AS good_state_time
+     FROM
+         states s,
+         timeframe tf
+     WHERE
+         s.state > 10000 AND s.state < 29999
+       AND s.startTime < tf.end_time
+       AND s.endTime > tf.start_time
+     GROUP BY
+         s.assetId
+ ),
+ active_work_order_duration AS (
+     SELECT
+         w.assetId,
+         SUM(LEAST(w.endTime, tf.end_time) - GREATEST(w.startTime, tf.start_time)) AS work_order_time
+     FROM
+         work_orders w,
+         timeframe tf
+     WHERE
+         w.startTime < tf.end_time
+       AND w.endTime > tf.start_time
+     GROUP BY
+         w.assetId
+ )
 SELECT
-    -- Calculate performance as the ratio of total produced to the ideal production
-    (ps.total_produced / (ws.endTime - ws.startTime)) AS performance_percentage
+    gs.assetId,
+    CASE
+        WHEN awo.work_order_time IS NULL THEN 0
+        ELSE gs.good_state_time / awo.work_order_time
+        END AS availability
 FROM
-    total_produced ps,
-    ideal_production ws;
-````
+    good_state_duration gs
+        LEFT JOIN
+    active_work_order_duration awo ON gs.assetId = awo.assetId
+ORDER BY
+    gs.assetId;
+
+```
 
 
 ### Calculate the quality of our machine
