@@ -912,18 +912,16 @@ WITH production_speed AS (
         products p
     WHERE
         p.assetId = 1
-    AND 
+      AND
         p.endTime BETWEEN '2024-01-01 00:00:00' AND '2024-12-31 23:59:59' -- Example time frame
     GROUP BY
         bucket
 )
 SELECT
     bucket,
-    SUM(products) AS total_products
+    products AS total_products
 FROM
     production_speed
-GROUP BY
-    bucket
 ORDER BY
     bucket;
 ```
