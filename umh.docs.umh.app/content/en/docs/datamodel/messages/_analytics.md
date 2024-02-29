@@ -28,16 +28,19 @@ _analytics --> s[shift]
 s --> s-add[add]
 s --> s-delete[delete]
 
+_analytics --> st[state]
+st --> st-add[add]
+st --> st-overwrite[overwrite]
 
 
     classDef mqtt fill:#00dd00,stroke:#333,stroke-width:4px;
     class umh,v1,enterprise,_analytics mqtt;
 
     classDef type fill:#00ffbb,stroke:#333,stroke-width:4px;
-    class wo,pt,p,s type;
+    class wo,pt,p,s,st type;
 
     classDef func fill:#8899dd,stroke:#333,stroke-width:4px;
-    class wo-create,wo-start,wo-stop,pt-create,p-add,p-set-bad-quantity,s-add,s-delete func;
+    class wo-create,wo-start,wo-stop,pt-create,p-add,p-set-bad-quantity,s-add,s-delete,st-add,st-overwrite func;
 
     click topicStart href "../"
     click wo href "#work-order"
@@ -56,6 +59,9 @@ s --> s-delete[delete]
 
     click s-add href "#add-1"
     click s-delete href "#delete"
+
+    click st-add href "#add-2"
+    click st-overwrite href "#overwrite"
 
 {{</ mermaid >}}
 
