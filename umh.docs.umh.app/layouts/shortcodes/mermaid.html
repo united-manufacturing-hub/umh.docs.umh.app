@@ -24,10 +24,63 @@
   mermaid.initialize(config);
 </script>
 <figure>
-<div class="mermaid">
+<div class="mermaid" onclick='toggleMMLightBoxOn("{{ .Inner | md5 }}-mm-lightbox")'>
     {{.Inner}}
 </div>
 </figure>
+<a class="lightbox-mm" id="{{ .Inner | md5 }}-mm-lightbox">
+    <figure>
+        <div class="mermaid">
+            {{.Inner}}
+        </div>
+    </figure>
+</a>
+<script>
+    function toggleMMLightBoxOn(a){
+        console.log(a);
+        document.getElementById(a).style.display = "block";
+    }
+    // Add event listener to close lightbox
+    document.addEventListener('click', function (event) {
+        if (!event.target.matches('.lightbox-mm')) return;
+        event.preventDefault();
+        document.getElementById(event.target.id).style.display = "none";
+    }, false);
+
+    // Escape key closes lightbox
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+            document.querySelectorAll('.lightbox-mm').forEach(function (el) {
+                el.style.display = 'none';
+            });
+        }
+    });
+
+    // Clicking on the image closes the lightbox
+    document.addEventListener('click', function (event) {
+        if (!event.target.matches('.lightbox-mm svg')) {
+            return
+        }
+        event.preventDefault();
+        document.getElementById(event.target.parentNode.parentNode.parentNode.id).style.display = "none";
+    }, false);
+
+    // Await DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', function () {
+        waitForMermaid();
+    });
+
+    // Await for mermaid to be initialized (e.g. data-processed=true on the div)
+    function waitForMermaid() {
+        if (document.querySelector('.mermaid[data-processed="true"]')) {
+            document.querySelectorAll('.lightbox-mm').forEach(function (el) {
+                el.style.display = 'none';
+            });
+        } else {
+            setTimeout(waitForMermaid, 250);
+        }
+    }
+</script>
 <!-- Hide content and error if JS is disabled. -->
 <noscript>
   <div class="alert alert-secondary callout" role="alert">
