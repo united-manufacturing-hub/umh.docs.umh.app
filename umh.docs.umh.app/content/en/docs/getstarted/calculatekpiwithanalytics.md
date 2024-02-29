@@ -386,6 +386,9 @@ You can show all asset id's by executing the following SQL query:
 SELECT * FROM assets;
 ```
 
+For simplicity, we hardcoded the timeframes in the following examples.
+Checkout [dynamic queries](#dynamic-queries) for a more advanced approach.
+
 <!--
 -- THIS IS A HTML COMMENT AND NOT VISISBLE IN THE FINAL DOCUMENTATION
 -- Work Order Table
