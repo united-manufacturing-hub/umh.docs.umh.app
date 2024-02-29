@@ -249,6 +249,8 @@ Delete a previously created shift.
 
 Announce a state change.
 
+Checkout the [state](../../states) documentation for a list of available states.
+
 **Fields**
 - **`state`** (number): The state of the machine.
 - **`startTime`** (string): The start time of the [state](../../states).
