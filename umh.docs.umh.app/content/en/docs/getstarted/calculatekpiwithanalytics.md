@@ -505,33 +505,18 @@ In this example, we calculate the availability of our machine.
 We define it as the time the machine was in a good state (`state > 10000 & state < 29999`) and had an active work-order, divided by the selected time frame.
 The result is the availability percentage.
 
-- The `selected_time_frame` [Common Table Expression (CTE)](https://www.postgresql.org/docs/current/queries-with.html) is where you define the start and end of your time frame for analysis.
-- The `good_state_time` CTE calculates the total time the asset was both in a good state and had an active work order within the selected time frame.
-- The `total_time_frame` CTE calculates the total duration of the selected time frame.
+- The `timeframe` [Common Table Expression (CTE)](https://www.postgresql.org/docs/current/queries-with.html) is where you define the start and end of your time frame for analysis.
+- The `good_state_duration` CTE calculates the total time the asset was both in a good state and had an active work order within the selected time frame.
+- The `active_work_order_duration` CTE calculates the total duration of the selected time frame.
 - Finally, the main query calculates the availability percentage by dividing the total good state time by the total time frame duration.
 - Adjust the start and end times in `selected_time_frame` to match your specific time frame for analysis.
-
-```sql
-
-```
-
-### Calculate the performance of our machine
-
-In this example, we calculate the performance of our machine.
-We define it as the total number of products produced divided by the ideal production.
-The result is the performance percentage.
-
-- The `timeframe` CTE defines the overall time frame for calculating performance.
-- The `good_state_duration` CTE calculates the total time in a good state during active work orders within the selected time frame.
-- The `active_work_order_duration` CTE calculates the total time of active work orders within the selected time frame.
-- Finally, the main query calculates the performance percentage by dividing the total produced by the ideal production.
 
 ```sql
 -- Calculating availability for assets
 WITH timeframe AS (
     SELECT
         '2023-01-01T00:00:00Z'::TIMESTAMPTZ AS start_time,
-        '2023-01-31T23:59:59Z'::TIMESTAMPTZ AS end_time
+            '2023-01-31T23:59:59Z'::TIMESTAMPTZ AS end_time
 ),
  good_state_duration AS (
      SELECT
@@ -574,6 +559,49 @@ ORDER BY
     gs.assetId;
 
 ```
+
+### Calculate the performance of our machine
+
+In this example, we calculate the performance of our machine.
+We define it as the total number of products produced divided by the ideal production.
+The result is the performance percentage.
+
+- The `total_produced` CTE calculates the total number of products produced within the selected time frame.
+- The `ideal_production` CTE calculates the total time in good state during active work orders.
+- Finally, the main query calculates the performance percentage by dividing the total produced by the ideal production.
+
+```sql
+WITH total_produced AS (
+    -- Calculate total produced within the selected time frame
+    SELECT
+        SUM(quantity) AS total_produced
+    FROM
+        products
+    WHERE
+        endTime BETWEEN '2024-01-01T00:00:00Z'::TIMESTAMPTZ AND '2024-01-31T23:59:59Z'::TIMESTAMPTZ
+        -- Adjust the above timeframe to your specific requirement
+),
+ideal_production AS (
+    -- Calculate the total time in good state during active work orders
+    SELECT
+        ws.startTime,
+        ws.endTime
+    FROM
+        work_orders AS wo
+    INNER JOIN shifts AS ws ON wo.assetId = ws.assetId
+    WHERE
+        wo.assetId = 1 -- Asset ID of the printing machine
+        AND wo.status BETWEEN 1 AND 2 -- Work orders that are in progress or completed
+        AND ws.startTime < wo.endTime
+        AND (ws.endTime IS NULL OR ws.endTime > wo.startTime)
+)
+SELECT
+    -- Calculate performance as the ratio of total produced to the ideal production
+    (ps.total_produced / (ws.endTime - ws.startTime)) AS performance_percentage
+FROM
+    total_produced ps,
+    ideal_production ws;
+````
 
 
 ### Calculate the quality of our machine
