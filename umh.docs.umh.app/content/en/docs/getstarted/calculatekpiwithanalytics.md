@@ -903,3 +903,22 @@ ORDER BY
     bucket;
 ```
 
+## Dynamic queries
+
+If you want to dynamically execute the queries based on your selected timeframe in Grafana, you can replace the hardcoded timeframes with Grafana variables.
+
+For example, to select all work orders within the selected time frame, you can use the following query:
+
+```sql
+SELECT
+    wo.externalWorkOrderId,
+    wo.quantity,
+    wo.status,
+    wo.startTime,
+    wo.endTime
+FROM
+    work_orders wo
+WHERE
+    wo.assetId = 1
+  AND wo.startTime BETWEEN $__timeFrom() AND $__timeTo()
+```
