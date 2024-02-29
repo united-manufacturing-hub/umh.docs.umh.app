@@ -236,3 +236,30 @@ Delete a previously created shift.
   "startTime": "2021-01-01T06:00:00Z"
 }
 ```
+
+## State
+
+### Add
+
+Announce a state change.
+
+**Fields**
+- **`state`** (number): The state of the machine.
+- **`startTime`** (string): The start time of the [state](../../states).
+
+**Example**
+```json
+{
+  "state": 10000,
+  "startTime": "2021-01-01T12:00:00Z"
+}
+```
+
+### Overwrite
+
+Overwrite one or more states between two times.
+
+**Fields**
+- **`state`** (number): The state of the machine.
+- **`startTime`** (string): The start time of the [state](../../states).
+- **`endTime`** (string): The end time of the [state](../../states).
