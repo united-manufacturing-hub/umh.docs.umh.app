@@ -51,10 +51,27 @@ Read more about the Connection Management in the [Connectivity](/docs/features/c
 
 ![Connection Management](/images/features/monitor-management/connectionManagementDemo.png?width=80%)
 
-<!-- TODO: Mention the payload's values history feature once implemented -->
+The **Tag Browser** provides a comprehensive view of the tag structure, allowing automation engineers to
+manage and navigate through all their tags without concerning themselves with underlying technical complexities,
+such as topics, keys or payload structures.
 
-The **Tag Browser** displays the topic structure and publisher & subscriber
-information. Read more about the Tag Browser in the [Unified Namespace](/docs/features/datainfrastructure/unified-namespace)
+Tags typically represent variables associated with devices in an ISA-95 model.
+For instance, it could represent a temperature reading from a specific sensor or a status indication from
+a machine component. These tags are transported through various technical methods across the Unified
+Namespace (UNS) into the database. This includes organizing them within a folder structure or embedding them
+as JSON objects within the message payload. Tags can be sent into the same topic or utilizing various sub-topics.
+Due to the nature of MQTT and Kafka, the topics may differ, but the following formula applies:
+
+```text
+MQTT Topic = Kafka topic + Kafka Key
+```
+
+{{% notice info %}}
+The kafka topic and key depend on the configured merge point, read more about it 
+[here](/docs/production-guide/administration/normalize-kafka-topics).
+{{% /notice %}}
+
+Read more about the Tag Browser in the [Unified Namespace](/docs/features/datainfrastructure/unified-namespace)
 section.
 
 ![Tag Browser](/images/features/monitor-management/tagBrowser.png?width=80%)
