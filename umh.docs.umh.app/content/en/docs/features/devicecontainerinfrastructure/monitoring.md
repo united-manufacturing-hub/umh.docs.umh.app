@@ -66,6 +66,11 @@ Due to the nature of MQTT and Kafka, the topics may differ, but the following fo
 MQTT Topic = Kafka topic + Kafka Key
 ```
 
+{{% notice info %}}
+The kafka topic and key depend on the configured merge point, read more about it 
+[here](/docs/production-guide/administration/normalize-kafka-topics).
+{{% /notice %}}
+
 Read more about the Tag Browser in the [Unified Namespace](/docs/features/datainfrastructure/unified-namespace)
 section.
 
