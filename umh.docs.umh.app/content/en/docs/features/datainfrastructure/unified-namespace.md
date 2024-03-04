@@ -23,8 +23,8 @@ can read more about it in the [Learning Hub article](https://learn.umh.app/lesso
 
 ## When should I use it?
 
-In our opinion, the Unified Namespace provides the best tradeoff for connecting 
-systems in manufacturing / shopfloor scenarios. It effectively eliminates the 
+In our opinion, the Unified Namespace provides the best tradeoff for connecting
+systems in manufacturing / shopfloor scenarios. It effectively eliminates the
 complexity of spaghetti diagrams and enables real-time data processing.
 
 While data can be shared through databases,
@@ -33,16 +33,16 @@ or message brokers, we believe that a message broker approach is most suitable
 for most manufacturing applications. Consequently, every piece of information
 within the United Manufacturing Hub is transmitted via a message broker.
 
-Both MQTT and Kafka are used in the United Manufacturing Hub. MQTT is designed 
-for the safe message delivery between devices and simplifies gathering data on 
-the shopfloor. However, it is not designed for reliable stream processing. 
-Although Kafka does not provide a simple way to collect data, it is suitable 
-for contextualizing and processing data. Therefore, we are combining both the 
+Both MQTT and Kafka are used in the United Manufacturing Hub. MQTT is designed
+for the safe message delivery between devices and simplifies gathering data on
+the shopfloor. However, it is not designed for reliable stream processing.
+Although Kafka does not provide a simple way to collect data, it is suitable
+for contextualizing and processing data. Therefore, we are combining both the
 strengths of MQTT and Kafka. You can get more information from [this article](https://learn.umh.app/blog/tools-techniques-for-scalable-data-processing-in-industrial-iot/).
 
 ## What can I do with it?
 
-The Unified Namespace in the United Manufacturing Hub provides you the following 
+The Unified Namespace in the United Manufacturing Hub provides you the following
 functionalities and applications:
 
 - **Seamless Integration with MQTT**: Facilitates straightforward connection
@@ -58,8 +58,8 @@ functionalities and applications:
   understanding historical trends.
 - **Scalable Message Processing**: Designed to handle a large amount of data
   from a lot of devices efficiently, ensuring reliable message delivery even
-  over unstable network connections. By using IT standard tools, we can 
-  theoretically process data in the measure of `GB/second` instead of 
+  over unstable network connections. By using IT standard tools, we can
+  theoretically process data in the measure of `GB/second` instead of
   `messages/second`.
 - **Data Transformation and Transfer**: Utilizes the
   [Data Bridge](/docs/architecture/data-infrastructure/unified-namespace/data-bridge/)
@@ -69,30 +69,57 @@ functionalities and applications:
 Each feature opens up possibilities for enhanced data management, real-time
 monitoring, and system optimization in industrial settings.
 
-You can view the Unified Namespace by using the Management Console like in the picture 
-below, which will automatically aggregate data from all connected instances / brokers; 
-it shows the topic structure and which data belongs to which namespace. The picture 
-shows data under the topic `umh/v1/pharma-genix/aachen/_historian/wheather/wheather`,
-where
+You can view the Unified Namespace by using the Management Console like in the picture
+below. The picture shows data under the topic
+`umh/v1/demo-pharma-enterprise/Cologne/_historian/rainfall/isRaining`, where
+
 - `umh/v1` is a versioning prefix.
-- `pharma-genix` is a sample `enterprise` tag.
-- `aachen` is a sample `site` tag.
+- `demo-pharma-enterprise` is a sample `enterprise` tag.
+- `Cologne` is a sample `site` tag.
 - `_historian` is a schema tag. Data with this tag will be stored in the UMH's database.
-- `wheather/wheather` is a sample schema dependent context.
+- `rainfall/isRaining` is a sample schema dependent context, where `rainfall` is a tag group and
+  `isRaining` is a tag belonging to it.
+
+{{% notice info %}}
+The full tag name uniquely identifies a single tag, it can be found in the **Publisher & Subscriber Info** table.
+{{% /notice %}}
+
+![Tag Browser](/images/features/unified-namespace/tagBrowser.png?width=80%)
+
+The above image showcases the `Tag Browser`, our main tool for navigating the Unified Namespace. It includes the
+following features:
+
+- **Data Aggregation**: Automatically consolidates data from all connected instances / brokers.
+- **Topic Structure**: Displays the hierarchical structure of topics and which data belongs to which namespace.
+- **Tag Folder Structure**: Facilitates browsing through tag folders or groups within a single asset.
+- **Schema validation**: Introduces validation for known schemas such as `_historian`. In case of validation
+  failure, the corresponding errors are displayed.
+- **Publisher & Subscriber Info**: Provides various details, such as the origins and destinations of the data,
+  the instance it was published from, the messages per minute to get an overview on how much data is flowing,
+  and the full tag name to uniquely identify the selected tag.
+- **Payload Visualization**: Displays payloads under validated schemas in a formatted/structured manner, enhancing
+  readability. For unknown schemas without strict validation, the raw payload is displayed instead.
+- **Tag Value History**: Shows the last 100 received values for the selected tag, allowing you to track the
+  changes in the data over time. Keep in mind that this feature is only available for tags that are part of the
+  `_historian` schema.
+- **Kafka Origin**: Provides information about the Kafka key, topic and the actual payload that was sent via Kafka.
+
+{{% notice note %}}
+It's important to note that data displayed in the `Tag Browser` represent snapshots; hence, data sent at
+intervals shorter than 10 seconds may not be accurately reflected.
+{{% /notice %}}
 
 You can find more detailed information about the topic structure [here](/docs/datamodel/messages).
 
-![Data Dashboard](/images/features/unified-namespace/dataDashboardMC.png?width=80%)
-
-You can also use tools like [MQTT Explorer](https://mqtt-explorer.com/) 
-(not included in the UMH) or Redpanda Console (enabled by defualt, accessible 
+You can also use tools like [MQTT Explorer](https://mqtt-explorer.com/)
+(not included in the UMH) or Redpanda Console (enabled by defualt, accessible
 via port `8090`) to view data from a single instance (but single instance only).
 
 ## How can I use it?
 
 To effectively use the Unified Namespace in the United Manufacturing Hub, start
 by configuring your IoT devices to communicate with the UMH's MQTT broker,
-considering the necessary security protocols. While MQTT is recommended for 
+considering the necessary security protocols. While MQTT is recommended for
 gathering data on the shopfloor, you can send messages to Kafka as well.
 
 Once the devices are set up, handle the incoming data messages using tools like
@@ -120,8 +147,8 @@ Kafka only.
 
 ## What are the limitations?
 
-While JSON is the only supported payload format due to its accessibility, it's 
-important to note that it can be more resource-intensive compared to formats 
+While JSON is the only supported payload format due to its accessibility, it's
+important to note that it can be more resource-intensive compared to formats
 like Protobuf or Avro.
 
 ## Where to get more information?

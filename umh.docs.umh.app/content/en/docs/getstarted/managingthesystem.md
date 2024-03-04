@@ -32,7 +32,7 @@ For more information, visit the [architecture](/docs/architecture/)
 
 ## Overview of Your Instances
 
-![Instance overview](/images/getstarted/managingTheSystem/instanceOverview.png?width=80%)
+![Instance overview](/images/features/monitor-management/instanceOverviewDemo.png?width=80%)
 
 On the left side of the Management Console, you can view the list of your
 instances. If you have just installed the UMH, you should see only one instance

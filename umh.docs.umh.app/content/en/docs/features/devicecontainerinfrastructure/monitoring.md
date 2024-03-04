@@ -43,18 +43,38 @@ deploy a data source.
 After logging in, the Instance Dashboard page shows the **Overview** tab.
 You can click and open each status on this tab.
 
-![Instance Overview](/images/features/monitor-management/instanceOverview.png?width=80%)
+![Instance Overview](/images/features/monitor-management/instanceOverviewDemo.png?width=80%)
 
 The **Connection Management** tab shows the status of all the instance's connections and their associated
 data sources. Moreover, you can create a new connection, as well as initialize them.
 Read more about the Connection Management in the [Connectivity](/docs/features/connectivity/) section.
 
-![Connection Management](/images/features/monitor-management/instanceConnectionManagement.png?width=80%)
+![Connection Management](/images/features/monitor-management/connectionManagementDemo.png?width=80%)
 
-The Data Dashboard displays the topic structure and publisher & subscriber
-information.
+The **Tag Browser** provides a comprehensive view of the tag structure, allowing automation engineers to
+manage and navigate through all their tags without concerning themselves with underlying technical complexities,
+such as topics, keys or payload structures.
 
-![Data Dashboard](/images/features/monitor-management/dataDashboard.png?width=80%)
+Tags typically represent variables associated with devices in an ISA-95 model.
+For instance, it could represent a temperature reading from a specific sensor or a status indication from
+a machine component. These tags are transported through various technical methods across the Unified
+Namespace (UNS) into the database. This includes organizing them within a folder structure or embedding them
+as JSON objects within the message payload. Tags can be sent into the same topic or utilizing various sub-topics.
+Due to the nature of MQTT and Kafka, the topics may differ, but the following formula applies:
+
+```text
+MQTT Topic = Kafka topic + Kafka Key
+```
+
+{{% notice info %}}
+The kafka topic and key depend on the configured merge point, read more about it 
+[here](/docs/production-guide/administration/normalize-kafka-topics).
+{{% /notice %}}
+
+Read more about the Tag Browser in the [Unified Namespace](/docs/features/datainfrastructure/unified-namespace)
+section.
+
+![Tag Browser](/images/features/monitor-management/tagBrowser.png?width=80%)
 
 ## What are the limitations?
 
