@@ -99,6 +99,10 @@ following features:
   and the full tag name to uniquely identify the selected tag.
 - **Payload Visualization**: Displays payloads under validated schemas in a formatted/structured manner, enhancing
   readability. For unknown schemas without strict validation, the raw payload is displayed instead.
+- **Tag Value History**: Shows the last 100 received values for the selected tag, allowing you to track the
+  changes in the data over time. Keep in mind that this feature is only available for tags that are part of the
+  `_historian` schema.
+- **Kafka Origin**: Provides information about the Kafka key, topic and the actual payload that was sent via Kafka.
 
 {{% notice note %}}
 It's important to note that data displayed in the `Tag Browser` represent snapshots; hence, data sent at
