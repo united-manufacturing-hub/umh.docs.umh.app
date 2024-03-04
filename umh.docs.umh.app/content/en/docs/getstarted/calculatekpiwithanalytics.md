@@ -6,7 +6,7 @@ weight: 6000
 draft: false
 ---
 
-In the previous getting started guides we explained you how you can store and visualize time-series data. In this guide, we will focus on storing and visualizing your business data, especially around the topic of Overall Equipment Effectiveness (OEE) and work orders, using [_analytics](https://1313-unitedmanuf-umhdocsumha-ywbal2q7x0i.ws-eu108.gitpod.io/docs/datamodel/messages/#_analytics) messages.
+In the previous getting started guides we explained you how you can store and visualize time-series data. In this guide, we will focus on storing and visualizing your business data, especially around the topic of Overall Equipment Effectiveness (OEE) and work orders, using [_analytics](/docs/datamodel/messages/#_analytics) messages.
 
 This guide is a bit lengthy, but will show you step-by-step when which MQTT messages should be sent in order to easily calculate and visualize the OEE in Grafana. We will start by simulating a printing machine in Node-RED, and then proceed on explaining what SQL queries you can now use in Grafana to calculate the OEE.
 
