@@ -24,6 +24,7 @@ jobs:
 
       - name: Install hugo
         run: |
+          git lfs pull
           make install
 
       - name: Start Server
