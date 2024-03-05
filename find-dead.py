@@ -21,6 +21,9 @@ async def get_links(session, url):
                 soup = BeautifulSoup(text, 'html.parser')
                 return [link.get('href') for link in soup.find_all('a') if link.get('href')]
             else:
+                print(f"Failed to get links from {url} ({response.status})")
+                global dead_links_found
+                dead_links_found = True 
                 return []
     except Exception as e:
         return []
@@ -39,7 +42,6 @@ async def validate_and_follow_links(session, url, visited_urls, origin_url=None)
     if url in visited_urls:
         return
 
-    print(f"Checking: {url}")
     visited_urls.add(url)
     links = await get_links(session, url)
 
@@ -50,6 +52,8 @@ async def validate_and_follow_links(session, url, visited_urls, origin_url=None)
                 async with session.get(full_link, allow_redirects=True) as response:
                     if response.status != 200:
                         await log_dead_link(origin_url or url, full_link, response.status)
+                    else:
+                        print(f"Checked: {url} ({response.status})")
             except Exception as e:
                 await log_dead_link(origin_url or url, full_link, "Failed to connect")
 
