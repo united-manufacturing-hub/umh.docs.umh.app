@@ -56,6 +56,7 @@ async def main():
     async with aiohttp.ClientSession() as session:
         await validate_and_follow_links(session, base_url, visited_urls)
 
+    global dead_links_found
     if dead_links_found:
         sys.exit(1)  # Exit with code 1 if any dead links were found
 
