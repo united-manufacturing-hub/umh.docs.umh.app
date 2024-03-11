@@ -62,7 +62,7 @@ both of which were established in the previous chapter.
 In the code snippet above, the arguments provided to the function are based on the OPC-UA node we defined in the
 [**Initialize the Connection**](/docs/getstarted/dataacquisitionmanipulation/#initialize-the-connection)
 section of the previous chapter, so adjust them accordingly if you used different values, these values can also be
-found at the **data dashboard** of the **Management Console**, which displays all OPC-UA nodes in a tree structure.
+found at the **Tag Browser** of the **Management Console**, which displays all OPC-UA nodes in a tree structure.
 {{% /notice %}}
 
 11. Same as before, click on the **Run Query** button to execute the query. If you've been following along, you won't

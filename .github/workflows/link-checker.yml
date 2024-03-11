@@ -1,0 +1,42 @@
+name: Link Checker
+
+on:
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4 aiohttp aiofiles
+
+      - name: Install hugo
+        run: |
+          git lfs pull
+          make install
+
+      - name: Start Server
+        run: make serve &
+
+      - name: Wait for Server to be ready
+        run: sleep 10
+
+      - name: Run Link Checker
+        run: |
+          python find-dead.py
