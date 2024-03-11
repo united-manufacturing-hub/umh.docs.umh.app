@@ -8,88 +8,88 @@ weight: 2000
 
 {{< mermaid theme="neutral" >}}
 erDiagram
-asset {
-int id PK "SERIAL PRIMARY KEY"
-text enterprise "NOT NULL"
-text site "DEFAULT '' NOT NULL"
-text area "DEFAULT '' NOT NULL"
-text line "DEFAULT '' NOT NULL"
-text workcell "DEFAULT '' NOT NULL"
-text origin_id "DEFAULT '' NOT NULL"
-}
+
+    asset {
+        int id PK "SERIAL PRIMARY KEY"
+        text enterprise "NOT NULL"
+        text site "DEFAULT '' NOT NULL"
+        text area "DEFAULT '' NOT NULL"
+        text line "DEFAULT '' NOT NULL"
+        text workcell "DEFAULT '' NOT NULL"
+        text origin_id "DEFAULT '' NOT NULL"
+    }
 
 
     product_type {
-      product_type_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-      external_product_type_id TEXT NOT NULL,
-      cycle_time_ms INTEGER NOT NULL,
-      asset_id INTEGER REFERENCES asset(id),
-      _ CONSTRAINT "external_product_asset_uniq UNIQUE (external_product_type_id, asset_id)",
-      _ CHECK "(cycle_time_ms > 0)"
+        product_type_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
+        external_product_type_id TEXT NOT NULL
+        cycle_time_ms INTEGER NOT NULL
+        asset_id INTEGER REFERENCES asset(id)
+        _ CONSTRAINT "external_product_asset_uniq UNIQUE (external_product_type_id, asset_id)"
+        _ CHECK "(cycle_time_ms > 0)"
     }
 
     work_order {
-      work_order_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-      external_work_order_id TEXT NOT NULL,
-      asset_id INTEGER NOT NULL REFERENCES asset(id),
-      product_type_id INTEGER NOT NULL REFERENCES product_type(product_type_id),
-      quantity INTEGER NOT NULL,
-      status INTEGER NOT NULL DEFAULT 0, -- 0: planned, 1: in progress, 2: completed
-      start_time TIMESTAMPTZ,
-      end_time TIMESTAMPTZ,
-      _ CONSTRAINT "asset_workorder_uniq UNIQUE (asset_id, external_work_order_id)",
-      _ CHECK "(quantity > 0)",
-      _ CHECK "(status BETWEEN 0 AND 2)",
-      _ UNIQUE "(asset_id, start_time)",
-      _ EXCLUDE "USING gist (asset_id WITH =, tstzrange(start_time, end_time) WITH &&) WHERE (start_time IS NOT NULL AND end_time IS NOT NULL)"
+        work_order_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
+        external_work_order_id TEXT NOT NULL
+        asset_id INTEGER NOT NULL REFERENCES asset(id)
+        product_type_id INTEGER NOT NULL REFERENCES product_type(product_type_id)
+        quantity INTEGER NOT NULL
+        status INTEGER "NOT NULL DEFAULT 0, -- 0: planned, 1: in progress, 2: completed"
+        start_time TIMESTAMPTZ
+        end_time TIMESTAMPTZ
+        _ CONSTRAINT "asset_workorder_uniq UNIQUE (asset_id, external_work_order_id)"
+        _ CHECK "(quantity > 0)"
+        _ CHECK "(status BETWEEN 0 AND 2)"
+        _ UNIQUE "(asset_id, start_time)"
+        _ EXCLUDE "USING gist (asset_id WITH =, tstzrange(start_time, end_time) WITH &&) WHERE (start_time IS NOT NULL AND end_time IS NOT NULL)"
     }
 
     product {
-      product_type_id INTEGER REFERENCES product_type(product_type_id),
-      product_batch_id TEXT,
-      asset_id INTEGER REFERENCES asset(id),
-      start_time TIMESTAMPTZ,
-      end_time TIMESTAMPTZ NOT NULL,
-      quantity INTEGER NOT NULL,
-      bad_quantity INTEGER DEFAULT 0,
-      _ CHECK "(quantity > 0)",
-      _ CHECK "(bad_quantity >= 0)",
-      _ CHECK "(bad_quantity <= quantity)",
-      _ CHECK "(start_time <= end_time)",
-      _ UNIQUE "(asset_id, end_time, product_batch_id)"
-      _ HYPERTABLE "create_hypertable('product', 'end_time', if_not_exists => TRUE)"
-      _ INDEX "INDEX idx_products_asset_end_time ON product(asset_id, end_time DESC)"
+        product_type_id INTEGER REFERENCES product_type(product_type_id)
+        product_batch_id TEXT
+        asset_id INTEGER REFERENCES asset(id)
+        start_time TIMESTAMPTZ
+        end_time TIMESTAMPTZ NOT NULL
+        quantity INTEGER NOT NULL
+        bad_quantity INTEGER "DEFAULT 0"
+        _ CHECK "(quantity > 0)"
+        _ CHECK "(bad_quantity >= 0)"
+        _ CHECK "(bad_quantity <= quantity)"
+        _ CHECK "(start_time <= end_time)"
+        _ UNIQUE "(asset_id, end_time, product_batch_id)"
+        _ HYPERTABLE "create_hypertable('product', 'end_time', if_not_exists => TRUE)"
+        _ INDEX "INDEX idx_products_asset_end_time ON product(asset_id, end_time DESC)"
     }
-
 
     shift {
-      shift_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-      asset_id INTEGER REFERENCES asset(id),
-      start_time TIMESTAMPTZ NOT NULL,
-      end_time TIMESTAMPTZ NOT NULL,
-      _ CONSTRAINT "shift_start_asset_uniq UNIQUE (start_time, asset_id)",
-      _ CHECK "(start_time < end_time)",
-      _ EXCLUDE "USING gist (asset_id WITH =, tstzrange(start_time, end_time) WITH &&)"
+        shift_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
+        asset_id INTEGER REFERENCES asset(id)
+        start_time TIMESTAMPTZ NOT NULL
+        end_time TIMESTAMPTZ NOT NULL
+        _ CONSTRAINT "shift_start_asset_uniq UNIQUE (start_time, asset_id)"
+        _ CHECK "(start_time < end_time)"
+        _ EXCLUDE "USING gist (asset_id WITH =, tstzrange(start_time, end_time) WITH &&)"
     }
 
-    states {
-      asset_id INTEGER REFERENCES asset(id),
-      start_time TIMESTAMPTZ NOT NULL,
-      state INT NOT NULL,
-      _ CHECK "(state >= 0)",
-      _ UNIQUE "(start_time, asset_id)"
-      _ HYPERTABLE "create_hypertable('states', 'start_time', if_not_exists => TRUE)"
-      _ INDEX "INDEX idx_states_asset_start_time ON states(asset_id, start_time DESC)"
+    state {
+        asset_id INTEGER REFERENCES asset(id)
+        start_time TIMESTAMPTZ NOT NULL
+        state INT NOT NULL
+        _ CHECK "(state >= 0)"
+        _ UNIQUE "(start_time, asset_id)"
+        _ HYPERTABLE "create_hypertable('states', 'start_time', if_not_exists => TRUE)"
+        _ INDEX "INDEX idx_states_asset_start_time ON states(asset_id, start_time DESC)"
     }
 
-    asset ||--o{ work_orders : "id"
-    asset ||--o{ product_types : "id"
-    asset ||--o{ products  : "id"
-    asset ||--o{ shifts  : "id"
-    asset ||--o{ states  : "id"
+    asset ||--o{ work_order : "id"
+    asset ||--o{ product_type : "id"
+    asset ||--o{ product  : "id"
+    asset ||--o{ shift  : "id"
+    asset ||--o{ state  : "id"
 
-    work_orders ||--o{ product_types  : "product_type_id"
-    products ||--o{ product_types  : "product_type_id"
+    work_order ||--o{ product_type  : "product_type_id"
+    product ||--o{ product_type  : "product_type_id"
 
 {{</ mermaid >}}
 
