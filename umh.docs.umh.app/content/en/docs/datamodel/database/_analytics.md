@@ -18,65 +18,68 @@ text workcell "DEFAULT '' NOT NULL"
 text origin_id "DEFAULT '' NOT NULL"
 }
 
-    work_orders {
-        workdOrderId INT "GENERATED ALWAYS AS IDENTITY PRIMARY KEY"
-        externalWorkOrderId TEXT "UNIQUE NOT NULL"
-        assetId INTEGER "REFERENCES assets(id) NOT NULL"
-        productTypeId INTEGER "REFERENCES product_types(productTypeId) NOT NULL"
-        quantity INTEGER "NOT NULL"
-        status INTEGER "NOT NULL DEFAULT 0"
-        startTime TIMESTAMPTZ
-        endTime TIMESTAMPTZ
-        _ CONSTRAINT "asset_workorder_uniqe UNIQUE (assetId, externalWorkOrderId)"
-        _ CHECK "(quantity > 0)"
-        _ CHECK "(status BETWEEN 0 AND 2)"
-        _ EXCLUDE "USING gist (assetId WITH =, tstzrange(startTime, endTime) WITH &&) WHERE (startTime IS NOT NULL AND endTime IS NOT NULL)"
+
+    product_type {
+      product_type_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+      external_product_type_id TEXT NOT NULL,
+      cycle_time_ms INTEGER NOT NULL,
+      asset_id INTEGER REFERENCES asset(id),
+      _ CONSTRAINT "external_product_asset_uniq UNIQUE (external_product_type_id, asset_id)",
+      _ CHECK "(cycle_time_ms > 0)"
     }
 
-    product_types {
-        productTypeId INT "GENERATED ALWAYS AS IDENTITY PRIMARY KEY"
-        externalProductTypeId TEXT "UNIQUE NOT NULL"
-        cycleTime REAL "NOT NULL"
-        assetId INTEGER "REFERENCES assets(id)"
-        _ CONSTRAINT "external_product_asset_uniq UNIQUE (externalProductTypeId, assetId)"
-        _ CHECK "(cycleTime > 0)"
+    work_order {
+      work_order_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+      external_work_order_id TEXT NOT NULL,
+      asset_id INTEGER NOT NULL REFERENCES asset(id),
+      product_type_id INTEGER NOT NULL REFERENCES product_type(product_type_id),
+      quantity INTEGER NOT NULL,
+      status INTEGER NOT NULL DEFAULT 0, -- 0: planned, 1: in progress, 2: completed
+      start_time TIMESTAMPTZ,
+      end_time TIMESTAMPTZ,
+      _ CONSTRAINT "asset_workorder_uniq UNIQUE (asset_id, external_work_order_id)",
+      _ CHECK "(quantity > 0)",
+      _ CHECK "(status BETWEEN 0 AND 2)",
+      _ UNIQUE "(asset_id, start_time)",
+      _ EXCLUDE "USING gist (asset_id WITH =, tstzrange(start_time, end_time) WITH &&) WHERE (start_time IS NOT NULL AND end_time IS NOT NULL)"
     }
 
-    products {
-        productId INT "GENERATED ALWAYS AS IDENTITY PRIMARY KEY"
-        externalProductTypeId INTEGER "REFERENCES product_types(productTypeId)"
-        assetId INTEGER "REFERENCES assets(id)"
-        startTime TIMESTAMPTZ
-        endTime TIMESTAMPTZ "NOT NULL"
-        quantity INTEGER "NOT NULL"
-        badQuantity INTEGER "DEFAULT 0"
-        _ CHECK "(quantity > 0)"
-        _ CHECK "(badQuantity >= 0)"
-        _ CHECK "(startTime <= endTime)"
-        _ CONSTRAINT "product_endtime_asset_uniq UNIQUE (endTime, assetId)"
-        _ HYPERTABLE "create_hypertable('products', 'endTime')"
-        _ INDEX "idx_products_asset_endtime ON products(assetId, endTime DESC)"
+    product {
+      product_type_id INTEGER REFERENCES product_type(product_type_id),
+      product_batch_id TEXT,
+      asset_id INTEGER REFERENCES asset(id),
+      start_time TIMESTAMPTZ,
+      end_time TIMESTAMPTZ NOT NULL,
+      quantity INTEGER NOT NULL,
+      bad_quantity INTEGER DEFAULT 0,
+      _ CHECK "(quantity > 0)",
+      _ CHECK "(bad_quantity >= 0)",
+      _ CHECK "(bad_quantity <= quantity)",
+      _ CHECK "(start_time <= end_time)",
+      _ UNIQUE "(asset_id, end_time, product_batch_id)"
+      _ HYPERTABLE "create_hypertable('product', 'end_time', if_not_exists => TRUE)"
+      _ INDEX "INDEX idx_products_asset_end_time ON product(asset_id, end_time DESC)"
     }
 
-    shifts {
-        shiftId INT "GENEREATED ALWAYS AS IDENTITY PRIMARY KEY"
-        assetId INTEGER "REFERENCES assets(id)"
-        startTime TIMESTAMPTZ "NOT NULL"
-        endTime TIMESTAMPTZ "NOT NULL"
-        _ CONSTRAINT "shift_start_asset_uniq UNIQUE (startTime, assetId)"
-        _ CHECK "(startTime < endTime)"
-        _ EXCLUDE "USING gist (assetId WITH =, tstzrange(startTime, endTime) WITH &&)"
+
+    shift {
+      shift_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+      asset_id INTEGER REFERENCES asset(id),
+      start_time TIMESTAMPTZ NOT NULL,
+      end_time TIMESTAMPTZ NOT NULL,
+      _ CONSTRAINT "shift_start_asset_uniq UNIQUE (start_time, asset_id)",
+      _ CHECK "(start_time < end_time)",
+      _ EXCLUDE "USING gist (asset_id WITH =, tstzrange(start_time, end_time) WITH &&)"
     }
 
     states {
-        stateId INT "GENERATED ALWAYS AS IDENTITY PRIMARY KEY"
-        assetId INTEGER "REFERENCES assets(id)"
-        startTime TIMESTAMPTZ "NOT NULL"
-        state INT "NOT NULL"
-        _ CONSTRAINT "state_start_asset_uniq UNIQUE (startTime, assetId)"
-        _ CHECK "(state >= 0)"
-        _ HYPERTABLE "create_hypertable('states', 'startTime')"
-        _ INDEX "INDEX idx_states_asset_starttime ON states(assetId, startTime DESC)"
+      asset_id INTEGER REFERENCES asset(id),
+      start_time TIMESTAMPTZ NOT NULL,
+      state INT NOT NULL,
+      _ CHECK "(state >= 0)",
+      _ UNIQUE "(start_time, asset_id)"
+      _ HYPERTABLE "create_hypertable('states', 'start_time', if_not_exists => TRUE)"
+      _ INDEX "INDEX idx_states_asset_start_time ON states(asset_id, start_time DESC)"
     }
 
     asset ||--o{ work_orders : "id"
@@ -85,8 +88,8 @@ text origin_id "DEFAULT '' NOT NULL"
     asset ||--o{ shifts  : "id"
     asset ||--o{ states  : "id"
 
-    work_orders ||--o{ product_types  : "productTypeId"
-    products ||--o{ product_types  : "productTypeId"
+    work_orders ||--o{ product_types  : "product_type_id"
+    products ||--o{ product_types  : "product_type_id"
 
 {{</ mermaid >}}
 
@@ -110,47 +113,47 @@ It already contains some data we inserted before so the new asset will be insert
 | 7  | umh                | cologne  | office     | dev         | server1  | sensor0   |
 | 8  | cuttingincoperated | cologne  | cnc-cutter |             |          |           |
 
-## work_orders
+## work_order
 
 This table holds all work orders.
-A work order is a unique combination of `externalWorkOrderId` and `assetId`.
+A work order is a unique combination of `external_work_order_id` and `asset_id`.
 
-| workOrderId | externalWorkOrderId | assetId | productTypeId | quantity | status | startTime            | endTime              |
-|-------------|---------------------|---------|---------------|----------|--------|----------------------|----------------------|
-| 1           | #2475               | 8       | 1             | 100      | 0      | 2022-01-01T08:00:00Z | 2022-01-01T18:00:00Z |
+| work_order_id | external_work_order_id | asset_id | product_type_id | quantity | status | start_time           | end_time             |
+|---------------|------------------------|----------|-----------------|----------|--------|----------------------|----------------------|
+| 1             | #2475                  | 8        | 1               | 100      | 0      | 2022-01-01T08:00:00Z | 2022-01-01T18:00:00Z |
 
-## product_types
+## product_type
 
 This table holds all product types.
-A product type is a unique combination of `externalProductTypeId` and `assetId`.
+A product type is a unique combination of `external_product_type_id` and `asset_id`.
 
-| productTypeId | externalProductTypeId | cycleTime | assetId |
-|---------------|-----------------------|-----------|---------|
-| 1             | desk-leg-0112         | 10.0      | 8       |
+| product_type_id | external_product_type_id | cycleTime | asset_id |
+|-----------------|--------------------------|-----------|----------|
+| 1               | desk-leg-0112            | 10.0      | 8        |
 
-## products
+## product
 
 This table holds all products.
 
-| productId | externalProductTypeId | assetId | startTime            | endTime              | quantity | badQuantity |
-|-----------|-----------------------|---------|----------------------|----------------------|----------|-------------|
-| 1         | 1                     | 8       | 2022-01-01T08:00:00Z | 2022-01-01T08:10:00Z | 100      | 7           |
+| product_type_id | product_batch_id | asset_id | start_time           | end_time             | quantity | bad_quantity |
+|-----------------|------------------|----------|----------------------|----------------------|----------|--------------|
+| 1               | batch-n113       | 8        | 2022-01-01T08:00:00Z | 2022-01-01T08:10:00Z | 100      | 7            |
 
-## shifts
+## shift
 
 This table holds all shifts.
-A shift is a unique combination of `assetId` and `startTime`.
+A shift is a unique combination of `asset_id` and `start_time`.
 
-| shiftId | assetId | startTime            | endTime              |
-|---------|---------|----------------------|----------------------|
-| 1       | 8       | 2022-01-01T08:00:00Z | 2022-01-01T19:00:00Z |
+| shiftId | asset_id | start_time           | end_time             |
+|---------|----------|----------------------|----------------------|
+| 1       | 8        | 2022-01-01T08:00:00Z | 2022-01-01T19:00:00Z |
 
-## states
+## state
 
 This table holds all states.
-A state is a unique combination of `assetId` and `startTime`.
+A state is a unique combination of `asset_id` and `start_time`.
 
-| stateId | assetId | startTime            | state |
-|---------|---------|----------------------|-------|
-| 1       | 8       | 2022-01-01T08:00:00Z | 20000 |
-| 2       | 8       | 2022-01-01T08:10:00Z | 10000 |
+| stateId | asset_id | start_time           | state |
+|---------|----------|----------------------|-------|
+| 1       | 8        | 2022-01-01T08:00:00Z | 20000 |
+| 2       | 8        | 2022-01-01T08:10:00Z | 10000 |
