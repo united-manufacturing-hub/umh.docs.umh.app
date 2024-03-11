@@ -44,25 +44,37 @@ both of which were established in the previous chapter.
     specific `asset`.
 
     ```sql
-    SELECT name, value, timestamp
+    SELECT name, value, time_bucket('$__interval', timestamp) AS time
     FROM tag
     WHERE asset_id = get_asset_id(
-      'pharma-genix',
-      'aachen',
-      'packaging',
-      'packaging_1',
-      'blister',
-      'PLC13'
-    );
+    	'pharma-genix',
+    	'aachen',
+    	'packaging',
+    	'packaging_1',
+    	'blister',
+    	'PLC13'
+    )
+    AND $__timeFilter(timestamp)
+    GROUP BY time, name, value
+    ORDER BY time DESC;
     ```
 
+    There are a few things to unpack here, so let's break it down:
+
+    - [`time_bucket`](https://docs.timescale.com/use-timescale/latest/time-buckets/about-time-buckets/) is a TimescaleDB function that groups data into time intervals. The first argument is the
+      interval, which is set to [`$__interval`](https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#__interval) to match the time range selected in the Grafana dashboard (1m, 6h, 7d, etc). The second
+      argument is the column to group by, which is `timestamp`, as defined in our [data model](/docs/datamodel/database).
+    - The table we're querying is `tag`, this varies depending on the tag's data type, find more information in the data
+      model linked above.
+    - The `asset_id` is retrieved using the `get_asset_id` function, which is a custom plpgsql function we provide to
+      simplify the process of querying `tag` data from a specific `asset`. Click [here](/docs/datamodel/database/#data-retrieval) for more examples.
+    - [`$__timeFilter`](https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#timefilter-or-__timefilter) is a Grafana function that filters the data based on a given time range. It receives one
+      argument, which is the column to filter by, in our case `timestamp`.
+    - Finally, we group the data by `time` (timestamp alias), `name`, and `value`, and order it by `time` in descending order to display the most recent data first.
+
 {{% notice info %}}
-`get_asset_id` is a custom plpgsql function that we provide to simplify the process of querying
-`tag` data from a specific `asset`.
-In the code snippet above, the arguments provided to the function are based on the OPC-UA node we defined in the
-[**Initialize the Connection**](/docs/getstarted/dataacquisitionmanipulation/#initialize-the-connection)
-section of the previous chapter, so adjust them accordingly if you used different values. You can also select the
-desired tag in the **Tag Browser** of the **Management Console**, and copy the provided SQL query.
+You can also select the desired tag in the **Tag Browser** of the **Management Console**, and directly copy the provided
+SQL query from there.
 {{% /notice %}}
 
 11. Same as before, click on the **Run Query** button to execute the query. If you've been following along, you won't
