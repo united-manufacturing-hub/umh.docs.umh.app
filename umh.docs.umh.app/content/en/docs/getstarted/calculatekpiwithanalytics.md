@@ -4,6 +4,7 @@ menuTitle: 6. (optional) Calculating business KPIs such as OEE with _analytics
 description: Generate business KPIs such as OEE with _analytics
 weight: 6000
 draft: false
+wip: true
 ---
 
 In the previous getting started guides we explained you how you can store and visualize time-series data. In this guide, we will focus on storing and visualizing your business data, especially around the topic of Overall Equipment Effectiveness (OEE) and work orders, using [_analytics](/docs/datamodel/messages/#_analytics) messages.
