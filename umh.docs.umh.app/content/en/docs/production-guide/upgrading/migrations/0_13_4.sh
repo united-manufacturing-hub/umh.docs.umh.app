@@ -26,6 +26,7 @@ then
     echo "See /tmp/upgrade_0_13_4.log for more details"
     exit 1
 fi
+echo "✅ Helm repo added"
 
 
 # Update repo
