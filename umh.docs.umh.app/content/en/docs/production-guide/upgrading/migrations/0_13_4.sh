@@ -27,6 +27,7 @@ fi
 if [ "$PREVIOUS_VERSION" != "0.10.6" ]; then
     echo "United Manufacturing Hub is not at version 0.10.6"
     echo "Please upgrade to 0.10.6 before upgrading to 0.13.4"
+    echo "If you are running a version newer than 0.10.6, please contact us via discord or know support channels"
     exit 1
 fi
 
