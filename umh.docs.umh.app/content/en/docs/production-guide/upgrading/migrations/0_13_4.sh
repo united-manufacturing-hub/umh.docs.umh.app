@@ -18,6 +18,19 @@ echo "=========================================================="
 echo "Starting migration to 0.13.4, this will take a few minutes"
 echo "=========================================================="
 echo ""
+PREVIOUS_VERSION=$(sudo $(which helm) --kubeconfig /etc/rancher/k3s/k3s.yaml list -n united-manufacturing-hub -o json | jq .[0].app_version | tr -d '"')
+if [ "$PREVIOUS_VERSION" == "0.13.4" ]; then
+    echo "United Manufacturing Hub is already at version 0.13.4"
+    exit 0
+fi
+# Check if previous version is 0.10.6
+if [ "$PREVIOUS_VERSION" != "0.10.6" ]; then
+    echo "United Manufacturing Hub is not at version 0.10.6"
+    echo "Please upgrade to 0.10.6 before upgrading to 0.13.4"
+    exit 1
+fi
+
+
 # Ensure repo is added
 echo "Ensuring helm repo is added"
 if ! sudo $(which helm) repo add united-manufacturing-hub https://management.umh.app/helm/umh >> /tmp/upgrade_0_13_4.log 2>&1
