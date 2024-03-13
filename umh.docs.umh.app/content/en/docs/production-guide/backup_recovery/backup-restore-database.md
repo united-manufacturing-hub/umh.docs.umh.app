@@ -163,7 +163,7 @@ For `umh_v2`, you should use `kafkatopostgresqlv2` for the user name and
 with the following command:
 
    ```bash
-   pg_restore -U factoryinsight -h 10.13.37.205 -p 5432 --no-owner -Fc -v -d factoryinsight <path-to-dump_pre_data.bak>
+   pg_restore -U factoryinsight -h 10.13.47.205 -p 5432 --no-owner -Fc -v -d factoryinsight <path-to-dump_pre_data.bak>
    ```
 
 
