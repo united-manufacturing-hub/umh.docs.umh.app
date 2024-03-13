@@ -1,11 +1,9 @@
 ---
-title: Shopfloor KPIs / Analytics
-menuTitle: Shopfloor KPIs / Analytics
+title: Shopfloor KPIs / Analytics (v0)
+menuTitle: Shopfloor KPIs / Analytics (v0)
 description: The Shopfloor KPI/Analytics feature of the United Manufacturing Hub provides equipment-based KPIs, configurable dashboards, and detailed analytics for production transparency. Configure OEE calculation and track root causes of low OEE using drill-downs. Easily ingest, process, and analyze data in Grafana.
-weight: 3000
+weight: 6000
 deprecated: true
-aliases:
-  - /docs/features/analytics
 ---
 
 The Shopfloor KPI / Analytics feature of the United Manufacturing Hub provides a configurable and plug-and-play approach to create "Shopfloor Dashboards" for production transparency consisting of various KPIs and drill-downs.
