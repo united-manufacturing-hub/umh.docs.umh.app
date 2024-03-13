@@ -10,7 +10,7 @@ tasks:
       git lfs pull
       make install
     command: |
-      make serve
+      make install-and-serve # This is needed when re-opening the workspace
   - name: Setup git auto branch creation
     init: |
       git config push.autoSetupRemote true
