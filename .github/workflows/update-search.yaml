@@ -1,19 +1,16 @@
 name: Update search
 
 on:
-  push:
-    branches:
-      - main
-      - fix/xxx/search
   # Run every night at 3:00 AM
   schedule:
     - cron: "0 3 * * *"
+
   # Allow manual trigger
   workflow_dispatch:
 
 concurrency:
   group: update-search
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
