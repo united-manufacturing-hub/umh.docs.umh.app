@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+  # Run every night at 3:00 AM
+  schedule:
+    - cron: "0 3 * * *"
+  # Allow manual trigger
+  workflow_dispatch:
 
 jobs:
   build:
@@ -11,9 +16,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Wait for 10 minutes
-        run: sleep 600
+        uses: actions/checkout@v4
       - name: Run Docker command
         env:
           TYPESENSE_API_KEY: ${{ secrets.TYPESENSE_API_KEY }}
