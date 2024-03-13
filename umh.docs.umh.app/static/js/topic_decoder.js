@@ -57,8 +57,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     outputField.textContent = "❗ Tag is missing for _analytics schema\n"
                 }
                 // Validate tag
-                // One of: work-order/create, work-order/start, work-order/stop, product-type/create, product/add, shift/add, shift/delete, state/add, state/overwrite
-                const validTags = ["work-order.create", "work-order.start", "work-order.stop", "product-type.create", "product.add", "shift.add", "shift.delete", "state.add", "state.overwrite"];
+                // One of: work-order/create, work-order/start, work-order/stop, product-type/create, product/add, product/setBadQuantity, shift/add, shift/delete, state/add, state/overwrite
+                const validTags = ["work-order.create", "work-order.start", "work-order.stop", "product-type.create", "product.add", "product.setBadQuantity", "shift.add", "shift.delete", "state.add", "state.overwrite"];
                 if (!validTags.includes(matches.groups.tag)){
                     outputField.textContent += "❗ Invalid tag for _analytics schema\n"
                 }else{
