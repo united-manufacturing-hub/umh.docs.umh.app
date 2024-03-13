@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - fix/xxx/search
   # Run every night at 3:00 AM
   schedule:
     - cron: "0 3 * * *"
