@@ -15,7 +15,7 @@ rm -f /tmp/upgrade_0_13_4.log 2>/dev/null
 # Log output of all other sudo commands to /tmp/upgrade_0_13_4.log
 
 echo "=========================================================="
-echo "Starting migration to 0.13.4, this will take a few minutes"
+echo "Starting migration Helm chart to 0.13.4, this will take a few minutes"
 echo "=========================================================="
 echo ""
 PREVIOUS_VERSION=$(sudo $(which helm) --kubeconfig /etc/rancher/k3s/k3s.yaml list -n united-manufacturing-hub -o json | jq .[0].app_version | tr -d '"')
