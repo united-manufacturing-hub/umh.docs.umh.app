@@ -3,7 +3,9 @@
   "start_urls": [
     "https://umh.docs.umh.app"
   ],
-  "stop_urls": [],
+  "stop_urls": [
+    "https://umh.docs.umh.app/docs/_print"
+  ],
   "selectors": {
     "lvl0": {
       "selector": "header a",
