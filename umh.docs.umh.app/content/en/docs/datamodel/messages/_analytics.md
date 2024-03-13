@@ -23,7 +23,7 @@ pt --> pt-create[create]
 
 _analytics --> p[product]
 p --> p-add[add]
-p --> p-set-bad-quantity[setbad_quantity]
+p --> p-set-bad-quantity[setbadQuantity]
 
 _analytics --> s[shift]
 s --> s-add[add]
