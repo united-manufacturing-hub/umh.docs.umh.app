@@ -33,3 +33,4 @@ jobs:
             -e "TYPESENSE_PORT=${{ env.TYPESENSE_PORT }}" \
             -e "TYPESENSE_PROTOCOL=${{ env.TYPESENSE_PROTOCOL }}" \
             typesense/docsearch-scraper
+
