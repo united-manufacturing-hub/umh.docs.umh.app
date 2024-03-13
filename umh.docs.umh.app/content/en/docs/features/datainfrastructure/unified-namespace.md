@@ -102,6 +102,8 @@ following features:
 - **Tag Value History**: Shows the last 100 received values for the selected tag, allowing you to track the
   changes in the data over time. Keep in mind that this feature is only available for tags that are part of the
   `_historian` schema.
+- **Example SQL Query**: Generates example SQL queries based on the selected tag, which can be used to query the
+  data in the UMH's database or in Grafana for [visualization](/docs/getstarted/datavisualization) purposes.
 - **Kafka Origin**: Provides information about the Kafka key, topic and the actual payload that was sent via Kafka.
 
 {{% notice note %}}
