@@ -288,6 +288,15 @@ $td-enable-google-fonts: false;
     margin-bottom: 20px;
 }
 
+// CSS for wip hint
+.wip-hint {
+    background-color: #F4F4F4;
+    border: 1px solid #DBA800;
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
 .edition-info {
     background-color: rgba($color: $ci_blue, $alpha: 0.2);
     outline: 1px solid $ci_blue;
