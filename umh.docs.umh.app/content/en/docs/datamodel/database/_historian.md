@@ -2,10 +2,10 @@
 title: "Historian"
 chapter: true
 description: "How `_historian` data is stored and can be queried"
-weight: 2000
+weight: 3000
 ---
 
-Our database for the umh.v1 datamodel currently consists of three tables.
+Our database for the umh.v1 `_historian` datamodel currently consists of three tables.
 These are used for the `_historian` schema.
 We choose this layout to enable easy lookups based on the asset features, while maintaining separation between data and names.
 The split into `tag` & `tag_string` prevents accidental lookups of the wrong datatype, which might break queries such as aggregations, averages, ...

@@ -41,15 +41,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const matches = regex.exec(value);
         if (matches) {
+            /*
             if (matches.groups.tag) {
                 // Replace dots with underscores in tag
                 matches.groups.tag = matches.groups.tag.replaceAll('.', '_');
-            }
+            }*/
             outputField.textContent = "✔️ Valid Topic\n";
             if (matches.groups.schema === "_historian"){
                 outputField.textContent += "✅ Using UMH _historian schema\n"
             }else if (matches.groups.schema === "_analytics"){
                 outputField.textContent += "✅ Using UMH _analytics schema\n"
+                // Check if tag is present
+                console.log(matches.groups.tag);
+                if (!matches.groups.tag){
+                    outputField.textContent = "❗ Tag is missing for _analytics schema\n"
+                }
+                // Validate tag
+                // One of: work-order/create, work-order/start, work-order/stop, product-type/create, product/add, product/setBadQuantity, shift/add, shift/delete, state/add, state/overwrite
+                const validTags = ["work-order.create", "work-order.start", "work-order.stop", "product-type.create", "product.add", "product.setBadQuantity", "shift.add", "shift.delete", "state.add", "state.overwrite"];
+                if (!validTags.includes(matches.groups.tag)){
+                    outputField.textContent += "❗ Invalid tag for _analytics schema\n"
+                }else{
+                    outputField.textContent += "✔️ Valid tag for _analytics schema\n"
+                }
             }else if (matches.groups.schema === "_local"){
                 outputField.textContent += "✅ Using UMH _local schema\n"
             }else{
