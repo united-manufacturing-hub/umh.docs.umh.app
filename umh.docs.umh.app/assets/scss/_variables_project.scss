@@ -288,6 +288,15 @@ $td-enable-google-fonts: false;
     margin-bottom: 20px;
 }
 
+// CSS for wip hint
+.wip-hint {
+    background-color: #F4F4F4;
+    border: 1px solid #DBA800;
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
 .edition-info {
     background-color: rgba($color: $ci_blue, $alpha: 0.2);
     outline: 1px solid $ci_blue;
@@ -319,6 +328,36 @@ $td-enable-google-fonts: false;
         max-height: 100%;
         width: 90%;
     }
+}
+
+
+// Lightbox (Mermaid)
+.lightbox-mm {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.9);
+    svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        max-width: 100%;
+        max-height: 100%;
+        width: 90%;
+    }
+}
+
+.mermaid {
+    cursor: pointer;
 }
 
 
