@@ -7,14 +7,19 @@ weight: 2000
 draft: true
 ---
 
-The Network Monitoring feature of the United Manufacturing Hub visualizes the instances' network within the Unified Namespace. 
+The Network Monitoring feature of the United Manufacturing Hub visualizes the instances' 
+network within the Unified Namespace. 
 
 
 ## When should I use it?
-Your infrastructure might consist of multiple UMH instances. This feature offers a simple network view for monitoring the entire network of all instances, allowing you to detect any issues within the infrastructure. 
+Your infrastructure might consist of multiple UMH instances. This feature offers 
+a simple network view for monitoring the entire network of all instances, 
+allowing you to detect any issues within the infrastructure. 
 
 ## What can I do with it?
-The network view groups instances respecting ISA-95 schema. These groups are marked with dotted squares, and nodes are connected with solid lines. The current status of each instance is shown by colors as defined in the legend.
+The network view groups instances respecting ISA-95 schema. 
+These groups are marked with dotted squares, and nodes are connected with solid lines. 
+The current status of each instance is shown by colors as defined in the legend.
 
 <!-- Insert an image -->
 
