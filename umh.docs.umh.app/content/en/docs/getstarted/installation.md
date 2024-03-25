@@ -1,9 +1,11 @@
-+++
-title = "1. Installation"
-menuTitle = "1. Installation"
-description = "Install the United Manufacturing Hub together with all required tools on a Linux Operating System."
-weight = 1000
-+++
+---
+title: "1. Installation"
+menuTitle: "1. Installation"
+description: |
+   Install the United Manufacturing Hub together with all required tools on a Linux Operating System.
+weight: 1000
+edition: community
+---
 
 The United Manufacturing Hub (UMH) can be deployed on various external devices, including edge devices and virtual machines (VMs). For initial installations or for development purposes, it is recommended to use a VM.
 
