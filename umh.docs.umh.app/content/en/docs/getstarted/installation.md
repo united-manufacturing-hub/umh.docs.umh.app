@@ -7,17 +7,26 @@ weight: 1000
 edition: community
 ---
 
-The United Manufacturing Hub (UMH) can be deployed on various external devices, including edge devices and virtual machines (VMs). For initial installations or for development purposes, it is recommended to use a VM.
+The United Manufacturing Hub (UMH) can be deployed on various external devices, 
+including edge devices and virtual machines (VMs). For initial installations 
+or for development purposes, it is recommended to use a VM.
 
 ## Software Requirements
 
 The UMH installation requires one of the following Operaing System on your server:
 
-- Flatcar version current-2023 or higher (3510.3.1). It is recommended that you have full control over the operating system. To install Flatcar on your server, follow [this guide](/docs/production-guide/installation/flatcar-installation/). <!-- This article needs to be merged together https://umh.docs.umh.app/docs/production-guide/installation/flatcar-installation-virtual-machine/ https://learn.umh.app/course/flatcar-installation-on-proxmox/ -->
-- Red Hat Enterprise Linux (RHEL) 9.0 and higher. Recommended when you can choose only out of a small amount of potential Operating System in your large enterprise
+- Flatcar version current-2023 or higher (3510.3.1). 
+It is recommended that you have full control over the operating system. To install Flatcar on your server, 
+follow [this guide](/docs/production-guide/installation/flatcar-installation/). <!-- This article needs to be merged together https://umh.docs.umh.app/docs/production-guide/installation/flatcar-installation-virtual-machine/ https://learn.umh.app/course/flatcar-installation-on-proxmox/ -->
+- Red Hat Enterprise Linux (RHEL) 9.0 and higher. Recommended when you can choose 
+only out of a small amount of potential Operating System in your large enterprise
 - Ubuntu 22.04.4 LTS
 
-While UMH is optimized for RHEL and Flatcar, it can theoretically run on other Linux distributions. However, support is not guaranteed. For Windows, you could try running one of the above described Operating Systems in a VM (e.g., Hyper-V). If you experiment with other systems, we encourage sharing your experiences on our [Discord](https://discord.gg/F9mqkZnm9d) channel.
+While UMH is optimized for RHEL and Flatcar, it can theoretically run on other Linux distributions. 
+However, support is not guaranteed. 
+For Windows, you could try running one of the above described Operating Systems in a VM (e.g., Hyper-V). 
+If you experiment with other systems, we encourage sharing your experiences 
+on our [Discord](https://discord.gg/F9mqkZnm9d) channel.
 
 ## Hardware Requirements
 
@@ -25,14 +34,15 @@ While UMH is optimized for RHEL and Flatcar, it can theoretically run on other L
 - Memory: 16 GB RAM
 - Disk Space: 32 GB available
 
-Note: Systems at the edge of these requirements may experience longer installation times. Close other programs during installation for optimal performance.
+Note: Systems at the edge of these requirements may experience longer installation times. 
+Close other programs during installation for optimal performance.
 
 ## Network Requirements
 
 Before proceeding with the installation, ensure your system meets the necessary network requirements.
 
-To learn about configuring firewall and network rules for your UMH instances, please refer to our dedicated [Firewall Rules](/docs/production-guide/security/firewall-rules/)
-page.
+To learn about configuring firewall and network rules for your UMH instances, 
+please refer to our dedicated [Firewall Rules](/docs/production-guide/security/firewall-rules/) page.
 
 ## Installation Steps
 
@@ -56,10 +66,16 @@ page.
 7. You should be able to see a create command. Copy and paste the following command into your server's terminal (via ssh).
    ![Create command button](/images/getstarted/installation/command.png)
 
-8. The installation script runs a lot of checking and setup. For example, it checks your operating system, installation of required tools, and internet connection. After the check phase, kubectl and Helm will be installed. The script shall show you what actions will happen to your system in the next step. If you want to proceed, type **Y** and press **enter key**.
+8. The installation script runs a lot of checking and setup. For example, it checks your operating system, 
+installation of required tools, and internet connection. 
+After the check phase, kubectl and Helm will be installed. 
+The script shall show you what actions will happen to your system in the next step. 
+If you want to proceed, type **Y** and press **enter key**.
    ![Installation checks](/images/getstarted/installation/checking.png)
 
-9. In this step, k3s will be installed. Then, it installs the UMH Helm Chart in Kubernetes. After that, the Management Companion will be installed into Kubernetes. Until everything is set up, it can take a while.
+9. In this step, k3s will be installed. Then, it installs the UMH Helm Chart in Kubernetes. 
+After that, the Management Companion will be installed into Kubernetes. 
+Until everything is set up, it can take a while.
    ![Installation logs](/images/getstarted/installation/installphase.png)
 
 10. After successful installation, you should be able to see messages like in the picture below.
@@ -95,4 +111,5 @@ Here are some links to get you started:
 ## What's next?
 
 Once you installed UMH, you can continue with the
-[next page](/docs/getstarted/managingthesystem) to learn how to manage the system, for example, access to the microservices.
+[next page](/docs/getstarted/managingthesystem) to learn how to manage the system, 
+for example, access to the microservices.
