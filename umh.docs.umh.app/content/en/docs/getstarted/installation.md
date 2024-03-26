@@ -20,7 +20,7 @@ It is recommended that you have full control over the operating system. To insta
 follow [this guide](/docs/production-guide/installation/flatcar-installation/). <!-- This article needs to be merged together https://umh.docs.umh.app/docs/production-guide/installation/flatcar-installation-virtual-machine/ https://learn.umh.app/course/flatcar-installation-on-proxmox/ -->
 - Red Hat Enterprise Linux (RHEL) 9.0 and higher. Recommended when you can choose 
 only out of a small amount of potential Operating System in your large enterprise
-- Ubuntu 22.04.4 LTS
+- Community Supported: Ubuntu 22.04.4 LTS
 
 While UMH is optimized for RHEL and Flatcar, it can theoretically run on other Linux distributions. 
 However, support is not guaranteed. 
