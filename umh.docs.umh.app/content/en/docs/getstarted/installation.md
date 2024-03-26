@@ -54,13 +54,13 @@ please refer to our dedicated [Firewall Rules](/docs/production-guide/security/f
 3. If you are not a member, continue with sign up. Register your information and click on **SIGN UP**.
    ![Sign up page](/images/getstarted/installation/signup.png)
 
-4. Click on **+ADD INSTANCE** button.
+4. Click on **+Add Instance** button.
    ![Add Instance button](/images/getstarted/installation/dashboard.png)
 
 5. Select **Install UMH Only**.
    ![Install UMH Only button](/images/getstarted/installation/addinstance.png)
 
-6. Enter your instace name and then click on **CREATE MY COMMAND**.
+6. Enter your instace name and then click on **Create my command**.
    ![Instance name input](/images/getstarted/installation/entername.png)
 
 7. You should be able to see a create command. Copy and paste the following command into your server's terminal (via ssh).
@@ -81,7 +81,7 @@ Until everything is set up, it can take a while.
 10. After successful installation, you should be able to see messages like in the picture below.
     ![Installation success message](/images/getstarted/installation/successful.png)
 
-11. Go back to the Management Console and click on **LET'S GO!**
+11. Go back to the Management Console and click on **Let's Go!**
     ![Lets Go button](/images/getstarted/installation/letsgo.png)
 
 12. Now, you should be able to see your instance on the dashboard.
