@@ -35,22 +35,21 @@ needs.
 | Historian                 |    ✓    |      |
 | Analytics                 |    ✓    |      |
 | Data Visualization        |    ✓    |      |
-| UNS                       |    ✓    |      |
-| Kafka and MQTT            |    ✓    |      |
+| UNS (Kafka & MQTT)        |    ✓    |      |
 | Alerting                  |    ✓    |      |
 | Connectivity: OPC UA      |    ✓    |  ✓   |
 | Connectivity: Node-RED    |    ✓    |      |
 | Network Monitoring        |    ✓    |  ✓   |
 | UMH Data Model v1         |    ✓    |  ✓   |
-| Tag Browser for your UNF  |    ✓    |      |
+| Tag Browser for your UNS  |    ✓    |      |
 
 ### Connect devices and add protocol converters
 
 You can connect external devices like a PLC with an OPC UA server to a running
 UMH Lite instance and contextualize the data from it with a [protocol
 converter](https://umh.docs.umh.app/docs/features/connectivity/benthos-umh/).
-For contextualization, you have to use the [UMH Data Model
-v1](https://umh.docs.umh.app/docs/datamodel/messages/).
+For contextualization, you have to use the
+[UMH Data Model v1](https://umh.docs.umh.app/docs/datamodel/messages/).
 
 ### Send data to your own infrastructure
 
@@ -66,15 +65,22 @@ mark it.
 
 ### Convert to a UMH Classic
 
-If you notice at any time that the UMH Lite is not enough anymore and you need features from the UMH Classic, you can convert it to a UMH Classic in
-the Management Console. This will not affect your configured devices and
-protocol converters: Their data will still be sent to your MQTT broker and
-additionally will be available in your new Unified Namespace and database.
+Should you find the UMH Lite insufficient and require the features offered by
+UMH Classic, you can upgrade through the Management Console. This change will 
+preserve the configurations of your devices and protocol converters: Their data 
+continues to be forwarded to your initial MQTT broker, while also becoming 
+accessible within your new Unified Namespace and database. Any protocol
+converters introduced post-upgrade will also support the original MQTT broker as
+an additional output. You can manually remove the original MQTT broker as an
+output after the upgrade. Once removed, data will no longer be forwarded to the
+initial MQTT broker.
+
 
 ## How can I use it?
 
 To add a new UMH Lite instance, simply follow the regular 
-[installation process](https://umh.docs.umh.app/docs/getstarted/installation/) and select UMH Lite instead of UMH Classic. You can follow the next steps in
+[installation process](https://umh.docs.umh.app/docs/getstarted/installation/)
+and select UMH Lite instead of UMH Classic. You can follow the next steps in
 the linked guide to learn how to connect devices and add a protocol converter.
 
 ## What are the limitations?
@@ -83,6 +89,9 @@ The UMH Lite is a very basic version and only offers you the gathering and
 contextualization of your data as well as the monitoring of the network. Other
 features like a historian, data visualization, and a Unified Namespace are only
 available by using the UMH Classic.
+Additionally, converting to a UMH Classic requires an SSH connection, similar
+to what is needed during the initial installation.
+
 
 ## Where to get more information?
 
