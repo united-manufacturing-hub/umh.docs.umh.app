@@ -36,7 +36,7 @@ refer to [our upgrading guide](/docs/production-guide/upgrading/0.13.4/).
 
 ## Back up Grafana
 
-This section explains how to backup your Grafana deployment on your UMH instance. 
+This section explains how to back up your Grafana deployment on your UMH instance.
 
 ### Back up ConfigMap, Secret, and Deployment
 
