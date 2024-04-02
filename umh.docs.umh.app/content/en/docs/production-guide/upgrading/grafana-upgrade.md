@@ -8,12 +8,12 @@ weight: 2600
 
 <!-- overview -->
 In this guide, you will learn how to upgrade Grafana v9.5.5 to v10.4.0 (UMH v0.13.6 to the latest). 
-You can find a change log in [What's new in Grafana v10.4](https://grafana.com/docs/grafana/latest/whatsnew/whats-new-in-v10-4/)
+You can find a change log in [What's new in Grafana v10.4](https://grafana.com/docs/grafana/latest/whatsnew/whats-new-in-v10-4/).
 
 {{% notice warning %}}
 This upgrade introduces several breaking changes that may require new configurations, 
-yet it maintains backwards compatibility. 
-Please refer [Breaking changes in Grafana](https://grafana.com/docs/grafana/latest/breaking-changes/).
+yet it maintains backward compatibility. 
+Please refer to [Breaking changes in Grafana](https://grafana.com/docs/grafana/latest/breaking-changes/).
 {{% /notice %}}
 
 ## {{% heading "prerequisites" %}}
@@ -32,13 +32,13 @@ Please refer [Breaking changes in Grafana](https://grafana.com/docs/grafana/late
 {{< include "task-aftinst-prereqs.md" >}}
 
 Make sure that your instance's version is v0.13.6. To upgrade your instance, 
-refer [our upgrading guide](/docs/production-guide/upgrading/0.13.4/).
+refer to [our upgrading guide](/docs/production-guide/upgrading/0.13.4/).
 
 ## Back up Grafana
 
 This section explains how to backup your Grafana deployment on your UMH instance. 
 
-### Back up ConfigMap, Secret, and Deploymant
+### Back up ConfigMap, Secret, and Deployment
 
 The following steps save the current configuration of grafana. 
 
@@ -57,7 +57,7 @@ The following steps save the current configuration of grafana.
     sudo $(which kubectl) get deployment  -n united-manufacturing-hub -l app.kubernetes.io/name=grafana --kubeconfig /etc/rancher/k3s/k3s.yaml  -o yaml > grafana-deployment-backup.yaml
     ```
 
-If you want to back up configuration files directly, refer [this page](https://grafana.com/docs/grafana/latest/upgrade-guide/upgrade-v10.4/#back-up-the-grafana-configuration-file).
+If you want to back up configuration files directly, refer to [this page](https://grafana.com/docs/grafana/latest/upgrade-guide/upgrade-v10.4/#back-up-the-grafana-configuration-file).
 ### Back up plugins
 
 Copy the files of installed plugins by running the following command.
@@ -69,12 +69,12 @@ sudo kubectl exec -n united-manufacturing-hub $(sudo $(which kubectl) get pods -
 ### Back up the Grafana database
 
 The UMH does not require this step by default since the data is stored in our data storage. 
-If you use your own database, refer 
+If you use your own database, refer to
 [this upgrade guide](https://grafana.com/docs/grafana/latest/upgrade-guide/upgrade-v10.4/#back-up-the-grafana-database) to back up. 
 
 ## Upgrade Grafana
 You can upgrade your instance by using Management Console, and it upgrades also Grafana. 
-After the upgrade, you can restore your settings from the back up files.
+After the upgrade, you can restore your settings from the backup files.
 
 ### Restore configurations
 
