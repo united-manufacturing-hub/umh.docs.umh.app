@@ -13,7 +13,7 @@ or for development purposes, it is recommended to use a VM.
 
 ## Software Requirements
 
-The UMH installation requires one of the following Operaing System on your server:
+The UMH installation requires one of the following Operating System on your server:
 
 - Flatcar version current-2023 or higher (3510.3.1). 
 It is recommended that you have full control over the operating system. To install Flatcar on your server, 
