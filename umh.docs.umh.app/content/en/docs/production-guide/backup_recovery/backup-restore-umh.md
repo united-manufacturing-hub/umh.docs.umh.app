@@ -160,7 +160,7 @@ failure.
 
 ### Copy kubeconfig file
 
-To run the backup script, you'll first need to obtain a copy of the Kubernetes 
+To run the restore script, you'll first need to obtain a copy of the Kubernetes 
 configuration file from your instance. This is essential for providing the 
 script with access to the instance.
 
@@ -197,8 +197,10 @@ the following parameters:
 .\restore-helm.ps1 -KubeconfigPath .\k3s.yaml -BackupPath <PATH_TO_BACKUP_FOLDER>
 ```
 
-Verify that the cluster is up and running by opening {{< resource type="lens" name="name" >}}
-and checking if the workloads are running.
+Verify that the cluster is up and running by using the command
+```bash
+sudo $(which kubectl) get pods -n united-manufacturing-hub --kubeconfig /etc/rancher/k3s/k3s.yaml
+```
 
 ### Grafana dashboards
 To restore the Grafana dashboards, you first need to create a Grafana API Key
