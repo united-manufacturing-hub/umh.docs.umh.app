@@ -49,7 +49,7 @@ TimescaleDB extensions manually. The following steps are needed to be done to up
     a previous TimescaleDB version on session startup.
 
 2. You should be connected `postgres` database now. The following command should be executed for each 
-databases except `template0`.
+database except `template0`.
 
     ```sql
     ALTER EXTENSION timescaledb UPDATE;
@@ -60,7 +60,7 @@ databases except `template0`.
     ```sql
     \dx timescaledb
     ```
-3. For `postgres` database, run the following command to update the TimescaleDB Toolkit extension.
+3. For the `postgres` database, run the following command to update the TimescaleDB Toolkit extension.
 
     ```sql
     ALTER EXTENSION timescaledb_toolkit UPDATE;
