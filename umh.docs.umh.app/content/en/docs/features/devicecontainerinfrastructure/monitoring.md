@@ -21,8 +21,8 @@ navigate to the [Get Started!](/docs/getstarted/installation/) guide.
 
 You can monitor the statuses of the following items using the Management Console:
 
-- **Modules**: A Module refer to a grouped set of related Kubernetes components
-  like pods, statefulsets, and services. It provides a way to monitor and manage
+- **Modules**: A Module refers to a grouped set of related Kubernetes components
+  like Pods, StatefulSets, and Services. It provides a way to monitor and manage
   these components as a single unit.
 - **System**:
   - Resource Utilization: CPU, RAM, and DISK usages.
@@ -32,10 +32,10 @@ You can monitor the statuses of the following items using the Management Console
 - **Kubernetes**: the number of error events and the deployed management
   companion's and UMH's versions.
 
-In addtion, you can check the topic structure used by data sources and the
+In addition, you can check the topic structure used by data sources and the
 corresponding payloads.
 
-Moreover, you can create a new connection and initilize the created connection to
+Moreover, you can create a new connection and initialize the created connection to
 deploy a data source.
 
 ## How can I use it?
@@ -67,7 +67,7 @@ MQTT Topic = Kafka topic + Kafka Key
 ```
 
 {{% notice info %}}
-The kafka topic and key depend on the configured merge point, read more about it 
+The Kafka topic and key depend on the configured merge point, read more about it 
 [here](/docs/production-guide/administration/normalize-kafka-topics).
 {{% /notice %}}
 
