@@ -50,53 +50,99 @@ to link them to the correct contact points. You have to use SQL to select the
 desired values. 
 
 
-1. To add a new rule, hover over the bell symbol on the left and click on **Alert rules**. 
-Then click on the blue **Create alert rule** button.
+1. To add a new rule, navigate to **Alerting** &rArr; **Alert rules** in the left menu.
+Then click on the blue **New alert rule** button.
 
    ![Untitled](/images/features/grafana-alert/create-alert-rule.png?width=75%)
 
 2. Choose a name for your rule.
-3. In the next step, you need to select and manipulate the value that triggers your alert and declare the function for the alert.
+3. In the next step, you need to select and manipulate the value that triggers 
+your alert and declare the function for the alert.
 <!-- update https://learn.umh.app/course/alerts-in-grafana/ so that the tutorial refers the new data model-->
 <!-- also, add new screenshots of grafana-->
-- Subsection **A** is, by default the selection of your values: You can use the Grafana builder for this, but it is not useful, as it cannot select a time interval even though there is a selector for it. If you choose, for example, the last 20 seconds, your query will select values from hours ago. Therefore, it is necessary to use SQL directly. To add command manually, switch to **Code** in the right corner of the section.
-   - First, you must select the value you want to create an alert for. In the United Manufacturing Hub's data structure, a process value is stored in the table `tag`. Unfortunately Grafana cannot differentiate between different values of the same sensor; if you select the `ConcentrationNH3` value from the example and more than one of the selected values violates your rule in the selected time interval, it will trigger multiple alerts. Because Grafana is not able to tell the alerts apart, this results in errors. To solve this, you need to add the value `"timestamp"` to the `Select` part. So the first part of the SQL command is: `SELECT value, "timestamp"`.
+- Subsection **A** is, by default the selection of your values: You can use 
+the Grafana builder for this, but it is not useful, as it cannot select a time 
+interval even though there is a selector for it. 
+If you choose, for example, the last 20 seconds, your query will select values from hours ago. 
+Therefore, it is necessary to use SQL directly. To add command manually, 
+switch to **Code** in the right corner of the section.
+   - First, you must select the value you want to create an alert for. 
+   In the United Manufacturing Hub's data structure, a process value is stored in the table `tag`. 
+   Unfortunately Grafana cannot differentiate between different values of the same sensor; 
+   if you select the `ConcentrationNH3` value from the example and more than one of the selected 
+   values violates your rule in the selected time interval, it will trigger multiple alerts. 
+   Because Grafana is not able to tell the alerts apart, this results in errors. 
+   To solve this, you need to add the value `"timestamp"` to the `Select` part. 
+   So the first part of the SQL command is: `SELECT value, "timestamp"`.
    - The source is `tag`, so add `FROM tag` at the end.
    <!-- Asset ID?-->
-   - The different values are distinguished by the variable `name` in the `tag`, so add `WHERE name = '<key-name>'` to select only the value you need. If you followed [Get Started](/docs/getstarted/) guide, you can use `temperature` as the name.
-   - Since the selection of the time interval in Grafana is not working, you must add this manually as an addition to the `WHERE` command: `AND "timestamp" > (NOW() - INTERVAL 'X seconds')`. `X` is the number of past seconds you want to query. It's not useful to set `X` to less than 10 seconds, as this is the fastest interval Grafana can check your rule, and you might miss values.
+   - The different values are distinguished by the variable `name` in the `tag`, 
+   so add `WHERE name = '<key-name>'` to select only the value you need. 
+   If you followed [Get Started](/docs/getstarted/) guide, 
+   you can use `temperatureCelsius$temperature` as the name.
+   - Since the selection of the time interval in Grafana is not working, 
+   you must add this manually as an addition to the `WHERE` command: 
+   `AND "timestamp" > (NOW() - INTERVAL 'X seconds')`. 
+   `X` is the number of past seconds you want to query. 
+   It's not useful to set `X` to less than 10 seconds, 
+   as this is the fastest interval Grafana can check your rule, and you might miss values.
 
    The complete command is:
 
    <!-- where asset_id = get_asset_id ?-->
    ```sql
-   SELECT value, "timestamp" FROM tag WHERE name = 'temperature' AND "timestamp" > (NOW() - INTERVAL '10 seconds')
+   SELECT value, "timestamp" FROM tag WHERE name = 'temperatureCelsius$temperature' AND "timestamp" > (NOW() - INTERVAL '10 seconds')
    ```
 
-- In subsection **B**, you need to reduce the values to numbers, Grafana can work with. By default, **Reduce** will already be selected. However, you can change it to a different option by clicking the pencil icon next to the letter **B**. For this example, we will create an upper limit. So selecting **Max** as the **Function** is the best choice. Set **Input** as **A** (the output of the first section) and choose **Strict** for the Mode. So subsection **B** will output the maximum value the query in **A** selects as a single number.
-- In subsection **C**, you can establish the rule. If you select **Math**, you can utilize expressions like `$B > 120` to trigger an alert when a value from section **B** (`$B` means the output from section B) exceeds 50. In this case, only the largest value selected in **A** is passed through the reduce function from **B** to **C**. A simpler way to set such a limit is by choosing **Threshold** instead of **Math**.
+- In subsection **B**, you need to reduce the values to numbers, Grafana can work with. 
+By default, **Reduce** will already be selected. 
+However, you can change it to a different option by clicking the pencil icon next to the letter **B**. 
+For this example, we will create an upper limit. 
+So selecting **Max** as the **Function** is the best choice. 
+Set **Input** as **A** (the output of the first section) and choose **Strict** for the Mode. 
+So subsection **B** will output the maximum value the query in **A** selects as a single number.
+-  A **Threshold** expression is created in subsection **C** by default.
+You can delete it by clicking the bin icon. Then, click on **Add expression** and select **Math**. 
+Now, a new expression **D** should be created, and you can utilize expressions like `$B > 50` 
+to trigger an alert when a value from section **B** (`$B` means the output from section B) exceeds 50. 
+In this case, only the largest value selected in **A** is passed through the reduce function 
+from **B** to **D**. A simpler way to set such a limit is by choosing **Threshold** instead of **Math**.
 
    ![Untitled](/images/features/grafana-alert/alert-rule.png?width=75%)
 
-   To add more queries or expressions, find the buttons at the end of section two and click on the desired option. You can also preview the results of your queries and functions by clicking on **Preview** and check if they function correctly and fire an alert.
+   To add more queries or expressions, find the buttons at the end of section two and click 
+   on the desired option. You can also preview the results of your queries and functions by 
+   clicking on **Preview** and check if they function correctly and fire an alert.
 
    <!-- grafana image-->
 
-4. Define the rule location, the time interval for rule checking, and the duration for which the rule has to be broken before an alert is triggered.
-   - Select a name for your rule's folder or add it to an existing one by clicking the arrow. Find all your rules grouped in these folders on the Alert rules page under Alerting.
-   - An Evaluation group is a grouping of rules, which are checked after the same time interval. Creating a new group requires setting a time interval for rule checking. The minimum interval from Grafana is ten seconds.
-   - Specify the duration the rule must be violated before triggering the alert. For example, with a ten-second check interval and a 20-second duration, the rule must be broken twice in a row before an alert is fired.
+4. Define the rule location, the time interval for rule checking, and the duration for which 
+the rule has to be broken before an alert is triggered.
+   - Select a name for your rule's folder or add it to an existing one by clicking the arrow. 
+   Find all your rules grouped in these folders on the Alert rules page under Alerting.
+   - An Evaluation group is a grouping of rules, which are checked after the same time interval. 
+   Creating a new group requires setting a time interval for rule checking. The minimum interval 
+   from Grafana is ten seconds.
+   - Specify the duration the rule must be violated before triggering the alert. 
+   For example, with a ten-second check interval and a 20-second duration, 
+   the rule must be broken twice in a row before an alert is fired.
 
       ![Untitled](/images/features/grafana-alert/alert-eval-behavior.png?width=75%)
-5. Add details and descriptions for your rule.
 
-      ![Untitled](/images/features/grafana-alert/alert-add-details.png?width=75%)
-
-6. In the next step, you will be required to assign labels to your alert, ensuring it is directed to the appropriate contacts. For example, you may designate a label team with **alertrule1**: `team = operator` and **alertrule2**: `team = management`. It can be helpful to use labels more than once, like **alertrule3**: `team = operator`, to link multiple alerts to a contact point at once.
+5. In the next step, you will be required to assign labels to your alert, ensuring it is directed 
+to the appropriate contacts. For example, you may designate a label team with **alertrule1**: 
+`team = operator` and **alertrule2**: `team = management`. 
+It can be helpful to use labels more than once, like **alertrule3**: `team = operator`, 
+to link multiple alerts to a contact point at once.
 
       ![Untitled](/images/features/grafana-alert/alert-assign-label.png?width=75%)
 
-Your rule is now completed; click on **Save** and **Exit** on the right upper corner, next to section one.
+6. Add details and descriptions for your rule.
+
+      ![Untitled](/images/features/grafana-alert/alert-annotations.png?width=75%)
+
+
+7. Your rule is now completed; click on **Save rule and exit** on the right upper corner.
          
 
 ### Contact Point
@@ -112,9 +158,14 @@ specific to every service or contact. The following steps shall be done to creat
 
    ![Untitled](/images/features/grafana-alert/contact-point.png?width=75%)
 4. Pick the receiving service; in this example, Discord.
-5. Generate a new Webhook in your Discord server (Server Settings &rArr; Integrations &rArr; View Webhooks &rArr; New Webhook or create Webhook). Assign a name to the Webhook and designate the messaging channel. Copy the Webhook URL from Discord and insert it into the corresponding field in Grafana. Customize the message to Discord under **Optional Discord settings** if desired.
+5. Generate a new Webhook in your Discord server 
+(Server Settings &rArr; Integrations &rArr; View Webhooks &rArr; New Webhook or create Webhook). 
+Assign a name to the Webhook and designate the messaging channel. 
+Copy the Webhook URL from Discord and insert it into the corresponding field in Grafana. 
+Customize the message to Discord under **Optional Discord settings** if desired.
 6. If you need, add more services to the contact point, by clicking **+ Add contact point integration**.
-7. Save the contact point; you can see it in the **Contact points** list, below the **grafana-default-email** contact point.
+7. Save the contact point; you can see it in the **Contact points** list, 
+below the **grafana-default-email** contact point.
 
 
 ### Notification Policies
