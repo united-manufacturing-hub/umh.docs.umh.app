@@ -1,7 +1,9 @@
 ---
 title: Alerting
 menuTitl: Alerting
-description: Monitor and maintain your manufacturing processes with real-time Grafana alerts from the United Manufacturing Hub. Get notified of potential issues and reduce downtime by proactively addressing problems.
+description: |
+   Monitor and maintain your manufacturing processes with real-time Grafana alerts from the United Manufacturing Hub. 
+   Get notified of potential issues and reduce downtime by proactively addressing problems.
 weight: 4000
 aliases:
   - /docs/features/postgresql_and_grafana_alerts
@@ -60,9 +62,8 @@ Then click on the blue **New alert rule** button.
 your alert and declare the function for the alert.
 <!-- update https://learn.umh.app/course/alerts-in-grafana/ so that the tutorial refers the new data model-->
 <!-- also, add new screenshots of grafana-->
-- Subsection **A** is, by default the selection of your values: You can use 
-the Grafana builder for this, but it is not useful, as it cannot select a time 
-interval even though there is a selector for it. 
+- Subsection **A**: You can use the Grafana builder for this, but it is not useful, 
+as it cannot select a time interval even though there is a selector for it. 
 If you choose, for example, the last 20 seconds, your query will select values from hours ago. 
 Therefore, it is necessary to use SQL directly. To add command manually, 
 switch to **Code** in the right corner of the section.
@@ -153,7 +154,7 @@ contact point receives a message. The messages can be preconfigured and are
 specific to every service or contact. The following steps shall be done to create a contact point.
 
 1. Navigate to **Contact points**, located at the top of the Grafana alerting page.
-2. Click on the blue **+ Add contact** point button.
+2. Click on the blue **+ Add contact point** button.
 3. Now, you should be able to see setting page. Choose a name for your contact point.
 
    ![Untitled](/images/features/grafana-alert/contact-point.png?width=75%)
@@ -164,16 +165,17 @@ Assign a name to the Webhook and designate the messaging channel.
 Copy the Webhook URL from Discord and insert it into the corresponding field in Grafana. 
 Customize the message to Discord under **Optional Discord settings** if desired.
 6. If you need, add more services to the contact point, by clicking **+ Add contact point integration**.
-7. Save the contact point; you can see it in the **Contact points** list, 
-below the **grafana-default-email** contact point.
+7. Save the contact point; you can see it in the **Contact points** list.
 
 
 ### Notification Policies
 In a notification policy, you establish the connection of a contact point
 with the desired alerts. To add the notification policy, you need to do the following steps.
 
-1. Go to the **Notification policies** section in the Grafana alerting page, next to the **Contact points**.
-2. Select **+ New specific policy** to create a new policy, followed by **+ Add matcher** to choose the label and value from the alert (for example `team = operator`). In this example, both alert1 and alert3 will be forwarded to the associated contact point. You can include multiple labels in a single notification policy.
+1. Go to the **Notification policies** section in the Grafana alerting page.
+2. Select **+ New nested policy** to create a new policy, 
+followed by **+ Add matcher** to choose the label and value from the alert (for example `team = operator`).
+ You can include multiple labels in a single notification policy.
 3. Choose the contact point designated to receive the alert notifications. Now, the inputs should be like in the picture.
 
    ![Untitled](/images/features/grafana-alert/notify-policy.png?width=75%)
@@ -182,27 +184,33 @@ with the desired alerts. To add the notification policy, you need to do the foll
 
 ### Mute Timing
 In case you do not want to receive messages during a recurring time
-period, you can add a mute timing to Grafana. You can set up a mute timing in the **Notification policies** section.
+period, you can add a mute timing to Grafana. 
+You can set up a mute timing in the **Notification policies** section.
 
-1. Select **+ Add mute timing** below the notification policies.
+1. Navigate to **Mute Timings** tab and select **+ Add mute timing** button.
 2. Choose a name for the mute timing.
 3. Specify the time during which notifications should not be forwarded.
-   - Time has to be given in UTC time and formatted as HH:MM. Use **06:00** instead of **6:00** to avoid an error in Grafana.
-4. You can combine several time intervals into one mute timing by clicking on the **+ Add another time interval** button at the end of the page.
-5. Click **Submit** to save your settings.
-6. To apply the mute timing to a notification policy, click **Edit** on the right side of the notification policy, and then select the desired mute timing from the drop-down menu at the bottom of the policy. Click on **Save Policy** to apply the change.
+   - Time has to be given in UTC time and formatted as HH:MM. 
+   Use **06:00** instead of **6:00** to avoid an error in Grafana.
+4. You can combine several time intervals into one mute timing by clicking on 
+the **+ Add another time interval** button at the end of the page.
+5. Now, input values should look like below. Click **Save mute timing** to save your settings.
+![Untitled](/images/features/grafana-alert/mute-timing.png?width=75%)
 
-   ![Untitled](/images/features/grafana-alert/mute-timing.png?width=75%)
+6. To apply the mute timing to a notification policy, 
+click **Edit** on the right side of the notification policy, 
+and then select the desired mute timing from the drop-down menu at the bottom of the policy. 
+Click on **Update policy** to apply the change.
 
 ### Silence
 You can also add silences for a specific time frame and labels, in case
-you only want to mute alerts once. To add a silence, switch to the **Silences** section, next to **Notification policies**.
+you only want to mute alerts once. To add a silence, switch to the **Silences** section.
 
-1. Click on **+ Add Silence**.
+1. Click on **Create silence**.
 2. Specify the beginning for the silence and its duration.
 3. Select the labels and their values you want silenced.
 4. If you need, you can add a comment to the silence.
-5. Click the **Submit** button at the bottom of the page.
+5. Click the **Save silence** button at the bottom of the page.
 
    ![Untitled](/images/features/grafana-alert/silence.png?width=75%)
 
