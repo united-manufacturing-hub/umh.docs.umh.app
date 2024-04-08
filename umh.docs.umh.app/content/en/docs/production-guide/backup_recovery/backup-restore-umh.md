@@ -50,11 +50,22 @@ SELECT pg_size_pretty(pg_database_size('umh_v2')) AS "umh_v2", pg_size_pretty(pg
 
 Create a Grafana API Token for an admin user by following these steps:
 1. Open the Grafana UI in your browser and log in with an admin user.
-2. Click on the **Configuration** icon in the left sidebar and select **API Keys**.
-3. Give the API key a name and change its role to **Admin**.
-4. Optionally set an expiration date.
-5. Click **Add**.
-6. Copy the generated API key and save it for later.
+2. Go to **Administration** -> **Users and access** -> **Service accounts** in the left menu.
+3. Click **Add service account**.
+4. Enter a **Display name** and change its role to **Admin**.
+5. Click **Create**.
+6. You should be able to see the detail of the created service account now.
+Click **Add service account token** next.
+7. Enter a name for the token.
+8. (recommended) Select **Set expiration date** and enter an expiry date for the token.
+9. Click **Generate token**.
+10. Copy the generated API key and save it for later.
+
+{{% notice warning %}}
+If you use an old UMH version, the Grafana may use `API key` that was replaced with `service accounts`.
+In that case, refer to [Grafana documentation](https://grafana.com/docs/versions/?project=/docs/grafana/) 
+for the corresponding version.
+{{% /notice %}}
 
 ### Stop workloads
 
@@ -207,11 +218,22 @@ To restore the Grafana dashboards, you first need to create a Grafana API Key
 for an admin user in the new cluster by following these steps:
 
 1. Open the Grafana UI in your browser and log in with an admin user.
-2. Click on the **Configuration** icon in the left sidebar and select **API Keys**.
-3. Give the API key a name and change its role to **Admin**.
-4. Optionally set an expiration date.
-5. Click **Add**.
-6. Copy the generated API key and save it for later.
+2. Go to **Administration** -> **Users and access** -> **Service accounts** in the left menu.
+3. Click **Add service account**.
+4. Enter a **Display name** and change its role to **Admin**.
+5. Click **Create**.
+6. You should be able to see the detail of the created service account now.
+Click **Add service account token** next.
+7. Enter a name for the token.
+8. (recommended) Select **Set expiration date** and enter an expiry date for the token.
+9. Click **Generate token**.
+10. Copy the generated API key and save it for later.
+
+{{% notice warning %}}
+If you use an old UMH version, the Grafana may use `API key` that was replaced with `service accounts`.
+In that case, refer to [Grafana documentation](https://grafana.com/docs/versions/?project=/docs/grafana/) 
+for the corresponding version.
+{{% /notice %}}
 
 Then, on your local machine, execute the `.\restore-grafana.ps1` script
 with the following parameters:
