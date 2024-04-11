@@ -25,10 +25,19 @@ The UMH includes 3 pre-configured data simulators for testing connections:
 OPC UA, often complex, can be streamlined using our Benthos-based OPC UA connector
 accessible from the Management Console.
 
+### Visualize Connections or Network Devices
+
+From the **Network View**, you can visualize the connections or network devices a UMH
+instance is connected to. This view provides the latest status of both the instances and
+the network devices, the latter also showing the latency in milliseconds.
+
+![Network View](/images/getstarted/dataAcquisitionManipulation/networkViewDevice.png?width=80%)
+
 ### Create a Connection with the Management Console
 
-After logging into the Management Console and selecting your instance, navigate
-to the **Connection Management** tab, where you'll find all your connections alongside their status.
+From the **Component View**, in the **Connection Management** tab, you'll also find all
+your connections alongside their status, but with more detailed information, as well as
+connection and data source configuration options.
 
 ![Connection Management](/images/getstarted/dataAcquisitionManipulation/connectionManagement.png?width=80%)
 
@@ -74,16 +83,16 @@ OPC UA simulator).
 Specify OPC UA nodes to subscribe to in a yaml file, following the ISA95 standard:
 
 ```yaml
-  nodes:
-    - opcuaID: ns=2;s=Pressure
-      enterprise: pharma-genix
-      site: aachen
-      area: packaging
-      line: packaging_1
-      workcell: blister
-      originID: PLC13
-      tagName: machineState
-      schema: _historian
+nodes:
+  - opcuaID: ns=2;s=Pressure
+    enterprise: pharma-genix
+    site: aachen
+    area: packaging
+    line: packaging_1
+    workcell: blister
+    originID: PLC13
+    tagName: machineState
+    schema: _historian
 ```
 
 Mandatory fields are `opcuaID`, `enterprise`, `tagName` and `schema`.
@@ -97,8 +106,6 @@ Review and confirm the nodes, then proceed with initialization. Successful
 initialization will be indicated by a green message.
 
 The connection's health status should now be marked as `Healthy` and display the current message rate. You can also check the tooltip for more details.
-
-![Connection Management](/images/getstarted/dataAcquisitionManipulation/connectionManagementHealthy.png?width=80%)
 
 ## Connect MQTT Servers
 
@@ -181,12 +188,12 @@ Ensure you have node-red-contrib-kafkajs installed. If not, see
 
 Add a kafka-producer node, connecting it to the JSON node. Configure as follows:
 
-1. Open the configuration menu by double-click on the kafka-producer node.
-After that, click on the edit button.
+1.  Open the configuration menu by double-click on the kafka-producer node.
+    After that, click on the edit button.
 
-    ![Node-RED Kafka Producer](/images/getstarted/dataAcquisitionManipulation/noderedKafkaProducer.png)
+        ![Node-RED Kafka Producer](/images/getstarted/dataAcquisitionManipulation/noderedKafkaProducer.png)
 
-2. Change the fields of `Brokers` and `Client ID` as follows:
+2.  Change the fields of `Brokers` and `Client ID` as follows:
 
     - **Brokers**: united-manufacturing-hub-kafka:9092
     - **Client ID**: nodered
@@ -195,7 +202,7 @@ After that, click on the edit button.
 
     Click on **Update** to save.
 
-3. Structure Kafka topics according to UMH data model, following the ISA95 standard:
+3.  Structure Kafka topics according to UMH data model, following the ISA95 standard:
 
     ```text
     umh.v1.<enterprise>.<site>.<area>.<line>.<workcell>.<originID>.<schema>.<tagName>
@@ -206,17 +213,17 @@ After that, click on the edit button.
     - `site`: The facility's location
     - `area`: The specific production's area
     - `line`: The production line
-    - `workcell`: The workcell in the production line 
+    - `workcell`: The workcell in the production line
     - `originID`: The data source ID
     - `schema`: The schema of your data
     - `tagName`: Arbitrary tags dependent context
 
-
-    The enterprise and schema fields are required. 
+    The enterprise and schema fields are required.
     To learn more about the UMH data-model, read the [documentation](/docs/architecture/datamodel).
 
     For example, if you want to structure a topic for the temperature in celsius
     from the PLC, which
+
     - is running in a factory of Pharma-Genix in Aachen.
     - is running in `blister` workcell in the packaging line 1 in the packaging area.
     - has the ID `PLC13`.
@@ -227,17 +234,15 @@ After that, click on the edit button.
     msg.topic = umh.v1.pharma-genix.aachen.packaging.packaging_1.blister.PLC13._historian.temperatureCelsius
     ```
 
-    Add this topic to the script in the function node, which created in 
-    [Format Incoming Messages](/docs/getstarted/dataacquisitionmanipulation/#format-incoming-messages) 
+    Add this topic to the script in the function node, which created in
+    [Format Incoming Messages](/docs/getstarted/dataacquisitionmanipulation/#format-incoming-messages)
     section.
 
     ![Node-RED Kafka Topic](/images/getstarted/dataAcquisitionManipulation/noderedKafkaProducerTopic.png)
 
-    
     Alternatively, you can set the topic to the kafka-producer node directly.
 
-
-4. Click **Done** and deploy.
+4.  Click **Done** and deploy.
 
 {{% notice note %}}
 Optional: Add a debug node for output visualization.
