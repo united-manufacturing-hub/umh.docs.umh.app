@@ -49,7 +49,9 @@ future, we plan to add more features.
 
 ## How can I use it?
 
-<!-- TODO: Add someting -->
+Configure your UMH instances, add network devices to them, interact with tools provided by UMH
+(Node-RED, etc.), as described throughout the [get started](/docs/getstarted) guide. Then, come back
+to the Network View to monitor all your instances, their relationships, status and more at a glance.
 
 ## Where to get more information?
 
