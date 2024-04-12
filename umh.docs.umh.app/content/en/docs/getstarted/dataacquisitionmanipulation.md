@@ -25,19 +25,29 @@ The UMH includes 3 pre-configured data simulators for testing connections:
 OPC UA, often complex, can be streamlined using our Benthos-based OPC UA connector
 accessible from the Management Console.
 
-### Visualize Connections or Network Devices
+### Visualize Network Devices or External Services
 
-From the **Network View**, you can visualize the connections or network devices a UMH
-instance is connected to. This view provides the latest status of both the instances and
-the network devices, the latter also showing the latency in milliseconds.
+In the **Network View**, you can visualize the network devices a UMH instance is connected to.
+This view provides the latest status of both the instances and the network devices, including
+external services.
+
+**Network devices** encompass physical devices with IP addresses as well as virtual devices that
+may exist in cloud environments or services accessed over the network, such as ERP systems with
+REST interfaces. **External services** refer to any services accessed externally, whether they
+are hosted on-premises or in the cloud.
 
 ![Network View](/images/getstarted/dataAcquisitionManipulation/networkViewDevice.png?width=80%)
 
+You can also monitor the status of each UMH instance and the network devices it's connected to.
+If a device is marked in red, it indicates an unhealthy connection, this could be due to various
+reasons such as high latency or being unreachable. While green indicates a healthy connection.
+
 ### Create a Connection with the Management Console
 
-From the **Component View**, in the **Connection Management** tab, you'll also find all
-your connections alongside their status, but with more detailed information, as well as
-connection and data source configuration options.
+To add a new network device or external service, navigate to the **Component View** and access
+the **Connection Management** tab. Here, you'll find all your connections alongside their status,
+including more detailed information and configuration options for both connections and data
+sources.
 
 ![Connection Management](/images/getstarted/dataAcquisitionManipulation/connectionManagement.png?width=80%)
 
