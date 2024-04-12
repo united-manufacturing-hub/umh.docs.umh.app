@@ -32,7 +32,7 @@ For more information, visit the [architecture](/docs/architecture/)
 
 ## Overview of Your Instances
 
-![Instance overview](/images/features/monitor-management/instanceOverviewDemo.png?width=80%)
+![Instance overview](/images/getstarted/managingTheSystem/componentView.png?width=80%)
 
 On the left side of the Management Console, you can view the list of your
 instances. If you have just installed the UMH, you should see only one instance
@@ -49,7 +49,7 @@ disconnected.
 
 ## Monitoring the Instance's Status
 
-From the instance dashboard, in the overview tab, you can view the status of
+From the **Component View**, in the overview tab, you can view the status of
 your instance. There are multiple interfaces that display the status of each
 component of the system.
 
