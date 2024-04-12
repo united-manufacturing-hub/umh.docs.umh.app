@@ -19,7 +19,7 @@ The UMH installation requires one of the following Operating System on your serv
   It is recommended that you have full control over the operating system. To install Flatcar on your server,
   follow [this guide](/docs/production-guide/installation/flatcar-installation/). <!-- This article needs to be merged together https://umh.docs.umh.app/docs/production-guide/installation/flatcar-installation-virtual-machine/ https://learn.umh.app/course/flatcar-installation-on-proxmox/ -->
 - Red Hat Enterprise Linux (RHEL) 9.0 and higher. Recommended when you can choose
-  only out of a small amount of potential Operating System in your large enterprise
+  out of a small amount of potential Operating Systems.
 - Community Supported: Ubuntu 22.04.4 LTS. This approach is useful
   when you're for example trying to install the UMH on a cloud instance like AWS EC2
   and struggle to install Flatcar or RHEL there.
@@ -60,14 +60,13 @@ please refer to our dedicated [Firewall Rules](/docs/production-guide/security/f
 
 5. Go through the installation wizard by first clicking on **Install the UMH** and then on **UMH Classic**.
 
-6. Configure the instance to your needs. The only required field is the **Instance Name**.
-   Optionally you can define the location of the instance according to the ISA-95 model.
-   Defining the location of the instance allows for better organization, especially when
-   managing multiple UMH instances. By assigning them to an enterprise, site, or another
-   relevant category in the ISA-95 model, you ensure proper categorization and easier
-   identification of misconfigurations.
-   For instance, if you add a UMH instance to a site named ABC but receive messages intended
-   for site ACB (likely due to a spelling mistake), the system can highlight these discrepancies.
+6. Configure your instance with the necessary details. Naming your instance is mandatory, while setting its location is
+   optional but beneficial for management. The location follows a hierarchical format based on the ISA95 model, allowing
+   for increasing specificity. For example, if your instance monitors a packaging line located in Building B of a factory in
+   Ehrenfeld, Cologne, you could name it 'Packaging' and set the location as follows: Enterprise: UMH; Site: Ehrenfeld;
+   Area: Building B. The Management Console organizes instances in this structure, making it easy to oversee multiple instances.
+   Additionally, it helps in verifying data accuracy; for instance, if the enterprise is mistakenly entered as 'UHM' instead of
+   'UMH', the console will highlight the error based on the mismatch in received data.
 
 7. Once you're ready, create the installation command, and then Copy and paste it into your server's
    terminal (via ssh).
