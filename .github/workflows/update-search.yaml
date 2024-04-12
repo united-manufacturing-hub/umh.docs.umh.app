@@ -1,19 +1,25 @@
 name: Update search
 
 on:
-  push:
-    branches:
-      - main
+  # Run every night at 3:00 AM
+  schedule:
+    - cron: "0 3 * * *"
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+concurrency:
+  group: update-search
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Wait for 10 minutes
-        run: sleep 600
+        uses: actions/checkout@v4
       - name: Run Docker command
         env:
           TYPESENSE_API_KEY: ${{ secrets.TYPESENSE_API_KEY }}
@@ -21,9 +27,12 @@ jobs:
           TYPESENSE_PORT: 443
           TYPESENSE_PROTOCOL: https
         run: |
-          COLLECTION=$(cat config-umh.docs.json | jq -r '.index_name')
-          curl -H "X-TYPESENSE-API-KEY: ${TYPESENSE_API_KEY}" \
-          -X DELETE \
-          "${TYPESENSE_PROTOCOL}://${TYPESENSE_HOST}/collections/${COLLECTION}"
           CONFIG=$(cat config-umh.docs.json | jq -r tostring)
-          docker run -it -e "CONFIG=$CONFIG" --network host typesense/docsearch-scraper
+          docker run \
+            -e "CONFIG=$CONFIG" \
+            -e "TYPESENSE_API_KEY=${{ env.TYPESENSE_API_KEY }}" \
+            -e "TYPESENSE_HOST=${{ env.TYPESENSE_HOST }}" \
+            -e "TYPESENSE_PORT=${{ env.TYPESENSE_PORT }}" \
+            -e "TYPESENSE_PROTOCOL=${{ env.TYPESENSE_PROTOCOL }}" \
+            typesense/docsearch-scraper
+
