@@ -61,7 +61,13 @@ please refer to our dedicated [Firewall Rules](/docs/production-guide/security/f
 5. Go through the installation wizard by first clicking on **Install the UMH** and then on **UMH Classic**.
 
 6. Configure the instance to your needs. The only required field is the **Instance Name**.
-   Optionally you can define the location of the instance according to the ISA-95 standard.
+   Optionally you can define the location of the instance according to the ISA-95 model.
+   Defining the location of the instance allows for better organization, especially when
+   managing multiple UMH instances. By assigning them to an enterprise, site, or another
+   relevant category in the ISA-95 model, you ensure proper categorization and easier
+   identification of misconfigurations.
+   For instance, if you add a UMH instance to a site named ABC but receive messages intended
+   for site ACB (likely due to a spelling mistake), the system can highlight these discrepancies.
 
 7. Once you're ready, create the installation command, and then Copy and paste it into your server's
    terminal (via ssh).
