@@ -31,6 +31,16 @@ In the **Network View**, you can visualize the network devices a UMH instance is
 This view provides the latest status of both the instances and the network devices, including
 external services.
 
+First, let’s define what we mean by network devices and external services. A network device refers
+exclusively to any physical device located on the shop floor that is assigned an IP address. This
+includes machinery, sensors, and any hardware components that communicate over the network.
+
+External services, on the other hand, encompass both virtual devices and services accessed beyond
+the local network. Virtual devices, such as software systems that have network capabilities but are
+not physically housed on the shop floor, fall into this category because they require network
+interaction. Additionally, on-premises and cloud-hosted applications like ERP systems equipped with
+REST interfaces also fall under external services.
+
 **Network devices** encompass physical devices with IP addresses as well as virtual devices that
 may exist in cloud environments or services accessed over the network, such as ERP systems with
 REST interfaces. **External services** refer to any services accessed externally, whether they
