@@ -46,7 +46,7 @@ Here are some common issues that can be solved with the Connection Management:
 
 ## What can I do with it?
 
-![Connection Management](/images/features/connectivity/management-console-connection-management.png?width=80%)
+![Connection Management](/images/getstarted/dataAcquisitionManipulation/connectionManagement.png?width=80%)
 
 The Connection Management functionality in the Management Console aims to
 address those challenges by providing a simple and easy to use tool to manage
@@ -109,11 +109,11 @@ sensors or [USB barcode readers](/docs/features/connectivity/additionalconnectiv
 
 ### Third-Party Tools
 
-Any existing connectivity solution can be integrated with the United 
+Any existing connectivity solution can be integrated with the United
 Manufacturing Hub, assuming it can send data to either MQTT or Kafka.
-Additionally, if you want to deploy those tools on the Device & Container 
-Infrastructure, they must be available as a Docker container (developed with best-practices). 
-Therefore, we recommend using the tools mentioned above, as they are the most 
+Additionally, if you want to deploy those tools on the Device & Container
+Infrastructure, they must be available as a Docker container (developed with best-practices).
+Therefore, we recommend using the tools mentioned above, as they are the most
 tested and reliable.
 
 ## What are the limitations?
