@@ -40,10 +40,9 @@ deploy a data source.
 
 ## How can I use it?
 
-After logging in, the Instance Dashboard page shows the **Overview** tab.
-You can click and open each status on this tab.
+From the **Component View**, in the overview tab, you can click and open each status on this tab.
 
-![Instance Overview](/images/features/monitor-management/instanceOverviewDemo.png?width=80%)
+![Instance overview](/images/getstarted/managingTheSystem/componentView.png?width=80%)
 
 The **Connection Management** tab shows the status of all the instance's connections and their associated
 data sources. Moreover, you can create a new connection, as well as initialize them.
@@ -67,14 +66,14 @@ MQTT Topic = Kafka topic + Kafka Key
 ```
 
 {{% notice info %}}
-The Kafka topic and key depend on the configured merge point, read more about it 
+The Kafka topic and key depend on the configured merge point, read more about it
 [here](/docs/production-guide/administration/normalize-kafka-topics).
 {{% /notice %}}
 
 Read more about the Tag Browser in the [Unified Namespace](/docs/features/datainfrastructure/unified-namespace)
 section.
 
-![Tag Browser](/images/features/monitor-management/tagBrowser.png?width=80%)
+![Tag Browser](/images/features/unified-namespace/tagBrowser.png?width=80%)
 
 ## What are the limitations?
 
