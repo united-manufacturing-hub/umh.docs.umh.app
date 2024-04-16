@@ -15,18 +15,12 @@
     {"src":"/favicons/favicon-32x32.png","sizes":"32x32","type":"image/png"},
     {"src":"/favicons/favicon-16x16.png","sizes":"16x16","type":"image/png"},
     {"src":"/favicons/favicon-128x128.png","sizes":"128x128","type":"image/png"},
-    {"src":"/favicons/mstile-144x144.png","sizes":"144x144","type":"image/png"},
-    {"src":"/favicons/mstile-70x70.png","sizes":"70x70","type":"image/png"},
-    {"src":"/favicons/mstile-150x150.png","sizes":"150x150","type":"image/png"},
-    {"src":"/favicons/mstile-310x150.png","sizes":"310x150","type":"image/png"},
-    {"src":"/favicons/mstile-310x310.png","sizes":"310x310","type":"image/png"},
-    {"src":"/favicons/favicon-512x637.png","sizes":"512x512","type":"image/png"},
     {"src":"/favicons/maskable-icon.png","sizes":"822x822","type":"image/png", "purpose":  "any maskable"}
   ],
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#FFFFFF",
-  "theme_color": "#FFFFFF"
+  "background_color": "#000000",
+  "theme_color": "#000000"
 }
 
