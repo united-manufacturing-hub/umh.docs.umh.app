@@ -7,7 +7,7 @@ weight: 2600
 ---
 
 <!-- overview -->
-In this guide, you will learn how to upgrade Grafana v9.5.5 to v10.4.0 (UMH v0.13.6 to the latest). 
+In this guide, you will learn how to upgrade Grafana v9.5.5 to v10.4.0 (UMH v0.13.6 to the v0.13.7). 
 You can find a change log in [What's new in Grafana v10.4](https://grafana.com/docs/grafana/latest/whatsnew/whats-new-in-v10-4/).
 
 {{% notice warning %}}
