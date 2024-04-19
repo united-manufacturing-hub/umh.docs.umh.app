@@ -94,6 +94,9 @@ following features:
 - **Tag Folder Structure**: Facilitates browsing through tag folders or groups within a single asset.
 - **Schema validation**: Introduces validation for known schemas such as `_historian`. In case of validation
   failure, the corresponding errors are displayed.
+- **Tag Error Tracing**: Enables error tracing within the Unified Namespace tree. When errors are detected in tags
+  or schemas, all affected nodes are highlighted with warnings, making it easier to track down the troubled
+  source tags or schemas.
 - **Publisher & Subscriber Info**: Provides various details, such as the origins and destinations of the data,
   the instance it was published from, the messages per minute to get an overview on how much data is flowing,
   and the full tag name to uniquely identify the selected tag.
