@@ -2,8 +2,10 @@
 title: UMH Lite
 menuTitle: UMH Lite
 content_type: feature
-description: "Introducing UMH Lite - a new type of UMH installation.\n"
-weight: 5000
+description: Understand the purpose and features of the UMH Lite, as well as the differences between UMH Lite and UMH Classic.
+weight: 2000
+edition: community
+aliases:
 ---
 
 If you are already using Unified Namespace, or have a Kafka / MQTT broker, you might want to try out the basic features of UMH. For this purpose, the UMH Lite installation is available.
