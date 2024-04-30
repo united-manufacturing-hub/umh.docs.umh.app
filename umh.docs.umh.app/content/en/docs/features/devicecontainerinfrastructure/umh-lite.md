@@ -122,6 +122,10 @@ All the data that your instance is gathering is sent to your own data infrastruc
 
 By using the UMH Lite in conjunction with the Management Console, you can spot errors in the network. If a connection is faulty, the Management Console will mark it.
 
+## How can I use it?
+
+To add a new UMH Lite instance, simply follow the regular [installation process](https://umh.docs.umh.app/docs/getstarted/installation/) and select UMH Lite instead of UMH Classic. You can follow the next steps in the linked guide to learn how to connect devices and add a protocol converter.
+
 ### Convert to UMH Classic
 
 Should you find the UMH Lite insufficient and require the features offered by UMH Classic, you can upgrade through the Management Console. To convert a UMH Lite instance to a UMH Classic instance:
@@ -135,10 +139,6 @@ Should you find the UMH Lite insufficient and require the features offered by UM
 This change will preserve the configurations of your devices and protocol converters: Their data continues to be forwarded to your initial MQTT broker, while also becoming accessible within your new Unified Namespace and database.
 
 Any protocol converters introduced post-upgrade will also support the original MQTT broker as an additional output. You can manually remove the original MQTT broker as an output after the upgrade. Once removed, data will no longer be forwarded to the initial MQTT broker.
-
-## How can I use it?
-
-To add a new UMH Lite instance, simply follow the regular [installation process](https://umh.docs.umh.app/docs/getstarted/installation/) and select UMH Lite instead of UMH Classic. You can follow the next steps in the linked guide to learn how to connect devices and add a protocol converter.
 
 ## What are the limitations?
 
