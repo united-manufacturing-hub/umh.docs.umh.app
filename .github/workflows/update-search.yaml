@@ -23,7 +23,7 @@ jobs:
       - name: Run Docker command
         env:
           TYPESENSE_API_KEY: ${{ secrets.TYPESENSE_API_KEY }}
-          TYPESENSE_HOST: docsearch.umh.app
+          TYPESENSE_HOST: 35n7gptj4h8z0dyop-1.a1.typesense.net
           TYPESENSE_PORT: 443
           TYPESENSE_PROTOCOL: https
         run: |
