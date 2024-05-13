@@ -3,11 +3,11 @@ docsearch({
     typesenseCollectionName: 'umh.docs',
     typesenseServerConfig: {
         nodes: [{
-            host: 'docsearch.umh.app',
+            host: '35n7gptj4h8z0dyop-1.a1.typesense.net',
             port: '443',
             protocol: 'https'
         }],
-        apiKey: 'f81fcLqS2RTx5U858WA2s4rJIQScsMss', // Read-only key
+        apiKey: 'FKNWuSWO8u07dxyVKnFHNPwpeAIxvPKj', // Read-only key
     },
     typesenseSearchParams: {
         per_page: 10,
