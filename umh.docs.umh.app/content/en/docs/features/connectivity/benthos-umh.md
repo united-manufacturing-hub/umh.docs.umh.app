@@ -56,15 +56,16 @@ The easiest way to use Benthos UMH is to deploy it directly from the Management
 Console.
 
 After adding your network device or service, you can initialize the protocol
-converter. Simply click on the **Play** button next to the connection. From
-there, you'll have two options to choose from when configuring the
+converter. Simply click on the **Play** button next to the network device/service
+at the **Protocol Converters** tab.
+From there, you'll have two options to choose from when configuring the
 protocol converter:
 
 - **Universal Protocol Converter**: Opt for this choice if you need to configure
   protocol converters for various supported protocols other than OPC-UA. This option
   will prompt you to define the Benthos input and processor configuration in YAML format.
 
-- **OPC-UA Protocol Converter**: Select this option if you specifically need to configure
+- **OPC-UA**: Select this option if you specifically need to configure
   OPC-UA protocol converters. You'll be asked to define OPC-UA nodes in YAML format,
   detailing the nodes you want to stream from the OPC-UA server.
 
