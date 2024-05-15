@@ -2,8 +2,7 @@
 title: Benthos UMH
 menuTitle: Benthos UMH
 description: |
-  Configure OPC-UA data sources to stream data to Kafka directly in the
-  Management Console.
+  Configure protocol converters to stream data to Kafka directly in the Management Console.
 weight: 2000
 draft: false
 ---
@@ -22,10 +21,9 @@ Unified Namespace.
 
 ## When should I use it?
 
-OPC UA is a communication protocol coming from the OT industry, so integration
-with IT tools is necessary to stream data from an OPC UA server. With Benthos
-UMH, you can easily connect to an OPC UA server, define the nodes you want to
-stream, and send the data to the Unified Namespace.
+Benthos UMH is valuable for integrating different protocols with the Unified Namespace.
+With it, you can connect to various protocol converters, define the data you want to
+stream, and send it to the Unified Namespace.
 
 Furthermore, [in our tests](https://learn.umh.app/blog/our-open-source-docker-container-to-connect-opc-ua-with-the-unified-namespace/#testing-existing-solutions),
 Benthos has proven more reliable than tools like Node-RED, when it comes to
@@ -35,8 +33,8 @@ handling large amounts of data.
 
 Benthos UMH offers some benefits, including:
 
-- **Management Console integration**: Configure and deploy any number of
-  Benthos UMH instances directly from the Management Console.
+- **Management Console integration**: Configure and deploy any number of protocol converters via
+  Benthos UMH directly from the Management Console.
 - **OPC-UA support**: Connect to any OPC-UA server and stream data into the
   Unified Namespace.
 - **Report by exception**: By configuring the OPC-UA nodes in subscribe mode,
@@ -55,68 +53,64 @@ Benthos UMH offers some benefits, including:
 ### With the Management Console
 
 The easiest way to use Benthos UMH is to deploy it directly from the Management
-Console
+Console.
 
-{{% notice warning %}}
-Currently, only OPC-UA data sources can be configured from the Management
-Console. To use other data sources, you must deploy Benthos UMH in standalone
-mode or use [Node-RED](/docs/features/connectivity/node-red/).
-{{% /notice %}}
+After adding your network device or service, you can initialize the protocol
+converter. Simply click on the **Play** button next to the connection. From
+there, you'll have two options to choose from when configuring the
+protocol converter:
 
-You first have to add a new connection to your OPC-UA server from the
-**Connection Management** tab.
+- **Universal Protocol Converter**: Opt for this choice if you need to configure
+  protocol converters for various supported protocols other than OPC-UA. This option
+  will prompt you to define the Benthos input and processor configuration in YAML format.
 
-![Add Connection](/images/features/data-connectivity-benthos/connection-management.png?width=80%)
+- **OPC-UA Protocol Converter**: Select this option if you specifically need to configure
+  OPC-UA protocol converters. You'll be asked to define OPC-UA nodes in YAML format,
+  detailing the nodes you want to stream from the OPC-UA server.
 
-Afterwards, you can initialize the connection by pressing the **Play** button
-next to the connection. Select the correct authentication method and enter the
-OPC-UA nodes you want to stream.
+For OPC-UA, ensure your YAML configuration follows the format below:
 
-Currently, the only method supported for configuring OPC-UA nodes is by
-specifying a YAML file. You can find an example file below:
-
-``` yaml
+```yaml
 nodes:
-    - opcuaID: ns=2;s=Pressure
-      enterprise: pharma-genix
-      site: aachen
-      area: packaging
-      line: packaging_1
-      workcell: blister
-      originID: PLC13
-      tagName: machineState
-      schema: _historian
+  - opcuaID: ns=2;s=Pressure
+    enterprise: pharma-genix
+    site: aachen
+    area: packaging
+    line: packaging_1
+    workcell: blister
+    originID: PLC13
+    tagName: machineState
+    schema: _historian
 ```
 
-Mandatory fields are `opcuaID`, `enterprise`, `tagName` and `schema`. `opcuaID`
+Required fields are `opcuaID`, `enterprise`, `tagName` and `schema`. `opcuaID`
 is the NodeID in OPC-UA and can also be a folder (see [README](https://github.com/united-manufacturing-hub/benthos-umh?tab=readme-ov-file#node-ids)
 for more information). The remaining components are components of the resulting
 topic / ISA-95 structure (see also our [datamodel](/docs/datamodel)). By default,
-the schema will always be in _historian, and tagName is the keyname.
+the schema will always be in \_historian, and tagName is the keyname.
 
 ### Standalone
 
-You can manually deploy Benthos UMH as part of the UMH stack by using the
-provided Docker image and following the instructions in the
-[README](https://github.com/united-manufacturing-hub/benthos-umh?tab=readme-ov-file#with-the-united-manufacturing-hub-kubernetes--kafka).
+Benthos UMH can be manually deployed as part of the UMH stack using the provided Docker
+image and following the instructions outlined in the [README](https://github.com/united-manufacturing-hub/benthos-umh?tab=readme-ov-file#with-the-united-manufacturing-hub-kubernetes--kafka).
 
-This way, you have full control over the configuration of Benthos UMH and can
-use any data source or sink supported by Benthos, along with the full range of
-processors and other configuration options.
+For more specialized use cases requiring precise configuration, standalone deployment
+offers full control over the setup. However, this manual approach is more complex
+compared to using the Universal Protocol Converter feature directly from the
+Management Console.
 
 Read the official [Benthos documentation](https://www.benthos.dev/docs/components/about)
 for more information on how to use different components.
 
 ## What are the limitations?
 
-While Benthos is great at handling large amounts of data, it does not allow for
-the same level of flow customization as Node-RED. If you need to perform complex
-data transformations or integrate with other systems, you should consider using
-Node-RED instead.
+Benthos UMH excels in scalability, making it a robust choice for complex setups
+managing large amounts of data. However, its initial learning curve may be steeper
+due to its scripting language and a more hands-on approach to configuration.
 
-Additionally, the Management Console currently only supports deploying Benthos
-UMH with OPC-UA data sources. If you want to use other data sources, you must
-deploy Benthos UMH in standalone mode or use Node-RED.
+As an alternative, Node-RED offers ease of use with its low-code approach and the
+popularity of JavaScript. It's particularly easy to start with, but as your setup grows,
+it becomes harder to manage, leading to confusion and loss of oversight.
 
 ## Where to get more information?
 
