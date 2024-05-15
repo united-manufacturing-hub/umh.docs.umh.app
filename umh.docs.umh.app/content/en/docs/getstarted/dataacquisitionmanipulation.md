@@ -2,17 +2,19 @@
 title: "3. Data Acquisition and Manipulation"
 menuTitle: "3. Data Acquisition and Manipulation"
 description: |
-  Learn how to connect various data sources to the UMH and format data into the
+  Learn how to connect various protocol converters to the UMH and format data into the
   UMH data model.
 weight: 3000
 ---
 
-The United Manufacturing Hub excels in its ability to integrate diverse data
-sources and standardize data into a unified model, enabling seamless integration
-of existing data infrastructure for analysis and processing.
+The United Manufacturing Hub excels in its ability to integrate diverse
+protocol converters and standardize data into a unified model, enabling
+seamless integration of existing data infrastructure for analysis and
+processing.
 
-Currently, data sources can be connected to the UMH through Benthos for OPC UA
-and [Node-RED](/docs/architecture/microservices/core/node-red/) for other types.
+Protocol converters can be connected to the UMH through [Benthos UMH](/docs/features/connectivity/benthos-umh/),
+which supports various protocols including OPC UA, as well as other types through the
+**Universal Protocol Converter** feature available in the Management Console.
 
 The UMH includes 3 pre-configured data simulators for testing connections:
 
@@ -55,26 +57,22 @@ reasons such as high latency or being unreachable. While green indicates a healt
 ### Create a Connection with the Management Console
 
 To add a new network device or external service, navigate to the **Component View** and access
-the **Connection Management** tab. Here, you'll find all your connections alongside their status,
-including more detailed information and configuration options for both connections and data
-sources.
+the **Protocol Converter** tab. Here, you'll find all your network devices/services alongside their status,
+including more detailed information and configuration options for both devices and protocol converters.
 
-![Connection Management](/images/getstarted/dataAcquisitionManipulation/connectionManagement.png?width=80%)
+![Protocol Converters](/images/getstarted/dataAcquisitionManipulation/protocolConverters.png?width=80%)
 
-**Uninitialized Connections** are established but not yet configured as data
-sources, while **Initialized Connections** are fully configured.
+**Uninitialized Network Devices/Services** are established but not yet configured as protocol
+converters, while **Initialized Network Devices/Services** are fully configured.
 
 The health status reflects the UMH-data source connection, not data transmission status.
 
-To add a new connection, click **Add Connection**. Currently, we only provide two type of connections:
+To add one, click **Add Device or External Service**.
 
-- **OPC-UA Server**: represents a connection to an OPC-UA server.
-- **n/a**: represents a generic asset (useful for connections we don't support yet).
+Enter the required server details, which include the unique name, IP address and port number.
+Optionally, you can also attach some notes, which can be useful for documentation purposes.
 
-Enter the required server details, which include the unique name and address with the format `ip:port`.
-Optionally, you can also attach some notes to the connection, which can be useful for documentation purposes.
-
-For testing with the OPC UA simulator, select the `OPC-UA Server` type and use the following address:
+For testing with the OPC UA simulator, use the following address and port respectively:
 
 ```text
 united-manufacturing-hub-opcuasimulator-service:46010
@@ -82,20 +80,18 @@ united-manufacturing-hub-opcuasimulator-service:46010
 
 ![Connection Details](/images/getstarted/dataAcquisitionManipulation/addConnectionDetails.png?width=80%)
 
-Test the connection, and if successful, click **Add Connection** to save and deploy it.
+Test the connection, and if successful, click **Save Network Device/Service** to save and deploy it.
 
-### Initialize the Connection
+### Initialize the Network Device/Service
 
-Back at **Connection Management**, your new connection should be listed in the table, and surely you'll notice that it's health is reported as `Not configured`.
+Back at **Protocol Converters**, your new device should be listed in the table, and surely you'll notice that it's health is reported as `Not configured`.
 
-At this point, it's worth discussing what initializing a connection means and why it's important.
+At this point, it's worth discussing what initializing a device means and why it's important.
 
-New connections are created in an "uninitialized" state, meaning they are not yet configured as data sources, hence the `Not configured` health status.
-So for them to be actually useful, they need to be initialized, which will fully configure them as data sources and create a new Benthos deployment for data publishing to the UMH Kafka broker.
+New devices are created in an "uninitialized" state, meaning they are not yet configured as protocol converters, hence the `Not configured` health status.
+So for them to be actually useful, they need to be initialized, which will fully configure them as protocol converters and create a new Benthos deployment for data publishing to the UMH Kafka broker.
 
-Initialize the connection by pressing the "play" button under the `Actions` column.
-
-![Initialize Connection](/images/getstarted/dataAcquisitionManipulation/connectionManagementInitializeButton.png?width=80%)
+Initialize it by pressing the "play" button under the `Actions` column.
 
 Enter authentication details (use _Anonymous_ for no authentication, as with the
 OPC UA simulator).
@@ -125,7 +121,7 @@ in the Learning Hub.
 Review and confirm the nodes, then proceed with initialization. Successful
 initialization will be indicated by a green message.
 
-The connection's health status should now be marked as `Healthy` and display the current message rate. You can also check the tooltip for more details.
+The device's health status should now be marked as `Healthy` and display the current message rate. You can also check the tooltip for more details.
 
 ## Connect MQTT Servers
 
