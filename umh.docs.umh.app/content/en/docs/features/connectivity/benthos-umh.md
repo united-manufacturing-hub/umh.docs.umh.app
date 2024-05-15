@@ -2,7 +2,7 @@
 title: Benthos UMH
 menuTitle: Benthos UMH
 description: |
-  Configure protocol converters to stream data to Kafka directly in the Management Console.
+  Configure protocol converters to stream data to the Unified Namespace directly in the Management Console.
 weight: 2000
 draft: false
 ---
@@ -22,7 +22,7 @@ Unified Namespace.
 ## When should I use it?
 
 Benthos UMH is valuable for integrating different protocols with the Unified Namespace.
-With it, you can connect to various protocol converters, define the data you want to
+With it, you can configure various protocol converters, define the data you want to
 stream, and send it to the Unified Namespace.
 
 Furthermore, [in our tests](https://learn.umh.app/blog/our-open-source-docker-container-to-connect-opc-ua-with-the-unified-namespace/#testing-existing-solutions),
@@ -61,13 +61,16 @@ at the **Protocol Converters** tab.
 From there, you'll have two options to choose from when configuring the
 protocol converter:
 
+- **OPC-UA**: Select this option if you specifically need to configure
+  OPC-UA protocol converters. It offers direct integration with OPC-UA servers
+  and improved data contextualization. This is particularly useful when you need
+  to assign tags to specific data points within the Unified Namespace. You'll be
+  asked to define OPC-UA nodes in YAML format, detailing the nodes you want to stream
+  from the OPC-UA server.
+
 - **Universal Protocol Converter**: Opt for this choice if you need to configure
   protocol converters for various supported protocols other than OPC-UA. This option
   will prompt you to define the Benthos input and processor configuration in YAML format.
-
-- **OPC-UA**: Select this option if you specifically need to configure
-  OPC-UA protocol converters. You'll be asked to define OPC-UA nodes in YAML format,
-  detailing the nodes you want to stream from the OPC-UA server.
 
 For OPC-UA, ensure your YAML configuration follows the format below:
 
