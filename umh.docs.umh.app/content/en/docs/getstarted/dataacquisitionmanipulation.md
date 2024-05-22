@@ -72,13 +72,11 @@ To add one, click **Add Device or External Service**.
 Enter the required server details, which include the unique name, IP address and port number.
 Optionally, you can also attach some notes, which can be useful for documentation purposes.
 
-For testing with the OPC UA simulator, use the following address and port respectively:
+For testing with the OPC UA simulator, enter the following details:
 
-```text
-united-manufacturing-hub-opcuasimulator-service:46010
-```
-
-![Connection Details](/images/getstarted/dataAcquisitionManipulation/addConnectionDetails.png?width=80%)
+- **Name**: OPC UA Simulator
+- **IP Address**: united-manufacturing-hub-opcuasimulator-service
+- **Port**: 46010
 
 Test the connection, and if successful, click **Save Network Device/Service** to save and deploy it.
 
@@ -133,8 +131,8 @@ approach, and using Node-RED as an alternative method.
 ### Using the Management Console
 
 The Management Console features a **Universal Protocol Converter**, which works with
-Benthos UMH under the hood to connect and process data from a wide variety of
-protocols, including MQTT.
+[Benthos UMH](/docs/features/connectivity/benthos-umh/) under the hood to connect and
+process data from a wide variety of protocols, including MQTT.
 
 #### Add the Network Device/Service
 
@@ -173,6 +171,13 @@ Press **Save** to deploy your configuration.
 
 If you've followed the steps correctly, the MQTT broker should now be connected
 and processing data.
+
+#### Tag Browser
+
+You can view the data in the **Tag Browser**. The data is structured according to
+the ISA95 standard and displayed in a tree structure for easy navigation.
+
+![Tag Browser](/images/getstarted/dataAcquisitionManipulation/tagBrowserHumidity.png?width=80%)
 
 ### Using Node-RED (Optional)
 
@@ -412,13 +417,6 @@ Consider adding a debug node for visualizing output data.
 {{% /notice %}}
 
 ![Node-RED Kafka to Kafka](/images/getstarted/dataAcquisitionManipulation/noderedKafkaKafka.png?width=80%)
-
-## Tag Browser
-
-Returning to the Management Console, you'll find the output data displayed within the **Tag Browser**,
-which offers a user-friendly tree structure for browsing the tag hierarchy we defined in previous steps.
-
-![Tag Browser](/images/getstarted/dataAcquisitionManipulation/tagBrowserTemperature.png?width=80%)
 
 ## {{% heading "whatsnext" %}}
 
