@@ -22,7 +22,7 @@ The UMH includes 3 pre-configured data simulators for testing connections:
 - [MQTT Simulator](/docs/architecture/microservices/community/mqtt-simulator/)
 - [PackML Simulator](/docs/architecture/microservices/community/packml-simulator/)
 
-## Connect OPC UA Data Sources
+## Connect OPC UA Servers
 
 OPC UA, often complex, can be streamlined using our Benthos-based OPC UA connector
 accessible from the Management Console.
@@ -54,7 +54,7 @@ You can also monitor the status of each UMH instance and the network devices it'
 If a device is marked in red, it indicates an unhealthy connection, this could be due to various
 reasons such as high latency or being unreachable. While green indicates a healthy connection.
 
-### Create a Connection with the Management Console
+### Add the Network Device/Service
 
 To add a new network device or external service, navigate to the **Component View** and access
 the **Protocol Converter** tab. Here, you'll find all your network devices/services alongside their status,
@@ -82,7 +82,7 @@ united-manufacturing-hub-opcuasimulator-service:46010
 
 Test the connection, and if successful, click **Save Network Device/Service** to save and deploy it.
 
-### Initialize the Network Device/Service
+### Configure the Protocol Converter
 
 Back at **Protocol Converters**, your new device should be listed in the table, and surely you'll notice that it's health is reported as `Not configured`.
 
@@ -121,13 +121,64 @@ in the Learning Hub.
 Review and confirm the nodes, then proceed with initialization. Successful
 initialization will be indicated by a green message.
 
-The device's health status should now be marked as `Healthy` and display the current message rate. You can also check the tooltip for more details.
+The device's health status should now be marked as `Healthy` and display the
+current message rate. You can also check the tooltip for more details.
 
 ## Connect MQTT Servers
 
-There are a lot of options to connect an MQTT server to the UMH. For this guide,
-we'll use Node-RED to connect to the MQTT simulator and format data into the
-UMH data model.
+This guide will cover two methods for integrating MQTT data: using the
+Management Console's Universal Protocol Converter (UPC) for a streamlined
+approach, and using Node-RED as an alternative method.
+
+### Using the Management Console
+
+The Management Console features a **Universal Protocol Converter**, which works with
+Benthos UMH under the hood to connect and process data from a wide variety of
+protocols, including MQTT.
+
+#### Add the Network Device/Service
+
+Similar to OPC UA, you need to add the MQTT broker as a network device/service.
+Navigate to the **Component View** and access the **Protocol Converter** tab.
+Click **Add Device or External Service**, and enter the following details for
+the MQTT simulator:
+
+- **Name**: MQTT Simulator
+- **IP Address**: united-manufacturing-hub-mqtt
+- **Port**: 1883
+
+Test the connection, and if successful, save it.
+
+#### Configure the Protocol Converter
+
+Back in the **Protocol Converters** tab, your new MQTT broker should be listed.
+Initialize it by pressing the "play" button under the `Actions` column. When
+prompted to select a protocol, choose the **Universal Protocol Converter**.
+
+In the Benthos configuration page, you need to define the `input` and `processor`
+configurations in YAML format. To simplify this process, you can use the provided
+sample configuration for MQTT, which offers an easier starting point. Click on the
+**MQTT** button under the "Supported Protocols" section and apply it.
+
+This configuration connects to the UMH MQTT broker, subscribes to IoT sensor data
+topics, and assigns the data as weather information for the site `cologne` in the
+**Unified Namespace**.
+
+{{% notice info %}}
+If you are testing with the UMH MQTT simulator, the sample configuration will work
+out of the box. For other MQTT brokers, you may need to adjust the configuration.
+{{% /notice %}}
+
+Press **Save** to deploy your configuration.
+
+If you've followed the steps correctly, the MQTT broker should now be connected
+and processing data.
+
+### Using Node-RED (Optional)
+
+Alternatively, you can use Node-RED to connect to the MQTT server and format data
+into the UMH data model. Same as before, we'll use the UMH MQTT simulator for this
+guide.
 
 To access Node-RED's web interface, navigate to:
 
@@ -138,7 +189,7 @@ http://<instance-ip-address>:1880/nodered
 Replace `<instance-ip-address>` with your UMH instance's IP. Ensure you're on the
 same network for access.
 
-### Add the MQTT Connection
+#### Add the MQTT Connection
 
 In Node-RED, find the mqtt-in node from the node palette and drag it into your
 flow. Double-click to configure and click the **pencil button** next to the
@@ -174,7 +225,7 @@ from the broker.
 Explore [Unified Namespace](/docs/features/unified-namespace) for details on topic structuring.
 {{% /notice %}}
 
-### Format Incoming Messages
+#### Format Incoming Messages
 
 Use a function node to format raw data. Connect it to the mqtt-in node and paste
 this script:
@@ -195,7 +246,7 @@ Then, connect a JSON node to the function node to parse the object into a string
 This function transforms the payload into the correct format for the UMH data model.
 {{% /notice %}}
 
-### Send Formatted Data to Kafka
+#### Send Formatted Data to Kafka
 
 For this guide, we'll send data to the UMH Kafka broker.
 
