@@ -46,7 +46,7 @@ Here are some common issues that can be solved with the Connection Management:
 
 ## What can I do with it?
 
-![Connection Management](/images/getstarted/dataAcquisitionManipulation/connectionManagement.png?width=80%)
+![Connection Management](/images/getstarted/dataAcquisitionManipulation/protocolConverters.png?width=80%)
 
 The Connection Management functionality in the Management Console aims to
 address those challenges by providing a simple and easy to use tool to manage
