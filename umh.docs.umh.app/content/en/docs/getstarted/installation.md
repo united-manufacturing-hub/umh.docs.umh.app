@@ -35,6 +35,9 @@ on our [Discord](https://discord.gg/F9mqkZnm9d) channel.
 - CPU: Minimum 4 cores
 - Memory: 16 GB RAM
 - Disk Space: 32 GB available
+  - On Ubuntu, we recommend at least 64 GB, due to the larger size of Ubuntu itself.
+- CPU Instructions: SSE 4.2
+  - This instruction was first introduced in 2008 (Intel) and 2011 (AMD), but some VM's require special configuration to enable it.
 
 Note: Systems at the edge of these requirements may experience longer installation times.
 Close other programs during installation for optimal performance.
