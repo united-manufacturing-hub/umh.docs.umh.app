@@ -142,7 +142,7 @@ Click **Add Device or External Service**, and enter the following details for
 the MQTT simulator:
 
 - **Name**: MQTT Simulator
-- **IP Address**: united-manufacturing-hub-mqtt
+- **IP Address**: united-manufacturing-hub-mqtt.united-manufacturing-hub.svc.cluster.local
 - **Port**: 1883
 
 Test the connection, and if successful, save it.
@@ -202,7 +202,7 @@ flow. Double-click to configure and click the **pencil button** next to the
 
 Enter your MQTT broker's details:
 
-- **Server**: united-manufacturing-hub-mqtt
+- **Server**: united-manufacturing-hub-mqtt.united-manufacturing-hub.svc.cluster.local
 - **Port**: 1883
 
 {{% notice info %}}
