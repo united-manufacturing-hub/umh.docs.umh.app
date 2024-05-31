@@ -72,11 +72,11 @@ as some system's information.
 If there is an overload on the device, you can view it here. An overloaded device
 is unable to handle the workload, and you should consider upgrading the device.
 
-### Connection Management
+### Datastream
 
-In the **Connection Management** tab, you can view a brief overview of the data infrastructure,
+In the **Datastream** tab, you can view a brief overview of the data infrastructure,
 which includes the rate of messages going through the message broker and the database. Any unhealthy
-data sources or connections are also listed here.
+protocol converters or network devices/services are also listed here.
 
 ### Kubernetes
 

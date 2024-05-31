@@ -2,17 +2,19 @@
 title: "3. Data Acquisition and Manipulation"
 menuTitle: "3. Data Acquisition and Manipulation"
 description: |
-  Learn how to connect various data sources to the UMH and format data into the
+  Learn how to connect various protocol converters to the UMH and format data into the
   UMH data model.
 weight: 3000
 ---
 
-The United Manufacturing Hub excels in its ability to integrate diverse data
-sources and standardize data into a unified model, enabling seamless integration
-of existing data infrastructure for analysis and processing.
+The United Manufacturing Hub excels in its ability to integrate diverse
+protocol converters and standardize data into a unified model, enabling
+seamless integration of existing data infrastructure for analysis and
+processing.
 
-Currently, data sources can be connected to the UMH through Benthos for OPC UA
-and [Node-RED](/docs/architecture/microservices/core/node-red/) for other types.
+Protocol converters can be connected to the UMH through [Benthos UMH](/docs/features/connectivity/benthos-umh/),
+which supports various protocols including OPC UA, as well as other types through the
+**Universal Protocol Converter** feature available in the Management Console.
 
 The UMH includes 3 pre-configured data simulators for testing connections:
 
@@ -20,7 +22,7 @@ The UMH includes 3 pre-configured data simulators for testing connections:
 - [MQTT Simulator](/docs/architecture/microservices/community/mqtt-simulator/)
 - [PackML Simulator](/docs/architecture/microservices/community/packml-simulator/)
 
-## Connect OPC UA Data Sources
+## Connect OPC UA Servers
 
 OPC UA, often complex, can be streamlined using our Benthos-based OPC UA connector
 accessible from the Management Console.
@@ -52,50 +54,42 @@ You can also monitor the status of each UMH instance and the network devices it'
 If a device is marked in red, it indicates an unhealthy connection, this could be due to various
 reasons such as high latency or being unreachable. While green indicates a healthy connection.
 
-### Create a Connection with the Management Console
+### Add the Network Device/Service
 
 To add a new network device or external service, navigate to the **Component View** and access
-the **Connection Management** tab. Here, you'll find all your connections alongside their status,
-including more detailed information and configuration options for both connections and data
-sources.
+the **Protocol Converter** tab. Here, you'll find all your network devices/services alongside their status,
+including more detailed information and configuration options for both devices and protocol converters.
 
-![Connection Management](/images/getstarted/dataAcquisitionManipulation/connectionManagement.png?width=80%)
+![Protocol Converters](/images/getstarted/dataAcquisitionManipulation/protocolConverters.png?width=80%)
 
-**Uninitialized Connections** are established but not yet configured as data
-sources, while **Initialized Connections** are fully configured.
+**Uninitialized Network Devices/Services** are established but not yet configured as protocol
+converters, while **Initialized Network Devices/Services** are fully configured.
 
 The health status reflects the UMH-data source connection, not data transmission status.
 
-To add a new connection, click **Add Connection**. Currently, we only provide two type of connections:
+To add one, click **Add Device or External Service**.
 
-- **OPC-UA Server**: represents a connection to an OPC-UA server.
-- **n/a**: represents a generic asset (useful for connections we don't support yet).
+Enter the required server details, which include the unique name, IP address and port number.
+Optionally, you can also attach some notes, which can be useful for documentation purposes.
 
-Enter the required server details, which include the unique name and address with the format `ip:port`.
-Optionally, you can also attach some notes to the connection, which can be useful for documentation purposes.
+For testing with the OPC UA simulator, enter the following details:
 
-For testing with the OPC UA simulator, select the `OPC-UA Server` type and use the following address:
+- **Name**: OPC UA Simulator
+- **IP Address**: united-manufacturing-hub-opcuasimulator-service
+- **Port**: 46010
 
-```text
-united-manufacturing-hub-opcuasimulator-service:46010
-```
+Test the connection, and if successful, click **Save Network Device/Service** to save and deploy it.
 
-![Connection Details](/images/getstarted/dataAcquisitionManipulation/addConnectionDetails.png?width=80%)
+### Configure the Protocol Converter
 
-Test the connection, and if successful, click **Add Connection** to save and deploy it.
+Back at **Protocol Converters**, your new device should be listed in the table, and surely you'll notice that it's health is reported as `Not configured`.
 
-### Initialize the Connection
+At this point, it's worth discussing what initializing a device means and why it's important.
 
-Back at **Connection Management**, your new connection should be listed in the table, and surely you'll notice that it's health is reported as `Not configured`.
+New devices are created in an "uninitialized" state, meaning they are not yet configured as protocol converters, hence the `Not configured` health status.
+So for them to be actually useful, they need to be initialized, which will fully configure them as protocol converters and create a new Benthos deployment for data publishing to the UMH Kafka broker.
 
-At this point, it's worth discussing what initializing a connection means and why it's important.
-
-New connections are created in an "uninitialized" state, meaning they are not yet configured as data sources, hence the `Not configured` health status.
-So for them to be actually useful, they need to be initialized, which will fully configure them as data sources and create a new Benthos deployment for data publishing to the UMH Kafka broker.
-
-Initialize the connection by pressing the "play" button under the `Actions` column.
-
-![Initialize Connection](/images/getstarted/dataAcquisitionManipulation/connectionManagementInitializeButton.png?width=80%)
+Initialize it by pressing the "play" button under the `Actions` column.
 
 Enter authentication details (use _Anonymous_ for no authentication, as with the
 OPC UA simulator).
@@ -125,13 +119,71 @@ in the Learning Hub.
 Review and confirm the nodes, then proceed with initialization. Successful
 initialization will be indicated by a green message.
 
-The connection's health status should now be marked as `Healthy` and display the current message rate. You can also check the tooltip for more details.
+The device's health status should now be marked as `Healthy` and display the
+current message rate. You can also check the tooltip for more details.
 
 ## Connect MQTT Servers
 
-There are a lot of options to connect an MQTT server to the UMH. For this guide,
-we'll use Node-RED to connect to the MQTT simulator and format data into the
-UMH data model.
+This guide will cover two methods for integrating MQTT data: using the
+Management Console's Universal Protocol Converter (UPC) for a streamlined
+approach, and using Node-RED as an alternative method.
+
+### Using the Management Console
+
+The Management Console features a **Universal Protocol Converter**, which works with
+[Benthos UMH](/docs/features/connectivity/benthos-umh/) under the hood to connect and
+process data from a wide variety of protocols, including MQTT.
+
+#### Add the Network Device/Service
+
+Similar to OPC UA, you need to add the MQTT broker as a network device/service.
+Navigate to the **Component View** and access the **Protocol Converter** tab.
+Click **Add Device or External Service**, and enter the following details for
+the MQTT simulator:
+
+- **Name**: MQTT Simulator
+- **IP Address**: united-manufacturing-hub-mqtt.united-manufacturing-hub.svc.cluster.local
+- **Port**: 1883
+
+Test the connection, and if successful, save it.
+
+#### Configure the Protocol Converter
+
+Back in the **Protocol Converters** tab, your new MQTT broker should be listed.
+Initialize it by pressing the "play" button under the `Actions` column. When
+prompted to select a protocol, choose the **Universal Protocol Converter**.
+
+In the Benthos configuration page, you need to define the `input` and `processor`
+configurations in YAML format. To simplify this process, you can use the provided
+sample configuration for MQTT, which offers an easier starting point. Click on the
+**MQTT** button under the "Supported Protocols" section and apply it.
+
+This configuration connects to the UMH MQTT broker, subscribes to IoT sensor data
+topics, and assigns the data as weather information for the site `cologne` in the
+**Unified Namespace**.
+
+{{% notice info %}}
+If you are testing with the UMH MQTT simulator, the sample configuration will work
+out of the box. For other MQTT brokers, you may need to adjust the configuration.
+{{% /notice %}}
+
+Press **Save** to deploy your configuration.
+
+If you've followed the steps correctly, the MQTT broker should now be connected
+and processing data.
+
+#### Tag Browser
+
+You can view the data in the **Tag Browser**. The data is structured according to
+the ISA95 standard and displayed in a tree structure for easy navigation.
+
+![Tag Browser](/images/getstarted/dataAcquisitionManipulation/tagBrowserHumidity.png?width=80%)
+
+### Using Node-RED (Optional)
+
+Alternatively, you can use Node-RED to connect to the MQTT server and format data
+into the UMH data model. Same as before, we'll use the UMH MQTT simulator for this
+guide.
 
 To access Node-RED's web interface, navigate to:
 
@@ -142,7 +194,7 @@ http://<instance-ip-address>:1880/nodered
 Replace `<instance-ip-address>` with your UMH instance's IP. Ensure you're on the
 same network for access.
 
-### Add the MQTT Connection
+#### Add the MQTT Connection
 
 In Node-RED, find the mqtt-in node from the node palette and drag it into your
 flow. Double-click to configure and click the **pencil button** next to the
@@ -150,7 +202,7 @@ flow. Double-click to configure and click the **pencil button** next to the
 
 Enter your MQTT broker's details:
 
-- **Server**: united-manufacturing-hub-mqtt
+- **Server**: united-manufacturing-hub-mqtt.united-manufacturing-hub.svc.cluster.local
 - **Port**: 1883
 
 {{% notice info %}}
@@ -178,7 +230,7 @@ from the broker.
 Explore [Unified Namespace](/docs/features/unified-namespace) for details on topic structuring.
 {{% /notice %}}
 
-### Format Incoming Messages
+#### Format Incoming Messages
 
 Use a function node to format raw data. Connect it to the mqtt-in node and paste
 this script:
@@ -199,7 +251,7 @@ Then, connect a JSON node to the function node to parse the object into a string
 This function transforms the payload into the correct format for the UMH data model.
 {{% /notice %}}
 
-### Send Formatted Data to Kafka
+#### Send Formatted Data to Kafka
 
 For this guide, we'll send data to the UMH Kafka broker.
 
@@ -365,13 +417,6 @@ Consider adding a debug node for visualizing output data.
 {{% /notice %}}
 
 ![Node-RED Kafka to Kafka](/images/getstarted/dataAcquisitionManipulation/noderedKafkaKafka.png?width=80%)
-
-## Tag Browser
-
-Returning to the Management Console, you'll find the output data displayed within the **Tag Browser**,
-which offers a user-friendly tree structure for browsing the tag hierarchy we defined in previous steps.
-
-![Tag Browser](/images/getstarted/dataAcquisitionManipulation/tagBrowserTemperature.png?width=80%)
 
 ## {{% heading "whatsnext" %}}
 
