@@ -98,3 +98,7 @@ SELECT * FROM tag WHERE get_asset_ids_stable(
                                 '<origin_id>'
                         ) LIMIT 1;
 ```
+
+#### get_asset_ids_immutable
+
+There is no immutable version of `get_asset_ids`, as the returned values will probably change over time.
