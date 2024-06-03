@@ -132,7 +132,7 @@ Resulting in this entry:
   ```
 - **Get the newest tag row for "umh/v1/umh/cologne"**:
   ```postgresql
-  SELECT * FROM tag WHERE asset_id=get_asset_id('umh', 'cologne') LIMIT 1;
+  SELECT * FROM tag WHERE asset_id=get_asset_id_immutable('umh', 'cologne') LIMIT 1;
   ```
   The equivalent function, without using our helper is:
   ```postgresql
@@ -140,7 +140,7 @@ Resulting in this entry:
   ```
   
 {{% notice info %}}
-`get_asset_id(<enterprise>, <site>, <area>, <line>, <workcell>, <origin_id>)` is a helper function to ease retrieval of the asset id.
+`get_asset_id_immutable(<enterprise>, <site>, <area>, <line>, <workcell>, <origin_id>)` is a helper function to ease retrieval of the asset id.
 
 All fields except `<enterprise>` are optional, and it will always return the first asset id matching the search.
 {{% /notice %}}
