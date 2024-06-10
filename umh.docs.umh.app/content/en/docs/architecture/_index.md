@@ -341,7 +341,7 @@ integral to UMH.
 
 ## Device & Container Infrastructure
 
-The [Device & Container Infrastructure](/docs/architecture/device-&-container-infrastructure)
+The [Device & Container Infrastructure](/docs/architecture/device--container-infrastructure)
 lays the foundation of the United Manufacturing Hub's architecture, streamlining
 the deployment and setup of essential software and operating systems across devices.
 This infrastructure is pivotal in automating the installation process, ensuring
