@@ -82,7 +82,7 @@ In Grafana you can select tags by using SQL queries. Here, you see an example:
 ```sql
 SELECT name, value, timestamp
 FROM tag
-WHERE asset_id = get_asset_id(
+WHERE asset_id = get_asset_id_immutable(
   'pharma-genix',
   'aachen',
   'packaging',
@@ -91,7 +91,7 @@ WHERE asset_id = get_asset_id(
 );
 ```
 
-`get_asset_id` is a custom plpgsql function that we provide to simplify the
+`get_asset_id_immutable` is a custom plpgsql function that we provide to simplify the
 process of querying tag data from a specific `asset`. To learn more about our
 database, visit [this page](/docs/datamodel/database/).
 

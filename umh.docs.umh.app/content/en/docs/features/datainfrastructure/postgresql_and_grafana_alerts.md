@@ -68,7 +68,7 @@ Then click on the blue **Create alert rule** button.
 
    The complete command is:
 
-   <!-- where asset_id = get_asset_id ?-->
+   <!-- where asset_id = get_asset_id_immutable ?-->
    ```sql
    SELECT value, "timestamp" FROM tag WHERE name = 'temperature' AND "timestamp" > (NOW() - INTERVAL '10 seconds')
    ```

@@ -46,7 +46,7 @@ both of which were established in the previous chapter.
     ```sql
     SELECT name, value, time_bucket('$__interval', timestamp) AS time
     FROM tag
-    WHERE asset_id = get_asset_id(
+    WHERE asset_id = get_asset_id_immutable(
     	'pharma-genix',
     	'aachen',
     	'packaging',
@@ -66,7 +66,7 @@ both of which were established in the previous chapter.
       argument is the column to group by, which is `timestamp`, as defined in our [data model](/docs/datamodel/database).
     - The table we're querying is `tag`, this varies depending on the tag's data type, find more information in the data
       model linked above.
-    - The `asset_id` is retrieved using the `get_asset_id` function, which is a custom plpgsql function we provide to
+    - The `asset_id` is retrieved using the `get_asset_id_immutable` function, which is a custom plpgsql function we provide to
       simplify the process of querying `tag` data from a specific `asset`. Click [here](/docs/datamodel/database/#data-retrieval) for more examples.
     - [`$__timeFilter`](https://grafana.com/docs/grafana/latest/dashboards/variables/add-template-variables/#timefilter-or-__timefilter) is a Grafana function that filters the data based on a given time range. It receives one
       argument, which is the column to filter by, in our case `timestamp`.
