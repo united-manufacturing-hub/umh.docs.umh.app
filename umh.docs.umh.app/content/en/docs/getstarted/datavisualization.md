@@ -13,7 +13,7 @@ both of which were established in the previous chapter.
 ## Creating a Grafana dashboard
 
 1. If you haven't done so already, open and log in to Grafana by following the instructions given in the
-   [**Acess Grafana**](/docs/getstarted/managingthesystem/#access-grafana) section of chapter 2.
+   [**Access Grafana**](/docs/getstarted/managingthesystem/#access-grafana) section of chapter 2.
 
 2. Once logged in, hover over the fourth icon in the left menu,
    **dashboards**, and click on **+ New dashboard**.
