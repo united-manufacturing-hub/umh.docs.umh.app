@@ -128,7 +128,7 @@ A work order is a unique combination of `external_work_order_id` and `asset_id`.
 This table holds all product types.
 A product type is a unique combination of `external_product_type_id` and `asset_id`.
 
-| product_type_id | external_product_type_id | cycleTime | asset_id |
+| product_type_id | external_product_type_id | cycle_time_ms | asset_id |
 |-----------------|--------------------------|-----------|----------|
 | 1               | desk-leg-0112            | 10.0      | 8        |
 
@@ -154,7 +154,7 @@ A shift is a unique combination of `asset_id` and `start_time`.
 This table holds all states.
 A state is a unique combination of `asset_id` and `start_time`.
 
-| stateId | asset_id | start_time           | state |
-|---------|----------|----------------------|-------|
-| 1       | 8        | 2022-01-01T08:00:00Z | 20000 |
-| 2       | 8        | 2022-01-01T08:10:00Z | 10000 |
+| asset_id | start_time           | state |
+|----------|----------------------|-------|
+|  8       | 2022-01-01T08:00:00Z | 20000 |
+|  8       | 2022-01-01T08:10:00Z | 10000 |

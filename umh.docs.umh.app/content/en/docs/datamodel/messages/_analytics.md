@@ -88,8 +88,8 @@ This replaces the `addOrder` message from our v0 data model.
    - `0` - Planned
    - `1` - In progress
    - `2` - Completed
-- **`start_time`** (string) *(optional)*: The start time of the work order. Will be set by the corresponding `start` message if not provided.
-- **`end_time`** (string) *(optional)*: The end time of the work order. Will be set by the corresponding `stop` message if not provided.
+- **`start_time_unix_ms`** (number) *(optional)*: The start time of the work order. Will be set by the corresponding `start` message if not provided.
+- **`end_time_unix_ms`** (number) *(optional)*: The end time of the work order. Will be set by the corresponding `stop` message if not provided.
 
 
 **Example**
@@ -115,13 +115,13 @@ Only work orders with status `0` (planned) and no start time can be started.
 
 **Fields**
 - **`external_work_order_id`** (string): The work order ID from your MES or ERP system.
-- **`start_time`** (string): The start time of the work order.
+- **`start_time_unix_ms`** (number): The start time of the work order.
 
 **Example**
 ```json
 {
   "external_work_order_id": "1234",
-  "start_time": "2021-01-01T12:00:00Z"
+  "start_time_unix_ms": 1719931704927
 }
 ```
 
@@ -136,13 +136,13 @@ Only work orders with status `1` (in progress) and no end time can be stopped.
 
 **Fields**
 - **`external_work_order_id`** (string): The work order ID from your MES or ERP system.
-- **`end_time`** (string): The end time of the work order.
+- **`end_time_unix_ms`** (number): The end time of the work order.
 
 **Example**
 ```json
 {
   "external_work_order_id": "1234",
-  "end_time": "2021-01-01T12:00:00Z"
+  "end_time_unix_ms": 1719931704927
 }
 ```
 
@@ -158,7 +158,7 @@ We recommend using the work-order/create message to create products on the fly.
 
 **Fields**
 - **`external_product_type_id`** (string): The product type ID from your MES or ERP system.
-- **`cycle_time_ms`** (number) *(optional)*: The cycle time for the product in seconds.
+- **`cycle_time_ms`** (number) *(optional)*: The cycle time for the product in milliseconds.
 
 **Example**
 ```json
@@ -177,8 +177,8 @@ Communicates the completion of part of a work order.
 **Fields**
 - **`external_product_type_id`** (string): The product type ID from your MES or ERP system.
 - **`product_batch_id`** (string) *(optional)*: Unique identifier for the product. This could for example be a barcode or serial number.
-- **`start_time`** (string): The start time of the product.
-- **`end_time`** (string): The end time of the product.
+- **`start_time_unix_ms`** (number): The start time of the product.
+- **`end_time_unix_ms`** (number): The end time of the product.
 - **`quantity`** (number): The quantity of the product produced.
 - **`bad_quantity`** (number) *(optional)*: The quantity of bad products produced.
 
@@ -187,8 +187,8 @@ Communicates the completion of part of a work order.
 {
   "external_product_type_id": "5678",
   "product_batch_id": "1234",
-  "start_time": "2021-01-01T12:00:00Z",
-  "end_time": "2021-01-01T12:01:00Z",
+  "start_time_unix_ms": 1719931604927,
+  "end_time_unix_ms": 1719931704927,
   "quantity": 100,
   "bad_quantity": 5
 }
@@ -200,14 +200,14 @@ Modify the quantity of bad products produced.
 
 **Fields**
 - **`external_product_type_id`** (string): The product type ID from your MES or ERP system.
-- **`end_time`** (string): The end time of the product, used to identify an existing product.
+- **`end_time_unix_ms`** (string): The end time of the product, used to identify an existing product.
 - **`bad_quantity`** (number): The new quantity of bad products produced.
 
 **Example**
 ```json
 {
   "external_product_type_id": "5678",
-  "end_time": "2021-01-01T12:01:00Z",
+  "end_time": 1719931704927,
   "bad_quantity": 10
 }
 ```
@@ -219,14 +219,14 @@ Modify the quantity of bad products produced.
 Announce a new shift.
 
 **Fields**
-- **`start_time`** (string): The start time of the shift.
-- **`end_time`** (string): The end time of the shift.
+- **`start_time_unix_ms`** (number): The start time of the shift.
+- **`end_time_unix_ms`** (number): The end time of the shift.
 
 **Example**
 ```json
 {
-  "start_time": "2021-01-01T06:00:00Z",
-  "end_time": "2021-01-01T14:00:00Z"
+  "start_time_unix_ms": 1719931604927,
+  "end_time_unix_ms": 1719931704927
 }
 ```
 
@@ -235,12 +235,12 @@ Announce a new shift.
 Delete a previously created shift.
 
 **Fields**
-- **`start_time`** (string): The start time of the shift.
+- **`start_time_unix_ms`** (number): The start time of the shift.
 
 **Example**
 ```json
 {
-  "start_time": "2021-01-01T06:00:00Z"
+  "start_time_unix_ms": 1719931604927
 }
 ```
 
@@ -254,13 +254,13 @@ Checkout the [state](../../states) documentation for a list of available states.
 
 **Fields**
 - **`state`** (number): The state of the machine.
-- **`start_time`** (string): The start time of the [state](../../states).
+- **`start_time_unix_ms`** (number): The start time of the [state](../../states).
 
 **Example**
 ```json
 {
   "state": 10000,
-  "start_time": "2021-01-01T12:00:00Z"
+  "start_time_unix_ms": 1719931604927
 }
 ```
 
@@ -270,5 +270,5 @@ Overwrite one or more states between two times.
 
 **Fields**
 - **`state`** (number): The state of the machine.
-- **`start_time`** (string): The start time of the [state](../../states).
-- **`end_time`** (string): The end time of the [state](../../states).
+- **`start_time_unix_ms`** (number): The start time of the [state](../../states).
+- **`end_time_unix_ms`** (number): The end time of the [state](../../states).
