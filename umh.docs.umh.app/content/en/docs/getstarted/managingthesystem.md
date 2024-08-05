@@ -171,7 +171,7 @@ UMH uses TimescaleDB. Open a psql session:
 {{< include "open-database-shell.md" >}}
 
 Run SQL queries as needed. For an overview of the database schema, refer to the
-[Data Model](/docs/architecture/datamodel/database) documentation.
+[Data Model](/docs/datamodel/database) documentation.
 
 #### Connect MQTT to MQTT Explorer
 
