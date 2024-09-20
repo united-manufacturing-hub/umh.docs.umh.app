@@ -1,58 +1,35 @@
 ---
-title: "3. Data Acquisition and Manipulation"
-menuTitle: "3. Data Acquisition and Manipulation"
+title: "2. Data Acquisition and Manipulation"
+menuTitle: "2. Data Acquisition and Manipulation"
 description: |
   Learn how to connect various protocol converters to the UMH and format data into the
   UMH data model.
 weight: 3000
 ---
 
-The United Manufacturing Hub excels in its ability to integrate diverse
-protocol converters and standardize data into a unified model, enabling
-seamless integration of existing data infrastructure for analysis and
-processing.
+Once your UMH instance is up and running, you can follow this guide to learn
+how to connect the instance to an OPC UA server. For this example we will use
+the OPC UA simulator that is provided by your instance.
 
-Protocol converters can be connected to the UMH through [Benthos UMH](/docs/features/connectivity/benthos-umh/),
-which supports various protocols including OPC UA, as well as other types through the
-**Universal Protocol Converter** feature available in the Management Console.
+## Connect to external devices
 
-The UMH includes 3 pre-configured data simulators for testing connections:
+You can connect your UMH instances to devices via a wide range of protocols.
+This is done in the Managament Console and consists of two steps. First you
+establish a connection to the device and check if your instance can reach it.
+In the second step you create a Data Flow Component for the connection, in which
+you define the data you want to gather and how it shall be structured in
+your UNS.
 
-- [OPC UA Simulator](/docs/architecture/microservices/community/opcua-simulator/)
-- [MQTT Simulator](/docs/architecture/microservices/community/mqtt-simulator/)
-- [PackML Simulator](/docs/architecture/microservices/community/packml-simulator/)
+## Establishing a Connection
 
-## Connect OPC UA Servers
+1. To establish a new connection, navigate to the **Connections** section in the
+  menu on the left, every connection will be listed here.
 
-OPC UA, often complex, can be streamlined using our Benthos-based OPC UA connector
-accessible from the Management Console.
+2. To add a new connection click on the **+ Add Connection** button in the
+  right upper corner.
 
-### Visualize Network Devices or External Services
-
-In the **Network View**, you can visualize the network devices a UMH instance is connected to.
-This view provides the latest status of both the instances and the network devices, including
-external services.
-
-First, let’s define what we mean by network devices and external services. A network device refers
-exclusively to any physical device located on the shop floor that is assigned an IP address. This
-includes machinery, sensors, and any hardware components that communicate over the network.
-
-External services, on the other hand, encompass both virtual devices and services accessed beyond
-the local network. Virtual devices, such as software systems that have network capabilities but are
-not physically housed on the shop floor, fall into this category because they require network
-interaction. Additionally, on-premises and cloud-hosted applications like ERP systems equipped with
-REST interfaces also fall under external services.
-
-**Network devices** encompass physical devices with IP addresses as well as virtual devices that
-may exist in cloud environments or services accessed over the network, such as ERP systems with
-REST interfaces. **External services** refer to any services accessed externally, whether they
-are hosted on-premises or in the cloud.
-
-![Network View](/images/getstarted/dataAcquisitionManipulation/networkViewDevice.png?width=80%)
-
-You can also monitor the status of each UMH instance and the network devices it's connected to.
-If a device is marked in red, it indicates an unhealthy connection, this could be due to various
-reasons such as high latency or being unreachable. While green indicates a healthy connection.
+3. Under **General Settings** select the instance and give the connection a
+  name. Enter the IP-address of the external device
 
 ### Add the Network Device/Service
 

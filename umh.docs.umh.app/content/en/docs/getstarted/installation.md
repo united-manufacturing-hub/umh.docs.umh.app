@@ -25,35 +25,42 @@ requirements, or the installation will fail:
 
 ## Sign Up to the Management Console
 
-1. [Open the Management Console](https://management.umh.app/) in the browser.
+1. [Open the Management Console](https://management.umh.app/) in the browser,
+click on **Sign up now** and create a new account.
 
-2. Click on **Sign up now** and create a new account.
-
-3. Once you are sign in with your new account, click on
+2. Once you are signed in with your new account, click on
 **Add Your First Instance**.
 
 ## Create your first Instance
 
-1. _Select & Install OS -> TO DO: This depends on the changes to the add instance page_
+1. As operating system we support Rocky, Flatcar or
+  RHEL. You can find a list the supported versions and the links to download the
+  image by clicking on **Requirements** on the right side of the Management
+  Console.
+  {{% notice note %}}
+  Newer or older versions of the OS, or other OS such as Ubuntu 22.04, might
+  also work, but please note that we do not support those commercially.
+  {{% /notice %}}
 
 2. Once you have successfully installed your OS you can continue to the next
-page in the Management Console to install the UMH. Here you can configure your
-instance. For the first instance you should only change the **Name** and the
-**Location** of the instance. These will help you identify an instance once you
-have more of them.
+  page in the Management Console. Here you can configure your
+  instance. For the first instance you should only change the **Name** and the
+  **Location** of the instance. These will help you identify an instance once
+  you have more of them.
 
-3. After this, you can continue by clicking on the **Add Instance** button.
-In the dialogue you can find a command you can use to install the UMH on the
-machine you set up in the previous steps. To execute it, ssh into the new
-machine and paste it in the terminal.
+3. Once Name and Location are set, continue by clicking on the
+  **Add Instance** button. To install the UMH copy the command shown in
+  the dialogue, SSH into the new machine and paste the command. This will run
+  the installation script for the UMH and connect it to you Management Console
+  account.
 
 4. Once the installation of the UMH was successful, you can click in the
-**Continue** button. You should now see your instance in the **Instances**
- and in the **Topology** section in the left menu.
+  **Continue** button. You should now see your instance in the **Instances**
+  and in the **Topology** section in the left menu.
 
 5. To learn how to connect a data source like an OPC UA server to this machine,
-follow the [Data Aquisition and Manioulation](https://umh.docs.umh.app/docs/getstarted/dataacquisitionmanipulation/)
-guide.
+  follow the [Data Aquisition and Manioulation](https://umh.docs.umh.app/docs/getstarted/dataacquisitionmanipulation/)
+  guide.
 
 ## Do you need more technical background information?
 
@@ -67,5 +74,5 @@ Here are some links to get you started:
 ## What's next?
 
 Once you installed UMH, you can continue with the
-[next page](/docs/getstarted/managingthesystem) to learn how to manage the system,
-for example, access to the microservices.
+[next page](/docs/getstarted/dataacquisitionmanipulation) to learn how to
+connect an OPC UA server to your instance.
