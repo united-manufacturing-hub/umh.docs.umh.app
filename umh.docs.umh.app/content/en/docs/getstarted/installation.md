@@ -17,90 +17,43 @@ your first instance and connect it to a OPC UA simulator in no time.
 access. The operating system will be installed in a later step.
 - Your edge device, bare metal server or VM should meet the following minimum
 requirements, or the installation will fail:
-  - 
+  - CPU: 4 Cores
+  - Memory: 16 GB
+  - Storage: 32 GB
+- A personal computer with a recent browser to access the
+[Management Console](https://www.management.umh.app).
 
-While UMH is optimized for RHEL and Flatcar, it can theoretically run on other Linux distributions.
-However, support is not guaranteed.
-For Windows, you could try running one of the above described Operating Systems in a VM (e.g., Hyper-V).
-If you experiment with other systems, we encourage sharing your experiences
-on our [Discord](https://discord.gg/F9mqkZnm9d) channel.
-
-## Hardware Requirements
-
-- CPU: Minimum 4 cores
-- Memory: 16 GB RAM
-- Disk Space: 32 GB available
-  - On Ubuntu, we recommend at least 64 GB, due to the larger size of Ubuntu itself.
-- CPU Instructions: SSE 4.2
-  - This instruction was first introduced in 2008 (Intel) and 2011 (AMD), but some VM's require special configuration to enable it.
-
-Note: Systems at the edge of these requirements may experience longer installation times.
-Close other programs during installation for optimal performance.
-
-## Network Requirements
-
-Before proceeding with the installation, ensure your system meets the necessary network requirements.
-
-To learn about configuring firewall and network rules for your UMH instances,
-please refer to our dedicated [Firewall Rules](/docs/production-guide/security/firewall-rules/) page.
-
-## Installation Steps
+## Sign Up to the Management Console
 
 1. [Open the Management Console](https://management.umh.app/) in the browser.
 
-2. When you are finished with the creation of your account, enter your information and click on **SIGN IN**.
-   ![Sign in page](/images/getstarted/installation/signin.png)
+2. Click on **Sign up now** and create a new account.
 
-3. If you are not a member, continue with sign up. Register your information and click on **SIGN UP**.
-   ![Sign up page](/images/getstarted/installation/signup.png)
+3. Once you are sign in with your new account, click on
+**Add Your First Instance**.
 
-4. You should've been redirected to the **Network View**. Now click on the **+Add Instance** button at the top right corner.
+## Create your first Instance
 
-5. Go through the installation wizard by first clicking on **Install the UMH** and then on **UMH Classic**.
+1. _Select & Install OS -> TO DO: This depends on the changes to the add instance page_
 
-6. Configure your instance with the necessary details. Naming your instance is mandatory, while setting its location is
-   optional but beneficial for management. The location follows a hierarchical format based on the ISA95 model, allowing
-   for increasing specificity. For example, if your instance monitors a packaging line located in Building B of a factory in
-   Ehrenfeld, Cologne, you could name it 'Packaging' and set the location as follows: Enterprise: UMH; Site: Ehrenfeld;
-   Area: Building B. The Management Console organizes instances in this structure, making it easy to oversee multiple instances.
-   Additionally, it helps in verifying data accuracy; for instance, if the enterprise is mistakenly entered as 'UHM' instead of
-   'UMH', the console will highlight the error based on the mismatch in received data.
+2. Once you have successfully installed your OS you can continue to the next
+page in the Management Console to install the UMH. Here you can configure your
+instance. For the first instance you should only change the **Name** and the
+**Location** of the instance. These will help you identify an instance once you
+have more of them.
 
-7. Once you're ready, create the installation command, and then Copy and paste it into your server's
-   terminal (via ssh).
-   ![Installation command](/images/getstarted/installation/command.png)
+3. After this, you can continue by clicking on the **Add Instance** button.
+In the dialogue you can find a command you can use to install the UMH on the
+machine you set up in the previous steps. To execute it, ssh into the new
+machine and paste it in the terminal.
 
-8. The installation script runs a lot of checking and setup. For example, it checks your operating system,
-   installation of required tools, and internet connection.
-   After the check phase, kubectl and Helm will be installed.
-   The script shall show you what actions will happen to your system in the next step.
-   If you want to proceed, type **Y** and press **enter key**.
-   ![Installation checks](/images/getstarted/installation/checking.png)
+4. Once the installation of the UMH was successful, you can click in the
+**Continue** button. You should now see your instance in the **Instances**
+ and in the **Topology** section in the left menu.
 
-9. In this step, k3s will be installed. Then, it installs the UMH Helm Chart in Kubernetes.
-   After that, the Management Companion will be installed into Kubernetes.
-   Until everything is set up, it can take a while.
-   ![Installation logs](/images/getstarted/installation/installphase.png)
-
-10. After a successful installation, you should be able to see messages like in the picture below.
-    ![Installation success message](/images/getstarted/installation/successful.png)
-
-11. Back to the Management Console, everything's ready and you click on **Let's Go!**.
-
-12. Now in the Network View, a single node representing your newly created UMH instance should be visible.
-    ![Network View](/images/getstarted/installation/networkView.png)
-
-<!-- Show how it does now look like. What does this command now do? When is it finished? How can I see if it is finished
-
-What happens in the install script:
-- a lot of checking
-- installes basic tools for manageing KUbernetes like Helm and kubectl
-- installs k3s (Kubernetes)
-- Installs the UMH Helm Chart into Kubernetes
-- Installs the Management Companion into Kubernetes
-- Waits until everything is setup
-
--->
+5. To learn how to connect a data source like an OPC UA server to this machine,
+follow the [Data Aquisition and Manioulation](https://umh.docs.umh.app/docs/getstarted/dataacquisitionmanipulation/)
+guide.
 
 ## Do you need more technical background information?
 
