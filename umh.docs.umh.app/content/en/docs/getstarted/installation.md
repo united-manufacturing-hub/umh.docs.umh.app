@@ -7,22 +7,17 @@ weight: 1000
 edition: community
 ---
 
-The United Manufacturing Hub (UMH) can be deployed on various external devices,
-including edge devices and virtual machines (VMs). For initial installations
-or for development purposes, it is recommended to use a VM.
+If you are new to the United Manufacturing Hub and need a place to start, you
+are correct here. You will be guided through setting up an account, install
+your first instance and connect it to a OPC UA simulator in no time.
 
-## Software Requirements
+## Requirements
 
-The UMH installation requires one of the following Operating System on your server:
-
-- Flatcar version current-2023 or higher (3510.3.1).
-  It is recommended that you have full control over the operating system. To install Flatcar on your server,
-  follow [this guide](/docs/production-guide/installation/flatcar-installation/). <!-- This article needs to be merged together https://umh.docs.umh.app/docs/production-guide/installation/flatcar-installation-virtual-machine/ https://learn.umh.app/course/flatcar-installation-on-proxmox/ -->
-- Red Hat Enterprise Linux (RHEL) 9.0 and higher. Recommended when you can choose
-  out of a small amount of potential Operating Systems.
-- Community Supported: Ubuntu 22.04.4 LTS. This approach is useful
-  when you're for example trying to install the UMH on a cloud instance like AWS EC2
-  and struggle to install Flatcar or RHEL there.
+- You need an edge device, bare metal server or a virtual machine with internet
+access. The operating system will be installed in a later step.
+- Your edge device, bare metal server or VM should meet the following minimum
+requirements, or the installation will fail:
+  - 
 
 While UMH is optimized for RHEL and Flatcar, it can theoretically run on other Linux distributions.
 However, support is not guaranteed.
