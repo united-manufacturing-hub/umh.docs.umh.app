@@ -8,8 +8,8 @@ edition: community
 ---
 
 If you are new to the United Manufacturing Hub and need a place to start, you
-are correct here. You will be guided through setting up an account, install
-your first instance and connect it to a OPC UA simulator in no time.
+are correct here. You will be guided through setting up an account, installing
+your first instance and connect it to an OPC UA simulator in no time.
 
 ## Requirements
 
@@ -33,28 +33,27 @@ click on **Sign up now** and create a new account.
 
 ## Create your first Instance
 
-1. As operating system we support Rocky, Flatcar or
-  RHEL. You can find a list the supported versions and the links to download the
-  image by clicking on **Requirements** on the right side of the Management
-  Console.
+1. As operating system we support Rocky, RHEL or
+  Flatcar, but highly recommend using Rocky. You can find a list of the
+  supported versions and the image for Rocky by clicking
+  on **Requirements** on the right side of the Management Console.
   {{% notice note %}}
-  Newer or older versions of the OS, or other OS such as Ubuntu 22.04, might
-  also work, but please note that we do not support those commercially.
+  Newer or older versions of the OS, or other OS such as Ubuntu, might
+  work, but please note that we do not support those commercially.
   {{% /notice %}}
 
-2. Once you have successfully installed your OS you can continue to the next
-  page in the Management Console. Here you can configure your
-  instance. For the first instance you should only change the **Name** and the
-  **Location** of the instance. These will help you identify an instance once
-  you have more of them.
+2. Once you have successfully installed your OS you can configure your instance
+  in the Management Console. For the first instance you should only change the
+  **Name** and the **Location** of the instance. These will help you identify
+  an instance once you have more of them.
 
 3. Once Name and Location are set, continue by clicking on the
   **Add Instance** button. To install the UMH copy the command shown in
-  the dialogue, SSH into the new machine and paste the command. This will run
-  the installation script for the UMH and connect it to you Management Console
-  account.
+  the dialogue, SSH into the new machine, paste the command and follow the
+  instructions. This command will run the installation script for the UMH
+  and connect it to you Management Console account.
 
-4. Once the installation of the UMH was successful, you can click in the
+4. Once the installation of the UMH was successful, you can click on the
   **Continue** button. You should now see your instance in the **Instances**
   and in the **Topology** section in the left menu.
 
