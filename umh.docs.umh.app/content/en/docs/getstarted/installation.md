@@ -7,17 +7,17 @@ weight: 1000
 edition: community
 ---
 
-If you are new to the United Manufacturing Hub and need a place to start, you
-are correct here. You will be guided through setting up an account, installing
-your first instance and connect it to an OPC UA simulator in no time.
+If you are new to the United Manufacturing Hub and need a place to start, this
+is the place to be. You will be guided through setting up an account,
+installing your first instance and connecting to an OPC UA simulator in no time.
 
 ## Requirements
 
-- You need an edge device, bare metal server or a virtual machine with internet
-access. The operating system will be installed in a later step.
+- You will need an edge device, bare metal server or virtual machine with
+  internet access. The operating system will be installed at a later stage.
 - Your edge device, bare metal server or VM should meet the following minimum
-requirements, or the installation will fail:
-  - CPU: 4 Cores
+  requirements or the installation will fail:
+  - CPU: 4 cores
   - Memory: 16 GB
   - Storage: 32 GB
 - A personal computer with a recent browser to access the
@@ -28,38 +28,39 @@ requirements, or the installation will fail:
 1. [Open the Management Console](https://management.umh.app/) in the browser,
 click on **Sign up now** and create a new account.
 
-2. Once you are signed in with your new account, click on
+2. Once logged in with your new account, click on
 **Add Your First Instance**.
 
 ## Create your first Instance
 
-1. As operating system we support Rocky, RHEL or
-  Flatcar, but highly recommend using Rocky. You can find a list of the
-  supported versions and the image for Rocky by clicking
-  on **Requirements** on the right side of the Management Console.
+1. We support Rocky, RHEL or
+  Flatcar, but we strongly recommend using Rocky. You can find a list of
+  supported versions and the image for Rocky by clicking on the
+  on the right hand side of the Management Console.
   {{% notice note %}}
-  Newer or older versions of the OS, or other OS such as Ubuntu, might
-  work, but please note that we do not support those commercially.
+  Newer or older versions of the operating system, or other operating systems
+  such as Ubuntu, may work, but please note that we do not support them
+  commercially.
   {{% /notice %}}
 
-2. Once you have successfully installed your OS you can configure your instance
-  in the Management Console. For the first instance you should only change the
-  **Name** and the **Location** of the instance. These will help you identify
-  an instance once you have more of them.
+2. Once you have successfully installed
+  your operating system, you can configure your instance in the Management
+  Console. For the first instance you should only change the **Name** and
+  **Location** of the instance. These will help you to identify an instance
+  if you have more than one.
 
-3. Once Name and Location are set, continue by clicking on the
-  **Add Instance** button. To install the UMH copy the command shown in
-  the dialogue, SSH into the new machine, paste the command and follow the
-  instructions. This command will run the installation script for the UMH
-  and connect it to you Management Console account.
+3. Once the name and location are set,
+  continue by clicking on the **Add Instance** button. To install the UMH, copy
+  the command shown in the dialogue box, SSH into the new machine, paste the
+  command and follow the instructions. This command will run the installation
+  script for the UMH and connect it to your Management Console account.
 
-4. Once the installation of the UMH was successful, you can click on the
-  **Continue** button. You should now see your instance in the **Instances**
-  and in the **Topology** section in the left menu.
+4. If the UMH installation was
+  successful, you can click the **Continue** button. Your instance should appear in the **Instances** and **Topology** sections of the left-hand menu after a few minutes.
 
-5. To learn how to connect a data source like an OPC UA server to this machine,
-  follow the [Data Aquisition and Manioulation](https://umh.docs.umh.app/docs/getstarted/dataacquisitionmanipulation/)
-  guide.
+5. To learn how to connect a data source such as an OPC UA server to this
+machine, follow the [Data Acquisition and Management](https://umh.docs.umh.app/docs/getstarted/dataacquisitionmanipulation/)
+guide.
 
 ## Do you need more technical background information?
 
