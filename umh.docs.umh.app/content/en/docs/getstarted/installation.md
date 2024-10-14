@@ -17,6 +17,8 @@ installing your first instance and connecting to an OPC UA simulator in no time.
   internet access. The operating system will be installed at a later stage.
 - Your edge device, bare metal server or VM should meet the following minimum
   requirements or the installation will fail:
+  <!-- use https://management.umh.app/requirements.json to make it dynamic -->
+  - ToDo: get requirements automatically, see comment
   - CPU: 4 cores
   - Memory: 16 GB
   - Storage: 32 GB

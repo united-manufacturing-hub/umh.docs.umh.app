@@ -20,14 +20,15 @@ define the data you want to collect and how it should be structured in your
 unified namespace.
 
 ## Establishing a Connection
-
-[//]: # ({{% notice note %}})
-[//]: #   (To allow you to experience the UMH as quickly as possible, the)
-[//]: # (connection to the internal OPC UA simulator is already pre-configured.)
-[//]: # (This section is therefore included for reference only and you can)
-[//]: # (continue with **Configuring a Protocol Converter** below.)
-[//]: # ({{% /notice %}})
-[//]: # (This note can be used once the OPC UA Simulator is a pre-configured connection.)
+<!-- Can be shown, once the OPC UA simulator is preconfigured as a connection.
+{{% notice note %}}
+To allow you to experience the UMH as quickly as possible, the
+connection to the internal OPC UA simulator is already pre-configured.
+This section is therefore included for reference only and you can
+continue with **Configuring a Protocol Converter** below.
+{{% /notice %}}
+This note can be used once the OPC UA Simulator is a pre-configured connection.
+-->
 
 1. To create a new connection, navigate to the **Connections** section in the
 left hand menu and click on the **+ Add Connection** button in the top right
