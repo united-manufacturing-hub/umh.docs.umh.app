@@ -39,16 +39,23 @@ weight: 4000
 6. Now click on the **UMH TimescaleDB** datasource in the
   **Select data source** dialogue.
 
-7. To access the data from your Unified Namespace you can use SQL queries. To
-  make this as easy as possible for you, the Management Console is generating
-  these for you. The SQL query to each tag can be found in the **Tag Browser**.
-  In the **Tag Browser**, navigate to the desired tag, for this example we will
-  use the **Pressure** and **Temperature** tag from the OPC UA simulator.
+7. To access the data from your Unified Namespace in Grafana you can use SQL
+  queries. To make this as easy as possible for you, the Management Console
+  is generating these for you. Open the **Tag Browser** and navigate to the
+  desired tag. You can find the query at the bottem of the page under
+  **SQL Querry**. Make sure it is set to **Grafana** and then copy it.
+  
+8. Back in Grafana you have to set the query to code. To do so set the
+  **Builder/Code** switch to **Code**. This option is located on the right side
+  of the page, next to the blue **Run query** button.
+  Paste the copyed query from the Management Console in the text field.
 
-8. Once you have found the tag scroll down and copy the **SQL Querry**. Make
-  sure it is set to **Grafana**. Back in Grafana you have to set the query to
-  code. To do so click on **Code**. This option is located on the right side of
-  the page, on the right side of the blue **Run query** button.
+9. You can now click on the blue **Run query** button. If everything is set up
+  correctly you should now see the data in a graph.
+  
+10. There are many ways to customize the graph on the right side of the page,
+  for example you can use different collors or chart styles.
+  Additionally, you can add queries at the bottem of the page, but for now this is enough.
 
   ---
 
