@@ -1,29 +1,56 @@
 ---
-title: 4. Data Visualization
-menuTitle: 4. Data Visualization
+title: 3. Data Visualization
+menuTitle: 3. Data Visualization
 description: Build a simple Grafana dashboard with the gathered data.
 weight: 4000
 ---
 
-In the following step, we will delve into the process of visualizing the data.
-This chapter focuses on the construction of dashboards using Grafana. The
-dashboard will be crafted around the OPC-UA data source and the Node-RED flow,
-both of which were established in the previous chapter.
+  After bringing the data from the OPC UA simulator into your Unified Namespace,
+  you can use **Grafana** to create dashboards to display it. If you have not
+  already connected the OPC UA simulator to your instance, you can follow the
+  [previous guide](https://umh.docs.umh.app/docs/getstarted/dataacquisitionmanipulation/).
 
-## Creating a Grafana dashboard
+## Accessing Grafana
 
-1. If you haven't done so already, open and log in to Grafana by following the instructions given in the
-   [**Acess Grafana**](/docs/getstarted/managingthesystem/#access-grafana) section of chapter 2.
+1. Make sure that you are in the same network as your instance, so you can
+  access Grafana.
 
-2. Once logged in, hover over the fourth icon in the left menu,
-   **dashboards**, and click on **+ New dashboard**.
-   ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisNewDashboard.png?width=75%)
+2. In the Management Console select **Applications** in the left menu. Click on
+  **Historian (Grafana)** from the instance you connected the OPC UA simulator
+  to. You can search your instance's applications by entering its name in
+  the **Filter by name or instance** fieled at the top of the page.
 
-3. Click on **Add a new panel**, which will redirect you to the edit panel view.
+3. Click on the displayed URL in the opening side panel. This will only work if
+  you set the correct IP address of your instance during the installation
+  script. If you can not connect to Grafana, look up the IP address of your
+  instance and enter the following URL in your browser:
 
-4. Next, we'll retrieve OPC-UA data from TimescaleDB. Before moving forward, ensure that the
-   **UMH TimescaleDB** data source is selected; it should be the default choice.
-   ![Untitled](/images/getstarted/dataVisualization/getStartedDataVisTimescaleDatasource.png?width=75%)
+    ```markdown
+    http://<IP-address-of-your-instance>:8080
+    ```
+
+4. You can copy the password for Grafana by clicking on it in the side panel of
+  the application. The username is `admin`.
+
+5. To create a new dashboard first click on **Dashboards** in the left menu and
+  then on the blue button **+ Create Dashboard** in the middle of the page.
+  On the next page click on **+ Add visualization**.
+
+6. Now click on the **UMH TimescaleDB** datasource in the
+  **Select data source** dialogue.
+
+7. To access the data from your Unified Namespace you can use SQL queries. To
+  make this as easy as possible for you, the Management Console is generating
+  these for you. The SQL query to each tag can be found in the **Tag Browser**.
+  In the **Tag Browser**, navigate to the desired tag, for this example we will
+  use the **Pressure** and **Temperature** tag from the OPC UA simulator.
+
+8. Once you have found the tag scroll down and copy the **SQL Querry**. Make
+  sure it is set to **Grafana**. Back in Grafana you have to set the query to
+  code. To do so click on **Code**. This option is located on the right side of
+  the page, on the right side of the blue **Run query** button.
+
+  ---
 
 5. We'll show you how to run queries with both the **Builder** mode (a graphical query builder) and the
    **Code** mode (a code editor to write RAW SQL). Let's begin with the graphical approach.
@@ -76,6 +103,8 @@ both of which were established in the previous chapter.
 You can also select the desired tag in the **Tag Browser** of the **Management Console**, and directly copy the provided
 SQL query from there.
 {{% /notice %}}
+
+---
 
 11. Same as before, click on the **Run Query** button to execute the query. If you've been following along, you won't
     see any noticeable changes, since we only have one `asset` in our database.
