@@ -113,6 +113,5 @@ in the Learning Hub.
 ## {{% heading "whatsnext" %}}
 
 Next, we'll dive into [Data Visualisation](/docs/getstarted/datavisualization),
-where you'll learn how to create Grafana dashboards using your newly configured
-data sources. The next chapter will help you visualise alize and interpret your data
-effectively.
+where you'll learn how to create Grafana dashboards with your newly collected
+data.

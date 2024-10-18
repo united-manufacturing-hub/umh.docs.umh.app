@@ -13,15 +13,22 @@ installing your first instance and connecting to an OPC UA simulator in no time.
 
 ## Requirements
 
-- You will need an edge device, bare metal server or virtual machine with
-  internet access. The operating system will be installed at a later stage.
-- Your edge device, bare metal server or VM should meet the following minimum
-  requirements or the installation will fail:
-  <!-- use https://management.umh.app/requirements.json to make it dynamic -->
-  - ToDo: get requirements automatically, see comment
-  - CPU: 4 cores
-  - Memory: 16 GB
-  - Storage: 32 GB
+- You will need an **edge device, bare metal server or virtual machine** with
+  internet access. The device should meet the following **minimum requirements or the installation will fail**:
+
+  <!-- Dynamic Requirements Section -->
+  <div id="requirements-2">
+  <!-- Dynamic content will be loaded here -->
+  </div>
+
+  We support the following **operating systems**:
+
+  <div id="requirements-3">
+  <!-- Dynamic content will be loaded here -->
+  </div>
+
+  ARM-based systems, such as a Raspberry Pi, are not currently supported.
+
 - A personal computer with a recent browser to access the
 [Management Console](https://www.management.umh.app).
 
@@ -35,10 +42,10 @@ click on **Sign up now** and create a new account.
 
 ## Create your first Instance
 
-1. We support Rocky, RHEL or
-  Flatcar, but we strongly recommend using Rocky. You can find a list of
-  supported versions and the image for Rocky by clicking on the
-  on the right hand side of the Management Console.
+1. We support <span id="requirements-4"></span>, but we strongly recommend
+  using Rocky. You can find a list of the requirements and the image for
+  Rocky by clicking on the **REQUIREMENTS** button on the right hand side of the
+  Management Console.
   {{% notice note %}}
   Newer or older versions of the operating system, or other operating systems
   such as Ubuntu, may work, but please note that we do not support them
@@ -63,15 +70,6 @@ click on **Sign up now** and create a new account.
 5. To learn how to connect a data source such as an OPC UA server to this
 machine, follow the [Data Acquisition and Management](https://umh.docs.umh.app/docs/getstarted/dataacquisitionmanipulation/)
 guide.
-
-## Do you need more technical background information?
-
-Here are some links to get you started:
-
-- [Introduction IT](https://learn.umh.app/course/introduction-into-it-ot-information-technology/)
-- [Introduction OT](https://learn.umh.app/course/introduction-into-it-ot-operational-technology-ot/)
-- [Introduction IIoT](https://learn.umh.app/course/introduction-into-it-ot-industrial-internet-of-things-iiot/)
-- [The Architecture of the UMH](https://umh.docs.umh.app/docs/architecture/)
 
 ## What's next?
 

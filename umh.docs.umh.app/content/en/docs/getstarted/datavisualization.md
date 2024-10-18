@@ -65,10 +65,33 @@ right hand corner of the graph. To add another graph, click **Add** and then
 
 12. To save your dashboard, press 'Ctrl' + 'S'.
 
-## What's next?
+## Furter Reading
 
-If you would like to learn more about the United Manufacturing Hub, here is a
-list of additional resources:
-- [Resource 1](#)
-- [Resource 2](#)
-- [Resource 3](#)
+If you would like to find out more about the United Manufacturing Hub, here
+are some links to get you links to get you started.
+
+**General knowledge, updates and guidance? Check out our Learn page:**
+
+- [Our Blog](https://learn.umh.app/)
+- [Grafana Guides](https://learn.umh.app/topic/best-practices-and-guides-for-grafana/)
+
+**Do you need more technical background information?**
+
+- [Introduction IT](https://learn.umh.app/course/introduction-into-it-ot-information-technology/)
+- [Introduction OT](https://learn.umh.app/course/introduction-into-it-ot-operational-technology-ot/)
+- [Introduction IIoT](https://learn.umh.app/course/introduction-into-it-ot-industrial-internet-of-things-iiot/)
+- [The Architecture of the UMH](https://umh.docs.umh.app/docs/architecture/)
+
+**If you don't want to read all that, you can check out our**
+**[YouTube channel](https://www.youtube.com/@unitedmanufacturinghub)**
+**where we have also covered this:**
+
+- [Unified Namespace (UNS) Basics](https://www.youtube.com/watch?v=ywiHxnm2Bnk&list=PLeC0OzgWYQfuD9Jb2eUoSbv5Vu0xxSm0k)
+- [Introduction into IT / OT](https://www.youtube.com/watch?v=EuHP8olZQ8I&list=PLeC0OzgWYQfshVdn_-XCEXB4zh54ekW0b)
+
+**If you need help, want to stay up to date with product news, or just want**
+**to connect with like-minded people, join our community:**
+
+- [Discord](https://community-discord.umh.app/?ref=learn.umh.app)
+- [Linked In](https://www.linkedin.com/company/united-manufacturing-hub?ref=learn.umh.app)
+- [GitHub](https://github.com/united-manufacturing-hub/united-manufacturing-hub?ref=learn.umh.app)

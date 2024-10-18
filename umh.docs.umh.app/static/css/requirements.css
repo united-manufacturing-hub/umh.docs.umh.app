@@ -1,0 +1,28 @@
+/* Custom styles for the hardware requirements section */
+#requirements-2 {
+    font-size: 1rem; /* Match the base font size of your page */
+    line-height: 1.6; /* Adjust the line height for readability */
+    margin-bottom: 2rem;
+  }
+  #requirements-2 ul {
+    padding-left: 1.5rem; /* Add padding to the list for clarity */
+  }
+  #requirements-2 li {
+    font-size: 1rem; /* Match the list item size with paragraphs */
+    margin-bottom: 0.5rem; /* Add some space between list items */
+  }
+  
+  /* Custom styles for the OS requirements section */
+  #requirements-3 {
+    font-size: 1rem; /* Match the base font size of your page */
+    line-height: 1.6; /* Adjust the line height for readability */
+    margin-bottom: 2rem;
+  }
+  #requirements-3 ul {
+    padding-left: 1.5rem; /* Add padding to the list for clarity */
+  }
+  #requirements-3 li {
+    font-size: 1rem; /* Match the list item size with paragraphs */
+    margin-bottom: 0.5rem; /* Add some space between list items */
+  }
+  
