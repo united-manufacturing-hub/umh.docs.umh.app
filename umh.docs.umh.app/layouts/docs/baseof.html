@@ -3,6 +3,7 @@
   <head>
     {{ partial "head.html" . }}
   <link rel="stylesheet" type="text/css" href="/css/swagger-ui.css">
+  <link rel="stylesheet" type="text/css" href="/css/requirements.css">
   </head>
   <body class="td-{{ .Kind }}">
     <header>
@@ -24,6 +25,7 @@
             {{ if not .Site.Params.ui.breadcrumb_disable }}{{ partial "breadcrumb.html" . }}{{ end }}
             <script src="/js/swagger-ui-bundle.js"></script>
             <script src="/js/swagger-ui-standalone-preset.js"></script>
+            <script src="/js/requirements.js"></script>
             {{ partial "version-hint.html" . }}
             {{ partial "wip-hint.html" . }}
             {{ partial "deprecation-hint.html" . }}
