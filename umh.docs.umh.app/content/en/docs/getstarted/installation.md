@@ -14,7 +14,8 @@ installing your first instance and connecting to an OPC UA simulator in no time.
 ## Requirements
 
 - You will need an **edge device, bare metal server or virtual machine** with
-  internet access. The device should meet the following **minimum requirements or the installation will fail**:
+  internet access. The device should meet the following
+  **minimum requirements or the installation will fail**:
 
   <!-- Dynamic Requirements Section -->
   <div id="requirements-2">
@@ -28,6 +29,14 @@ installing your first instance and connecting to an OPC UA simulator in no time.
   </div>
 
   ARM-based systems, such as a Raspberry Pi, are not currently supported.
+
+{{% notice note %}}
+Newer or older versions of the operating system, or other operating systems
+such as Ubuntu, may work, but please note that we do not support them
+commercially.
+You can find the image for Rocky in the Management Console, when you are
+setting up your first instance.
+{{% /notice %}}
 
 - A personal computer with a recent browser to access the
 [Management Console](https://www.management.umh.app).
@@ -46,11 +55,6 @@ click on **Sign up now** and create a new account.
   using Rocky. You can find a list of the requirements and the image for
   Rocky by clicking on the **REQUIREMENTS** button on the right hand side of the
   Management Console.
-  {{% notice note %}}
-  Newer or older versions of the operating system, or other operating systems
-  such as Ubuntu, may work, but please note that we do not support them
-  commercially.
-  {{% /notice %}}
 
 2. Once you have successfully installed
   your operating system, you can configure your instance in the Management
@@ -66,10 +70,6 @@ click on **Sign up now** and create a new account.
 
 4. If the UMH installation was
   successful, you can click the **Continue** button. Your instance should appear in the **Instances** and **Topology** sections of the left-hand menu after a few minutes.
-
-5. To learn how to connect a data source such as an OPC UA server to this
-machine, follow the [Data Acquisition and Management](https://umh.docs.umh.app/docs/getstarted/dataacquisitionmanipulation/)
-guide.
 
 ## What's next?
 

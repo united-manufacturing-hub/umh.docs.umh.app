@@ -14,7 +14,7 @@ already connected the OPC UA simulator to your instance, you can follow the
 
 1. Make sure you are on the same network as your instance to access Grafana.
 
-2. 2. In the Management Console, select **Applications** from the left hand
+2. In the Management Console, select **Applications** from the left hand
 menu. Click on **Historian (Grafana)** for the instance to which you have
 connected the OPC UA simulator. You can search for your instance's applications
 by entering its name in the **Filter by name or instance** field at the top of
@@ -63,7 +63,7 @@ of the graph or access other options by clicking on the three dots in the top
 right hand corner of the graph. To add another graph, click **Add** and then
 **Visualisation** from the menu bar at the top of the page.
 
-12. To save your dashboard, press 'Ctrl' + 'S'.
+12. To save your dashboard, press `Ctrl` + `S`.
 
 ## Furter Reading
 
@@ -84,7 +84,7 @@ are some links to get you links to get you started.
 
 **If you don't want to read all that, you can check out our**
 **[YouTube channel](https://www.youtube.com/@unitedmanufacturinghub)**
-**where we have also covered this:**
+**where we have also covered these topics:**
 
 - [Unified Namespace (UNS) Basics](https://www.youtube.com/watch?v=ywiHxnm2Bnk&list=PLeC0OzgWYQfuD9Jb2eUoSbv5Vu0xxSm0k)
 - [Introduction into IT / OT](https://www.youtube.com/watch?v=EuHP8olZQ8I&list=PLeC0OzgWYQfshVdn_-XCEXB4zh54ekW0b)

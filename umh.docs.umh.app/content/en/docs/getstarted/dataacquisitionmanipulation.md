@@ -56,7 +56,7 @@ there is no error, it will be listed in the **Connections** section.
 1. To access the data from the OPC UA Simulator you need to add a
 **Protocol Converter** to the connection. Click on the connection to
 the OPC UA Simulator in the **Connections** table, then open
-**Protocol Converter** in the side pane and click on the
+**Protocol Converter** in the side panel and click on the
 **+ Add Protocol Converter** button.
 
 2. First you need to select the protocol used to communicate with the device,
@@ -85,12 +85,14 @@ with it.
       useHeartbeat: true
       nodeIDs:
         - ns=2;s=Pressure
+        - ns=2;s=Temperature
    ```
 
 4. **Processing:** In this section you can manipulate the incoming data and
 sort it into the desired asset. The auto-generated configuration will sort
-each tag into the same asset based on the location used for the connection,
-while the tag name will be based on the name of the tag on the OPC UA server.
+each tag into the same asset based on the location used for the instance and
+connection, while the tag name will be based on the name of the tag on the OPC
+UA server.
   
    Further information can be found in the **OPC UA Processor** section next to
    the **Processing** field, for example how to create individual assets for
