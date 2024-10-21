@@ -65,7 +65,7 @@ right hand corner of the graph. To add another graph, click **Add** and then
 
 12. To save your dashboard, press `Ctrl` + `S`.
 
-## Furter Reading
+## Further Reading
 
 If you would like to find out more about the United Manufacturing Hub, here
 are some links to get you links to get you started.
