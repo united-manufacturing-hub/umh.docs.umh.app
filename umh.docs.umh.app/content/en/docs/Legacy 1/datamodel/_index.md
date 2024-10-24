@@ -1,7 +1,7 @@
 ---
-title: "Data Contracts / API"
-menuTitle: "Data Contracts / API"
-description: "This page describes the messages and actions in the Uified Namespace - from the message payloads up to database tables."
+title: "Data Model (v1)"
+menuTitle: "Data Model (v1)"
+description: "This page describes the data model of the UMH stack - from the message payloads up to database tables."
 weight: 1725
 ---
 
@@ -12,7 +12,6 @@ C_d --> UN_d
 UN_d --> H_d
 UN_d --> A_d
 H_d --> DL[Data Lake]
-A_d --> G[Performance Monitoring]
 
     subgraph UNS[ ]
         subgraph C_d[ ]
@@ -27,16 +26,11 @@ A_d --> G[Performance Monitoring]
            UN_d_infoX --- UN_d_info
         end
 
-        subgraph DC[ ]
-            subgraph H_d[ ]
-                H_d_infoX["Historian\n(e.g., TimescaleDB)"]
-                H_d_info[Table: asset\nTable: tag\nTable: tag_string]
-                H_d_infoX --- H_d_info
-            end
 
-            subgraph A_d[ ]
-                A_d_infoX["Analytics\n(e.g., KPIs)"]
-            end
+        subgraph H_d[ ]
+            H_d_infoX["Historian\n(e.g., TimescaleDB)"]
+            H_d_info[Table: asset\nTable: tag\nTable: tag_string]
+            H_d_infoX --- H_d_info
         end
 
     end
