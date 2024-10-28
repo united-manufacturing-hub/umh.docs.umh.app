@@ -13,6 +13,8 @@ installing your first instance and connecting to an OPC UA simulator in no time.
 
 ## Requirements
 
+### Device
+
 - You will need an **edge device, bare metal server or virtual machine** with
   internet access. The device should meet the following
   **minimum requirements or the installation will fail**:
@@ -22,24 +24,34 @@ installing your first instance and connecting to an OPC UA simulator in no time.
   <!-- Dynamic content will be loaded here -->
   </div>
 
+- ARM-based systems, such as a Raspberry Pi, are not currently supported.
+
+### Operating System
+
   We support the following **operating systems**:
 
   <div id="requirements-3">
   <!-- Dynamic content will be loaded here -->
   </div>
+  You can find the image for Rocky in the Management Console, when you are
+  setting up your first instance.
 
-  ARM-based systems, such as a Raspberry Pi, are not currently supported.
+  {{% notice note %}}
+  Newer or older versions of the operating system, or other operating systems
+  such as Ubuntu, may work, but please note that we do not support them
+  commercially.
+  
+  {{% /notice %}}
 
-{{% notice note %}}
-Newer or older versions of the operating system, or other operating systems
-such as Ubuntu, may work, but please note that we do not support them
-commercially.
-You can find the image for Rocky in the Management Console, when you are
-setting up your first instance.
-{{% /notice %}}
+### Network
 
 - A personal computer with a recent browser to access the
 [Management Console](https://www.management.umh.app).
+- Ensure that management.umh.app is allowlisted on TCP port 443 for HTTPS traffic.
+
+  {{% notice note %}}
+  You can also check our [Recommended Firewall Settings](https://umh.docs.umh.app/docs/production-guide/security/firewall-rules/).
+  {{% /notice %}}
 
 ## Sign Up to the Management Console
 
