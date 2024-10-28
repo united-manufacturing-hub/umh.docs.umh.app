@@ -1,18 +1,18 @@
 ---
 title: "Data Contracts / API"
 menuTitle: "Data Contracts / API"
-description: "This page describes the messages and actions in the Uified Namespace - from the message payloads up to database tables."
+description: "This page describes how messages flow in the UMH, which message goes where, how it has to look like and how you can build your own structures."
 weight: 1725
 ---
-
+<!--
 {{<mermaid theme="neutral" >}}
 flowchart LR
-AP[Automation Pyramid] --> C_d
-C_d --> UN_d
-UN_d --> H_d
-UN_d --> A_d
-H_d --> DL[Data Lake]
-A_d --> G[Performance Monitoring]
+AP[Automation Pyramid] -- > C_d
+C_d -- > UN_d
+UN_d -- > H_d
+UN_d -- > A_d
+H_d -- > DL[Data Lake]
+A_d -- > G[Performance Monitoring]
 
     subgraph UNS[ ]
         subgraph C_d[ ]
@@ -48,10 +48,13 @@ click UN_d_info href "./messages"
 click H_d_info href "./database"
 
 {{</ mermaid >}}
+-->
 
 ## What are Data Contracts
 
 Data Contracts are formal agreements that define the structure, format, and rules for data exchanged between components within a Unified Namespace (UNS) architecture. They specify metadata, data models, and service levels to ensure that all systems interact consistently and reliably. By establishing clear guidelines for data sharing, Data Contracts facilitate seamless integration and prevent disruptions caused by changes in data formats or structures.
+
+In short, they define where a messages goes, what structure it has to follow, how it gets there, what happens on its arrival, based on rules set by either us as defaults, or the user.
 
 {{% notice note %}}
 For more insights explore our
@@ -63,7 +66,7 @@ For more insights explore our
 ## Example
 
 To give you an easy example just think about the `_historian` schema you probably already have used.
-The basic problem is, that you want to send data to your UNS that is stored in the data base.
+You want to send data from your machines to your UNS and store in the data base.
 For Kafka to process your message and successfully write it into the data base, you have to adhere to the topic stuture, including the `_historian` schema, and use the correct payload format.
 This in makes sure that the data can be stored in the data base tables without causing errors and that the data can be read by other programs as they know what data to expect.
 
@@ -102,6 +105,10 @@ The combination of the Historian Data Contract, the additional `_action` schema,
 ## Why Data Contracts
 
 This standardization enhances data integrity and reduces the risk of system failures when modifications are necessary. Implementing Data Contracts also improves the scalability and maintainability of your architecture, allowing your organization to manage complex data interactions efficiently.
+
+## Deep Dive into Data modeling
+
+If this has sparked your interest, or you want to read more about reasons why we use this approach, we recommend reading the aricle about [Data Modeling in the UNS](https://learn.umh.app/lesson/data-modeling-in-the-unified-namespace-mqtt-kafka/) on our learn page.
 
 ## Connectivity
 
