@@ -19,18 +19,27 @@ second step is to create a protocol converter for the connection, in which you
 define the data you want to collect and how it should be structured in your
 unified namespace.
 
-## Establishing a Connection
-
 {{% notice note %}}
 To allow you to experience the UMH as quickly as possible, the
 connection to the internal OPC UA simulator is already pre-configured.
-This section is therefore included for reference only and you can
-continue with **Configuring a Protocol Converter** below.
+
+Therefore, the **Establishing a Connection** section is included for referenc
+ only. You can skip to **Configuring a Protocol Converter** below.
 {{% /notice %}}
+
+## Establishing a Connection
 
 1. To create a new connection, navigate to the **Connections** section in the
 left hand menu and click on the **+ Add Connection** button in the top right
 hand corner.
+
+   {{% notice info %}}
+   If you want to configure your own connection, either do not use the OPC UA
+   simulator mentioned below, or delete the preconfigured connection named
+   `default-opcua-simulator-connection'.
+
+   **Having two connections to the same device will cause errors!**
+   {{% /notice %}}
 
 2. Under **General Settings** select your instance and give the connection a
   name. Enter the address and port of the device you want to connect to. To
