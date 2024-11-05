@@ -20,15 +20,13 @@ define the data you want to collect and how it should be structured in your
 unified namespace.
 
 ## Establishing a Connection
-<!-- Can be shown, once the OPC UA simulator is preconfigured as a connection.
+
 {{% notice note %}}
 To allow you to experience the UMH as quickly as possible, the
 connection to the internal OPC UA simulator is already pre-configured.
 This section is therefore included for reference only and you can
 continue with **Configuring a Protocol Converter** below.
 {{% /notice %}}
-This note can be used once the OPC UA Simulator is a pre-configured connection.
--->
 
 1. To create a new connection, navigate to the **Connections** section in the
 left hand menu and click on the **+ Add Connection** button in the top right
@@ -37,8 +35,8 @@ hand corner.
 2. Under **General Settings** select your instance and give the connection a
   name. Enter the address and port of the device you want to connect to. To
   connect to the OPC UA Simulator, use
-    - **IP:** united-manufacturing-hub-opcuasimulator-service
-    - **Port:** 46010
+    - **IP:** united-manufacturing-hub-opcsimv2-service.united-manufacturing-hub.svc.cluster.local
+    - **Port:** 50000
 
    You can also set additional location fields to help you keep track of your
    of your connections. The fields already set by the selected instance are
@@ -53,39 +51,47 @@ there is no error, it will be listed in the **Connections** section.
 
 ## Add the Protocol Converter
 
-1. To access the data from the OPC UA Simulator you need to add a
-**Protocol Converter** to the connection. Click on the connection to
-the OPC UA Simulator in the **Connections** table, then open
-**Protocol Converter** in the side panel and click on the
-**+ Add Protocol Converter** button.
+To access the data from the OPC UA Simulator you need to add a
+**Protocol Converter** to the connection.
+
+1. Click on the connection to the OPC UA Simulator in the **Connections** table.
+  If you are using the preconfigured one, it is called `default-opcua-simulator-connection`.
+  Click on the **+ Add Protocol Converter button in the opening menu.
 
 2. First you need to select the protocol used to communicate with the device,
 in this case **OPC UA**. This can be found under **General**.
 
-3. **Input:** Many of the required details are already set, based on the
-connection details. For this tutorial we are going to subscribe to two tags
-on the OPC UA server. Copy the code below and replace the current `nodeIDs:`
-with it.
+3. **Input:** Many of the required details are already set based on the
+connection details. For this tutorial we will subscribe to two tags on the OPC
+UA server. Tags can be selected manually or by using the OPC UA Browser.
 
-   ```yaml
+   If you want to select the nodes via the OPC UA Browser, untick the `Root`
+   box, navigate to `Root/Objects/OpcPlc/IoTSensors`, select `Pressure` and
+   `ConcentrationNH3` and click on **Apply** at the bottom.
+
+   To add them manually, close the OPC UA Browser by clicking on the
+   `OPC UA BROWSER` button at the far ight of the window.
+   Now copy the code below and replace the current `nodeIDs:` with it.
+
+    ```yaml
     nodeIDs:
-      - ns=2;s=Pressure
-      - ns=2;s=Temperature
-   ```
+      - ns=3;s=ConcentrationNH3
+      - ns=3;s=Pressure
+    ```
 
-   The **Input** should now look like this. Note that the indentation is
-   important.
+    The **Input** should now look like this. Note that the indentation is
+    important.
 
    ```yaml
     opcua:
-      endpoint: opc.tcp://united-manufacturing-hub-opcuasimulator-service.united-manufacturing-hub.svc.cluster.local:46010
+      endpoint: opc.tcp://united-manufacturing-hub-opcsimv2-service.united-manufacturing-hub.svc.cluster.local:50000
       username: ""
       password: ""
       subscribeEnabled: true
       useHeartbeat: true
       nodeIDs:
-        - ns=2;s=Pressure
-        - ns=2;s=Temperature
+        - ns=3;s=ConcentrationNH3
+        - ns=3;s=Pressure
    ```
 
 4. **Processing:** In this section you can manipulate the incoming data and
