@@ -23,7 +23,7 @@ unified namespace.
 To allow you to experience the UMH as quickly as possible, the
 connection to the internal OPC UA simulator is already pre-configured.
 
-Therefore, the **Establishing a Connection** section is included for referenc
+Therefore, the **Establishing a Connection** section is included for reference
  only. You can skip to **Configuring a Protocol Converter** below.
 {{% /notice %}}
 
@@ -34,11 +34,12 @@ left hand menu and click on the **+ Add Connection** button in the top right
 hand corner.
 
    {{% notice info %}}
-   If you want to configure your own connection, either do not use the OPC UA
-   simulator mentioned below, or delete the preconfigured connection named
-   `default-opcua-simulator-connection'.
+   If you want to configure the connection to the OPC UA simulator by yourself,
+   delete the preconfigured connection named
+   `default-opcua-simulator-connection`.
 
-   **Having two connections to the same device will cause errors!**
+   Having two connections to the same device can cause errors when deploying
+   the Protocol Converter!
    {{% /notice %}}
 
 2. Under **General Settings** select your instance and give the connection a
@@ -71,24 +72,28 @@ To access the data from the OPC UA Simulator you need to add a
 in this case **OPC UA**. This can be found under **General**.
 
 3. **Input:** Many of the required details are already set based on the
-connection details. For this tutorial we will subscribe to two tags on the OPC
-UA server. Tags can be selected manually or by using the OPC UA Browser.
+connection details. For this tutorial, we will subscribe to a tag and a folder
+on the on the OPC UA server. Tags and folders can be selected manually using
+the NodeID or by using the OPC UA Browser.
 
-   If you want to select the nodes via the OPC UA Browser, untick the `Root`
-   box, navigate to `Root/Objects/OpcPlc/IoTSensors`, select `Pressure` and
-   `ConcentrationNH3` and click on **Apply** at the bottom.
+   If you want to select the nodes via the OPC UA Browser, uncheck the `Root`
+   box, navigate to `Root/Objects/Boilers/Boiler #2` and select the
+   `ParameterSet` folder.    Next navigate to
+   `Root/Objects/OpcPlc/Telemetry/Fast` and select the `FastUInt1` tag, then
+   click **Apply** at the bottom.
 
-   To add them manually, close the OPC UA Browser by clicking on the
-   `OPC UA BROWSER` button at the far ight of the window.
+   To add the nodes manually, close the OPC UA Browser by clicking on the
+   `OPC UA BROWSER` button at the right edge of the window.
+   The nodes must be added as **Namespaced String NodeIDs**.
    Now copy the code below and replace the current `nodeIDs:` with it.
 
     ```yaml
     nodeIDs:
-      - ns=3;s=ConcentrationNH3
-      - ns=3;s=Pressure
+      - ns=4;i=5020
+      - ns=3;s=FastUInt1
     ```
 
-    The **Input** should now look like this. Note that the indentation is
+   The **Input** should now look like this. Note that the indentation is
     important.
 
    ```yaml
@@ -99,8 +104,8 @@ UA server. Tags can be selected manually or by using the OPC UA Browser.
       subscribeEnabled: true
       useHeartbeat: true
       nodeIDs:
-        - ns=3;s=ConcentrationNH3
-        - ns=3;s=Pressure
+        - ns=4;i=5020
+        - ns=3;s=FastUInt1
    ```
 
 4. **Processing:** In this section you can manipulate the incoming data and
