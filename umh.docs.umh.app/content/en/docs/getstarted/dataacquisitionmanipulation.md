@@ -23,11 +23,11 @@ unified namespace.
 To allow you to experience the UMH as quickly as possible, the
 connection to the internal OPC UA simulator is already pre-configured.
 
-Therefore, the **Establishing a Connection** section is included for reference
- only. You can skip to **Configuring a Protocol Converter** below.
+Therefore, the **Add a Connection** section is included for reference
+ only. You can skip to **Add the Protocol Converter** below.
 {{% /notice %}}
 
-## Establishing a Connection
+## Add a Connection
 
 1. To create a new connection, navigate to the **Connections** section in the
 left hand menu and click on the **+ Add Connection** button in the top right
@@ -56,8 +56,8 @@ hand corner.
 will now attempt to connect to the device on the specified IP and port. If
 there is no error, it will be listed in the **Connections** section.
   
-   Click on the connection to view its details, to edit click on the
-   **Configuration** button in the side panel.
+4. Click on the connection to view its details, to edit click on the
+  **Configuration** button in the side panel.
 
 ## Add the Protocol Converter
 
@@ -96,8 +96,8 @@ the NodeID or by using the OPC UA Browser.
    In the input section, you must also specify the OPC UA server username and
    password, if it uses one.
   
-   The **Input** should now look like this. Note that the indentation is
-   important.
+   The **Input** should now look like this.
+   **Note that the indentation is important.**
 
    ```yaml
     opcua:
