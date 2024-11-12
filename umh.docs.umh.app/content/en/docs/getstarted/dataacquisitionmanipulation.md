@@ -33,7 +33,7 @@ Therefore, the **Establishing a Connection** section is included for reference
 left hand menu and click on the **+ Add Connection** button in the top right
 hand corner.
 
-   {{% notice info %}}
+   {{% notice warning %}}
    If you want to configure the connection to the OPC UA simulator by yourself,
    delete the preconfigured connection named
    `default-opcua-simulator-connection`.
@@ -66,19 +66,19 @@ To access the data from the OPC UA Simulator you need to add a
 
 1. Click on the connection to the OPC UA Simulator in the **Connections** table.
   If you are using the preconfigured one, it is called `default-opcua-simulator-connection`.
-  Click on the **+ Add Protocol Converter button in the opening menu.
+  Click on the **+ Add Protocol Converter** button in the opening menu.
 
 2. First you need to select the protocol used to communicate with the device,
 in this case **OPC UA**. This can be found under **General**.
 
 3. **Input:** Many of the required details are already set based on the
 connection details. For this tutorial, we will subscribe to a tag and a folder
-on the on the OPC UA server. Tags and folders can be selected manually using
+on the OPC UA server. Tags and folders can be selected manually using
 the NodeID or by using the OPC UA Browser.
 
    If you want to select the nodes via the OPC UA Browser, uncheck the `Root`
    box, navigate to `Root/Objects/Boilers/Boiler #2` and select the
-   `ParameterSet` folder.    Next navigate to
+   `ParameterSet` folder. Next navigate to
    `Root/Objects/OpcPlc/Telemetry/Fast` and select the `FastUInt1` tag, then
    click **Apply** at the bottom.
 
@@ -93,14 +93,17 @@ the NodeID or by using the OPC UA Browser.
       - ns=3;s=FastUInt1
     ```
 
+   In the input section, you must also specify the OPC UA server username and
+   password, if it uses one.
+  
    The **Input** should now look like this. Note that the indentation is
     important.
 
    ```yaml
     opcua:
       endpoint: opc.tcp://united-manufacturing-hub-opcsimv2-service.united-manufacturing-hub.svc.cluster.local:50000
-      username: ""
-      password: ""
+      username: "optional_username"
+      password: "optional_password"
       subscribeEnabled: true
       useHeartbeat: true
       nodeIDs:
