@@ -78,7 +78,7 @@ flowchart LR
     area -->|Optional| productionLine
     productionLine -->|Optional| workCell
     workCell -->|Optional| originID
-    originID -->|Optional| _schema["_schema (Ex: _historian, _custom)"]
+    originID -.-> _schema["_schema (Ex: _historian, _custom)"]
     _schema -->_opt["Schema dependent context"]
 
     classDef mqtt fill:#00dd00,stroke:#333,stroke-width:4px;
@@ -92,9 +92,6 @@ flowchart LR
     productionLine -.-> _schema
     workCell -.-> _schema
 
-    click _schema href "#_schema"
-    click umh href "#versioning-prefix"
-    click v1 href "#versioning-prefix"
 {{</ mermaid >}}
 
 You can check if your topics are correct in the validator below.

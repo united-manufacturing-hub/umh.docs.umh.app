@@ -5,19 +5,68 @@ description: "This page is a deepdive of the Historian Data Contract of the UMH 
 weight: 1000
 ---
 
-## Historian
-
 This section will focus on the specific details and configurations of the Historian Data Contract.
 If you are not yet familiar with Data Contracts, you should first read the [Data Contracts / API](https://umh.docs.umh.app/docs/datacontracts/) page.
 
-The purpose of the Historian Data Contract is to govern the data flow to the data base.
-It enforces rules for the structure of the message payloads and topics, and provides the necessary infrastructure to bridge data in the Unifies Namespace and to write it into the data base.
+## Historian
+
+The purpose of the Historian Data Contract is to govern the data flow from the Protocol Converter to the data base.
+It enforces rules for the structure of the payloads and topics, and provides the necessary infrastructure to bridge data in the Unifies Namespace and to write it into the data base.
 
 This makes sure, that data is only stored in a format accepted by the data base, and makes integrating services like Grafana easier as the data structure is already known.
 
+It also ensures that each message is idempotent (can be safely processed multiple times without changing the result), by making each message in a tag completely unique by its timestamp.
+This is critical because messages are sent using "at least once" semantics, which can lead to duplicates.
+With idempotency, duplicate messages are ignored, ensuring that each message is only stored once in the database.
+
 ## Topics in the Historian
 
+{{<mermaid theme="neutral" >}}
+flowchart LR
+    umh --> v1
+    v1 --> enterprise
+    enterprise -->|Optional| site
+    site -->|Optional| area
+    area -->|Optional| productionLine
+    productionLine -->|Optional| workCell
+    workCell -->|Optional| originID
+    originID -.-> _historian
+    _historian -->_tagGroups
+
+    classDef mqtt fill:#00dd00,stroke:#333,stroke-width:4px;
+    class umh,v1,enterprise,_historian mqtt;
+    classDef optional fill:#77aa77,stroke:#333,stroke-width:4px;
+    class site,area,productionLine,workCell,originID optional;
+    
+    enterprise -.-> _historian
+    site -.-> _historian
+    area -.-> _historian
+    productionLine -.-> _historian
+    workCell -.-> _historian
+
+{{</ mermaid >}}
+
 The prefix and Location of the topic in the Historian Data Contract follows the same rules as alreads described on the general [Data Contracts](https://umh.docs.umh.app/docs/datacontracts/#topic-structure) page.
+
+### Prefix
+
+The first section is the mandatory prefix: `umh.v1.` It ensures that the
+structure can evolve over time without causing confusion or compatibility
+problems.
+
+### Location
+
+The next section is the Location, which consists of six parts:
+`enterprise.site.area.productionLine.workCell.originID`.
+
+You may be familiar with this structure as it is used by your instances and
+connections. Here the `enterprise` field is mandatory.
+
+{{% notice note %}}
+When you create a Protocol Converter, it uses the Location of the instance and
+the connection to prefill the topic, but you can add the unused ones or change
+the prefilled parts.
+{{% /notice %}}
 
 ### Schema: _historian
 
