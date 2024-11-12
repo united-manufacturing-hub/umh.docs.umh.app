@@ -45,8 +45,8 @@ hand corner.
 2. Under **General Settings** select your instance and give the connection a
   name. Enter the address and port of the device you want to connect to. To
   connect to the OPC UA Simulator, use
-    - **IP:** united-manufacturing-hub-opcsimv2-service.united-manufacturing-hub.svc.cluster.local
-    - **Port:** 50000
+    - **IP:** `united-manufacturing-hub-opcsimv2-service.united-manufacturing-hub.svc.cluster.local`
+    - **Port:** `50000`
 
    You can also set additional location fields to help you keep track of your
    of your connections. The fields already set by the selected instance are
@@ -97,7 +97,7 @@ the NodeID or by using the OPC UA Browser.
    password, if it uses one.
   
    The **Input** should now look like this. Note that the indentation is
-    important.
+   important.
 
    ```yaml
     opcua:
