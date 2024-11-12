@@ -24,7 +24,7 @@ To allow you to experience the UMH as quickly as possible, the
 connection to the internal OPC UA simulator is already pre-configured.
 
 Therefore, the **Add a Connection** section is included for reference
- only. You can skip to **Add the Protocol Converter** below.
+only. You can skip to **Add a Protocol Converter** below.
 {{% /notice %}}
 
 ## Add a Connection
@@ -59,7 +59,7 @@ there is no error, it will be listed in the **Connections** section.
 4. Click on the connection to view its details, to edit click on the
   **Configuration** button in the side panel.
 
-## Add the Protocol Converter
+## Add a Protocol Converter
 
 To access the data from the OPC UA Simulator you need to add a
 **Protocol Converter** to the connection.
