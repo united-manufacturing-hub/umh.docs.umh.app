@@ -7,39 +7,44 @@ weight: 1725
 
 ## What are Data Contracts
 
-Data Contracts are formal agreements that define the structure, format, and
-rules for data exchanged between components within a Unified Namespace (UNS)
-architecture. They specify metadata, data models, and service levels to ensure
-that all systems interact consistently and reliably. By establishing clear
-guidelines for data exchange, Data Contracts facilitate seamless integration
-and prevent disruptions caused by changes in data formats or structures.
+Data Contracts are agreements that define how data is structured, formatted, and
+managed when different parts of a Unified Namespace (UNS) architecture
+communicate. They cover metadata, data models, and service levels to ensure that
+all systems work together smoothly and reliably.
 
-In short, they define where a message is going, what structure it must follow,
-how it gets there, and what happens when it arrives, based on defined rules and
-services.
+Simply put, data contracts specify where a message is going, the format it must
+follow, how it's delivered, and what happens when it arrives - all based on
+agreed-upon rules and services.
+
+The way Data Contracts work is like an API: you send a specific message and it
+triggers a predefined action.
 
 ### Example Historian
 
 To give you a simple example, just think about the `_historian' schema. Perhaps
 without realizing it, you have already used the Historian Data Contract by using
-this schema. The Historian Data Contract governs the flow of data from your
-machines to the database by enforcing rules and providing services:
+this schema.
 
-- **Protocol Converter**: You must use a protocol converter to send your data
-from your machine to your UNS.
-- **Topic structure**: You must use the correct topic structure and include the
-`_historian` schema.
-- **Message format**: The payload must be JSON and follow the correct message
-format, such as including a timestamp.
-- **Data Bridges**: The Historian Data Contract includes two Data Bridges that
-move your data from MQTT to Kafka and vice versa.
-- **Kafka to Postgres**: This is a special microservice of UMH that allows
-Kafka to write data to the database.
+Whenever you send a message to a topic that contains the `_historian` schema via
+MQTT, you know that it will be bridged to Kafka and end up in TimescaleDB.
+You could also send it directly into Kafka, and you know that it gets
+bridged to MQTT as well.
 
-These rules ensure that the data can be written to the database without causing
-errors, and that the data can be read by other programs that know what data to
-expect. The Data Bridges enable seamless data flow via MQTT without any
-additional configuration.
+But you also know that you have to follow the correct payload and topic
+structure that we as UMH have defined. If there are any issues like a missing
+timestamp in the message, you know that you could look them up in the
+Management Console.
+
+These rules ensure that the data can be written into the intended database
+tables without causing errors, and that the data can be read by other programs,
+as it is known what data and structure to expect.
+
+For example, the timestamp is an easy way to avoid errors by making each message
+idempotent (can be safely processed multiple times without changing the result).
+Each message in a tag is made completely unique by its timestamp, which is
+critical because messages are sent using "at least once" semantics, which can
+lead to duplicates. With idempotency, duplicate messages are ignored, ensuring
+that each message is only stored once in the database.
 
 {{% notice note %}}
 If you want a lot more information and really dive into the reasons for this
@@ -49,18 +54,18 @@ on our Learn page.
 <!-- Add link to Jeremys upcoming article, once it is released. -->
 {{% /notice %}}
 
-## Components of a Data Contract
+## Rules of a Data Contract
 
-Data Contracts have several components and rules. This section provides a
-high-level overview of these key elements. The specifics can vary greatly
-between Data Contracts; therefore, detailed information about the
+Data Contracts can enforce a number of rules. This section provides an overview
+of the two rules that are enforced by default. The specifics can vary between
+Data Contracts; therefore, detailed information about the
 [Historian Data Contract](https://umh.docs.umh.app/docs/datacontracts/historian/)
 and [Custom Data Contracts](https://umh.docs.umh.app/docs/datacontracts/customdatacontracts/)
 is provided on their respective pages.
 
 ### Topic structure
 
-As mentioned in the example, messages in the UMH must follow a specific ISA-95
+As mentioned in the example, messages in the UMH must follow our ISA-95
 compliant structure in order to be processed. The structure itself can be
 divided into several sections.
 
@@ -118,14 +123,12 @@ the prefilled parts.
 
 #### Schemas
 
-After the Location section, you need to specify a schema. In general, the
-schema tells the UMH what to do with incoming messages, what rules to apply to
-them, or can be used for Data Flow Components to process these messages instead
-of others. In short, it specifies the data contract to be used.
+The schema, for example `_historian`, tells the UMH which data contract to
+apply to the message. It is specified after the Location section and is
+highlighted with an underscore to make it parsable for the UMH
+and to clearly separate it from the location fields.
 
-Due to its importance, the schema is highlighted with an underscore.
-
-There is currently one default schema in the UMH: `_historian`; for more
+There is currently only one default schema in the UMH: `_historian`; for more
 detailed information, see the
 [Historian Data Contract](https://umh.docs.umh.app/docs/datacontracts/historian/)
 page.
@@ -143,10 +146,13 @@ for more details.
 #### Allowed Characters
 
 Topics can consist of any letters (`a-z`, `A-Z`), numbers (`0-9`), and the
-symbols (`-` & `_`). Be careful to avoid `.`, `+`, `#`, or `/` as these are
+symbols (`-` & `_`). Note that the `_` cannot be used as the first character in
+the Location section.
+
+Be careful to avoid `.`, `+`, `#`, or `/` as these are
 special symbols in Kafka or MQTT.
 
-Note that our topics are case-sensitive, so `umh.v1.ACMEIncorporated` is
+Note that our topics **are case-sensitive**, so `umh.v1.ACMEIncorporated` is
 **not** the same as `umh.v1.acmeincorporated`.
 
 ### Payload structure
@@ -154,10 +160,21 @@ Note that our topics are case-sensitive, so `umh.v1.ACMEIncorporated` is
 A Data Contract can include payload rules. For example, in the Historian Data
 Contract, you must include a timestamp in milliseconds and a key-value pair.
 
-These requirements are unique to each data contract.
+These requirements are unique to each Data Contract.
+
+## Components of a Data Contract
+
+The second level of a Data Contract consists of individual components. As with
+the rules, this section provides a general overview. The specifics can vary
+between Data Contracts; therefore, detailed information about the
+[Historian Data Contract](https://umh.docs.umh.app/docs/datacontracts/historian/)
+and [Custom Data Contracts](https://umh.docs.umh.app/docs/datacontracts/customdatacontracts/)
+is provided on their respective pages.
 
 ### Data Flow Components
 
+As the name implies, a Data Flow Component manages the movement and
+transformation of data within the Unified Namespace architecture.
 Data Flow Components can be of three different types: Protocol Converter, Data
 Bridge, or Custom Data Flow Component. All are based on
 [BenthosUMH](https://github.com/united-manufacturing-hub/benthos-umh).
@@ -180,7 +197,7 @@ schema. Each Data Bridge is unidirectional and specific to one schema.
 
 To meet everyone's needs and enable stream processing, you can add Custom Data
 Flow Components (creative naming is our passion). Unlike Protocol Converters or
-ata Bridges, you have full control over their configuration, which makes them
+Data Bridges, you have full control over their configuration, which makes them
 incredibly versatile, but also complicated to set up. As a result, they must be
 manually enabled by switching to Advanced Mode in the Management Console Settings.
 
@@ -191,23 +208,3 @@ calculate KPIs, you can send the raw data to `_historian`, process it with a
 Custom Data Flow Component, and publish it to a new schema. The new Data
 Contract uses the Historian to collect data from the machines and store it in
 the database.
-
-## Summary Historian
-
-As explained above, the Historian Data Contract is the only standard Data
-Contract in the UMH. Its purpose is to ensure that the data to be stored in the
-database follows the correct format. For all information about the specifics of
-this Data Contract, see the
-[Historian Data Contract](https://umh.docs.umh.app/docs/datacontracts/historian/)
-page.
-
-## Summary Custom Data Contract
-
-Since we can never fully address every use case of the UMH, you can also create
-custom use cases to meet your specific needs. You can set up your own Data
-Bridges, add custom schemas, and configure Data Flow Components specific to
-your use case. For example, if you want to automatically calculate KPIs based
-on data from your production and other services, this is the way to go. Since
-there is a lot to cover, this has its own
-[Custom Data Contracts](https://umh.docs.umh.app/docs/datacontracts/customdatacontracts)
-page.
