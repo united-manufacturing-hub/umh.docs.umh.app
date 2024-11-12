@@ -63,7 +63,8 @@ click on **Sign up now** and create a new account.
 
 ## Create your first Instance
 
-1. We support <span id="requirements-4"></span>, but we strongly recommend
+1. First you have to set up your device and install the operating system.
+  We support <span id="requirements-4"></span>, but we strongly recommend
   using Rocky. You can find a list of the requirements and the image for
   Rocky by clicking on the **REQUIREMENTS** button on the right hand side of the
   Management Console.
