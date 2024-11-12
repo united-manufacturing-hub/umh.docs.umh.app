@@ -47,7 +47,7 @@ For a comprehensive list of commands, refer to the
 [Kubernetes documentation](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands).
 
 {{% notice note %}}
-Always specify the namespace when running a command by adding `-n united-manufacturing-hub`.
+Always specify the namespace when running a command by adding `-n united-manufacturing-hub` or set the default namespace with `kubectl config set-context --current --namespace=united-manufacturing-hub`.
 {{% /notice %}}
 
 #### Access Node-RED
