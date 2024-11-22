@@ -14,14 +14,12 @@ all systems work together smoothly and reliably.
 
 Simply put, data contracts specify where a message is going, the format it must
 follow, how it's delivered, and what happens when it arrives - all based on
-agreed-upon rules and services.
-
-The way Data Contracts work is like an API: you send a specific message and it
-triggers a predefined action.
+agreed-upon rules and services. It is similar to an API: you send a specific
+message and it triggers a predefined action.
 
 ### Example Historian
 
-To give you a simple example, just think about the `_historian' schema. Perhaps
+To give you a simple example, just think about the `_historian` schema. Perhaps
 without realizing it, you have already used the Historian Data Contract by using
 this schema.
 
@@ -63,7 +61,7 @@ Data Contracts; therefore, detailed information about the
 and [Custom Data Contracts](https://umh.docs.umh.app/docs/datacontracts/customdatacontracts/)
 is provided on their respective pages.
 
-### Topic structure
+### Topic Structure
 
 As mentioned in the example, messages in the UMH must follow our ISA-95
 compliant structure in order to be processed. The structure itself can be
@@ -133,12 +131,11 @@ page.
 To add your own custom schemas, you need to add a
 [Custom Data Contract](https://umh.docs.umh.app/docs/datacontracts/customdatacontracts).
 
-#### Schema dependent content
+#### Schema Dependent Content
 
 Depending on the schema used, the next parts of the topic may differ. For
 example, in the `_historian' schema, you can either attach your payload
-directly or continue to group tags. See the Historian Data Contract page
-for more details.
+directly or continue to group tags.
 
 #### Allowed Characters
 
@@ -152,7 +149,7 @@ special symbols in Kafka or MQTT.
 Note that our topics **are case-sensitive**, so `umh.v1.ACMEIncorporated` is
 **not** the same as `umh.v1.acmeincorporated`.
 
-### Payload structure
+### Payload Structure
 
 A Data Contract can include payload rules. For example, in the Historian Data
 Contract, you must include a timestamp in milliseconds and a key-value pair.
@@ -161,10 +158,9 @@ These requirements are unique to each Data Contract.
 
 ## Components of a Data Contract
 
-The second level of a Data Contract consists of individual components. As with
-the rules, this section provides a general overview. The specifics can vary
-between Data Contracts; therefore, detailed information about the
-[Historian Data Contract](https://umh.docs.umh.app/docs/datacontracts/historian/)
+In addition to the rules, a Data Contract consists of individual components.
+The specifics can vary between Data Contracts; therefore, detailed information
+about the [Historian Data Contract](https://umh.docs.umh.app/docs/datacontracts/historian/)
 and [Custom Data Contracts](https://umh.docs.umh.app/docs/datacontracts/customdatacontracts/)
 is provided on their respective pages.
 
@@ -179,29 +175,32 @@ Bridge, or Custom Data Flow Component. All are based on
 #### Protocol Converter
 
 You have probably already created a Protocol Converter and are familiar with
-its purpose. You use them to get data from different sources into your
-instances. You format the data into the correct payload structure and send it
-to the correct topics.
+its purpose: get data from different sources into your instances. You format
+the data into the correct payload structure and send it to the correct topics.
+When you add a Protocol Converter, the Management Console uses the configuration
+of the underlying Connection and instance to automatically generate most of the
+configuration for the Protocol Converter.
 
 #### Data Bridges
 
-Data Bridges are placed between the two message brokers in the Unified
-Namespace, Kafka and MQTT, and allow messages to be passed between them.
-The default Data Bridges are the two between MQTT and Kafka for the `_historian'
-schema. Each Data Bridge is unidirectional and specific to one schema.
+Data Bridges are placed between two components of the Unified Namespace, such as
+Kafka and MQTT, and allow messages to be passed between them. The default Data
+Bridges are the two between MQTT and Kafka for the `_historian` schema, and the
+bridge between Kafka and the database. Each Data Bridge is unidirectional and
+specific to one schema.
 
 #### Custom Data Flow Components
 
 To meet everyone's needs and enable stream processing, you can add Custom Data
 Flow Components (creative naming is our passion). Unlike Protocol Converters or
 Data Bridges, you have full control over their configuration, which makes them
-incredibly versatile, but also complicated to set up. As a result, they must be
+incredibly versatile, but also complicated to set up. Therefore, they must be
 manually enabled by switching to Advanced Mode in the Management Console Settings.
 
 ### Other Data Contracts
 
-Data Contracts can build on existing contracts. For example, if you want to
-calculate KPIs, you can send the raw data to `_historian`, process it with a
-Custom Data Flow Component, and publish it to a new schema. The new Data
-Contract uses the Historian to collect data from the machines and store it in
-the database.
+Data Contracts can build on existing contracts. For example, if you use a Custom
+Data Contract to automatically calculate KPIs, you can send the raw data to
+`_historian`, process it with a Custom Data Flow Component, and publish it to a
+new schema. The new Data Contract uses the Historian to collect data from the
+machines and store it in the database.
