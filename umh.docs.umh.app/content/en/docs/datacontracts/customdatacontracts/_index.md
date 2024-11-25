@@ -5,7 +5,9 @@ description: "In addition to the standard data contracts provided, you can add y
 weight: 2000
 ---
 
+Introduction
 
+## Why Custom Data Contracts
 
 ## Example of a custom Data Contract
 
@@ -36,3 +38,21 @@ The combination of the Historian Data Contract, the additional `_action` schema,
 - **Scalability**: The solution can be templated and applied across various assets.
 - **Maintainability**: Leveraging default data contracts reduces complexity and eases system upkeep.
 - **Reliability**: Ensures consistent data handling and robust operation within a distributed system.
+
+## Topic Structure in Custom Data Contracts
+
+### Add custom schema
+
+## Payload Structure
+
+## Data Flow Components
+
+### Data Bridges
+
+#### Add custom Brdiges
+
+### Protocol Converters
+
+#### Verified Protocols
+
+### Custom Data Flow Components
