@@ -6,7 +6,7 @@ weight: 1000
 ---
 
 This section focuses on the specific details and configurations of the
-Historian Data Contract. If you are not familiar with data contracts, you
+Historian Data Contract. If you are not familiar with Data Contracts, you
 should first read the
 [Data Contracts / API](https://umh.docs.umh.app/docs/datacontracts/) page.
 

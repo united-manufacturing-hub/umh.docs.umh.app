@@ -3,45 +3,53 @@ title: "Custom Data Contracts"
 menuTitle: "Custom Data Contracts"
 description: "In addition to the standard data contracts provided, you can add your own."
 weight: 2000
+draft: true
+wip: true
 ---
 
-Introduction
+This section focuses on Custom Data Contracts.
+If you are not familiar with Data Contracts, you should first read the
+[Data Contracts / API](https://umh.docs.umh.app/docs/datacontracts/) page.
 
 ## Why Custom Data Contracts
 
+The only Data Contract that exists per default in the UMH is the Historian Data Contract.
+Custom Data Contracts let you add additional functionalities to your UMH, like automatically calculate KPIs or further processing of data.
+
 ## Example of a custom Data Contract
 
-You can also add your own contracts to your UNS.
-For example, implementing a Data Contract to automate MES and PLC interaction.
-
-**Scenario**: When a machine stops, the latest order ID from the MES needs to be automatically written into the PLC.
-
-**Objective**: Utilize data contracts within a Unified Namespace (UNS) to automate data exchange between the MES and PLC, ensuring scalability and maintainability across multiple machines and production lines.
-
-**Approach**:
+One example for a Custom Data Contract is the automated interaction of MES and PLCs.
+Every time a machine stops, the latest order ID from the MES needs to be automatically written into the PLC.
 
 We begin by utilizing the existing `_historian` data contract to continuously send and store the latest order ID from the MES in the UNS.
 
-Additionally a schema is required to handle action requests and responses, enabling commands like writing data to the PLC, for example `_action`.
-Since the `_action` schema does not yet exist, it needs to be manually added first.
+Additionally a custom schema is required to handle action requests and responses, enabling commands like writing data to the PLC, for example `_action`.
 
-Next, implement protocol converters to facilitate communication between systems.
-The first **ingiong protocol converter** fetches the latest order ID from the MES and publishes it to the UNS using the `_historian` data contract.
-A second **outgoing protocol converter** listens for action requests in the manually added `_action` data contract and executes them by getting the last order ID from the UNS and writing the order ID to the PLC.
+Next step is to implement Protocol Converters to facilitate communication between systems.
+The first **ingiong Protocol Converter** fetches the latest order ID from the MES and publishes it to the UNS using the `_historian` data contract.
 
-Finally, we set up a stream processor that monitors the UNS for specific conditions, such as a machine stoppage. When such a condition is detected, it generates an action request in the `_action` data contract for the output protocol converter to process.
+<!-- How can I add an outgoing Protocol Converter??? Is that already implemented? Or is it simply a CDFC-->
+A second **outgoing Protocol Converter** listens for action requests in the manually added `_action` data contract and executes them by getting the last order ID from the UNS and writing the order ID to the PLC.
 
-The combination of the Historian Data Contract, the additional `_action` schema, the two Protocol Converters and the stream processor and enforcement of payload and topic structure from this new Data Contract.
+Finally, we have to set up a **Custom Data Flow Component** as a stream processor that monitors the UNS for specific conditions, such as a machine stoppage. When such a condition is detected, it generates an action request in the `_action` data contract for the output protocol converter to process.
 
-**Benefits**:
+Additionally, we have to add Data Bridges for the `_action` schema.
+In these you enforce a specific topic and payload structure.
 
-- **Scalability**: The solution can be templated and applied across various assets.
-- **Maintainability**: Leveraging default data contracts reduces complexity and eases system upkeep.
-- **Reliability**: Ensures consistent data handling and robust operation within a distributed system.
+The combination of the Historian Data Contract, the additional `_action` schema, custom Data Bridges, the two Protocol Converters and the stream processor and enforcement of payload and topic structure from this new Data Contract.
 
 ## Topic Structure in Custom Data Contracts
 
+The topic structure follows the same rules as specified in the [Data Contracts / API](https://umh.docs.umh.app/docs/datacontracts/#topic-structure) page, untill the schema depended content.
+
+The schema dependend content depends on your configuration of the deployed custom Data Bridges.
+
 ### Add custom schema
+
+To add a custom schema, you simply have to use it in a topic.
+If it is directly send to Kafka, for example with a Protocol Converter, it will appear in the tag browser.
+If you want to send it via MQTT, you have to add a Bridge first, as only the `_historian` schema is bridged automatically.
+How you can add custom Data Bridges is explained in detail below.
 
 ## Payload Structure
 
@@ -52,6 +60,10 @@ The combination of the Historian Data Contract, the additional `_action` schema,
 #### Add custom Brdiges
 
 ### Protocol Converters
+
+#### Custom Protocol Converters
+
+<!-- For example the Outgoing PC from the example above -->
 
 #### Verified Protocols
 
