@@ -1,10 +1,14 @@
 ---
-title: 4. Troubleshooting
-menuTitle: 4. Troubleshooting
-description: A list of usefull commands and steps to resolve issues with the UMH.
+title: 4. Instance Management & Troubleshooting
+menuTitle: 4. Management & Troubleshooting
+description: Learn how to manage your UMH instance and resolve common issues.
 weight: 5000
 ---
 
+This chapter covers the management and troubleshooting of your United Manufacturing Hub (UMH) instance.
+The usual way to interact with your UMH instance is through the Management Console.
+However, for heavy troubleshooting or automations, you might want to interact with your instance through the command line.
+This chapter will guide you through the process of accessing your instance, as well as provide you with some common commands and how to resolve issues.
 
 ## Manage the Instance
 
@@ -15,14 +19,6 @@ instance for accessing the various services and features discussed below.
 
 Access your device's shell either directly or via SSH. Note: Root user access is required for the following commands.
 
-{{% notice tip %}}
-In UMH's current version, add `--kubeconfig /etc/rancher/k3s/k3s.yaml` to each
-kubectl command. Root privileges are needed to access it. The installation path
-of kubectl might vary (e.g., `/usr/local/bin/kubectl` on RHEL/Linux,
-`/opt/bin/kubectl` on flatcar). These paths may not be in the root user's PATH,
-so the commands below might appear complex.
-{{% /notice %}}
-
 ### Interact with the Instance
 
 First, set this environment variable:
@@ -32,7 +28,9 @@ export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 ```
 
 {{% notice note %}}
-You can bypass this by adding --kubeconfig /etc/rancher/k3s/k3s.yaml to your commands. All instructions in this chapter will include this flag.
+You can bypass this by adding the flag `--kubeconfig /etc/rancher/k3s/k3s.yaml` to all your `kubectl` commands. Root privileges are needed to access it.
+The installation path of kubectl might vary (e.g., `/usr/local/bin/kubectl` on RHEL/Linux,
+`/opt/bin/kubectl` on flatcar).
 {{% /notice %}}
 
 Then, to get a list of pods, run:
@@ -100,7 +98,7 @@ Use MQTT Explorer for a structured overview of MQTT topics. Connect using the in
 
 ## Troubleshooting
 
-### Error: `You must be logged in to the server` while using the `kubectl` Command
+### Error: `You must be logged in to the server while using the 'kubectl' Command`
 
 If you encounter the error below while using the `kubectl` command:
 
@@ -122,7 +120,7 @@ Alternatively, use the `--kubeconfig` flag to specify the configuration file pat
 sudo $(which kubectl) --kubeconfig /etc/rancher/k3s/k3s.yaml get pods -n united-manufacturing-hub
 ```
 
-### "Permission Denied" Error with `kubectl` Command
+### "Permission Denied" Error with 'kubectl' Command
 
 Encountering the error below while using the `kubectl` command:
 
@@ -133,7 +131,7 @@ error: error loading config file "/etc/rancher/k3s/k3s.yaml": open /etc/rancher/
 Indicates the need for root access. Run the command with `sudo`, or log in as
 the root user.
 
-### `kubectl: command not found` error
+### kubectl: command not found
 
 If you encounter the error below while using the `kubectl` command:
 

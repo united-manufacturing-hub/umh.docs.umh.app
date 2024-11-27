@@ -2,7 +2,7 @@
 title: 6. (optional) Calculating business KPIs such as OEE with _analytics
 menuTitle: 6. (optional) Calculating business KPIs such as OEE with _analytics
 description: Generate business KPIs such as OEE with _analytics
-weight: 6000
+weight: 9000
 draft: true
 wip: true
 ---
