@@ -207,7 +207,10 @@ For insights into your Kafka streams managed by Redpanda, these commands are inv
 
 ## What's next?
 
-Now that you have learned how to monitor, manage and configure your UMH instance
-with the Management Console, you can start creating your first data flow. To
-learn how to do this, proceed to the [Data Acquisition and Manipulation](/docs/getstarted/dataacquisitionmanipulation)
-chapter.
+In this chapter, you learned how to:
+- Access and manage your UMH instance
+- Use essential kubectl commands
+- Troubleshoot common issues
+- Access key services like Node-RED, Grafana, and RedPanda
+
+Now that you have these essential management skills, you can proceed to [Data Acquisition and Manipulation](/docs/getstarted/dataacquisitionmanipulation) to start creating your first data flow.
