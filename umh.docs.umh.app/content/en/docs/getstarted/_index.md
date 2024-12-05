@@ -5,10 +5,8 @@ description = "You want to get started right away? Go ahead and jump into the ac
 weight = 1000
 +++
 
-
-  Great to see you're ready to start! This guide has 5 steps:
-  Installation, Managing the System, Data Acquisition & Manipulation, and 
-  Moving to Production.
+  Great to see you're ready to start! This guide has 3 steps:
+  Installation, Data Acquisition and Manipulation, and Data Visualization.
 
 ## Contact Us!
 
