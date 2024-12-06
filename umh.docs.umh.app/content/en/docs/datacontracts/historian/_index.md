@@ -195,7 +195,7 @@ use of Protocol Converters and the automatic deployment of three Data Bridges.
 
 There are three Data Bridges in the Historian Data Contract, which are
 automatically created and configured when the instance is created.
-The first bridges messages from Kafka to MQTT, the second from MQTT to Kafka.
+The first bridge routes messages from Kafka to MQTT, the second from MQTT to Kafka.
 The third Data Bridge bridges messages from Kafka to the TimescaleDB database.
 The Data Bridges are responsible for validating the topic and payload, and
 adding error logs in case a message is not valid.
