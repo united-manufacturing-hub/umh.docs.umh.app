@@ -24,12 +24,12 @@ Every time a machine stops, the latest order ID from the MES needs to be automat
 We begin by utilizing the existing `_historian` data contract to continuously send and store the latest order ID from the MES in the UNS.
 
 Additionally a custom schema is required to handle action requests and responses, enabling commands like writing data to the PLC, for example `_action`.
-
 Next step is to implement Protocol Converters to facilitate communication between systems.
-The first **ingiong Protocol Converter** fetches the latest order ID from the MES and publishes it to the UNS using the `_historian` data contract.
+For ingoing messages, a Protocol Converter fetches the latest order ID from the MES and publishes it to the UNS using the `_historian` data contract.
 
-<!-- How can I add an outgoing Protocol Converter??? Is that already implemented? Or is it simply a CDFC-->
-A second **outgoing Protocol Converter** listens for action requests in the manually added `_action` data contract and executes them by getting the last order ID from the UNS and writing the order ID to the PLC.
+For outgoing messages, another Protocol Converter listens for action requests in the manually added `_action` data contract and executes them by getting the last order ID from the UNS and writing the order ID to the PLC.
+
+Protocol Converters can be seen as an interface between the UMH and external systems.
 
 Finally, we have to set up a **Custom Data Flow Component** as a stream processor that monitors the UNS for specific conditions, such as a machine stoppage. When such a condition is detected, it generates an action request in the `_action` data contract for the output protocol converter to process.
 
@@ -46,12 +46,15 @@ The schema dependend content depends on your configuration of the deployed custo
 
 ### Add custom schema
 
-To add a custom schema, you simply have to use it in a topic.
+More information about custom schemas will be added here when the feature is ready to use.
+
+<!-- To add a custom schema, you simply have to use it in a topic.
 If it is directly send to Kafka, for example with a Protocol Converter, it will appear in the tag browser.
 If you want to send it via MQTT, you have to add a Bridge first, as only the `_historian` schema is bridged automatically.
-How you can add custom Data Bridges is explained in detail below.
+How you can add custom Data Bridges is explained in detail below. -->
 
-## Payload Structure
+
+<!-- ## Payload Structure
 
 ## Data Flow Components
 
@@ -63,8 +66,8 @@ How you can add custom Data Bridges is explained in detail below.
 
 #### Custom Protocol Converters
 
-<!-- For example the Outgoing PC from the example above -->
+For example the Outgoing PC from the example above
 
 #### Verified Protocols
 
-### Custom Data Flow Components
+### Custom Data Flow Components -->
