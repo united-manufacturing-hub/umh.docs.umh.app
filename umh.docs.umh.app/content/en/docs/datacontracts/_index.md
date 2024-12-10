@@ -3,6 +3,65 @@ title: "Data Contracts / API"
 menuTitle: "Data Contracts / API"
 description: "This page describes how messages flow in the UMH, which message goes where, how it has to be formatted and how you can create your own structures."
 weight: 1725
+aliases:
+  - /docs/datamodel/
+  - /docs/datamodel/messages/
+  - /docs/datamodel/messages/_analytics/
+  - /docs/datamodel/messages/_historian/
+  - /docs/datamodel/database/
+  - /docs/datamodel/database/historian/_analytics/
+  - /docs/datamodel/database/historian/_historian/
+  - /docs/datamodel/states/
+  - /docs/datamodel/states/active/
+  - /docs/datamodel/states/unknown/
+  - /docs/datamodel/states/material/
+  - /docs/datamodel/states/process/
+  - /docs/datamodel/states/operator/
+  - /docs/datamodel/states/planning/
+  - /docs/datamodel/states/technical/
+  - /docs/datamodel_old/
+  - /docs/datamodel_old/messages/
+  - /docs/datamodel_old/messages/activity/
+  - /docs/datamodel_old/messages/addorder/
+  - /docs/datamodel_old/messages/addparenttochild/
+  - /docs/datamodel_old/messages/addproduct/
+  - /docs/datamodel_old/messages/addshift/
+  - /docs/datamodel_old/messages/count/
+  - /docs/datamodel_old/messages/deleteshift/
+  - /docs/datamodel_old/messages/detectedanomaly/
+  - /docs/datamodel_old/messages/endorder/
+  - /docs/datamodel_old/messages/modifyproducedpieces/
+  - /docs/datamodel_old/messages/modifystate/
+  - /docs/datamodel_old/messages/processvalue/
+  - /docs/datamodel_old/messages/processvaluestring/
+  - /docs/datamodel_old/messages/producttag/
+  - /docs/datamodel_old/messages/producttagstring/
+  - /docs/datamodel_old/messages/recommendation/
+  - /docs/datamodel_old/messages/scrapcount/
+  - /docs/datamodel_old/messages/scrapuniqueproduct/
+  - /docs/datamodel_old/messages/startorder/
+  - /docs/datamodel_old/messages/state/
+  - /docs/datamodel_old/messages/uniqueproduct/
+  - /docs/datamodel_old/database/
+  - /docs/datamodel_old/database/assettable/
+  - /docs/datamodel_old/database/configurationtable/
+  - /docs/datamodel_old/database/counttable/
+  - /docs/datamodel_old/database/ordertable/
+  - /docs/datamodel_old/database/processvaluestringtable/
+  - /docs/datamodel_old/database/processvaluetable/
+  - /docs/datamodel_old/database/producttable/
+  - /docs/datamodel_old/database/recommendationtable/
+  - /docs/datamodel_old/database/shifttable/
+  - /docs/datamodel_old/database/statetable/
+  - /docs/datamodel_old/database/uniqueproducttable/
+  - /docs/datamodel_old/states/
+  - /docs/datamodel_old/states/active/
+  - /docs/datamodel_old/states/unknown/
+  - /docs/datamodel_old/states/material/
+  - /docs/datamodel_old/states/process/
+  - /docs/datamodel_old/states/operator/
+  - /docs/datamodel_old/states/planning/
+  - /docs/datamodel_old/states/technical/
 ---
 
 ## What are Data Contracts
