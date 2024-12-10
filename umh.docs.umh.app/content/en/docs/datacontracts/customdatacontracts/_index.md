@@ -40,9 +40,9 @@ The combination of the Historian Data Contract, the additional `_action` schema,
 
 ## Topic Structure in Custom Data Contracts
 
-The topic structure follows the same rules as specified in the [Data Contracts / API](https://umh.docs.umh.app/docs/datacontracts/#topic-structure) page, untill the schema depended content.
+The topic structure follows the same rules as specified in the [Data Contracts / API]({{< ref "/docs/datacontracts#topic-structure" >}}) page, until the schema-dependent content.
 
-The schema dependend content depends on your configuration of the deployed custom Data Bridges.
+The schema-dependent content depends on your configuration of the deployed custom Data Bridges.
 
 ### Add custom schema
 
