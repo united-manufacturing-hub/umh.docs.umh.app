@@ -39,7 +39,7 @@ as it is known what data and structure to expect.
 
 For example, the timestamp is an easy way to avoid errors by making each message
 idempotent (can be safely processed multiple times without changing the result).
-Each message in a tag is made completely unique by its timestamp, which is
+Each data point associated with a tag is made completely unique by its timestamp, which is
 critical because messages are sent using "at least once" semantics, which can
 lead to duplicates. With idempotency, duplicate messages are ignored, ensuring
 that each message is only stored once in the database.
