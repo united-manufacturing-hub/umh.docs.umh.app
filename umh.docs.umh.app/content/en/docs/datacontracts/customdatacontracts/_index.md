@@ -23,8 +23,8 @@ Every time a machine stops, the latest order ID from the MES needs to be automat
 
 We begin by utilizing the existing `_historian` data contract to continuously send and store the latest order ID from the MES in the UNS.
 
-Additionally a custom schema is required to handle action requests and responses, enabling commands like writing data to the PLC, for example `_action`.
-Next step is to implement Protocol Converters to facilitate communication between systems.
+Additionally, a custom schema (for example, `_action`) is required to handle action requests and responses, enabling commands like writing data to the PLC.
+The next step is to implement Protocol Converters to facilitate communication between systems.
 For ingoing messages, a Protocol Converter fetches the latest order ID from the MES and publishes it to the UNS using the `_historian` data contract.
 
 For outgoing messages, another Protocol Converter listens for action requests in the manually added `_action` data contract and executes them by getting the last order ID from the UNS and writing the order ID to the PLC.
