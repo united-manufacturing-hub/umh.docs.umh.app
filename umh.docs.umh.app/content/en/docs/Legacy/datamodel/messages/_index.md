@@ -1,7 +1,7 @@
 ---
 title: "Unified Namespace"
 chapter: true
-description: "Describes all available _schema and there structure"
+description: "Describes all available _schema and their structure"
 weight: 1000
 ---
 

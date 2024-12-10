@@ -2,7 +2,7 @@
 title: "Data Model (v0)"
 menuTitle: "Data Model (v0)"
 description: "This page describes the data model of the UMH stack - from the message payloads up to database tables."
-weight: 1750
+weight: 1760
 deprecated: true
 aliases:
   - /docs/architecture/datamodel_old/
