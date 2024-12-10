@@ -9,7 +9,7 @@ wip: true
 
 This section focuses on Custom Data Contracts.
 If you are not familiar with Data Contracts, you should first read the
-[Data Contracts / API](https://umh.docs.umh.app/docs/datacontracts/) page.
+[Data Contracts / API]({{< ref "/docs/datacontracts" >}})
 
 ## Why Custom Data Contracts
 
