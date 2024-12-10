@@ -2,7 +2,7 @@
 title: 5. Moving to Production
 menuTitle: 5. Moving to Production
 description: Move the United Manufacturing Hub to production.
-weight: 5000
+weight: 8000
 draft: true
 wip: true
 ---
