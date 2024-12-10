@@ -73,8 +73,11 @@ all systems work together smoothly and reliably.
 
 Simply put, data contracts specify where a message is going, the format it must
 follow, how it's delivered, and what happens when it arrives - all based on
-agreed-upon rules and services. It is similar to an API: you send a specific
-message and it triggers a predefined action.
+agreed-upon rules and services. It is similar to an API: you send a specific message, and
+it triggers a predefined action. For example, sending data
+to `_historian` automatically stores it in TimescaleDB,
+just like how a REST API's POST endpoint would store data
+in its database.
 
 ### Example Historian
 
