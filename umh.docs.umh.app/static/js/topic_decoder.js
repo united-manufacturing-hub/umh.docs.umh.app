@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return regex.test(str);
     }
     inputField.addEventListener('input', function() {
-        const regex = /^umh\.v1\.(?<enterprise>[\w\-_]+)\.((?<site>[\w\-_]+)\.)?((?<area>[\w\-_]+)\.)?((?<productionLine>[\w\-_]+)\.)?((?<workCell>[\w\-_]+)\.)?((?<originId>[\w\-_]+)\.)?(?<schema>(_\w+))(\.(?<tag>[\w\-_.]+))?$/;
+        const regex = /^umh\.v1\.(?<enterprise>[a-zA-Z0-9][\w-]*)\.((?<site>[a-zA-Z0-9][\w-]*)\.)?((?<area>[a-zA-Z0-9][\w-]*)\.)?((?<productionLine>[a-zA-Z0-9][\w-]*)\.)?((?<workCell>[a-zA-Z0-9][\w-]*)\.)?((?<originId>[a-zA-Z0-9][\w-]*)\.)?_(?<usecase>([a-z-A-Z0-9][\w-]*))(\.(?<tag>(?:.+)+))?$/;
         // Strip whitespaces & replace / with .
         let value = inputField.value.trim();
         if (value.length === 0){
