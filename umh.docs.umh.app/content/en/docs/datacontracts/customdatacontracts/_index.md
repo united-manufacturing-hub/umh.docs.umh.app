@@ -3,7 +3,6 @@ title: "Custom Data Contracts"
 menuTitle: "Custom Data Contracts"
 description: "In addition to the standard data contracts provided, you can add your own."
 weight: 2000
-draft: true
 wip: true
 ---
 
