@@ -9,7 +9,8 @@ wip: true
 
 This section focuses on Custom Data Contracts.
 If you are not familiar with Data Contracts, you should first read the
-[Data Contracts / API]({{< ref "/docs/datacontracts" >}})
+[Data Contracts / API]({{< ref "/docs/datacontracts" >}}).
+We are currently working on a blog post that will explain the concept of Custom Data Contracts in more detail.
 
 ## Why Custom Data Contracts
 
