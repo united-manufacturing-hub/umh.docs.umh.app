@@ -95,7 +95,7 @@ If we want to group this for easier access in Grafana, we could use two types of
     }
     ```
    This method allows very easy monitoring of the data in tools like our Management Console or MQTT Explorer, as each new `/` will be displayed as a Tree.
-{{< comment >}}
+
 2) __Using JSON subobjects:__
 
     Equivalent to the above we could also send:
@@ -141,8 +141,6 @@ If we want to group this for easier access in Grafana, we could use two types of
       "temperature": 50.0,
       "collision": false
     }
-    ```
-{{< /comment >}}
 
 ## What's next?
 
