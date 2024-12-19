@@ -157,3 +157,4 @@ Follow our [Data Visualization](../../getstarted/datavisualization/) tutorial to
 3) Use your preferred tool to connect to our `umh_v2` database using the `kafkatopostgresqlv2` user and the password from above command.
 
    ![datagrip](/images/datamodel/database/datagrip.png)
+   
