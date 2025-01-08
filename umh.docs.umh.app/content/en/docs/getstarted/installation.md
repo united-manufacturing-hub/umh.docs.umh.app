@@ -26,8 +26,11 @@ installing your first instance and connecting to an OPC UA simulator in no time.
 
 - ARM-based systems, such as a Raspberry Pi, are not currently supported.
 
-- Ensure the root partition (`/`) has at least <span id="storage-requirements"></span> of free space. The default Rocky Linux installation creates a large `/home` partition, so custom partitioning during the installation of Rocky Linux may be required.
-- For network connectivity with other machines, use a bridged network adapter in the virtual machine. NAT or host-only adapters will prevent external connections to your instance.
+- Ensure the root partition (`/`) has at least <span id="storage-requirements"></span> of free space.
+
+{{% notice note %}}
+For more detailed information on the installation (e.g., specific considerations for VM installations), please see [here](/docs/production-guide/installation).
+{{% /notice %}}
 
 ### Operating System
 
