@@ -29,7 +29,6 @@ installing your first instance and connecting to an OPC UA simulator in no time.
 - Ensure the root partition (`/`) has at least <span id="storage-requirements"></span> of free space. The default Rocky Linux installation creates a large `/home` partition, so custom partitioning during the installation of Rocky Linux may be required.
 - For network connectivity with other machines, use a bridged network adapter in the virtual machine. NAT or host-only adapters will prevent external connections to your instance.
 
-
 ### Operating System
 
   We support the following **operating systems**:
