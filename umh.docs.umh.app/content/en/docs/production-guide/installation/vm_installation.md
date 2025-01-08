@@ -14,7 +14,7 @@ This guide provides specific requirements and best practices for installing the 
 
 Ensure you have:
 - Access to a hypervisor (like VMware, VirtualBox, Proxmox, or Hyper-V)
-- Sufficient host resources to allocate to the VM (refer to the [Installtion guide for requirements](/docs/getstarted/installation#requirements) section for more details)
+- Sufficient host resources to allocate to the VM (refer to the [Installation guide for requirements](/docs/getstarted/installation#requirements) section for more details)
 - Network access for both the host and VM
 
 ## Storage Configuration
