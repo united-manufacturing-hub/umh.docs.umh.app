@@ -26,6 +26,10 @@ installing your first instance and connecting to an OPC UA simulator in no time.
 
 - ARM-based systems, such as a Raspberry Pi, are not currently supported.
 
+- Ensure the root partition (`/`) has at least <span id="storage-requirements"></span> of free space. The default Rocky Linux installation creates a large `/home` partition, so custom partitioning may be required.
+- For network connectivity with other machines, use a bridged network adapter in the virtual machine. NAT or host-only adapters will prevent external connections to your instance.
+
+
 ### Operating System
 
   We support the following **operating systems**:
@@ -33,8 +37,9 @@ installing your first instance and connecting to an OPC UA simulator in no time.
   <div id="requirements-3">
   <!-- Dynamic content will be loaded here -->
   </div>
-  You can find the image for Rocky in the Management Console, when you are
-  setting up your first instance.
+  You can find the image for Rocky in the Management Console when you are
+  setting up your first instance. A minimal installation (without GUI) is sufficient
+  and recommended for faster setup.
 
   {{% notice note %}}
   Newer or older versions of the operating system, or other operating systems
@@ -46,7 +51,7 @@ installing your first instance and connecting to an OPC UA simulator in no time.
 ### Network
 
 - A personal computer with a recent browser to access the
-[Management Console](https://www.management.umh.app).
+[Management Console](https://management.umh.app).
 - Ensure that management.umh.app is allowlisted on TCP port 443 for HTTPS traffic.
 
   {{% notice note %}}
@@ -60,6 +65,10 @@ click on **Sign up now** and create a new account.
 
 2. Once logged in with your new account, click on
 **Add Your First Instance**.
+
+{{% notice note %}}
+Only one user per organization is allowed in the Community Edition.
+{{% /notice %}}
 
 ## Create your first Instance
 
