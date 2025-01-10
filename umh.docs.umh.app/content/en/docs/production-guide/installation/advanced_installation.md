@@ -91,6 +91,8 @@ For advanced users, the following variables can be used to control the behavior 
 | `KUBE_NODE_NAME`        | `NODE_NAME`             | Uses the system’s hostname          | Node name in the Kubernetes cluster.                                                                                                |
 | `AUTO_PATCH_HOSTNAME`   | `auto_patch_hostname`    | `false`                             | If `true`, automatically sets the system hostname to `NODE_NAME` without user confirmation.                                         |
 | (Set internally)        | `INSTALL_K3S_EXEC`       | (constructed dynamically)           | Internal variable to pass additional flags (like `--tls-san`) during k3s installation. This is auto-generated; not usually set directly. |
+| `K3S_DATA_DIR`                | `K3S_DATA_DIR`                      | k3s default (`/var/lib/rancher/k3s`)                | Specifies the data directory for k3s by setting the [`--data-dir flag`](https://docs.k3s.io/cli/server#data).  |
+
 
 ---
 
