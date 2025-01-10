@@ -19,6 +19,10 @@ When setting up your virtual machine for UMH:
    - The default Rocky Linux installation typically creates a large `/home` partition
    - During OS installation, you may use custom partitioning to ensure the root partition (`/`) has sufficient space (<span id="storage-requirements"></span>)
 
+**Install location**
+   - The kubernetes data directory is stored in `/var/lib/rancher/k3s` by default.
+   - This can be overridden by setting the `K3S_DATA_DIR` environment variable. See [Kubernetes Configuration Variables](#kubernetes-configuration-variables) for more information.
+
 
 ## Virtual Machine Configuration
 
@@ -33,10 +37,6 @@ There are some specific settings that are recommended for the virtual machine:
      - Accept incoming connections from clients
 
 **Advanced Requirements**
-
-## Virtual Hardware Recommendations
-
-For optimal performance:
 
 1. **CPU Configuration**
    - Enable CPU virtualization extensions (VT-x/AMD-V) on the host
@@ -91,7 +91,7 @@ For advanced users, the following variables can be used to control the behavior 
 | `KUBE_NODE_NAME`        | `NODE_NAME`             | Uses the system’s hostname          | Node name in the Kubernetes cluster.                                                                                                |
 | `AUTO_PATCH_HOSTNAME`   | `auto_patch_hostname`    | `false`                             | If `true`, automatically sets the system hostname to `NODE_NAME` without user confirmation.                                         |
 | (Set internally)        | `INSTALL_K3S_EXEC`       | (constructed dynamically)           | Internal variable to pass additional flags (like `--tls-san`) during k3s installation. This is auto-generated; not usually set directly. |
-| `K3S_DATA_DIR`                | `K3S_DATA_DIR`                      | k3s default (`/var/lib/rancher/k3s`)                | Specifies the data directory for k3s by setting the [`--data-dir flag`](https://docs.k3s.io/cli/server#data).  |
+| `K3S_DATA_DIR`                | `K3S_DATA_DIR`                      | k3s default (`/var/lib/rancher/k3s` or `${HOME}/.rancher/k3s` if not root)                | Specifies the data directory for k3s by setting the [`--data-dir`](https://docs.k3s.io/cli/server#data) flag.  |
 
 
 ---
