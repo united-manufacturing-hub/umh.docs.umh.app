@@ -9,7 +9,11 @@ weight: 40
 <!-- overview -->
 
 This page describes advanced requirements and considerations when installing the United Manufacturing Hub.
-It is meant to be an additinal guide for the [Installation guide](/docs/getstarted/installation) page.
+It is meant to be an additional guide for the [Installation guide](/docs/getstarted/installation) page.
+
+You may also find these step-by-step installation guides helpful:
+- [Installation Guide using K3OS](https://learn.umh.app/course/installation-guide-for-the-united-manufacturing-hub-using-k3os/)
+- [Installation Guide for Ubuntu](https://learn.umh.app/course/installing-the-united-manufacturing-hub-on-ubuntu/)
 
 ## Storage Configuration
 
