@@ -27,6 +27,12 @@ installing your first instance and connecting to an OPC UA simulator in no time.
 - ARM-based systems, such as a Raspberry Pi, are not currently supported.
 - An SSD is required, as the UMH’s data buffering process is I/O intensive, particularly with Kafka. For production environments, we recommend dedicating a separate SSD for the UMH rather than sharing it with other VMs, to ensure optimal read/write performance and avoid bottlenecks.
 
+- Ensure the root partition (`/`) has at least <span id="storage-requirements"></span> of free space.
+
+{{% notice note %}}
+For more detailed information on the installation (e.g., specific considerations for VM installations), please see [here](/docs/production-guide/installation).
+{{% /notice %}}
+
 ### Operating System
 
   We support the following **operating systems**:
@@ -34,8 +40,9 @@ installing your first instance and connecting to an OPC UA simulator in no time.
   <div id="requirements-3">
   <!-- Dynamic content will be loaded here -->
   </div>
-  You can find the image for Rocky in the Management Console, when you are
-  setting up your first instance.
+  You can find the image for Rocky in the Management Console when you are
+  setting up your first instance. A minimal installation (without GUI) is sufficient
+  and recommended for faster setup.
 
   {{% notice note %}}
   Newer or older versions of the operating system, or other operating systems
@@ -47,7 +54,7 @@ installing your first instance and connecting to an OPC UA simulator in no time.
 ### Network
 
 - A personal computer with a recent browser to access the
-[Management Console](https://www.management.umh.app).
+[Management Console](https://management.umh.app).
 - Ensure that management.umh.app is allowlisted on TCP port 443 for HTTPS traffic.
 
   {{% notice note %}}
@@ -61,6 +68,10 @@ click on **Sign up now** and create a new account.
 
 2. Once logged in with your new account, click on
 **Add Your First Instance**.
+
+{{% notice note %}}
+The Community Edition is limited to one user per organization. For multi-user support, please consider our Enterprise Edition.
+{{% /notice %}}
 
 ## Create your first Instance
 
