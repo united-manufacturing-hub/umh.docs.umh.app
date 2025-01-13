@@ -25,6 +25,7 @@ installing your first instance and connecting to an OPC UA simulator in no time.
   </div>
 
 - ARM-based systems, such as a Raspberry Pi, are not currently supported.
+- An SSD is required, as the UMH’s data buffering process is I/O intensive, particularly with Kafka. For production environments, we recommend dedicating a separate SSD for the UMH rather than sharing it with other VMs, to ensure optimal read/write performance and avoid bottlenecks.
 
 ### Operating System
 
