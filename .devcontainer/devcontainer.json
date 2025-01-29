@@ -15,9 +15,11 @@
             "version": "latest",
             "ppa": "false"
         },
-		"ghcr.io/devcontainers/features/hugo:1": {
-			"version": "0.111.3"
-		}
+        "ghcr.io/devcontainers/features/go:1": {
+            "version": "1.20.5" // Ensure Go version is 1.20 or later
+        },
+        "ghcr.io/rapidsai/devcontainers/features/gcc:25.4.0": {}
+
     },
     "runArgs": [
         "--cap-add=SYS_PTRACE",
@@ -38,5 +40,6 @@
             ]
         }
     },
-    "remoteUser": "vscode"
+    "postCreateCommand": "bash build-hugo.sh",
+    "remoteUser": "root"
 }
