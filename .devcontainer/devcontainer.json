@@ -16,10 +16,9 @@
             "ppa": "false"
         },
         "ghcr.io/devcontainers/features/go:1": {
-            "version": "1.20.5" // Ensure Go version is 1.20 or later
+            "version": "1.23.5"
         },
         "ghcr.io/rapidsai/devcontainers/features/gcc:25.4.0": {}
-
     },
     "runArgs": [
         "--cap-add=SYS_PTRACE",

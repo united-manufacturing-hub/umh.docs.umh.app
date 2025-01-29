@@ -209,7 +209,7 @@ These variables let you run only portions of the script for debugging:
 
 Below variables are set or used internally and typically do **not** need to be overridden:
 
-- `temp_dir` (Defaults to `/tmp/mgmt-installer`)  
+- `TMP_FILE_BASE_DIR` (Defaults to `/tmp`, used to specify base directory for temporary files)
 - `SENTRY_DSN` (Used for error reporting to Sentry)  
 - `INSTALL_HELM` / `UNINSTALL_HELM` (See testing & troubleshooting table)  
 - `INSTALL_KUBECTL` / `UNINSTALL_KUBECTL` (See testing & troubleshooting table)  
