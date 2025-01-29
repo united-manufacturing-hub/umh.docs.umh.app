@@ -8,17 +8,16 @@
             "userGid": "1000",
             "upgradePackages": "true"
         },
-        "ghcr.io/devcontainers/features/go:1": {
-            "version": "1.23.4"
-        },
         "ghcr.io/devcontainers/features/node:1": {
-            "version": "20.11.0"
+            "version": "18.16.0"
         },
         "ghcr.io/devcontainers/features/git:1": {
             "version": "latest",
             "ppa": "false"
         },
-        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+		"ghcr.io/devcontainers/features/hugo:1": {
+			"version": "0.111.3"
+		}
     },
     "runArgs": [
         "--cap-add=SYS_PTRACE",
@@ -39,9 +38,5 @@
             ]
         }
     },
-    "remoteUser": "vscode",
-    "postCreateCommand": "curl -fsSL https://tailscale.com/install.sh | sudo sh",
-    "mounts": [
-        "source=devcontainer-tailscale-state,target=/var/lib/tailscale,type=volume"
-    ]
+    "remoteUser": "vscode"
 }
