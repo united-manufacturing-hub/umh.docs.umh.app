@@ -1,0 +1,47 @@
+{
+    "image": "ghcr.io/united-manufacturing-hub/devcontainer:latest",
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": "true",
+            "username": "vscode",
+            "userUid": "1000",
+            "userGid": "1000",
+            "upgradePackages": "true"
+        },
+        "ghcr.io/devcontainers/features/go:1": {
+            "version": "1.23.4"
+        },
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "20.11.0"
+        },
+        "ghcr.io/devcontainers/features/git:1": {
+            "version": "latest",
+            "ppa": "false"
+        },
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+    },
+    "runArgs": [
+        "--cap-add=SYS_PTRACE",
+        "--security-opt",
+        "seccomp=unconfined",
+        "--cap-add=NET_ADMIN",
+        "--cap-add=NET_RAW"
+    ],
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "go.toolsManagement.checkForUpdates": "local",
+                "go.useLanguageServer": true,
+                "go.gopath": "/go"
+            },
+            "extensions": [
+                "golang.Go"
+            ]
+        }
+    },
+    "remoteUser": "vscode",
+    "postCreateCommand": "curl -fsSL https://tailscale.com/install.sh | sudo sh",
+    "mounts": [
+        "source=devcontainer-tailscale-state,target=/var/lib/tailscale,type=volume"
+    ]
+}
