@@ -27,7 +27,7 @@ check_versions:
 			wget https://github.com/gohugoio/hugo/releases/download/$(HUGO_VERSION)/hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_darwin-universal.tar.gz && \
 			tar -xzf hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_darwin-universal.tar.gz && \
 			sudo mv hugo /usr/local/bin/ && \
-			rm -f hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_darwin-universal.tar.gz LICENSE README.md; \
+			rm -f hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_darwin-universal.tar.gz; \
 		else \
 			wget https://github.com/gohugoio/hugo/releases/download/$(HUGO_VERSION)/hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb && \
 			(sudo dpkg -i hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb) || (dpkg -i hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb) && \
