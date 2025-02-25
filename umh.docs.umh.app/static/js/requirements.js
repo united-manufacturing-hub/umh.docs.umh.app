@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   async function fetchRequirements() {
     try {
-      const response = await fetch('/js/requirements.json');
+      const response = await fetch('https://management.umh.app/requirements.json');
 
       // Check if the fetch was successful
       if (!response.ok) {
