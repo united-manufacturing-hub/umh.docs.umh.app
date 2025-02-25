@@ -11,18 +11,28 @@ SKIP_IMAGE_OPTIMIZATION ?= false
 # Ensure /bin/bash is used
 SHELL := /bin/bash
 
+# Ensure /usr/local/bin is in PATH
+PATH := /usr/local/bin:$(PATH)
+
 install-and-serve: install serve
 
 # Check Hugo and Node.js versions
 check_versions:
 	@echo "Checking Hugo and Node.js versions..."
 	@if hugo version | grep -q $(HUGO_VERSION); then \
-    	echo "Correct Hugo version installed"; \
+		echo "Correct Hugo version installed"; \
 	else \
 		echo "Incorrect Hugo version, installing..."; \
-		wget https://github.com/gohugoio/hugo/releases/download/$(HUGO_VERSION)/hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb; \
-		(sudo dpkg -i hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb) || (dpkg -i hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb); \
-		rm hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb; \
+		if [ "$$(uname)" = "Darwin" ]; then \
+			wget https://github.com/gohugoio/hugo/releases/download/$(HUGO_VERSION)/hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_darwin-universal.tar.gz && \
+			tar -xzf hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_darwin-universal.tar.gz && \
+			sudo mv hugo /usr/local/bin/ && \
+			rm -f hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_darwin-universal.tar.gz LICENSE README.md; \
+		else \
+			wget https://github.com/gohugoio/hugo/releases/download/$(HUGO_VERSION)/hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb && \
+			(sudo dpkg -i hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb) || (dpkg -i hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb) && \
+			rm hugo_extended_$(shell echo $(HUGO_VERSION) | cut -c 2-)_linux-amd64.deb; \
+		fi; \
 	fi
 
 	@if node -v | grep -q $(NODE_VERSION); then \
