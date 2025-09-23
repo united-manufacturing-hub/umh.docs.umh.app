@@ -28,7 +28,7 @@
 {{- template "_internal/schema.html" . -}}
 {{- template "_internal/twitter_cards.html" . -}}
 {{ if eq (getenv "HUGO_ENV") "production" }}
-{{ template "_internal/google_analytics_async.html" . }}
+{{/* Google Analytics disabled - tracking moved to new documentation site at docs.umh.app */}}
 {{ end }}
 {{ partialCached "head-css.html" . "asdf" }}
 <script
