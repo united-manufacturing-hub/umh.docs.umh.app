@@ -101,6 +101,36 @@ You can find sample SQL commands to enable data retention here.
   {{< /tab >}}
   {{< /tabs >}}
 
+### Retention duration syntax in the benthos-umh TimescaleDB Historian output
+
+The sample commands above set retention with SQL `INTERVAL` values, which the
+database interprets. The [benthos-umh](/docs/features/connectivity/benthos-umh/)
+TimescaleDB Historian (Output) is configured differently: its retention and
+other time settings are parsed by benthos-umh as durations, and they follow
+the rules below. These rules do not apply to the SQL commands above.
+
+Since benthos-umh version 0.16.2, these time settings accept only whole hours,
+minutes, or seconds, written as a number followed by the unit `h`, `m`, or `s`.
+
+| Unit    | Supported | Example |
+| ------- | --------- | ------- |
+| Hours   | Yes       | `168h`  |
+| Minutes | Yes       | `90m`   |
+| Seconds | Yes       | `3600s` |
+| Days    | No        | `7d`    |
+
+- To keep data for 7 days, write `168h` (7 × 24 hours). Convert other day counts
+  to hours the same way.
+- A value without a unit, such as `168`, is not accepted. Validation fails with
+  the error `must be a duration with a unit`. Add the unit, for example `168h`.
+- A value with the day unit, such as `7d`, is not supported. Use hours instead.
+
+{{% notice note %}}
+These rules apply to benthos-umh version 0.16.2 and later. Before you update,
+check your existing configuration for values without a unit and add the
+missing unit.
+{{% /notice %}}
+
 <!-- discussion -->
 
 <!-- Optional section; add links to information related to this topic. -->
